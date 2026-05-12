@@ -1,16 +1,16 @@
 {
-  "last_update": "2026-05-12T08:44:12.056823Z",
+  "last_update": "2026-05-12T09:30:30.736804Z",
   "latest_report": {
-    "category": "hisse",
+    "category": "wb",
     "date": "2026-05-12",
-    "title": "Arçelik — Günün Hissesi"
+    "title": "WB Karşılaştırma — 2026-05-12"
   },
-  "total_reports": 2,
+  "total_reports": 6,
   "by_category": {
     "hisse": 2,
-    "fx": 0,
-    "makro": 0,
-    "fred": 0,
-    "wb": 0
+    "fx": 1,
+    "makro": 1,
+    "fred": 1,
+    "wb": 1
   }
 }
