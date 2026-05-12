@@ -1,4 +1,4 @@
-# MakroStream robots.txt
+# Pusula Finans robots.txt
 User-agent: *
 Allow: /
 
