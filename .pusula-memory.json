@@ -35,6 +35,7 @@
           "regime": "Dolar Geri Çekiliyor",
           "dxy_5d_pct": -0.5382337490876798,
           "usdtry": 45.352500915527344,
+          "usdtry_30d_pct": 1.6004293426289173,
           "strongest_pair": "GBP/TRY"
         }
       }
@@ -56,11 +57,12 @@
         "category": "makro",
         "date": "2026-05-12",
         "metrics": {
-          "regime": "Veri eksik",
-          "policy_rate": null,
-          "tufe_yoy": 3513.87,
-          "usdtry": 45.14177143,
-          "real_rate": null
+          "regime": "Yüksek Enflasyon",
+          "tufe_yoy": 30.89232832318265,
+          "core_yoy": 34.01478312967632,
+          "ufe_yoy": 30.64848474101396,
+          "unemployment": 8.5,
+          "usdtry": 45.2951
         }
       }
     ],
