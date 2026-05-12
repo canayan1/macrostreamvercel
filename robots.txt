@@ -1,0 +1,9 @@
+# MakroStream robots.txt
+User-agent: *
+Allow: /
+
+# AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://macrostreamvercel.vercel.app/sitemap.xml

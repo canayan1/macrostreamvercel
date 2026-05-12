@@ -1,0 +1,110 @@
+═══════════════════════════════════════════════════════════════════
+ADSENSE BAŞVURU REHBERİ — adımlar
+═══════════════════════════════════════════════════════════════════
+
+SİTE DURUMU:
+✓ Yasal sayfalar hazır (Gizlilik, Kullanım Şartları, İletişim)
+✓ robots.txt + sitemap.xml mevcut
+✓ Mediapartners-Google crawler'ına Allow verilmiş
+✓ ads.txt placeholder oluşturuldu
+✓ Açık disclaimer (yatırım tavsiyesi değildir) her sayfada
+✓ Original Türkçe içerik (~30+ sayfa)
+✓ Mobil uyumlu, hızlı yüklenir
+
+DİKKAT:
+⚠ Site çok yeni (2 günlük) — AdSense onayı zor olabilir
+⚠ *.vercel.app subdomain — custom domain (~$10/yıl) onay olasılığını artırır
+⚠ Otomatik üretilen içerik — Google bunu sıkı denetler, ama disclaimer'larımız iyi
+
+
+───────────────────────────────────────────────────────────────────
+1. BAŞVURU (5-10 dakika)
+───────────────────────────────────────────────────────────────────
+
+a) https://www.google.com/adsense aç
+b) "Get started" → Google hesabınla giriş yap (canayan.ekonomist@gmail.com önerilir)
+c) Aşağıdaki bilgileri gir:
+   - Site URL: https://macrostreamvercel.vercel.app
+   - Country: Türkiye
+   - Payment country: Türkiye
+   - Payment currency: TRY veya USD
+d) AdSense kullanım şartlarını kabul et
+
+
+───────────────────────────────────────────────────────────────────
+2. SİTE DOĞRULAMA KODU (yine 5 dakika)
+───────────────────────────────────────────────────────────────────
+
+AdSense sana şuna benzer bir kod verecek:
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+Bunu siteye eklemen lazım. Şöyle yap:
+
+a) Bana yapıştır kodu
+b) Ben src/site/builder.py'de _page_shell() içine ekleyeceğim
+c) Yeni publish çalıştırırız, kod tüm sayfalara enjekte olur
+d) Vercel'e push, AdSense kodu canlıda görünür
+e) AdSense'de "Doğrulamayı kontrol et" → onay süreci başlar
+
+ALTERNATIF — daha hızlı: Ben şimdi kod placeholder'ı koyabilirim, sen sadece publisher ID'yi
+verirsin (ca-pub-XXXX), kod hemen aktif olur.
+
+
+───────────────────────────────────────────────────────────────────
+3. ADS.TXT GÜNCELLEMESİ
+───────────────────────────────────────────────────────────────────
+
+AdSense onayından sonra publisher ID alacaksın (pub-XXXXXXXXXXXXXXXX formatında).
+
+Bunu bana yapıştır, ben ads.txt'yi şuna güncelleyeceğim:
+
+  google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+
+───────────────────────────────────────────────────────────────────
+4. ONAY SÜRECİ (2-4 hafta)
+───────────────────────────────────────────────────────────────────
+
+a) AdSense ekibi siteni manuel inceler
+b) Sonuç e-posta ile gelir
+c) Onaylanırsa: ad slot kodları üretip siteye yerleştiririz
+d) Reddedilirse: sebep e-postada belirtilir, eksikleri tamamlayıp 30 gün sonra
+   tekrar başvur (HEMEN tekrar başvurma — 30 gün bekle)
+
+
+───────────────────────────────────────────────────────────────────
+5. EĞER REDDEDİLİRSE — TİPİK SEBEPLER & ÇÖZÜMLER
+───────────────────────────────────────────────────────────────────
+
+❌ "Insufficient content"
+   → 2-3 hafta daha içerik üret (otomatik publisher zaten yapıyor)
+   → Manuel "Editör Notu" yazıları ekle
+
+❌ "Low value content"
+   → Otomatik içeriğe insan dokunuşu ekle
+   → Her rapora kişisel yorum ekle
+   → Daha derin eğitim makaleleri yaz
+
+❌ "Site doesn't meet criteria"
+   → Custom domain al
+   → 1-2 ay daha bekle, organik trafik bekle
+
+❌ "Site difficult to navigate"
+   → Bu beklenmez, navigasyonumuz iyi
+
+❌ "Policy violation"
+   → Reklam dostu olmayan içerik var mı? Yatırım sitelerinde sıkı bakar.
+   → Disclaimer'larımız agresif → bu lehimize çalışır
+
+
+───────────────────────────────────────────────────────────────────
+6. ALTERNATİFLER (AdSense onayı gelene kadar)
+───────────────────────────────────────────────────────────────────
+
+- Affiliate (Investing.com TR, fintekno olabilir)
+- Doğrudan sponsor (TR fintech firmaları — trafik gerekli)
+- Premium tier (₺149/ay) — paywall + Stripe/iyzico
+
+
+İLK ADIM: Sen https://www.google.com/adsense'e başvur, doğrulama kodunu bana getir.
