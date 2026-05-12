@@ -1,12 +1,13 @@
 {
-  "last_update": "2026-05-12T17:25:42.535550Z",
+  "last_update": "2026-05-12T20:41:39.750910Z",
   "latest_report": {
-    "category": "sektor",
+    "category": "pulse",
     "date": "2026-05-12",
-    "title": "Sektör Rotasyon — 2026-05-12"
+    "title": "Günlük Pulse — 2026-05-12"
   },
-  "total_reports": 7,
+  "total_reports": 8,
   "by_category": {
+    "pulse": 1,
     "hisse": 2,
     "sektor": 1,
     "fx": 1,
