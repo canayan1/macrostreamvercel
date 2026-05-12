@@ -104,46 +104,223 @@ footer strong { color: var(--yellow); }
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📰 Son Bültenler</h2>
-<p class="muted" style="margin-bottom:24px">
-  Kategoriye göre son raporlar. Tümü için <a href="/arsiv.html" style="color:var(--accent)">arşiv</a>'e bakın.
-</p>
-
-<h2 id="hisse">📈 Hisse Senedi</h2>
-<p class="small muted" style="margin:0 0 12px">BIST 30 + US 30 teknik tarama, günün öne çıkan hissesi</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-12</span><a href="/reports/hisse/2026-05-12/">Arçelik — Günün Hissesi</a></li><li><span class="date">2026-05-11</span><a href="/reports/hisse/2026-05-11/">Akbank — Günün Hissesi</a></li></ul>
-  
+<!-- HERO -->
+<div style="margin:14px 0 28px">
+  <h1 style="font-size:32px;margin:0 0 8px;letter-spacing:-0.02em;line-height:1.2">
+    Türkçe veri, sentez ve sistematik araştırma.
+  </h1>
+  <p style="font-size:16px;color:var(--muted);margin:0 0 20px;line-height:1.5;max-width:620px">
+    MakroStream — günlük makro ve piyasa bülteni, şeffaf strateji laboratuvarı ve
+    Türkçe finansal eğitim. <strong style="color:#fbbf24">Yatırım tavsiyesi değildir.</strong>
+  </p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <a href="/reports/hisse/2026-05-12/" style="display:inline-block;background:var(--accent);color:#0f1419;
+       padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">
+      📈 Bugünün Bülteni
+    </a>
+    <a href="/algo/" style="display:inline-block;background:transparent;color:var(--text);
+       padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;
+       border:1px solid var(--border)">
+      🧪 Strateji Laboratuvarı
+    </a>
+  </div>
 </div>
 
-<h2 id="fx">💱 Döviz / FX</h2>
-<p class="small muted" style="margin:0 0 12px">Majör pariteler, EM kurlar, teknik durum</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-12</span><a href="/reports/fx/2026-05-12/">Döviz Günlük — 2026-05-12</a></li></ul>
-  
+<!-- SNAPSHOT -->
+<h3 style="margin:18px 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">
+  Bugün
+</h3>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px">
+
+  <div class="card" style="border-left:3px solid #4ade80">
+    <div class="small muted" style="margin-bottom:4px">📈 BIST 30</div>
+    <div style="font-size:18px;font-weight:600">Risk-On</div>
+    <div class="small muted" style="margin-top:4px">50-DMA üstünde: 89%</div>
+    <div class="small" style="margin-top:6px"><span class="muted">Günün hissesi:</span> <strong>Arçelik</strong></div>
+  </div>
+
+  <div class="card" style="border-left:3px solid #3fa9f5">
+    <div class="small muted" style="margin-bottom:4px">💱 Döviz</div>
+    <div style="font-size:18px;font-weight:600">Dolar Geri Çekiliyor</div>
+    <div class="small muted" style="margin-top:4px">USD/TRY: 45.3525</div>
+    <div class="small muted">DXY 5g: -0.54%</div>
+  </div>
+
+  <div class="card" style="border-left:3px solid #fbbf24">
+    <div class="small muted" style="margin-bottom:4px">🇹🇷 TR Makro</div>
+    <div style="font-size:18px;font-weight:600">Yüksek Enflasyon</div>
+    <div class="small muted" style="margin-top:4px">TÜFE Y/Y: 30.9%</div>
+    <div class="small muted">İşsizlik: 8.5%</div>
+  </div>
+
+  <div class="card" style="border-left:3px solid #f87171">
+    <div class="small muted" style="margin-bottom:4px">🇺🇸 ABD Makro</div>
+    <div style="font-size:18px;font-weight:600">Normal Eğri</div>
+    <div class="small muted" style="margin-top:4px">Fed Funds: 3.64%</div>
+    <div class="small muted">VIX: 17.2</div>
+  </div>
+
 </div>
 
-<h2 id="makro">🇹🇷 Makro (TR)</h2>
-<p class="small muted" style="margin:0 0 12px">TCMB EVDS — enflasyon, cari işlemler, büyüme</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-12</span><a href="/reports/makro/2026-05-12/">TR Makro — 2026-05-12</a></li></ul>
-  
+
+<!-- SERVICES -->
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px">
+
+  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%)">
+    <div style="font-size:32px">📰</div>
+    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Günlük Bülten</h3>
+    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
+      Hisse, döviz, TR/ABD makro üzerine her sabah otomatik üretilen Türkçe veri özetleri.
+      Rejim banner'ı, "geçen sayıdan bu yana ne değişti", forecast bandı.
+    </p>
+    <a href="#son-bultenler" style="color:var(--accent);font-size:13px">Son raporlar ↓</a>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#2a1f3a 100%)">
+    <div style="font-size:32px">🧪</div>
+    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Strateji Laboratuvarı</h3>
+    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
+      5 yıl tarihsel veride şeffaf backtest. Momentum, Mean Reversion, Düşük Volatilite,
+      Golden Cross, 52w Breakout. Her stratejinin kuralı açık, sepeti görünür.
+    </p>
+    <a href="/algo/" style="color:var(--accent);font-size:13px">Stratejileri incele →</a>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#1f3a2a 100%)">
+    <div style="font-size:32px">📚</div>
+    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Eğitim</h3>
+    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
+      Momentum, mean reversion, Golden Cross, backtest tuzakları, risk metrikleri.
+      Akademik kaynaklarla, Türkçe, derin makaleler.
+    </p>
+    <a href="/egitim/" style="color:var(--accent);font-size:13px">Eğitime başla →</a>
+  </div>
+
 </div>
 
-<h2 id="fred">🇺🇸 Makro (ABD)</h2>
-<p class="small muted" style="margin:0 0 12px">FRED — Fed faizi, tahvil, ekonomik veriler</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-12</span><a href="/reports/fred/2026-05-12/">ABD Makro — 2026-05-12</a></li></ul>
-  
+
+<!-- DIFFERENTIATION -->
+
+<div style="margin-top:36px">
+  <h3 style="font-size:18px;text-transform:none;letter-spacing:0;color:var(--text);margin-bottom:14px">
+    Neden MakroStream?
+  </h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+
+    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
+      <div style="font-weight:600;margin-bottom:4px">🧠 Türkçe Sentez</div>
+      <div class="small muted">Ham veri her yerde var. Bizde olan: "Ne anlama geliyor?"</div>
+    </div>
+
+    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
+      <div style="font-weight:600;margin-bottom:4px">🔬 Şeffaf Kurallar</div>
+      <div class="small muted">Her strateji ve metrik açıkça yayınlanır. "Gizli sinyal" değil, paylaşılan yöntem.</div>
+    </div>
+
+    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
+      <div style="font-weight:600;margin-bottom:4px">⚙️ Sistematik</div>
+      <div class="small muted">Her gün otomatik üretim, duygu yok, kural var. Tutarlı, izlenebilir.</div>
+    </div>
+
+    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
+      <div style="font-weight:600;margin-bottom:4px">⚖️ Yasal Çerçeve</div>
+      <div class="small muted">Yatırım danışmanlığı DEĞİL — eğitim ve araştırma. SPK çizgisinde, dürüst içerik.</div>
+    </div>
+
+  </div>
 </div>
 
-<h2 id="wb">🌐 Uluslararası (World Bank)</h2>
-<p class="small muted" style="margin:0 0 12px">Aylık ülke karşılaştırmaları</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-12</span><a href="/reports/wb/2026-05-12/">WB Karşılaştırma — 2026-05-12</a></li></ul>
-  
+
+<!-- HOW TO USE -->
+
+<div style="margin-top:36px">
+  <h3 style="font-size:18px;text-transform:none;letter-spacing:0;color:var(--text);margin-bottom:14px">
+    Nasıl Kullanılır?
+  </h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
+
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:8px">
+        <span style="font-size:22px;color:var(--accent);font-weight:700">1</span>
+        <strong>Eğitim'den başla</strong>
+      </div>
+      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
+        Momentum, mean reversion, risk metrikleri… stratejilerin altındaki temel
+        kavramları önce öğren. Kısa, derin, Türkçe.
+      </p>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:8px">
+        <span style="font-size:22px;color:var(--accent);font-weight:700">2</span>
+        <strong>Bülteni takip et</strong>
+      </div>
+      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
+        Her sabah hisse + döviz; hafta sonu TR/ABD makro. "Bugün ne değişti, hangi
+        rejim aktif" — sentez tek bakışta.
+      </p>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:8px">
+        <span style="font-size:22px;color:var(--accent);font-weight:700">3</span>
+        <strong>Stratejileri incele</strong>
+      </div>
+      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
+        5 stratejinin tarihsel performansı, bugünkü sepeti, kuralları. Kendi
+        sistematik araştırmana referans.
+      </p>
+    </div>
+
+  </div>
 </div>
 
+
+<!-- LATEST CONTENT -->
+<h3 id="son-bultenler" style="margin:40px 0 14px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">
+  Son Yayınlar
+</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
+  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
+    📈 Hisse Senedi
+  </div>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/hisse/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Arçelik — Günün Hissesi</a></li><li style="padding:6px 0"><a href="/reports/hisse/2026-05-11/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-11</span>Akbank — Günün Hissesi</a></li></ul>
+</div>
+
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
+  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
+    💱 Döviz / FX
+  </div>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/fx/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Döviz Günlük — 2026-05-12</a></li></ul>
+</div>
+
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
+  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
+    🇹🇷 Makro (TR)
+  </div>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/makro/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>TR Makro — 2026-05-12</a></li></ul>
+</div>
+
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
+  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
+    🇺🇸 Makro (ABD)
+  </div>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/fred/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>ABD Makro — 2026-05-12</a></li></ul>
+</div>
+
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
+  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
+    🌐 Uluslararası (World Bank)
+  </div>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/wb/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>WB Karşılaştırma — 2026-05-12</a></li></ul>
+</div>
+
+</div>
+<p style="margin-top:18px"><a href="/arsiv.html" style="color:var(--accent);font-size:14px">Tüm yayınlar arşivinde →</a></p>
 
 </main>
 <footer>
