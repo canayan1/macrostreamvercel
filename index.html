@@ -137,7 +137,7 @@ footer strong { color: var(--yellow); }
     <div class="small muted" style="margin-bottom:4px">📈 BIST 30</div>
     <div style="font-size:18px;font-weight:600">Risk-On</div>
     <div class="small muted" style="margin-top:4px">50-DMA üstünde: 89%</div>
-    <div class="small" style="margin-top:6px"><span class="muted">Günün hissesi:</span> <strong>Arçelik</strong></div>
+    <div class="small" style="margin-top:6px"><span class="muted">Mercek altında:</span> <strong>Arçelik</strong></div>
   </div>
 
   <div class="card" style="border-left:3px solid #3fa9f5">
@@ -288,7 +288,7 @@ footer strong { color: var(--yellow); }
   <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
     📈 Hisse Senedi
   </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/hisse/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Arçelik — Günün Hissesi</a></li><li style="padding:6px 0"><a href="/reports/hisse/2026-05-11/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-11</span>Akbank — Günün Hissesi</a></li></ul>
+  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/hisse/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Arçelik — Günün Merceği</a></li><li style="padding:6px 0"><a href="/reports/hisse/2026-05-11/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-11</span>Akbank — Günün Hissesi</a></li></ul>
 </div>
 
 <div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
@@ -322,12 +322,74 @@ footer strong { color: var(--yellow); }
 </div>
 <p style="margin-top:18px"><a href="/arsiv.html" style="color:var(--accent);font-size:14px">Tüm yayınlar arşivinde →</a></p>
 
+<!-- EMAIL SIGNUP -->
+<div style="margin-top:48px;padding:28px 24px;background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%);
+     border:1px solid var(--border);border-radius:10px;text-align:center">
+  <div style="font-size:28px;margin-bottom:8px">📬</div>
+  <h3 style="margin:0 0 8px;color:var(--text);text-transform:none;letter-spacing:0;font-size:20px">
+    Bültene Abone Ol
+  </h3>
+  <p class="muted" style="margin:0 0 18px;max-width:480px;margin-left:auto;margin-right:auto;font-size:14px">
+    Günlük raporları ve haftalık makro sentezleri e-posta ile almak ister misin?
+    Listeyi yakında açıyoruz. O zamana kadar geri bildirim için yaz.
+  </p>
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <a href="mailto:canayan.ekonomist@gmail.com?subject=MakroStream%20Liste%20Bildirimi"
+       style="display:inline-block;background:var(--accent);color:#0f1419;padding:10px 20px;
+              border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">
+      📧 Liste açılınca haber ver
+    </a>
+    <a href="/iletisim/"
+       style="display:inline-block;background:transparent;color:var(--text);padding:10px 20px;
+              border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;
+              border:1px solid var(--border)">
+      💬 Geri bildirim gönder
+    </a>
+  </div>
+</div>
+
 </main>
 <footer>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px">
+  <a href="/iletisim/" style="color:var(--muted);font-size:12px">📬 İletişim</a>
+  <a href="/gizlilik/" style="color:var(--muted);font-size:12px">🔒 Gizlilik Politikası</a>
+  <a href="/kullanim-sartlari/" style="color:var(--muted);font-size:12px">📜 Kullanım Şartları</a>
+  <a href="/hakkinda.html" style="color:var(--muted);font-size:12px">ℹ️ Hakkında</a>
+</div>
 <strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
 Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
 Otomatik üretim — son güncelleme: 2026-05-12.<br>
 MakroStream © 2026
 </footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;
+     border-top:1px solid #2a3340;padding:16px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.4)">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:13px;line-height:1.5;color:#aab;flex:1;min-width:240px">
+      🍪 Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#3fa9f5">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#3fa9f5;color:#0f1419;border:0;
+            padding:8px 18px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'pusula-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
 </body>
 </html>
