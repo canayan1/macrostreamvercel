@@ -211,6 +211,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/carry-trade/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/portfoy-optimizasyonu/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
@@ -223,13 +229,37 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/risk-reward-orani/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/yatirimci-psikolojisi/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/tcmb-faiz-politikasi/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/btc-dominance/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/golden-cross-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/likidite-riski/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -242,6 +272,12 @@
   </url>
   <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/mean-reversion-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/pozisyon-buyuklugu/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -260,6 +296,12 @@
   </url>
   <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/macd-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/nim-bankacilik/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>

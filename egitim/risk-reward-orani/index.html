@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Momentum nedir? — Pusula Finans</title>
+<title>Risk-Reward Oranı (RR) — Yatırımda En Önemli Sayı — Pusula Finans</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Momentum nedir? — Pusula Finans">
+<meta property="og:title" content="Risk-Reward Oranı (RR) — Yatırımda En Önemli Sayı — Pusula Finans">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Momentum nedir? — Pusula Finans">
+<meta name="twitter:title" content="Risk-Reward Oranı (RR) — Yatırımda En Önemli Sayı — Pusula Finans">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -118,56 +118,120 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">Pusula Finans</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Risk-Reward Oranı (RR) — Yatırımda En Önemli Sayı</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📚 Momentum nedir?</h2>
-<p class="muted" style="font-size:15px;margin-bottom:20px">Son zamanlarda iyi performans göstermiş hisselerin yakın gelecekte de iyi performans gösterme eğilimi — ve bu basit gözlemin neden Jegadeesh-Titman&#x27;dan beri akademik araştırmanın merkezinde olduğu.</p>
+<h2 style="margin-top:0">📚 Risk-Reward Oranı (RR) — Yatırımda En Önemli Sayı</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Bir işlemde kayıp/kazanç dengesini sayısallaştıran formül. Win rate&#x27;ten daha kritik olan kavram ve neden 1:2 eşiği esas olmalı.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-<h2>Tanım</h2>
-<p><strong>Momentum</strong>, finansal piyasalarda son zamanlarda iyi (kötü) getiri veren varlıkların yakın gelecekte de göreceli olarak iyi (kötü) getiri verme eğilimini ifade eder. Bu, ortalamaya dönüş (mean reversion) hipoteziyle çelişen bir gözlemdir ve "neden kazananları kazanmaya, kaybedenleri kaybetmeye devam ediyor" sorusunun cevabıdır.</p>
-<h2>Akademik temel</h2>
-<p>İlk akademik kanıt <strong>Jegadeesh &amp; Titman (1993)</strong> çalışmasından gelir: ABD borsasında son 3-12 aylık getirisi en yüksek olan hisseleri 3-12 ay tutan stratejiler, riskten arındırılmış olarak pozitif getiri üretiyordu. Bu bulgu, <strong>Fama &amp; French</strong>'in 1993'teki üç-faktör modeline 1996'da <strong>momentum faktörünü</strong> (Carhart) eklemelerine yol açtı.</p>
-<p>Momentum, son 30 yılda dünyanın hemen her borsasında — gelişmiş ülkeler, gelişmekte olan piyasalar, hatta emtia ve döviz piyasaları — istatistiksel olarak anlamlı bulundu.</p>
-<h2>Neden çalışıyor?</h2>
-<p>Üç temel hipotez var:</p>
+<p>Bir yatırımcının uzun vadeli başarısı, kazanan işlemlerinin sayısından çok, her bir işlemde aldığı riskin karşılığında ne kadar kazanç hedeflediği ile belirlenir. İşte bu dengeyi tek bir sayıya indirgeyen kavram <strong>risk-reward oranı (RR)</strong>, yani risk-getiri oranıdır.</p>
+<h2>Tanım — Risk-Reward (RR) Nedir?</h2>
+<p>Risk-reward oranı, bir işlemin potansiyel kazancının potansiyel kaybına oranıdır:</p>
+<p><strong>RR = (Hedef Fiyat − Giriş Fiyatı) / (Giriş Fiyatı − Stop Seviyesi)</strong></p>
+<p>İşleme girmeden önce üç fiyat bilinir: giriş, stop (zarar kes) ve hedef (kâr al). Bu üç nokta, işlemin "matematiksel kimliğini" oluşturur.</p>
+<p><strong>Sayısal örnek:</strong> TUPRS hissesi 100 TL'den alındı. Stop 95 TL, hedef 115 TL olsun.</p>
+<ul>
+<li>Risk: 100 − 95 = 5 TL</li>
+<li>Potansiyel kazanç: 115 − 100 = 15 TL</li>
+<li>RR = 15 / 5 = 3</li>
+</ul>
+<p>Bu işlem <strong>1:3 RR</strong> ile açılmıştır. Risk edilen 1 birim karşılığında 3 birim kazanç hedeflenir.</p>
+<h2>Neden Win Rate'ten ÖNEMLİ</h2>
+<p>Bireysel yatırımcıların büyük çoğunluğu kendi performansını "kazandığım işlemlerin yüzdesi" üzerinden değerlendirir. Asıl ölçü, <strong>beklenen değer</strong>dir (expected value, EV):</p>
+<p><strong>EV = (Win Rate × Ortalama Kazanç) − ((1 − Win Rate) × Ortalama Kayıp)</strong></p>
+<p><strong>Örnek 1 — Yüksek win rate, düşük RR:</strong></p>
+<p>%80 kazanan, ama her kazancı 1R her kaybı 4R:</p>
+<p>EV = (0.80 × 1) − (0.20 × 4) = 0.80 − 0.80 = <strong>0</strong></p>
+<p>Yıl sonu sıfır. Komisyon ile negatif.</p>
+<p><strong>Örnek 2 — Düşük win rate, yüksek RR:</strong></p>
+<p>%35 kazanan, her kazancı 3R her kaybı 1R:</p>
+<p>EV = (0.35 × 3) − (0.65 × 1) = 1.05 − 0.65 = <strong>+0.40R</strong></p>
+<p>Her işlemde ortalama 0.40R kâr. 100 işlem ≈ +40R.</p>
+<p>Trader'ın asıl performans göstergesi RR ile win rate'in <strong>çarpımıdır</strong>, tek başına biri değil.</p>
+<h2>1:2 Eşiği — Neden Bu Sayı?</h2>
+<p>Çoğu retail trader %40-55 win rate elde eder. Pozitif EV için RR ≥ <strong>1:2</strong> gerekir.</p>
+<ul>
+<li><strong>1:1 RR</strong>: %50'nin üzerinde win rate zorunludur; komisyon dahil edildiğinde %55+ olur. Sürdürülemez.</li>
+<li><strong>1:1.5 RR</strong>: %40 win rate gerekir. Hata payı dar.</li>
+<li><strong>1:2 RR</strong>: %35 win rate yeter. Üç işlemden biri kazansa bile sistem kâr üretir.</li>
+<li><strong>1:3 ve üzeri</strong>: %25 win rate ile pozitif EV. Trend takip sistemleri burada çalışır.</li>
+</ul>
+<p>1:1 altı oranlar, kaldıraçsız spot işlemde dahi uzun vadede negatif EV üretir.</p>
+<h2>RR Belirleme — Pratik Adımlar</h2>
+<p>RR'yi doğru hesaplamak için sırayı <strong>tersinden</strong> kurmamak gerekir.</p>
 <ol>
-<li><strong>Davranışsal</strong>: Yatırımcı <em>underreaction</em> — yeni bilgiyi tamamen fiyata yansıtması zaman alır. <em>Overconfidence + herding</em> — pozitif haber alındığında alımlar devam eder.</li>
-<li><strong>Risk-bazlı</strong>: Momentum, görünmez bir risk faktörünün getirisi olabilir. Ancak ampirik olarak Sharpe oranı yüksek ve riski açıklamak zor.</li>
-<li><strong>Yapısal</strong>: Indeks rebalansı, kazanan hisselere mekanik fon akışı, analist tavsiye güncellemeleri.</li>
+<li><strong>Stop seviyesini önce belirle.</strong> Teknik (son swing low, kanal alt çizgisi), volatilite bazlı (1.5 × ATR), ya da sabit yüzde (%2 hareket).</li>
+<li><strong>Hedefi nesnel bir referansa bağla.</strong> Önceki direnç, Fibonacci uzantısı, önceki swing high, R-multiple.</li>
+<li><strong>RR'yi hesapla ve karar ver.</strong> 1:2 altıysa işlemi atla.</li>
 </ol>
-<h2>Tipik formülasyon</h2>
+<p>Sırayı ters çevirmek — önce hedef sonra stop — RR'yi yapay iyileştirir ama sistem başarısını düşürür.</p>
+<h2>RR ve Pozisyon Büyüklüğü İlişkisi</h2>
+<p>RR tek başına karar değildir. Pozisyon büyüklüğü ile birlikte değerlendirilir. Pratik yaklaşım: <strong>işlem başına portföyün %1-2'sini risk et.</strong></p>
+<p><strong>Sayısal örnek:</strong> 500.000 TL portföy, %1 risk = 5.000 TL.</p>
+<p>THYAO 300 TL'den alınacak, stop 285 TL. Hisse başına risk: 15 TL.</p>
+<p>Maksimum pozisyon: 5.000 / 15 = 333 hisse ≈ 99.900 TL'lik THYAO.</p>
+<p>Bu yaklaşımla 1:3 RR doğru çıktığında 15.000 TL kâr, yanlış çıktığında 5.000 TL zarar. Portföy ölçeklenir.</p>
+<h2>Yaygın Yanılgılar</h2>
+<p><strong>"RR 1:1.5 yeterli."</strong> TR'de BSMV + komisyon + spread + slipaj effective RR'i 1:1.3'e indirir. %50 win baskısı, sürdürülemez.</p>
+<p><strong>"Stop'u geniş tutup RR'i yapay şişirmek."</strong> Stop 30 TL aşağı, hedef 90 TL yukarı → 1:3 görünür ama gerçek dünyada fiyatın stop'a gitme olasılığı çok yüksek.</p>
+<p><strong>"Hedef = stop'un 2 katı uzakta rastgele rakam."</strong> Teknik gerekçe olmadan o RR sayısı boştur.</p>
+<p><strong>"Trailing stop ile RR'i artırıyorum."</strong> Trailing stop, risk yönetimi aracıdır; başlangıç RR'sini değiştirmez.</p>
+<p><strong>"RR'yi backtest etmedim ama mantıklı görünüyor."</strong> Test edilmedikçe sübjektif kalır.</p>
+<h2>Win Rate × RR İlişki Tablosu</h2>
+<table>
+<thead>
+<tr>
+<th>Win Rate</th>
+<th>Minimum Kârlı RR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%30</td>
+<td>1:2.5</td>
+</tr>
+<tr>
+<td>%35</td>
+<td>1:2.0</td>
+</tr>
+<tr>
+<td>%40</td>
+<td>1:1.5</td>
+</tr>
+<tr>
+<td>%50</td>
+<td>1:1.0</td>
+</tr>
+<tr>
+<td>%60</td>
+<td>1:0.7</td>
+</tr>
+<tr>
+<td>%70</td>
+<td>1:0.4</td>
+</tr>
+</tbody>
+</table>
+<p>Gerçekçi planlama bandı: <strong>%35-50 win rate + 1:1.5 ile 1:3 RR</strong>.</p>
+<h2>BIST + FX + Kripto için RR Pratiği</h2>
+<p><strong>BIST:</strong> Komisyon (%0.1-0.2) + BSMV (%5) + spread + T+2 → effective RR teorik RR'den %10-15 düşük. Hedef başlangıçta cömert tutulmalı.</p>
+<p><strong>FX:</strong> Majör pariteler dar spread (0.5-1 pip), egzotikler (USDTRY, USDZAR) 30-100 pip. EM paritelerde spread mutlaka hesaba dahil.</p>
+<p><strong>Kripto:</strong> BTC/ETH'de RR sağlıklı. Meme coin'de RR hesabı yapılamaz; beklenen değer negatiftir, volatilite gizler.</p>
+<h2>Tarihsel Örnekler</h2>
+<p>Paul Tudor Jones, Stanley Druckenmiller gibi profesyonel piyasa katılımcıları düşük-orta win rate ile yüksek RR üzerinden kâr üretmiştir. "Doğru tahmin etmenin" değil, "doğru çıktığında çok kazanıp yanlış çıktığında az kaybetmenin" mimarisini kurmuşlardır.</p>
+<h2>RR vs Buy-and-Hold</h2>
+<p>Uzun vadeli buy-and-hold'da formel RR yoktur — "uzun vadede pozitif EV" varsayımı çalışır. Kısa-orta vadeli trader için RR olmadan başarı şans işidir; her giriş-çıkış kendi başına bir karar birimidir.</p>
+<h2>İlgili Kavramlar</h2>
 <ul>
-<li><strong>Cross-sectional momentum</strong>: Tüm hisseleri son N ayda getirilerine göre sırala; en üstteki K hisseyi al, en alttaki K hisseyi sat (long-short) veya sadece üsttekileri tut (long-only).</li>
-<li><strong>Time-series momentum</strong>: Her hisseyi kendi geçmiş trendine bak. Trend pozitif → tut; negatif → cash.</li>
+<li><strong>Expected Value (Beklenen Değer):</strong> RR × win rate'in birleşik çıktısı.</li>
+<li><strong>Kelly Criterion:</strong> Optimal pozisyon büyüklüğünü formülize eder.</li>
+<li><strong>Maximum Drawdown:</strong> Düşük win rate / yüksek RR'li sistemler psikolojik olarak zorlayıcıdır.</li>
+<li><strong>Reward-to-Risk Ratio:</strong> Aynı kavramın alternatif yazımı (3:1 veya 1:3 konvansiyona göre değişir).</li>
 </ul>
-<p>Tipik lookback periyodu: <strong>3-12 ay</strong>. Çok kısa (&lt;1 ay) mean-reversion'a yakalanır, çok uzun (&gt;2 yıl) momentum yerine değer faktörüne kayar.</p>
-<h2>Riskler — "Momentum Crash"</h2>
-<p>Momentum'un en bilinen zayıflığı <strong>kriz dönüşlerinde</strong> yaşanır. 2009 Mart-Mayıs, 2020 Mart-Nisan gibi V-şeklinde toparlanmalarda, momentum stratejisi "düşen bıçağı tutmamış" olduğu için yükselişi kaçırır. Bu dönemlerde 3-6 ay içinde stratejinin yıllık getirisinin önemli kısmı erir.</p>
-<p>Bunu yumuşatmanın yolları:
-- <strong>Volatility scaling</strong>: Yüksek volatilitede pozisyonu küçült
-- <strong>Risk-on/risk-off filter</strong>: Genel piyasa trend negatifken stratejiyi kapat
-- <strong>Mevsimsellik</strong>: Bazı momentum stratejileri Ocak ayında zayıflar (vergi etkileri)</p>
-<h2>BIST'te momentum</h2>
-<p>BIST için akademik çalışmalar (örn. Ülkü &amp; Karpoff, 2011) <strong>yüksek momentum primi</strong> raporlamıştır — gelişmekte olan piyasalarda yatırımcı duygusu daha güçlü olduğu için momentum daha güçlüdür. Ama dikkat:
-- BIST 30'da yalnız 30 hisse var, top 5 seçimi konsantrasyon riski yaratır
-- Yüksek volatilite/devalüasyon dönemlerinde tüm cross-sectional faktörler zayıflar
-- İşlem maliyeti TR'de daha yüksek (BSMV, vb.)</p>
-<h2>Pratik uygulama notları</h2>
-<p>Momentum'u kendi başınıza uygulamak isterseniz:
-- <strong>Aylık rebalance</strong> yeterli, daha sık gereksiz
-- <strong>Top 5-10 hisse</strong> tipik konsantrasyon
-- <strong>Eşit ağırlık</strong> çoğu zaman market-cap ağırlığından iyi sonuç verir
-- <strong>Trailing stop kullanmayın</strong> momentum stratejisinde — kuralı bozar
-- <strong>Maliyet hesabını ekleyin</strong> — backtest'inizde slipaj + komisyon dahil olsun</p>
-<h2>İlgili kavramlar</h2>
-<ul>
-<li><strong>Carhart 4-faktör model</strong>: Piyasa, büyüklük, değer, momentum</li>
-<li><strong>AQR Capital</strong>: Momentum'u en sistemli uygulayan kurumsal fonlardan</li>
-<li><strong>Reversal</strong>: Çok kısa vadeli (1 hafta - 1 ay) momentum tersine döner — bu mean reversion'dur.</li>
-</ul>
+<hr />
+<p>Risk-reward oranı yatırımın sayısal temelidir. RR'ye değil, RR × win rate çarpımına odaklanan yatırımcı uzun vadede sisteminin matematiksel tutarlılığına yaslanır.</p>
 </div>
 <div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
   <p style="margin:0;font-size:13px;color:#fbbf24">

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Momentum nedir? — Pusula Finans</title>
+<title>Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Pusula Finans</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Momentum nedir? — Pusula Finans">
+<meta property="og:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Pusula Finans">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Momentum nedir? — Pusula Finans">
+<meta name="twitter:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Pusula Finans">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -118,56 +118,112 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">Pusula Finans</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı?</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📚 Momentum nedir?</h2>
-<p class="muted" style="font-size:15px;margin-bottom:20px">Son zamanlarda iyi performans göstermiş hisselerin yakın gelecekte de iyi performans gösterme eğilimi — ve bu basit gözlemin neden Jegadeesh-Titman&#x27;dan beri akademik araştırmanın merkezinde olduğu.</p>
+<h2 style="margin-top:0">📚 Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Hangi hisseyi alacağım&quot; değil &quot;ne kadar alacağım&quot; sorusunun cevabı. Kelly kriteri, %1 risk kuralı ve neden tek pozisyonda portföyün %5&#x27;ini geçmemeli.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-<h2>Tanım</h2>
-<p><strong>Momentum</strong>, finansal piyasalarda son zamanlarda iyi (kötü) getiri veren varlıkların yakın gelecekte de göreceli olarak iyi (kötü) getiri verme eğilimini ifade eder. Bu, ortalamaya dönüş (mean reversion) hipoteziyle çelişen bir gözlemdir ve "neden kazananları kazanmaya, kaybedenleri kaybetmeye devam ediyor" sorusunun cevabıdır.</p>
-<h2>Akademik temel</h2>
-<p>İlk akademik kanıt <strong>Jegadeesh &amp; Titman (1993)</strong> çalışmasından gelir: ABD borsasında son 3-12 aylık getirisi en yüksek olan hisseleri 3-12 ay tutan stratejiler, riskten arındırılmış olarak pozitif getiri üretiyordu. Bu bulgu, <strong>Fama &amp; French</strong>'in 1993'teki üç-faktör modeline 1996'da <strong>momentum faktörünü</strong> (Carhart) eklemelerine yol açtı.</p>
-<p>Momentum, son 30 yılda dünyanın hemen her borsasında — gelişmiş ülkeler, gelişmekte olan piyasalar, hatta emtia ve döviz piyasaları — istatistiksel olarak anlamlı bulundu.</p>
-<h2>Neden çalışıyor?</h2>
-<p>Üç temel hipotez var:</p>
+<h2>Soru: "Hangi hisse?" değil "Ne kadar?"</h2>
+<p>Bireysel yatırımcı sohbetleri tek soru etrafında döner: "Hangi hisseyi alayım?" Oysa profesyonel para yöneticilerinin mesaisinin büyük bölümünü dolduran soru farklıdır: "Bu fikre ne kadar para koyayım?"</p>
+<p>Tahmin etmesi şaşırtıcı: uzun vadeli getiriyi belirleyen en önemli faktör hisse seçimi değil, pozisyon büyüklüğüdür.</p>
+<ul>
+<li>Yanlış pozisyon büyüklüğü, doğru seçim yapan stratejiyi bile batırır. %70 isabetli sistem, tek pozisyonda portföyün %40'ını riske attığında üç sıra dışı kayıpla biter.</li>
+<li>Doğru pozisyon büyüklüğü, ortalama strateji ile bile hayatta kalmanı sağlar. Hayatta kalmak, kazanmanın ön koşuludur.</li>
+</ul>
+<h2>Risk Bazlı Yaklaşım — "%1 Kuralı"</h2>
+<p>Klasik kural: Tek işlemde portföyün en fazla %1'ini kaybetmeyi göze al.</p>
+<p>Anahtar kelime "kaybetmek". Referans, pozisyon değil <strong>stop loss'a kadar olan kayıp</strong>tır.</p>
+<p>Formül:</p>
+<p><code>Pozisyon büyüklüğü = (Portföy × Risk %) / (Giriş − Stop)</code></p>
+<p><strong>Sayısal örnek:</strong> 100.000 TL portföy, %1 risk → max kayıp 1.000 TL.</p>
+<ul>
+<li>Stop %5 uzakta: pozisyon = 1.000 / 0.05 = 20.000 TL (portföyün %20'si)</li>
+<li>Stop %10 uzakta: pozisyon = 10.000 TL (%10)</li>
+<li>Stop %2 sıkı: pozisyon = 50.000 TL (%50 nominal, ama yine %1 risk)</li>
+</ul>
+<p>Yaklaşımın gücü, volatil ve sıkı stoplu hisse ile sakin geniş stoplu hisseyi <strong>risk üzerinden eşitlemesidir</strong>.</p>
+<p>%1 muhafazakâr bulunuyorsa, %2'ye çıkmak yaygındır. %2 üstü ciddi gerekçe ister; 5 ardışık kayıp portföyün %10'unu götürür, psikolojik sınırı aşar.</p>
+<h2>"%5 Konsantrasyon Sınırı"</h2>
+<p>Tek varlığın portföyde %5'i geçtiğinde:</p>
+<ul>
+<li><strong>Black swan riski:</strong> Şirkete özgü olay (CEO istifası, skandalı, ürün geri çağırması) portföyü orantısız etkiler.</li>
+<li><strong>Çeşitlendirme avantajı kaybolur.</strong> Modern portföy teorisi 15-25 varlıkta sistematik olmayan riskin elimine olduğunu söyler. Tek pozisyon %10 üstü, çeşitlendirme yok demek.</li>
+<li><strong>Davranışsal etki:</strong> Büyük pozisyon → büyük duygu → kötü karar.</li>
+</ul>
+<p>Kurumsal hedge fonlarda tek pozisyon %5-10. %15 üzeri "concentrated bet"lerde çıkılır. Buffett'in %20-40'a varan ağırlıkları istisnadır — onun sınırsız zamanı ve sermayesi var.</p>
+<p>Pratik kural: tek hisse %5'i geçince ya çık ya da neden artırdığını yazılı gerekçelendir.</p>
+<h2>Kelly Kriteri — Matematiksel Optimum</h2>
+<p>1956'da John L. Kelly Jr.'ın formülü — uzun vadeli logaritmik büyümeyi maksimize eden pozisyon fraksiyonu:</p>
+<p><strong>f* = (p × b − q) / b</strong></p>
+<ul>
+<li>p = kazanma olasılığı</li>
+<li>q = 1 − p = kaybetme olasılığı</li>
+<li>b = kazanç/kayıp oranı (RR)</li>
+</ul>
+<p><strong>Örnek:</strong> %55 win rate, RR 1.5.</p>
+<p>f<em> = (0.55 × 1.5 − 0.45) / 1.5 = (0.825 − 0.45) / 1.5 = </em><em>0.25</em>*</p>
+<p>Kelly: pozisyon başına portföyün %25'i.</p>
+<h3>Neden Yarı-Kelly?</h3>
+<p>Profesyonellerin hiçbiri tam Kelly kullanmaz. Yarı-Kelly veya çeyrek-Kelly tercih edilir:</p>
 <ol>
-<li><strong>Davranışsal</strong>: Yatırımcı <em>underreaction</em> — yeni bilgiyi tamamen fiyata yansıtması zaman alır. <em>Overconfidence + herding</em> — pozitif haber alındığında alımlar devam eder.</li>
-<li><strong>Risk-bazlı</strong>: Momentum, görünmez bir risk faktörünün getirisi olabilir. Ancak ampirik olarak Sharpe oranı yüksek ve riski açıklamak zor.</li>
-<li><strong>Yapısal</strong>: Indeks rebalansı, kazanan hisselere mekanik fon akışı, analist tavsiye güncellemeleri.</li>
+<li><strong>Parametre belirsizliği:</strong> Win rate ve RR tahminleri çoğunlukla iyimserdir. %5 yanlış hesap → Kelly fraksiyonu kabaca ikiye katlanır.</li>
+<li><strong>Drawdown derinliği:</strong> Tam Kelly'nin beklenen max drawdown'u portföyün ~yarısıdır. Tarihsel olarak %50-70 düşüşler sıradan. Psikoloji dayanmaz.</li>
+<li><strong>Dağılım varsayımı:</strong> Kuyruk olayları, korelasyon kayması, rejim değişimi formülü zayıflatır.</li>
 </ol>
-<h2>Tipik formülasyon</h2>
+<p>Yarı-Kelly uzun vadeli büyümenin ~%75'ini sağlar ama drawdown'u yarı yarıya azaltır.</p>
+<p>Yukarıdaki örnekte: yarı-Kelly %12.5, çeyrek-Kelly %6.25 — makul tek-pozisyon ağırlığı.</p>
+<h2>Volatilite Bazlı Pozisyon Boyutlama</h2>
+<p>Modern yaklaşım: stop fiyatı yerine <strong>ATR (Average True Range)</strong> ile boyutla.</p>
+<p><strong>Örnek:</strong> 100.000 TL portföy, %1 risk = 1.000 TL. ATR-20 = 5 TL, stop 2 ATR uzaklıkta (10 TL).</p>
+<p>Pozisyon adet = 1.000 / 10 = 100 adet.</p>
+<p>ATR'si 2 TL olan başka hissede stop 4 TL uzakta, pozisyon 250 adete çıkar. Risk yine sabit %1. Bu, kurumsal "risk parity" mantığının sade uygulamasıdır.</p>
+<h2>Davranışsal Boyut — "Geceyi Geçirebilir misin?"</h2>
+<p>Tüm matematiğin üstünde bir test:</p>
+<blockquote>
+<p>"Bu pozisyon 24 saatte %30 düşse, sabaha rahat uyuyabilir miyim?"</p>
+</blockquote>
+<p>"Hayır" → pozisyon çok büyük. Çok büyük pozisyon → ilk düşüşte panik satış → "haklıydım, beklemeliydim" pişmanlığı.</p>
+<p>Doğru pozisyon büyüklüğü, planlanan stop'a kadar dayanabileceğin büyüklüktür.</p>
+<h2>Pozisyon Büyüklüğü ve Kaldıraç</h2>
+<p>Kaldıraç hem getiriyi hem riski çarpan faktördür.</p>
+<p>5x kaldıraç + portföyün %20'si tek pozisyonda → gerçek maruziyet %100. %20 ters hareket = teorik hesap sıfırlanır.</p>
+<p>Kaldıraç edge varsa avantajdır, yoksa hızlı kayıptır. Pratik: kaldıraçlı işlemlerde bile %1 risk kuralı korunmalı.</p>
+<h2>TR'de Pozisyon Büyüklüğü Pratiği</h2>
 <ul>
-<li><strong>Cross-sectional momentum</strong>: Tüm hisseleri son N ayda getirilerine göre sırala; en üstteki K hisseyi al, en alttaki K hisseyi sat (long-short) veya sadece üsttekileri tut (long-only).</li>
-<li><strong>Time-series momentum</strong>: Her hisseyi kendi geçmiş trendine bak. Trend pozitif → tut; negatif → cash.</li>
+<li><strong>Likidite sınırı:</strong> BIST 30 dışı küçük-orta cap, günlük hacmin %1'ini geçen pozisyonda slipaj. Açabilirsin, ama kapatamayabilirsin.</li>
+<li><strong>Komisyon:</strong> Çok küçük pozisyonda komisyon RR'i bozar.</li>
+<li><strong>Konsantrasyon ve vergi:</strong> Kayıp-kâr mahsubu için çeşitlendirme esneklik sağlar.</li>
+<li><strong>Volatilite:</strong> BIST ATR'si gelişmişlerden yüksek. Stop mesafesi geniş tutulur, pozisyon adet matematiksel olarak küçük çıkar.</li>
 </ul>
-<p>Tipik lookback periyodu: <strong>3-12 ay</strong>. Çok kısa (&lt;1 ay) mean-reversion'a yakalanır, çok uzun (&gt;2 yıl) momentum yerine değer faktörüne kayar.</p>
-<h2>Riskler — "Momentum Crash"</h2>
-<p>Momentum'un en bilinen zayıflığı <strong>kriz dönüşlerinde</strong> yaşanır. 2009 Mart-Mayıs, 2020 Mart-Nisan gibi V-şeklinde toparlanmalarda, momentum stratejisi "düşen bıçağı tutmamış" olduğu için yükselişi kaçırır. Bu dönemlerde 3-6 ay içinde stratejinin yıllık getirisinin önemli kısmı erir.</p>
-<p>Bunu yumuşatmanın yolları:
-- <strong>Volatility scaling</strong>: Yüksek volatilitede pozisyonu küçült
-- <strong>Risk-on/risk-off filter</strong>: Genel piyasa trend negatifken stratejiyi kapat
-- <strong>Mevsimsellik</strong>: Bazı momentum stratejileri Ocak ayında zayıflar (vergi etkileri)</p>
-<h2>BIST'te momentum</h2>
-<p>BIST için akademik çalışmalar (örn. Ülkü &amp; Karpoff, 2011) <strong>yüksek momentum primi</strong> raporlamıştır — gelişmekte olan piyasalarda yatırımcı duygusu daha güçlü olduğu için momentum daha güçlüdür. Ama dikkat:
-- BIST 30'da yalnız 30 hisse var, top 5 seçimi konsantrasyon riski yaratır
-- Yüksek volatilite/devalüasyon dönemlerinde tüm cross-sectional faktörler zayıflar
-- İşlem maliyeti TR'de daha yüksek (BSMV, vb.)</p>
-<h2>Pratik uygulama notları</h2>
-<p>Momentum'u kendi başınıza uygulamak isterseniz:
-- <strong>Aylık rebalance</strong> yeterli, daha sık gereksiz
-- <strong>Top 5-10 hisse</strong> tipik konsantrasyon
-- <strong>Eşit ağırlık</strong> çoğu zaman market-cap ağırlığından iyi sonuç verir
-- <strong>Trailing stop kullanmayın</strong> momentum stratejisinde — kuralı bozar
-- <strong>Maliyet hesabını ekleyin</strong> — backtest'inizde slipaj + komisyon dahil olsun</p>
-<h2>İlgili kavramlar</h2>
+<h2>Yaygın Yanılgılar</h2>
 <ul>
-<li><strong>Carhart 4-faktör model</strong>: Piyasa, büyüklük, değer, momentum</li>
-<li><strong>AQR Capital</strong>: Momentum'u en sistemli uygulayan kurumsal fonlardan</li>
-<li><strong>Reversal</strong>: Çok kısa vadeli (1 hafta - 1 ay) momentum tersine döner — bu mean reversion'dur.</li>
+<li><strong>"Para çoktu, hisse ucuzdu, hepsini aldım."</strong> Konsantrasyon hatasının klasiği. Ucuzluk pozisyon büyüklüğünü meşrulaştırmaz.</li>
+<li><strong>"Stop yok, düştü, ortalama aldım."</strong> Ortalama düşürmek, pozisyonu büyütür. Edge net değilse katlanarak büyüyen kumar.</li>
+<li><strong>"Yarın yine alırım, ortalamaya döner."</strong> İstatistiksel olarak güçlü değildir.</li>
+<li><strong>"Düştükçe stop'u genişlettim."</strong> Plan bozuldu, "umarım" kaldı.</li>
 </ul>
+<h2>Pratik Kontrol Listesi</h2>
+<p>İşlem öncesi 5 soru:</p>
+<ol>
+<li>Portföye göre pozisyon büyüklüğü ne?</li>
+<li>Stop'a kadar gerçek kayıp portföyün yüzde kaçı? (%1-2'yi geçmesin)</li>
+<li>Bu hisse portföyün %5'inden fazlasını mı oluşturacak? Eğer evet, gerekçe yazılı mı?</li>
+<li>Win rate + RR tahminime göre Kelly fraksiyonu ne? Yarısını mı alıyorum?</li>
+<li>Pozisyon -%30 düşse rahat uyur muyum?</li>
+</ol>
+<p>5 cevap makul değilse pozisyon büyüklüğü yanlıştır.</p>
+<h2>İlgili Kavramlar</h2>
+<ul>
+<li><strong>Sharpe ratio:</strong> Ölçek bağımsızdır, drawdown derinliği etkilenir.</li>
+<li><strong>Maximum drawdown:</strong> Pozisyon büyüklüğünün doğrudan çıktısı.</li>
+<li><strong>Risk parity:</strong> Sektörler arası eşit risk dağıtımı.</li>
+<li><strong>Kelly fraction:</strong> Logaritmik büyümeyi maksimize eden teorik oran.</li>
+<li><strong>Volatility scaling:</strong> ATR/standart sapma bazlı pozisyon boyutlama.</li>
+</ul>
+<p>Pozisyon büyüklüğü, yatırımcının görünmeyen kasıdır. Manşetlere değil, Excel hesabına bağlıdır portföyün hayatta kalması.</p>
 </div>
 <div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
   <p style="margin:0;font-size:13px;color:#fbbf24">

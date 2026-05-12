@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCMB Faiz Politikası — Yatırımcı Perspektifinden — Pusula Finans</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="author" content="Pusula Finans">
+<link rel="canonical" href="https://macrostreamvercel.vercel.app/">
+<meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
+<meta property="og:title" content="TCMB Faiz Politikası — Yatırımcı Perspektifinden — Pusula Finans">
+<meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta property="og:url" content="https://macrostreamvercel.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pusula Finans">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://macrostreamvercel.vercel.app/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TCMB Faiz Politikası — Yatırımcı Perspektifinden — Pusula Finans">
+<meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://macrostreamvercel.vercel.app/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">Pusula Finans</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › TCMB Faiz Politikası — Yatırımcı Perspektifinden</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">📚 TCMB Faiz Politikası — Yatırımcı Perspektifinden</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Türkiye Cumhuriyet Merkez Bankası&#x27;nın politika faizini neden ve nasıl belirlediği, yatırım kararlarına nasıl yansıdığı.</p>
+<div class="card" style="line-height:1.7;font-size:15px">
+<h2>Tanım</h2>
+<p>Türkiye Cumhuriyet Merkez Bankası (TCMB), 1211 sayılı Kanun çerçevesinde fiyat istikrarını sağlamakla görevli bağımsız bir kurumdur. Bu görevin operasyonel karşılığı, kısa vadeli faiz oranlarını yönlendirmek ve böylece kredi, kur ve enflasyon kanalları üzerinden ekonomiyi etkilemektir. "Politika faizi" dediğimiz oran, TCMB'nin bankacılık sistemine fonlama sağlarken referans aldığı orandır; piyasa faizlerinin etrafında salınacağı çapayı tanımlar.</p>
+<p>Yatırımcı açısından politika faizi tek başına bir veri noktası değil, bir sinyaldir. Merkez bankasının enflasyona, kur dinamiklerine ve büyüme görünümüne nasıl baktığını gösterir. Faiz kararı kadar, kararla birlikte yayınlanan metnin tonu da fiyatlama açısından önemlidir.</p>
+<h2>Politika Aracı</h2>
+<p>TCMB'nin temel politika faizi, <strong>bir hafta vadeli repo ihale faizi</strong>dir. Bunun yanında koridor sistemi içinde gecelik borç alma ve borç verme faizleri, ayrıca olağanüstü dönemlerde devreye giren geç likidite penceresi (GLP) faizi bulunur. Geçmişte TCMB, "faiz koridoru" adı verilen bir sistemle ortalama fonlama maliyetini (AOFM ya da AOFOD — Ağırlıklı Ortalama Fonlama Oranı) politika faizinden farklılaştırarak esneklik yaratmıştı.</p>
+<p>Bu noktada önemli bir ayrıma dikkat etmek gerekir:</p>
+<ul>
+<li><strong>Politika faizi:</strong> PPK kararlarıyla belirlenen resmi referans oran.</li>
+<li><strong>AOFM:</strong> TCMB'nin bankalara fiilen sağladığı fonlamanın ağırlıklı ortalama maliyeti.</li>
+</ul>
+<p>İki oranın açıldığı dönemlerde fiili para politikası duruşu, ilan edilen politika faizinden farklı olabilir. Sadeleşme dönemlerinde ise iki oran birbirine yakınsar. Yatırımcılar yalnızca manşet faize değil, AOFM seyrine ve TCMB bilançosunun pasif yapısına da bakmalıdır.</p>
+<p>Ek olarak zorunlu karşılık oranları, menkul kıymet tesisi ve makro ihtiyati araçlar da politika setinin parçasıdır. Manşet faiz değişmese bile bu araçlar üzerinden parasal sıkılaştırma ya da gevşeme gerçekleşebilir.</p>
+<h2>Reel Faiz Kavramı</h2>
+<p>Reel faiz, nominal faiz oranından beklenen enflasyonun çıkarılmasıyla elde edilir:</p>
+<blockquote>
+<p>Reel faiz ≈ Nominal faiz − Beklenen enflasyon</p>
+</blockquote>
+<p>Bu ilişki Irving Fisher'a dayanır ve para politikasının yatırımcı için en kritik göstergesidir. Çünkü tasarruf sahibi açısından önemli olan, paranın satın alma gücünün korunup korunmadığıdır.</p>
+<ul>
+<li><strong>Pozitif reel faiz:</strong> Tasarruf, TL cinsi varlığa girmek için ödüllendiriliyor. Kur baskısı tipik olarak hafifler.</li>
+<li><strong>Negatif reel faiz:</strong> TL'de tutulan birikim erir. Bu, yerleşiklerin döviz ve altın talebini artırır; aynı zamanda yabancı yatırımcı için "carry trade" işlemini cazipten çıkarır.</li>
+</ul>
+<p>TCMB'nin enflasyon raporlarında yayımladığı beklenen enflasyon serileri ve Piyasa Katılımcıları Anketi, reel faiz hesaplaması için kullanılabilir. Bir yatırımcı sadece "faiz yüzde kaç?" sorusu yerine, "12 ay sonraki beklenen enflasyona göre reel getiri nedir?" sorusunu sormalıdır.</p>
+<p>Önemli bir nüans: Reel faizin geçmiş enflasyonla hesaplanması (ex-post reel faiz) ile gelecek beklentisiyle hesaplanması (ex-ante reel faiz) farklı tablolar verebilir. Para politikası kararı için ileriye dönük (ex-ante) kavram daha bağlayıcıdır.</p>
+<h2>Banka Sektörü Üstündeki Etki — NIM</h2>
+<p>Net Faiz Marjı (Net Interest Margin, NIM), bir bankanın faiz getirili varlıklarından elde ettiği gelir ile faiz maliyetli yükümlülüklerine ödediği faiz arasındaki farkın, ortalama getirili aktiflere oranıdır. Türkiye gibi vade uyumsuzluğunun yüksek olduğu sistemlerde NIM, faiz değişimlerine son derece duyarlıdır.</p>
+<p>Faiz artışı dönemlerinde bankacılık sektörünün davranışı genelde şu aşamalardan geçer:</p>
+<ol>
+<li><strong>Kısa vade — sıkışma:</strong> Mevduat fiyatlaması hızla yukarı gelirken, mevcut kredi portföyünün getirisi sabit kalır. Marj daralır.</li>
+<li><strong>Orta vade — yeniden fiyatlama:</strong> Yeni krediler daha yüksek faizle açıldıkça aktif tarafı toparlanır. TÜFE'ye endeksli devlet tahvilleri (TÜFEX) ve değişken faizli krediler bu süreçte avantajlıdır.</li>
+<li><strong>Uzun vade — kredi riski:</strong> Yüksek faiz ortamı uzarsa takipteki alacak (NPL) oranı artar ve karşılık giderleri yükselir.</li>
+</ol>
+<p>Yatırımcı, banka bilançolarını incelerken faiz dönemine göre üç değişkene dikkat etmelidir: pasif vade yapısı, TÜFEX portföyünün payı ve kredi/mevduat oranı. Bu üç değişken, faiz şoklarına karşı bankanın "esneme katsayısını" verir.</p>
+<h2>Kur ve Sermaye Akışları</h2>
+<p>TL'nin kısa vadeli seyrinde belirleyici unsur, reel faiz farkı ve risk priminin bileşimidir. Carry trade mantığı şu şekilde çalışır: Yabancı yatırımcı, düşük faizli para birimi (örneğin USD, EUR) ile borçlanıp yüksek faizli TL varlığa girer; aradaki faiz farkını ve kurun değer kaybetmemesi koşuluyla ek getiriyi elde eder.</p>
+<ul>
+<li><strong>Pozitif reel faiz + güvenilir politika çerçevesi:</strong> Yabancı portföy girişi, TL'ye değerleme baskısı.</li>
+<li><strong>Negatif reel faiz + politika belirsizliği:</strong> Yerleşik dolarizasyonu + yabancı çıkışı + TL'de değer kaybı.</li>
+</ul>
+<p>Sermaye akışlarını izlemek için TCMB'nin haftalık yayınladığı menkul kıymet ve DİBS verileri ile bankacılık dışı sektörün net yabancı para pozisyonu (kısa pozisyon büyüklüğü) takip edilebilir. Cari işlemler dengesi de orta vadeli denklemde önemlidir; yapısal cari açık veren ekonomilerde para politikasının kuru savunma kapasitesi, rezerv yeterliliğiyle sınırlıdır.</p>
+<p>Burada "neutral rate" (nötr faiz) kavramı işe yarar: ekonomiyi ne sıkılaştıran ne gevşeten teorik denge faizi. Politika faizi nötr faizin üzerinde olduğunda sıkı, altında olduğunda gevşek bir duruştan söz edilir. Gelişen ülkelerde nötr faiz çoğunlukla risk primini de içerecek şekilde gelişmiş ülkelerden yüksektir.</p>
+<h2>Borsa Sektörlerine Yansıması</h2>
+<p>Faiz değişiminin borsaya etkisi tek yönlü değildir; sektör ve şirket düzeyinde ciddi farklılaşma görülür.</p>
+<h3>Faize duyarlı sektörler</h3>
+<ul>
+<li><strong>Bankacılık:</strong> İlk şokta NIM daralması fiyatlamayı baskılayabilir; ancak TÜFEX yoğun portföyler ve güçlü çekirdek mevduat tabanı olan bankalar görece daha dirençli olur. Uzun vadede ise yüksek faiz ortamı kredi büyümesini yavaşlatır ve aktif kalitesini test eder.</li>
+<li><strong>Gayrimenkul Yatırım Ortaklıkları (GYO):</strong> Yüksek faiz, hem gayrimenkul talebini hem de iskonto oranlarını olumsuz etkiler. NAV (net aktif değer) iskontosu derinleşebilir.</li>
+<li><strong>Sigortacılık:</strong> Hayat ve emeklilik şirketleri için yüksek getirili tahvil portföyü olumludur. Hayat dışı (elementer) tarafta ise enflasyon kaynaklı hasar maliyetleri marja baskı yapar.</li>
+</ul>
+<h3>Defansif sektörler</h3>
+<ul>
+<li><strong>Telekom, gıda perakende, kamu hizmetleri:</strong> Talep esnekliği düşük olan bu sektörler, faiz değişimlerinden görece az etkilenir. Borçluluk düzeyi düşük ve nakit akışı stabil şirketler, sıkılaşma dönemlerinde göreli güçlü kalır.</li>
+</ul>
+<h3>Döngüsel sektörler</h3>
+<ul>
+<li><strong>Sanayi ve holdingler:</strong> Kredi maliyetlerindeki artış yatırım iştahını düşürür. Ancak ihracat ağırlıklı şirketler, TL'nin zayıf seyrinden olumlu etkilenebilir. Yüksek borçluluk oranıyla çalışan döngüsel şirketler, faiz şoklarında daha kırılgan olur.</li>
+</ul>
+<p>Genel bir kural: Şirket değerleme modellerinde (DCF) iskonto oranının yükselmesi, uzun vadeli nakit akışlarını orantısız biçimde aşağı çeker. Bu nedenle yüksek büyüme beklenen şirketler, faiz artış dönemlerinde değer şirketlerine göre daha sert düşebilir.</p>
+<h2>Politika Toplantı Takvimi</h2>
+<p>Para Politikası Kurulu (PPK) ayda bir kez toplanır. Toplantı tarihleri yılbaşında ilan edilen takvim ile bellidir. Karar genellikle Perşembe günü saat 14:00 TSI civarında açıklanır ve eş zamanlı olarak kısa bir politika metni yayınlanır.</p>
+<p>Yatırımcı için kritik anlar:</p>
+<ul>
+<li><strong>Karar saati:</strong> TL/USD, BIST endeksi ve gösterge tahvil faizinde anlık volatilite zirvesi görülür.</li>
+<li><strong>Karar sonrası 24 saat:</strong> Metnin satır arası okumaları, swap piyasası ve uzun vadeli tahviller üzerinden fiyatlanır.</li>
+<li><strong>Üç ayda bir yayınlanan Enflasyon Raporu:</strong> Genelde Şubat, Mayıs, Ağustos ve Kasım aylarında yayımlanan rapor, TCMB'nin enflasyon patika tahminlerini, çıktı açığı varsayımlarını ve risk dengesini içerir. Forward guidance açısından PPK metninden bile bilgilendirici olabilir.</li>
+</ul>
+<h2>Tarihsel Bağlam — TR Para Politikası</h2>
+<p>Türkiye'de para politikası rejimi son yirmi yılda birçok evreden geçti.</p>
+<ul>
+<li><strong>2001–2010 dönüşümü:</strong> 2001 krizinin ardından TCMB bağımsızlığı yasal güvenceye kavuştu ve 2006'da resmi enflasyon hedeflemesi rejimine geçildi.</li>
+<li><strong>2010–2018:</strong> "Geniş koridor" gibi yenilikçi araçlarla deneysel bir dönem yaşandı.</li>
+<li><strong>2018 sonrası:</strong> Politika faizi ile enflasyon arasındaki makas zaman zaman açıldı; reel faiz uzun süre negatif bölgede kaldı.</li>
+<li><strong>2023 ortası:</strong> Yeni TCMB yönetimiyle birlikte ortodoks para politikası araçlarına dönüş süreci başlatıldı.</li>
+<li><strong>Son dönem:</strong> Yüksek nominal faiz, dezenflasyon patikasını desteklemek üzere korunurken, makro ihtiyati önlemler aşamalı olarak sadeleştirildi.</li>
+</ul>
+<p>Bu tarihsel akışın yatırımcı için dersi nettir: Türkiye'de para politikası rejimleri değişebilir ve rejim değişikliği, geleneksel faiz–varlık fiyatı ilişkilerini bir süreliğine bozabilir.</p>
+<h2>Yatırımcı İçin Pratik Takip</h2>
+<ul>
+<li><strong>PPK karar metni:</strong> Politika duruşunun resmi tonu. "Sıkı duruş", "kararlılık", "ek sıkılaşma" gibi anahtar ifadeler şablonlaşır.</li>
+<li><strong>Enflasyon Raporu:</strong> Çıktı açığı, gıda ve enerji varsayımları, çekirdek enflasyon (C grubu) projeksiyonları.</li>
+<li><strong>Aylık enflasyon verisi (TÜİK):</strong> Manşet TÜFE kadar Çekirdek-C, hizmet enflasyonu ve aylık mevsimsellikten arındırılmış seriler önemlidir.</li>
+<li><strong>TCMB Piyasa Katılımcıları Anketi:</strong> 12 ve 24 ay enflasyon ve faiz beklentileri.</li>
+<li><strong>Swap piyasası ve gösterge tahvil:</strong> Faiz patikasının piyasa fiyatlaması.</li>
+<li><strong>Rezerv hareketleri:</strong> Brüt ve net rezerv değişimleri.</li>
+</ul>
+<h2>Yaygın Yanılgılar</h2>
+<ol>
+<li>"Faiz artarsa hisse senedi her zaman düşer." — Sektör bağımlıdır; "her zaman düşer" varsayımı ampirik olarak desteklenmez.</li>
+<li>"TCMB hep aynı politikayı uygular." — Rejim değişiklikleri olur.</li>
+<li>"Faiz piyasa fiyatlamasını her zaman doğru tahmin eder." — Sürpriz oranı yapısal olarak yüksektir.</li>
+<li>"Nominal faiz yüksekse para politikası sıkıdır." — Sıkılık ölçüsü reel faizdir.</li>
+<li>"Politika faizi tek araçtır." — Zorunlu karşılıklar, makro ihtiyati araçlar da duruşun parçasıdır.</li>
+</ol>
+<h2>İlgili Kavramlar</h2>
+<ul>
+<li><strong>Real rate (reel faiz):</strong> Satın alma gücü düzeltmesi yapılmış faiz oranı.</li>
+<li><strong>Neutral rate (nötr faiz):</strong> Ekonomiyi ne sıkılaştıran ne gevşeten teorik denge oranı.</li>
+<li><strong>Forward guidance:</strong> Merkez bankasının gelecek politika patikasına dair sözlü yönlendirmesi.</li>
+<li><strong>Taylor rule:</strong> Politika faizinin enflasyon açığı ve çıktı açığına göre nasıl ayarlanabileceğini gösteren kural.</li>
+<li><strong>Carry trade:</strong> Düşük faizli para birimi ile borçlanıp yüksek faizli varlığa yatırım stratejisi.</li>
+<li><strong>TÜFEX:</strong> TÜFE'ye endeksli devlet iç borçlanma senetleri.</li>
+<li><strong>AOFM:</strong> TCMB'nin bankacılık sistemine fiilen yansıttığı ortalama fonlama oranı.</li>
+</ul>
+<p>Bu yazı genel bilgilendirme amaçlıdır ve yatırım tavsiyesi içermez.</p>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px">
+  <a href="/iletisim/" style="color:var(--muted);font-size:12px">📬 İletişim</a>
+  <a href="/gizlilik/" style="color:var(--muted);font-size:12px">🔒 Gizlilik Politikası</a>
+  <a href="/kullanim-sartlari/" style="color:var(--muted);font-size:12px">📜 Kullanım Şartları</a>
+  <a href="/hakkinda.html" style="color:var(--muted);font-size:12px">ℹ️ Hakkında</a>
+</div>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+Pusula Finans © 2026
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;
+     border-top:1px solid #2a3340;padding:16px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.4)">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:13px;line-height:1.5;color:#aab;flex:1;min-width:240px">
+      🍪 Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#3fa9f5">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#3fa9f5;color:#0f1419;border:0;
+            padding:8px 18px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'pusula-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+</body>
+</html>

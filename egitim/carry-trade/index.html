@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Momentum nedir? — Pusula Finans</title>
+<title>Carry Trade ve Gecelik Fonlama — TRY Çaprazlarının Görünmez Maliyeti — Pusula Finans</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Momentum nedir? — Pusula Finans">
+<meta property="og:title" content="Carry Trade ve Gecelik Fonlama — TRY Çaprazlarının Görünmez Maliyeti — Pusula Finans">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Momentum nedir? — Pusula Finans">
+<meta name="twitter:title" content="Carry Trade ve Gecelik Fonlama — TRY Çaprazlarının Görünmez Maliyeti — Pusula Finans">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -118,55 +118,98 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">Pusula Finans</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Carry Trade ve Gecelik Fonlama — TRY Çaprazlarının Görünmez Maliyeti</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📚 Momentum nedir?</h2>
-<p class="muted" style="font-size:15px;margin-bottom:20px">Son zamanlarda iyi performans göstermiş hisselerin yakın gelecekte de iyi performans gösterme eğilimi — ve bu basit gözlemin neden Jegadeesh-Titman&#x27;dan beri akademik araştırmanın merkezinde olduğu.</p>
+<h2 style="margin-top:0">📚 Carry Trade ve Gecelik Fonlama — TRY Çaprazlarının Görünmez Maliyeti</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">İki para birimi arasındaki faiz farkından kar etme stratejisi ve TRY pozisyonlarında her gece ödediğiniz veya kazandığınız &quot;swap&quot; maliyetinin işlem matematiğiniz üzerindeki etkisi.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-<h2>Tanım</h2>
-<p><strong>Momentum</strong>, finansal piyasalarda son zamanlarda iyi (kötü) getiri veren varlıkların yakın gelecekte de göreceli olarak iyi (kötü) getiri verme eğilimini ifade eder. Bu, ortalamaya dönüş (mean reversion) hipoteziyle çelişen bir gözlemdir ve "neden kazananları kazanmaya, kaybedenleri kaybetmeye devam ediyor" sorusunun cevabıdır.</p>
-<h2>Akademik temel</h2>
-<p>İlk akademik kanıt <strong>Jegadeesh &amp; Titman (1993)</strong> çalışmasından gelir: ABD borsasında son 3-12 aylık getirisi en yüksek olan hisseleri 3-12 ay tutan stratejiler, riskten arındırılmış olarak pozitif getiri üretiyordu. Bu bulgu, <strong>Fama &amp; French</strong>'in 1993'teki üç-faktör modeline 1996'da <strong>momentum faktörünü</strong> (Carhart) eklemelerine yol açtı.</p>
-<p>Momentum, son 30 yılda dünyanın hemen her borsasında — gelişmiş ülkeler, gelişmekte olan piyasalar, hatta emtia ve döviz piyasaları — istatistiksel olarak anlamlı bulundu.</p>
-<h2>Neden çalışıyor?</h2>
-<p>Üç temel hipotez var:</p>
-<ol>
-<li><strong>Davranışsal</strong>: Yatırımcı <em>underreaction</em> — yeni bilgiyi tamamen fiyata yansıtması zaman alır. <em>Overconfidence + herding</em> — pozitif haber alındığında alımlar devam eder.</li>
-<li><strong>Risk-bazlı</strong>: Momentum, görünmez bir risk faktörünün getirisi olabilir. Ancak ampirik olarak Sharpe oranı yüksek ve riski açıklamak zor.</li>
-<li><strong>Yapısal</strong>: Indeks rebalansı, kazanan hisselere mekanik fon akışı, analist tavsiye güncellemeleri.</li>
-</ol>
-<h2>Tipik formülasyon</h2>
+<p>Türk yatırımcının döviz piyasasında en sık karşılaştığı ama en az anladığı kavramlardan biri "carry"dir. Ekranınızda gördüğünüz kar/zarar rakamının altında, çoğu zaman fark etmediğiniz bir günlük akış vardır: gecelik fonlama.</p>
+<h2>Tanım — Carry Trade Nedir?</h2>
+<p>Carry trade, düşük faizli bir para biriminden borç alıp yüksek faizli bir para birimine yatırma stratejisidir. Amaç, kur hareketinden bağımsız olarak iki para birimi arasındaki faiz farkını kazanmaktır.</p>
+<p><strong>Klasik örnek:</strong> Bir yatırımcı yıllık %0.5 faizle JPY borçlanır. Dolara çevirir, dolardan TRY'ye geçer ve %30 faizli TRY mevduata koyar. Teorik olarak yılda ~%29.5 faiz farkı kazanılır — kurda hiçbir şey olmazsa.</p>
+<p>"Kurda hiçbir şey olmazsa" kısmı, carry trade'in tüm hikayesinin gizlendiği yerdir.</p>
+<p>Forex piyasasında bu strateji mevduat hesabı açmadan kaldıraçlı pozisyonlarla uygulanır. Bir USD/TRY pozisyonu, perde arkasında bir para birimini ödünç alıp diğerine yatırmakla eşdeğerdir.</p>
+<h2>Gecelik Faiz Farkı (Swap)</h2>
+<p>Forex piyasasında her pozisyon teorik düzlemde "anlık alım-satım" gibi düşünülür. Gerçekte pozisyon kapanmadığı sürece "carry" akışı devam eder. Broker'lar bu farkı <strong>swap noktası</strong> olarak hesaplar ve günün belirli saatinde (genelde New York kapanışı, 00:00 GMT) hesaba günlük yansıtır. Çarşamba çoğunlukla üçlü swap uygulanır (hafta sonu carry'si yüklenir).</p>
 <ul>
-<li><strong>Cross-sectional momentum</strong>: Tüm hisseleri son N ayda getirilerine göre sırala; en üstteki K hisseyi al, en alttaki K hisseyi sat (long-short) veya sadece üsttekileri tut (long-only).</li>
-<li><strong>Time-series momentum</strong>: Her hisseyi kendi geçmiş trendine bak. Trend pozitif → tut; negatif → cash.</li>
+<li><strong>USD/TRY long pozisyon:</strong> USD alıyor, TRY satıyorsunuz. Yüksek faizli TRY'yi satıp düşük faizli USD'yi tutuyorsunuz. Swap her gün <strong>negatif</strong> — siz ödüyorsunuz.</li>
+<li><strong>USD/TRY short pozisyon:</strong> TRY alıyorsunuz. Swap her gün <strong>pozitif</strong> — alıyorsunuz.</li>
 </ul>
-<p>Tipik lookback periyodu: <strong>3-12 ay</strong>. Çok kısa (&lt;1 ay) mean-reversion'a yakalanır, çok uzun (&gt;2 yıl) momentum yerine değer faktörüne kayar.</p>
-<h2>Riskler — "Momentum Crash"</h2>
-<p>Momentum'un en bilinen zayıflığı <strong>kriz dönüşlerinde</strong> yaşanır. 2009 Mart-Mayıs, 2020 Mart-Nisan gibi V-şeklinde toparlanmalarda, momentum stratejisi "düşen bıçağı tutmamış" olduğu için yükselişi kaçırır. Bu dönemlerde 3-6 ay içinde stratejinin yıllık getirisinin önemli kısmı erir.</p>
-<p>Bunu yumuşatmanın yolları:
-- <strong>Volatility scaling</strong>: Yüksek volatilitede pozisyonu küçült
-- <strong>Risk-on/risk-off filter</strong>: Genel piyasa trend negatifken stratejiyi kapat
-- <strong>Mevsimsellik</strong>: Bazı momentum stratejileri Ocak ayında zayıflar (vergi etkileri)</p>
-<h2>BIST'te momentum</h2>
-<p>BIST için akademik çalışmalar (örn. Ülkü &amp; Karpoff, 2011) <strong>yüksek momentum primi</strong> raporlamıştır — gelişmekte olan piyasalarda yatırımcı duygusu daha güçlü olduğu için momentum daha güçlüdür. Ama dikkat:
-- BIST 30'da yalnız 30 hisse var, top 5 seçimi konsantrasyon riski yaratır
-- Yüksek volatilite/devalüasyon dönemlerinde tüm cross-sectional faktörler zayıflar
-- İşlem maliyeti TR'de daha yüksek (BSMV, vb.)</p>
-<h2>Pratik uygulama notları</h2>
-<p>Momentum'u kendi başınıza uygulamak isterseniz:
-- <strong>Aylık rebalance</strong> yeterli, daha sık gereksiz
-- <strong>Top 5-10 hisse</strong> tipik konsantrasyon
-- <strong>Eşit ağırlık</strong> çoğu zaman market-cap ağırlığından iyi sonuç verir
-- <strong>Trailing stop kullanmayın</strong> momentum stratejisinde — kuralı bozar
-- <strong>Maliyet hesabını ekleyin</strong> — backtest'inizde slipaj + komisyon dahil olsun</p>
-<h2>İlgili kavramlar</h2>
+<h2>Carry Hesabı — Sayısal Örnek</h2>
+<p>USD/TRY = 38.00, faiz farkı yıllık ~%26 (TRY üstün).</p>
+<p>Günlük carry: %26 / 365 ≈ %0.071</p>
+<p>10.000 dolarlık nominal pozisyon başına günde ~7 dolar carry akışı. 100 gün → 700 dolar kümülatif.</p>
+<p>İlk bakışta küçük rakam. Ama: kaldıraç ve pozisyon büyüklüğüyle doğrusal büyür; tutma süresi uzadıkça kümülatif etki ciddi şekilde birikir.</p>
+<h2>"Görünmez Maliyet" — Retail Trader'ın Tuzağı</h2>
+<p>Çoğu retail trader sadece spot fiyat hareketine bakar:</p>
 <ul>
-<li><strong>Carhart 4-faktör model</strong>: Piyasa, büyüklük, değer, momentum</li>
-<li><strong>AQR Capital</strong>: Momentum'u en sistemli uygulayan kurumsal fonlardan</li>
-<li><strong>Reversal</strong>: Çok kısa vadeli (1 hafta - 1 ay) momentum tersine döner — bu mean reversion'dur.</li>
+<li>Pozisyon: USDTRY long, 38.00'dan 40.00'a hareket</li>
+<li>Spot getiri: ~%5.3</li>
+<li>Tutma süresi: 90 gün</li>
+<li>10.000 dolarlık pozisyon</li>
+<li>Günlük negatif swap: ~-10 dolar</li>
+<li>Toplam swap maliyeti: -900 dolar</li>
+</ul>
+<p>Spot kazanç 530 dolar ama swap -900 dolar → net -370 dolar. Daha büyük hareket: 5.300 dolar kar − 900 swap = 4.400 net → effective %4.4.</p>
+<p>Broker P&amp;L'i swap dahil gösterir; yatırımcı "şu fiyattan girdim, şu fiyattayım" mantığıyla baktığında kalemi gözden kaçırır.</p>
+<h2>Negatif Carry'de Kritik Soru: "Hedef Hareket Yeter mi?"</h2>
+<p>Pozisyon negatif carry yönündeyse:</p>
+<ul>
+<li><strong>Hedef hareket %1-2:</strong> Birkaç haftalık swap kazancın önemli kısmını yiyebilir. Risk/getiri bozulur.</li>
+<li><strong>Hedef hareket %5-10:</strong> Swap planlamada anlamlı kalem.</li>
+<li><strong>Hedef hareket %20+:</strong> Swap görece marjinal.</li>
+<li><strong>1-3 gün:</strong> Swap büyük olasılıkla ihmal edilebilir.</li>
+<li><strong>Haftalar/aylar:</strong> Swap ana planlama değişkeni.</li>
+</ul>
+<h2>"Carry Trade Yıkımı" — Ne Zaman Olur?</h2>
+<p>Yüksek faizli para birimine yapılan carry trade'in en büyük yanılgısı, "tek yönlü kazanç akışı" algısıdır. Gerçekte gizlenmiş bir <strong>kuyruk riski (tail risk)</strong> taşır.</p>
+<p>Mekanizma: Yüksek faizli ülke politik, makroekonomik veya jeopolitik şokla karşılaştığında sermaye çıkış arar. Kur birkaç günde sert değer kaybeder. Aylar boyunca biriken faiz farkı kazancı, tek bir kur şokunda silinir, hatta net negatif olur.</p>
+<p><strong>2018 Ağustos</strong> ve <strong>2021 sonu</strong> TRY için bu mekaniğin örnekleridir. Bir yıl boyunca pozitif carry biriktiren TRY-long pozisyonları, o haftalarda biriken faiz farkından çok daha büyük kayıplar yaşadı.</p>
+<p>Profesyonel hedge fon dünyasında carry stratejileri "ortalama yıllarda kazandıran, kötü yıllarda yıkıcı zarar veren" çarpık (skewed) bir dağılım olarak modellenir.</p>
+<h2>Pratik Kontrol Listesi</h2>
+<p>TRY içeren pozisyon öncesi:</p>
+<ol>
+<li><strong>Pozisyon yönüm hangisi?</strong> USDTRY long iseniz TRY satıyorsunuz → negatif carry. Short iseniz TRY alıyorsunuz → pozitif carry.</li>
+<li><strong>Broker'ımın swap noktası ne?</strong> İslami (swap-free) hesaplarda spread daha geniş olabilir.</li>
+<li><strong>Tahmini tutma sürem?</strong> Gün içi: ihmal. Haftalar/aylar: kritik.</li>
+<li><strong>Faiz farkı son dönemde değişti mi?</strong> TCMB veya Fed kararı sonrası swap noktası kısa sürede güncellenir.</li>
+<li><strong>Pozisyon büyüklüğüm günlük swap akışını ne kadar büyütüyor?</strong></li>
+</ol>
+<h2>Carry Trade ve TR'de Yerleşik Yatırımcı</h2>
+<p>TR'de yerleşik yatırımcı çoğunlukla USDTRY/EURTRY long pozisyona açıktır (TL'den dolara/euroya geçiş).</p>
+<p>Matematiği:
+- Günlük negatif carry vardır (TRY faizi yüksek).
+- Ana motivasyon kur stresine karşı korunmaktır.
+- "Carry pay versem de uzun vadede kur kazandırır" mantığı.
+- Beklenti gerçekleşmediği dönemlerde biriken negatif carry net zarar yaratır.</p>
+<p>Profesyonel dünyada TRY long carry uzun vadeli beklenen değer pozitif görünür, ama yıldan yıla varyans yüksektir. Ortalama yıllarda kazanç, şok yıllarında yıkıcı kayıp.</p>
+<h2>Carry Trade ve Diğer Para Birimleri</h2>
+<ul>
+<li><strong>AUD/JPY:</strong> Klasik carry pair. Risk-on AUD long popüler, risk-off hızla ters döner.</li>
+<li><strong>NZD/USD:</strong> NZD yüksek faiz dönemlerinde orta carry.</li>
+<li><strong>CHF/USD:</strong> CHF düşük/negatif faizli; USD long pozitif carry sağlar.</li>
+<li><strong>TRY çaprazları:</strong> En yüksek carry potansiyeli + en yüksek volatilite.</li>
+</ul>
+<h2>Yaygın Yanılgılar</h2>
+<ul>
+<li><strong>"Carry kazancım sabit gelir gibi."</strong> Değildir. Spot kur hareketi günlük carry'yi 10-30 kat geçebilir.</li>
+<li><strong>"Broker'ım swap göstermiyor, demek ki carry yok."</strong> Swap, spread'e veya komisyona yedirilmiş olabilir.</li>
+<li><strong>"Faiz yüksek olduğu için sürekli TRY long yapayım."</strong> Devalüasyon riskini görmez.</li>
+<li><strong>"Carry trade pasif gelirdir."</strong> Açık, kaldıraçlı bir döviz pozisyonudur.</li>
+<li><strong>"Kısa vadede swap önemsiz, uzun vadede kazandırır."</strong> Kısmen doğru ama tek kur şokunun tüm carry'yi silebileceği unutulmamalı.</li>
+</ul>
+<h2>Önemli Not</h2>
+<p>Carry trade yüksek nominal getiri vaadiyle dikkat çekse de, Türkiye'nin makroekonomik koşullarına ve global risk iştahına son derece duyarlıdır. Geçmiş dönemlerdeki büyük TRY hareketleri carry trader'lara ciddi kayıplar yaşatmıştır. Bu strateji ileri düzey risk yönetimi, pozisyon boyutlandırma ve makro takip becerisi gerektirir.</p>
+<h2>İlgili Kavramlar</h2>
+<ul>
+<li>Spread, swap, gecelik fonlama</li>
+<li>Forward rate, interest rate parity</li>
+<li>Currency intervention</li>
+<li>Capital flight</li>
+<li>TCMB rezerv hareketleri</li>
 </ul>
 </div>
 <div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">

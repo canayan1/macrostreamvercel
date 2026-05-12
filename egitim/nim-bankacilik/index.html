@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Momentum nedir? — Pusula Finans</title>
+<title>NIM (Net Interest Margin) ve Bankacılığın Karlılık Mekaniği — Pusula Finans</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Momentum nedir? — Pusula Finans">
+<meta property="og:title" content="NIM (Net Interest Margin) ve Bankacılığın Karlılık Mekaniği — Pusula Finans">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Momentum nedir? — Pusula Finans">
+<meta name="twitter:title" content="NIM (Net Interest Margin) ve Bankacılığın Karlılık Mekaniği — Pusula Finans">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -118,56 +118,118 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">Pusula Finans</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › NIM (Net Interest Margin) ve Bankacılığın Karlılık Mekaniği</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📚 Momentum nedir?</h2>
-<p class="muted" style="font-size:15px;margin-bottom:20px">Son zamanlarda iyi performans göstermiş hisselerin yakın gelecekte de iyi performans gösterme eğilimi — ve bu basit gözlemin neden Jegadeesh-Titman&#x27;dan beri akademik araştırmanın merkezinde olduğu.</p>
+<h2 style="margin-top:0">📚 NIM (Net Interest Margin) ve Bankacılığın Karlılık Mekaniği</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Bankaların kar makinesi olan faiz marjını anlamadan banka hisselerini takip edemezsiniz. NIM nasıl hesaplanır, faiz hareketinde nasıl değişir, BIST bankalarının NIM hikayeleri.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-<h2>Tanım</h2>
-<p><strong>Momentum</strong>, finansal piyasalarda son zamanlarda iyi (kötü) getiri veren varlıkların yakın gelecekte de göreceli olarak iyi (kötü) getiri verme eğilimini ifade eder. Bu, ortalamaya dönüş (mean reversion) hipoteziyle çelişen bir gözlemdir ve "neden kazananları kazanmaya, kaybedenleri kaybetmeye devam ediyor" sorusunun cevabıdır.</p>
-<h2>Akademik temel</h2>
-<p>İlk akademik kanıt <strong>Jegadeesh &amp; Titman (1993)</strong> çalışmasından gelir: ABD borsasında son 3-12 aylık getirisi en yüksek olan hisseleri 3-12 ay tutan stratejiler, riskten arındırılmış olarak pozitif getiri üretiyordu. Bu bulgu, <strong>Fama &amp; French</strong>'in 1993'teki üç-faktör modeline 1996'da <strong>momentum faktörünü</strong> (Carhart) eklemelerine yol açtı.</p>
-<p>Momentum, son 30 yılda dünyanın hemen her borsasında — gelişmiş ülkeler, gelişmekte olan piyasalar, hatta emtia ve döviz piyasaları — istatistiksel olarak anlamlı bulundu.</p>
-<h2>Neden çalışıyor?</h2>
-<p>Üç temel hipotez var:</p>
+<p>Bankacılık hisseleri BIST 100 endeksinin yaklaşık dörtte birini oluşturur. Bu sektörü anlamadan Türkiye borsasını anlamak mümkün değildir. Bankacılığın kalbinde tek bir metrik atar: <strong>NIM — Net Interest Margin</strong>.</p>
+<h2>Bankaların Temel İş Modeli</h2>
+<p>Bir banka iki ana faaliyetten para kazanır:</p>
+<p><strong>1. Faiz geliri (spread bazlı):</strong> Müşterilerden topladığı mevduatı düşük faizle alır, krediyi yüksek faizle verir. Aradaki fark = ana üretim karı. <strong>NIM</strong> ile ölçülür.</p>
+<p><strong>2. Komisyon ve ücret geliri:</strong> Kart, transfer, kredi başvuru, sigorta, varlık yönetimi, döviz alım-satım. Faiz dışı kalem, NIM kapsamı dışında.</p>
+<p>Türkiye gibi yüksek faiz ortamlarında ve klasik mevduat bankalarında, <strong>gelirin büyük çoğunluğu hâlâ faiz marjından gelir</strong>. NIM banka analizinin başlangıç noktasıdır.</p>
+<h2>NIM Tanımı</h2>
+<p><strong>NIM = (Faiz Geliri − Faiz Gideri) / Faiz Üreten Aktifler × 100</strong></p>
+<p>Faiz üreten aktifler: krediler + menkul kıymetler + bankalararası plasmanlar + diğer faiz getirici varlıklar. Ortalama dönem bakiyesi kullanılır.</p>
+<p><strong>Sayısal örnek:</strong>
+- Kredi portföyü: 100 milyar TL, ortalama getiri %35 → faiz geliri 35 milyar TL
+- Mevduat portföyü: 90 milyar TL, ortalama maliyet %25 → faiz gideri 22.5 milyar TL
+- Net faiz geliri: 12.5 milyar TL
+- NIM = 12.5 / 100 = <strong>%12.5</strong></p>
+<p>Bu NIM yüksek — gelişmekte olan piyasa, yüksek nominal faiz ortamı. Gelişmiş ülke bankalarında NIM %2-4 normaldir. TR'de %3-6 bandı gözlenir, yıllar arasında sert dalgalanmalar yaşar.</p>
+<p><strong>NIM yüksekse banka iyi çalışıyor anlamına gelmez;</strong> NIM'in trendi ve sürdürülebilirliği mutlak değerinden önemli.</p>
+<h2>NIM ve Para Politikası — Üç Senaryo</h2>
+<h3>Senaryo A: Faiz Yükseliyor</h3>
 <ol>
-<li><strong>Davranışsal</strong>: Yatırımcı <em>underreaction</em> — yeni bilgiyi tamamen fiyata yansıtması zaman alır. <em>Overconfidence + herding</em> — pozitif haber alındığında alımlar devam eder.</li>
-<li><strong>Risk-bazlı</strong>: Momentum, görünmez bir risk faktörünün getirisi olabilir. Ancak ampirik olarak Sharpe oranı yüksek ve riski açıklamak zor.</li>
-<li><strong>Yapısal</strong>: Indeks rebalansı, kazanan hisselere mekanik fon akışı, analist tavsiye güncellemeleri.</li>
+<li><strong>Kısa vade — sıkışma:</strong> Mevduat hızla yeniden fiyatlanır, kredi gecikmeli. Marj daralır.</li>
+<li><strong>Orta vade — yeniden fiyatlama:</strong> Yeni krediler yüksek faizle açılır. TÜFEX ve değişken faizli krediler avantajlı.</li>
+<li><strong>Uzun vade — kredi riski:</strong> NPL oranı artar, karşılık giderleri yükselir.</li>
 </ol>
-<h2>Tipik formülasyon</h2>
+<h3>Senaryo B: Faiz Düşüyor</h3>
+<ol>
+<li><strong>Kısa vade — sıkışma:</strong> Mevduat hızla yeniden fiyatlanır, kredi portföyünün eski getirisi sabit. Ama yeni krediler de düşük faizle açılır.</li>
+<li><strong>Orta vade — toparlanma:</strong> Kredi getirileri de aşağı kayar, marj normalleşir.</li>
+<li><strong>Uzun vade:</strong> Kredi talebi artar, NPL'ler iyileşir.</li>
+</ol>
+<h3>Senaryo C: Faiz Stabil</h3>
+<p>Rekabet baskısı önde. Marj zamanla aşınır. Komisyon, dijital bankacılık, sigortacılık öne çıkar.</p>
+<h2>Türkiye Bankacılığında NIM Hikayesi</h2>
 <ul>
-<li><strong>Cross-sectional momentum</strong>: Tüm hisseleri son N ayda getirilerine göre sırala; en üstteki K hisseyi al, en alttaki K hisseyi sat (long-short) veya sadece üsttekileri tut (long-only).</li>
-<li><strong>Time-series momentum</strong>: Her hisseyi kendi geçmiş trendine bak. Trend pozitif → tut; negatif → cash.</li>
+<li><strong>2018-2020:</strong> Kur krizleri, faiz şokları, pandemi. NIM dalgalı.</li>
+<li><strong>2021-2023 ortası:</strong> Ortodoks olmayan politika döneminde TCMB faizi düşük, ama bankalar mevduat fiyatlama özgürlüğü kaybı + KKM yükü. <strong>NIM ciddi sıkıştı.</strong></li>
+<li><strong>2023 ortası sonrası:</strong> Ortodoks geri dönüş, TCMB faizi hızla yükseldi. Bankalar kredi tarafını hızlı yeniden fiyatlayamadı ama mevduat maliyetini bir süre emerek <strong>geçici NIM toparlanması</strong> sağladı.</li>
+<li><strong>Dezenflasyon dönemi:</strong> Kredi faizleri öncelikli düştü, <strong>NIM yeniden sıkışma baskısı</strong>.</li>
 </ul>
-<p>Tipik lookback periyodu: <strong>3-12 ay</strong>. Çok kısa (&lt;1 ay) mean-reversion'a yakalanır, çok uzun (&gt;2 yıl) momentum yerine değer faktörüne kayar.</p>
-<h2>Riskler — "Momentum Crash"</h2>
-<p>Momentum'un en bilinen zayıflığı <strong>kriz dönüşlerinde</strong> yaşanır. 2009 Mart-Mayıs, 2020 Mart-Nisan gibi V-şeklinde toparlanmalarda, momentum stratejisi "düşen bıçağı tutmamış" olduğu için yükselişi kaçırır. Bu dönemlerde 3-6 ay içinde stratejinin yıllık getirisinin önemli kısmı erir.</p>
-<p>Bunu yumuşatmanın yolları:
-- <strong>Volatility scaling</strong>: Yüksek volatilitede pozisyonu küçült
-- <strong>Risk-on/risk-off filter</strong>: Genel piyasa trend negatifken stratejiyi kapat
-- <strong>Mevsimsellik</strong>: Bazı momentum stratejileri Ocak ayında zayıflar (vergi etkileri)</p>
-<h2>BIST'te momentum</h2>
-<p>BIST için akademik çalışmalar (örn. Ülkü &amp; Karpoff, 2011) <strong>yüksek momentum primi</strong> raporlamıştır — gelişmekte olan piyasalarda yatırımcı duygusu daha güçlü olduğu için momentum daha güçlüdür. Ama dikkat:
-- BIST 30'da yalnız 30 hisse var, top 5 seçimi konsantrasyon riski yaratır
-- Yüksek volatilite/devalüasyon dönemlerinde tüm cross-sectional faktörler zayıflar
-- İşlem maliyeti TR'de daha yüksek (BSMV, vb.)</p>
-<h2>Pratik uygulama notları</h2>
-<p>Momentum'u kendi başınıza uygulamak isterseniz:
-- <strong>Aylık rebalance</strong> yeterli, daha sık gereksiz
-- <strong>Top 5-10 hisse</strong> tipik konsantrasyon
-- <strong>Eşit ağırlık</strong> çoğu zaman market-cap ağırlığından iyi sonuç verir
-- <strong>Trailing stop kullanmayın</strong> momentum stratejisinde — kuralı bozar
-- <strong>Maliyet hesabını ekleyin</strong> — backtest'inizde slipaj + komisyon dahil olsun</p>
-<h2>İlgili kavramlar</h2>
+<p><strong>"Hangi döngü fazındayız ve bir sonraki faza geçişte hangi banka hangi pozisyonda?"</strong> — yatırımcının cevap araması gereken soru.</p>
+<h2>Önemli Diğer Bankacılık Metrikleri</h2>
 <ul>
-<li><strong>Carhart 4-faktör model</strong>: Piyasa, büyüklük, değer, momentum</li>
-<li><strong>AQR Capital</strong>: Momentum'u en sistemli uygulayan kurumsal fonlardan</li>
-<li><strong>Reversal</strong>: Çok kısa vadeli (1 hafta - 1 ay) momentum tersine döner — bu mean reversion'dur.</li>
+<li><strong>CAR (Capital Adequacy Ratio):</strong> Basel III minimum %8. BDDK fiili eşik daha yüksek. BIST bankaları %14-18.</li>
+<li><strong>NPL (Non-Performing Loans):</strong> Takipteki kredi oranı. Düşük iyi; provisioning ile birlikte değerlendirilir.</li>
+<li><strong>Provisioning:</strong> Karşılık ayırma. Düşük NPL'ye rağmen provisioning artıyorsa banka gelecek için kötümser.</li>
+<li><strong>ROE (Return on Equity):</strong> Toplam karlılık. TR'de nominal ROE yüksek görünür, <strong>reel ROE</strong> ayrı değerlendirilmeli.</li>
+<li><strong>Cost-to-Income:</strong> Operasyonel verimlilik. %35-50 sağlıklı.</li>
+<li><strong>Cost of Risk:</strong> Net karşılık gideri / ortalama kredi portföyü. Risk yönetim kalitesi.</li>
 </ul>
+<h2>BIST Banka Karşılaştırma Çerçevesi</h2>
+<p>BIST 30 bankaları: AKBNK, GARAN, ISCTR, VAKBN, YKBNK + bazen HALKB.</p>
+<p>Karşılaştırma:
+1. <strong>NIM trendi</strong> (son 4 çeyrek)
+2. <strong>NPL ve provisioning hızı</strong>
+3. <strong>CAR seviyesi</strong>
+4. <strong>ROE</strong> vs sektör ortalaması
+5. <strong>Şube/dijital dağılım</strong>
+6. <strong>Mevduat kompozisyonu</strong> (TL/FX, KKM payı)
+7. <strong>Kamu vs özel banka ayrımı</strong></p>
+<h2>BIST Banka Hisseleri ve Endeks İlişkisi</h2>
+<p>Bankacılık BIST 100'ün <strong>%25-30</strong>'u.</p>
+<ul>
+<li>Banka zayıfsa BIST 100 lokomotifsiz.</li>
+<li>Banka güçlü → BIST 100 belkemiği.</li>
+</ul>
+<p><strong>XBANK</strong> = banka sektör endeksi. <strong>XBANK / XU100 oranı</strong> = sektör momentum göstergesi.</p>
+<h2>Yaygın Yanılgılar</h2>
+<ul>
+<li><strong>"Faiz yükselirse banka her zaman kazanır."</strong> Kısa vadede tipik doğru, uzun vadede kredi talebi düşer, NPL artar.</li>
+<li><strong>"NPL düşükse banka güvenli."</strong> Provisioning yetersizse veya yeniden yapılandırmalar NPL'yi gizliyorsa farklı tablo.</li>
+<li><strong>"Mevduatı çok = sağlam."</strong> Kompozisyon önemli. Aşırı FX ağırlık kur şokunda riskli.</li>
+<li><strong>"Tüm bankalar aynı tepki verir."</strong> Tier-1, özel, kamu farklı bilanço yapıları.</li>
+<li><strong>"NIM yükseliyorsa hisse yükselir."</strong> Piyasa beklentilerin önünde — beklenenden zayıf artış hisseyi düşürür.</li>
+</ul>
+<h2>Pratik Kontrol Listesi</h2>
+<p>Banka hissesi öncesi:</p>
+<ol>
+<li>Son 4 çeyrek NIM trendi nasıl?</li>
+<li>NPL + provisioning trend giderek artıyor mu? Cost of Risk ne?</li>
+<li>CAR yeterli mi, ek sermaye sinyali var mı?</li>
+<li>ROE sektör ortalamasına göre nerede?</li>
+<li>XBANK ile aynı yönde mi, geri mi kalıyor?</li>
+<li>TCMB faiz patikası beklentin nedir, banka bu patika ile uyumlu mu?</li>
+<li>Mevduat kompozisyonu (TL/FX) hangi senaryoda avantajlı?</li>
+</ol>
+<h2>NIM ve Bankacılık Defansif Değildir</h2>
+<p>Bankacılık, ekonomik döngüye en doğrudan bağlı sektördür:</p>
+<ul>
+<li><strong>Resesyon:</strong> NPL patlar, NIM sıkışır, kredi talebi düşer. Hisseler sert düşer.</li>
+<li><strong>Boğa piyasası:</strong> Kredi büyür, NIM stabil, kar büyür. Lokomotif.</li>
+<li><strong>Geçiş dönemleri:</strong> Faiz şoklarına en duyarlı sektör; volatilite yüksek.</li>
+</ul>
+<p>Bankacılık ağırlıklı portföy = <strong>makro döngü bahsi</strong>. Bunu gıda perakendesi gibi defansif sektöre benzetmemek gerek.</p>
+<h2>İlgili Kavramlar</h2>
+<ul>
+<li>ROE, ROA</li>
+<li>Capital Adequacy Ratio (Basel III)</li>
+<li>Net Interest Income</li>
+<li>Provisioning Rate</li>
+<li>Cost of Risk</li>
+<li>Tier 1, Tier 2 sermaye</li>
+<li>KKM (Kur Korumalı Mevduat)</li>
+<li>XBANK / XU100 relatif performans</li>
+</ul>
+<p>Bu yazı eğitim amaçlıdır. Belirli bir banka hissesi için "al/sat" önerisi içermez.</p>
 </div>
 <div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
   <p style="margin:0;font-size:13px;color:#fbbf24">
