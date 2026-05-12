@@ -1,5 +1,16 @@
 {
-  "last_update": "2026-05-11T22:13:45.592457Z",
-  "latest_report": "2026-05-11",
-  "total_reports": 1
+  "last_update": "2026-05-12T08:44:12.056823Z",
+  "latest_report": {
+    "category": "hisse",
+    "date": "2026-05-12",
+    "title": "Arçelik — Günün Hissesi"
+  },
+  "total_reports": 2,
+  "by_category": {
+    "hisse": 2,
+    "fx": 0,
+    "makro": 0,
+    "fred": 0,
+    "wb": 0
+  }
 }
