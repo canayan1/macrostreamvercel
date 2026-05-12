@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ana Sayfa — Pusula Finans</title>
-<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="description" content="Pusula Finans — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
 <meta property="og:title" content="Ana Sayfa — Pusula Finans">
-<meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta property="og:description" content="Pusula Finans — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pusula Finans">
@@ -19,169 +19,458 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ana Sayfa — Pusula Finans">
-<meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="twitter:description" content="Pusula Finans — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://macrostreamvercel.vercel.app/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root {
-  --bg: #0f1419;
-  --panel: #1a2029;
-  --panel-2: #232a36;
-  --text: #e5ebf2;
-  --muted: #8896a6;
-  --accent: #3fa9f5;
+  --bg: #0a0a0a;
+  --bg-1: #0d0c0a;
+  --surface: #121110;
+  --surface-2: #191714;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
   --green: #4ade80;
-  --red: #f87171;
-  --yellow: #fbbf24;
-  --border: #2a3340;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.04);
 }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; line-height: 1.5;
+  font-feature-settings: 'tnum', 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
 body {
-  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.55;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
-.disclaimer-banner {
-  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
-  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
 }
-header.brand {
-  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
 }
-header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
-header.brand .tagline { color: var(--muted); font-size: 14px; }
-header.brand a { color: inherit; text-decoration: none; }
-nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
-nav.tabs a {
-  display: inline-block; padding: 14px 4px; color: var(--muted);
-  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
 }
-nav.tabs a:hover { color: var(--text); }
-nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
-main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
-h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
-  padding: 18px 20px; margin-bottom: 18px;
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
 }
-.card.featured { border-left: 3px solid var(--accent); }
-.muted { color: var(--muted); }
-.small { font-size: 13px; }
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.warn { color: var(--yellow); }
-table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
-table.grid th, table.grid td {
-  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
   white-space: nowrap;
 }
-table.grid th { color: var(--muted); font-weight: 500; }
-table.grid td.l, table.grid th.l { text-align: left; }
-table.grid tbody tr:hover { background: var(--panel-2); }
-.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 32px;
+}
+.fkey {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .06em;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--accent); font-weight: 700; font-size: 10px; letter-spacing: .04em; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; }
+h1 { font-size: 24px; font-weight: 500; letter-spacing: -.01em; margin-bottom: 14px; color: var(--text); }
+h2 { font-size: 18px; font-weight: 600; letter-spacing: -.005em; margin: 26px 0 12px; color: var(--text); }
+h3 { font-size: 14px; font-weight: 600; letter-spacing: .04em; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
 .kv .k { color: var(--muted); }
-.kv .v { text-align: right; }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
 .flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .flag {
-  display: inline-block; padding: 3px 10px; border-radius: 999px;
-  font-size: 11px; background: var(--panel-2); color: var(--muted);
-  border: 1px solid var(--border);
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
 }
-.flag.green { color: var(--green); border-color: #1f5933; }
-.flag.red { color: var(--red); border-color: #5e2424; }
-.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
 .commentary {
-  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
-  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
 }
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
 .report-list { list-style: none; padding: 0; margin: 0; }
-.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
-.report-list li:last-child { border-bottom: 0; }
-.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
-.report-list a:hover { color: var(--accent); }
-.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
-footer {
-  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
-  color: var(--muted); font-size: 12px; line-height: 1.6;
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
 }
-footer strong { color: var(--yellow); }
-@media (max-width: 640px) {
-  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
-  nav.tabs { gap: 12px; overflow-x: auto; }
-  main { padding: 20px 14px 40px; }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .cmd-stat:not(:first-child) { display: none; }
+  .wrap, main { padding: 14px 14px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; }
+}
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
 }</style>
 </head>
 <body>
-<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
-<header class="brand">
-  <h1><a href="/">Pusula Finans</a></h1>
-  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  
-</header>
-<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">P</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev">›</span><input placeholder="arama: hisse, sektör veya komut · ör. ARCLK, sektor:bankacilik, /makro" /><span class="kbd">⌘ K</span></div><div class="cmd-status"><div class="cmd-stat"><span class="dot"></span><span><span class="lbl">CANLI</span> &nbsp; YFin · TCMB · FRED</span></div><div class="cmd-stat"><span class="lbl">SON</span> 2026-05-12 · 22:42 TR</div></div></div><div class="fkeys"><a class="fkey active" href="/"><span class="k">F1</span> ANA SAYFA</a><a class="fkey" href="/arsiv.html"><span class="k">F2</span> BÜLTEN</a><a class="fkey" href="/algo/"><span class="k">F3</span> STRATEJİ</a><a class="fkey" href="/islem-kontrolu/"><span class="k">F4</span> İŞLEM KONTROLÜ</a><a class="fkey" href="/reports/pulse/2026-05-12/"><span class="k">F5</span> PULSE</a><a class="fkey" href="/editor/"><span class="k">F6</span> EDİTÖR</a><a class="fkey" href="/egitim/"><span class="k">F7</span> EĞİTİM</a><a class="fkey" href="/hakkinda.html"><span class="k">F8</span> HAKKINDA</a></div>
+<div class="disclaimer-banner"><b>⚠ Çerçeve</b> · Bu içerik <b>yatırım tavsiyesi değildir</b> — eğitim ve sistematik araştırma. SPK çizgisinde, otomatik üretim.</div>
+
 <main>
 
-<!-- HERO -->
-<div style="margin:14px 0 28px">
-  <h1 style="font-size:32px;margin:0 0 8px;letter-spacing:-0.02em;line-height:1.2">
-    Türkçe veri, sentez ve sistematik araştırma.
-  </h1>
-  <p style="font-size:16px;color:var(--muted);margin:0 0 20px;line-height:1.5;max-width:620px">
-    Pusula Finans — günlük makro ve piyasa bülteni, şeffaf strateji laboratuvarı ve
-    Türkçe finansal eğitim. <strong style="color:#fbbf24">Yatırım tavsiyesi değildir.</strong>
-  </p>
-  <div style="display:flex;gap:10px;flex-wrap:wrap">
-    <a href="/reports/hisse/2026-05-12/" style="display:inline-block;background:var(--accent);color:#0f1419;
-       padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">
-      📈 Bugünün Bülteni
-    </a>
-    <a href="/algo/" style="display:inline-block;background:transparent;color:var(--text);
-       padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;
-       border:1px solid var(--border)">
-      🧪 Strateji Laboratuvarı
-    </a>
+<div class="wrap">
+
+  <!-- ── HERO + REGIME ───────────────────────────────── -->
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px">
+    <div class="panel" style="padding:28px 28px 24px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;right:0;width:240px;height:240px;background:radial-gradient(circle at 100% 0%,rgba(255,166,48,.12),transparent 60%);pointer-events:none"></div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px">
+        <span class="dot amber"></span>
+        <b style="color:var(--accent);font-weight:700;letter-spacing:.16em">SEANS · AKTİF</b>
+        <span>·</span>
+        <span>Bülten yayında — 22:42 itibarıyla</span>
+      </div>
+      <h1 style="font-family:'JetBrains Mono';font-weight:300;font-size:34px;line-height:1.18;letter-spacing:-.015em;color:var(--text);margin-bottom:14px">
+        Türkçe veri, sentez ve<br>
+        <em style="font-style:normal;color:var(--accent);font-weight:500">sistematik araştırma.</em>
+      </h1>
+      <p style="color:var(--text-dim);font-size:13px;max-width:54ch;margin-bottom:22px">
+        Pusula Finans, günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı
+        ve Türkçe finansal eğitim için kurulmuş bir veri terminalidir. Sinyal değil —
+        çerçeve. Tahmin değil — çıkarım. Tavsiye değil — disiplin.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="/reports/hisse/2026-05-12/"><span class="arr">▸</span> BUGÜNÜN BÜLTENİ</a>
+        <a class="btn" href="/algo/">STRATEJİ LABORATUVARI →</a>
+        <a class="btn" href="/islem-kontrolu/">İŞLEM KONTROLÜ ↗</a>
+      </div>
+    </div>
+    
+<div class="panel">
+  <div class="panel-h">
+    <span class="ttl">▣ REJİM TABLOSU</span>
+    <span class="meta"><span class="dot amber"></span><span>22:42 TR</span></span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;flex:1">
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">BIST 30</span>
+        <span class="on" style="font-size:11px;font-weight:600;letter-spacing:.04em">▲ RISK-ON</span>
+      </div>
+      <div class="num" style="font-family:'Geist Mono';font-size:22px;font-weight:500;letter-spacing:-.01em;color:var(--text);margin-top:2px">
+        89%
+      </div>
+      <div style="font-size:11px;color:var(--text-dim)">50-DMA üstünde · Mercek: <span style="color:var(--accent)">Arçelik</span></div>
+    </div>
+    <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">USD/TRY</span>
+        <span class="am" style="font-size:11px;font-weight:600">◇ DOLAR GERI ÇEKILIYOR</span>
+      </div>
+      <div class="num" style="font-family:'Geist Mono';font-size:22px;font-weight:500;color:var(--text);margin-top:2px">45.3525</div>
+      <div style="font-size:11px;color:var(--text-dim)">DXY 5g <span class="dn" style="margin-left:6px">-0.54%</span></div>
+    </div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">TR MAKRO</span>
+        <span class="off" style="font-size:11px;font-weight:600">▼ YÜKSEK ENFLASYON</span>
+      </div>
+      <div class="num" style="font-family:'Geist Mono';font-size:22px;font-weight:500;color:var(--text);margin-top:2px">
+        30.9<span style="color:var(--muted);font-size:13px">%</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim)">TÜFE Y/Y · İşsizlik <span style="margin-left:6px;color:var(--text)">8.5%</span></div>
+    </div>
+    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">ABD MAKRO</span>
+        <span class="on" style="font-size:11px;font-weight:600">▲ NORMAL EĞRI</span>
+      </div>
+      <div class="num" style="font-family:'Geist Mono';font-size:22px;font-weight:500;color:var(--text);margin-top:2px">
+        3.64<span style="color:var(--muted);font-size:13px">%</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim)">Fed Funds · VIX <span style="margin-left:6px;color:var(--text)">18.4</span></div>
+    </div>
   </div>
 </div>
 
-<!-- EDITOR NOTE (öne çıkar) -->
-
-<div style="margin:20px 0 0;padding:18px 22px;background:linear-gradient(135deg,#2a2410 0%,#1f1a08 100%);
-     border:1px solid #5a4419;border-radius:10px;position:relative">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-    <span style="background:#fbbf24;color:#0f1419;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700">EDİTÖR NOTU</span>
-    <span class="small muted">2026-05-12</span>
   </div>
-  <a href="/editor/2026-05-12-cerceve/" style="color:var(--text);text-decoration:none">
-    <h3 style="margin:6px 0 6px;font-size:20px;color:var(--text);text-transform:none;letter-spacing:-0.01em">
+
+  <!-- ── DISCIPLINE PRE-TRADE CALLOUT ────────────────── -->
+  <div id="pt-mini" style="display:flex;align-items:center;gap:22px;background:linear-gradient(180deg,#1c1813 0%,#13110e 100%);border:1px solid var(--border-2);padding:18px;margin-bottom:18px">
+    <div id="pt-mini-score" style="width:96px;height:96px;flex:0 0 auto;border:2px solid var(--accent);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(255,166,48,.12),transparent 70%)">
+      <div style="font-family:'Geist Mono';font-size:32px;font-weight:600;color:var(--accent)" id="pt-mini-score-val">?</div>
+      <div style="font-size:9px;letter-spacing:.16em;color:var(--text-dim);text-transform:uppercase">DİSİPLİN</div>
+    </div>
+    <div style="flex:1">
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:6px;font-weight:700">▸ HIZLI KONTROL · 30 SANİYE</div>
+      <div style="font-size:18px;font-weight:500;color:var(--text);margin-bottom:6px;letter-spacing:-.01em">Bir işlem açmadan önce: hazır mısın?</div>
+      <div id="pt-mini-flow" style="font-size:12px;color:var(--text-dim);max-width:60ch"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;flex:0 0 auto">
+      <a class="btn btn-primary" href="/islem-kontrolu/">▸ TAM KONTROL (3 DK)</a>
+      <a class="btn" href="/egitim/risk-metrikleri/">Risk metrikleri →</a>
+    </div>
+  </div>
+
+  <!-- ── PILLARS ────────────────────────────────────── -->
+  
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);background:var(--surface);margin:18px 0">
+  <div style="padding:18px 18px 22px;border-right:1px solid var(--border)">
+    <div style="font-family:'Geist Mono';font-size:11px;color:var(--accent);letter-spacing:.12em;font-weight:600">01 / TÜRKÇE SENTEZ</div>
+    <div style="font-size:14px;font-weight:600;color:var(--text);margin:8px 0 6px">Ham veri komodite. Sentez fark.</div>
+    <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Yahoo Finance, TCMB EVDS, FRED — her yerde var. Bizde olan: bağlam, çerçeve, "bugün ne değişti".</div>
+  </div>
+  <div style="padding:18px 18px 22px;border-right:1px solid var(--border)">
+    <div style="font-family:'Geist Mono';font-size:11px;color:var(--accent);letter-spacing:.12em;font-weight:600">02 / ŞEFFAF KURALLAR</div>
+    <div style="font-size:14px;font-weight:600;color:var(--text);margin:8px 0 6px">Gizli sinyal yok.</div>
+    <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Her stratejinin kuralı açık, sepeti görünür, backtest yöntemi yayınlanır.</div>
+  </div>
+  <div style="padding:18px 18px 22px;border-right:1px solid var(--border)">
+    <div style="font-family:'Geist Mono';font-size:11px;color:var(--accent);letter-spacing:.12em;font-weight:600">03 / SİSTEMATİK</div>
+    <div style="font-size:14px;font-weight:600;color:var(--text);margin:8px 0 6px">Duygu yok, kural var.</div>
+    <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Her gün otomatik üretim. Tutarlı, izlenebilir, tekrarlanabilir.</div>
+  </div>
+  <div style="padding:18px 18px 22px">
+    <div style="font-family:'Geist Mono';font-size:11px;color:var(--accent);letter-spacing:.12em;font-weight:600">04 / YASAL ÇERÇEVE</div>
+    <div style="font-size:14px;font-weight:600;color:var(--text);margin:8px 0 6px">Tavsiye değil, eğitim.</div>
+    <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">SPK düzenlemeleri çerçevesinde yatırım danışmanlığı DEĞİL. Sistematik araştırma.</div>
+  </div>
+</div>
+
+
+  <!-- ── BULLETIN + EDITOR ────────────────────────────── -->
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-bottom:18px">
+    <div class="panel" style="grid-column:span 8">
+      <div style="display:flex;gap:0">
+        <div style="padding:9px 14px;font-size:11px;color:var(--accent);background:var(--bg-1);border-bottom:1px solid var(--accent);border-right:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase">SON YAYINLAR</div>
+        <div style="padding:9px 14px;font-size:11px;color:var(--muted);border-right:1px solid var(--border);border-bottom:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase"><a href="/arsiv.html#hisse">HİSSE</a></div>
+        <div style="padding:9px 14px;font-size:11px;color:var(--muted);border-right:1px solid var(--border);border-bottom:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase"><a href="/arsiv.html#sektor">SEKTÖR</a></div>
+        <div style="padding:9px 14px;font-size:11px;color:var(--muted);border-right:1px solid var(--border);border-bottom:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase"><a href="/arsiv.html#fx">FX</a></div>
+        <div style="padding:9px 14px;font-size:11px;color:var(--muted);border-right:1px solid var(--border);border-bottom:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase"><a href="/arsiv.html#makro">MAKRO</a></div>
+        <div style="flex:1;border-bottom:1px solid var(--border)"></div>
+      </div>
+      <div><a href="/reports/pulse/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">PULSE</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Günlük Pulse — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/hisse/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">HİSSE</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Arçelik — Günün Merceği</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/sektor/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">SEKTÖR</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sektör Rotasyon — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/fx/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">FX</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Döviz Günlük — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/makro/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">MAKRO</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">makro — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/fred/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">FRED</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ABD Makro — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/wb/2026-05-12/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">WB</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">WB Karşılaştırma — 2026-05-12</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-12</span></a><a href="/reports/hisse/2026-05-11/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="width:64px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">HİSSE</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Akbank — Günün Hissesi</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-11</span></a></div>
+    </div>
+    
+<div class="panel" style="grid-column:span 4">
+  <div class="panel-h">
+    <span class="ttl">▣ EDİTÖRDEN</span>
+    <span class="meta" style="color:var(--accent);font-weight:600">2026-05-12</span>
+  </div>
+  <div class="panel-body" style="padding:18px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:8px">▸ Çerçeve notu</div>
+    <h3 style="font-size:17px;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--text);margin-bottom:10px;text-transform:none">
       Editörden — Çerçeve
     </h3>
-  </a>
-  <p style="font-size:14px;color:#cbb;margin:0 0 10px;line-height:1.5">Sitenin şu an yapabildikleri, üretim yöntemi, yasal çerçevesi ve aldığı pozisyon üzerine kısa bir not.</p>
-  <a href="/editor/2026-05-12-cerceve/" style="color:#fbbf24;font-size:13px;font-weight:500">Devamını oku →</a>
-</div>
-
-
-<!-- PRETRADE MINI WIDGET -->
-<div id="pt-mini" style="margin:24px 0 0;padding:20px 22px;background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%);
-     border:1px solid var(--border);border-radius:10px">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-    <span style="background:#3fa9f5;color:#0f1419;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700">🧭 HIZLI KONTROL</span>
-    <span class="small muted">30 saniye</span>
+    <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin-bottom:14px">
+      Sitenin şu an yapabildikleri, üretim yöntemi, yasal çerçevesi ve aldığı pozisyon üzerine kısa bir not.
+    </p>
+    <pre class="ascii">┌───────────────────┐
+│ ham veri          │
+│   ↓               │
+│ otomatik üretim   │
+│   ↓               │
+│ sentez · çerçeve  │
+│   ↓               │
+│ yatırımcı kararı  │
+└───────────────────┘</pre>
+    <a class="btn" href="/editor/2026-05-12-cerceve/" style="margin-top:14px">Devamını oku →</a>
   </div>
-  <h3 style="margin:6px 0 6px;font-size:18px;color:var(--text);text-transform:none;letter-spacing:-0.01em">
-    Bir işlem açmadan önce: hazır mısın?
-  </h3>
-  <p class="muted small" style="margin:0 0 14px;line-height:1.5;max-width:560px">
-    3 evrensel disiplin sorusuyla hazırlık skorunu öğren. Yatırım tavsiyesi değil, kontrol listesi.
-  </p>
-  <div id="pt-mini-flow"></div>
-  <a href="/islem-kontrolu/" id="pt-mini-cta" style="display:inline-block;background:#3fa9f5;color:#0f1419;
-     padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;margin-top:8px">
-    🧭 Tam Kontrol Listesi (3 dakika)
-  </a>
 </div>
+
+  </div>
+
+  <!-- ── EMAIL SIGNUP ────────────────────────────────── -->
+  <div class="panel" style="padding:24px;text-align:center">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ BÜLTENE ABONE OL</div>
+    <h3 style="font-size:18px;font-weight:500;color:var(--text);margin-bottom:8px;text-transform:none">
+      Günlük raporları ve haftalık sentezleri e-posta ile al
+    </h3>
+    <p class="muted" style="font-size:12px;margin-bottom:14px;max-width:480px;margin-left:auto;margin-right:auto">
+      Liste yakında açılıyor. O zamana kadar geri bildirim için yaz.
+    </p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary" href="mailto:canayan.ekonomist@gmail.com?subject=Pusula%20Finans%20—%20Liste%20Bildirimi">▸ Liste açılınca haber ver</a>
+      <a class="btn" href="/iletisim/">Geri bildirim →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── PRETRADE MINI WIDGET SCRIPT ─────────────────── -->
 <script>
 (function() {
   const QS = [
@@ -190,30 +479,22 @@ footer strong { color: var(--yellow); }
     {id:'mini_ps', q:"Pozisyon büyüklüğü portföyünün %5'inden FAZLA mı?", scoreOn:'no'},
   ];
   let i = 0, ans = {};
+  const flowEl = document.getElementById('pt-mini-flow');
+  const scoreEl = document.getElementById('pt-mini-score-val');
   function render() {
-    const el = document.getElementById('pt-mini-flow');
     if (i >= QS.length) {
       const sc = QS.filter(q => ans[q.id] === q.scoreOn).length;
       const pct = Math.round(sc / QS.length * 100);
-      const color = pct >= 67 ? '#4ade80' : (pct >= 34 ? '#fbbf24' : '#f87171');
-      el.innerHTML = `<div style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(255,255,255,0.04);border-radius:8px;margin:8px 0 14px">
-        <div style="font-size:32px;font-weight:700;color:${color}">${pct}</div>
-        <div>
-          <div style="font-size:14px;color:var(--text)">Mini hazırlık skorun: ${sc}/${QS.length}</div>
-          <div class="muted small">Tam değerlendirme için 18+ soruluk kontrole git ↓</div>
-        </div>
-      </div>`;
+      scoreEl.textContent = pct;
+      const verdict = pct >= 67 ? 'Clear · Hazır görünüyor' : (pct >= 34 ? 'Caution · Kontroller eksik' : 'Reconsider · Pozisyonu erteleyebilirsin');
+      flowEl.innerHTML = `<div style="margin-top:6px"><b style="color:var(--accent)">${verdict}</b><br><span class="small muted">3 hızlı soruyu cevapladın — tam kontrol için sağdaki bağlantıya bak.</span></div>`;
       return;
     }
     const q = QS[i];
-    el.innerHTML = `<div style="margin:8px 0 14px">
-      <div style="font-size:15px;color:var(--text);margin-bottom:10px">${i+1}. ${q.q}</div>
-      <button data-a="yes" style="background:var(--panel-2);color:var(--text);border:1px solid var(--border);
-        border-left:3px solid #4ade80;padding:10px 18px;border-radius:6px;cursor:pointer;margin-right:8px;font-size:14px">Evet</button>
-      <button data-a="no" style="background:var(--panel-2);color:var(--text);border:1px solid var(--border);
-        border-left:3px solid #f87171;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:14px">Hayır</button>
-    </div>`;
-    el.querySelectorAll('button').forEach(b => {
+    flowEl.innerHTML = `<div style="margin-top:8px"><span class="muted">${i+1}/3</span> &nbsp; ${q.q}<br>
+      <button data-a="yes" class="btn" style="margin-top:8px;padding:6px 14px;font-size:11px">Evet</button>
+      <button data-a="no" class="btn" style="margin-top:8px;margin-left:6px;padding:6px 14px;font-size:11px">Hayır</button></div>`;
+    flowEl.querySelectorAll('button').forEach(b => {
       b.addEventListener('click', () => {
         ans[q.id] = b.dataset.a;
         i++;
@@ -225,254 +506,24 @@ footer strong { color: var(--yellow); }
 })();
 </script>
 
-<!-- SNAPSHOT -->
-<h3 style="margin:24px 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">
-  Bugün
-</h3>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px">
-
-  <div class="card" style="border-left:3px solid #4ade80">
-    <div class="small muted" style="margin-bottom:4px">📈 BIST 30</div>
-    <div style="font-size:18px;font-weight:600">Risk-On</div>
-    <div class="small muted" style="margin-top:4px">50-DMA üstünde: 89%</div>
-    <div class="small" style="margin-top:6px"><span class="muted">Mercek altında:</span> <strong>Arçelik</strong></div>
-  </div>
-
-  <div class="card" style="border-left:3px solid #3fa9f5">
-    <div class="small muted" style="margin-bottom:4px">💱 Döviz</div>
-    <div style="font-size:18px;font-weight:600">Dolar Geri Çekiliyor</div>
-    <div class="small muted" style="margin-top:4px">USD/TRY: 45.3525</div>
-    <div class="small muted">DXY 5g: -0.54%</div>
-  </div>
-
-  <div class="card" style="border-left:3px solid #fbbf24">
-    <div class="small muted" style="margin-bottom:4px">🇹🇷 TR Makro</div>
-    <div style="font-size:18px;font-weight:600">Yüksek Enflasyon</div>
-    <div class="small muted" style="margin-top:4px">TÜFE Y/Y: 30.9%</div>
-    <div class="small muted">İşsizlik: 8.5%</div>
-  </div>
-
-  <div class="card" style="border-left:3px solid #f87171">
-    <div class="small muted" style="margin-bottom:4px">🇺🇸 ABD Makro</div>
-    <div style="font-size:18px;font-weight:600">Normal Eğri</div>
-    <div class="small muted" style="margin-top:4px">Fed Funds: 3.64%</div>
-    <div class="small muted">VIX: 18.4</div>
-  </div>
-
-</div>
-
-
-<!-- SERVICES -->
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px">
-
-  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%)">
-    <div style="font-size:32px">📰</div>
-    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Günlük Bülten</h3>
-    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
-      Hisse, döviz, TR/ABD makro üzerine her sabah otomatik üretilen Türkçe veri özetleri.
-      Rejim banner'ı, "geçen sayıdan bu yana ne değişti", forecast bandı.
-    </p>
-    <a href="#son-bultenler" style="color:var(--accent);font-size:13px">Son raporlar ↓</a>
-  </div>
-
-  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#2a1f3a 100%)">
-    <div style="font-size:32px">🧪</div>
-    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Strateji Laboratuvarı</h3>
-    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
-      5 yıl tarihsel veride şeffaf backtest. Momentum, Mean Reversion, Düşük Volatilite,
-      Golden Cross, 52w Breakout. Her stratejinin kuralı açık, sepeti görünür.
-    </p>
-    <a href="/algo/" style="color:var(--accent);font-size:13px">Stratejileri incele →</a>
-  </div>
-
-  <div class="card" style="background:linear-gradient(135deg,#1a2029 0%,#1f3a2a 100%)">
-    <div style="font-size:32px">📚</div>
-    <h3 style="margin:6px 0 8px;color:var(--text);text-transform:none;letter-spacing:0">Eğitim</h3>
-    <p class="small muted" style="margin:0 0 14px;line-height:1.6">
-      Momentum, mean reversion, Golden Cross, backtest tuzakları, risk metrikleri.
-      Akademik kaynaklarla, Türkçe, derin makaleler.
-    </p>
-    <a href="/egitim/" style="color:var(--accent);font-size:13px">Eğitime başla →</a>
-  </div>
-
-</div>
-
-
-<!-- DIFFERENTIATION -->
-
-<div style="margin-top:36px">
-  <h3 style="font-size:18px;text-transform:none;letter-spacing:0;color:var(--text);margin-bottom:14px">
-    Neden Pusula Finans?
-  </h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-
-    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
-      <div style="font-weight:600;margin-bottom:4px">🧠 Türkçe Sentez</div>
-      <div class="small muted">Ham veri her yerde var. Bizde olan: "Ne anlama geliyor?"</div>
-    </div>
-
-    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
-      <div style="font-weight:600;margin-bottom:4px">🔬 Şeffaf Kurallar</div>
-      <div class="small muted">Her strateji ve metrik açıkça yayınlanır. "Gizli sinyal" değil, paylaşılan yöntem.</div>
-    </div>
-
-    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
-      <div style="font-weight:600;margin-bottom:4px">⚙️ Sistematik</div>
-      <div class="small muted">Her gün otomatik üretim, duygu yok, kural var. Tutarlı, izlenebilir.</div>
-    </div>
-
-    <div style="background:var(--panel-2);padding:14px 16px;border-radius:6px;border-left:2px solid var(--accent)">
-      <div style="font-weight:600;margin-bottom:4px">⚖️ Yasal Çerçeve</div>
-      <div class="small muted">Yatırım danışmanlığı DEĞİL — eğitim ve araştırma. SPK çizgisinde, dürüst içerik.</div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- HOW TO USE -->
-
-<div style="margin-top:36px">
-  <h3 style="font-size:18px;text-transform:none;letter-spacing:0;color:var(--text);margin-bottom:14px">
-    Nasıl Kullanılır?
-  </h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
-
-    <div class="card">
-      <div style="display:flex;align-items:baseline;gap:8px">
-        <span style="font-size:22px;color:var(--accent);font-weight:700">1</span>
-        <strong>Eğitim'den başla</strong>
-      </div>
-      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
-        Momentum, mean reversion, risk metrikleri… stratejilerin altındaki temel
-        kavramları önce öğren. Kısa, derin, Türkçe.
-      </p>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:baseline;gap:8px">
-        <span style="font-size:22px;color:var(--accent);font-weight:700">2</span>
-        <strong>Bülteni takip et</strong>
-      </div>
-      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
-        Her sabah hisse + döviz; hafta sonu TR/ABD makro. "Bugün ne değişti, hangi
-        rejim aktif" — sentez tek bakışta.
-      </p>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:baseline;gap:8px">
-        <span style="font-size:22px;color:var(--accent);font-weight:700">3</span>
-        <strong>Stratejileri incele</strong>
-      </div>
-      <p class="small muted" style="margin:8px 0 0;line-height:1.6">
-        5 stratejinin tarihsel performansı, bugünkü sepeti, kuralları. Kendi
-        sistematik araştırmana referans.
-      </p>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- LATEST CONTENT -->
-<h3 id="son-bultenler" style="margin:40px 0 14px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">
-  Son Yayınlar
-</h3>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    📊 Günlük Pulse
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/pulse/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Günlük Pulse — 2026-05-12</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    📈 Hisse Senedi
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/hisse/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Arçelik — Günün Merceği</a></li><li style="padding:6px 0"><a href="/reports/hisse/2026-05-11/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-11</span>Akbank — Günün Hissesi</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    🔄 Sektör Rotasyon
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/sektor/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Sektör Rotasyon — 2026-05-12</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    💱 Döviz / FX
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/fx/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>Döviz Günlük — 2026-05-12</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    🇹🇷 Makro (TR)
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/makro/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>makro — 2026-05-12</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    🇺🇸 Makro (ABD)
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/fred/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>ABD Makro — 2026-05-12</a></li></ul>
-</div>
-
-<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px">
-  <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">
-    🌐 Uluslararası (World Bank)
-  </div>
-  <ul style="list-style:none;padding:0;margin:0;font-size:14px"><li style="padding:6px 0"><a href="/reports/wb/2026-05-12/" style="color:var(--text);text-decoration:none"><span class="muted small" style="margin-right:8px">2026-05-12</span>WB Karşılaştırma — 2026-05-12</a></li></ul>
-</div>
-
-</div>
-<p style="margin-top:18px"><a href="/arsiv.html" style="color:var(--accent);font-size:14px">Tüm yayınlar arşivinde →</a></p>
-
-<!-- EMAIL SIGNUP -->
-<div style="margin-top:48px;padding:28px 24px;background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%);
-     border:1px solid var(--border);border-radius:10px;text-align:center">
-  <div style="font-size:28px;margin-bottom:8px">📬</div>
-  <h3 style="margin:0 0 8px;color:var(--text);text-transform:none;letter-spacing:0;font-size:20px">
-    Bültene Abone Ol
-  </h3>
-  <p class="muted" style="margin:0 0 18px;max-width:480px;margin-left:auto;margin-right:auto;font-size:14px">
-    Günlük raporları ve haftalık makro sentezleri e-posta ile almak ister misin?
-    Listeyi yakında açıyoruz. O zamana kadar geri bildirim için yaz.
-  </p>
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-    <a href="mailto:canayan.ekonomist@gmail.com?subject=Pusula Finans%20Liste%20Bildirimi"
-       style="display:inline-block;background:var(--accent);color:#0f1419;padding:10px 20px;
-              border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">
-      📧 Liste açılınca haber ver
-    </a>
-    <a href="/iletisim/"
-       style="display:inline-block;background:transparent;color:var(--text);padding:10px 20px;
-              border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;
-              border:1px solid var(--border)">
-      💬 Geri bildirim gönder
-    </a>
-  </div>
-</div>
-
 </main>
-<footer>
-<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px">
-  <a href="/iletisim/" style="color:var(--muted);font-size:12px">📬 İletişim</a>
-  <a href="/gizlilik/" style="color:var(--muted);font-size:12px">🔒 Gizlilik Politikası</a>
-  <a href="/kullanim-sartlari/" style="color:var(--muted);font-size:12px">📜 Kullanım Şartları</a>
-  <a href="/hakkinda.html" style="color:var(--muted);font-size:12px">ℹ️ Hakkında</a>
-</div>
-<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
-Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
-Otomatik üretim — son güncelleme: 2026-05-12.<br>
-Pusula Finans © 2026
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
+    <div>v2026.05 · son güncelleme 2026-05-12 22:42 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Pusula Finans © 2026 — tüm hakları saklıdır.
+  </div>
 </footer>
 
 <div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;
