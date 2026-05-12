@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İletişim — MakroStream</title>
+<title>MACD (Moving Average Convergence Divergence) nedir? — MakroStream</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Can Ayan">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="İletişim — MakroStream">
+<meta property="og:title" content="MACD (Moving Average Convergence Divergence) nedir? — MakroStream">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="İletişim — MakroStream">
+<meta name="twitter:title" content="MACD (Moving Average Convergence Divergence) nedir? — MakroStream">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="twitter:site" content="@canayan">
@@ -119,48 +119,145 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">MakroStream</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › İletişim</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › MACD (Moving Average Convergence Divergence) nedir?</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📬 İletişim</h2>
-
+<h2 style="margin-top:0">📚 MACD (Moving Average Convergence Divergence) nedir?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Gerald Appel&#x27;in geliştirdiği, momentum + trend yönü birlikte gösteren klasik osilatör. Crossover, divergence, histogram — üç anlamlı sinyal.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-  <h3>E-posta</h3>
-  <p>
-    Her türlü soru, geri bildirim, içerik önerisi, hata raporu veya işbirliği teklifi için:
-  </p>
-  <p style="font-size:18px;margin:14px 0">
-    <a href="mailto:canayan.ekonomist@gmail.com" style="color:var(--accent);text-decoration:none">
-      📧 canayan.ekonomist@gmail.com
-    </a>
-  </p>
+<h2>Tanım</h2>
+<p><strong>MACD</strong> (Moving Average Convergence Divergence), Gerald Appel tarafından 1970'lerin sonlarında geliştirilmiş bir momentum ve trend göstergesidir. Üç bileşenden oluşur:</p>
+<ol>
+<li><strong>MACD çizgisi</strong>: 12 günlük EMA − 26 günlük EMA (kısa MA - uzun MA farkı)</li>
+<li><strong>Sinyal çizgisi</strong>: MACD çizgisinin 9 günlük EMA'sı</li>
+<li><strong>Histogram</strong>: MACD − Sinyal (iki çizginin farkı)</li>
+</ol>
+<h2>Formül</h2>
+<pre><code>EMA12 = 12 günlük üstel hareketli ortalama (kapanış)
+EMA26 = 26 günlük üstel hareketli ortalama (kapanış)
 
-  <h3 style="margin-top:24px">Geri bildirimi seviyorum</h3>
-  <p>Özellikle şunları duymak isterim:</p>
-  <ul>
-    <li>"Bu bölüm anlaşılmıyor / yanlış"</li>
-    <li>"Şu konuda eğitim makalesi olsa keşke"</li>
-    <li>"Şu stratejiyi de eklesen"</li>
-    <li>"Şu rapor verisi yanlış / eksik"</li>
-    <li>"Daha çok şunu görmek istiyorum"</li>
-  </ul>
-
-  <h3 style="margin-top:24px">Neden ekonomist?</h3>
-  <p class="muted small">
-    Site sahibinin e-postasındaki <em>ekonomist</em> kelimesi, bir mesleki sertifika veya
-    SPK lisansı belirtmez. Bu site bağımsız bir araştırma projesidir.
+MACD       = EMA12 − EMA26
+Sinyal     = 9-EMA(MACD)
+Histogram  = MACD − Sinyal
+</code></pre>
+<p>Standart parametre seti <strong>(12, 26, 9)</strong> — Appel'in orijinal değerleri. Bazı analistler hızlı momentum için <strong>(5, 13, 5)</strong> veya daha yumuşak için <strong>(19, 39, 9)</strong> kullanır.</p>
+<h2>Üç sinyal tipi</h2>
+<h3>1. MACD-Sinyal Crossover</h3>
+<p>MACD çizgisi sinyal çizgisini <strong>yukarı keser</strong> → "bullish crossover", alış sinyali olarak yorumlanır.
+MACD çizgisi sinyal çizgisini <strong>aşağı keser</strong> → "bearish crossover", satış sinyali.</p>
+<p>Bu sinyaller <strong>geç gelir</strong> — momentum dönüşü çoktan başladıktan sonra crossover oluşur. Hızlı dönüşlerde kar yer.</p>
+<h3>2. Sıfır Çizgisi Geçişi</h3>
+<p>MACD = 0 olduğunda → EMA12 = EMA26 → kısa MA ile uzun MA eşitlendi.</p>
+<ul>
+<li>MACD &gt; 0: Kısa MA uzun MA üstünde → trend yukarı</li>
+<li>MACD &lt; 0: Kısa MA uzun MA altında → trend aşağı</li>
+</ul>
+<p>Sıfırı geçiş (yukarı/aşağı) trend dönüşünün daha güçlü sinyalidir crossover'a göre.</p>
+<h3>3. Divergence (En önemli sinyal)</h3>
+<p><strong>Bullish divergence</strong>: Fiyat yeni dip yapıyor, ama MACD önceki dipten yüksekte → momentum zayıflıyor, dip yakın.</p>
+<p><strong>Bearish divergence</strong>: Fiyat yeni zirve yapıyor, ama MACD önceki zirveden düşük → momentum zayıflıyor, zirve yakın.</p>
+<p>Divergence'lar <strong>tarihsel olarak en yüksek tahmin gücüne sahip</strong> MACD sinyalidir. Crossover'lar gürültülüdür; divergence'lar daha kıttır ama daha anlamlıdır.</p>
+<h2>Histogram — momentum hızı</h2>
+<p>Histogram, momentum hızındaki değişimi anlatır:</p>
+<ul>
+<li>Histogram <strong>büyüyor</strong> (pozitif yönde) → bullish momentum hızlanıyor</li>
+<li>Histogram <strong>küçülüyor</strong> (pozitif tarafta) → bullish momentum yavaşlıyor (zirve yakın olabilir)</li>
+<li>Histogram negatife düşüyor → bearish momentum başlangıcı</li>
+</ul>
+<p>Histogram'ın yön değişimi, MACD çizgisinin yön değişiminden <strong>birkaç gün önce</strong> olur. Yani histogram aslında ileride olur.</p>
+<h2>MACD'nin avantajları</h2>
+<ul>
+<li><strong>Otomatik trendi ve momentumu birlikte gösterir</strong> (RSI sadece momentum'a bakar)</li>
+<li><strong>Sıfır çizgisi</strong> trend yönünü açıkça gösterir</li>
+<li><strong>Histogram</strong> ek bir boyut ekler</li>
+<li>Tüm büyük trading platformlarında varsayılan</li>
+<li>BB ile birlikte iyi çalışır (BB volatilite, MACD momentum)</li>
+</ul>
+<h2>Dezavantajlar</h2>
+<ul>
+<li><strong>Lag</strong>: EMA bazlı, geç sinyal verir</li>
+<li><strong>Yatay piyasalarda kötü</strong>: Sürekli crossover üretir, yanlış sinyaller</li>
+<li><strong>Parametre seçimi</strong>: 12-26-9 evrensel iyi değil, pazara göre tune edilebilir ama bu overfitting riski</li>
+<li><strong>Mutlak değer yok</strong>: MACD 1.5 mi 15 mi yorumu hisseye/zaman çerçevesine değişir</li>
+</ul>
+<h2>RSI ile karşılaştırma</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MACD</th>
+<th>RSI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ne ölçer</td>
+<td>Momentum + trend</td>
+<td>Aşırı alım/satım</td>
+</tr>
+<tr>
+<td>Sınır</td>
+<td>Sınırsız</td>
+<td>0-100</td>
+</tr>
+<tr>
+<td>En iyi</td>
+<td>Trend onayı, divergence</td>
+<td>Mean reversion</td>
+</tr>
+<tr>
+<td>Yatay piyasada</td>
+<td>Kötü</td>
+<td>İyi</td>
+</tr>
+<tr>
+<td>Trend piyasasında</td>
+<td>İyi</td>
+<td>Yanıltıcı (sürekli aşırı alım)</td>
+</tr>
+</tbody>
+</table>
+<p>İkisini birlikte kullanmak: MACD trend onayı + RSI giriş zamanlaması.</p>
+<h2>Pratik uygulama notları</h2>
+<p><strong>Erken giriş için</strong>:
+- Histogram pozitife döner → erken bullish sinyal (MACD crossover'dan önce)
+- Sıfır çizgisi yukarı geçişi onay sayılır</p>
+<p><strong>Yanlış sinyallerden kaçınmak için</strong>:
+- Sadece 200g MA üstündeyse bullish MACD sinyalini al
+- Hacim artışıyla onayla
+- Diğer göstergelerle (RSI, BB) çapraz kontrol</p>
+<p><strong>Divergence avlamak için</strong>:
+- 1-2 önceki dip/zirve ile karşılaştır
+- Fiyat ve MACD arasındaki uyumsuzluk net olmalı
+- Genelde aylık veya haftalık MACD daha sağlam divergence verir günlüğe göre</p>
+<h2>BIST'te MACD</h2>
+<p>BIST 30 yüksek volatilitesi nedeniyle MACD crossover'ları sık yanılır. Daha iyi çalışan setup'lar:
+- <strong>Haftalık MACD divergence</strong> + makro temayla (örn. TCMB faiz dönüşü, kur stabilizasyonu)
+- <strong>Histogram zero-cross</strong> + hacim → erken trend yakalama
+- <strong>MACD üstünde sıfır + RSI 50 üstü</strong> → "trend onaylı"</p>
+<h2>Yaygın yanılgılar</h2>
+<ul>
+<li>❌ "Her crossover alım sinyali" — yatay piyasada kayıp makinesi</li>
+<li>❌ "MACD pozitif olunca al" — geç, trendin yarısı bitmiş</li>
+<li>✅ "Divergence'ı bekle, sonra confirmation" — daha az ama daha doğru sinyal</li>
+</ul>
+<h2>Özet</h2>
+<p>MACD bir alım-satım fırsatları <strong>listesidir</strong>, kararı değildir. Onay için her zaman:
+- Hacim
+- Fiyat formasyonu
+- Diğer gösterge (RSI veya BB)
+- Genel piyasa trendi</p>
+<p>birlikte değerlendirilmeli. Tek başına MACD ile sistem yapan trader'lar uzun vadede kazanamaz.</p>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
   </p>
 </div>
-
-<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24;margin-top:18px">
-  <p style="margin:0;font-size:13px;color:#fbbf24;line-height:1.6">
-    💡 <strong>Yatırım danışmanlığı talep etmeyiniz.</strong> MakroStream SPK lisanslı bir
-    yatırım danışmanlığı kurumu değildir ve kişiye özel yatırım önerisi veremem. Yatırım
-    kararlarınız öncesi lütfen lisanslı bir uzmana danışın.
-  </p>
-</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
 
 </main>
 <footer>

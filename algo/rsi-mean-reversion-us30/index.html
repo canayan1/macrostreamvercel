@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İletişim — MakroStream</title>
+<title>RSI Mean Reversion · US 30 — MakroStream</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Can Ayan">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="İletişim — MakroStream">
+<meta property="og:title" content="RSI Mean Reversion · US 30 — MakroStream">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="İletişim — MakroStream">
+<meta name="twitter:title" content="RSI Mean Reversion · US 30 — MakroStream">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="twitter:site" content="@canayan">
@@ -119,48 +119,88 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">MakroStream</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › İletişim</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Strateji Laboratuvarı › RSI Mean Reversion · US 30</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📬 İletişim</h2>
+<h2 style="margin-top:0">🧪 RSI Mean Reversion · US 30</h2>
+<p style="font-size:15px;margin-bottom:10px">RSI 30 altına inince al, 50 üstüne çıkınca sat.</p>
+<p class="muted small">Evren: US 30</p>
 
-<div class="card" style="line-height:1.7;font-size:15px">
-  <h3>E-posta</h3>
-  <p>
-    Her türlü soru, geri bildirim, içerik önerisi, hata raporu veya işbirliği teklifi için:
-  </p>
-  <p style="font-size:18px;margin:14px 0">
-    <a href="mailto:canayan.ekonomist@gmail.com" style="color:var(--accent);text-decoration:none">
-      📧 canayan.ekonomist@gmail.com
-    </a>
-  </p>
-
-  <h3 style="margin-top:24px">Geri bildirimi seviyorum</h3>
-  <p>Özellikle şunları duymak isterim:</p>
-  <ul>
-    <li>"Bu bölüm anlaşılmıyor / yanlış"</li>
-    <li>"Şu konuda eğitim makalesi olsa keşke"</li>
-    <li>"Şu stratejiyi de eklesen"</li>
-    <li>"Şu rapor verisi yanlış / eksik"</li>
-    <li>"Daha çok şunu görmek istiyorum"</li>
-  </ul>
-
-  <h3 style="margin-top:24px">Neden ekonomist?</h3>
-  <p class="muted small">
-    Site sahibinin e-postasındaki <em>ekonomist</em> kelimesi, bir mesleki sertifika veya
-    SPK lisansı belirtmez. Bu site bağımsız bir araştırma projesidir.
+<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    ⚠️ <strong>Yatırım tavsiyesi DEĞİLDİR.</strong> Bu strateji ve içerik araştırma ve eğitim
+    amaçlıdır. Backtest geçmiş veriyle simülasyondur; gelecek için garanti vermez.
+    Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.
   </p>
 </div>
 
-<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24;margin-top:18px">
-  <p style="margin:0;font-size:13px;color:#fbbf24;line-height:1.6">
-    💡 <strong>Yatırım danışmanlığı talep etmeyiniz.</strong> MakroStream SPK lisanslı bir
-    yatırım danışmanlığı kurumu değildir ve kişiye özel yatırım önerisi veremem. Yatırım
-    kararlarınız öncesi lütfen lisanslı bir uzmana danışın.
-  </p>
+<div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px">
+  
+<div class="card">
+  <h3>⚙️ Kurallar (Şeffaf)</h3>
+  <ul style="line-height:1.7;padding-left:18px;margin:0"><li>Her gün RSI(14) hesapla</li><li>RSI ≤ 30 olunca o hisseyi al</li><li>RSI ≥ 50 olunca o hisseden çık</li><li>Maks 8 hisse, eşit ağırlık</li><li>İşlem maliyeti: 10 bps</li></ul>
 </div>
+
+  
+<div class="card">
+  <h3>📈 Equity Curve (Backtest)</h3>
+  <p class="small muted">Strateji 1 TL ile başlasaydı zaman içinde nasıl büyürdü?</p>
+  <img src="equity.png" alt="RSI Mean Reversion · US 30 equity curve"
+       style="max-width:100%;height:auto;border-radius:6px;background:#1a2029" />
+</div>
+
+  
+<div class="card">
+  <h3>📊 Performans Metrikleri</h3>
+  <div class="kv" style="grid-template-columns:1fr auto;gap:8px 24px">
+    <span class="k">Toplam Getiri</span><span class="v"><span class="pos">+1.26%</span></span>
+    <span class="k">CAGR (yıllık)</span><span class="v"><span class="pos">+0.31%</span></span>
+    <span class="k">Yıllık Volatilite</span><span class="v">25.68%</span>
+    <span class="k">Sharpe</span><span class="v">0.01</span>
+    <span class="k">Sortino</span><span class="v">0.02</span>
+    <span class="k">Max Drawdown</span><span class="v"><span class="neg">-38.48%</span></span>
+    <span class="k">Calmar</span><span class="v">0.01</span>
+    <span class="k">Win Rate (günlük)</span><span class="v">42.0%</span>
+    <span class="k">En İyi Gün</span><span class="v"><span class="pos">+12.78%</span></span>
+    <span class="k">En Kötü Gün</span><span class="v"><span class="neg">-8.92%</span></span>
+    <span class="k">Backtest Periyodu</span><span class="v"><span class="muted small">2022-04-04 → 2026-05-11</span></span>
+    <span class="k">Gözlem Sayısı</span><span class="v">1029</span>
+  </div>
+</div>
+
+  
+<div class="card">
+  <h3>📅 Yıllık Getiri</h3>
+  <table class="grid">
+    <thead><tr><th class="l">Yıl</th><th>Getiri</th></tr></thead>
+    <tbody><tr><td class="l">2022</td><td class="neg">-36.21%</td></tr><tr><td class="l">2023</td><td class="pos">+31.70%</td></tr><tr><td class="l">2024</td><td class="neg">-12.05%</td></tr><tr><td class="l">2025</td><td class="pos">+27.78%</td></tr><tr><td class="l">2026</td><td class="pos">+7.26%</td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="card">
+  <h3>🎯 Bugünkü Sepet (1 hisse)</h3>
+  <p class="small muted" style="margin:0 0 10px">
+    Son rebalance: 2026-05-11.
+    <strong>Bu, "şunu al/sat" tavsiyesi DEĞİLDİR</strong> — strateji kuralları gereği
+    bugün stratejide bu hisseler tutulur. Kuralları sayfanın yukarısında görebilirsin.
+  </p>
+  <table class="grid">
+    <thead><tr><th class="l">Hisse</th><th>Ağırlık</th></tr></thead>
+    <tbody><tr><td class="l"><strong>Johnson &amp; Johnson</strong> <span class="muted small">JNJ</span></td><td>100.0%</td></tr></tbody>
+  </table>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px">
+  <h3>📖 Açıklama</h3>
+  <p style="line-height:1.7;font-size:15px">Klasik aşırı satım/satım ortalamaya dönüş stratejisi. RSI (Relative Strength Index) 30&#x27;un altına düşen hisse &#x27;aşırı satım&#x27; kabul edilir ve alınır. RSI 50&#x27;nin üstüne çıkınca pozisyon kapatılır. Trend piyasalarında performans zayıf olabilir, yatay piyasalarda iyi çalışır. Maks 8 hisse, eşit ağırlık.</p>
+</div>
+
+<p style="margin-top:20px"><a href="/algo/" style="color:var(--accent)">← Tüm stratejiler</a></p>
 
 </main>
 <footer>

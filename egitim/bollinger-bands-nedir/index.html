@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İletişim — MakroStream</title>
+<title>Bollinger Bands nedir? — MakroStream</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Can Ayan">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="İletişim — MakroStream">
+<meta property="og:title" content="Bollinger Bands nedir? — MakroStream">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="İletişim — MakroStream">
+<meta name="twitter:title" content="Bollinger Bands nedir? — MakroStream">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="twitter:site" content="@canayan">
@@ -119,48 +119,120 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">MakroStream</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › İletişim</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Bollinger Bands nedir?</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📬 İletişim</h2>
-
+<h2 style="margin-top:0">📚 Bollinger Bands nedir?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Fiyatın &quot;normal&quot; aralığını volatiliteye göre genişleten/daraltan klasik teknik gösterge — alım-satım sinyali değil, oynaklık çerçevesi.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-  <h3>E-posta</h3>
-  <p>
-    Her türlü soru, geri bildirim, içerik önerisi, hata raporu veya işbirliği teklifi için:
-  </p>
-  <p style="font-size:18px;margin:14px 0">
-    <a href="mailto:canayan.ekonomist@gmail.com" style="color:var(--accent);text-decoration:none">
-      📧 canayan.ekonomist@gmail.com
-    </a>
-  </p>
+<h2>Tanım</h2>
+<p><strong>Bollinger Bands</strong> (BB), John Bollinger tarafından 1980'lerin başında geliştirilmiş popüler bir teknik analiz aracıdır. Üç çizgiden oluşur:</p>
+<ul>
+<li><strong>Orta bant</strong>: 20 günlük basit hareketli ortalama (MA20)</li>
+<li><strong>Üst bant</strong>: MA20 + 2 standart sapma</li>
+<li><strong>Alt bant</strong>: MA20 − 2 standart sapma</li>
+</ul>
+<p>İstatistiksel olarak, varsayım altında fiyatın <strong>%95</strong>'i bu iki bant arasında kalması beklenir (normal dağılım kabul edilirse — gerçek piyasalar daha şişman kuyruklu olduğu için bu yaklaşıktır).</p>
+<h2>Üretim ve formül</h2>
+<pre><code>MA20 = son 20 günün kapanış ortalaması
+σ20  = son 20 günün kapanış standart sapması
 
-  <h3 style="margin-top:24px">Geri bildirimi seviyorum</h3>
-  <p>Özellikle şunları duymak isterim:</p>
-  <ul>
-    <li>"Bu bölüm anlaşılmıyor / yanlış"</li>
-    <li>"Şu konuda eğitim makalesi olsa keşke"</li>
-    <li>"Şu stratejiyi de eklesen"</li>
-    <li>"Şu rapor verisi yanlış / eksik"</li>
-    <li>"Daha çok şunu görmek istiyorum"</li>
-  </ul>
-
-  <h3 style="margin-top:24px">Neden ekonomist?</h3>
-  <p class="muted small">
-    Site sahibinin e-postasındaki <em>ekonomist</em> kelimesi, bir mesleki sertifika veya
-    SPK lisansı belirtmez. Bu site bağımsız bir araştırma projesidir.
+Üst bant = MA20 + 2·σ20
+Alt bant = MA20 − 2·σ20
+</code></pre>
+<p>Standart parametreler: <strong>20 gün, 2 std</strong>. Bazen 10 günlük EMA + 1.5 std veya 50 gün + 2.5 std varyantları kullanılır.</p>
+<h2>Yorumlama</h2>
+<p><strong>Klasik yorumlar:</strong></p>
+<ol>
+<li><strong>Bant daralması (Squeeze)</strong>: Bantlar birbirine yaklaşır → düşük volatilite → büyük bir hareket yakın (yön belirsiz).</li>
+<li><strong>Bant genişlemesi</strong>: Volatilite arttı → trend güçleniyor olabilir.</li>
+<li><strong>Üst banta dokunma</strong>: "Aşırı alım" sinyali — <em>trend piyasalarında değil</em>, yatay piyasalarda anlamlı.</li>
+<li><strong>Alt banta dokunma</strong>: "Aşırı satım" sinyali — aynı uyarı geçerli.</li>
+<li><strong>Bandı kırma</strong>: Bant üstünde/altında <strong>kapanış</strong> çok güçlü bir sinyal — fiyat normal aralığın dışında.</li>
+</ol>
+<h2>En büyük hata: BB sinyal değildir, çerçevedir</h2>
+<p>İnsanlar tipik olarak şunu yapar: "Üst bant geçildi, sat." Çoğu zaman yanlıştır.</p>
+<p>Doğru: <strong>BB volatilite çerçevesidir.</strong> "Üst bant geçildi" demek "fiyat son 20 günün normalinden çok uzaklaştı" demektir; bu yeni bir trendin başlangıcı veya geçici aşırı tepki olabilir. Ek doğrulama (RSI, hacim, makro) olmadan BB tek başına alım-satım sinyali değildir.</p>
+<h2>BB kullanımının iyi yolları</h2>
+<p><strong>1. Mean reversion (yatay piyasalarda)</strong>:
+- Üst bant + RSI &gt; 70 → kısa vadeli düzeltme olası → mevcut pozisyonu küçült
+- Alt bant + RSI &lt; 30 → kısa vadeli tepki olası → uygunsa pozisyon aç</p>
+<p><strong>2. Trend takibi (trendli piyasalarda)</strong>:
+- Sürekli üst banda yapışan fiyat → güçlü uptrend (sat sinyali değil!)
+- Orta banta gelene kadar tut</p>
+<p><strong>3. Squeeze breakout</strong>:
+- Bantlar tarihsel olarak dar → büyük hareket için "sıkışma"
+- Hacim artışı + bant kırılması → momentum başlangıcı</p>
+<h2>Bollinger Band Width (BBW)</h2>
+<p>Volatiliteyi sayısal olarak izlemek için:</p>
+<pre><code>BBW = (Üst bant − Alt bant) / Orta bant
+</code></pre>
+<p>BBW tarihsel düşüklerinde "squeeze" sinyali. BBW yüksek seviyeleri trendin olgunlaştığını gösterir.</p>
+<h2>BIST'te BB</h2>
+<p>BIST 30'da BB tarihsel olarak:
+- Yüksek volatilite (TR makro şokları) nedeniyle bantlar genellikle geniş
+- Üst banta sık dokunmalar trend dönemlerinde norm
+- Daralan bant + makro açıklama yaklaşması (TCMB toplantısı, TÜFE) sık bir setup</p>
+<h2>BB'in dezavantajları</h2>
+<ul>
+<li><strong>Tek parametreli değil</strong> — gerçek volatilite yapısı 20g'de yakalanmıyor olabilir</li>
+<li><strong>Lag</strong>: Standart sapma geçmişten hesaplandığı için tepki gecikmeli</li>
+<li><strong>Distribuasyon varsayımı</strong>: 2σ %95 sadece normal dağılımda; gerçek piyasalarda outlier'lar fazla</li>
+<li><strong>Subjektif yorum</strong>: "Bandı yedi" mi "kırdı" mı tartışmalı</li>
+</ul>
+<h2>Pratik özet</h2>
+<table>
+<thead>
+<tr>
+<th>Sinyal</th>
+<th>Anlamı</th>
+<th>Aksiyon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Daralma (squeeze)</td>
+<td>Düşük volatilite</td>
+<td>Bekle, breakout izle</td>
+</tr>
+<tr>
+<td>Genişleme</td>
+<td>Yüksek volatilite</td>
+<td>Trend olabilir</td>
+</tr>
+<tr>
+<td>Üst bant + RSI&gt;70 (yatay)</td>
+<td>Aşırı alım</td>
+<td>Mean reversion kandidatı</td>
+</tr>
+<tr>
+<td>Üst bant (trend)</td>
+<td>Güçlü momentum</td>
+<td>Tut, sat sinyali DEĞİL</td>
+</tr>
+<tr>
+<td>Bant kırılışı + hacim</td>
+<td>Yeni trend</td>
+<td>Confirmation bekle</td>
+</tr>
+</tbody>
+</table>
+<h2>İlgili kavramlar</h2>
+<ul>
+<li><strong>Keltner Channels</strong>: Std dev yerine ATR (Average True Range) kullanır</li>
+<li><strong>Donchian Channels</strong>: Volatiliteden bağımsız, sadece N-gün high/low</li>
+<li><strong>Z-score</strong>: BB'in skaler hali — fiyat MA'dan kaç std uzakta</li>
+</ul>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
   </p>
 </div>
-
-<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24;margin-top:18px">
-  <p style="margin:0;font-size:13px;color:#fbbf24;line-height:1.6">
-    💡 <strong>Yatırım danışmanlığı talep etmeyiniz.</strong> MakroStream SPK lisanslı bir
-    yatırım danışmanlığı kurumu değildir ve kişiye özel yatırım önerisi veremem. Yatırım
-    kararlarınız öncesi lütfen lisanslı bir uzmana danışın.
-  </p>
-</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
 
 </main>
 <footer>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İletişim — MakroStream</title>
+<title>Portföy Optimizasyonu — Modern Portföy Teorisi&#x27;nden Risk Paritesine — MakroStream</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Can Ayan">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="İletişim — MakroStream">
+<meta property="og:title" content="Portföy Optimizasyonu — Modern Portföy Teorisi&#x27;nden Risk Paritesine — MakroStream">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="İletişim — MakroStream">
+<meta name="twitter:title" content="Portföy Optimizasyonu — Modern Portföy Teorisi&#x27;nden Risk Paritesine — MakroStream">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="twitter:site" content="@canayan">
@@ -119,48 +119,130 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">MakroStream</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › İletişim</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Portföy Optimizasyonu — Modern Portföy Teorisi&#x27;nden Risk Paritesine</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📬 İletişim</h2>
-
+<h2 style="margin-top:0">📚 Portföy Optimizasyonu — Modern Portföy Teorisi&#x27;nden Risk Paritesine</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Tek hisse seçmek değil; portföydeki hisselerin AĞIRLIĞINI nasıl belirlemek? Markowitz&#x27;den günümüze portföy yapım yöntemleri.</p>
 <div class="card" style="line-height:1.7;font-size:15px">
-  <h3>E-posta</h3>
-  <p>
-    Her türlü soru, geri bildirim, içerik önerisi, hata raporu veya işbirliği teklifi için:
-  </p>
-  <p style="font-size:18px;margin:14px 0">
-    <a href="mailto:canayan.ekonomist@gmail.com" style="color:var(--accent);text-decoration:none">
-      📧 canayan.ekonomist@gmail.com
-    </a>
-  </p>
-
-  <h3 style="margin-top:24px">Geri bildirimi seviyorum</h3>
-  <p>Özellikle şunları duymak isterim:</p>
-  <ul>
-    <li>"Bu bölüm anlaşılmıyor / yanlış"</li>
-    <li>"Şu konuda eğitim makalesi olsa keşke"</li>
-    <li>"Şu stratejiyi de eklesen"</li>
-    <li>"Şu rapor verisi yanlış / eksik"</li>
-    <li>"Daha çok şunu görmek istiyorum"</li>
-  </ul>
-
-  <h3 style="margin-top:24px">Neden ekonomist?</h3>
-  <p class="muted small">
-    Site sahibinin e-postasındaki <em>ekonomist</em> kelimesi, bir mesleki sertifika veya
-    SPK lisansı belirtmez. Bu site bağımsız bir araştırma projesidir.
+<h2>Tek hisse vs portföy</h2>
+<p>Yatırım dünyasında en yaygın hata: "Hangi hisseyi alayım?" sorusuna odaklanmak. Profesyonel dünyada esas soru: <strong>"Hisseleri portföyde nasıl AĞIRLIKLANDIRAYIM?"</strong></p>
+<p>Çünkü:
+- Tek hisseden alpha ~%2-4 yıllık (ortalama)
+- Portföy yapımından alpha ~%2-3 yıllık ekstra
+- Risk yönetiminden ~%3-5 ekstra (drawdown azaltır)</p>
+<p>İkincisi ve üçüncüsü genelde göz ardı edilir.</p>
+<h2>Markowitz Modern Portföy Teorisi (MPT, 1952)</h2>
+<p>Harry Markowitz Nobel ödüllü çalışmasında şunu söyledi: <strong>Yatırımcı sadece getiri değil, riski (volatilite) de optimize etmek ister.</strong></p>
+<p>İki hisse → tek bir portföy oluşturur. Bu portföyün:
+- Beklenen getirisi: iki getirilerin ağırlıklı ortalaması
+- Riski: iki volatilitenin ağırlıklı bir KARMA fonksiyonu (covariance dahil)</p>
+<p>Önemli bulgu: <strong>İki düşük korelasyonlu varlığın portföyü, ikisinin tek tek olduğundan DAHA AZ riskli olabilir</strong> — aynı getiriyi koruyabilir.</p>
+<p>Bu fenomen "<strong>çeşitlendirme</strong>" adıyla bilinir. "Don't put all eggs in one basket" — matematiksel kanıtı budur.</p>
+<h2>Efficient Frontier — verimli sınır</h2>
+<p>Tüm olası portföy ağırlık kombinasyonlarını grafikte (x=risk, y=getiri) çizerseniz, sol-üst kenarda <strong>verimli sınır</strong> elde edersiniz. Bu sınır üstündeki noktalar:
+- Aynı risk için max getiri sağlar
+- Aynı getiri için min risk sağlar</p>
+<p>İdeal yatırımcı bu sınır üzerinde, kendi risk toleransına uygun bir noktayı seçer.</p>
+<h2>MPT'nin kritik girdileri</h2>
+<p>Optimizasyon için 3 şey gerek:</p>
+<ol>
+<li><strong>Beklenen getiri</strong> (her hisse için)</li>
+<li><strong>Volatilite</strong> (her hisse için)</li>
+<li><strong>Korelasyonlar</strong> (her hisse çifti için)</li>
+</ol>
+<p>Sorun: Bu üç girdi de <strong>gelecek tahmini</strong>. Geçmiş verilerden çıkarsanan bu sayılar gelecekte değişebilir — çoğu zaman değişir.</p>
+<h2>MPT'nin pratikteki sorunları</h2>
+<p><strong>1. Korelasyonlar yıkılır</strong>: Krizlerde her şey aynı anda düşer. 2008'de 60+ MPT modeli "iyi çeşitlendirme" diye yazılı portföyler %40+ düştü çünkü kriz anında tüm korelasyonlar 1'e yaklaştı.</p>
+<p><strong>2. Beklenen getiriler güvenilmez</strong>: 5 yıllık geçmiş getiri, sonraki 5 yıl için çok zayıf tahmin.</p>
+<p><strong>3. Aşırı konsantrasyon</strong>: Optimizasyon çıktı genelde 2-3 hisseye %80+ ağırlık verir (çünkü tek getiri tahmini hâkim).</p>
+<p><strong>4. Sayısal hassasiyet</strong>: Girdileri 1-2% değiştirin, optimize çıktısı tamamen değişir.</p>
+<h2>Pratik yaklaşımlar</h2>
+<h3>1) Eşit ağırlık (1/N)</h3>
+<p>En basit: N hisse seçildi, hepsine 1/N ağırlık. Hiçbir tahmin gerekmiyor.</p>
+<p><strong>Sürpriz</strong>: Akademik araştırmalar (DeMiguel et al., 2009) eşit ağırlığın çoğu zaman MPT optimize portföylerinden DAHA İYİ out-of-sample performans verdiğini göstermiştir. Sebep: tahmin hatalarından muaf.</p>
+<h3>2) Risk Paritesi (Risk Parity)</h3>
+<p>Bridgewater'ın All Weather fonu bu yaklaşımı popülerleştirdi. Fikir: <strong>Her varlığın AYNI RİSK katkısı yapmasını sağla.</strong></p>
+<p>Yöntem:
+- Her hissenin volatilitesini hesapla
+- Ağırlık = 1/volatilite (sonra normalize)
+- Düşük volatilite hisse → yüksek ağırlık, ve tersi</p>
+<p>Sonuç: Volatil hisseler (mesela teknoloji startupları) düşük ağırlık, istikrarlı hisseler (tüketim ürünleri) yüksek ağırlık.</p>
+<h3>3) Minimum Varyans</h3>
+<p>MPT'nin "minimum risk" köşesinde duran portföy. Beklenen getiri tahminine gerek yok — sadece kovaryans matrisi.</p>
+<p>Akademik olarak en gürbüz portföy yöntemlerinden biri.</p>
+<h3>4) Maksimum Sharpe (MPT optimal)</h3>
+<p>Klasik MPT noktası — risk-ayarlı getiriyi maksimize eden ağırlık. Yukarıdaki sorunlar geçerli ama akademik olarak "doğru" cevap.</p>
+<h3>5) Black-Litterman</h3>
+<p>Yatırımcının kişisel görüşlerini ("X sektörü güçlü") matematiksel olarak Bayesian prior'la birleştirir. MPT'nin pratik uzantısı, profesyonel dünyada yaygın.</p>
+<h2>Hangi yöntem ne zaman?</h2>
+<table>
+<thead>
+<tr>
+<th>Durum</th>
+<th>Yöntem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yeni başlayan, basitlik</td>
+<td>Eşit ağırlık (1/N)</td>
+</tr>
+<tr>
+<td>Çok varlık tipi (tahvil, hisse, emtia)</td>
+<td>Risk Paritesi</td>
+</tr>
+<tr>
+<td>Sadece riski azaltmak istiyor</td>
+<td>Minimum Varyans</td>
+</tr>
+<tr>
+<td>Görüşleri var, sayısallaştırmak istiyor</td>
+<td>Black-Litterman</td>
+</tr>
+<tr>
+<td>Akademik egzersiz</td>
+<td>Maksimum Sharpe (MPT)</td>
+</tr>
+</tbody>
+</table>
+<h2>TR'de pratik uygulama</h2>
+<p>BIST 30 evreninde portföy optimizasyonu zorlukları:
+- 30 hisse yeterli çeşitlendirme için sınır (US 500 hisseli optimize daha kolay)
+- TR makro şokları korelasyonu zaman zaman 1'e yaklaştırır (hep birlikte düşer)
+- Türk Lirası enflasyonu nominal volatiliteyi yüksek tutar — relatif volatiliteyi (TL bazında) hesaplamak daha doğru</p>
+<p>Pratik öneri: <strong>5-10 hisseli eşit ağırlık + sektör çeşitlendirme</strong> çoğu zaman yeterli — karmaşık optimizasyon ek değer üretmez ya da overfit eder.</p>
+<h2>Rebalansing — zamanla ne olur?</h2>
+<p>Portföy ağırlıkları zaman içinde fiyatlarla birlikte kayar:
+- Başlangıç %20 / %20 / %20 / %20 / %20
+- 6 ay sonra: %35 / %20 / %15 / %18 / %12 (bir hisse %75 yükselmiş)</p>
+<p>Bu durumda <strong>risk konsantrasyonu</strong> arttı. <strong>Rebalans</strong> — orijinal ağırlıklara dönmek — sistematik kar realizasyonu sağlar. Aylık veya 3 aylık rebalans çoğunlukla yeterli.</p>
+<p>İşlem maliyeti dengesi: Çok sık rebalans = maliyet yıkıcı, çok az = ağırlık sapması.</p>
+<h2>Anahtar mesaj</h2>
+<p>Portföy optimizasyonu <strong>sanat ve bilimin karışımı</strong>. Her formül bir varsayım üzerine kurulu. En önemli prensip:</p>
+<ol>
+<li><strong>Çeşitlendir</strong> — tek varlığa konsantrasyondan kaç</li>
+<li><strong>Risk-ayarlı düşün</strong> — sadece getiriye değil</li>
+<li><strong>Basit çoğunlukla daha iyi</strong> — overfitting'den kaç</li>
+<li><strong>Düzenli rebalansla</strong> — disiplin &gt; tahmin</li>
+</ol>
+<h2>Akademik kaynak</h2>
+<ul>
+<li>Markowitz (1952): "Portfolio Selection"</li>
+<li>Sharpe (1964): "Capital Asset Pricing Model"</li>
+<li>DeMiguel, Garlappi &amp; Uppal (2009): "Optimal Versus Naive Diversification"</li>
+<li>Bridgewater "All Weather" papers (Ray Dalio risk parity için)</li>
+</ul>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
   </p>
 </div>
-
-<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24;margin-top:18px">
-  <p style="margin:0;font-size:13px;color:#fbbf24;line-height:1.6">
-    💡 <strong>Yatırım danışmanlığı talep etmeyiniz.</strong> MakroStream SPK lisanslı bir
-    yatırım danışmanlığı kurumu değildir ve kişiye özel yatırım önerisi veremem. Yatırım
-    kararlarınız öncesi lütfen lisanslı bir uzmana danışın.
-  </p>
-</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
 
 </main>
 <footer>

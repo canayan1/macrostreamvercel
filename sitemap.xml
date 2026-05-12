@@ -73,6 +73,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/reports/sektor/2026-05-12/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/reports/hisse/2026-05-11/</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -85,31 +91,61 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://macrostreamvercel.vercel.app/algo/low-volatility/</loc>
+    <loc>https://macrostreamvercel.vercel.app/algo/breakout-52w-bist30/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrostreamvercel.vercel.app/algo/momentum-top5/</loc>
+    <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion-bist30/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion/</loc>
+    <loc>https://macrostreamvercel.vercel.app/algo/breakout-52w-us30/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrostreamvercel.vercel.app/algo/breakout-52w/</loc>
+    <loc>https://macrostreamvercel.vercel.app/algo/momentum-top5-us30/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrostreamvercel.vercel.app/algo/golden-cross/</loc>
+    <loc>https://macrostreamvercel.vercel.app/algo/low-volatility-bist30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion-us30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/momentum-top5-bist30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/golden-cross-us30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/low-volatility-us30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/golden-cross-bist30/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -127,7 +163,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/portfoy-optimizasyonu/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/momentum-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/yatirimci-psikolojisi/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -139,7 +187,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/sektor-yatirimi-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/egitim/mean-reversion-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/bollinger-bands-nedir/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/makro-gostergeler-rehberi/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/egitim/macd-nedir/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>

@@ -74,6 +74,18 @@
           "countries": "TUR,POL,BRA,ZAF,MEX,IDN"
         }
       }
+    ],
+    "sektor": [
+      {
+        "category": "sektor",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Lider: Tarım & Kimya",
+          "leader_sector": "Tarım & Kimya",
+          "laggard_sector": "Havacılık & Turizm",
+          "xu100_30d": 11.7952560305989
+        }
+      }
     ]
   }
 }

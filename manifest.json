@@ -1,13 +1,14 @@
 {
-  "last_update": "2026-05-12T13:09:51.152142Z",
+  "last_update": "2026-05-12T16:58:48.219155Z",
   "latest_report": {
     "category": "hisse",
     "date": "2026-05-12",
     "title": "Arçelik — Günün Merceği"
   },
-  "total_reports": 6,
+  "total_reports": 7,
   "by_category": {
     "hisse": 2,
+    "sektor": 1,
     "fx": 1,
     "makro": 1,
     "fred": 1,
