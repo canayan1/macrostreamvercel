@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "categories": {
+    "hisse": [
+      {
+        "category": "hisse",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Risk-On",
+          "breadth_pct": 89.28571428571429,
+          "us_breadth_pct": 63.33333333333333,
+          "top_gainer": "Kardemir (D)",
+          "top_loser": "Enka İnşaat",
+          "featured_stock": "Arçelik"
+        }
+      },
+      {
+        "category": "hisse",
+        "date": "2026-05-11",
+        "metrics": {
+          "regime": "Karışık",
+          "breadth_pct": 45.0,
+          "us_breadth_pct": 58.0,
+          "top_gainer": "Garanti BBVA",
+          "top_loser": "Türk Hava Yolları",
+          "featured_stock": "Akbank"
+        }
+      }
+    ],
+    "fx": [
+      {
+        "category": "fx",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.5382337490876798,
+          "usdtry": 45.352500915527344,
+          "strongest_pair": "GBP/TRY"
+        }
+      }
+    ],
+    "fred": [
+      {
+        "category": "fred",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Normal Eğri",
+          "fed_funds": 3.64,
+          "yield_spread": 0.48,
+          "vix": 17.19
+        }
+      }
+    ],
+    "makro": [
+      {
+        "category": "makro",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Veri eksik",
+          "policy_rate": null,
+          "tufe_yoy": 3513.87,
+          "usdtry": 45.14177143,
+          "real_rate": null
+        }
+      }
+    ],
+    "wb": [
+      {
+        "category": "wb",
+        "date": "2026-05-12",
+        "metrics": {
+          "countries": "TUR,POL,BRA,ZAF,MEX,IDN"
+        }
+      }
+    ]
+  }
+}

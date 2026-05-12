@@ -107,16 +107,30 @@ footer strong { color: var(--yellow); }
 <h2 style="margin-top:0">🇹🇷 TR Makro — 2026-05-12</h2>
 <p class="muted">TCMB Elektronik Veri Dağıtım Sistemi (EVDS) üzerinden çekilmiş temel Türkiye makro göstergelerinin son değerleri ve dönemsel değişimleri.</p>
 
+<div style="background:#3a2a10; border-left:4px solid #fbbf24; padding:14px 18px;
+            margin:18px 0; border-radius:6px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span style="font-size:22px">🟡</span>
+    <div>
+      <div style="font-size:18px;font-weight:600;color:#e5ebf2">Veri eksik</div>
+      <div style="font-size:13px;color:#aab">Reel faiz hesaplanamadı</div>
+    </div>
+  </div>
+  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">TÜFE Y/Y: <strong style="color:#e5ebf2">3513.87%</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">USD/TRY: <strong style="color:#e5ebf2">45.1418</strong></span></div>
+</div>
+
+
+
 <div class="card">
   <h3>Temel Göstergeler (TCMB EVDS)</h3>
   <table class="grid">
     <thead><tr><th>Seri</th><th>Son Değer</th><th>Tarih</th><th>Önceki Değer&#x27;e Δ</th><th>YoY %</th></tr></thead>
-    <tbody><tr><td><strong>USD/TRY (Alış)</strong> <span class="muted small">TP.DK.USD.A.YTL</span></td><td>45.1418</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+1.10%</span></td><td><span class="pos">+16.69%</span></td></tr><tr><td><strong>EUR/TRY (Alış)</strong> <span class="muted small">TP.DK.EUR.A.YTL</span></td><td>52.9764</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+1.59%</span></td><td><span class="pos">+21.35%</span></td></tr><tr><td><strong>GBP/TRY (Alış)</strong> <span class="muted small">TP.DK.GBP.A.YTL</span></td><td>61.1817</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+2.25%</span></td><td><span class="pos">+18.55%</span></td></tr><tr><td><strong>TÜFE Yıllık Değişim (%)</strong> <span class="muted small">TP.FE.OKTG01</span></td><td>3,513.87</td><td><span class="muted small">2025-12-01</span></td><td><span class="pos">+0.89%</span></td><td><span class="pos">+30.89%</span></td></tr></tbody>
+    <tbody><tr><td><span title="Bayat veri (11 gün önce, eşik 3 gün)" style="color:#f87171">●</span> <strong>USD/TRY (Alış)</strong> <span class="muted small">TP.DK.USD.A.YTL</span></td><td>45.1418</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+1.10%</span></td><td><span class="pos">+16.69%</span></td></tr><tr><td><span title="Bayat veri (11 gün önce, eşik 3 gün)" style="color:#f87171">●</span> <strong>EUR/TRY (Alış)</strong> <span class="muted small">TP.DK.EUR.A.YTL</span></td><td>52.9764</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+1.59%</span></td><td><span class="pos">+21.35%</span></td></tr><tr><td><span title="Bayat veri (11 gün önce, eşik 3 gün)" style="color:#f87171">●</span> <strong>GBP/TRY (Alış)</strong> <span class="muted small">TP.DK.GBP.A.YTL</span></td><td>61.1817</td><td><span class="muted small">2026-05-01</span></td><td><span class="pos">+2.25%</span></td><td><span class="pos">+18.55%</span></td></tr><tr><td><span title="Bayat veri (162 gün önce, eşik 35 gün)" style="color:#f87171">●</span> <strong>TÜFE Yıllık Değişim (%)</strong> <span class="muted small">TP.FE.OKTG01</span></td><td>3,513.87</td><td><span class="muted small">2025-12-01</span></td><td><span class="pos">+0.89%</span></td><td><span class="pos">+30.89%</span></td></tr></tbody>
   </table>
 </div>
 
 <h3>Otomatik Yorum</h3>
-<div class="commentary">Güncel verilere baktığımızda, Türk Lirası&#x27;nın ana döviz kurları karşısında yıllık bazda %16 ila %21 arasında değer kaybettiği görülüyor. Yıllık TÜFE&#x27;deki %30.89&#x27;luk artış, enflasyonun döviz kurundaki yükselişle birlikte seyrettiğini ve alım gücü üzerinde baskı oluşturduğunu gösteriyor. Bu tablo, yüksek enflasyonun kur üzerindeki etkisini ve politika faizinin bu dengeyi sağlama çabasının önemini ortaya koyuyor.</div>
+<div class="commentary">Türkiye ekonomisinin güncel teknik tablosuna baktığımızda, döviz kurlarında yıllık bazda dikkat çekici artışlar gözlemliyoruz; USD/TRY, EUR/TRY ve GBP/TRY pariteleri %16 ile %21 arasında yükseliş kaydetmiş durumda. Bu durum, TÜFE&#x27;de yıllık %30.89&#x27;luk artışla kendini gösteren yüksek enflasyonist ortamla birleştiğinde, kur ve enflasyon arasındaki ilişkinin belirginleştiğini ortaya koyuyor. Politika faizinin mevcut durumu ise, bu yüksek enflasyon ve kur hareketliliği karşısında dengeleyici bir rol oynama potansiyeli taşıyor.</div>
 
 </main>
 <footer>
