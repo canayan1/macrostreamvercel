@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İşlem Kontrolü — Pusula Finans</title>
+<meta name="description" content="İşlem Kontrolü — bir pozisyon açmadan önce kontrol listesi. Hisse, FX, kripto için disiplin sorularıyla hazırlık skorunu öğren. Yatırım tavsiyesi değildir.">
+<meta name="author" content="Pusula Finans">
+<link rel="canonical" href="https://macrostreamvercel.vercel.app/">
+<meta name="keywords" content="işlem kontrolü, trading checklist, stop loss, risk yönetimi, yatırımcı disiplini">
+<meta property="og:title" content="İşlem Kontrolü — Pusula Finans">
+<meta property="og:description" content="İşlem Kontrolü — bir pozisyon açmadan önce kontrol listesi. Hisse, FX, kripto için disiplin sorularıyla hazırlık skorunu öğren. Yatırım tavsiyesi değildir.">
+<meta property="og:url" content="https://macrostreamvercel.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pusula Finans">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://macrostreamvercel.vercel.app/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="İşlem Kontrolü — Pusula Finans">
+<meta name="twitter:description" content="İşlem Kontrolü — bir pozisyon açmadan önce kontrol listesi. Hisse, FX, kripto için disiplin sorularıyla hazırlık skorunu öğren. Yatırım tavsiyesi değildir.">
+<meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://macrostreamvercel.vercel.app/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">Pusula Finans</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › İşlem Kontrolü</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<style>
+.pt-progress { position:sticky; top:0; background:var(--bg); padding:14px 0 10px;
+  border-bottom:1px solid var(--border); z-index:50; }
+.pt-progress-bar { height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden; }
+.pt-progress-fill { height:100%; background:var(--accent); transition:width 0.3s ease;
+  border-radius:3px; }
+.pt-progress-text { font-size:12px; color:var(--muted); margin-top:6px; }
+
+.pt-card { background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:24px; margin-top:24px; }
+.pt-prompt { font-size:20px; font-weight:600; line-height:1.4; margin-bottom:8px; }
+.pt-tooltip { color:var(--muted); font-size:13px; margin-bottom:18px; line-height:1.5; }
+.pt-edu-link { color:var(--accent); font-size:13px; }
+
+.pt-btn-group { display:grid; gap:10px; margin-top:18px; }
+.pt-btn-group.choice2 { grid-template-columns:1fr 1fr; }
+@media (max-width:600px) { .pt-btn-group.choice2 { grid-template-columns:1fr; } }
+
+.pt-btn { padding:16px 18px; border-radius:8px; border:1px solid var(--border);
+  background:var(--panel-2); color:var(--text); font-size:16px; font-weight:500;
+  cursor:pointer; transition:all 0.2s; text-align:left; }
+.pt-btn:hover { background:var(--panel); border-color:var(--accent); }
+.pt-btn:active { transform:scale(0.98); }
+.pt-btn.yes { border-left:3px solid var(--green); }
+.pt-btn.no { border-left:3px solid var(--red); }
+
+.pt-disclaimer-top { background:#3a2410; border-left:3px solid #fbbf24;
+  padding:14px 18px; border-radius:6px; color:#fbbf24; margin:20px 0; font-size:13px;
+  line-height:1.5; }
+
+.pt-back-btn { background:transparent; color:var(--muted); border:0; font-size:13px;
+  margin-top:18px; cursor:pointer; padding:6px 0; }
+.pt-back-btn:hover { color:var(--text); }
+
+/* Result screen */
+.pt-result-gauge { width:200px; height:200px; margin:24px auto; position:relative; }
+.pt-result-score { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+  text-align:center; }
+.pt-result-score-val { font-size:48px; font-weight:700; color:var(--accent); line-height:1; }
+.pt-result-score-max { font-size:14px; color:var(--muted); margin-top:4px; }
+.pt-result-band { text-align:center; font-size:16px; padding:14px; border-radius:8px;
+  margin:20px 0; }
+.pt-result-band.green { background:#1f3528; color:#a3e6c1; }
+.pt-result-band.yellow { background:#3a2a10; color:#fdd99e; }
+.pt-result-band.red { background:#3a1818; color:#f9b4b4; }
+
+.pt-categories { display:grid; gap:12px; margin:24px 0; }
+.pt-cat-row { display:grid; grid-template-columns:1fr 60px; gap:14px; align-items:center; }
+.pt-cat-label { font-size:14px; color:var(--text); }
+.pt-cat-bar { background:var(--panel-2); border-radius:4px; height:12px; position:relative;
+  overflow:hidden; }
+.pt-cat-bar-fill { position:absolute; left:0; top:0; bottom:0; border-radius:4px;
+  transition:width 0.4s ease; }
+.pt-cat-bar-fill.green { background:var(--green); }
+.pt-cat-bar-fill.yellow { background:var(--yellow); }
+.pt-cat-bar-fill.red { background:var(--red); }
+.pt-cat-val { font-size:13px; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
+
+.pt-bullets { margin:20px 0; }
+.pt-bullets h4 { font-size:14px; text-transform:uppercase; letter-spacing:0.05em;
+  color:var(--muted); margin:18px 0 8px; }
+.pt-bullet-item { padding:10px 14px; border-radius:6px; margin-bottom:6px;
+  font-size:14px; line-height:1.5; }
+.pt-bullet-item.strong { background:#1f3528; color:#d8f5d8; border-left:2px solid var(--green); }
+.pt-bullet-item.weak { background:#3a2a18; color:#fdd99e; border-left:2px solid var(--yellow); }
+.pt-bullet-item a { color:var(--accent); margin-left:6px; }
+
+.pt-history { margin-top:32px; padding:18px; background:var(--panel); border-radius:8px;
+  border:1px solid var(--border); }
+.pt-history h4 { font-size:13px; text-transform:uppercase; letter-spacing:0.05em;
+  color:var(--muted); margin:0 0 10px; }
+.pt-history-item { font-size:13px; color:var(--muted); padding:6px 0;
+  border-bottom:1px solid var(--border); display:flex; justify-content:space-between; }
+.pt-history-item:last-child { border-bottom:0; }
+.pt-history-item .score { font-weight:600; color:var(--accent); }
+
+.pt-cta-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:24px; }
+@media (max-width:600px) { .pt-cta-row { grid-template-columns:1fr; } }
+.pt-cta { padding:14px; border-radius:8px; border:0; font-size:15px; font-weight:600;
+  cursor:pointer; text-align:center; text-decoration:none; display:block; }
+.pt-cta.primary { background:var(--accent); color:#0f1419; }
+.pt-cta.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
+</style>
+
+<h2 style="margin-top:0">🧭 İşlem Kontrolü</h2>
+<p class="muted" style="margin-bottom:18px;line-height:1.5">
+  Bir pozisyon açmadan önce sormak istediğin soruların listesi. Sorulara cevap ver,
+  sonunda hazırlık skoru + 4 kategoride durumun görünür.
+</p>
+
+<div class="pt-disclaimer-top">
+  ⚠️ <strong>Bu skor, işlemin iyi/kötü olduğunu söylemez.</strong> Yalnızca senin hazırlığını
+  ölçer. Yatırım tavsiyesi değildir. Hiçbir soru "almalı mısın?" değil — hepsi
+  "kontrol ettin mi?" tipindedir.
+</div>
+
+<div id="pt-app">
+  <div id="pt-progress" class="pt-progress" style="display:none">
+    <div class="pt-progress-bar"><div class="pt-progress-fill" id="pt-progress-fill" style="width:0%"></div></div>
+    <div class="pt-progress-text"><span id="pt-progress-current">0</span> / <span id="pt-progress-total">0</span></div>
+  </div>
+  <div id="pt-question-container"></div>
+  <div id="pt-result-container" style="display:none"></div>
+</div>
+
+<script>
+(function() {
+  const QUESTIONS_DATA = {"version": "1.0", "start": "asset_class", "questions": {"asset_class": {"type": "choice", "category": "context", "prompt": "Ne almak istiyorsun?", "options": [{"value": "hisse", "label": "📈 Hisse Senedi", "next": "hisse_sector"}, {"value": "fx", "label": "💱 FX", "next": "fx_group"}, {"value": "kripto", "label": "₿ Kripto", "next": "crypto_tier"}], "weight": 0}, "hisse_sector": {"type": "choice", "category": "context", "prompt": "Hangi sektörden?", "options": [{"value": "bankacilik", "label": "Bankacılık", "next": "hisse_bankacilik_q1"}, {"value": "holding", "label": "Holding", "next": "hisse_holding_q1"}, {"value": "sanayi-metal", "label": "Sanayi & Metal", "next": "hisse_sanayi-metal_q1"}, {"value": "petro-kimya", "label": "Petro-Kimya", "next": "hisse_petro-kimya_q1"}, {"value": "tuketim-perakende", "label": "Tüketim & Perakende", "next": "hisse_tuketim-perakende_q1"}, {"value": "telekom", "label": "Telekom", "next": "hisse_telekom_q1"}, {"value": "havacilik-turizm", "label": "Havacılık & Turizm", "next": "hisse_havacilik-turizm_q1"}, {"value": "enerji-elektrik", "label": "Enerji & Elektrik", "next": "hisse_enerji-elektrik_q1"}, {"value": "madencilik", "label": "Madencilik", "next": "hisse_madencilik_q1"}, {"value": "gayrimenkul", "label": "Gayrimenkul", "next": "hisse_gayrimenkul_q1"}, {"value": "tarim-kimya", "label": "Tarım & Kimya", "next": "hisse_tarim-kimya_q1"}], "weight": 0}, "hisse_bankacilik_q1": {"type": "yesno", "category": "sector", "prompt": "TCMB faiz görünümüne baktın mı? Faiz patikası bankacılığın NIM'ini doğrudan etkiler.", "weight": 8, "scoreOn": "yes", "next": "hisse_bankacilik_q2", "strongPositive": "Sektör bilinci güçlü: TCMB faiz görünümüne baktın mı", "weakNegative": "Eksik: TCMB faiz görünümüne baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_bankacilik_q2": {"type": "info_choice", "category": "sector", "prompt": "Bu hisse, XBANK endeksine kıyasla son 1 ayda önde mi geride mi?", "weight": 5, "scoreOn": "biliyorum", "next": "hisse_bankacilik_q3", "options": [{"value": "biliyorum", "label": "Evet, biliyorum"}, {"value": "bilmiyorum", "label": "Hayır, kontrol edeceğim"}], "strongPositive": "Sektör pozisyon farkındalığı var.", "weakNegative": "Bilgi eksiği — Sektör eğitim sayfasına bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_bankacilik_q3": {"type": "yesno", "category": "sector", "prompt": "Bankacılık defansif değil — şu an risk-on tema mı?", "weight": 6, "scoreOn": "yes", "next": "hisse_bankacilik_q4", "strongPositive": "Sektör bilinci güçlü: Bankacılık defansif değil — şu an risk-on tema mı", "weakNegative": "Eksik: Bankacılık defansif değil — şu an risk-on tema mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_bankacilik_q4": {"type": "yesno", "category": "sector", "prompt": "Karşılık politikası / takipteki kredi oranı haberlerini takip ettin mi?", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Karşılık politikası / takipteki kredi oranı haberlerini takip ettin mi", "weakNegative": "Eksik: Karşılık politikası / takipteki kredi oranı haberlerini takip ettin mi — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_holding_q1": {"type": "yesno", "category": "sector", "prompt": "Holdingin alt iştiraklerinin sektör dağılımını biliyor musun?", "weight": 7, "scoreOn": "yes", "next": "hisse_holding_q2", "strongPositive": "Sektör bilinci güçlü: Holdingin alt iştiraklerinin sektör dağılımını biliyor musun", "weakNegative": "Eksik: Holdingin alt iştiraklerinin sektör dağılımını biliyor musun — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_holding_q2": {"type": "yesno", "category": "sector", "prompt": "Holding iskontosu (NAV vs piyasa fiyat) hakkında fikrin var mı?", "weight": 5, "scoreOn": "yes", "next": "hisse_holding_q3", "strongPositive": "Sektör bilinci güçlü: Holding iskontosu (NAV vs piyasa fiyat) hakkında fikrin var mı", "weakNegative": "Eksik: Holding iskontosu (NAV vs piyasa fiyat) hakkında fikrin var mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_holding_q3": {"type": "yesno", "category": "sector", "prompt": "Holdingin temel kâr kaynağı bu çeyrekte hangi sektör?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Holdingin temel kâr kaynağı bu çeyrekte hangi sektör", "weakNegative": "Eksik: Holdingin temel kâr kaynağı bu çeyrekte hangi sektör — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_sanayi-metal_q1": {"type": "yesno", "category": "sector", "prompt": "Global PMI (Çin, Almanya, ABD) eğilimini kontrol ettin mi?", "weight": 8, "scoreOn": "yes", "next": "hisse_sanayi-metal_q2", "strongPositive": "Sektör bilinci güçlü: Global PMI (Çin, Almanya, ABD) eğilimini kontrol ettin mi", "weakNegative": "Eksik: Global PMI (Çin, Almanya, ABD) eğilimini kontrol ettin mi — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_sanayi-metal_q2": {"type": "yesno", "category": "sector", "prompt": "USD/TRY hareketinin maliyet/gelir etkisini değerlendirdin mi?", "weight": 6, "scoreOn": "yes", "next": "hisse_sanayi-metal_q3", "strongPositive": "Sektör bilinci güçlü: USD/TRY hareketinin maliyet/gelir etkisini değerlendirdin mi", "weakNegative": "Eksik: USD/TRY hareketinin maliyet/gelir etkisini değerlendirdin mi — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_sanayi-metal_q3": {"type": "info_choice", "category": "sector", "prompt": "Bu hisse XU100'e karşı son 3 ayda önde mi geride mi?", "weight": 5, "scoreOn": "biliyorum", "next": "hisse_sanayi-metal_q4", "options": [{"value": "biliyorum", "label": "Evet, biliyorum"}, {"value": "bilmiyorum", "label": "Hayır, kontrol edeceğim"}], "strongPositive": "Sektör pozisyon farkındalığı var.", "weakNegative": "Bilgi eksiği — Sektör eğitim sayfasına bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_sanayi-metal_q4": {"type": "yesno", "category": "sector", "prompt": "Çelik/metal fiyat trendine baktın mı? (Brent, demir cevheri)", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Çelik/metal fiyat trendine baktın mı", "weakNegative": "Eksik: Çelik/metal fiyat trendine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_petro-kimya_q1": {"type": "yesno", "category": "sector", "prompt": "Brent petrol fiyat eğilimine baktın mı?", "weight": 8, "scoreOn": "yes", "next": "hisse_petro-kimya_q2", "strongPositive": "Sektör bilinci güçlü: Brent petrol fiyat eğilimine baktın mı", "weakNegative": "Eksik: Brent petrol fiyat eğilimine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_petro-kimya_q2": {"type": "yesno", "category": "sector", "prompt": "Crack spread'lere (rafineri marjı) baktın mı?", "weight": 6, "scoreOn": "yes", "next": "hisse_petro-kimya_q3", "strongPositive": "Sektör bilinci güçlü: Crack spread'lere (rafineri marjı) baktın mı", "weakNegative": "Eksik: Crack spread'lere (rafineri marjı) baktın mı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_petro-kimya_q3": {"type": "yesno", "category": "sector", "prompt": "Kimya sektöründe küresel kapasite kullanım oranını biliyor musun?", "weight": 4, "scoreOn": "yes", "next": "hisse_petro-kimya_q4", "strongPositive": "Sektör bilinci güçlü: Kimya sektöründe küresel kapasite kullanım oranını biliyor musun", "weakNegative": "Eksik: Kimya sektöründe küresel kapasite kullanım oranını biliyor musun — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_petro-kimya_q4": {"type": "info_choice", "category": "sector", "prompt": "Bu hisse Brent ile pozitif/negatif korelasyona sahip — yönünü değerlendirdin mi?", "weight": 5, "scoreOn": "biliyorum", "next": "stop_loss", "options": [{"value": "biliyorum", "label": "Evet, biliyorum"}, {"value": "bilmiyorum", "label": "Hayır, kontrol edeceğim"}], "strongPositive": "Sektör pozisyon farkındalığı var.", "weakNegative": "Bilgi eksiği — Sektör eğitim sayfasına bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_tuketim-perakende_q1": {"type": "yesno", "category": "sector", "prompt": "Tüketici güven endeksi ve reel ücretler ne durumda?", "weight": 7, "scoreOn": "yes", "next": "hisse_tuketim-perakende_q2", "strongPositive": "Sektör bilinci güçlü: Tüketici güven endeksi ve reel ücretler ne durumda", "weakNegative": "Eksik: Tüketici güven endeksi ve reel ücretler ne durumda — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_tuketim-perakende_q2": {"type": "yesno", "category": "sector", "prompt": "TÜFE çekirdek (B grubu) trendine baktın mı?", "weight": 6, "scoreOn": "yes", "next": "hisse_tuketim-perakende_q3", "strongPositive": "Sektör bilinci güçlü: TÜFE çekirdek (B grubu) trendine baktın mı", "weakNegative": "Eksik: TÜFE çekirdek (B grubu) trendine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_tuketim-perakende_q3": {"type": "yesno", "category": "sector", "prompt": "Aynı mağaza satış (LFL) büyümesi son çeyrek ne kadardı?", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Aynı mağaza satış (LFL) büyümesi son çeyrek ne kadardı", "weakNegative": "Eksik: Aynı mağaza satış (LFL) büyümesi son çeyrek ne kadardı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_telekom_q1": {"type": "yesno", "category": "sector", "prompt": "ARPU (abone başı gelir) trendine baktın mı?", "weight": 6, "scoreOn": "yes", "next": "hisse_telekom_q2", "strongPositive": "Sektör bilinci güçlü: ARPU (abone başı gelir) trendine baktın mı", "weakNegative": "Eksik: ARPU (abone başı gelir) trendine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_telekom_q2": {"type": "yesno", "category": "sector", "prompt": "Tarife artışları / regülasyon riski hakkında bilgin var mı?", "weight": 5, "scoreOn": "yes", "next": "hisse_telekom_q3", "strongPositive": "Sektör bilinci güçlü: Tarife artışları / regülasyon riski hakkında bilgin var mı", "weakNegative": "Eksik: Tarife artışları / regülasyon riski hakkında bilgin var mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_telekom_q3": {"type": "yesno", "category": "sector", "prompt": "Telekom defansif sektör — düşüş trendinde göreceli güç sağlar; pozisyon yönün uyumlu mu?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Telekom defansif sektör — düşüş trendinde göreceli güç sağlar; pozisyon yönün uyumlu mu", "weakNegative": "Eksik: Telekom defansif sektör — düşüş trendinde göreceli güç sağlar; pozisyon yönün uyumlu mu — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_havacilik-turizm_q1": {"type": "yesno", "category": "sector", "prompt": "Yolcu trafiği (load factor, yield) son ay verisine baktın mı?", "weight": 7, "scoreOn": "yes", "next": "hisse_havacilik-turizm_q2", "strongPositive": "Sektör bilinci güçlü: Yolcu trafiği (load factor, yield) son ay verisine baktın mı", "weakNegative": "Eksik: Yolcu trafiği (load factor, yield) son ay verisine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_havacilik-turizm_q2": {"type": "yesno", "category": "sector", "prompt": "Brent petrol yakıt maliyeti — kâr marjına etkisini düşündün mü?", "weight": 6, "scoreOn": "yes", "next": "hisse_havacilik-turizm_q3", "strongPositive": "Sektör bilinci güçlü: Brent petrol yakıt maliyeti — kâr marjına etkisini düşündün mü", "weakNegative": "Eksik: Brent petrol yakıt maliyeti — kâr marjına etkisini düşündün mü — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_havacilik-turizm_q3": {"type": "yesno", "category": "sector", "prompt": "EUR/USD veya GBP/USD havayolu gelirini doğrudan etkiler; baktın mı?", "weight": 5, "scoreOn": "yes", "next": "hisse_havacilik-turizm_q4", "strongPositive": "Sektör bilinci güçlü: EUR/USD veya GBP/USD havayolu gelirini doğrudan etkiler; baktın mı", "weakNegative": "Eksik: EUR/USD veya GBP/USD havayolu gelirini doğrudan etkiler; baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_havacilik-turizm_q4": {"type": "yesno", "category": "sector", "prompt": "Jeopolitik risk / sezon (yaz-kış) etkisi var mı?", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Jeopolitik risk / sezon (yaz-kış) etkisi var mı", "weakNegative": "Eksik: Jeopolitik risk / sezon (yaz-kış) etkisi var mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_enerji-elektrik_q1": {"type": "yesno", "category": "sector", "prompt": "EPİAŞ elektrik fiyat trendine baktın mı?", "weight": 7, "scoreOn": "yes", "next": "hisse_enerji-elektrik_q2", "strongPositive": "Sektör bilinci güçlü: EPİAŞ elektrik fiyat trendine baktın mı", "weakNegative": "Eksik: EPİAŞ elektrik fiyat trendine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_enerji-elektrik_q2": {"type": "yesno", "category": "sector", "prompt": "Kurulu güç + üretim mix'ini biliyor musun?", "weight": 5, "scoreOn": "yes", "next": "hisse_enerji-elektrik_q3", "strongPositive": "Sektör bilinci güçlü: Kurulu güç + üretim mix'ini biliyor musun", "weakNegative": "Eksik: Kurulu güç + üretim mix'ini biliyor musun — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_enerji-elektrik_q3": {"type": "info_choice", "category": "sector", "prompt": "Bu hisse enerji düzenlemesinde yapılacak değişikliklere açık mı?", "weight": 4, "scoreOn": "biliyorum", "next": "stop_loss", "options": [{"value": "biliyorum", "label": "Evet, biliyorum"}, {"value": "bilmiyorum", "label": "Hayır, kontrol edeceğim"}], "strongPositive": "Sektör pozisyon farkındalığı var.", "weakNegative": "Bilgi eksiği — Sektör eğitim sayfasına bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_madencilik_q1": {"type": "yesno", "category": "sector", "prompt": "Altın ons fiyat trendine baktın mı?", "weight": 8, "scoreOn": "yes", "next": "hisse_madencilik_q2", "strongPositive": "Sektör bilinci güçlü: Altın ons fiyat trendine baktın mı", "weakNegative": "Eksik: Altın ons fiyat trendine baktın mı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_madencilik_q2": {"type": "yesno", "category": "sector", "prompt": "USD/TRY altın satışlarına etki ediyor — kur değerlendirdin mi?", "weight": 6, "scoreOn": "yes", "next": "hisse_madencilik_q3", "strongPositive": "Sektör bilinci güçlü: USD/TRY altın satışlarına etki ediyor — kur değerlendirdin mi", "weakNegative": "Eksik: USD/TRY altın satışlarına etki ediyor — kur değerlendirdin mi — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_madencilik_q3": {"type": "yesno", "category": "sector", "prompt": "Üretim hacmi + maliyet (gold AISC) verisini biliyor musun?", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Üretim hacmi + maliyet (gold AISC) verisini biliyor musun", "weakNegative": "Eksik: Üretim hacmi + maliyet (gold AISC) verisini biliyor musun — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_gayrimenkul_q1": {"type": "yesno", "category": "sector", "prompt": "Konut kredi faizleri ve TÜFE'ye baktın mı?", "weight": 8, "scoreOn": "yes", "next": "hisse_gayrimenkul_q2", "strongPositive": "Sektör bilinci güçlü: Konut kredi faizleri ve TÜFE'ye baktın mı", "weakNegative": "Eksik: Konut kredi faizleri ve TÜFE'ye baktın mı — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_gayrimenkul_q2": {"type": "yesno", "category": "sector", "prompt": "NAV iskontosu (piyasa fiyat vs portföy değeri) ne durumda?", "weight": 5, "scoreOn": "yes", "next": "hisse_gayrimenkul_q3", "strongPositive": "Sektör bilinci güçlü: NAV iskontosu (piyasa fiyat vs portföy değeri) ne durumda", "weakNegative": "Eksik: NAV iskontosu (piyasa fiyat vs portföy değeri) ne durumda — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_gayrimenkul_q3": {"type": "yesno", "category": "sector", "prompt": "Konut satış adetleri trendi son 6 ayda nasıl?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Konut satış adetleri trendi son 6 ayda nasıl", "weakNegative": "Eksik: Konut satış adetleri trendi son 6 ayda nasıl — Sektör eğitimine bak.", "edu": "/egitim/makro-gostergeler-rehberi/"}, "hisse_tarim-kimya_q1": {"type": "yesno", "category": "sector", "prompt": "Tarım kimyasalları (zirai ilaç, gübre) fiyat trendi nasıl?", "weight": 6, "scoreOn": "yes", "next": "hisse_tarim-kimya_q2", "strongPositive": "Sektör bilinci güçlü: Tarım kimyasalları (zirai ilaç, gübre) fiyat trendi nasıl", "weakNegative": "Eksik: Tarım kimyasalları (zirai ilaç, gübre) fiyat trendi nasıl — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_tarim-kimya_q2": {"type": "yesno", "category": "sector", "prompt": "İlgili tarımsal ürün (buğday, mısır vb.) ekim dönemi ne aşamada?", "weight": 5, "scoreOn": "yes", "next": "hisse_tarim-kimya_q3", "strongPositive": "Sektör bilinci güçlü: İlgili tarımsal ürün (buğday, mısır vb.) ekim dönemi ne aşamada", "weakNegative": "Eksik: İlgili tarımsal ürün (buğday, mısır vb.) ekim dönemi ne aşamada — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "hisse_tarim-kimya_q3": {"type": "yesno", "category": "sector", "prompt": "Şirket marjları son çeyrekte nasıldı?", "weight": 4, "scoreOn": "yes", "next": "stop_loss", "strongPositive": "Sektör bilinci güçlü: Şirket marjları son çeyrekte nasıldı", "weakNegative": "Eksik: Şirket marjları son çeyrekte nasıldı — Sektör eğitimine bak.", "edu": "/egitim/sektor-yatirimi-nedir/"}, "fx_group": {"type": "choice", "category": "context", "prompt": "Hangi FX grubu?", "options": [{"value": "g10", "label": "G10 Majör Pariteler (EUR/USD, GBP/USD, USD/JPY...)", "next": "fx_g10_q1"}, {"value": "em", "label": "EM (USD/INR, USD/MXN, USD/ZAR, USD/BRL)", "next": "fx_em_q1"}, {"value": "try", "label": "TRY Çaprazları (USD/TRY, EUR/TRY, GBP/TRY)", "next": "fx_try_q1"}, {"value": "dollar_index", "label": "DXY (Dolar Endeksi)", "next": "fx_dollar_index_q1"}], "weight": 0}, "fx_g10_q1": {"type": "yesno", "category": "sector", "prompt": "Bu hafta ECB, Fed veya BoE konuşması/karar takvimi var mı?", "weight": 8, "scoreOn": "yes", "next": "fx_g10_q2", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Bu hafta ECB, Fed veya BoE konuşması/karar takvimi var mı ✓", "weakNegative": "Eksik: Bu hafta ECB, Fed veya BoE konuşması/karar takvimi var mı — Makro rehbere bak."}, "fx_g10_q2": {"type": "yesno", "category": "sector", "prompt": "DXY trendi ile pozisyon yönün uyumlu mu?", "weight": 7, "scoreOn": "yes", "next": "fx_g10_q3", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: DXY trendi ile pozisyon yönün uyumlu mu ✓", "weakNegative": "Eksik: DXY trendi ile pozisyon yönün uyumlu mu — Makro rehbere bak."}, "fx_g10_q3": {"type": "yesno", "category": "sector", "prompt": "Carry trade riski (gecelik faiz farkı, swap) farkında mısın?", "weight": 5, "scoreOn": "yes", "next": "fx_g10_q4", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Carry trade riski (gecelik faiz farkı, swap) farkında mısın ✓", "weakNegative": "Eksik: Carry trade riski (gecelik faiz farkı, swap) farkında mısın — Makro rehbere bak."}, "fx_g10_q4": {"type": "yesno", "category": "sector", "prompt": "Önemli teknik seviyeler (50g/200g MA) konumlarına baktın mı?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Önemli teknik seviyeler (50g/200g MA) konumlarına baktın mı ✓", "weakNegative": "Eksik: Önemli teknik seviyeler (50g/200g MA) konumlarına baktın mı — Makro rehbere bak."}, "fx_em_q1": {"type": "yesno", "category": "sector", "prompt": "İlgili ülkenin merkez bankası politika eğilimi nedir?", "weight": 7, "scoreOn": "yes", "next": "fx_em_q2", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: İlgili ülkenin merkez bankası politika eğilimi nedir ✓", "weakNegative": "Eksik: İlgili ülkenin merkez bankası politika eğilimi nedir — Makro rehbere bak."}, "fx_em_q2": {"type": "yesno", "category": "sector", "prompt": "EM döviz endeksi (MSCI EM) genel trendine baktın mı?", "weight": 6, "scoreOn": "yes", "next": "fx_em_q3", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: EM döviz endeksi (MSCI EM) genel trendine baktın mı ✓", "weakNegative": "Eksik: EM döviz endeksi (MSCI EM) genel trendine baktın mı — Makro rehbere bak."}, "fx_em_q3": {"type": "yesno", "category": "sector", "prompt": "DXY ve risk iştahı bu pariteyi yönlendiriyor — global temayı değerlendirdin mi?", "weight": 6, "scoreOn": "yes", "next": "fx_em_q4", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: DXY ve risk iştahı bu pariteyi yönlendiriyor — global temayı değerlendirdin mi ✓", "weakNegative": "Eksik: DXY ve risk iştahı bu pariteyi yönlendiriyor — global temayı değerlendirdin mi — Makro rehbere bak."}, "fx_em_q4": {"type": "yesno", "category": "sector", "prompt": "Spread + komisyon, beklediğin hareketin %20'sinden az mı?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Spread + komisyon, beklediğin hareketin %20'sinden az mı ✓", "weakNegative": "Eksik: Spread + komisyon, beklediğin hareketin %20'sinden az mı — Makro rehbere bak."}, "fx_try_q1": {"type": "yesno", "category": "sector", "prompt": "TCMB net rezerv + swap stoku eğilimini kontrol ettin mi?", "weight": 8, "scoreOn": "yes", "next": "fx_try_q2", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: TCMB net rezerv + swap stoku eğilimini kontrol ettin mi ✓", "weakNegative": "Eksik: TCMB net rezerv + swap stoku eğilimini kontrol ettin mi — Makro rehbere bak."}, "fx_try_q2": {"type": "yesno", "category": "sector", "prompt": "Türkiye reel faiz (Politika faizi − TÜFE) negatif mi pozitif mi?", "weight": 7, "scoreOn": "yes", "next": "fx_try_q3", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Türkiye reel faiz (Politika faizi − TÜFE) negatif mi pozitif mi ✓", "weakNegative": "Eksik: Türkiye reel faiz (Politika faizi − TÜFE) negatif mi pozitif mi — Makro rehbere bak."}, "fx_try_q3": {"type": "yesno", "category": "sector", "prompt": "Carry trade için swap noktaları (gecelik fonlama) ne kadar?", "weight": 6, "scoreOn": "yes", "next": "fx_try_q4", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Carry trade için swap noktaları (gecelik fonlama) ne kadar ✓", "weakNegative": "Eksik: Carry trade için swap noktaları (gecelik fonlama) ne kadar — Makro rehbere bak."}, "fx_try_q4": {"type": "yesno", "category": "sector", "prompt": "Karşı taraftaki yabancı para birimi (EUR, GBP) ana trendi nedir?", "weight": 5, "scoreOn": "yes", "next": "fx_try_q5", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Karşı taraftaki yabancı para birimi (EUR, GBP) ana trendi nedir ✓", "weakNegative": "Eksik: Karşı taraftaki yabancı para birimi (EUR, GBP) ana trendi nedir — Makro rehbere bak."}, "fx_try_q5": {"type": "yesno", "category": "sector", "prompt": "Bu paritenin spread'i, beklediğin hareketin %20'sinden az mı?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Bu paritenin spread'i, beklediğin hareketin %20'sinden az mı ✓", "weakNegative": "Eksik: Bu paritenin spread'i, beklediğin hareketin %20'sinden az mı — Makro rehbere bak."}, "fx_dollar_index_q1": {"type": "yesno", "category": "sector", "prompt": "Fed politika beklentisi son haftalarda nasıl değişti?", "weight": 8, "scoreOn": "yes", "next": "fx_dollar_index_q2", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: Fed politika beklentisi son haftalarda nasıl değişti ✓", "weakNegative": "Eksik: Fed politika beklentisi son haftalarda nasıl değişti — Makro rehbere bak."}, "fx_dollar_index_q2": {"type": "yesno", "category": "sector", "prompt": "ABD ekonomik verileri (NFP, CPI, ISM PMI) son seri nasıl?", "weight": 7, "scoreOn": "yes", "next": "fx_dollar_index_q3", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: ABD ekonomik verileri (NFP, CPI, ISM PMI) son seri nasıl ✓", "weakNegative": "Eksik: ABD ekonomik verileri (NFP, CPI, ISM PMI) son seri nasıl — Makro rehbere bak."}, "fx_dollar_index_q3": {"type": "yesno", "category": "sector", "prompt": "DXY 50g/200g MA'larına göre nerede?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "FX kontrol: DXY 50g/200g MA'larına göre nerede ✓", "weakNegative": "Eksik: DXY 50g/200g MA'larına göre nerede — Makro rehbere bak."}, "crypto_tier": {"type": "choice", "category": "context", "prompt": "Hangi tier kripto?", "options": [{"value": "tier1", "label": "Mavi Çip (BTC, ETH)", "next": "crypto_tier1_q1"}, {"value": "tier2", "label": "Top-10 Alt (SOL, XRP, BNB, ADA, AVAX, LINK, DOGE...)", "next": "crypto_tier2_q1"}, {"value": "tier3", "label": "Mid-Cap Sektörel (ARB, OP, ATOM, NEAR, SUI...)", "next": "crypto_tier3_q1"}, {"value": "tier4", "label": "Meme / Long-tail (PEPE, WIF, BONK, FLOKI...)", "next": "crypto_tier4_q1"}], "weight": 0}, "crypto_tier1_q1": {"type": "yesno", "category": "sector", "prompt": "BTC dominance trendine baktın mı? (yükseliyor = alt'lar zayıf, düşüyor = altseason)", "weight": 7, "scoreOn": "yes", "next": "crypto_tier1_q2", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: BTC dominance trendine baktın mı ✓", "weakNegative": "Eksik: BTC dominance trendine baktın mı"}, "crypto_tier1_q2": {"type": "yesno", "category": "sector", "prompt": "Spot ETF akışlarının yönüne baktın mı?", "weight": 6, "scoreOn": "yes", "next": "crypto_tier1_q3", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Spot ETF akışlarının yönüne baktın mı ✓", "weakNegative": "Eksik: Spot ETF akışlarının yönüne baktın mı"}, "crypto_tier1_q3": {"type": "yesno", "category": "sector", "prompt": "BTC halving döngüsünün hangi fazındayız — biliyor musun?", "weight": 4, "scoreOn": "yes", "next": "crypto_tier1_q4", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: BTC halving döngüsünün hangi fazındayız — biliyor musun ✓", "weakNegative": "Eksik: BTC halving döngüsünün hangi fazındayız — biliyor musun"}, "crypto_tier1_q4": {"type": "yesno", "category": "sector", "prompt": "Kripto piyasası tarihsel olarak Nasdaq ile yüksek korelasyon — küresel risk iştahını değerlendirdin mi?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Kripto piyasası tarihsel olarak Nasdaq ile yüksek korelasyon — küresel risk iştahını değerlendirdin mi ✓", "weakNegative": "Eksik: Kripto piyasası tarihsel olarak Nasdaq ile yüksek korelasyon — küresel risk iştahını değerlendirdin mi"}, "crypto_tier2_q1": {"type": "yesno", "category": "sector", "prompt": "BTC dominance düşüş trendinde mi? (alt'lar için pozitif ortam)", "weight": 6, "scoreOn": "yes", "next": "crypto_tier2_q2", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: BTC dominance düşüş trendinde mi ✓", "weakNegative": "Eksik: BTC dominance düşüş trendinde mi"}, "crypto_tier2_q2": {"type": "yesno", "category": "sector", "prompt": "Bu zincirin ekosistem TVL (total value locked) trendi nasıl?", "weight": 5, "scoreOn": "yes", "next": "crypto_tier2_q3", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Bu zincirin ekosistem TVL (total value locked) trendi nasıl ✓", "weakNegative": "Eksik: Bu zincirin ekosistem TVL (total value locked) trendi nasıl"}, "crypto_tier2_q3": {"type": "yesno", "category": "sector", "prompt": "Token unlock / vesting takvimi var mı yakın zamanda?", "weight": 6, "scoreOn": "yes", "next": "crypto_tier2_q4", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Token unlock / vesting takvimi var mı yakın zamanda ✓", "weakNegative": "Eksik: Token unlock / vesting takvimi var mı yakın zamanda"}, "crypto_tier2_q4": {"type": "yesno", "category": "sector", "prompt": "Spread + komisyon + slipaj, hedef hareketin %20'sinden az mı?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Spread + komisyon + slipaj, hedef hareketin %20'sinden az mı ✓", "weakNegative": "Eksik: Spread + komisyon + slipaj, hedef hareketin %20'sinden az mı"}, "crypto_tier3_q1": {"type": "yesno", "category": "sector", "prompt": "Token emisyonu (yıllık enflasyon) ne kadar — biliyor musun?", "weight": 7, "scoreOn": "yes", "next": "crypto_tier3_q2", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Token emisyonu (yıllık enflasyon) ne kadar — biliyor musun ✓", "weakNegative": "Eksik: Token emisyonu (yıllık enflasyon) ne kadar — biliyor musun"}, "crypto_tier3_q2": {"type": "yesno", "category": "sector", "prompt": "Ekip + early backer vesting takvimini biliyor musun?", "weight": 6, "scoreOn": "yes", "next": "crypto_tier3_q3", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Ekip + early backer vesting takvimini biliyor musun ✓", "weakNegative": "Eksik: Ekip + early backer vesting takvimini biliyor musun"}, "crypto_tier3_q3": {"type": "yesno", "category": "sector", "prompt": "Rakip protokoller bu sektörde aktif rotasyonda mı?", "weight": 5, "scoreOn": "yes", "next": "crypto_tier3_q4", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Rakip protokoller bu sektörde aktif rotasyonda mı ✓", "weakNegative": "Eksik: Rakip protokoller bu sektörde aktif rotasyonda mı"}, "crypto_tier3_q4": {"type": "yesno", "category": "sector", "prompt": "Likidite (24s hacim) pozisyon büyüklüğünün en az 50 katı mı?", "weight": 6, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kripto kontrol: Likidite (24s hacim) pozisyon büyüklüğünün en az 50 katı mı ✓", "weakNegative": "Eksik: Likidite (24s hacim) pozisyon büyüklüğünün en az 50 katı mı"}, "crypto_tier4_q1": {"type": "yesno", "category": "sector", "prompt": "Meme coin'lerin tarihsel beklenen değeri NEGATİFTİR. Bunu spekülatif eğlence bütçesi olarak mı görüyorsun?", "weight": 8, "scoreOn": "yes", "next": "crypto_tier4_q2", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Kripto kontrol: Meme coin'lerin tarihsel beklenen değeri NEGATİFTİR. Bunu spekülatif eğlence bütçesi olarak mı görüyorsun ✓", "weakNegative": "Eksik: Meme coin'lerin tarihsel beklenen değeri NEGATİFTİR. Bunu spekülatif eğlence bütçesi olarak mı görüyorsun"}, "crypto_tier4_q2": {"type": "yesno", "category": "sector", "prompt": "Likidite (24s hacim) pozisyon büyüklüğünün en az 100 katı mı?", "weight": 7, "scoreOn": "yes", "next": "crypto_tier4_q3", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Kripto kontrol: Likidite (24s hacim) pozisyon büyüklüğünün en az 100 katı mı ✓", "weakNegative": "Eksik: Likidite (24s hacim) pozisyon büyüklüğünün en az 100 katı mı"}, "crypto_tier4_q3": {"type": "yesno", "category": "sector", "prompt": "Rug-pull / token kontrolü kötüye kullanma riski farkında mısın?", "weight": 6, "scoreOn": "yes", "next": "crypto_tier4_q4", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Kripto kontrol: Rug-pull / token kontrolü kötüye kullanma riski farkında mısın ✓", "weakNegative": "Eksik: Rug-pull / token kontrolü kötüye kullanma riski farkında mısın"}, "crypto_tier4_q4": {"type": "yesno", "category": "sector", "prompt": "Pozisyonu kaybetmen hayatını/portföyünü etkilemiyor mu?", "weight": 5, "scoreOn": "yes", "next": "stop_loss", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Kripto kontrol: Pozisyonu kaybetmen hayatını/portföyünü etkilemiyor mu ✓", "weakNegative": "Eksik: Pozisyonu kaybetmen hayatını/portföyünü etkilemiyor mu"}, "stop_loss": {"id": "stop_loss", "type": "yesno", "category": "risk_mgmt", "prompt": "Stop-loss seviyen tanımlı mı?", "weight": 15, "scoreOn": "yes", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Stop-loss tanımlı — kayıp sınırlama disiplini var.", "weakNegative": "Stop-loss yok — pozisyon açmadan önce mutlaka belirle.", "tooltip": "Stop-loss'sun olmadığı işlem, en yaygın yatırımcı hatasıdır.", "next": "take_profit"}, "take_profit": {"id": "take_profit", "type": "yesno", "category": "risk_mgmt", "prompt": "Kar alma hedefin tanımlı mı?", "weight": 8, "scoreOn": "yes", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kar hedefi tanımlı — çıkış disiplini var.", "weakNegative": "Kar hedefi yok — kâra dönen pozisyonu kapatmak için kural belirle.", "next": "rr_ratio"}, "rr_ratio": {"id": "rr_ratio", "type": "yesno", "category": "risk_mgmt", "prompt": "Risk-reward oranın en az 1:2 mi? (1 birim risk, 2 birim potansiyel kazanç)", "weight": 10, "scoreOn": "yes", "showIf": {"take_profit": "yes"}, "edu": "/egitim/risk-metrikleri/", "strongPositive": "Risk-reward 1:2 üstünde — beklenen değer pozitife yakın.", "weakNegative": "Risk-reward 1:2 altında — uzun vadede pozitif EV elde etmek zordur.", "next": "position_size"}, "position_size": {"id": "position_size", "type": "yesno", "category": "risk_mgmt", "prompt": "Pozisyon büyüklüğü portföyünün %5'inden FAZLA mı?", "weight": 10, "scoreOn": "no", "edu": "/egitim/portfoy-optimizasyonu/", "strongPositive": "Pozisyon büyüklüğü makul (≤%5) — konsantrasyon riski kontrol altında.", "weakNegative": "Tek pozisyon portföyün >%5'i — konsantrasyon riski yüksek.", "next": "leverage"}, "leverage": {"id": "leverage", "type": "yesno", "category": "risk_mgmt", "prompt": "Kaldıraç kullanıyor musun?", "weight": 5, "scoreOn": "no", "edu": "/egitim/risk-metrikleri/", "strongPositive": "Kaldıraçsız işlem — likidasyon riski yok.", "weakNegative": "Kaldıraçlı işlem — likidasyon riski var. Stop-loss kritik.", "next": "horizon"}, "horizon": {"id": "horizon", "type": "yesno", "category": "behavioral", "prompt": "Bu pozisyonu ne kadar tutacağını net biliyor musun? (intraday / 1 hafta / 1 ay / uzun vade)", "weight": 5, "scoreOn": "yes", "strongPositive": "Tutma süresi tanımlı — uygulama disiplini sağlanır.", "weakNegative": "Tutma süresi belirsiz — çıkış kararı duyguya kalabilir.", "next": "emotional_state"}, "emotional_state": {"id": "emotional_state", "type": "choice", "category": "behavioral", "prompt": "Bu işlemi açarken duygusal durumun ne?", "options": [{"value": "planli", "label": "Planlı (önceden hazırlık yaptım)"}, {"value": "fomo", "label": "FOMO (kaçırma korkusu)"}, {"value": "intikam", "label": "İntikam (önceki zararı kapamak)"}, {"value": "sikinti", "label": "Sıkıntı / dürtüsel"}], "weight": 10, "scoreOn": "planli", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Planlı işlem — duygusal motorların kontrol altında.", "weakNegative": "Duygusal motor (FOMO/intikam/sıkıntı) — uzun vadede performansı en çok düşüren faktör.", "next": "prior_pnl"}, "prior_pnl": {"id": "prior_pnl", "type": "yesno", "category": "behavioral", "prompt": "Bu varlıkta önceki kâr/zarar geçmişin bu kararı etkiliyor mu?", "weight": 5, "scoreOn": "no", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Kararın geçmiş PnL'den bağımsız — anchor bias yok.", "weakNegative": "Geçmiş PnL kararı etkiliyor — 'kayıp aversiyonu' veya 'kazanma anchor'ı işin içinde.", "next": "written_thesis"}, "written_thesis": {"id": "written_thesis", "type": "yesno", "category": "behavioral", "prompt": "İşlem tezini bir cümleyle yazılı olarak ifade edebiliyor musun?", "weight": 5, "scoreOn": "yes", "edu": "/egitim/yatirimci-psikolojisi/", "strongPositive": "Yazılı tez var — gerekçe net.", "weakNegative": "Yazılı tez yok — 'içime böyle doğdu' kararlardan uzun vadede kaçınmak gerek.", "next": "news_calendar"}, "news_calendar": {"id": "news_calendar", "type": "yesno", "category": "macro", "prompt": "Bu hafta önemli veri/karar takvimine (FOMC, TCMB, NFP, TÜFE...) baktın mı?", "weight": 6, "scoreOn": "yes", "edu": "/egitim/makro-gostergeler-rehberi/", "strongPositive": "Veri takvimini kontrol ettin — sürpriz risk azaltıldı.", "weakNegative": "Veri takvimi kontrol edilmemiş — pozisyonun açılışında veri şoku riski var.", "next": null}}};
+  const QUESTIONS = QUESTIONS_DATA.questions;
+  const START_ID = QUESTIONS_DATA.start;
+
+  let state = {
+    currentId: START_ID,
+    answers: {},
+    history: [],  // visited question IDs (for back)
+  };
+
+  function shouldShow(q) {
+    if (!q.showIf) return true;
+    for (const [k, v] of Object.entries(q.showIf)) {
+      if (state.answers[k] !== v) return false;
+    }
+    return true;
+  }
+
+  function estimateTotalSteps() {
+    // ~22 ortalama
+    return 22;
+  }
+
+  function updateProgress(currentIdx, total) {
+    const fill = document.getElementById('pt-progress-fill');
+    const cur = document.getElementById('pt-progress-current');
+    const tot = document.getElementById('pt-progress-total');
+    const pct = total > 0 ? Math.round(currentIdx / total * 100) : 0;
+    fill.style.width = pct + '%';
+    cur.textContent = currentIdx;
+    tot.textContent = total;
+    document.getElementById('pt-progress').style.display = 'block';
+  }
+
+  function renderQuestion(qid) {
+    const q = QUESTIONS[qid];
+    if (!q) { renderResult(); return; }
+
+    // showIf skip
+    if (!shouldShow(q)) {
+      state.currentId = q.next;
+      renderQuestion(q.next);
+      return;
+    }
+
+    state.currentId = qid;
+    const container = document.getElementById('pt-question-container');
+
+    const tooltipHtml = q.tooltip ? `<div class="pt-tooltip">💡 ${q.tooltip}</div>` : '';
+    const eduHtml = q.edu ? `<a class="pt-edu-link" href="${q.edu}" target="_blank">📚 Konuyu öğren →</a>` : '';
+
+    let buttonsHtml = '';
+    if (q.type === 'yesno') {
+      buttonsHtml = `
+        <div class="pt-btn-group choice2">
+          <button class="pt-btn yes" data-answer="yes">Evet</button>
+          <button class="pt-btn no" data-answer="no">Hayır</button>
+        </div>
+      `;
+    } else if (q.type === 'choice' || q.type === 'info_choice') {
+      buttonsHtml = '<div class="pt-btn-group">';
+      for (const opt of q.options) {
+        buttonsHtml += `<button class="pt-btn" data-answer="${opt.value}" data-next="${opt.next || ''}">${opt.label}</button>`;
+      }
+      buttonsHtml += '</div>';
+    }
+
+    const backBtn = state.history.length > 0 ?
+      '<button class="pt-back-btn" id="pt-back">← Önceki soru</button>' : '';
+
+    container.innerHTML = `
+      <div class="pt-card">
+        <div class="pt-prompt">${q.prompt}</div>
+        ${tooltipHtml}
+        ${buttonsHtml}
+        <div style="margin-top:12px">${eduHtml}</div>
+        ${backBtn}
+      </div>
+    `;
+
+    // Button handlers
+    container.querySelectorAll('.pt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ans = btn.dataset.answer;
+        const customNext = btn.dataset.next;
+        state.answers[qid] = ans;
+        state.history.push(qid);
+        const nextId = customNext || q.next;
+        if (!nextId) {
+          renderResult();
+        } else {
+          updateProgress(state.history.length, estimateTotalSteps());
+          renderQuestion(nextId);
+          window.scrollTo({top:0, behavior:'smooth'});
+        }
+      });
+    });
+
+    // Back button
+    const backEl = document.getElementById('pt-back');
+    if (backEl) {
+      backEl.addEventListener('click', () => {
+        if (state.history.length === 0) return;
+        const prevId = state.history.pop();
+        delete state.answers[prevId];
+        updateProgress(Math.max(0, state.history.length), estimateTotalSteps());
+        renderQuestion(prevId);
+      });
+    }
+
+    updateProgress(state.history.length, estimateTotalSteps());
+  }
+
+  function calculateScore() {
+    let totals = { risk_mgmt: 0, sector: 0, behavioral: 0, macro: 0 };
+    let maxes  = { risk_mgmt: 0, sector: 0, behavioral: 0, macro: 0 };
+    let strong = [], weak = [];
+
+    for (const [qid, ans] of Object.entries(state.answers)) {
+      const q = QUESTIONS[qid];
+      if (!q || !q.weight || q.weight === 0) continue;
+      const cat = q.category;
+      if (!(cat in maxes)) continue;
+      maxes[cat] += q.weight;
+      if (ans === q.scoreOn) {
+        totals[cat] += q.weight;
+        if (q.strongPositive) strong.push({text: q.strongPositive, edu: q.edu});
+      } else {
+        if (q.weakNegative) weak.push({text: q.weakNegative, edu: q.edu});
+      }
+    }
+
+    const total = Object.values(totals).reduce((a,b) => a+b, 0);
+    const max = Object.values(maxes).reduce((a,b) => a+b, 0);
+    const score = max > 0 ? Math.round(total / max * 100) : 0;
+
+    const cats = {};
+    for (const k of Object.keys(maxes)) {
+      cats[k] = maxes[k] > 0 ? Math.round(totals[k] / maxes[k] * 100) : null;
+    }
+    return { score, cats, strong, weak };
+  }
+
+  function bandFor(score) {
+    if (score >= 80) return { cls: 'green', text: 'Disiplinli hazırlık. Önemli kontrolleri yapmışsın.' };
+    if (score >= 50) return { cls: 'yellow', text: 'Bazı kontroller eksik — aşağıdaki başlıklara dön.' };
+    return { cls: 'red', text: 'Hazırlık yetersiz. Pozisyon açmadan önce eksikleri tamamlamayı düşün.' };
+  }
+
+  function colorFor(pct) {
+    if (pct >= 80) return 'green';
+    if (pct >= 50) return 'yellow';
+    return 'red';
+  }
+
+  function gaugeSvg(score) {
+    const r = 80, cx = 100, cy = 100;
+    const circumference = 2 * Math.PI * r;
+    const arc = (score / 100) * 0.75 * circumference;  // 3/4 arc
+    const bgArc = 0.75 * circumference;
+    const color = score >= 80 ? '#4ade80' : (score >= 50 ? '#fbbf24' : '#f87171');
+    return `
+      <svg viewBox="0 0 200 200" style="width:100%;height:100%">
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#2a3340" stroke-width="14"
+                stroke-dasharray="${bgArc} ${circumference}" stroke-dashoffset="${circumference * 0.125}"
+                transform="rotate(135 ${cx} ${cy})" stroke-linecap="round" />
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="14"
+                stroke-dasharray="${arc} ${circumference}" stroke-dashoffset="${circumference * 0.125}"
+                transform="rotate(135 ${cx} ${cy})" stroke-linecap="round" />
+      </svg>
+    `;
+  }
+
+  function getBranchLabel() {
+    const ac = state.answers.asset_class;
+    if (ac === 'hisse') {
+      const sec = state.answers.hisse_sector;
+      const opt = QUESTIONS.hisse_sector.options.find(o => o.value === sec);
+      return 'Hisse / ' + (opt ? opt.label : '—');
+    } else if (ac === 'fx') {
+      const g = state.answers.fx_group;
+      const opt = QUESTIONS.fx_group.options.find(o => o.value === g);
+      return 'FX / ' + (opt ? opt.label.split(' ')[0] : '—');
+    } else if (ac === 'kripto') {
+      const t = state.answers.crypto_tier;
+      const opt = QUESTIONS.crypto_tier.options.find(o => o.value === t);
+      return 'Kripto / ' + (opt ? opt.label.split(' ')[0] : '—');
+    }
+    return '—';
+  }
+
+  function saveToHistory(score, cats) {
+    try {
+      const hist = JSON.parse(localStorage.getItem('pretrade:history') || '[]');
+      hist.unshift({
+        date: new Date().toISOString(),
+        label: getBranchLabel(),
+        score: score,
+        cats: cats,
+      });
+      localStorage.setItem('pretrade:history', JSON.stringify(hist.slice(0, 5)));
+    } catch (e) {
+      // localStorage erişim yoksa sessizce geç
+    }
+  }
+
+  function getHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('pretrade:history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    const months = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+    return `${d.getDate()} ${months[d.getMonth()]} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  }
+
+  function renderResult() {
+    document.getElementById('pt-progress').style.display = 'none';
+    document.getElementById('pt-question-container').style.display = 'none';
+    const c = document.getElementById('pt-result-container');
+    c.style.display = 'block';
+
+    const r = calculateScore();
+    saveToHistory(r.score, r.cats);
+    const band = bandFor(r.score);
+
+    const catLabels = {
+      risk_mgmt: '🛡️ Risk Yönetimi',
+      sector: '🎯 Sektör / Asset Bilinci',
+      behavioral: '🧠 Davranışsal',
+      macro: '🌐 Makro / Zaman',
+    };
+
+    let catsHtml = '';
+    for (const [key, label] of Object.entries(catLabels)) {
+      const pct = r.cats[key];
+      if (pct === null) continue;
+      const col = colorFor(pct);
+      catsHtml += `
+        <div class="pt-cat-row">
+          <div>
+            <div class="pt-cat-label">${label}</div>
+            <div class="pt-cat-bar">
+              <div class="pt-cat-bar-fill ${col}" style="width:${pct}%"></div>
+            </div>
+          </div>
+          <div class="pt-cat-val">${pct} / 100</div>
+        </div>
+      `;
+    }
+
+    let strongHtml = '';
+    if (r.strong.length > 0) {
+      strongHtml = '<h4>✅ Güçlü Tarafların</h4>';
+      for (const s of r.strong) {
+        strongHtml += `<div class="pt-bullet-item strong">${s.text}</div>`;
+      }
+    }
+
+    let weakHtml = '';
+    if (r.weak.length > 0) {
+      weakHtml = '<h4>⚠️ Eksik Bıraktıkların</h4>';
+      for (const w of r.weak) {
+        const eduLink = w.edu ? `<a href="${w.edu}" target="_blank">→ ilgili eğitim</a>` : '';
+        weakHtml += `<div class="pt-bullet-item weak">${w.text} ${eduLink}</div>`;
+      }
+    }
+
+    // History
+    const hist = getHistory().slice(1);  // ilk satır şu anki, atla
+    let histHtml = '';
+    if (hist.length > 0) {
+      histHtml = '<div class="pt-history"><h4>📜 Önceki Kontrollerin</h4>';
+      for (const h of hist) {
+        const c = colorFor(h.score);
+        histHtml += `<div class="pt-history-item">
+          <span>${formatDate(h.date)} · ${h.label}</span>
+          <span class="score" style="color:${c === 'green' ? '#4ade80' : c === 'yellow' ? '#fbbf24' : '#f87171'}">${h.score}/100</span>
+        </div>`;
+      }
+      histHtml += '</div>';
+    }
+
+    c.innerHTML = `
+      <div class="pt-card">
+        <h3 style="margin-top:0">📊 Hazırlık Skorun</h3>
+        <p class="muted" style="font-size:13px;line-height:1.5;margin-top:0">
+          ${getBranchLabel()}
+        </p>
+        <div class="pt-result-gauge">
+          ${gaugeSvg(r.score)}
+          <div class="pt-result-score">
+            <div class="pt-result-score-val">${r.score}</div>
+            <div class="pt-result-score-max">/ 100</div>
+          </div>
+        </div>
+        <div class="pt-result-band ${band.cls}">${band.text}</div>
+        <div class="pt-categories">${catsHtml}</div>
+        <div class="pt-bullets">
+          ${strongHtml}
+          ${weakHtml}
+        </div>
+        ${histHtml}
+        <div class="pt-disclaimer-top" style="margin-top:24px">
+          ⚠️ Hatırlatma: Bu skor, işlemin iyi/kötü olduğunu söylemez. Sadece senin
+          hazırlığını ölçer. Yatırım tavsiyesi değildir.
+        </div>
+        <div class="pt-cta-row">
+          <button class="pt-cta primary" id="pt-restart">↻ Tekrar Başla</button>
+          <a class="pt-cta secondary" href="/egitim/">📚 Eğitim Sayfalarına Git</a>
+        </div>
+      </div>
+    `;
+    document.getElementById('pt-restart').addEventListener('click', () => {
+      state = { currentId: START_ID, answers: {}, history: [] };
+      document.getElementById('pt-result-container').style.display = 'none';
+      document.getElementById('pt-question-container').style.display = 'block';
+      renderQuestion(START_ID);
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  // Başlat
+  renderQuestion(START_ID);
+})();
+</script>
+
+</main>
+<footer>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px">
+  <a href="/iletisim/" style="color:var(--muted);font-size:12px">📬 İletişim</a>
+  <a href="/gizlilik/" style="color:var(--muted);font-size:12px">🔒 Gizlilik Politikası</a>
+  <a href="/kullanim-sartlari/" style="color:var(--muted);font-size:12px">📜 Kullanım Şartları</a>
+  <a href="/hakkinda.html" style="color:var(--muted);font-size:12px">ℹ️ Hakkında</a>
+</div>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+Pusula Finans © 2026
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;
+     border-top:1px solid #2a3340;padding:16px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.4)">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:13px;line-height:1.5;color:#aab;flex:1;min-width:240px">
+      🍪 Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#3fa9f5">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#3fa9f5;color:#0f1419;border:0;
+            padding:8px 18px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'pusula-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+</body>
+</html>

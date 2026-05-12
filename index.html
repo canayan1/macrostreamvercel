@@ -120,7 +120,7 @@ footer strong { color: var(--yellow); }
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
   
 </header>
-<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/islem-kontrolu/">🧭 İşlem Kontrolü</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
 <!-- HERO -->
@@ -162,6 +162,68 @@ footer strong { color: var(--yellow); }
   <a href="/editor/2026-05-12-cerceve/" style="color:#fbbf24;font-size:13px;font-weight:500">Devamını oku →</a>
 </div>
 
+
+<!-- PRETRADE MINI WIDGET -->
+<div id="pt-mini" style="margin:24px 0 0;padding:20px 22px;background:linear-gradient(135deg,#1a2029 0%,#1f2a3a 100%);
+     border:1px solid var(--border);border-radius:10px">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+    <span style="background:#3fa9f5;color:#0f1419;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700">🧭 HIZLI KONTROL</span>
+    <span class="small muted">30 saniye</span>
+  </div>
+  <h3 style="margin:6px 0 6px;font-size:18px;color:var(--text);text-transform:none;letter-spacing:-0.01em">
+    Bir işlem açmadan önce: hazır mısın?
+  </h3>
+  <p class="muted small" style="margin:0 0 14px;line-height:1.5;max-width:560px">
+    3 evrensel disiplin sorusuyla hazırlık skorunu öğren. Yatırım tavsiyesi değil, kontrol listesi.
+  </p>
+  <div id="pt-mini-flow"></div>
+  <a href="/islem-kontrolu/" id="pt-mini-cta" style="display:inline-block;background:#3fa9f5;color:#0f1419;
+     padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;margin-top:8px">
+    🧭 Tam Kontrol Listesi (3 dakika)
+  </a>
+</div>
+<script>
+(function() {
+  const QS = [
+    {id:'mini_sl', q:'Stop-loss seviyen tanımlı mı?', scoreOn:'yes'},
+    {id:'mini_rr', q:'Risk-reward oranın en az 1:2 mi?', scoreOn:'yes'},
+    {id:'mini_ps', q:"Pozisyon büyüklüğü portföyünün %5'inden FAZLA mı?", scoreOn:'no'},
+  ];
+  let i = 0, ans = {};
+  function render() {
+    const el = document.getElementById('pt-mini-flow');
+    if (i >= QS.length) {
+      const sc = QS.filter(q => ans[q.id] === q.scoreOn).length;
+      const pct = Math.round(sc / QS.length * 100);
+      const color = pct >= 67 ? '#4ade80' : (pct >= 34 ? '#fbbf24' : '#f87171');
+      el.innerHTML = `<div style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(255,255,255,0.04);border-radius:8px;margin:8px 0 14px">
+        <div style="font-size:32px;font-weight:700;color:${color}">${pct}</div>
+        <div>
+          <div style="font-size:14px;color:var(--text)">Mini hazırlık skorun: ${sc}/${QS.length}</div>
+          <div class="muted small">Tam değerlendirme için 18+ soruluk kontrole git ↓</div>
+        </div>
+      </div>`;
+      return;
+    }
+    const q = QS[i];
+    el.innerHTML = `<div style="margin:8px 0 14px">
+      <div style="font-size:15px;color:var(--text);margin-bottom:10px">${i+1}. ${q.q}</div>
+      <button data-a="yes" style="background:var(--panel-2);color:var(--text);border:1px solid var(--border);
+        border-left:3px solid #4ade80;padding:10px 18px;border-radius:6px;cursor:pointer;margin-right:8px;font-size:14px">Evet</button>
+      <button data-a="no" style="background:var(--panel-2);color:var(--text);border:1px solid var(--border);
+        border-left:3px solid #f87171;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:14px">Hayır</button>
+    </div>`;
+    el.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => {
+        ans[q.id] = b.dataset.a;
+        i++;
+        render();
+      });
+    });
+  }
+  render();
+})();
+</script>
 
 <!-- SNAPSHOT -->
 <h3 style="margin:24px 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">
