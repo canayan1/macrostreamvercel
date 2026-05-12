@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli? — MakroStream</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">MakroStream</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli?</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">📚 Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Bir strateji backtest&#x27;te harika görünebilir; canlıya alınca berbat çalışabilir. İşte neden, nasıl yanlış yaparız ve nasıl korunuruz.</p>
+<div class="card" style="line-height:1.7;font-size:15px">
+<h2>Neden bu sayfa kritik?</h2>
+<p>Bu sitedeki tüm strateji sayfaları <strong>geçmiş veriyle test edilmiştir</strong>. Backtest'in sonuçları gerçek ama bu, stratejinin yarın da aynı şekilde çalışacağı anlamına gelmez. Aksi savunulan her şey <strong>dolandırıcılıktır</strong>.</p>
+<p>Bu sayfada backtest'in tipik tuzaklarını ve hangilerini bizim dikkatle önlediğimizi anlatıyoruz.</p>
+<h2>Tuzak 1: Lookahead Bias (İleri Bakış)</h2>
+<p><strong>Hata</strong>: Strateji bir günün kararını verirken, o günün kapanış fiyatını (veya sonraki günleri) görmüş gibi davranmak.</p>
+<p><strong>Örnek</strong>:</p>
+<pre><code>&quot;Bugün TÜFE açıklandı, %3 sürpriz. Bunu kullanarak bugünkü hisseyi alıyorum.&quot;
+</code></pre>
+<p>Ama TÜFE 10:00'da açıklanır, bizim "günlük kapanış" verimiz 18:00 fiyatı. Yani bilgi gerçekten 10:00'da elde edilmedi, akşam veriyle hesaplama yaptık.</p>
+<p><strong>Bizim önlemimiz</strong>: Strateji sinyali günde <strong>T</strong> üretir, pozisyon ertesi gün <strong>T+1</strong>'de açılır. Backtest engine bu kaydırmayı zorunlu yapar.</p>
+<h2>Tuzak 2: Survivorship Bias (Hayatta Kalan Yanlılığı)</h2>
+<p><strong>Hata</strong>: Bugünkü endekse bakıp "BIST 30 hisseleriyle test ettim" demek. Ama bugünkü BIST 30, geçmişteki BIST 30 değil — iflas edenler, çıkarılanlar yok.</p>
+<p><strong>Etkisi</strong>: Yıllık getiriyi yapay olarak <strong>%2-4 yüksek</strong> gösterir. Çünkü iflas eden hisseleri data setinizde yok.</p>
+<p><strong>Bizim önlemimiz</strong>: Şu an için BIST 30'un <strong>bugünkü</strong> kompozisyonunu kullanıyoruz — <em>bu önemli bir kısıt</em>. Profesyonel backtest için CRSP/Bloomberg gibi point-in-time verisi gerekir.</p>
+<h2>Tuzak 3: Overfitting (Aşırı Uyarlama)</h2>
+<p><strong>Hata</strong>: Bir stratejinin 50 parametresini geçmişe en iyi uydurmak. Mesela:</p>
+<pre><code>&quot;50g MA değil 47g MA daha iyi backtest verir, kullanalım.&quot;
+&quot;5 hisse değil 6 hisse daha iyi.&quot;
+&quot;6 ay momentum değil 7 ay daha iyi.&quot;
+</code></pre>
+<p>Her tweak ile geçmiş daha iyi görünür ama <strong>gelecek tahmin gücü azalır</strong>. Çünkü gürültüye uyum sağlıyorsunuz, sinyale değil.</p>
+<p><strong>Sağlık testi</strong>: Akademide kanıtlanmış, basit, yuvarlak parametreler kullan. <em>50g, 200g, RSI(14)</em> — bunlar literatürde standart. Onları değiştirme.</p>
+<p><strong>Bizim önlemimiz</strong>: Strateji parametreleri <strong>literatürden alındı</strong>:
+- Momentum: 6 ay = 126 işgünü (Jegadeesh-Titman standardı)
+- RSI: 14 gün (Wilder, 1978 standartı)
+- 52-hafta yüksek: 252 işgünü (TR'ye uyarlanmış)
+- Golden Cross: 50/200 gün</p>
+<p>Bir tek parametre bile literatür dışı değil.</p>
+<h2>Tuzak 4: Data-Snooping / Multiple Testing</h2>
+<p><strong>Hata</strong>: 100 strateji test ediyorsun, biri %25 yıllık getiri veriyor. "Buldum!" diyorsun. Aslında 100 stratejinin birinin şans eseri iyi görünmesi bekleniyor.</p>
+<p><strong>Sağlık testi</strong>: Çok büyük örneklem (&gt;15 yıl) + farklı pazarlarda <strong>aynı sonuç</strong> veriyor mu?</p>
+<p><strong>Bizim önlemimiz</strong>: 5 strateji test ediyoruz, hepsi akademide ayrı ayrı kanıtlanmış. Yeni bir kombinasyon icat etmiyoruz.</p>
+<h2>Tuzak 5: Transaction Cost &amp; Slippage'i İhmal</h2>
+<p><strong>Hata</strong>: Backtest'te işlem maliyeti %0 — gerçekte ise:
+- BIST komisyon: %0.05-0.10
+- BSMV (banka sigorta muamele vergisi): %5 komisyon üstüne
+- Slipaj (bid-ask, market impact): %0.05-0.30
+- <strong>Toplam round-trip</strong>: %0.15 - %0.50</p>
+<p>100 işlem/yıl yapan strateji, sadece maliyet ile <strong>yıllık %15-50 kayıp</strong> edebilir.</p>
+<p><strong>Bizim önlemimiz</strong>: Her trade için <strong>tek yön 10 bps (%0.10)</strong> maliyet hesaplıyoruz. Round-trip ≈ %0.20.</p>
+<h2>Tuzak 6: Likidite Hatası</h2>
+<p><strong>Hata</strong>: Backtest'te "USD 1M almak istedim, hemen aldım" varsayar. Gerçekte BIST 30'un alt-sıra hisselerinde günde 1M USD almak fiyatı <strong>%2-5 yukarı iter</strong>.</p>
+<p><strong>Sağlık testi</strong>: Stratejinin günlük işlem hacmini hisselerin %1-5'i ile sınırla.</p>
+<p><strong>Bizim önlemimiz</strong>: Backtest pozisyonları küçük (eşit ağırlık), evren büyük likit hisseler. Yine de gerçek getiriyi olduğundan iyimser tahmin ederiz.</p>
+<h2>Tuzak 7: Yapısal Değişim</h2>
+<p>Tarihsel veri 2014-2024'ü kapsıyor olabilir. Ama:
+- 2014-2018: Düşük enflasyon, görece istikrarlı politika
+- 2018: Kur şoku
+- 2020: COVID + sıfıra yakın rates
+- 2022-2024: Yüksek enflasyon, ortodoks olmayan politika</p>
+<p>Strateji 2015'te çalıştı, 2024'te de çalışacak diye bir kural yok. <strong>Rejim değişikliklerini</strong> dikkate al.</p>
+<p><strong>Bizim önlemimiz</strong>: Stratejilerin equity curve'lerini farklı dönemlere ayırıyoruz. Yıllık performansta hangi yılın iyi/kötü olduğu görünür.</p>
+<h2>Sağlam Backtest İçin Kurallar</h2>
+<ol>
+<li><strong>Out-of-sample test</strong> — verisinin son %20-30'unu dokunulmadan ayır, sadece sonunda test et</li>
+<li><strong>Walk-forward analysis</strong> — her N ay sonra parametreleri yeniden seç, sonraki M ay test et</li>
+<li><strong>Maliyet dahil</strong> — slipaj + komisyon + vergi</li>
+<li><strong>Birden çok pazar/dönem</strong> — aynı strateji ABD'de ve TR'de mi çalışıyor?</li>
+<li><strong>Yuvarlak parametreler</strong> — 14 gün, 50 gün gibi standart sayılar</li>
+<li><strong>Düşük frekanslı sinyal</strong> — aylık &gt; günlük (overfitting riski)</li>
+</ol>
+<h2>Backtest sonuçlarını okurken</h2>
+<p>Gördüğün rakamlar:</p>
+<table>
+<thead>
+<tr>
+<th>Metrik</th>
+<th>"İyi" eşik</th>
+<th>Dikkat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yıllık getiri (CAGR)</td>
+<td>&gt;%10 nominal</td>
+<td>Buy-and-hold ile karşılaştır</td>
+</tr>
+<tr>
+<td>Sharpe ratio</td>
+<td>&gt;1.0</td>
+<td>&gt;2.0 muhtemelen aşırı uyarlama</td>
+</tr>
+<tr>
+<td>Max drawdown</td>
+<td>&lt;%30</td>
+<td>&gt;%50 = pratikte uygulanamaz</td>
+</tr>
+<tr>
+<td>Calmar (CAGR/MDD)</td>
+<td>&gt;0.5</td>
+<td>&gt;1.0 mükemmel ama nadir</td>
+</tr>
+<tr>
+<td>Win rate</td>
+<td>%50-60</td>
+<td>Önemli değil — kazanç büyüklüğü daha kritik</td>
+</tr>
+</tbody>
+</table>
+<h2>Son söz</h2>
+<blockquote>
+<p>"All models are wrong, but some are useful." — George Box</p>
+</blockquote>
+<p>Bir backtest <strong>modeldir</strong>, gerçek değildir. <strong>Olası senaryolardan bir tanesini</strong> simüle eder. Geçmişte çalışan strateji geleceğin <strong>garantisi değil</strong> ama:</p>
+<ul>
+<li>Strateji geçmişte tutarsız → gelecekte de muhtemelen tutarsız</li>
+<li>Strateji geçmişte tutarlı → gelecekte tutarlı olma olasılığı <strong>daha yüksek</strong> ama garanti değil</li>
+</ul>
+<p>Backtest bir filtre olarak değerli; bir kehanet değil.</p>
+<hr />
+<p><strong>Bu sitede backtest disipliniyle yapılır:</strong>
+- Lookahead engellenir (T+1 pozisyon)
+- Maliyet dahil (10 bps tek yön)
+- Literatürden standart parametreler
+- 5 yıl tarihsel veri (BIST 30 + US 30)
+- Walk-forward ve out-of-sample testler — gelecek versiyonlarda eklenecek</p>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+MakroStream © 2026
+</footer>
+</body>
+</html>

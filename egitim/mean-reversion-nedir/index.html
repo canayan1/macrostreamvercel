@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mean Reversion (Ortalamaya Dönüş) nedir? — MakroStream</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">MakroStream</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Mean Reversion (Ortalamaya Dönüş) nedir?</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">📚 Mean Reversion (Ortalamaya Dönüş) nedir?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Fiyatların uzun vadede bir &quot;denge&quot; ortalamasına dönme eğilimi; aşırı satım/alım fırsatlarının arkasındaki temel mantık.</p>
+<div class="card" style="line-height:1.7;font-size:15px">
+<h2>Tanım</h2>
+<p><strong>Mean reversion</strong>, finansal piyasalarda varlık fiyatlarının kısa vadede uzun vadeli ortalamasından sapsa bile zamanla bu ortalamaya geri dönme eğilimini ifade eder. Momentum'un tersi bir gözlem: kısa vadede aşırı yükselen düşer, aşırı düşen yükselir.</p>
+<h2>İki tür mean reversion</h2>
+<ol>
+<li><strong>Kısa vadeli (gün-hafta)</strong>: Bir hisse 3-5 günde %15 düşmüşse, sonraki 1-2 haftada teknik toparlanma olasılığı yüksek. <em>Bu mean reversion'dur.</em></li>
+<li><strong>Uzun vadeli (yıllar)</strong>: Yüksek P/E hisseler düşük P/E'ye, düşük P/E hisseler yüksek P/E'ye dönme eğilimi. <em>Bu değer faktörüdür (Fama-French HML).</em></li>
+</ol>
+<h2>Akademik temel</h2>
+<p>İlk sistemik kanıt <strong>De Bondt &amp; Thaler (1985)</strong>'dan: son 3-5 yılda en kötü performans gösteren hisseler, sonraki 3-5 yılda en iyi performans gösterenleri yendi. Bu, "yatırımcı aşırı reaksiyonu" (overreaction) hipotezini destekledi.</p>
+<p>Kısa vadeli mean reversion için <strong>Lehmann (1990)</strong> ve <strong>Jegadeesh (1990)</strong> ABD'de 1-hafta'lık reversal etkisini gösterdi: bir önceki haftanın en kötü performans gösterenleri, gelecek hafta en iyi performans gösterdi.</p>
+<h2>Neden çalışıyor?</h2>
+<ul>
+<li><strong>Likidite şokları</strong>: Bir fonun büyük satışı geçici fiyat baskısı yaratır; pozisyon kapandığında fiyat toparlanır.</li>
+<li><strong>Yatırımcı duygusu</strong>: Kötü haber sonrası aşırı satış → kısa vadede "panik dibinde" alıcılar.</li>
+<li><strong>Mikro yapısal</strong>: Bid-ask sıçramaları, son işlem fiyatının kısa vadeli "ortalaması" etrafında titremesi.</li>
+</ul>
+<h2>RSI tabanlı uygulama</h2>
+<p>En popüler mean reversion stratejisi <strong>RSI (Relative Strength Index)</strong> kullanır:</p>
+<ul>
+<li><strong>RSI(14) &lt; 30</strong> → "aşırı satım" — al</li>
+<li><strong>RSI(14) &gt; 70</strong> → "aşırı alım" — sat</li>
+<li><strong>RSI(14) 50</strong> → nötr (genelde çıkış için kullanılır)</li>
+</ul>
+<p>RSI, son 14 günün kazanç/kayıp dengesinin oransal ifadesidir. 0-100 arası bir değer, 50 üstü = kazançlar baskın.</p>
+<p><strong>Avantajları:</strong> Basit, açık kural, hesap kolayı.
+<strong>Dezavantajları:</strong> Trend piyasalarında RSI uzun süre aşırı alımda kalır → "RSI satıştan al" tuzağa düşer.</p>
+<h2>Diğer mean reversion göstergeleri</h2>
+<ul>
+<li><strong>Bollinger Bands</strong>: Fiyat üst banttan dışarı çıktığında satış, alt banttan dışarı çıktığında alış sinyali. (20g MA ± 2 std)</li>
+<li><strong>Z-score</strong>: Hisse fiyatının N-günlük ortalamasından kaç std uzakta? |Z| &gt; 2 → aşırı sapma.</li>
+<li><strong>MACD divergence</strong>: Fiyat yeni dip yapar ama MACD önceki dipten yüksekse → reversal sinyali.</li>
+</ul>
+<h2>Riskler</h2>
+<p>Mean reversion'ın en bilinen tehlikesi <strong>trend piyasaları</strong>. Bir hisse %30 düştü ve RSI 25'te — strateji al der. Ama hisse iflasa gidiyor olabilir. Mean reversion stratejileri:</p>
+<ul>
+<li><strong>Trend filtresi</strong> ile birleştirilmeli: Hisse 200g MA üstündeyse uygula, altındaysa uygulama.</li>
+<li><strong>Stop-loss</strong> zorunlu: Tek bir hisse stratejiyi batırabilir.</li>
+<li><strong>Sektör/likidite filtresi</strong>: Sadece likit, büyük market cap hisselerde uygula.</li>
+</ul>
+<h2>"Düşen bıçağı yakalamak" sorunu</h2>
+<p>Mean reversion'ın halk arasında bilinen ifadesi budur. "Düşen bıçağı tutmak" — temellerinde bozulma olan hisseyi sadece teknik diptedir diye almak. Strateji:</p>
+<ol>
+<li>Sadece <strong>şeffaf, açık kural</strong> uygulayın (RSI, BB vs)</li>
+<li><strong>Tek hisseye konsantrasyondan kaçının</strong> — 5-10 hisseye dağıt</li>
+<li><strong>Trailing stop</strong> ya da maks holding süresi koy</li>
+<li><strong>Backtest'te slipaj ve maliyeti dahil et</strong></li>
+</ol>
+<h2>BIST'te mean reversion</h2>
+<p>BIST 30 gibi az hisseli, yüksek konsantrasyonlu evrende mean reversion biraz daha zayıf çalışır çünkü:
+- 30 hisselik evrende çeşitlilik sınırlı
+- Likidite dengesizlikleri büyük hisselerde daha az
+- Yüksek volatilite (TR'ye özgü) mean'i kendisi de oynak yapar</p>
+<p>Yine de <strong>RSI 30 altı + 200g MA üstü</strong> tarzı hibrit kurallar tarihsel olarak iyi sonuç verebilir.</p>
+<h2>Mean reversion vs. Momentum</h2>
+<p>İkisi de gerçek faktörlerdir — birbirini götüren değil, <strong>farklı zaman ufuklarında</strong> çalışan stratejilerdir:</p>
+<table>
+<thead>
+<tr>
+<th>Periyot</th>
+<th>Yön</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 hafta - 1 ay</td>
+<td>Mean reversion</td>
+</tr>
+<tr>
+<td>3 ay - 12 ay</td>
+<td>Momentum</td>
+</tr>
+<tr>
+<td>3 yıl +</td>
+<td>Mean reversion (değer faktörü)</td>
+</tr>
+</tbody>
+</table>
+<p>Profesyonel portföylerde her ikisi de bir arada kullanılır — çünkü farklı dönemlerde alpha üretirler.</p>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+MakroStream © 2026
+</footer>
+</body>
+</html>

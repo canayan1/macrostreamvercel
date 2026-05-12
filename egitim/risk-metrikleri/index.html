@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Risk Metrikleri — Sharpe, Max Drawdown, Sortino — MakroStream</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">MakroStream</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Risk Metrikleri — Sharpe, Max Drawdown, Sortino</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">📚 Risk Metrikleri — Sharpe, Max Drawdown, Sortino</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Bir stratejinin sadece &quot;ne kadar kazandı&quot;sı yetmez. Ne kadar acıyla kazandı? Risk-ayarlı performans nasıl ölçülür?</p>
+<div class="card" style="line-height:1.7;font-size:15px">
+<h2>Neden risk metrikleri?</h2>
+<p>Diyelim ki iki strateji:
+- <strong>A</strong>: Yıllık %15 getiri, ama en kötü 1 yılda -%50 düştü
+- <strong>B</strong>: Yıllık %12 getiri, en kötü 1 yılda -%15 düştü</p>
+<p>Hangisi daha iyi? Cevap kişisel değildir — <strong>B</strong> matematiksel olarak daha iyi çünkü daha az risk başına daha verimli kazanç üretir. Risk-ayarlı metrikler bunu sayısallaştırır.</p>
+<h2>Sharpe Ratio</h2>
+<p><strong>En yaygın risk-ayarlı performans metriği.</strong> William Sharpe (1966) tarafından tanımlandı.</p>
+<pre><code>Sharpe = (Strateji getirisi - Risksiz faiz) / Strateji standart sapması
+</code></pre>
+<p>Tipik olarak yıllıklandırılmış değerlerle hesaplanır. Risksiz faiz olarak ABD için 3-aylık T-bill, TR için TCMB politika faizi kullanılır (veya pratikte 0 alınır).</p>
+<h3>Yorumlama</h3>
+<table>
+<thead>
+<tr>
+<th>Sharpe</th>
+<th>Yorum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 0</td>
+<td>Strateji kayıp ediyor</td>
+</tr>
+<tr>
+<td>0 - 1</td>
+<td>Zayıf</td>
+</tr>
+<tr>
+<td>1 - 2</td>
+<td>İyi</td>
+</tr>
+<tr>
+<td>2 - 3</td>
+<td>Çok iyi</td>
+</tr>
+<tr>
+<td>&gt; 3</td>
+<td>Şüpheli (muhtemelen aşırı uyarlanmış veya kısa örneklem)</td>
+</tr>
+</tbody>
+</table>
+<p>S&amp;P 500'ün buy-and-hold uzun vadeli Sharpe'i ≈ <strong>0.4-0.6</strong>. Profesyonel hedge fonların hedefi ≈ <strong>0.8-1.5</strong>.</p>
+<h3>Eksiklikleri</h3>
+<p>Sharpe <strong>yukarı volatiliteyi de risk olarak sayar</strong> — ama kim yukarı volatiliteden şikayet eder? Bu yüzden Sortino daha mantıklı bir alternatif sunar.</p>
+<h2>Sortino Ratio</h2>
+<p>Sharpe'ın geliştirilmiş hali. Frank Sortino (1991).</p>
+<pre><code>Sortino = (Strateji getirisi - Risksiz faiz) / Negatif getirilerin standart sapması
+</code></pre>
+<p>Sadece <strong>kayıpların volatilitesini</strong> ceza olarak alır. Bir strateji büyük yukarı patlamalar yapıyorsa, bu Sharpe'i düşürür ama Sortino'yu etkilemez.</p>
+<h3>Yorumlama</h3>
+<p>Tipik olarak Sortino &gt; Sharpe (çünkü payda küçülür). 1.5+ iyi, 2.5+ çok iyi.</p>
+<h2>Max Drawdown (MDD)</h2>
+<p><strong>Bir stratejinin en yüksek tepe değerinden en düşük dip değerine kadar yüzde olarak düşüşü.</strong></p>
+<pre><code>Equity curve: 100 → 130 → 95
+Max DD = (95 / 130 - 1) × 100 = -27%
+</code></pre>
+<p>Bu, "stratejiyi kullanırken karşılaşacağın en kötü an" anlamına gelir.</p>
+<h3>Neden kritik?</h3>
+<p>İnsan psikolojisi büyük drawdown'lara dayanamaz. -%30 dahi büyük çoğunluk için "ben bu sistemi bırakıyorum" eşiğidir. -%50+ stratejiler <strong>gerçek hayatta uygulanamaz</strong>, sayılar ne kadar iyi görünürse görünsün.</p>
+<h3>Eşikler</h3>
+<table>
+<thead>
+<tr>
+<th>MDD</th>
+<th>Yorum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; %10</td>
+<td>Mükemmel (nadir, genelde kaldıraçlı hedge stratejileri)</td>
+</tr>
+<tr>
+<td>%10-20</td>
+<td>İyi</td>
+</tr>
+<tr>
+<td>%20-35</td>
+<td>Kabul edilebilir, çoğu strateji</td>
+</tr>
+<tr>
+<td>%35-50</td>
+<td>Yüksek — dikkatli ol</td>
+</tr>
+<tr>
+<td>&gt; %50</td>
+<td>Pratikte uygulanmaz</td>
+</tr>
+</tbody>
+</table>
+<p>S&amp;P 500'ün buy-and-hold MDD'si tarihsel olarak ≈ <strong>-%56</strong> (2007-09). BIST 100 ise yıllar boyunca <strong>-%70+</strong> drawdown'lar yaşadı.</p>
+<h2>Calmar Ratio</h2>
+<pre><code>Calmar = Yıllık getiri (CAGR) / |Max Drawdown|
+</code></pre>
+<p>Drawdown başına ne kadar yıllık getiri aldığını gösterir. Sharpe gibi ama "tipik risk" yerine "en kötü ana göre" hesaplar.</p>
+<h3>Yorumlama</h3>
+<table>
+<thead>
+<tr>
+<th>Calmar</th>
+<th>Yorum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 0.3</td>
+<td>Zayıf</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>Ortalama</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>Çok iyi</td>
+</tr>
+<tr>
+<td>&gt; 1.5</td>
+<td>Mükemmel (nadir)</td>
+</tr>
+</tbody>
+</table>
+<h2>Win Rate</h2>
+<p><strong>Kazanan işlem yüzdesi.</strong></p>
+<pre><code>Win Rate = Kazanan gün/işlem sayısı / Toplam gün/işlem sayısı
+</code></pre>
+<p><strong>Yanıltıcı olabilir</strong>: Bir strateji %80 win rate ile %20 kayıp olabilir, ama her kaybı 5x kazanç. Asıl önemli olan <strong>kazanç büyüklüğü × win rate</strong> kombinasyonu.</p>
+<h3>Beklenen değer formülü</h3>
+<pre><code>Expectancy = (Win Rate × Ortalama kazanç) - ((1 - Win Rate) × Ortalama kayıp)
+</code></pre>
+<p>Bir strateji %40 win rate'li olabilir ama her kazanç 3R, her kayıp 1R → Expectancy = 0.4×3 - 0.6×1 = <strong>+0.6R</strong> — kârlı.</p>
+<h2>Diğer önemli metrikler</h2>
+<h3>Volatility (Yıllık)</h3>
+<p>Günlük getirilerin standart sapması × √252.</p>
+<h3>Beta</h3>
+<p>Stratejinin piyasaya göre duyarlılığı. Beta = 1 → piyasa ile aynı. Beta = 0.5 → piyasa hareketinin yarısı.</p>
+<h3>Alpha (Jensen's Alpha)</h3>
+<p>Beta-ayarlı fazla getiri. Bir strateji piyasaya göre ekstra ne kazandırdı?</p>
+<h3>Profit Factor</h3>
+<pre><code>Profit Factor = Toplam kazanç / Toplam kayıp
+</code></pre>
+<blockquote>
+<p>1 → kârlı, &gt; 2 → güçlü, &gt; 3 → çok güçlü (nadir).</p>
+</blockquote>
+<h2>Backtest sonuçlarını okurken</h2>
+<p>Bir strateji sayfasında şu rakamları görüyorsan, şu sıralamayla bak:</p>
+<ol>
+<li><strong>Önce Max Drawdown</strong> — pratikte uygulanabilir mi?</li>
+<li><strong>Sonra CAGR</strong> — değer var mı?</li>
+<li><strong>Sonra Sharpe/Sortino</strong> — risk-ayarlı?</li>
+<li><strong>Sonra Calmar</strong> — drawdown başına getiri?</li>
+<li><strong>Win Rate / Profit Factor</strong> — distribuasyon dengeli mi?</li>
+</ol>
+<p>Tek bir metriğe bakma. Bir strateji yüksek CAGR + yüksek MDD ile çekici görünür ama gerçekte uygulanamaz.</p>
+<h2>Buy-and-Hold karşılaştırması</h2>
+<p>Bir strateji bu metriklerin <strong>hepsinde</strong> S&amp;P 500 / BIST 30 endeksinin buy-and-hold halinden iyi mi? Yoksa sadece bazılarında? Çoğunlukla aktif stratejiler:
+- <strong>Sharpe</strong>'i iyileştirir (volatiliteyi azaltır)
+- <strong>Max DD</strong>'yi azaltır
+- Ama <strong>CAGR</strong>'da endeksi yenmek zordur</p>
+<p>İyi bir strateji düşük volatilite + düşük drawdown ile <strong>endekse yakın getiri</strong> verir. Hedef genellikle "endeks gibi getir, yarısı kadar acı" olur.</p>
+<h2>Son söz</h2>
+<p>Bir strateji sayfasında 100 rakam görsen bile:</p>
+<blockquote>
+<p>"Şu strateji ben uygulamaya başlasam, en kötü ne kadar kaybım olur?"</p>
+</blockquote>
+<p>Cevap = <strong>Max Drawdown</strong>. Bu eşiği kaldırabiliyor musun, kaldıramıyor musun? Cevap "hayır" ise, getirinin %50 olması bile değersiz — çünkü uygulayamazsın.</p>
+<p>İyi yatırımcılar <strong>getiriyi maksimize etmez, risk-ayarlı getiriyi maksimize eder.</strong> Çünkü uygulanabilirlik kritiktir.</p>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+MakroStream © 2026
+</footer>
+</body>
+</html>

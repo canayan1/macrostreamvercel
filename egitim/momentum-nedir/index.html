@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum nedir? — MakroStream</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">MakroStream</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">📚 Momentum nedir?</h2>
+<p class="muted" style="font-size:15px;margin-bottom:20px">Son zamanlarda iyi performans göstermiş hisselerin yakın gelecekte de iyi performans gösterme eğilimi — ve bu basit gözlemin neden Jegadeesh-Titman&#x27;dan beri akademik araştırmanın merkezinde olduğu.</p>
+<div class="card" style="line-height:1.7;font-size:15px">
+<h2>Tanım</h2>
+<p><strong>Momentum</strong>, finansal piyasalarda son zamanlarda iyi (kötü) getiri veren varlıkların yakın gelecekte de göreceli olarak iyi (kötü) getiri verme eğilimini ifade eder. Bu, ortalamaya dönüş (mean reversion) hipoteziyle çelişen bir gözlemdir ve "neden kazananları kazanmaya, kaybedenleri kaybetmeye devam ediyor" sorusunun cevabıdır.</p>
+<h2>Akademik temel</h2>
+<p>İlk akademik kanıt <strong>Jegadeesh &amp; Titman (1993)</strong> çalışmasından gelir: ABD borsasında son 3-12 aylık getirisi en yüksek olan hisseleri 3-12 ay tutan stratejiler, riskten arındırılmış olarak pozitif getiri üretiyordu. Bu bulgu, <strong>Fama &amp; French</strong>'in 1993'teki üç-faktör modeline 1996'da <strong>momentum faktörünü</strong> (Carhart) eklemelerine yol açtı.</p>
+<p>Momentum, son 30 yılda dünyanın hemen her borsasında — gelişmiş ülkeler, gelişmekte olan piyasalar, hatta emtia ve döviz piyasaları — istatistiksel olarak anlamlı bulundu.</p>
+<h2>Neden çalışıyor?</h2>
+<p>Üç temel hipotez var:</p>
+<ol>
+<li><strong>Davranışsal</strong>: Yatırımcı <em>underreaction</em> — yeni bilgiyi tamamen fiyata yansıtması zaman alır. <em>Overconfidence + herding</em> — pozitif haber alındığında alımlar devam eder.</li>
+<li><strong>Risk-bazlı</strong>: Momentum, görünmez bir risk faktörünün getirisi olabilir. Ancak ampirik olarak Sharpe oranı yüksek ve riski açıklamak zor.</li>
+<li><strong>Yapısal</strong>: Indeks rebalansı, kazanan hisselere mekanik fon akışı, analist tavsiye güncellemeleri.</li>
+</ol>
+<h2>Tipik formülasyon</h2>
+<ul>
+<li><strong>Cross-sectional momentum</strong>: Tüm hisseleri son N ayda getirilerine göre sırala; en üstteki K hisseyi al, en alttaki K hisseyi sat (long-short) veya sadece üsttekileri tut (long-only).</li>
+<li><strong>Time-series momentum</strong>: Her hisseyi kendi geçmiş trendine bak. Trend pozitif → tut; negatif → cash.</li>
+</ul>
+<p>Tipik lookback periyodu: <strong>3-12 ay</strong>. Çok kısa (&lt;1 ay) mean-reversion'a yakalanır, çok uzun (&gt;2 yıl) momentum yerine değer faktörüne kayar.</p>
+<h2>Riskler — "Momentum Crash"</h2>
+<p>Momentum'un en bilinen zayıflığı <strong>kriz dönüşlerinde</strong> yaşanır. 2009 Mart-Mayıs, 2020 Mart-Nisan gibi V-şeklinde toparlanmalarda, momentum stratejisi "düşen bıçağı tutmamış" olduğu için yükselişi kaçırır. Bu dönemlerde 3-6 ay içinde stratejinin yıllık getirisinin önemli kısmı erir.</p>
+<p>Bunu yumuşatmanın yolları:
+- <strong>Volatility scaling</strong>: Yüksek volatilitede pozisyonu küçült
+- <strong>Risk-on/risk-off filter</strong>: Genel piyasa trend negatifken stratejiyi kapat
+- <strong>Mevsimsellik</strong>: Bazı momentum stratejileri Ocak ayında zayıflar (vergi etkileri)</p>
+<h2>BIST'te momentum</h2>
+<p>BIST için akademik çalışmalar (örn. Ülkü &amp; Karpoff, 2011) <strong>yüksek momentum primi</strong> raporlamıştır — gelişmekte olan piyasalarda yatırımcı duygusu daha güçlü olduğu için momentum daha güçlüdür. Ama dikkat:
+- BIST 30'da yalnız 30 hisse var, top 5 seçimi konsantrasyon riski yaratır
+- Yüksek volatilite/devalüasyon dönemlerinde tüm cross-sectional faktörler zayıflar
+- İşlem maliyeti TR'de daha yüksek (BSMV, vb.)</p>
+<h2>Pratik uygulama notları</h2>
+<p>Momentum'u kendi başınıza uygulamak isterseniz:
+- <strong>Aylık rebalance</strong> yeterli, daha sık gereksiz
+- <strong>Top 5-10 hisse</strong> tipik konsantrasyon
+- <strong>Eşit ağırlık</strong> çoğu zaman market-cap ağırlığından iyi sonuç verir
+- <strong>Trailing stop kullanmayın</strong> momentum stratejisinde — kuralı bozar
+- <strong>Maliyet hesabını ekleyin</strong> — backtest'inizde slipaj + komisyon dahil olsun</p>
+<h2>İlgili kavramlar</h2>
+<ul>
+<li><strong>Carhart 4-faktör model</strong>: Piyasa, büyüklük, değer, momentum</li>
+<li><strong>AQR Capital</strong>: Momentum'u en sistemli uygulayan kurumsal fonlardan</li>
+<li><strong>Reversal</strong>: Çok kısa vadeli (1 hafta - 1 ay) momentum tersine döner — bu mean reversion'dur.</li>
+</ul>
+</div>
+<div class="card" style="margin-top:24px;background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    📝 <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez.
+    Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+MakroStream © 2026
+</footer>
+</body>
+</html>

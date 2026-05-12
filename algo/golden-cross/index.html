@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Cross — MakroStream</title>
+<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<style>:root {
+  --bg: #0f1419;
+  --panel: #1a2029;
+  --panel-2: #232a36;
+  --text: #e5ebf2;
+  --muted: #8896a6;
+  --accent: #3fa9f5;
+  --green: #4ade80;
+  --red: #f87171;
+  --yellow: #fbbf24;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+.disclaimer-banner {
+  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
+  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+}
+header.brand {
+  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+}
+header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
+header.brand .tagline { color: var(--muted); font-size: 14px; }
+header.brand a { color: inherit; text-decoration: none; }
+nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+nav.tabs a {
+  display: inline-block; padding: 14px 4px; color: var(--muted);
+  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+}
+nav.tabs a:hover { color: var(--text); }
+nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 18px;
+}
+.card.featured { border-left: 3px solid var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--yellow); }
+table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.grid th { color: var(--muted); font-weight: 500; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--panel-2); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.flag.green { color: var(--green); border-color: #1f5933; }
+.flag.red { color: var(--red); border-color: #5e2424; }
+.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.commentary {
+  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
+  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+}
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
+footer {
+  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
+  color: var(--muted); font-size: 12px; line-height: 1.6;
+}
+footer strong { color: var(--yellow); }
+@media (max-width: 640px) {
+  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
+  nav.tabs { gap: 12px; overflow-x: auto; }
+  main { padding: 20px 14px 40px; }
+}</style>
+</head>
+<body>
+<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
+<header class="brand">
+  <h1><a href="/">MakroStream</a></h1>
+  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Strateji Laboratuvarı › Golden Cross</div>
+</header>
+<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<main>
+
+<h2 style="margin-top:0">🧪 Golden Cross</h2>
+<p style="font-size:15px;margin-bottom:10px">50g ortalaması 200g üstündeyse al; aksi halde nakit.</p>
+<p class="muted small">Evren: BIST 30</p>
+
+<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    ⚠️ <strong>Yatırım tavsiyesi DEĞİLDİR.</strong> Bu strateji ve içerik araştırma ve eğitim
+    amaçlıdır. Backtest geçmiş veriyle simülasyondur; gelecek için garanti vermez.
+    Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.
+  </p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px">
+  
+<div class="card">
+  <h3>⚙️ Kurallar (Şeffaf)</h3>
+  <ul style="line-height:1.7;padding-left:18px;margin:0"><li>Her ay sonu kontrol: hangi hisseler MA50 &gt; MA200?</li><li>Şart sağlayan tüm hisseleri eşit ağırlıkta tut</li><li>Şart bozulursa o hisseden çık</li><li>İşlem maliyeti: 10 bps</li></ul>
+</div>
+
+  
+<div class="card">
+  <h3>📈 Equity Curve (Backtest)</h3>
+  <p class="small muted">Strateji 1 TL ile başlasaydı zaman içinde nasıl büyürdü?</p>
+  <img src="equity.png" alt="Golden Cross equity curve"
+       style="max-width:100%;height:auto;border-radius:6px;background:#1a2029" />
+</div>
+
+  
+<div class="card">
+  <h3>📊 Performans Metrikleri</h3>
+  <div class="kv" style="grid-template-columns:1fr auto;gap:8px 24px">
+    <span class="k">Toplam Getiri</span><span class="v"><span class="pos">+153.70%</span></span>
+    <span class="k">CAGR (yıllık)</span><span class="v"><span class="pos">+25.69%</span></span>
+    <span class="k">Yıllık Volatilite</span><span class="v">28.15%</span>
+    <span class="k">Sharpe</span><span class="v">0.91</span>
+    <span class="k">Sortino</span><span class="v">1.27</span>
+    <span class="k">Max Drawdown</span><span class="v"><span class="neg">-32.59%</span></span>
+    <span class="k">Calmar</span><span class="v">0.79</span>
+    <span class="k">Win Rate (günlük)</span><span class="v">40.3%</span>
+    <span class="k">En İyi Gün</span><span class="v"><span class="pos">+18.50%</span></span>
+    <span class="k">En Kötü Gün</span><span class="v"><span class="neg">-9.04%</span></span>
+    <span class="k">Backtest Periyodu</span><span class="v"><span class="muted small">2022-04-04 → 2026-05-11</span></span>
+    <span class="k">Gözlem Sayısı</span><span class="v">1026</span>
+  </div>
+</div>
+
+  
+<div class="card">
+  <h3>📅 Yıllık Getiri</h3>
+  <table class="grid">
+    <thead><tr><th class="l">Yıl</th><th>Getiri</th></tr></thead>
+    <tbody><tr><td class="l">2022</td><td class="">+0.00%</td></tr><tr><td class="l">2023</td><td class="pos">+56.00%</td></tr><tr><td class="l">2024</td><td class="pos">+25.89%</td></tr><tr><td class="l">2025</td><td class="pos">+0.23%</td></tr><tr><td class="l">2026</td><td class="pos">+28.89%</td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="card">
+  <h3>🎯 Bugünkü Sepet (23 hisse)</h3>
+  <p class="small muted" style="margin:0 0 10px">
+    Son rebalance: 2026-05-11.
+    <strong>Bu, "şunu al/sat" tavsiyesi DEĞİLDİR</strong> — strateji kuralları gereği
+    bugün stratejide bu hisseler tutulur. Kuralları sayfanın yukarısında görebilirsin.
+  </p>
+  <table class="grid">
+    <thead><tr><th class="l">Hisse</th><th>Ağırlık</th></tr></thead>
+    <tbody><tr><td class="l"><strong>Akbank</strong> <span class="muted small">AKBNK.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Odaş Elektrik</strong> <span class="muted small">ODAS.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>VakıfBank</strong> <span class="muted small">VAKBN.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Tüpraş</strong> <span class="muted small">TUPRS.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Tofaş Oto</strong> <span class="muted small">TOASO.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Türk Hava Yolları</strong> <span class="muted small">THYAO.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Turkcell</strong> <span class="muted small">TCELL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>TAV Havalimanları</strong> <span class="muted small">TAVHL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Şişe Cam</strong> <span class="muted small">SISE.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Sabancı Holding</strong> <span class="muted small">SAHOL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Petkim</strong> <span class="muted small">PETKM.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Migros</strong> <span class="muted small">MGROS.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Aselsan</strong> <span class="muted small">ASELS.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Kardemir (D)</strong> <span class="muted small">KRDMD.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Koç Holding</strong> <span class="muted small">KCHOL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>İş Bankası (C)</strong> <span class="muted small">ISCTR.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Ford Otosan</strong> <span class="muted small">FROTO.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Ereğli Demir Çelik</strong> <span class="muted small">EREGL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Enka İnşaat</strong> <span class="muted small">ENKAI.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Emlak Konut GYO</strong> <span class="muted small">EKGYO.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Doğan Holding</strong> <span class="muted small">DOHOL.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>BİM Mağazalar</strong> <span class="muted small">BIMAS.IS</span></td><td>4.3%</td></tr><tr><td class="l"><strong>Yapı Kredi</strong> <span class="muted small">YKBNK.IS</span></td><td>4.3%</td></tr></tbody>
+  </table>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px">
+  <h3>📖 Açıklama</h3>
+  <p style="line-height:1.7;font-size:15px">Klasik trend-takip stratejisi. 50 günlük basit hareketli ortalama 200 günlük ortalamanın üstüne çıkan (&#x27;Golden Cross&#x27;) hisseler eşit ağırlıkla tutulur. Bu durum bozulduğunda pozisyon kapanır. Uzun trendleri yakalayan ama whipsaw&#x27;larda iz bırakan bir yapıdadır. Mekanik, duygusuz, herkesin uygulayabileceği bir kural.</p>
+</div>
+
+<p style="margin-top:20px"><a href="/algo/" style="color:var(--accent)">← Tüm stratejiler</a></p>
+
+</main>
+<footer>
+<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
+Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
+Otomatik üretim — son güncelleme: 2026-05-12.<br>
+MakroStream © 2026
+</footer>
+</body>
+</html>
