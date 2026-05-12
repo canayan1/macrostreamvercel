@@ -28,109 +28,360 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Arçelik — 2026-05-12 — Pusula Finans", "description": "Arçelik (ARCLK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 + US 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.", "url": "https://macrostreamvercel.vercel.app/reports/hisse/2026-05-12/", "datePublished": "2026-05-12", "dateModified": "2026-05-12", "author": {"@type": "Person", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app"}, "publisher": {"@type": "Organization", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app", "logo": {"@type": "ImageObject", "url": "https://macrostreamvercel.vercel.app/og-default.png"}}, "image": "https://macrostreamvercel.vercel.app/og-default.png", "inLanguage": "tr", "keywords": "Arçelik, ARCLK.IS, BIST 30, teknik analiz, RSI, hareketli ortalama, günlük bülten, borsa"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana sayfa", "item": "https://macrostreamvercel.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Hisse Senedi", "item": "https://macrostreamvercel.vercel.app/arsiv.html"}, {"@type": "ListItem", "position": 3, "name": "Arçelik 2026-05-12", "item": "https://macrostreamvercel.vercel.app/reports/hisse/2026-05-12/"}]}</script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root {
-  --bg: #0f1419;
-  --panel: #1a2029;
-  --panel-2: #232a36;
-  --text: #e5ebf2;
-  --muted: #8896a6;
-  --accent: #3fa9f5;
+  --bg: #0a0a0a;
+  --bg-1: #0d0c0a;
+  --surface: #121110;
+  --surface-2: #191714;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
   --green: #4ade80;
-  --red: #f87171;
-  --yellow: #fbbf24;
-  --border: #2a3340;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.04);
 }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; line-height: 1.5;
+  font-feature-settings: 'tnum', 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
 body {
-  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.55;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
-.disclaimer-banner {
-  background: #3a2a0a; color: #fbbf24; padding: 10px 20px;
-  font-size: 13px; text-align: center; border-bottom: 1px solid #5a4419;
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
 }
-header.brand {
-  padding: 24px 20px 16px; border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, #1a2029 0%, #0f1419 100%);
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
 }
-header.brand h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.02em; }
-header.brand .tagline { color: var(--muted); font-size: 14px; }
-header.brand a { color: inherit; text-decoration: none; }
-nav.tabs { padding: 0 20px; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
-nav.tabs a {
-  display: inline-block; padding: 14px 4px; color: var(--muted);
-  text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px;
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
 }
-nav.tabs a:hover { color: var(--text); }
-nav.tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
-main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
-h3 { font-size: 16px; margin: 20px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
-  padding: 18px 20px; margin-bottom: 18px;
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
 }
-.card.featured { border-left: 3px solid var(--accent); }
-.muted { color: var(--muted); }
-.small { font-size: 13px; }
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.warn { color: var(--yellow); }
-table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
-table.grid th, table.grid td {
-  text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
   white-space: nowrap;
 }
-table.grid th { color: var(--muted); font-weight: 500; }
-table.grid td.l, table.grid th.l { text-align: left; }
-table.grid tbody tr:hover { background: var(--panel-2); }
-.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 14px; }
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 32px;
+}
+.fkey {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .06em;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--accent); font-weight: 700; font-size: 10px; letter-spacing: .04em; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; }
+h1 { font-size: 24px; font-weight: 500; letter-spacing: -.01em; margin-bottom: 14px; color: var(--text); }
+h2 { font-size: 18px; font-weight: 600; letter-spacing: -.005em; margin: 26px 0 12px; color: var(--text); }
+h3 { font-size: 14px; font-weight: 600; letter-spacing: .04em; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
 .kv .k { color: var(--muted); }
-.kv .v { text-align: right; }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
 .flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .flag {
-  display: inline-block; padding: 3px 10px; border-radius: 999px;
-  font-size: 11px; background: var(--panel-2); color: var(--muted);
-  border: 1px solid var(--border);
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
 }
-.flag.green { color: var(--green); border-color: #1f5933; }
-.flag.red { color: var(--red); border-color: #5e2424; }
-.flag.yellow { color: var(--yellow); border-color: #5a4419; }
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
 .commentary {
-  background: var(--panel-2); border-radius: 6px; padding: 14px 18px;
-  font-size: 15px; margin-top: 12px; border-left: 2px solid var(--accent);
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
 }
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
 .report-list { list-style: none; padding: 0; margin: 0; }
-.report-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
-.report-list li:last-child { border-bottom: 0; }
-.report-list a { color: var(--text); text-decoration: none; font-weight: 500; }
-.report-list a:hover { color: var(--accent); }
-.report-list .date { color: var(--muted); font-size: 13px; margin-right: 14px; }
-footer {
-  border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 20px;
-  color: var(--muted); font-size: 12px; line-height: 1.6;
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
 }
-footer strong { color: var(--yellow); }
-@media (max-width: 640px) {
-  table.grid th, table.grid td { padding: 6px 6px; font-size: 12px; }
-  nav.tabs { gap: 12px; overflow-x: auto; }
-  main { padding: 20px 14px 40px; }
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .cmd-stat:not(:first-child) { display: none; }
+  .wrap, main { padding: 14px 14px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; }
+}
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
 }</style>
 </head>
 <body>
-<div class="disclaimer-banner">⚠️ Bu içerik yatırım tavsiyesi DEĞİLDİR. Eğitim ve bilgi amaçlıdır. Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.</div>
-<header class="brand">
-  <h1><a href="/">Pusula Finans</a></h1>
-  <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Hisse Senedi › 2026-05-12</div>
-</header>
-<nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">P</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev">›</span><input placeholder="arama: hisse, sektör veya komut · ör. ARCLK, sektor:bankacilik, /makro" /><span class="kbd">⌘ K</span></div><div class="cmd-status"><div class="cmd-stat"><span class="dot"></span><span><span class="lbl">CANLI</span> &nbsp; YFin · TCMB · FRED</span></div><div class="cmd-stat"><span class="lbl">SON</span> 2026-05-12 · 22:48 TR</div></div></div><div class="fkeys"><a class="fkey" href="/"><span class="k">F1</span> ANA SAYFA</a><a class="fkey" href="/arsiv.html"><span class="k">F2</span> BÜLTEN</a><a class="fkey" href="/algo/"><span class="k">F3</span> STRATEJİ</a><a class="fkey" href="/islem-kontrolu/"><span class="k">F4</span> İŞLEM KONTROLÜ</a><a class="fkey" href="/reports/pulse/2026-05-12/"><span class="k">F5</span> PULSE</a><a class="fkey" href="/editor/"><span class="k">F6</span> EDİTÖR</a><a class="fkey" href="/egitim/"><span class="k">F7</span> EĞİTİM</a><a class="fkey" href="/hakkinda.html"><span class="k">F8</span> HAKKINDA</a></div>
+<div class="disclaimer-banner"><b>⚠ Çerçeve</b> · Bu içerik <b>yatırım tavsiyesi değildir</b> — eğitim ve sistematik araştırma. SPK çizgisinde, otomatik üretim.</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Hisse Senedi › 2026-05-12</div>
 <main>
 
-<h2>📅 Arçelik — 2026-05-12 Günlük Bülten</h2>
-<p class="muted">BIST 30 ve seçili US 30 evrenleri üzerinde teknik tarama. Otomatik üretilmiştir.</p>
+<div class="wrap">
+
+  
+<div class="panel" style="display:grid;grid-template-columns:auto 1fr auto;gap:0;margin-bottom:18px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)"></div>
+  <div style="padding:22px 26px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;min-width:280px">
+    <div style="font-family:'Geist Mono';font-size:32px;font-weight:600;letter-spacing:-.01em;color:var(--text);line-height:1">ARCLK</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px;letter-spacing:.02em">Arçelik</div>
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <span class="pill am">◇ NÖTR</span>
+      <span class="pill am">◇ MERCEK ALTI</span>
+      <span class="pill">BIST</span>
+    </div>
+  </div>
+  <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <div style="font-family:'Geist Mono';font-size:46px;font-weight:600;letter-spacing:-.02em;color:var(--text);line-height:1">116.40</div>
+      <div style="display:flex;flex-direction:column;gap:2px;font-family:'Geist Mono'">
+        <div class="up" style="font-size:14px;font-weight:600">+2.24</div>
+        <div class="up" style="font-size:12px">1.93%</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:18px;margin-top:14px;color:var(--muted);font-size:11px;flex-wrap:wrap">
+      <span>50-DMA<b style="color:var(--text);font-weight:500;font-family:'Geist Mono';margin-left:6px">113.36</b></span>
+      <span>200-DMA<b style="color:var(--text);font-weight:500;font-family:'Geist Mono';margin-left:6px">117.29</b></span>
+      <span>RSI(14)<b style="color:var(--text);font-weight:500;font-family:'Geist Mono';margin-left:6px">54.7</b></span>
+      <span>52H<b style="color:var(--text);font-weight:500;font-family:'Geist Mono';margin-left:6px">145.80</b></span>
+      <span>52L<b style="color:var(--text);font-weight:500;font-family:'Geist Mono';margin-left:6px">101.00</b></span>
+    </div>
+  </div>
+  <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:200px">
+    <a class="btn btn-primary" href="/algo/">▸ STRATEJİDE GÖR</a>
+    <a class="btn" href="/egitim/momentum-nedir/">EĞİTİM: TREND</a>
+    <a class="btn" href="/arsiv.html">ARŞİV ↗</a>
+  </div>
+</div>
+
+  
+<div style="display:flex;align-items:center;gap:18px;padding:14px 18px;background:linear-gradient(180deg,#1c1813 0%,#13110e 100%);border:1px solid var(--border-2);margin-bottom:18px">
+  <span style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700">▸ PRE-TRADE</span>
+  <span style="font-size:13px;color:var(--text);flex:1">Bu hisseyi işleme almadan önce: <b style="color:var(--text)">planına uyuyor mu, risk-getiri makul mü?</b></span>
+  <div style="display:flex;gap:8px">
+    <a href="/islem-kontrolu/" class="pill on" style="padding:6px 14px;font-size:11px">CLEAR</a>
+    <a href="/islem-kontrolu/" class="pill am" style="padding:6px 14px;font-size:11px">CAUTION</a>
+    <a href="/islem-kontrolu/" class="pill off" style="padding:6px 14px;font-size:11px">RECONSIDER</a>
+  </div>
+</div>
 
 
+  <!-- CHART + LEVELS -->
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-bottom:18px">
+    
+<div class="panel" style="grid-column:span 8">
+  <div class="panel-h">
+    <span class="ttl">▣ ARCLK · GÜNLÜK GRAFİK</span>
+    <span class="meta"><span>OHLC · EMA(20,50,200)</span></span>
+  </div>
+  <div class="panel-body" style="padding:14px">
+    <div style="background:var(--bg-1);padding:14px;border:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;letter-spacing:.08em">
+        ⓘ Detaylı grafik · TradingView veya broker terminalinde ARCLK sembolünü kullanın
+      </div>
+      <div class="kv" style="gap:8px 16px;font-size:12.5px">
+        <span class="k">Son kapanış</span><span class="v num">116.40</span>
+        <span class="k">Günlük değişim</span><span class="v up">1.93%</span>
+        <span class="k">5 gün</span><span class="v pos">5.82%</span>
+        <span class="k">30 gün</span><span class="v pos">4.02%</span>
+        <span class="k">YTD</span><span class="v pos">10.96%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div class="panel" style="grid-column:span 4">
+  <div class="panel-h"><span class="ttl">▣ TEKNİK SEVİYELER</span><span class="meta">günlük</span></div>
+  <div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--red)"></span>R2 / 52H zirve</span><span style="font-family:'Geist Mono';color:var(--text);">145.80<span style="color:var(--muted);font-size:10.5px;margin-left:6px">-20.16%</span></span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--red)"></span>R1 / Yakın direnç</span><span style="font-family:'Geist Mono';color:var(--text);">119.31<span style="color:var(--muted);font-size:10.5px;margin-left:6px">2.50%</span></span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;background:rgba(255,166,48,.06)"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--accent)"></span>FİYAT (Şu an)</span><span style="font-family:'Geist Mono';color:var(--accent);font-weight:600">116.40</span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--green)"></span>S1 / 50-DMA</span><span style="font-family:'Geist Mono';color:var(--text);">113.36<span style="color:var(--muted);font-size:10.5px;margin-left:6px">-2.61%</span></span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--green)"></span>S2 / 200-DMA</span><span style="font-family:'Geist Mono';color:var(--text);">117.29<span style="color:var(--muted);font-size:10.5px;margin-left:6px">0.76%</span></span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px;"><span style="display:flex;align-items:center;gap:10px;color:var(--text-dim)"><span style="width:8px;height:2px;background:var(--green)"></span>S3 / 52H dip</span><span style="font-family:'Geist Mono';color:var(--text);">101.00<span style="color:var(--muted);font-size:10.5px;margin-left:6px">15.25%</span></span></div></div>
+  <div class="panel-h" style="border-bottom:0;border-top:1px solid var(--border);margin-top:auto">
+    <span class="ttl">▣ MOMENTUM</span>
+  </div>
+  <div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="color:var(--text-dim)">RSI(14)</span><span style="font-family:'Geist Mono';color:var(--text)">54.7 <span class="neu" style="font-size:10.5px;margin-left:6px">Nötr</span></span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="color:var(--text-dim)">Hacim / Ort.</span><span style="font-family:'Geist Mono'" class="neu">0.95x</span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;font-size:12px"><span style="color:var(--text-dim)">Golden Cross</span><span style="font-family:'Geist Mono';color:var(--muted)">Pasif</span></div></div>
+</div>
+
+  </div>
+
+  <!-- WHAT CHANGED + REGIME -->
+  <div style="margin-bottom:18px">
 <div style="background:#1f3528; border-left:4px solid #4ade80; padding:14px 18px;
             margin:18px 0; border-radius:6px">
   <div style="display:flex;align-items:center;gap:10px">
@@ -143,104 +394,128 @@ footer strong { color: var(--yellow); }
   <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">BIST 50-DMA üstü: <strong style="color:#e5ebf2">89%</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">US 50-DMA üstü: <strong style="color:#e5ebf2">63%</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">BIST günlük ortalama: <strong style="color:#e5ebf2">+0.45%</strong></span></div>
 </div>
 
-
 <div class="card" style="border-left:3px solid #fbbf24; background:#2a2410">
   <h3 style="margin-top:0;color:#fbbf24">⚡ Geçen Sayıdan Bu Yana Değişenler</h3>
   <ul style="margin:0;padding-left:18px;line-height:1.8"><li>Genel rejim: &#x27;Karışık&#x27; → &#x27;Risk-On&#x27;</li><li>BIST 50-DMA üstü oranı: 45.0 → 89.3 (↑44.3)</li><li>US 50-DMA üstü oranı: 58.0 → 63.3 (↑5.3)</li><li>Günün en güçlüsü: Garanti BBVA → Kardemir (D)</li></ul>
 </div>
+</div>
 
-
-
-<div class="card featured">
-  <h2 style="margin-top:0">🔬 Günün Mercek Altına Alınan Hissesi: Arçelik <span class="muted small">(ARCLK.IS)</span></h2>
-  <div class="kv">
-    <span class="k">Son kapanış</span><span class="v"><strong>116.40</strong></span>
-    <span class="k">Günlük</span><span class="v pos">1.93%</span>
-    <span class="k">5 gün</span><span class="v pos">5.82%</span>
-    <span class="k">30 gün</span><span class="v pos">4.02%</span>
-    <span class="k">YTD</span><span class="v pos">10.96%</span>
-    <span class="k">RSI(14)</span><span class="v">54.7</span>
-    <span class="k">50g ortalama</span><span class="v">113.36</span>
-    <span class="k">200g ortalama</span><span class="v">117.29</span>
-    <span class="k">52h zirve</span><span class="v">145.80 <span class="muted small">(-20.16%)</span></span>
-    <span class="k">52h dip</span><span class="v">101.00 <span class="muted small">(15.25%)</span></span>
-    <span class="k">Hacim oranı (son / 30g)</span><span class="v">0.95x</span>
+  <!-- THESIS + PATTERNS/STATS -->
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-bottom:18px">
+    
+<div class="panel" style="grid-column:span 8">
+  <div class="panel-h">
+    <span class="ttl">▣ ANALİZ · OTOMATIK ÜRETIM SENTEZ</span>
+    <span class="meta">2026-05-12 · 22:48 TR</span>
   </div>
-  <div class="flags"></div>
-  <div class="commentary">Arçelik hissesi, son kapanışıyla 50 günlük ortalamasının üzerinde işlem görmekle birlikte, 200 günlük ortalamasının altında bir seyir izlemektedir. RSI göstergesi 54.70 seviyesinde nötr bölgede bulunurken, hisse fiyatı 52 haftalık zirvesinden %20&#x27;nin üzerinde bir düşüşle işlem görmektedir. Mevcut durumda hacim, son 30 günlük ortalamasının altında seyretmektedir.</div>
+  <div style="padding:20px">
+    <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ GÜNÜN MERCEĞİ · TEKNİK SENTEZ</div>
+    <h2 style="font-family:'JetBrains Mono';font-size:22px;font-weight:500;letter-spacing:-.01em;color:var(--text);margin-bottom:10px;line-height:1.3;text-transform:none">
+      Arçelik · 116.40 TL (▲ trend üstünde)
+    </h2>
+    <div style="font-size:13px;color:var(--text-dim);line-height:1.7"><p>Arçelik (ARCLK.IS) hissesinde RSI 54.70 seviyesinde seyrederek nötr bir görünüm sergiliyor. Fiyat, 50 günlük hareketli ortalamanın üzerinde işlem görürken, 200 günlük hareketli ortalamanın altında kalmaya devam ediyor. Bu durum, kısa vadeli yükseliş eğiliminin orta ve uzun vadeli trendin altında kaldığını göstermektedir.</p></div>
+    <div style="font-size:12.5px;color:var(--text-dim);line-height:1.7;margin-top:12px"><p>Bugünkü piyasa görünümünde, bazı hisselerde belirgin bir toparlanma eğilimi gözlemlenirken, diğerlerinde ise satıcı baskısı etkili olmuş görünüyor. Bu durum, genel bir seçici hareketin öne çıktığını ve piyasanın farklı sektörlerde ayrışma gösterdiğini işaret ediyor. RSI&#x27;daki aşırı değerler ve hacim sıçramaları ise dikkat çekici hareketlilik alanlarına işaret ediyor.</p></div>
+    <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,rgba(255,166,48,.10),transparent);border-left:2px solid var(--accent);padding:14px 16px;margin:14px 0">
+      <div style="width:40px;height:40px;flex:0 0 auto;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:20px">!</div>
+      <div>
+        <h4 style="font-size:12px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:700">VERDİKT · NÖTR</h4>
+        <p style="font-size:12px;color:var(--text-dim);margin-top:3px">Teknik durum karışık — kontrol et.</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--border);padding-top:12px">
+      ⚠ <b style="color:var(--text-dim)">Yatırım tavsiyesi değildir.</b> Bu sentez otomatik üretim sistemiyle
+      Yahoo Finance verisi üzerinde hesaplanmıştır. Veride gecikme veya hata olabilir.
+    </p>
+  </div>
 </div>
 
-
-<h2>🔎 Günün Taraması</h2>
-<div class="commentary">Piyasada seçici bir hareketlilik gözlemleniyor; bazı sektörlerde güçlü toparlanma eğilimleri dikkat çekerken, diğerlerinde satıcı baskısı devam etmekte. 52 hafta zirvesine yakın hisse sayısının azlığı ve RSI&#x27;daki aşırı değerler, genel bir trend değişikliği yerine belirli hisselerdeki hareketliliğe işaret ediyor. Bu durum, piyasanın genelinde bir toparlanma temasından ziyade, sektör bazlı ve hisse özelinde ayrışmaların öne çıktığı bir görünüm sergiliyor.</div>
-
-
-<div class="card">
-  <h3>En Çok Yükselenler</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>Günlük</th><th>5 gün</th><th>RSI(14)</th></tr></thead>
-    <tbody><tr><td class="l">Kardemir (D) <span class="muted small">(KRDMD.IS)</span></td><td>44.16</td><td class="pos">8.98%</td><td class="pos">13.00%</td><td>81.8</td></tr><tr><td class="l">Petkim <span class="muted small">(PETKM.IS)</span></td><td>26.14</td><td class="pos">5.74%</td><td class="pos">8.65%</td><td>73.4</td></tr><tr><td class="l">Tesla <span class="muted small">(TSLA)</span></td><td>445.00</td><td class="pos">3.89%</td><td class="pos">13.37%</td><td>74.1</td></tr><tr><td class="l">Intel <span class="muted small">(INTC)</span></td><td>129.44</td><td class="pos">3.62%</td><td class="pos">35.14%</td><td>86.1</td></tr><tr><td class="l">ExxonMobil <span class="muted small">(XOM)</span></td><td>149.68</td><td class="pos">3.53%</td><td class="neg">-2.61%</td><td>46.6</td></tr></tbody>
-  </table>
+    <div style="grid-column:span 4;display:flex;flex-direction:column;gap:18px">
+      
+<div class="panel">
+  <div class="panel-h">
+    <span class="ttl">▣ TEMEL METRİKLER</span>
+    <span class="meta">teknik</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr)">
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">Günlük Δ</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">1.93%</span></div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">5 Gün</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">5.82%</span></div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">30 Gün</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">4.02%</span></div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">YTD</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">10.96%</span></div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">RSI(14)</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">54.7</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">Nötr</div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">Hacim oranı</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">0.95x</div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">52H zirveye</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">-20.16%</div></div>
+    <div style="padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><div style="font-size:9.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:600">52H dipten</div><div style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">15.25%</div></div>
+  </div>
 </div>
 
-
-<div class="card">
-  <h3>En Çok Düşenler</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>Günlük</th><th>5 gün</th><th>RSI(14)</th></tr></thead>
-    <tbody><tr><td class="l">Enka İnşaat <span class="muted small">(ENKAI.IS)</span></td><td>105.20</td><td class="neg">-5.48%</td><td class="pos">1.74%</td><td>52.8</td></tr><tr><td class="l">Disney <span class="muted small">(DIS)</span></td><td>104.72</td><td class="neg">-3.05%</td><td class="pos">3.37%</td><td>53.9</td></tr><tr><td class="l">Alphabet <span class="muted small">(GOOGL)</span></td><td>388.64</td><td class="neg">-3.03%</td><td class="pos">1.41%</td><td>71.6</td></tr><tr><td class="l">Salesforce <span class="muted small">(CRM)</span></td><td>177.49</td><td class="neg">-2.38%</td><td class="neg">-4.31%</td><td>45.1</td></tr><tr><td class="l">Netflix <span class="muted small">(NFLX)</span></td><td>85.45</td><td class="neg">-2.33%</td><td class="neg">-6.12%</td><td>30.4</td></tr></tbody>
-  </table>
+      
+<div class="panel">
+  <div class="panel-h">
+    <span class="ttl">▣ TESPİT EDİLEN FORMASYONLAR</span>
+    <span class="meta">CONF · GÜVEN</span>
+  </div>
+  <div><div style="padding:14px;color:var(--muted);font-size:12px">Tespit edilen formasyon yok.</div></div>
 </div>
 
+    </div>
+  </div>
 
-<div class="card">
-  <h3>52 Hafta Zirvesine Yakın</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>52h zirveye</th><th>30 gün</th><th>RSI(14)</th></tr></thead>
-    <tbody><tr><td class="l">Apple <span class="muted small">(AAPL)</span></td><td>292.68</td><td class="neg">-0.22%</td><td class="pos">12.36%</td><td>71.9</td></tr><tr><td class="l">Broadcom <span class="muted small">(AVGO)</span></td><td>428.43</td><td class="neg">-0.37%</td><td class="pos">15.31%</td><td>65.0</td></tr><tr><td class="l">Aselsan <span class="muted small">(ASELS.IS)</span></td><td>431.75</td><td class="neg">-0.52%</td><td class="pos">19.19%</td><td>66.8</td></tr><tr><td class="l">Doğan Holding <span class="muted small">(DOHOL.IS)</span></td><td>24.50</td><td class="neg">-0.57%</td><td class="pos">20.22%</td><td>73.6</td></tr><tr><td class="l">Ereğli Demir Çelik <span class="muted small">(EREGL.IS)</span></td><td>40.86</td><td class="neg">-0.97%</td><td class="pos">38.13%</td><td>79.4</td></tr></tbody>
-  </table>
+  <!-- RELATED -->
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:18px">
+    
+<div class="panel" style="grid-column:span 7">
+  <div class="panel-h">
+    <span class="ttl">▣ GÜN İÇİ EN ÇOK YÜKSELENLER &nbsp; <span style="color:var(--muted);font-weight:400">BIST 30 + US 30</span></span>
+    <span class="meta">1g getiri</span>
+  </div>
+  <div><a class="related-row" href="/arsiv.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="font-family:'Geist Mono';width:52px;color:var(--accent);font-weight:600">KRDMD</span><span style="flex:1;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Kardemir (D)</span><span style="font-family:'Geist Mono';font-size:11px" class="up">8.98%</span></a><a class="related-row" href="/arsiv.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="font-family:'Geist Mono';width:52px;color:var(--accent);font-weight:600">PETKM</span><span style="flex:1;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Petkim</span><span style="font-family:'Geist Mono';font-size:11px" class="up">5.74%</span></a><a class="related-row" href="/arsiv.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="font-family:'Geist Mono';width:52px;color:var(--accent);font-weight:600">TSLA</span><span style="flex:1;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Tesla</span><span style="font-family:'Geist Mono';font-size:11px" class="up">3.89%</span></a><a class="related-row" href="/arsiv.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="font-family:'Geist Mono';width:52px;color:var(--accent);font-weight:600">INTC</span><span style="flex:1;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Intel</span><span style="font-family:'Geist Mono';font-size:11px" class="up">3.62%</span></a><a class="related-row" href="/arsiv.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="font-family:'Geist Mono';width:52px;color:var(--accent);font-weight:600">XOM</span><span style="flex:1;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ExxonMobil</span><span style="font-family:'Geist Mono';font-size:11px" class="up">3.53%</span></a></div>
 </div>
 
-
-<div class="card">
-  <h3>52 Hafta Dibine Yakın</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>52h dipten</th><th>30 gün</th><th>RSI(14)</th></tr></thead>
-    <tbody><tr><td class="l">Mastercard <span class="muted small">(MA)</span></td><td>497.81</td><td class="pos">2.80%</td><td class="neg">-0.17%</td><td>46.3</td></tr><tr><td class="l">Procter &amp; Gamble <span class="muted small">(PG)</span></td><td>143.36</td><td class="pos">3.85%</td><td class="neg">-1.24%</td><td>44.0</td></tr><tr><td class="l">Home Depot <span class="muted small">(HD)</span></td><td>311.40</td><td class="">0.00%</td><td class="neg">-7.69%</td><td>36.2</td></tr></tbody>
-  </table>
+    
+<div class="panel" style="grid-column:span 5">
+  <div class="panel-h"><span class="ttl">▣ İLİŞKİLİ İÇERİK</span></div>
+  <div>
+    <a class="related-row" href="/egitim/momentum-nedir/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px">
+      <span style="color:var(--accent);font-size:11px;letter-spacing:.08em">EĞİTİM</span>
+      <span style="flex:1;color:var(--text-dim)">Momentum: kazananları kazanmaya bırakmak</span>
+      <span style="color:var(--muted);font-size:10px">10 dk</span></a>
+    <a class="related-row" href="/algo/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px">
+      <span style="color:var(--violet);font-size:11px;letter-spacing:.08em">STRAT</span>
+      <span style="flex:1;color:var(--text-dim)">Strateji laboratuvarında bu hissenin sepete dahil olduğu kombinasyonlar</span>
+      <span style="color:var(--muted);font-size:10px">→</span></a>
+    <a class="related-row" href="/reports/sektor/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--border);font-size:12px">
+      <span style="color:var(--blue);font-size:11px;letter-spacing:.08em">SEKTÖR</span>
+      <span style="flex:1;color:var(--text-dim)">Bugünkü sektör rotasyon raporu</span>
+      <span style="color:var(--muted);font-size:10px">→</span></a>
+    <a class="related-row" href="/islem-kontrolu/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:12px">
+      <span style="color:var(--accent);font-size:11px;letter-spacing:.08em">İŞLEM</span>
+      <span style="flex:1;color:var(--text-dim)">Bu işlemi açmadan önce: 3 soruluk pre-trade check</span>
+      <span style="color:var(--accent);font-size:10px">30sn ▸</span></a>
+  </div>
 </div>
 
+  </div>
 
-<div class="card">
-  <h3>RSI Uç Değerler</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>RSI(14)</th><th>5 gün</th><th>30 gün</th></tr></thead>
-    <tbody><tr><td class="l">Intel <span class="muted small">(INTC)</span></td><td>129.44</td><td>86.1</td><td class="pos">35.14%</td><td class="pos">107.50%</td></tr><tr><td class="l">Kardemir (D) <span class="muted small">(KRDMD.IS)</span></td><td>44.16</td><td>81.8</td><td class="pos">13.00%</td><td class="pos">28.45%</td></tr><tr><td class="l">Hektaş <span class="muted small">(HEKTS.IS)</span></td><td>4.55</td><td>81.1</td><td class="pos">34.62%</td><td class="pos">53.72%</td></tr><tr><td class="l">AMD <span class="muted small">(AMD)</span></td><td>458.79</td><td>81.1</td><td class="pos">34.33%</td><td class="pos">87.23%</td></tr><tr><td class="l">Ereğli Demir Çelik <span class="muted small">(EREGL.IS)</span></td><td>40.86</td><td>79.4</td><td class="pos">14.07%</td><td class="pos">38.13%</td></tr></tbody>
-  </table>
 </div>
-
-
-<div class="card">
-  <h3>Hacim Sıçraması</h3>
-  <table class="grid">
-    <thead><tr><th class="l">Hisse</th><th>Son</th><th>Hacim oranı</th><th>Günlük</th><th>5 gün</th></tr></thead>
-    <tbody><tr><td class="l">Şişe Cam <span class="muted small">(SISE.IS)</span></td><td>52.35</td><td>2.06x</td><td class="pos">1.06%</td><td class="pos">13.80%</td></tr><tr><td class="l">Kardemir (D) <span class="muted small">(KRDMD.IS)</span></td><td>44.16</td><td>2.05x</td><td class="pos">8.98%</td><td class="pos">13.00%</td></tr></tbody>
-  </table>
-</div>
-
 
 </main>
-<footer>
-<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px">
-  <a href="/iletisim/" style="color:var(--muted);font-size:12px">📬 İletişim</a>
-  <a href="/gizlilik/" style="color:var(--muted);font-size:12px">🔒 Gizlilik Politikası</a>
-  <a href="/kullanim-sartlari/" style="color:var(--muted);font-size:12px">📜 Kullanım Şartları</a>
-  <a href="/hakkinda.html" style="color:var(--muted);font-size:12px">ℹ️ Hakkında</a>
-</div>
-<strong>Yasal uyarı:</strong> Bu sayfada yer alan veriler ve yorumlar, kamuya açık piyasa verisinden otomatik olarak üretilmiş genel bilgilerdir. Hiçbir biçimde yatırım danışmanlığı, yatırım tavsiyesi veya alım-satım önerisi niteliği taşımaz. SPK düzenlemeleri çerçevesinde yatırım danışmanlığı yalnızca yetkili kurumlar ve lisanslı kişiler tarafından, müşterinin risk-getiri tercihleri dikkate alınarak kişiye özel olarak verilebilir. Verilerde gecikme veya hata olabilir. Yatırım kararlarınızdan doğacak sonuçların sorumluluğu size aittir.<br><br>
-Veriler: Yahoo Finance (gecikmeli olabilir), TCMB EVDS, FRED.
-Otomatik üretim — son güncelleme: 2026-05-12.<br>
-Pusula Finans © 2026
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
+    <div>v2026.05 · son güncelleme 2026-05-12 22:48 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Pusula Finans © 2026 — tüm hakları saklıdır.
+  </div>
 </footer>
 
 <div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;

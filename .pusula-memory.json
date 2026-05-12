@@ -34,9 +34,9 @@
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
           "dxy_5d_pct": -0.5382337490876798,
-          "usdtry": 45.352500915527344,
-          "usdtry_30d_pct": 1.6004293426289173,
-          "strongest_pair": "GBP/TRY"
+          "usdtry": 45.38529968261719,
+          "usdtry_30d_pct": 1.5340169923667712,
+          "strongest_pair": "AUD/USD"
         }
       }
     ],
@@ -47,7 +47,7 @@
         "metrics": {
           "regime": "Normal Eğri",
           "fed_funds": 3.64,
-          "yield_spread": 0.48,
+          "yield_spread": 0.46999999999999975,
           "vix": 18.38
         }
       }
