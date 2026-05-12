@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Editör Notları — MakroStream</title>
+<title>Düşük Volatilite — MakroStream</title>
 <meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Can Ayan">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Editör Notları — MakroStream">
+<meta property="og:title" content="Düşük Volatilite — MakroStream">
 <meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Editör Notları — MakroStream">
+<meta name="twitter:title" content="Düşük Volatilite — MakroStream">
 <meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="twitter:site" content="@canayan">
@@ -119,19 +119,88 @@ footer strong { color: var(--yellow); }
 <header class="brand">
   <h1><a href="/">MakroStream</a></h1>
   <div class="tagline">Veri &amp; Teknik Analiz Bülteni</div>
-  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Editör Notları</div>
+  <div class="small muted" style="margin-top:6px"><a href='/' style='color:inherit'>Ana sayfa</a> › Strateji Laboratuvarı › Düşük Volatilite</div>
 </header>
 <nav class="tabs"><a href="/" class="active">Ana Sayfa</a><a href="/editor/">📝 Editör</a><a href="/algo/">🧪 Strateji</a><a href="/egitim/">📚 Eğitim</a><a href="/arsiv.html">Arşiv</a><a href="/hakkinda.html">Hakkında</a></nav>
 <main>
 
-<h2 style="margin-top:0">📝 Editör Notları</h2>
-<p class="muted" style="margin-bottom:20px;line-height:1.5;max-width:620px">
-  Otomatik raporların ötesinde — insan tarafından yazılmış makro yorumları, piyasa olaylarına
-  bakış ve derin analizler. Yatırım tavsiyesi değildir; kişisel görüş ve gözlemlerdir.
-</p>
-<div class="card">
-  <ul style="list-style:none;padding:0;margin:0"><li style="padding:16px 0;border-bottom:1px solid var(--border)"><div class="small muted" style="margin-bottom:4px">📝 2026-05-12 · <span class="muted small">#çerçeve</span> <span class="muted small">#yöntem</span> <span class="muted small">#yasal</span></div><a href="/editor/2026-05-12-cerceve/" style="color:var(--text);font-weight:500;font-size:16px;text-decoration:none">Editörden — Çerçeve</a><div class="muted small" style="margin-top:4px;line-height:1.5">Sitenin şu an yapabildikleri, üretim yöntemi, yazarın yetki çerçevesi ve sınırları üzerine kısa bir not.</div></li></ul>
+<h2 style="margin-top:0">🧪 Düşük Volatilite</h2>
+<p style="font-size:15px;margin-bottom:10px">60 gün volatilitesi en düşük 8 hisseyi taşı.</p>
+<p class="muted small">Evren: BIST 30</p>
+
+<div class="card" style="background:#2a2410;border-left:3px solid #fbbf24">
+  <p style="margin:0;font-size:13px;color:#fbbf24">
+    ⚠️ <strong>Yatırım tavsiyesi DEĞİLDİR.</strong> Bu strateji ve içerik araştırma ve eğitim
+    amaçlıdır. Backtest geçmiş veriyle simülasyondur; gelecek için garanti vermez.
+    Yatırım kararlarınızdan önce lisanslı bir uzmana danışın.
+  </p>
 </div>
+
+<div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px">
+  
+<div class="card">
+  <h3>⚙️ Kurallar (Şeffaf)</h3>
+  <ul style="line-height:1.7;padding-left:18px;margin:0"><li>Her ay sonu: son 60 işgünü günlük getirilerinin std&#x27;sini hesapla</li><li>En düşük 8 hisseyi seç, %12.5 eşit ağırlık</li><li>Bir sonraki ay sonuna kadar tut</li><li>İşlem maliyeti: 10 bps</li></ul>
+</div>
+
+  
+<div class="card">
+  <h3>📈 Equity Curve (Backtest)</h3>
+  <p class="small muted">Strateji 1 TL ile başlasaydı zaman içinde nasıl büyürdü?</p>
+  <img src="equity.png" alt="Düşük Volatilite equity curve"
+       style="max-width:100%;height:auto;border-radius:6px;background:#1a2029" />
+</div>
+
+  
+<div class="card">
+  <h3>📊 Performans Metrikleri</h3>
+  <div class="kv" style="grid-template-columns:1fr auto;gap:8px 24px">
+    <span class="k">Toplam Getiri</span><span class="v"><span class="pos">+481.64%</span></span>
+    <span class="k">CAGR (yıllık)</span><span class="v"><span class="pos">+54.10%</span></span>
+    <span class="k">Yıllık Volatilite</span><span class="v">30.30%</span>
+    <span class="k">Sharpe</span><span class="v">1.79</span>
+    <span class="k">Sortino</span><span class="v">2.74</span>
+    <span class="k">Max Drawdown</span><span class="v"><span class="neg">-26.22%</span></span>
+    <span class="k">Calmar</span><span class="v">2.06</span>
+    <span class="k">Win Rate (günlük)</span><span class="v">48.2%</span>
+    <span class="k">En İyi Gün</span><span class="v"><span class="pos">+16.40%</span></span>
+    <span class="k">En Kötü Gün</span><span class="v"><span class="neg">-9.43%</span></span>
+    <span class="k">Backtest Periyodu</span><span class="v"><span class="muted small">2022-04-04 → 2026-05-11</span></span>
+    <span class="k">Gözlem Sayısı</span><span class="v">1026</span>
+  </div>
+</div>
+
+  
+<div class="card">
+  <h3>📅 Yıllık Getiri</h3>
+  <table class="grid">
+    <thead><tr><th class="l">Yıl</th><th>Getiri</th></tr></thead>
+    <tbody><tr><td class="l">2022</td><td class="pos">+124.12%</td></tr><tr><td class="l">2023</td><td class="pos">+53.05%</td></tr><tr><td class="l">2024</td><td class="pos">+33.12%</td></tr><tr><td class="l">2025</td><td class="pos">+1.89%</td></tr><tr><td class="l">2026</td><td class="pos">+25.01%</td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="card">
+  <h3>🎯 Bugünkü Sepet (8 hisse)</h3>
+  <p class="small muted" style="margin:0 0 10px">
+    Son rebalance: 2026-05-11.
+    <strong>Bu, "şunu al/sat" tavsiyesi DEĞİLDİR</strong> — strateji kuralları gereği
+    bugün stratejide bu hisseler tutulur. Kuralları sayfanın yukarısında görebilirsin.
+  </p>
+  <table class="grid">
+    <thead><tr><th class="l">Hisse</th><th>Ağırlık</th></tr></thead>
+    <tbody><tr><td class="l"><strong>Arçelik</strong> <span class="muted small">ARCLK.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>BİM Mağazalar</strong> <span class="muted small">BIMAS.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Doğan Holding</strong> <span class="muted small">DOHOL.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Koç Holding</strong> <span class="muted small">KCHOL.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Migros</strong> <span class="muted small">MGROS.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Pegasus</strong> <span class="muted small">PGSUS.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Turkcell</strong> <span class="muted small">TCELL.IS</span></td><td>12.5%</td></tr><tr><td class="l"><strong>Türk Hava Yolları</strong> <span class="muted small">THYAO.IS</span></td><td>12.5%</td></tr></tbody>
+  </table>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px">
+  <h3>📖 Açıklama</h3>
+  <p style="line-height:1.7;font-size:15px">Low-volatility anomaly: tarihsel olarak düşük volatilite hisseler yüksek volatilite olanlardan risk-getiri olarak daha iyi sonuç vermiş (Haugen &amp; Heins, 1972; Frazzini &amp; Pedersen 2014). Bu strateji her ay sonunda son 60 işgünü volatilitesi en düşük 8 hisseyi eşit ağırlıkla tutar. Düşük drawdown ve düşük volatilite hedefler; yükseliş piyasalarında büyük kazanç beklenmez.</p>
+</div>
+
+<p style="margin-top:20px"><a href="/algo/" style="color:var(--accent)">← Tüm stratejiler</a></p>
 
 </main>
 <footer>

@@ -97,7 +97,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/low-volatility/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/momentum-top5/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion-bist30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/breakout-52w/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -122,6 +146,12 @@
   </url>
   <url>
     <loc>https://macrostreamvercel.vercel.app/algo/rsi-mean-reversion-us30/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrostreamvercel.vercel.app/algo/golden-cross/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
