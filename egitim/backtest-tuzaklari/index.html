@@ -286,6 +286,32 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }
 @media (max-width: 600px) {
   table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
 }</style>
 </head>
 <body>
@@ -498,7 +524,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 13:17 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 13:24 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -544,5 +570,34 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 })();
 </script>
 
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
 </body>
 </html>

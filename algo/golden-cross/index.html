@@ -286,6 +286,32 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }
 @media (max-width: 600px) {
   table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
 }</style>
 </head>
 <body>
@@ -336,15 +362,19 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   
 <div style="background:linear-gradient(180deg,#1c1813 0%,#13110e 100%);border:1px solid var(--border-2);padding:22px 26px;position:relative;overflow:hidden;margin-bottom:18px">
   <div style="position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle at 100% 0%,rgba(255,166,48,.18),transparent 60%);pointer-events:none"></div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;position:relative">
-    <div>
-      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Strateji Detayı · golden-cross</div>
-      <h2 style="font-family:'JetBrains Mono';font-size:26px;font-weight:500;letter-spacing:-.01em;line-height:1.2;color:var(--text);margin-bottom:8px;text-transform:none">Golden Cross</h2>
-      <p style="color:var(--text-dim);font-size:13px;max-width:56ch;line-height:1.6">50g ortalaması 200g üstündeyse al; aksi halde nakit.</p>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;position:relative;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Yatırım Yöntemi</div>
+      <h2 style="font-family:'JetBrains Mono';font-size:26px;font-weight:500;letter-spacing:-.01em;line-height:1.2;color:var(--text);margin-bottom:10px;text-transform:none">Golden Cross</h2>
+      <p style="color:var(--text-dim);font-size:13.5px;max-width:56ch;line-height:1.65">50g ortalaması 200g üstündeyse al; aksi halde nakit.</p>
+      <p style="color:var(--muted);font-size:11.5px;max-width:56ch;line-height:1.55;margin-top:10px;font-style:italic">
+        ↓ Aşağıdaki rakamlar bu yöntemin <b style="color:var(--text-dim)">son 5 yıldaki test sonuçları</b>.
+        Altı çizili terimlere tıkla — sade açıklama açılır.
+      </p>
     </div>
     <div style="text-align:right;flex:0 0 auto">
       <div class="num up" style="font-family:'Geist Mono';font-size:42px;font-weight:600;letter-spacing:-.02em;line-height:1">+24.96%</div>
-      <div style="font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-top:4px">YILLIK BİLEŞİK · BACKTEST</div>
+      <div style="font-size:10.5px;letter-spacing:.06em;color:var(--muted);text-transform:none;margin-top:6px"><span class="term" data-title="Yıllık Bileşik Getiri (CAGR)" data-tip="Yatırımın yılda ortalama yüzde kaç büyüdüğünü gösterir. Bileşik = her yılın getirisi bir önceki yılın üstüne katlanır. %20 CAGR demek: paran her yıl %20 büyüyor gibi düşün.">Yıllık Bileşik Getiri</span> · <span class="term" data-title="Geçmiş Veriyle Test (Backtest)" data-tip="Bir yatırım yöntemini geçmişteki gerçek fiyatlar üzerinde simüle etmek. Geçmiş performans, gelecek garantisi değildir.">Backtest</span></div>
       <span style="display:inline-flex;padding:4px 10px;font-size:10px;border:1px solid var(--accent);color:var(--accent);letter-spacing:.08em;margin-top:10px">▲ AKTİF</span>
     </div>
   </div>
@@ -352,12 +382,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
   
 <div style="display:grid;grid-template-columns:repeat(6,1fr);background:var(--surface);border:1px solid var(--border);margin-bottom:18px">
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Toplam Getiri</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">+147.99%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">backtest</div></div>
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Yıllık Bileşik Getiri</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="pos">+24.96%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">yıllık</div></div>
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Sharpe</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">0.89</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">yıllık</div></div>
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Sortino</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">1.24</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">downside</div></div>
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Tepe-dip Kaybı</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em"><span class="neg">-32.59%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">tarihsel</div></div>
-  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">Calmar (getiri/MDD)</div><div style="font-family:'Geist Mono';font-size:20px;font-weight:600;color:var(--text);margin-top:4px;letter-spacing:-.005em">0.77</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">getiri/DD</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="Toplam Getiri" data-tip="Stratejinin başlangıçtan bugüne kadar elde ettiği toplam yüzde kazanç. 5 yılda %200 toplam getiri demek paran 3 katına çıkmış demek.">Toplam Getiri</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em"><span class="pos">+147.99%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">5 yılda toplam</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="Yıllık Bileşik Getiri (CAGR)" data-tip="Yatırımın yılda ortalama yüzde kaç büyüdüğünü gösterir. Bileşik = her yılın getirisi bir önceki yılın üstüne katlanır. %20 CAGR demek: paran her yıl %20 büyüyor gibi düşün.">Yıllık Bileşik Getiri</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em"><span class="pos">+24.96%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">yıllık ortalama</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="Sharpe Oranı (Risk Başına Getiri)" data-tip="Getiriyi alınan riske bölen ölçü. Yüksek Sharpe = aynı riske daha çok kazanç. &lt;b&gt;1&#x27;in üstü iyi&lt;/b&gt;, 2&#x27;nin üstü çok iyi. Negatif Sharpe = riskine değmemiş.">Sharpe</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em">0.89</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">risk başına kazanç</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="Sortino Oranı" data-tip="Sharpe&#x27;a benzer ama sadece kayıp dalgalanmasını ceza olarak alır. Sharpe&#x27;tan biraz daha gerçekçi — çünkü yukarı volatilite zararlı değil.">Sortino</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em">1.24</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">aşağı yön riski</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="En Büyük Tepe-Dip Kaybı (Max Drawdown)" data-tip="Stratejinin tarihinin en sert düşüşü. Zirveden ne kadar geriye gittiğin yüzdesi. %30 demek: en kötü zamanda paran %30 erimiş. Senin &lt;b&gt;dayanma sınırını&lt;/b&gt; sınar.">Tepe-dip Kaybı</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em"><span class="neg">-32.59%</span></div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">en sert düşüş</div></div>
+  <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:11px;color:var(--text-dim);letter-spacing:.02em;text-transform:none;font-weight:500"><span class="term" data-title="Calmar Oranı" data-tip="Yıllık getiriyi en büyük kayba bölen ölçü. &lt;b&gt;Getiri ÷ Max Drawdown&lt;/b&gt;. Yüksek Calmar = ödüllendirici ama az can sıkıcı strateji. 1 üstü iyi sayılır.">Calmar</span></div><div style="font-family:'Geist Mono';font-size:22px;font-weight:600;color:var(--text);margin-top:6px;letter-spacing:-.005em">0.77</div><div style="font-size:10.5px;color:var(--text-dim);margin-top:2px">getiri / max kayıp</div></div>
 </div>
 
   
@@ -366,9 +396,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <div style="display:flex;gap:0">
       <span style="padding:3px 9px;color:var(--accent);background:var(--bg-1);font-size:11px;letter-spacing:.06em">5Y</span>
     </div>
-    <div style="display:flex;gap:14px;color:var(--text-dim);font-size:10.5px">
+    <div style="display:flex;gap:14px;color:var(--text-dim);font-size:11px">
       <span><i style="display:inline-block;width:12px;height:2px;margin-right:6px;vertical-align:middle;background:var(--accent)"></i>Strateji</span>
-      <span><i style="display:inline-block;width:12px;height:2px;margin-right:6px;vertical-align:middle;background:var(--text-dim)"></i>Buy & Hold</span>
+      <span><i style="display:inline-block;width:12px;height:2px;margin-right:6px;vertical-align:middle;background:var(--text-dim)"></i><span class="term" data-title="Al ve Tut" data-tip="En basit yöntem: bugün alıp 5 yıl tutmak. Stratejinin bunu yenip yenemediğini görmek için karşılaştırırız.">Buy &amp; Hold</span></span>
     </div>
   </div>
   <div style="padding:14px">
@@ -439,7 +469,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 13:17 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 13:24 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -485,5 +515,34 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 })();
 </script>
 
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
 </body>
 </html>
