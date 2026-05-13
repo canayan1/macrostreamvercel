@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strateji Laboratuvarı — Pusula Finans</title>
-<meta name="description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="description" content="Borsayı ve makro veriyi sade dille anlatan otomatik bülten. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Pusula Finans">
 <link rel="canonical" href="https://macrostreamvercel.vercel.app/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
 <meta property="og:title" content="Strateji Laboratuvarı — Pusula Finans">
-<meta property="og:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta property="og:description" content="Borsayı ve makro veriyi sade dille anlatan otomatik bülten. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://macrostreamvercel.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pusula Finans">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Strateji Laboratuvarı — Pusula Finans">
-<meta name="twitter:description" content="Veri &amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
+<meta name="twitter:description" content="Borsayı ve makro veriyi sade dille anlatan otomatik bülten. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://macrostreamvercel.vercel.app/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Pusula Finans", "url": "https://macrostreamvercel.vercel.app", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://macrostreamvercel.vercel.app/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
@@ -28,10 +28,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root {
-  --bg: #0a0a0a;
-  --bg-1: #0d0c0a;
-  --surface: #121110;
-  --surface-2: #191714;
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
   --panel: #121110;        /* backward compat alias */
   --panel-2: #191714;      /* backward compat alias */
   --border: #26221d;
@@ -48,7 +48,7 @@
   --blue: #60a5fa;
   --violet: #a78bfa;
   --yellow: #ffa630;        /* backward compat alias */
-  --grid: rgba(255,166,48,.04);
+  --grid: rgba(255,166,48,.025);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -123,18 +123,20 @@ a { color: inherit; text-decoration: none; }
 /* ── FUNCTION KEYS ────────────────────────────────── */
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
-  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 32px;
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
 }
 .fkey {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 7px;
   padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
-  font-size: 11px; color: var(--text-dim); letter-spacing: .06em;
+  font-size: 13px; color: var(--text-dim); letter-spacing: 0;
   cursor: pointer; transition: background .12s, color .12s;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .fkey:hover { background: var(--surface); color: var(--text); }
 .fkey.active { background: var(--surface-2); color: var(--accent); }
-.fkey .k { color: var(--accent); font-weight: 700; font-size: 10px; letter-spacing: .04em; }
+.fkey .k { color: var(--muted); font-weight: 600; font-size: 9.5px; letter-spacing: .04em; opacity: .55; }
+.fkey.active .k { color: var(--accent); opacity: 1; }
+.fkey .lbl { font-weight: 500; }
 .fkey:last-child { border-right: 0; }
 
 /* ── LAYOUT ───────────────────────────────────────── */
@@ -174,11 +176,12 @@ p { margin-bottom: 12px; }
 }
 .panel-h {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 14px; border-bottom: 1px solid var(--border);
-  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
   color: var(--muted);
 }
-.panel-h .ttl { color: var(--text-dim); font-weight: 600; }
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
 .panel-h .meta { display: flex; align-items: center; gap: 8px; }
 .panel-body { padding: 14px 16px; flex: 1; }
 
@@ -286,8 +289,46 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><div class="brand"><div class="brand-mark">P</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev">›</span><input placeholder="arama: hisse, sektör veya komut · ör. ARCLK, sektor:bankacilik, /makro" /><span class="kbd">⌘ K</span></div><div class="cmd-status"><div class="cmd-stat"><span class="dot"></span><span><span class="lbl">CANLI</span> &nbsp; YFin · TCMB · FRED</span></div><div class="cmd-stat"><span class="lbl">SON</span> 2026-05-12 · 23:00 TR</div></div></div><div class="fkeys"><a class="fkey active" href="/"><span class="k">F1</span> ANA SAYFA</a><a class="fkey" href="/arsiv.html"><span class="k">F2</span> BÜLTEN</a><a class="fkey" href="/algo/"><span class="k">F3</span> STRATEJİ</a><a class="fkey" href="/islem-kontrolu/"><span class="k">F4</span> İŞLEM KONTROLÜ</a><a class="fkey" href="/reports/pulse/2026-05-12/"><span class="k">F5</span> PULSE</a><a class="fkey" href="/editor/"><span class="k">F6</span> EDİTÖR</a><a class="fkey" href="/egitim/"><span class="k">F7</span> EĞİTİM</a><a class="fkey" href="/hakkinda.html"><span class="k">F8</span> HAKKINDA</a></div>
-<div class="disclaimer-banner"><b>⚠ Çerçeve</b> · Bu içerik <b>yatırım tavsiyesi değildir</b> — eğitim ve sistematik araştırma. SPK çizgisinde, otomatik üretim.</div>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">P</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev">🔍</span><input placeholder="Hisse adı veya sektör ara… (örnek: ARCLK, bankacılık)" /><span class="kbd" title="Arama kısayolu">⌘K</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-13</div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Borsa, FX, makro raporları"><span class="k">F2</span><span class="lbl">Günlük Bülten</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F3</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F4</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/reports/pulse/2026-05-12/" title="Günün 5 grafikle özeti"><span class="k">F5</span><span class="lbl">Bugün</span></a><a class="fkey" href="/editor/" title="Haftanın notları"><span class="k">F6</span><span class="lbl">Editörden</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F7</span><span class="lbl">Eğitim</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px;font-family:'JetBrains Mono',monospace">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün <b style="color:var(--text)">sade Türkçe</b> ile özetleyen otomatik bir bülten.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimlerini sade Türkçe ile öğrenin</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('pf-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('pf-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
 
 <main>
 
@@ -307,7 +348,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:right;flex:0 0 auto">
       <div>5 STRATEJİ · BACKTEST</div>
       <b style="display:block;color:var(--accent);font-weight:600;font-size:13px;margin-top:3px">↑ AYLIK REBALANCE</b>
-      <div>SON: 2026-05-11</div>
+      <div>SON: 2026-05-12</div>
     </div>
   </div>
 
@@ -315,11 +356,11 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--border);background:var(--surface);margin-bottom:18px">
     <div style="padding:12px 16px;border-right:1px solid var(--border)">
       <div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">ORT. YILLIK</div>
-      <div class="up" style="font-family:'Geist Mono';font-size:16px;color:var(--text);margin-top:4px;font-weight:600">+34.43%</div>
+      <div class="up" style="font-family:'Geist Mono';font-size:16px;color:var(--text);margin-top:4px;font-weight:600">+34.12%</div>
     </div>
     <div style="padding:12px 16px;border-right:1px solid var(--border)">
       <div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">ORT. SHARPE</div>
-      <div style="font-family:'Geist Mono';font-size:16px;color:var(--text);margin-top:4px;font-weight:600">1.15</div>
+      <div style="font-family:'Geist Mono';font-size:16px;color:var(--text);margin-top:4px;font-weight:600">1.14</div>
     </div>
     <div style="padding:12px 16px;border-right:1px solid var(--border)">
       <div style="font-size:9.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:600">ORT. MAX DD</div>
@@ -341,27 +382,27 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
   <!-- Strategy list (grid) -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:0;border:1px solid var(--border);background:var(--surface);margin-bottom:18px">
-    <a class="strat-list-item" href="/algo/low-volatility/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">▸</span>Düşük Volatilite</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+54.10%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.79</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-26.22%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/momentum-top5/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">◇</span>Momentum Top-5</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+39.25%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.23</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-39.80%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/rsi-mean-reversion/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">▾</span>RSI Mean Reversion</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+33.79%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.11</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-29.89%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/golden-cross/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">✕</span>Golden Cross</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+25.69%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">0.91</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-32.59%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/breakout-52w/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">◈</span>52-Hafta Breakout</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+19.30%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">0.72</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-27.64%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a>
+    <a class="strat-list-item" href="/algo/low-volatility/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">▸</span>Düşük Volatilite</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+53.31%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.76</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-26.22%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/momentum-top5/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">◇</span>Momentum Top-5</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+39.42%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.24</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-39.80%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/rsi-mean-reversion/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">▾</span>RSI Mean Reversion</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+33.75%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">1.10</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-29.89%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/golden-cross/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">✕</span>Golden Cross</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+24.96%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">0.89</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-32.59%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a><a class="strat-list-item" href="/algo/breakout-52w/" style="display:block;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.005em"><span style="color:var(--accent);margin-right:8px">◈</span>52-Hafta Breakout</div><div class="num up" style="font-family:'Geist Mono';font-size:13px;font-weight:600">+19.14%</div></div><div style="display:flex;gap:14px;margin-top:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em"><span>Sharpe <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">0.72</b></span><span>DD <b style="color:var(--text-dim);font-family:'Geist Mono';font-weight:500">-27.64%</b></span><span style="color:var(--muted);font-size:9.5px">BIST 30</span></div></a>
   </div>
 
   <!-- Comparison table (detailed) -->
   <div class="panel" style="margin-bottom:18px">
     <div class="panel-h">
-      <span class="ttl">▣ KARŞILAŞTIRMA TABLOSU</span>
-      <span style="color:var(--muted)">CAGR sıralı</span>
+      <span class="ttl">▣ Stratejilerin Karşılaştırması</span>
+      <span style="color:var(--muted)">Yıllık Bileşik Getiri sıralı</span>
     </div>
     <table class="grid" style="width:100%">
       <thead>
         <tr>
           <th class="l">STRATEJİ</th>
-          <th>CAGR</th>
+          <th>Yıllık Bileşik Getiri</th>
           <th>MAX DD</th>
           <th>SHARPE</th>
           <th>CALMAR</th>
           <th class="l">EVREN</th>
         </tr>
       </thead>
-      <tbody><tr><td class="l"><a href="/algo/low-volatility/" style="color:var(--accent)"><strong>Düşük Volatilite</strong></a><div class="muted small">60 gün volatilitesi en düşük 8 hisseyi taşı.</div></td><td><span class="pos">+54.10%</span></td><td><span class="neg">-26.22%</span></td><td>1.79</td><td>2.06</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/momentum-top5/" style="color:var(--accent)"><strong>Momentum Top-5</strong></a><div class="muted small">Son 6 ay&#x27;da en güçlü 5 hisseyi taşı, ay sonunda yenile.</div></td><td><span class="pos">+39.25%</span></td><td><span class="neg">-39.80%</span></td><td>1.23</td><td>0.99</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/rsi-mean-reversion/" style="color:var(--accent)"><strong>RSI Mean Reversion</strong></a><div class="muted small">RSI 30 altına inince al, 50 üstüne çıkınca sat.</div></td><td><span class="pos">+33.79%</span></td><td><span class="neg">-29.89%</span></td><td>1.11</td><td>1.13</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/golden-cross/" style="color:var(--accent)"><strong>Golden Cross</strong></a><div class="muted small">50g ortalaması 200g üstündeyse al; aksi halde nakit.</div></td><td><span class="pos">+25.69%</span></td><td><span class="neg">-32.59%</span></td><td>0.91</td><td>0.79</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/breakout-52w/" style="color:var(--accent)"><strong>52-Hafta Breakout</strong></a><div class="muted small">52w yüksek kıran hisseyi al, %10 trailing stop.</div></td><td><span class="pos">+19.30%</span></td><td><span class="neg">-27.64%</span></td><td>0.72</td><td>0.70</td><td><span class="muted small">BIST 30</span></td></tr></tbody>
+      <tbody><tr><td class="l"><a href="/algo/low-volatility/" style="color:var(--accent)"><strong>Düşük Volatilite</strong></a><div class="muted small">60 gün volatilitesi en düşük 8 hisseyi taşı.</div></td><td><span class="pos">+53.31%</span></td><td><span class="neg">-26.22%</span></td><td>1.76</td><td>2.03</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/momentum-top5/" style="color:var(--accent)"><strong>Momentum Top-5</strong></a><div class="muted small">Son 6 ay&#x27;da en güçlü 5 hisseyi taşı, ay sonunda yenile.</div></td><td><span class="pos">+39.42%</span></td><td><span class="neg">-39.80%</span></td><td>1.24</td><td>0.99</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/rsi-mean-reversion/" style="color:var(--accent)"><strong>RSI Mean Reversion</strong></a><div class="muted small">RSI 30 altına inince al, 50 üstüne çıkınca sat.</div></td><td><span class="pos">+33.75%</span></td><td><span class="neg">-29.89%</span></td><td>1.10</td><td>1.13</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/golden-cross/" style="color:var(--accent)"><strong>Golden Cross</strong></a><div class="muted small">50g ortalaması 200g üstündeyse al; aksi halde nakit.</div></td><td><span class="pos">+24.96%</span></td><td><span class="neg">-32.59%</span></td><td>0.89</td><td>0.77</td><td><span class="muted small">BIST 30</span></td></tr><tr><td class="l"><a href="/algo/breakout-52w/" style="color:var(--accent)"><strong>52-Hafta Breakout</strong></a><div class="muted small">52w yüksek kıran hisseyi al, %10 trailing stop.</div></td><td><span class="pos">+19.14%</span></td><td><span class="neg">-27.64%</span></td><td>0.72</td><td>0.69</td><td><span class="muted small">BIST 30</span></td></tr></tbody>
     </table>
   </div>
 
@@ -370,23 +411,23 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <!-- Two-col: Education + Methodology -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
     <div class="panel">
-      <div class="panel-h"><span class="ttl">▣ EĞİTİM İÇERİKLERİ</span></div>
+      <div class="panel-h"><span class="ttl">▣ Eğitim İçerikleri</span></div>
       <div style="padding:14px 16px">
         <a class="related-row" href="/egitim/momentum-nedir/" style="display:flex;padding:8px 0;border-bottom:1px dashed var(--border);font-size:12px;color:var(--text-dim)">▸ Momentum nedir?</a>
         <a class="related-row" href="/egitim/mean-reversion-nedir/" style="display:flex;padding:8px 0;border-bottom:1px dashed var(--border);font-size:12px;color:var(--text-dim)">▸ Mean Reversion nedir?</a>
         <a class="related-row" href="/egitim/golden-cross-nedir/" style="display:flex;padding:8px 0;border-bottom:1px dashed var(--border);font-size:12px;color:var(--text-dim)">▸ Golden Cross &amp; Death Cross</a>
-        <a class="related-row" href="/egitim/backtest-tuzaklari/" style="display:flex;padding:8px 0;border-bottom:1px dashed var(--border);font-size:12px;color:var(--text-dim)">▸ Backtest Tuzakları</a>
+        <a class="related-row" href="/egitim/backtest-tuzaklari/" style="display:flex;padding:8px 0;border-bottom:1px dashed var(--border);font-size:12px;color:var(--text-dim)">▸ Geçmiş veriyle test Tuzakları</a>
         <a class="related-row" href="/egitim/risk-metrikleri/" style="display:flex;padding:8px 0;font-size:12px;color:var(--text-dim)">▸ Risk Metrikleri</a>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-h"><span class="ttl">▣ METODOLOJİ</span></div>
+      <div class="panel-h"><span class="ttl">▣ Yöntem</span></div>
       <div style="padding:14px 18px;font-size:12px;color:var(--text-dim);line-height:1.7">
         <div><b style="color:var(--accent);font-weight:600">Veri:</b> Yahoo Finance EOD (BIST 30 + US 30)</div>
         <div><b style="color:var(--accent);font-weight:600">Periyot:</b> ~5 yıl tarihsel</div>
         <div><b style="color:var(--accent);font-weight:600">Maliyet:</b> 10 bps tek yön (~20 bps RT)</div>
         <div><b style="color:var(--accent);font-weight:600">Lookahead:</b> Sinyal T, pozisyon T+1</div>
-        <div><b style="color:var(--accent);font-weight:600">Rebalance:</b> Aylık veya günlük filtre</div>
+        <div><b style="color:var(--accent);font-weight:600">Yeniden Dengeleme:</b> Aylık veya günlük filtre</div>
         <div><b style="color:var(--accent);font-weight:600">Parametreler:</b> Akademik literatürden</div>
       </div>
     </div>
@@ -398,7 +439,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
-    <div>v2026.05 · son güncelleme 2026-05-12 23:00 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 10:23 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -414,17 +455,18 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
 </footer>
 
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a2029;
-     border-top:1px solid #2a3340;padding:16px 20px;display:none;z-index:9999;
-     box-shadow:0 -4px 20px rgba(0,0,0,0.4)">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
        gap:14px;flex-wrap:wrap;justify-content:space-between">
-    <div style="font-size:13px;line-height:1.5;color:#aab;flex:1;min-width:240px">
-      🍪 Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
-      <a href="/gizlilik/" style="color:#3fa9f5">Gizlilik Politikası</a>'nda yayınlanır.
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
     </div>
-    <button id="cookie-ok-btn" style="background:#3fa9f5;color:#0f1419;border:0;
-            padding:8px 18px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer">
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
       Anladım
     </button>
   </div>
