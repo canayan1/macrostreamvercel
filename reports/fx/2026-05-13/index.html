@@ -290,10 +290,36 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }
 @media (max-width: 600px) {
   table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
 }</style>
 </head>
 <body>
-<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev" style="opacity:.65">✦</span><span style="color:var(--muted);font-size:12.5px;letter-spacing:.01em">Yapay zeka asistanı · <b style="color:var(--text-dim);font-weight:500">yakında</b></span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em">PREMIUM</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-13</div></div></div><div class="fkeys"><a class="fkey" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Borsa, FX, makro raporları"><span class="k">F2</span><span class="lbl">Günlük Bülten</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F3</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F4</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/reports/pulse/2026-05-12/" title="Günün 5 grafikle özeti"><span class="k">F5</span><span class="lbl">Bugün</span></a><a class="fkey" href="/editor/" title="Haftanın notları"><span class="k">F6</span><span class="lbl">Editörden</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F7</span><span class="lbl">Eğitim</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><div class="cmd-prompt cmd-prompt-soon" title="Yakında: premium aboneler için yapay zeka asistanı"><span class="chev" style="opacity:.65">✦</span><span style="color:var(--muted);font-size:12.5px;letter-spacing:.01em">Yapay zeka asistanı · <b style="color:var(--text-dim);font-weight:500">yakında</b></span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em">PREMIUM</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-13</div></div></div><div class="fkeys"><a class="fkey" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Borsa, FX, makro raporları"><span class="k">F2</span><span class="lbl">Günlük Bülten</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F3</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F4</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/reports/pulse/2026-05-12/" title="Günün 5 grafikle özeti"><span class="k">F5</span><span class="lbl">Bugün</span></a><a class="fkey" href="/editor/" title="Haftanın notları"><span class="k">F6</span><span class="lbl">Editörden</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F7</span><span class="lbl">Eğitim</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
 <div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
@@ -363,18 +389,13 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">DXY: <strong style="color:#e5ebf2">98.29</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">USD/TRY: <strong style="color:#e5ebf2">45.3853</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">USD/TRY 30g: <strong style="color:#e5ebf2">+1.53%</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">EUR/USD: <strong style="color:#e5ebf2">1.1780</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">30g Lider: <strong style="color:#e5ebf2">AUD/USD</strong></span></div>
 </div>
 </div>
-  <div style="margin-bottom:18px">
-<div class="card" style="border-left:3px solid #fbbf24; background:#2a2410">
-  <h3 style="margin-top:0;color:#fbbf24">⚡ Geçen Sayıdan Bu Yana Değişenler</h3>
-  <ul style="margin:0;padding-left:18px;line-height:1.8"><li>Genel rejim: &#x27;Dolar Geri Çekiliyor&#x27; → &#x27;Dolar Yatay&#x27;</li></ul>
-</div>
-</div>
+  
 
   <h2 style="margin:24px 0 10px">🎯 Öne Çıkan Pariteler</h2><div style="display:grid;grid-template-columns:1fr;gap:14px"><div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">EUR/USD <span class="muted small" style="font-weight:400">EURUSD=X</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>1.1780</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.09%</span></span><span class="k">5 gün</span><span class="v"><span class="pos">+0.75%</span></span><span class="k">30 gün</span><span class="v"><span class="pos">+0.90%</span></span><span class="k">YTD</span><span class="v"><span class="pos">+0.25%</span></span><span class="k">RSI(14)</span><span class="v">58.7</span><span class="k">50g MA</span><span class="v">1.1641</span><span class="k">200g MA</span><span class="v">1.1681</span></div><img src="eurusd-x.png" alt="EUR/USD chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">1.1833</strong> <span style="color:#4ade80">+0.45% spot'a göre</span> <span class="muted">[1.1473 – 1.2194, %80 güven]</span></p></div>
 <div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">GBP/USD <span class="muted small" style="font-weight:400">GBPUSD=X</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>1.3605</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.07%</span></span><span class="k">5 gün</span><span class="v"><span class="pos">+0.54%</span></span><span class="k">30 gün</span><span class="v"><span class="pos">+1.57%</span></span><span class="k">YTD</span><span class="v"><span class="pos">+0.97%</span></span><span class="k">RSI(14)</span><span class="v">58.7</span><span class="k">50g MA</span><span class="v">1.3421</span><span class="k">200g MA</span><span class="v">1.3421</span></div><img src="gbpusd-x.png" alt="GBP/USD chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">1.3627</strong> <span style="color:#4ade80">+0.16% spot'a göre</span> <span class="muted">[1.3176 – 1.4077, %80 güven]</span></p></div>
 <div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">USD/JPY <span class="muted small" style="font-weight:400">USDJPY=X</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>157.23</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.24%</span></span><span class="k">5 gün</span><span class="v"><span class="pos">+0.02%</span></span><span class="k">30 gün</span><span class="v"><span class="neg">-1.53%</span></span><span class="k">YTD</span><span class="v"><span class="pos">+0.32%</span></span><span class="k">RSI(14)</span><span class="v">42.9</span><span class="k">50g MA</span><span class="v">158.71</span><span class="k">200g MA</span><span class="v">154.28</span></div><img src="usdjpy-x.png" alt="USD/JPY chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">158.83</strong> <span style="color:#4ade80">+1.01% spot'a göre</span> <span class="muted">[153.41 – 164.24, %80 güven]</span></p></div>
 <div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">DXY (Dolar Endeksi) <span class="muted small" style="font-weight:400">DX-Y.NYB</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>98.29</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.36%</span></span><span class="k">5 gün</span><span class="v"><span class="neg">-0.19%</span></span><span class="k">30 gün</span><span class="v"><span class="neg">-0.08%</span></span><span class="k">YTD</span><span class="v"><span class="neg">-0.13%</span></span><span class="k">RSI(14)</span><span class="v">47.4</span><span class="k">50g MA</span><span class="v">98.98</span><span class="k">200g MA</span><span class="v">98.55</span></div><img src="dx-y-nyb.png" alt="DXY (Dolar Endeksi) chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">97.95</strong> <span style="color:#f87171">-0.34% spot'a göre</span> <span class="muted">[95.26 – 100.64, %80 güven]</span></p></div>
-<div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">USD/TRY <span class="muted small" style="font-weight:400">USDTRY=X</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>45.3853</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.07%</span></span><span class="k">5 gün</span><span class="v"><span class="pos">+0.38%</span></span><span class="k">30 gün</span><span class="v"><span class="pos">+1.53%</span></span><span class="k">YTD</span><span class="v"><span class="pos">+5.56%</span></span><span class="k">RSI(14)</span><span class="v">90.9</span><span class="k">50g MA</span><span class="v">44.6244</span><span class="k">200g MA</span><span class="v">42.8674</span></div><img src="usdtry-x.png" alt="USD/TRY chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">46.1790</strong> <span style="color:#4ade80">+1.75% spot'a göre</span> <span class="muted">[45.8683 – 46.4897, %80 güven]</span></p></div></div><h2 style="margin:28px 0 10px">📊 Genel Görünüm</h2>
+<div class="card"><h3 style="margin-top:0;font-size:14px;color:#aab;text-transform:none;letter-spacing:normal">USD/TRY <span class="muted small" style="font-weight:400">USDTRY=X</span></h3><div class="kv" style="margin:6px 0"><span class="k">Son</span><span class="v"><strong>45.3853</strong></span><span class="k">Günlük</span><span class="v"><span class="pos">+0.07%</span></span><span class="k">5 gün</span><span class="v"><span class="pos">+0.38%</span></span><span class="k">30 gün</span><span class="v"><span class="pos">+1.53%</span></span><span class="k">YTD</span><span class="v"><span class="pos">+5.56%</span></span><span class="k">RSI(14)</span><span class="v">90.9</span><span class="k">50g MA</span><span class="v">44.6244</span><span class="k">200g MA</span><span class="v">42.8674</span></div><img src="usdtry-x.png" alt="USD/TRY chart" style="max-width:100%;height:auto;margin:8px 0;border-radius:6px;background:#1a2029" /><p class="small muted" style="margin:4px 0 0">📈 30 gün forecast: <strong style="color:#fbbf24">46.1790</strong> <span style="color:#4ade80">+1.75% spot'a göre</span> <span class="muted">[45.8683 – 46.4897, %80 güven]</span></p></div></div><div class="panel" style="margin:18px 0"><div class="panel-h"><span class="ttl">▣ USD/TRY Aylık Mevsimsellik</span><span class="meta">tarihsel olarak hangi ay nasıl davranmış?</span></div><div class="panel-body" style="padding:0"><img src="usdtry_seasonality.png" alt="USD/TRY seasonality" style="display:block;max-width:100%;height:auto;background:#1a1612" /></div></div><h2 style="margin:28px 0 10px">📊 Genel Görünüm</h2>
 <div class="card">
   <h3>Tüm Pariteler — Hızlı Özet</h3>
   <table class="grid">
@@ -415,7 +436,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     </div>
     <div class="panel-body" style="padding:20px">
       <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ VERİ ÜZERİNDE SENTEZ</div>
-      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Dolar Endeksi (DXY) günlük bazda %0.36 artışla pozitif bir seyir izlerken, aylık bazda %0.08&#x27;lik hafif bir düşüşle dengeli bir görünüm sergilemektedir. G10 majörler arasında AUD/USD, aylık %3.22&#x27;lik yükselişi ve 61 RSI değeriyle öne çıkarken, USD/JPY ve USD/CHF aylık bazda sırasıyla %1.53 ve %1.82 düşüşle geri planda kalmaktadır. TRY çaprazlarında USD/TRY aylık %1.53, EUR/TRY %2.56 ve GBP/TRY %3.18 artışla kurda yukarı yönlü bir baskı olduğunu göstermektedir. RSI değerlerine bakıldığında, USD/TRY 91 ile aşırı alım bölgesinde dikkat çekmektedir; diğer majörlerde ise RSI değerleri genellikle 41 ile 61 arasında değişmektedir.</p>
+      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Günlük bazda DXY %0.36 artış gösterirken, 30 günlük değişimde %0.08&#x27;lik bir düşüşle genel olarak yatay bir seyir izliyor ve RSI değeri 47 seviyesinde bulunuyor. G10 majörler arasında AUD/USD, %3.22&#x27;lik 30 günlük yükselişi ve RSI 61 değeriyle dikkat çekerken, USD/CHF %-1.82&#x27;lik 30 günlük düşüşü ve RSI 41 değeriyle geri kalıyor. TRY çaprazlarında USD/TRY %1.53, EUR/TRY %2.56 ve GBP/TRY %3.18&#x27;lik 30 günlük artışlarla kurda yukarı yönlü bir hareketlilik gözlemleniyor. USD/TRY&#x27;nin RSI değeri 91 ile aşırı alım bölgesinde yer alırken, diğer majörlerde aşırı alım veya satım bölgesine işaret eden uç değerler bulunmuyor.</p>
       <p style="margin-top:12px;font-size:11px;color:var(--muted);border-top:1px dashed var(--border);padding-top:10px">
         ⚠ Bu metin yapay zeka ile üretilmiş otomatik bir özettir. Editör değerlendirmesinden geçmez.
         Yatırım tavsiyesi değildir.
@@ -428,7 +449,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 13:16 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 14:53 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -474,5 +495,34 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 })();
 </script>
 
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
 </body>
 </html>
