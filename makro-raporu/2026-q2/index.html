@@ -578,15 +578,15 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
 <article id="02b_components" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ TÜFE Y/Y · STL Bileşen Analizi (5 Yıl)</span>
+    <span class="ttl">▣ TÜFE Y/Y · STL Bileşen Analizi (20 Yıl)</span>
     <span class="meta" style="font-size:10.5px">EVDS TP.FE25.OKTG01 · STL decomposition</span>
   </div>
-  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/02b_components.png" alt="TÜFE Y/Y · STL Bileşen Analizi (5 Yıl)" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/02b_components.png" alt="TÜFE Y/Y · STL Bileşen Analizi (20 Yıl)" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>STL ayrıştırması, trend bileşeninin 2022-23 zirvesinden sonra istikrarlı bir düşüş profilinde olduğunu gösteriyor — sıkı para politikasının uzun-dönem etkisi tutarlı. Mevsimsel bileşen yıllık ±5 puan civarında istikrarlı bir genlik üretiyor; bu, idari fiyat ayarlamaları ve asgari ücret takvimine bağlı yapısal döngünün işareti.</p>
-<p>Artık (residual) bileşeninin standart sapması 4.2 puan — gelişmekte olan ülke ortalamasının net üstünde. Yüksek artık varyans, <strong>TR enflasyon dinamiklerinin öngörülebilirliğinin sınırlı</strong> olduğunu yansıtıyor: kur sıçramaları, jeopolitik şoklar ve idari sürprizler düzenli olarak modele giremeyen ek katmanlar ekliyor.</p>
-<p><strong>View.</strong> Trend gerileme sürer, ancak artık varyans şokların etkisini güçlü kılmaya devam eder.
-<strong>Risk.</strong> Mevsimsel kalıbın bozulması (örn. asgari ücret takviminde ara revizyon) modelin tahmin gücünü zayıflatır.</p>
+    <p>20 yıllık seri üzerinde STL ayrıştırması, trendin son 12 ayda ortalama <strong>+0.07 puan/ay</strong> ile yavaş bir geri çekilme/yatay seyirde olduğunu gösteriyor — sıkı politikanın trend kırıcı etkisi var ama hız sınırlı. Mevsimsel bileşen yıllık <strong>±15 puan</strong> genlikte salınıyor; bu büyüklük 2022-23 hiperenflasyon döneminin baz etkileriyle şişen yapısal döngüyü yansıtıyor (idari fiyat takvimi + asgari ücret + kur geçişkenliği).</p>
+<p>Artık (residual) bileşeninin standart sapması <strong>8.4 puan</strong> — gelişmekte olan ülke ortalamasının kat üstünde. Yüksek artık varyans <strong>TR enflasyon dinamiklerinin model dışı şoklara açık</strong> olduğunu yansıtıyor: kur sıçramaları, jeopolitik primler ve idari sürprizler periyodik olarak SARIMA gibi yapısal modellerin yakalayamadığı sapmalar üretiyor.</p>
+<p><strong>View.</strong> Trend gerileme yavaş ve sürer; ancak ±15 puanlık mevsim genliği ve 8 puanlık artık σ, kısa-vadeli yorumların yüksek belirsizlikle yapılması gerektiğini ima ediyor.
+<strong>Risk.</strong> Mevsim kalıbının kırılması (asgari ücret ara zammı, KDV ayarı, idari tarife) modelin öngörü gücünü zayıflatır — tek bir aylık veri reaksiyon için yeterli sinyal değildir.</p>
   </div>
 </article>
 
@@ -896,7 +896,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 23:40 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 23:46 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
