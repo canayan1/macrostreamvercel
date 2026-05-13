@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BIMAS · Kurulum — 2026-05-14 — Kalibre Markets</title>
+<title>SISE · Strateji Sonuçları — 2026-05-14 — Kalibre Markets</title>
 
-<meta name="description" content="BIMAS (BIMAS) için teknik kurulum: giriş bölgeleri, stop seviyesi, hedefler ve risk-getiri oranı. Otomatik hesaplama, eğitim amaçlı.">
+<meta name="description" content="Şişe Cam (SISE) hissesi için 5 algoritmik strateji sonuçları: Momentum, Golden Cross, Düşük Volatilite, RSI ve 52H Breakout. Geçmiş veriyle test edilmiş getiri, işlem sayısı, kazanma oranı.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
-<meta name="keywords" content="BIMAS, BIMAS, hisse kurulumu, trade setup, stop loss, hedef fiyat">
-<meta property="og:title" content="BIMAS · Kurulum — 2026-05-14 — Kalibre Markets">
-<meta property="og:description" content="BIMAS (BIMAS) için teknik kurulum: giriş bölgeleri, stop seviyesi, hedefler ve risk-getiri oranı. Otomatik hesaplama, eğitim amaçlı.">
+<meta name="keywords" content="SISE, Şişe Cam, algoritmik strateji, backtest, hisse stratejisi">
+<meta property="og:title" content="SISE · Strateji Sonuçları — 2026-05-14 — Kalibre Markets">
+<meta property="og:description" content="Şişe Cam (SISE) hissesi için 5 algoritmik strateji sonuçları: Momentum, Golden Cross, Düşük Volatilite, RSI ve 52H Breakout. Geçmiş veriyle test edilmiş getiri, işlem sayısı, kazanma oranı.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
@@ -19,8 +19,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BIMAS · Kurulum — 2026-05-14 — Kalibre Markets">
-<meta name="twitter:description" content="BIMAS (BIMAS) için teknik kurulum: giriş bölgeleri, stop seviyesi, hedefler ve risk-getiri oranı. Otomatik hesaplama, eğitim amaçlı.">
+<meta name="twitter:title" content="SISE · Strateji Sonuçları — 2026-05-14 — Kalibre Markets">
+<meta name="twitter:description" content="Şişe Cam (SISE) hissesi için 5 algoritmik strateji sonuçları: Momentum, Golden Cross, Düşük Volatilite, RSI ve 52H Breakout. Geçmiş veriyle test edilmiş getiri, işlem sayısı, kazanma oranı.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
@@ -464,123 +464,222 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   } catch(e) {}
 })();
 </script>
-<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Hisse Kurulumu › BIMAS</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › <a href='/algo/' style='color:inherit'>Stratejiler</a> › SISE</div>
 <main>
 
 <div class="wrap">
   <div style="margin-bottom:22px">
-    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">
-      ▸ Hisse Kurulumu · 2026-05-14
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">
+      ▸ Hisse Bazlı Strateji Sonuçları · 2026-05-14
     </div>
     <h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
-      BIMAS · BIMAS
+      SISE · Şişe Cam
     </h1>
-    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
-      <span class="pill on">▲ GÜÇLÜ YUKARI</span>
-      <span class="pill" style="background:rgba(255,166,48,.08);color:var(--accent)">Eğilim: YUKARI</span>
-    </div>
-    <p style="margin-top:14px;font-size:13.5px;color:var(--text-dim);line-height:1.6;max-width:64ch">
-      Aşağıdaki seviyeler <b>BIMAS</b> için bugünkü teknik resimden hesaplanan giriş,
-      stop ve hedef bölgeleridir. Yatırım tavsiyesi değil; bir başlangıç noktası.
+    <p style="margin-top:12px;font-size:14px;color:var(--text-dim);line-height:1.65;max-width:68ch">
+      Strateji laboratuvarındaki 5 algoritmik yöntem, sadece <b style="color:var(--text)">SISE</b> hissesine
+      uygulanmış olsaydı geçmişte nasıl sonuç verirdi? Aşağıda her stratejinin bu hisse için
+      ürettiği toplam getiri, açtığı pozisyon sayısı ve kazanma oranı.
+    </p>
+    <p style="margin-top:8px;font-size:11.5px;color:var(--muted)">
+      Evren: <b style="color:var(--text-dim)">BIST 30</b> · İşlem maliyeti: 10 bps tek yön ·
+      Strateji o hisseyi tuttuğunda getiri kazanır, tutmadığında nakitte kabul edilir.
     </p>
   </div>
 
-  <div class="panel" style="padding:20px 22px">
-    <div class="panel-h" style="border:none;padding:0 0 10px"><span class="ttl">▣ Seviyeler</span></div>
-    
-
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">📍 Şu anki fiyat</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--text);font-weight:600">781.00</span>
+  
+<div class="panel" style="overflow:hidden;margin-bottom:20px;padding:0">
+  <div class="panel-h"><span class="ttl">▣ Equity Eğrileri · SISE üzerinde 5 strateji + Al &amp; Tut</span></div>
+  <div style="background:#1a1612;display:flex;align-items:center;justify-content:center;max-height:380px;overflow:hidden">
+    <img src="equity.png" alt="SISE strateji karşılaştırma"
+         style="display:block;max-width:100%;max-height:360px;width:auto;height:auto;object-fit:contain" />
+  </div>
 </div>
 
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">🎯 Giriş — sabırlı (geri çekilme)</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--accent);font-weight:600">712.94</span>
-</div>
 
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">⚡ Giriş — agresif (anlık)</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--accent);font-weight:600">781.00</span>
-</div>
-
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">🛑 Stop seviyesi</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--red);font-weight:600">691.55 <span style='color:var(--red);font-size:11px;margin-left:6px'>(-11.5%)</span></span>
-</div>
-
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">🟢 Hedef 1</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--green);font-weight:600">835.67 <span style='color:var(--green);font-size:11px;margin-left:6px'>(+7.0%)</span></span>
-</div>
-
-<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border)">
-  <span style="font-size:12.5px;color:var(--text-dim)">🟢 Hedef 2</span>
-  <span style="font-family:'Geist Mono';font-size:14px;color:var(--green);font-weight:600">790.00 <span style='color:var(--green);font-size:11px;margin-left:6px'>(+1.2%)</span></span>
-</div>
-
+  <div style="margin-bottom:8px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px">
+      ▸ 5 Strateji · SISE için sonuçlar (en iyiden en kötüye)
+    </div>
   </div>
 
   
-<div class="panel" style="padding:18px 20px;margin-top:16px">
-  <div class="panel-h" style="border:none;padding:0 0 10px"><span class="ttl">▣ Risk · Getiri Oranı</span></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-family:'Geist Mono'">
+<a href="/algo/golden-cross/" class="panel" style="display:block;padding:18px 22px;margin-bottom:14px;text-decoration:none;color:inherit;transition:border-color .15s">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.005em;margin-bottom:4px">Golden Cross</div>
+      <div style="font-size:12.5px;color:var(--text-dim);line-height:1.55">50g ortalaması 200g üstündeyse al; aksi halde nakit.</div>
+    </div>
+    <span class="pill on" style="font-size:10px">▲ ŞU AN POZİSYONDA</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;font-family:'Geist Mono','JetBrains Mono',monospace">
     <div>
-      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">HEDEF 1 / STOP</div>
-      <div style="font-size:22px;font-weight:600;color:var(--text);margin-top:4px">0.61 ×</div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Toplam Getiri</div>
+      <div style="font-size:20px;font-weight:600;color:var(--green);margin-top:3px">+55.9%</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:2px"><span style="color:var(--red);font-size:11.5px;margin-left:6px">(B&amp;H'a göre -158.5pp)</span></div>
     </div>
     <div>
-      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">HEDEF 2 / STOP</div>
-      <div style="font-size:22px;font-weight:600;color:var(--text);margin-top:4px">0.10 ×</div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">İşlem Sayısı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">3</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Ort. Tutuş</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">205 gün</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Kazanma Oranı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%100</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Süre içinde</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%41 tutuldu</div>
     </div>
   </div>
-  <p style="margin-top:12px;font-size:11.5px;color:var(--text-dim);line-height:1.6">
-    Risk-getiri oranı 1.5 üzerinde bir kurulum genelde değerlendirmeye değer. Altında ise
-    pozisyon büyüklüğünü kıs ya da daha iyi bir giriş seviyesi bekle.
-  </p>
-</div>
-  
-<div class="panel" style="padding:18px 20px;margin-top:16px">
-  <div class="panel-h" style="border:none;padding:0 0 10px"><span class="ttl">▣ Önerilen Pozisyon Büyüklüğü</span></div>
-  <div style="display:flex;align-items:baseline;gap:14px;font-family:'Geist Mono'">
-    <div style="font-size:30px;font-weight:600;color:var(--accent)">8.7%</div>
-    <div style="font-size:12px;color:var(--text-dim);line-height:1.5;max-width:38ch">
-      Portföyünün <b>%1'ini riske atmak</b> istiyorsan, bu hissedeki pozisyon büyüklüğü
-      yaklaşık portföyünün <b>%9'i</b> olabilir (stop seviyesine olan uzaklık baz alındı).
+</a>
+
+<a href="/algo/rsi-mean-reversion/" class="panel" style="display:block;padding:18px 22px;margin-bottom:14px;text-decoration:none;color:inherit;transition:border-color .15s">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.005em;margin-bottom:4px">RSI Mean Reversion</div>
+      <div style="font-size:12.5px;color:var(--text-dim);line-height:1.55">RSI 30 altına inince al, 50 üstüne çıkınca sat.</div>
+    </div>
+    <span class="pill" style="font-size:10px;background:rgba(255,255,255,.04);color:var(--muted)">◇ POZİSYONDA DEĞİL</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;font-family:'Geist Mono','JetBrains Mono',monospace">
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Toplam Getiri</div>
+      <div style="font-size:20px;font-weight:600;color:var(--green);margin-top:3px">+11.1%</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:2px"><span style="color:var(--red);font-size:11.5px;margin-left:6px">(B&amp;H'a göre -203.2pp)</span></div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">İşlem Sayısı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">3</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Ort. Tutuş</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">19 gün</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Kazanma Oranı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%67</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Süre içinde</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%4 tutuldu</div>
     </div>
   </div>
-</div>
-  
-<div class="panel" style="padding:18px 20px;margin-top:16px">
-  <div class="panel-h" style="border:none;padding:0 0 10px"><span class="ttl">▣ Teknik Resim</span></div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;font-family:'Geist Mono'">
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">50-DMA</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">712.94</div></div>
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">200-DMA</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">603.68</div></div>
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">RSI(14)</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">61.9</div></div>
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">52H zirve</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">790.00</div></div>
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">52H dip</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">456.75</div></div>
-    <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em">30g hacim</div>
-      <div style="font-size:14px;color:var(--text);margin-top:3px">4,509,775</div></div>
+</a>
+
+<a href="/algo/breakout-52w/" class="panel" style="display:block;padding:18px 22px;margin-bottom:14px;text-decoration:none;color:inherit;transition:border-color .15s">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.005em;margin-bottom:4px">52-Hafta Breakout</div>
+      <div style="font-size:12.5px;color:var(--text-dim);line-height:1.55">52w yüksek kıran hisseyi al, %10 trailing stop.</div>
+    </div>
+    <span class="pill" style="font-size:10px;background:rgba(255,255,255,.04);color:var(--muted)">◇ POZİSYONDA DEĞİL</span>
   </div>
-</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;font-family:'Geist Mono','JetBrains Mono',monospace">
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Toplam Getiri</div>
+      <div style="font-size:20px;font-weight:600;color:var(--green);margin-top:3px">+2.5%</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:2px"><span style="color:var(--red);font-size:11.5px;margin-left:6px">(B&amp;H'a göre -211.9pp)</span></div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">İşlem Sayısı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">2</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Ort. Tutuş</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">10 gün</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Kazanma Oranı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%50</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Süre içinde</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%1 tutuldu</div>
+    </div>
+  </div>
+</a>
+
+<a href="/algo/momentum-top5/" class="panel" style="display:block;padding:18px 22px;margin-bottom:14px;text-decoration:none;color:inherit;transition:border-color .15s">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.005em;margin-bottom:4px">Momentum Top-5</div>
+      <div style="font-size:12.5px;color:var(--text-dim);line-height:1.55">Son 6 ay&#x27;da en güçlü 5 hisseyi taşı, ay sonunda yenile.</div>
+    </div>
+    <span class="pill" style="font-size:10px;background:rgba(255,255,255,.04);color:var(--muted)">◇ POZİSYONDA DEĞİL</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;font-family:'Geist Mono','JetBrains Mono',monospace">
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Toplam Getiri</div>
+      <div style="font-size:20px;font-weight:600;color:var(--text);margin-top:3px">+0.0%</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:2px"><span style="color:var(--red);font-size:11.5px;margin-left:6px">(B&amp;H'a göre -214.4pp)</span></div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">İşlem Sayısı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">0</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Ort. Tutuş</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">0 gün</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Kazanma Oranı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">—</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Süre içinde</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%0 tutuldu</div>
+    </div>
+  </div>
+</a>
+
+<a href="/algo/low-volatility/" class="panel" style="display:block;padding:18px 22px;margin-bottom:14px;text-decoration:none;color:inherit;transition:border-color .15s">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.005em;margin-bottom:4px">Düşük Volatilite</div>
+      <div style="font-size:12.5px;color:var(--text-dim);line-height:1.55">60 gün volatilitesi en düşük 8 hisseyi taşı.</div>
+    </div>
+    <span class="pill" style="font-size:10px;background:rgba(255,255,255,.04);color:var(--muted)">◇ POZİSYONDA DEĞİL</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;font-family:'Geist Mono','JetBrains Mono',monospace">
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Toplam Getiri</div>
+      <div style="font-size:20px;font-weight:600;color:var(--red);margin-top:3px">-21.9%</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:2px"><span style="color:var(--red);font-size:11.5px;margin-left:6px">(B&amp;H'a göre -236.3pp)</span></div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">İşlem Sayısı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">4</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Ort. Tutuş</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">236 gün</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Kazanma Oranı</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%75</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase">Süre içinde</div>
+      <div style="font-size:16px;color:var(--text);margin-top:3px">%63 tutuldu</div>
+    </div>
+  </div>
+</a>
+
 
   <div style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap">
     
-<a class="btn" href="/reports/2026-05-14/hisse/" style="margin-right:8px">📰 Günün Bültenine Dön</a>
-    <a class="btn" href="/islem-kontrolu/">İşlem Kontrolü</a>
-    <a class="btn" href="/egitim/momentum-nedir/">Trend Eğitimi</a>
     <a class="btn" href="/algo/">Tüm Stratejiler</a>
+    <a class="btn" href="/egitim/momentum-nedir/">Eğitim: Strateji Nedir?</a>
+    <a class="btn" href="/islem-kontrolu/">İşlem Kontrolü</a>
   </div>
 
   <div style="margin-top:22px;padding:14px 18px;background:rgba(239,68,68,0.06);border-left:3px solid var(--red);font-size:11.5px;color:var(--text-dim);line-height:1.6">
-    <b style="color:var(--text)">Uyarı.</b> Bu sayfa otomatik teknik göstergelerden üretilen
-    bir eğitim materyalidir. Yatırım tavsiyesi değildir; alım-satım kararı vermeden önce
-    kendi araştırmanızı yapın ya da bir uzmana danışın.
+    <b style="color:var(--text)">Uyarı.</b> Geçmiş veri üzerinde simülasyondur ve yatırım tavsiyesi
+    değildir. Strateji kuralları evren-bazlı çalışır; tek bir hisseye uyarlanmış sonuçlar
+    diversifikasyon avantajı içermez. Tek hisseye odaklı uygulama her zaman daha yüksek risk taşır.
   </div>
 </div>
 
@@ -588,7 +687,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-14 00:03 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-14 00:10 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
