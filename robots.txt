@@ -1,4 +1,4 @@
-# Pusula Finans robots.txt
+# Kalibre Markets robots.txt
 User-agent: *
 Allow: /
 
@@ -6,4 +6,4 @@ Allow: /
 User-agent: Mediapartners-Google
 Allow: /
 
-Sitemap: https://macrostreamvercel.vercel.app/sitemap.xml
+Sitemap: https://kalibremarkets.com/sitemap.xml
