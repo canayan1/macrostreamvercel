@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>📊 Günlük Nabız — 2026-05-13 — Kalibre Markets</title>
+
 <meta name="description" content="Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/reports/raporlar/2026-05-13/">
@@ -28,9 +29,10 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "📊 Günlük Nabız — 2026-05-13 — Kalibre Markets", "description": "Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.", "url": "https://kalibremarkets.com/reports/raporlar/2026-05-13/", "datePublished": "2026-05-13", "dateModified": "2026-05-13", "author": {"@type": "Person", "name": "Kalibre Markets", "url": "https://kalibremarkets.com"}, "publisher": {"@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": {"@type": "ImageObject", "url": "https://kalibremarkets.com/og-default.png"}}, "image": "https://kalibremarkets.com/og-default.png", "inLanguage": "tr", "keywords": "Günlük Nabız, günlük bülten, Türkçe, makro analiz, veri yorumu"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana sayfa", "item": "https://kalibremarkets.com/"}, {"@type": "ListItem", "position": 2, "name": "Günlük Nabız", "item": "https://kalibremarkets.com/arsiv.html"}, {"@type": "ListItem", "position": 3, "name": "2026-05-13", "item": "https://kalibremarkets.com/reports/raporlar/2026-05-13/"}]}</script>
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root {
   --bg: #100e0c;
   --bg-1: #14110e;
@@ -57,10 +59,16 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   background: var(--bg); color: var(--text);
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 13px; line-height: 1.5;
-  font-feature-settings: 'tnum', 'ss01', 'cv11';
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
 }
 body {
   background-image:
@@ -167,11 +175,14 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 .disclaimer-banner b { color: var(--accent); }
 
 /* ── PAGE HEADING ─────────────────────────────────── */
-h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; }
-h1 { font-size: 24px; font-weight: 500; letter-spacing: -.01em; margin-bottom: 14px; color: var(--text); }
-h2 { font-size: 18px; font-weight: 600; letter-spacing: -.005em; margin: 26px 0 12px; color: var(--text); }
-h3 { font-size: 14px; font-weight: 600; letter-spacing: .04em; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
-p { margin-bottom: 12px; }
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
 
 /* ── PANEL ────────────────────────────────────────── */
 .panel {
@@ -280,24 +291,147 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 .ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
 
 /* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
 @media (max-width: 900px) {
   .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
-  .fkey { border-bottom: 1px solid var(--border); }
+  .fkey { border-bottom: 1px solid var(--border); padding: 0 10px; font-size: 12px; }
   .fkey:nth-child(4n) { border-right: 0; }
+  .fkey .k { display: none; }  /* F1/F2 etiketlerini gizle, sadece label kalsın */
   .cmd-stat:not(:first-child) { display: none; }
-  .wrap, main { padding: 14px 14px 60px; }
-  footer.pf-foot { flex-direction: column; padding: 16px 14px; }
+  .cmd-prompt input,
+  .cmd-prompt span:not(.chev):not(.kbd) { font-size: 12px; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
 }
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  /* Cmd prompt mobilde gizle (sadece brand + status) */
+  .cmd-prompt { display: none; }
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  .disclaimer-banner { line-height: 1.5; }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
 @media (max-width: 600px) {
   table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding: 0 12px; }
+  .cmd-status { padding: 0 8px; font-size: 10px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
 }</style>
 </head>
 <body>
-<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">PUSULA <span class="sub">// FINANS</span></div></div><div class="cmd-prompt"><span class="chev" style="opacity:.65">✦</span><span style="color:var(--muted);font-size:12.5px;letter-spacing:.01em">Yapay zeka asistanı · <b style="color:var(--text-dim);font-weight:500">yakında</b></span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em">PREMIUM</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-13</div></div></div><div class="fkeys"><a class="fkey" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Borsa, FX, makro raporları"><span class="k">F2</span><span class="lbl">Günlük Bülten</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F3</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F4</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/reports/pulse/2026-05-12/" title="Günün 5 grafikle özeti"><span class="k">F5</span><span class="lbl">Bugün</span></a><a class="fkey" href="/editor/" title="Haftanın notları"><span class="k">F6</span><span class="lbl">Editörden</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F7</span><span class="lbl">Eğitim</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><div class="cmd-prompt cmd-prompt-soon" title="Yakında: işlem geçmişini analiz edip sana kaybettiren psikolojik kalıpları tespit eden yapay zeka asistanı"><span class="chev" style="opacity:.65">✦</span><span style="color:var(--muted);font-size:12.5px;letter-spacing:.01em">İşlem kararlarının yapay zeka analizi · psikolojik kalıp tespiti · <b style="color:var(--text-dim);font-weight:500">yakında</b></span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em">PREMIUM</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-13</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Borsa, FX, makro raporları"><span class="k">F2</span><span class="lbl">Günlük Bülten</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F3</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F4</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/editor/" title="Haftanın notları"><span class="k">F5</span><span class="lbl">Editörden</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F6</span><span class="lbl">Eğitim</span></a><a class="fkey" href="https://oyun.kalibremarkets.com" title="Sıfır risk ile borsa simülasyonu — yeni öğrenenler için" target="_blank" rel="noopener"><span class="k">F7</span><span class="lbl">🎮 Simülasyon</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
 <div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
-  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px;font-family:'JetBrains Mono',monospace">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
     <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
     <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
     <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
@@ -344,7 +478,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <b style="color:var(--accent);font-weight:700;letter-spacing:.16em">▣ Bülten · Günlük Nabız</b>
       <span>·</span><span>2026-05-13</span>
     </div>
-    <h1 style="font-family:'JetBrains Mono';font-weight:500;font-size:26px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px">
+    <h1 style="font-weight:500;font-size:26px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px">
       📊 Günlük Nabız — 2026-05-13
     </h1>
     <div style="font-size:13px;color:var(--text-dim);line-height:1.6;max-width:80ch"><p class="muted">Sabah toplantısı havasında her gün 5 grafik: yerel piyasa (XU100), kur (USD/TRY), küresel dolar (DXY), ABD getiri eğrisi (10Y + Fed) ve risk barometresi (VIX). Her grafik 1 yıllık seyir + bir önceki yıl aynı tarih overlay'i + 50g/200g hareketli ortalamalarla birlikte.</p></div>
@@ -356,14 +490,19 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="display:flex;align-items:center;gap:10px">
     <span style="font-size:22px">🟡</span>
     <div>
-      <div style="font-size:18px;font-weight:600;color:#e5ebf2">Karışık</div>
-      <div style="font-size:13px;color:#aab">Çelişkili sinyaller</div>
+      <div style="font-size:18px;font-weight:600;color:#e5ebf2">Sakin</div>
+      <div style="font-size:13px;color:#aab">VIX 18.0 — düşük volatilite</div>
     </div>
   </div>
-  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">BIST: <strong style="color:#e5ebf2">14,780</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">USD/TRY: <strong style="color:#e5ebf2">45.3853</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">DXY: <strong style="color:#e5ebf2">98.29</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">ABD: <strong style="color:#e5ebf2">4.42</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">VIX: <strong style="color:#e5ebf2">18.4</strong></span></div>
+  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">BIST: <strong style="color:#e5ebf2">14,780</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">USD/TRY: <strong style="color:#e5ebf2">45.4002</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">DXY: <strong style="color:#e5ebf2">98.29</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">ABD: <strong style="color:#e5ebf2">4.46</strong></span><span style="background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:999px;font-size:12px;color:#aab">VIX: <strong style="color:#e5ebf2">18.0</strong></span></div>
 </div>
 </div>
-  
+  <div style="margin-bottom:18px">
+<div class="card" style="border-left:3px solid #fbbf24; background:#2a2410">
+  <h3 style="margin-top:0;color:#fbbf24">⚡ Geçen Sayıdan Bu Yana Değişenler</h3>
+  <ul style="margin:0;padding-left:18px;line-height:1.8"><li>Genel rejim: &#x27;Karışık&#x27; → &#x27;Sakin&#x27;</li></ul>
+</div>
+</div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:14px;margin-top:14px">
 <div class="card">
@@ -383,9 +522,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <h3 style="margin:0;font-size:15px;color:var(--text);text-transform:none;letter-spacing:0;font-weight:600">
       💵 USD/TRY
     </h3>
-    <div style="font-size:18px;font-weight:700;color:var(--accent)">45.3853</div>
+    <div style="font-size:18px;font-weight:700;color:var(--accent)">45.4002</div>
   </div>
-  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="pos">+0.07%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="pos">+0.38%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="pos">+1.53%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+5.56%</span></span></div>
+  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="pos">+0.03%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="pos">+0.38%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="pos">+1.56%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+5.60%</span></span></div>
   <img src="usdtry.png" alt="💵 USD/TRY" style="max-width:100%;height:auto;border-radius:6px;background:#1a2029;margin-top:8px" />
 </div>
 
@@ -407,9 +546,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <h3 style="margin:0;font-size:15px;color:var(--text);text-transform:none;letter-spacing:0;font-weight:600">
       📈 ABD 10Y Tahvil Getirisi
     </h3>
-    <div style="font-size:18px;font-weight:700;color:var(--accent)">4.42%</div>
+    <div style="font-size:18px;font-weight:700;color:var(--accent)">4.46%</div>
   </div>
-  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="pos">+0.91%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="neg">-0.67%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="pos">+2.55%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+5.49%</span></span></div>
+  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="pos">+0.90%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="pos">+0.68%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="pos">+3.72%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+6.44%</span></span></div>
   <img src="us10y.png" alt="📈 ABD 10Y Tahvil Getirisi" style="max-width:100%;height:auto;border-radius:6px;background:#1a2029;margin-top:8px" />
 </div>
 
@@ -419,9 +558,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <h3 style="margin:0;font-size:15px;color:var(--text);text-transform:none;letter-spacing:0;font-weight:600">
       ⚠️ VIX (Korku Endeksi)
     </h3>
-    <div style="font-size:18px;font-weight:700;color:var(--accent)">18.4</div>
+    <div style="font-size:18px;font-weight:700;color:var(--accent)">18.0</div>
   </div>
-  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="pos">+6.92%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="pos">+0.49%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="neg">-4.42%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+26.67%</span></span></div>
+  <div style="margin:8px 0 4px"><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">Günlük:</span> <span class="neg">-2.12%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">5g:</span> <span class="pos">+3.51%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">30g:</span> <span class="neg">-5.91%</span></span><span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px;background:var(--panel-2);padding:2px 8px;border-radius:999px;font-size:11px"><span class="muted">YTD:</span> <span class="pos">+23.98%</span></span></div>
   <img src="vix.png" alt="⚠️ VIX (Korku Endeksi)" style="max-width:100%;height:auto;border-radius:6px;background:#1a2029;margin-top:8px" />
 </div>
 </div>
@@ -433,9 +572,13 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     </div>
     <div class="panel-body" style="padding:20px">
       <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ VERİ ÜZERİNDE SENTEZ</div>
-      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Günaydın ekip,
+      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Günaydın arkadaşlar, piyasaların nabzını tuttuğumuz sabah toplantımıza hoş geldiniz.
 
-Sabah toplantımızın Pulse özetine geçelim. Küresel piyasalarda DXY&#x27;nin 30 günlük -0.08% ve YTD -0.13% ile yatay seyri, ABD 10Y tahvil getirisinin 30 günde +2.55% artışı ve VIX&#x27;in 30 günde -4.42% düşüşü, risk iştahında hafif bir artışa işaret ediyor. Türkiye yerel piyasalarına baktığımızda, BIST 100&#x27;ün 30 günde +7.97% ve YTD +28.54% ile güçlü yükselişi, USD/TRY&#x27;nin ise 30 günde +1.53% ve YTD +5.56% ile sınırlı artışı, küresel risk iştahı hikayesiyle uyumlu bir seyir izliyor. Özellikle BIST 100&#x27;deki bu belirgin yükseliş, yerel varlıklara yönelik pozitif algının devam ettiğini gösteriyor.</p>
+Küresel risk algısı ve dolar dinamiklerine baktığımızda, DXY&#x27;nin son 30 günde %0.08 düşüşle 98.29 seviyesinde seyretmesi ve VIX&#x27;in %5.91 gerileyerek 18.0&#x27;e inmesi, risk iştahında hafif bir toparlanmaya işaret ediyor. Ancak ABD 10 yıllık tahvil getirilerinin %3.72 artışla %4.46&#x27;ya yükselmesi, küresel faiz baskısının devam ettiğini gösteriyor.
+
+Yerel piyasalarımıza döndüğümüzde, BIST 100&#x27;ün son 30 günde %7.97 artışla 14,780 seviyesine ulaşması, küresel risk iştahındaki toparlanmaya paralel bir seyir izlediğini gösteriyor. USD/TRY&#x27;nin %1.56 artışla 45.4002 seviyesinde kalması ise, kur tarafında görece istikrarlı bir görünüm sunuyor.
+
+Genel olarak, yerel piyasalarımız küresel risk algısıyla uyumlu bir seyir izliyor gibi görünse de, ABD tahvil getirilerindeki yükselişin uzun vadede risk iştahı üzerinde baskı oluşturabileceği göz ardı edilmemelidir.</p>
       <p style="margin-top:12px;font-size:11px;color:var(--muted);border-top:1px dashed var(--border);padding-top:10px">
         ⚠ Bu metin yapay zeka ile üretilmiş otomatik bir özettir. Editör değerlendirmesinden geçmez.
         Yatırım tavsiyesi değildir.
@@ -448,7 +591,7 @@ Sabah toplantımızın Pulse özetine geçelim. Küresel piyasalarda DXY&#x27;ni
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 13:16 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 22:35 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -494,5 +637,80 @@ Sabah toplantımızın Pulse özetine geçelim. Küresel piyasalarda DXY&#x27;ni
 })();
 </script>
 
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
 </body>
 </html>

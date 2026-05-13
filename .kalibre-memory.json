@@ -21,8 +21,8 @@
         "metrics": {
           "regime": "Dolar Yatay",
           "dxy_5d_pct": -0.19293504765388603,
-          "usdtry": 45.38529968261719,
-          "usdtry_30d_pct": 1.5340169923667712,
+          "usdtry": 45.40019989013672,
+          "usdtry_30d_pct": 1.5596286355487265,
           "strongest_pair": "AUD/USD"
         }
       }
@@ -46,8 +46,8 @@
         "metrics": {
           "regime": "Normal Eğri",
           "fed_funds": 3.64,
-          "yield_spread": 0.46999999999999975,
-          "vix": 18.38
+          "yield_spread": 0.45999999999999996,
+          "vix": 17.99
         }
       },
       {
@@ -115,17 +115,17 @@
         "category": "pulse",
         "date": "2026-05-13",
         "metrics": {
-          "regime": "Karışık",
+          "regime": "Sakin",
           "xu100_last": 14779.900390625,
           "xu100_pct_30d": 7.969175181715249,
-          "usdtry_last": 45.38529968261719,
-          "usdtry_pct_30d": 1.5340169923667712,
+          "usdtry_last": 45.40019989013672,
+          "usdtry_pct_30d": 1.5596286355487265,
           "dxy_last": 98.29000091552734,
           "dxy_pct_30d": -0.08132746652532719,
-          "us10y_last": 4.42,
-          "us10y_pct_30d": 2.5522041763341052,
-          "vix_last": 18.38,
-          "vix_pct_30d": -4.420176807072284
+          "us10y_last": 4.46,
+          "us10y_pct_30d": 3.7209302325581506,
+          "vix_last": 17.99,
+          "vix_pct_30d": -5.910041841004199
         }
       },
       {
