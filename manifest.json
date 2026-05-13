@@ -1,18 +1,18 @@
 {
-  "last_update": "2026-05-13T09:23:53.363006Z",
+  "last_update": "2026-05-13T12:17:08.823470Z",
   "latest_report": {
     "category": "makro",
-    "date": "2026-05-12",
-    "title": "makro — 2026-05-12"
+    "date": "2026-05-13",
+    "title": "makro — 2026-05-13"
   },
-  "total_reports": 8,
+  "total_reports": 14,
   "by_category": {
-    "pulse": 1,
-    "hisse": 2,
-    "sektor": 1,
-    "fx": 1,
-    "makro": 1,
-    "fred": 1,
+    "pulse": 2,
+    "hisse": 3,
+    "sektor": 2,
+    "fx": 2,
+    "makro": 2,
+    "fred": 2,
     "wb": 1
   }
 }

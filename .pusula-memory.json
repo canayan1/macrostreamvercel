@@ -4,6 +4,18 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Olumlu eğilim",
+          "breadth_pct": 67.85714285714286,
+          "us_breadth_pct": 66.66666666666666,
+          "top_gainer": "Hektaş",
+          "top_loser": "Sasa Polyester",
+          "featured_stock": "Aselsan"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-12",
         "metrics": {
           "regime": "Risk-On",
@@ -30,6 +42,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Dolar Yatay",
+          "dxy_5d_pct": -0.19293504765388603,
+          "usdtry": 45.38529968261719,
+          "usdtry_30d_pct": 1.5340169923667712,
+          "strongest_pair": "AUD/USD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-05-12",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -43,6 +66,16 @@
     "fred": [
       {
         "category": "fred",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Normal Eğri",
+          "fed_funds": 3.64,
+          "yield_spread": 0.46999999999999975,
+          "vix": 18.38
+        }
+      },
+      {
+        "category": "fred",
         "date": "2026-05-12",
         "metrics": {
           "regime": "Normal Eğri",
@@ -53,6 +86,18 @@
       }
     ],
     "makro": [
+      {
+        "category": "makro",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Yüksek Enflasyon",
+          "tufe_yoy": 30.89232832318265,
+          "core_yoy": 34.01478312967632,
+          "ufe_yoy": 30.64848474101396,
+          "unemployment": 8.5,
+          "usdtry": 45.313
+        }
+      },
       {
         "category": "makro",
         "date": "2026-05-12",
@@ -78,6 +123,16 @@
     "sektor": [
       {
         "category": "sektor",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Lider: Tarım & Kimya",
+          "leader_sector": "Tarım & Kimya",
+          "laggard_sector": "Havacılık & Turizm",
+          "xu100_30d": 7.969175181715249
+        }
+      },
+      {
+        "category": "sektor",
         "date": "2026-05-12",
         "metrics": {
           "regime": "Lider: Tarım & Kimya",
@@ -88,6 +143,23 @@
       }
     ],
     "pulse": [
+      {
+        "category": "pulse",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Karışık",
+          "xu100_last": 14779.900390625,
+          "xu100_pct_30d": 7.969175181715249,
+          "usdtry_last": 45.38529968261719,
+          "usdtry_pct_30d": 1.5340169923667712,
+          "dxy_last": 98.29000091552734,
+          "dxy_pct_30d": -0.08132746652532719,
+          "us10y_last": 4.42,
+          "us10y_pct_30d": 2.5522041763341052,
+          "vix_last": 18.38,
+          "vix_pct_30d": -4.420176807072284
+        }
+      },
       {
         "category": "pulse",
         "date": "2026-05-12",
