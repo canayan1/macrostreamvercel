@@ -38,6 +38,113 @@
           "xu100_30d": 7.969175181715249
         }
       }
+    ],
+    "fred": [
+      {
+        "category": "fred",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Normal Eğri",
+          "fed_funds": 3.64,
+          "yield_spread": 0.46999999999999975,
+          "vix": 18.38
+        }
+      },
+      {
+        "category": "fred",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Normal Eğri",
+          "fed_funds": 3.64,
+          "yield_spread": 0.46999999999999975,
+          "vix": 18.38
+        }
+      }
+    ],
+    "makro": [
+      {
+        "category": "makro",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Yüksek Enflasyon",
+          "tufe_yoy": 30.89232832318265,
+          "core_yoy": 34.01478312967632,
+          "ufe_yoy": 30.64848474101396,
+          "unemployment": 8.5,
+          "usdtry": 45.313,
+          "_indicator_dates": {
+            "TP.FE.OKTG01": "2025-12-01",
+            "TP.FE.OKTG02": "2025-12-01",
+            "TP.FG.J0": "2026-01-01",
+            "LRHUTTTTTRM156S": "2026-02-01",
+            "TP.DK.USD.A.YTL": "2026-05-13"
+          },
+          "_indicator_values": {
+            "TP.FE.OKTG01": 30.89232832318265,
+            "TP.FE.OKTG02": 34.01478312967632,
+            "TP.FG.J0": 30.64848474101396,
+            "LRHUTTTTTRM156S": 8.5,
+            "TP.DK.USD.A.YTL": 45.313
+          }
+        }
+      },
+      {
+        "category": "makro",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Yüksek Enflasyon",
+          "tufe_yoy": 30.89232832318265,
+          "core_yoy": 34.01478312967632,
+          "ufe_yoy": 30.64848474101396,
+          "unemployment": 8.5,
+          "usdtry": 45.2951
+        }
+      }
+    ],
+    "wb": [
+      {
+        "category": "wb",
+        "date": "2026-05-12",
+        "metrics": {
+          "countries": "TUR,POL,BRA,ZAF,MEX,IDN"
+        }
+      }
+    ],
+    "pulse": [
+      {
+        "category": "pulse",
+        "date": "2026-05-13",
+        "metrics": {
+          "regime": "Karışık",
+          "xu100_last": 14779.900390625,
+          "xu100_pct_30d": 7.969175181715249,
+          "usdtry_last": 45.38529968261719,
+          "usdtry_pct_30d": 1.5340169923667712,
+          "dxy_last": 98.29000091552734,
+          "dxy_pct_30d": -0.08132746652532719,
+          "us10y_last": 4.42,
+          "us10y_pct_30d": 2.5522041763341052,
+          "vix_last": 18.38,
+          "vix_pct_30d": -4.420176807072284
+        }
+      },
+      {
+        "category": "pulse",
+        "date": "2026-05-12",
+        "metrics": {
+          "regime": "Karışık",
+          "xu100_last": 15133.5,
+          "xu100_pct_30d": 11.795256030598878,
+          "usdtry_last": 45.38529968261719,
+          "usdtry_pct_30d": 1.5340169923667712,
+          "dxy_last": 97.94000244140625,
+          "dxy_pct_30d": -0.7197152290832953,
+          "us10y_last": 4.42,
+          "us10y_pct_30d": 2.5522041763341052,
+          "vix_last": 18.38,
+          "vix_pct_30d": -4.420176807072284
+        }
+      }
     ]
   }
 }
