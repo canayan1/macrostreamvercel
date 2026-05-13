@@ -563,14 +563,16 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   
 <article id="02a_tufe" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ TÜFE Yıllık Değişim · 3 Yıl + 6 Ay SARIMA Tahmini</span>
+    <span class="ttl">▣ TÜFE Yıllık Değişim · 20y SARIMA + Reel Faiz Arka Planlı</span>
     <span class="meta" style="font-size:10.5px">EVDS TP.FE25.OKTG01</span>
   </div>
-  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/02a_tufe.png" alt="TÜFE Yıllık Değişim · 3 Yıl + 6 Ay SARIMA Tahmini" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/02a_tufe.png" alt="TÜFE Yıllık Değişim · 20y SARIMA + Reel Faiz Arka Planlı" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TÜFE Nisan'da yıllık 32.4. Bu rakam ciddi yüksek: tüketicinin bir önceki yıla göre aynı sepete 32 kuruş fazla ödediği anlamına geliyor; gelişmekte olan ülkelerin tipik 5-15 bandının çok üstünde, gelişmiş ekonomilerin 2-3 hedefinin 10 katı civarında. Yine de Türkiye için son 5 yılın dip değerine yakın — 2022 sonunda 85'i, 2023 ortasında 50'yi gördük.</p>
-<p>SARIMA(1,1,1)(1,1,1,12) modeli baz etkisi ve sıkı politikanın birleşik etkisiyle Ekim için merkezi 23 değeri öngörüyor. %95 güven bandı geniş (Ekim için yaklaşık -12 ile 58 arası); aylık yüzde puan oynaklığının yüksekliği, kısa vadeli tahminin sınırını gösteriyor.</p>
-<p>View. Yıl sonuna kadar 22-28 bandı taban senaryo. Risk. Asgari ücret revizyonu veya kur şoku, iniş patikasını 3-6 ay erteleyebilir.</p>
+    <p>TÜFE Nisan'da yıllık 32.4. Bu rakam ciddi yüksek: tüketicinin bir önceki yıla göre aynı sepete 32 kuruş fazla ödediği anlamına geliyor; gelişmekte olan ülkelerin tipik 5-15 bandının çok üstünde, gelişmiş ekonomilerin 2-3 hedefinin 10 katı civarında. Türkiye için son 5 yılın dip değerine yakın — 2022 sonunda 85'i, 2023 ortasında 50'yi gördük.</p>
+<p>SARIMA(1,1,1)(1,1,1,12) modeli 20 yıllık veri üzerinde eğitildiğinde Ekim için merkezi 37 değerini öngörüyor — kısa veri (5y) ile alınan 23 tahmininin tersine. Uzun veri TR enflasyonunun yapışkanlığını ve baz etkilerinin sürekli alt-yıllık dalgalanmalarla bozulmasını yakalıyor; bu yönüyle daha realistik. %95 güven bandı 18-56 arasında geniş.</p>
+<p>Grafikteki yeşil arka plan reel faizin pozitif olduğu ayları gösteriyor — son 12 ay tamamı yeşil, bu dezenflasyon kuvvetinin teknik olarak doğru zeminde olduğunun göstergesi. Ancak modelin yorumuna göre pozitif reel faizin tek başına yeterli olmadığı, atalet baskısının daha güçlü olduğu görülüyor.</p>
+<p><strong>View.</strong> Yıl sonuna kadar 30-38 bandı taban senaryo; dezenflasyon gerçekleşse de manşet rakam yüksek seviyede kalmaya devam eder.
+<strong>Risk.</strong> Reel faizin negatife dönmesi (örn. hızlı indirim) atalet baskısını yeniden büyütür; bandın üst kuyruğuna (%50+) doğru hareket başlar.</p>
   </div>
 </article>
 
@@ -894,7 +896,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 23:35 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 23:40 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
