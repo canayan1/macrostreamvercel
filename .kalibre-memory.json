@@ -67,22 +67,22 @@
         "date": "2026-05-13",
         "metrics": {
           "regime": "Yüksek Enflasyon",
-          "tufe_yoy": 30.89232832318265,
-          "core_yoy": 34.01478312967632,
-          "ufe_yoy": 30.64848474101396,
+          "tufe_yoy": 32.37447698744771,
+          "core_yoy": 30.499894537017514,
+          "ufe_yoy": 28.590496076973217,
           "unemployment": 8.5,
           "usdtry": 45.313,
           "_indicator_dates": {
-            "TP.FE.OKTG01": "2025-12-01",
-            "TP.FE.OKTG02": "2025-12-01",
-            "TP.FG.J0": "2026-01-01",
+            "TP.FE25.OKTG01": "2026-04-01",
+            "TP.FE25.OKTG03": "2026-04-01",
+            "TP.TUFE1YI.T1": "2026-04-01",
             "LRHUTTTTTRM156S": "2026-02-01",
             "TP.DK.USD.A.YTL": "2026-05-13"
           },
           "_indicator_values": {
-            "TP.FE.OKTG01": 30.89232832318265,
-            "TP.FE.OKTG02": 34.01478312967632,
-            "TP.FG.J0": 30.64848474101396,
+            "TP.FE25.OKTG01": 32.37447698744771,
+            "TP.FE25.OKTG03": 30.499894537017514,
+            "TP.TUFE1YI.T1": 28.590496076973217,
             "LRHUTTTTTRM156S": 8.5,
             "TP.DK.USD.A.YTL": 45.313
           }
