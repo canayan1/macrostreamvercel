@@ -290,6 +290,32 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }
 @media (max-width: 600px) {
   table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
 }</style>
 </head>
 <body>
@@ -376,7 +402,23 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     </div>
     <div class="panel-body" style="padding:20px">
       <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ VERİ ÜZERİNDE SENTEZ</div>
-      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Türkiye&#x27;nin makroekonomik göstergelerine baktığımızda, enflasyonda hem manşet TÜFE&#x27;de (%30.89) hem de çekirdek B&#x27;de (%34.01) yıllık bazda düşüş eğilimi gözlemlenirken, ÜFE&#x27;deki (%30.65) gerileme de bu trendi desteklemektedir. İşsizlik oranı %8.5 seviyesinde olup, bir önceki aya göre belirgin bir artış göstermesi işgücü piyasasındaki dinamiklerin dikkatle izlenmesi gerektiğini ortaya koymaktadır. USD/TRY kurunun aylık bazda %0.04 gibi sınırlı bir artış göstermesi, kurun enflasyon üzerindeki doğrudan baskısının bu dönemde nispeten zayıf kaldığına işaret etmektedir. Genel olarak, enflasyonda bir yavaşlama eğilimi görülse de, işsizlikteki yükseliş ve kurun potansiyel etkileri, Türkiye ekonomisinin önümüzdeki dönemde dengelenme sürecinde olduğunu göstermektedir.</p>
+      <p style="font-size:13px;color:var(--text-dim);line-height:1.7">Değerli dinleyiciler, Türkiye ekonomisinin makro göstergelerine dair son verileri değerlendirmek üzere karşınızdayım.
+
+**Enflasyon Trendi:**
+
+Enflasyon tarafında, yıllık TÜFE (Tüketici Fiyat Endeksi) %30.89 seviyesinde gerçekleşirken, aylık bazda 0.59 puanlık bir düşüş gözlemledik. Çekirdek B enflasyonu (işlenmemiş gıda ve enerji hariç enflasyon) %34.01 ile manşet enflasyonun üzerinde seyretmeye devam ediyor, ancak aylık bazda 0.51 puanlık bir gerileme kaydetti. ÜFE (Üretici Fiyat Endeksi) ise yıllık %30.65 seviyesinde olup, aylık bazda 0.79 puanlık en belirgin düşüşü gösteriyor. Bu tablo, üretici maliyetlerindeki artış hızının bir miktar yavaşladığına işaret ederken, çekirdek enflasyonun yapışkanlığı (kolay düşmemesi) tüketici fiyatları üzerindeki baskının henüz tam olarak hafiflemediğini gösteriyor.
+
+**İşsizlik Dinamikleri:**
+
+İşsizlik oranı (15 yaş ve üzeri) %8.5 olarak gerçekleşti. Ancak, aylık bazda 3.66 puanlık önemli bir artış dikkat çekiyor. Bu artış, işgücü piyasasında yeni iş yaratma hızının yavaşladığına veya işgücüne katılımda bir değişim olduğuna işaret edebilir. İşsizlik oranındaki bu yükseliş, ekonomik aktivitedeki olası yavaşlamanın bir yansıması olarak değerlendirilebilir.
+
+**Kur ve Enflasyon İlişkisi:**
+
+USD/TRY kuru, aylık bazda %0.04 gibi oldukça sınırlı bir artışla 45.3130 seviyesinde sabit bir seyir izliyor. Kurdaki bu yatay hareket, enflasyon üzerindeki kur geçişkenliği (kur artışının enflasyona yansıması) baskısının bu dönemde oldukça düşük kaldığını gösteriyor. Genellikle kurdaki artışlar ithal girdi maliyetlerini yükselterek enflasyonu tetiklerken, mevcut durumda kurun stabil seyri, enflasyonla mücadelede olumlu bir faktör olarak öne çıkıyor.
+
+**Türkiye Makro Fotoğrafı:**
+
+Genel makro fotoğrafı değerlendirdiğimizde, enflasyonun hem manşet hem de çekirdek göstergelerde bir miktar yavaşlama eğilimine girdiği, ancak çekirdek enflasyonun hala yüksek seviyelerde seyrettiği görülüyor. Üretici fiyatlarındaki gerileme, gelecekte tüketici fiyatları üzerinde olumlu bir etki yaratma potansiyeli taşıyor. Diğer yandan, işsizlik oranındaki belirgin artış, ekonomik aktivitede bir soğuma sinyali olarak okunabilir. Kurun istikrarlı seyri ise enflasyonla mücadelede önemli bir destekleyici unsur olmaya devam ediyor. Bu göstergeler, ekonomide bir denge arayışının devam ettiğini ve enflasyonla mücadelenin yanı sıra istihdam piyasasındaki gelişmelerin de yakından takip edilmesi gerektiğini ortaya koyuyor.</p>
       <p style="margin-top:12px;font-size:11px;color:var(--muted);border-top:1px dashed var(--border);padding-top:10px">
         ⚠ Bu metin yapay zeka ile üretilmiş otomatik bir özettir. Editör değerlendirmesinden geçmez.
         Yatırım tavsiyesi değildir.
@@ -389,7 +431,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">PUSULA · FİNANS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 13:16 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 13:39 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -435,5 +477,34 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 })();
 </script>
 
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
 </body>
 </html>

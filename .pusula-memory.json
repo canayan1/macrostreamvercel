@@ -95,7 +95,21 @@
           "core_yoy": 34.01478312967632,
           "ufe_yoy": 30.64848474101396,
           "unemployment": 8.5,
-          "usdtry": 45.313
+          "usdtry": 45.313,
+          "_indicator_dates": {
+            "TP.FE.OKTG01": "2025-12-01",
+            "TP.FE.OKTG02": "2025-12-01",
+            "TP.FG.J0": "2026-01-01",
+            "LRHUTTTTTRM156S": "2026-02-01",
+            "TP.DK.USD.A.YTL": "2026-05-13"
+          },
+          "_indicator_values": {
+            "TP.FE.OKTG01": 30.89232832318265,
+            "TP.FE.OKTG02": 34.01478312967632,
+            "TP.FG.J0": 30.64848474101396,
+            "LRHUTTTTTRM156S": 8.5,
+            "TP.DK.USD.A.YTL": 45.313
+          }
         }
       },
       {
