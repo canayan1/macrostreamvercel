@@ -475,8 +475,11 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <h1 style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
       Türkiye Ekonomik Raporu · 2026 Q2 · Mayıs 2026
     </h1>
-    <p class="muted" style="margin-top:8px;font-size:13.5px;line-height:1.65;max-width:72ch">
-      <p>Türkiye'nin 2026 ikinci çeyrek makro fotoğrafı. Enflasyon, büyüme, istihdam, dış denge ve kamu maliyesi başlıkları altında 30+ gösterge — her biri için bir grafik ve üç cümlelik vurucu özet.</p>
+    <p style="margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--text-dim)">
+      <p>Türkiye'nin güncel makro fotoğrafı.</p>
+    </p>
+    <p style="margin-top:6px;font-size:11.5px;color:var(--muted);letter-spacing:.04em">
+      Üretim tarihi: <span style="font-family:'Geist Mono','JetBrains Mono',monospace">13.05.2026</span>
     </p>
   </div>
 
@@ -492,7 +495,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <main style="min-width:0">
       
 <section id="01_global" style="margin-bottom:48px">
-  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
     <span style="font-size:28px">🌐</span>
     <div>
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
@@ -501,9 +504,46 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Türkiye&#x27;yi fiyatlayan dış değişkenler: Fed/ECB faiz patikası, brent ve doğalgaz, dolar endeksi.</p>
     </div>
   </div>
-  <div style="padding:24px;background:var(--surface);border:1px dashed var(--border-2);color:var(--muted);text-align:center;font-size:13px">
-    Bu bölüm hazırlanıyor — sonraki revizyonda eklenecek.
+  
+<article id="01a_central_banks" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Merkez Bankaları · TCMB vs Fed Politika Faizi</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.APIFON4 + FRED FEDFUNDS</span>
   </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/01a_central_banks.png" alt="Merkez Bankaları · TCMB vs Fed Politika Faizi" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>TCMB politika faizi <strong>%40</strong>, Fed Funds <strong>%3.64</strong> — fark <strong>+36.4 puan</strong> (Türkiye için tarihsel-yüksek pozitif faiz makası). Bu makas yabancı sermaye için <strong>carry trade cazibesi</strong> yaratan ana mekanizma; daralırsa kurda volatilite artar.</p>
+<p>Fed'in mevcut patika gevşeme (2024-2026 boyunca 525→364bp), TCMB ise 2024'ten beri sıkı duruş — bu rejim Türkiye'ye sermaye girişini destekliyor.</p>
+<p><strong>Pratik bağlam:</strong> Fed daha agresif indirirse (örn %2'lere), TCMB de buna paralel indirim alanı bulur. Aksi durumda (Fed yatay, TCMB hızlı indirim) reel faiz tampon erir → kur baskısı.</p>
+  </div>
+</article>
+
+<article id="01b_brent" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Brent Ham Petrol · 5 Yıllık Seyir</span>
+    <span class="meta" style="font-size:10.5px">Yahoo Finance BZ=F</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/01b_brent.png" alt="Brent Ham Petrol · 5 Yıllık Seyir" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Brent <strong>$108/varil</strong> — 5 yıllık bandın <strong>üst yarısında</strong>. 2022 zirvesi $130'lardan geri çekilmiş ama 2020-21 ortalaması $60-70'in çok üstünde.</p>
+<p>Türkiye için kritik: net enerji ithalatçı ülke, ham petrolün her <strong>$10 yükselişi cari açığı +0.5pp/yıl</strong> etkiler. Mevcut seviye <strong>cari denge için baskılayıcı</strong>.</p>
+<p>İran-Suudi Arabistan dengesi, OPEC+ üretim kararları ve global talep momentumu (Çin) ana belirleyiciler — şu an hiçbiri net düşüş yönlü değil.</p>
+  </div>
+</article>
+
+<article id="01c_dxy" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Dolar Endeksi (DXY) · 3 Yıllık Seyir</span>
+    <span class="meta" style="font-size:10.5px">Yahoo Finance DX-Y.NYB</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/01c_dxy.png" alt="Dolar Endeksi (DXY) · 3 Yıllık Seyir" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>DXY <strong>98.29</strong> — 3 yıllık bandın <strong>alt yarısında</strong>, 2022 zirvesi 115'ten uzak. Dolar göreceli zayıflama eğiliminde — Fed indirim patikası ve fiscal endişeler birlikte çalışıyor.</p>
+<p>TR perspektifinden bu <strong>iyi haber</strong>: zayıf dolar = EM kurlarda nefes alma alanı, USD/TRY için makas etkisi azalır.</p>
+<p>Ancak DXY'nin 95'in altına inmesi (2020 dipleri civarı) reflasyon riski yaratır → emtia fiyatları yukarı → Türkiye için enflasyon kanalına dönüş. Şu anki seviye dengeli.</p>
+  </div>
+</article>
+
 </section>
 
 
@@ -603,7 +643,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
 
 <section id="04_gdp" style="margin-bottom:48px">
-  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
     <span style="font-size:28px">🏭</span>
     <div>
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
@@ -612,9 +652,46 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Çıktı açığı, alt-bileşenler, sanayi üretimi, kapasite kullanım oranı.</p>
     </div>
   </div>
-  <div style="padding:24px;background:var(--surface);border:1px dashed var(--border-2);color:var(--muted);text-align:center;font-size:13px">
-    Bu bölüm hazırlanıyor — sonraki revizyonda eklenecek.
+  
+<article id="04a_gdp" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ GSYİH Y/Y Reel Büyüme · Çeyreklik</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GSYIH26.HY.ZH (Zincirlenmiş Hacim, Harcama Yöntemi)</span>
   </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/04a_gdp.png" alt="GSYİH Y/Y Reel Büyüme · Çeyreklik" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Son çeyrek GSYİH Y/Y <strong>%3.4</strong> — 2021-22 hızlı büyüme döneminden sonra <strong>normalleşme rotası</strong>. Pandemi-sonrası %10+ momentum bitti, %3-5 sürdürülebilir patikaya yerleşti.</p>
+<p>Bu seviye TR potansiyel büyüme tahminlerinin (%4-5) hafif altında — yani <strong>çıktı açığı negatife dönmüş</strong> (HP filtresine bakın). Sıkı para politikası bu yumuşamayı planlı şekilde üretti.</p>
+<p>Enflasyonla mücadele için bu <strong>doğru istikamet</strong>: aşırı ısınma riski azalır, talep-yönlü fiyat baskıları soğur. Yatırımcı için: büyüme momentumunun normalleşmesi, hisse seçiminde <strong>kalite primi</strong> yaratır (sermaye verimli şirketler kazanır).</p>
+  </div>
+</article>
+
+<article id="04b_output_gap" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ GSYİH HP Filtresi · Trend &amp; Çıktı Açığı</span>
+    <span class="meta" style="font-size:10.5px">EVDS GSYİH zincirlenmiş hacim + statsmodels HP filter (λ=1600)</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/04b_output_gap.png" alt="GSYİH HP Filtresi · Trend &amp; Çıktı Açığı" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>HP filtresine göre çıktı açığı <strong>hafif negatif</strong> — gerçekleşen GSYİH log-trendin altında, ekonomi <strong>potansiyelin altında üretiyor</strong>.</p>
+<p>Bu, TCMB'nin sıkı politikasının istenen etkisini ürettiğini gösteren bir tetkik göstergesi: talep frenlenmiş, üretim normalleşmiş, fiyat baskısı doğal olarak azalır.</p>
+<p><strong>Risk noktası:</strong> Açığın daha derinleşmesi (örn -%3'ün altı) işsizliği yukarı çekebilir, sosyal-politik baskı yaratır → erken faiz indirim baskısı. Şu an seviye taktik olarak iyi yerde, stratejik olarak yakın takipte tutmak gerek.</p>
+  </div>
+</article>
+
+<article id="04c_kko" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ İmalat Sanayi Kapasite Kullanım Oranı</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.KKO.MA (Mevsimsellikten Arındırılmış)</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/04c_kko.png" alt="İmalat Sanayi Kapasite Kullanım Oranı" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>KKO <strong>%74</strong> — 5 yıllık ortalamanın <strong>2-3 puan altında</strong>. 2022'deki %78-79 zirvelerinden gerilemiş, sanayide <strong>boş kapasite</strong> birikiyor.</p>
+<p>Boş kapasite <strong>dezenflasyon dostu</strong>: üreticiler fiyat artışı yapmak yerine kapasite doldurmak ister. Aynı zamanda <strong>yatırım iştahı için negatif</strong>: yeni capex daha az gerekli görülür.</p>
+<p>Bu mertebede KKO <strong>istihdam baskısı</strong> habercisi olabilir — Bölüm 5'teki işsizlik verisi ile birlikte takip et. %70 altına düşerse alarm seviyesi.</p>
+  </div>
+</article>
+
 </section>
 
 
@@ -635,7 +712,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
 
 <section id="06_para" style="margin-bottom:48px">
-  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
     <span style="font-size:28px">🏦</span>
     <div>
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
@@ -644,9 +721,46 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Politika faizi, rezervler, kredi/mevduat eksenleri, reel faiz, TCMB haftalık bültenleri.</p>
     </div>
   </div>
-  <div style="padding:24px;background:var(--surface);border:1px dashed var(--border-2);color:var(--muted);text-align:center;font-size:13px">
-    Bu bölüm hazırlanıyor — sonraki revizyonda eklenecek.
+  
+<article id="06a_tcmb_rate" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TCMB Politika Faizi · 5 Yıllık Seyir</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.APIFON4</span>
   </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/06a_tcmb_rate.png" alt="TCMB Politika Faizi · 5 Yıllık Seyir" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Politika faizi <strong>%40</strong> — 2024 zirvesi %50'den 10 puan aşağıda, kademeli <strong>gevşeme döngüsü</strong> sürüyor.</p>
+<p>Bu seviye <strong>disenflasyona inanç</strong> sinyali: TCMB enflasyonun düşmeye devam edeceğini varsayıyor, reel faizi yüksek tutarak güveni korumak istiyor.</p>
+<p><strong>Pratik:</strong> Yıl sonuna kadar %30-35 bandına inmesi piyasa beklentisi. Hızlı indirim (örn ay başına -300bp) kurda volatilite + enflasyon beklentisinde bozulma yaratabilir → TCMB'nin sınırı.</p>
+  </div>
+</article>
+
+<article id="06b_real_rate" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Reel Faiz · Politika Faizi − TÜFE Y/Y</span>
+    <span class="meta" style="font-size:10.5px">Hesaplanmış: TP.APIFON4 − TP.FE25.OKTG01 Y/Y</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/06b_real_rate.png" alt="Reel Faiz · Politika Faizi − TÜFE Y/Y" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Reel faiz <strong>+7.6 puan</strong> (Politika %40 − TÜFE Y/Y %32.4) — son 3 yılın <strong>en yüksek pozitif seviyesi</strong>. Türkiye'nin tarihsel ortalaması negatif olduğu için bu konum <strong>anormal sıkı</strong> sayılır.</p>
+<p>Yüksek pozitif reel faiz iki şey yapar: (1) TL mevduata cazibe = döviz dolarizasyonuna fren, (2) iç talebi soğutur. İkisi de dezenflasyon mekanizmasının köşe taşları.</p>
+<p><strong>Risk:</strong> Reel faiz fazla uzun süre %5+ kalırsa <strong>yatırım kanalı kuruyor</strong> → orta vade büyüme yavaşlar. TCMB makası daraltacak (faiz indirimi enflasyondan hızlı), bu olağan patika.</p>
+  </div>
+</article>
+
+<article id="06c_reserves" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TCMB Brüt Uluslararası Rezervler</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.AB.TOPLAM / C1 / C2</span>
+  </div>
+  <div style="background:var(--bg-1);padding:0;border-bottom:1px solid var(--border)"><img src="charts/06c_reserves.png" alt="TCMB Brüt Uluslararası Rezervler" style="display:block;width:100%;height:auto;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Toplam brüt rezerv <strong>$165B</strong> — döviz $57B + altın $109B. <strong>Altın ağırlığı %66</strong> — TCMB son yıllarda altın stokunu agresif şekilde artırdı (Mart 2024'te 545 ton).</p>
+<p>Net rezerv (swap düzeltilmiş) bilanço işaretine göre değişiyor — burada gösterilen brüt rakam üst sınır. Pratik rezerv durumu için <strong>net rezerv</strong> ve <strong>swap pozisyonu</strong> kritik (Bölüm 6 sonraki artifact'lar).</p>
+<p><strong>Anlam:</strong> $165B brüt seviye orta-büyük EM'lere göre yeterli ama Türkiye'nin <strong>kısa vadeli dış borç + cari açık</strong> ihtiyacına karşı tampon dar — kur şokunda hızlı erime potansiyeli var.</p>
+  </div>
+</article>
+
 </section>
 
 
@@ -705,7 +819,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-13 23:08 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-13 23:19 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
