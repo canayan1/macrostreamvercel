@@ -52,6 +52,16 @@
     "sektor": [
       {
         "category": "sektor",
+        "date": "2026-05-14",
+        "metrics": {
+          "regime": "Lider: Tarım & Kimya",
+          "leader_sector": "Tarım & Kimya",
+          "laggard_sector": "Tüketim & Perakende",
+          "xu100_30d": 3.728205620331071
+        }
+      },
+      {
+        "category": "sektor",
         "date": "2026-05-13",
         "metrics": {
           "regime": "Lider: Tarım & Kimya",
