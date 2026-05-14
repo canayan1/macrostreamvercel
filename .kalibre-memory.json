@@ -28,6 +28,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-05-14",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.4692988467876358,
+          "usdtry": 45.40019989013672,
+          "usdtry_30d_pct": 1.5596286355487265,
+          "strongest_pair": "AUD/USD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-05-13",
         "metrics": {
           "regime": "Dolar Yatay",

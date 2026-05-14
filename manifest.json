@@ -1,16 +1,16 @@
 {
-  "last_update": "2026-05-13T23:37:32.780026Z",
+  "last_update": "2026-05-14T09:05:36.908602Z",
   "latest_report": {
-    "category": "hisse",
+    "category": "fx",
     "date": "2026-05-14",
-    "title": "hisse — 2026-05-14"
+    "title": "Döviz Günlük — 2026-05-14"
   },
-  "total_reports": 15,
+  "total_reports": 16,
   "by_category": {
     "pulse": 2,
     "hisse": 4,
     "sektor": 2,
-    "fx": 2,
+    "fx": 3,
     "makro": 2,
     "fred": 2,
     "wb": 1
