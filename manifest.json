@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-05-14T15:33:15.727235Z",
+  "last_update": "2026-05-14T15:45:47.447138Z",
   "latest_report": {
     "category": "fx",
     "date": "2026-05-14",
     "title": "fx — 2026-05-14"
   },
-  "total_reports": 18,
+  "total_reports": 19,
   "by_category": {
     "pulse": 3,
     "hisse": 4,
@@ -13,6 +13,7 @@
     "fx": 3,
     "makro": 2,
     "fred": 2,
-    "wb": 1
+    "wb": 1,
+    "sentiment": 1
   }
 }

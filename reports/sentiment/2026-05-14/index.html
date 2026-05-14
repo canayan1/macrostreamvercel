@@ -1,0 +1,1922 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentiment Bülteni · 14.05.2026 — Kalibre Markets</title>
+
+<meta name="description" content="Kalibre Markets Sentiment Bülteni · 14.05.2026 — TradingView yorum/idea taraması ile 68 sembol için topluluk yön özeti ve kelime bulutu.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="sentiment bülteni, yatırımcı yorumları, topluluk yön, BIST sentiment, TradingView, kelime bulutu">
+<meta property="og:title" content="Sentiment Bülteni · 14.05.2026 — Kalibre Markets">
+<meta property="og:description" content="Kalibre Markets Sentiment Bülteni · 14.05.2026 — TradingView yorum/idea taraması ile 68 sembol için topluluk yön özeti ve kelime bulutu.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sentiment Bülteni · 14.05.2026 — Kalibre Markets">
+<meta name="twitter:description" content="Kalibre Markets Sentiment Bülteni · 14.05.2026 — TradingView yorum/idea taraması ile 68 sembol için topluluk yön özeti ve kelime bulutu.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
+}
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
+}
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+  white-space: nowrap;
+}
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+}
+.fkey {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 13px; color: var(--text-dim); letter-spacing: 0;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--muted); font-weight: 600; font-size: 9.5px; letter-spacing: .04em; opacity: .55; }
+.fkey.active .k { color: var(--accent); opacity: 1; }
+.fkey .lbl { font-weight: 500; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); padding: 0 10px; font-size: 12px; }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .fkey .k { display: none; }  /* F1/F2 etiketlerini gizle, sadece label kalsın */
+  .cmd-stat:not(:first-child) { display: none; }
+  .cmd-prompt input,
+  .cmd-prompt span:not(.chev):not(.kbd) { font-size: 12px; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  /* Cmd prompt mobilde gizle (sadece brand + status) */
+  .cmd-prompt { display: none; }
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  .disclaimer-banner { line-height: 1.5; }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding: 0 12px; }
+  .cmd-status { padding: 0 8px; font-size: 10px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><div class="cmd-prompt cmd-prompt-soon" title="Yakında: işlem geçmişini analiz edip sana kaybettiren psikolojik kalıpları tespit eden yapay zeka asistanı"><span class="chev" style="opacity:.65">✦</span><span style="color:var(--muted);font-size:12.5px;letter-spacing:.01em">İşlem kararlarının yapay zeka analizi · psikolojik kalıp tespiti · <b style="color:var(--text-dim);font-weight:500">yakında</b></span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em">PREMIUM</span></div><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-14</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arsiv.html" title="Günlük hisse · FX · sektör · nabız · makro araştırma bültenleri"><span class="k">F2</span><span class="lbl">Araştırma Bültenleri</span></a><a class="fkey" href="/makro-raporu/" title="Kapsamlı çeyreklik Türkiye ekonomik raporu"><span class="k">F3</span><span class="lbl">Türkiye Raporu</span></a><a class="fkey" href="/algo/" title="Geçmiş veriyle test edilmiş yatırım yöntemleri"><span class="k">F4</span><span class="lbl">Stratejiler</span></a><a class="fkey" href="/islem-kontrolu/" title="Pozisyon açmadan önce hazırlığını ölç"><span class="k">F5</span><span class="lbl">İşlem Kontrolü</span></a><a class="fkey" href="/egitim/" title="Borsa terimleri ve kavramlar"><span class="k">F6</span><span class="lbl">Eğitim</span></a><a class="fkey" href="/simulasyon/" title="Borsa işleyişini taklit eden küçük bir finansal piyasa simülasyonu"><span class="k">F7</span><span class="lbl">🎮 Simülasyon</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F8</span><span class="lbl">Hakkında</span></a></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün <b style="color:var(--text)">sade Türkçe</b> ile özetleyen otomatik bir bülten.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimlerini sade Türkçe ile öğrenin</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › <a href='/arsiv.html#sentiment' style='color:inherit'>Bültenler</a> › Sentiment</div>
+<main>
+
+<div class="wrap">
+  <div style="margin-bottom:18px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ SENTIMENT BÜLTENİ · 14.05.2026</div>
+    <h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
+      Yatırımcılar bu hafta ne diyor?
+    </h1>
+    <p style="margin-top:10px;font-size:14px;color:var(--text-dim);line-height:1.6;max-width:72ch">
+      TradingView üzerinde paylaşılan yatırımcı idea ve yorumlarının haftalık taraması.
+      Her sembol için kelime sıklığı, yön sezgisi (yukarı / aşağı / kararsız) ve önceki haftaya
+      göre değişim. Toplam <b style="color:var(--text)">68 sembol</b>,
+      <b style="color:var(--text)">573 idea</b>.
+    </p>
+  </div>
+
+  <!-- Üst özet bar -->
+  <div class="panel" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-bottom:24px">
+    <div style="padding:12px 16px;border-right:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--text-dim)">Yukarı</div>
+      <div style="font-family:'Geist Mono';font-size:22px;color:var(--green);font-weight:600;margin-top:4px">▲ 53</div>
+    </div>
+    <div style="padding:12px 16px;border-right:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--text-dim)">Kararsız</div>
+      <div style="font-family:'Geist Mono';font-size:22px;color:var(--accent);font-weight:600;margin-top:4px">◇ 11</div>
+    </div>
+    <div style="padding:12px 16px;border-right:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--text-dim)">Aşağı</div>
+      <div style="font-family:'Geist Mono';font-size:22px;color:var(--red);font-weight:600;margin-top:4px">▼ 4</div>
+    </div>
+    <div style="padding:12px 16px;border-right:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--text-dim)">Toplam idea</div>
+      <div style="font-family:'Geist Mono';font-size:22px;color:var(--text);font-weight:600;margin-top:4px">573</div>
+    </div>
+    <div style="padding:12px 16px">
+      <div style="font-size:11px;color:var(--text-dim)">Sembol</div>
+      <div style="font-family:'Geist Mono';font-size:22px;color:var(--text);font-weight:600;margin-top:4px">68</div>
+    </div>
+  </div>
+
+  <!-- Anchor nav -->
+  <div class="panel" style="padding:12px 16px;margin-bottom:20px">
+    <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ Hızlı geçiş</div>
+    <div style="font-size:11.5px;color:var(--muted);line-height:1.7">
+      <a href="#bist" style="color:var(--accent);font-weight:600">BIST 30</a> &nbsp;·&nbsp;
+      <a href="#us" style="color:var(--accent);font-weight:600">US 30</a> &nbsp;·&nbsp;
+      <a href="#fx" style="color:var(--accent);font-weight:600">FX & Emtia</a>
+    </div>
+  </div>
+
+  
+<section id="bist" style="margin-bottom:36px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--border-2);padding-bottom:8px;margin-bottom:14px">
+    <h2 style="margin:0;font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">
+      BIST 30
+    </h2>
+    <span style="font-size:11px;color:var(--muted)">28 sembol</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+    
+<article id="AKBNK" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">AKBNK</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    20 yorum · ▲ %40 / ▼ %15
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">akbank</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">test</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stock</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">correction</span></div>
+  <img src="/community_pulse/AKBNK.png" loading="lazy" alt="AKBNK kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ASELS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ASELS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    19 yorum · ▲ %63 / ▼ %16
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">aselsan</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">following</span></div>
+  <img src="/community_pulse/ASELS.png" loading="lazy" alt="ASELS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ISCTR" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ISCTR</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    19 yorum · ▲ %32 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkey</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">possible</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">advice</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">really</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span></div>
+  <img src="/community_pulse/ISCTR.png" loading="lazy" alt="ISCTR kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="THYAO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">THYAO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    17 yorum · ▲ %53 / ▼ %12
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hava</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">thy</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">usd</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">profit</span></div>
+  <img src="/community_pulse/THYAO.png" loading="lazy" alt="THYAO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="GARAN" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">GARAN</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    16 yorum · ▲ %50 / ▼ %6
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">following</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">weekly</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">chart</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hedef</span></div>
+  <img src="/community_pulse/GARAN.png" loading="lazy" alt="GARAN kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="KCHOL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">KCHOL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    16 yorum · ▲ %38 / ▼ %19
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">holding</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">correction</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">its</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">rsi</span></div>
+  <img src="/community_pulse/KCHOL.png" loading="lazy" alt="KCHOL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="PETKM" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">PETKM</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    16 yorum · ▲ %50 / ▼ %12
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">petkim</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">now</span></div>
+  <img src="/community_pulse/PETKM.png" loading="lazy" alt="PETKM kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="TUPRS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">TUPRS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    16 yorum · ▲ %38 / ▼ %19
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">try</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">tupras</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">advice</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">lar</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">formasyonu</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">increase</span></div>
+  <img src="/community_pulse/TUPRS.png" loading="lazy" alt="TUPRS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="EREGL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">EREGL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    15 yorum · ▲ %60 / ▼ %13
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">denemedeneme</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">deneme</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">wave</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">flat</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">demir</span></div>
+  <img src="/community_pulse/EREGL.png" loading="lazy" alt="EREGL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ARCLK" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ARCLK</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    13 yorum · ▲ %46 / ▼ %8
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">elik</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">arcelik</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">fib</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span></div>
+  <img src="/community_pulse/ARCLK.png" loading="lazy" alt="ARCLK kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="PGSUS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">PGSUS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    13 yorum · ▲ %46 / ▼ %15
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pegasus</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">correction</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">end</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">financial</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pattern</span></div>
+  <img src="/community_pulse/PGSUS.png" loading="lazy" alt="PGSUS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="SASA" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">SASA</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    13 yorum · ▲ %54 / ▼ %8
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">decline</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">around</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bist</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span></div>
+  <img src="/community_pulse/SASA.png" loading="lazy" alt="SASA kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="BIMAS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">BIMAS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %25 / ▼ %17
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bim</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">diren</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">year</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">looks</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">sell</span></div>
+  <img src="/community_pulse/BIMAS.png" loading="lazy" alt="BIMAS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="DOHOL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">DOHOL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %58 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">line</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">million</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">wave</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">expect</span></div>
+  <img src="/community_pulse/DOHOL.png" loading="lazy" alt="DOHOL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="EKGYO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">EKGYO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %25 / ▼ %17
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">way</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">continuation</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">downtrend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">risk</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">emlak</span></div>
+  <img src="/community_pulse/EKGYO.png" loading="lazy" alt="EKGYO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ODAS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ODAS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %22 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trade</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">frame</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">high</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stop</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span></div>
+  <img src="/community_pulse/ODAS.png" loading="lazy" alt="ODAS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="SISE" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">SISE</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    8 yorum · ▲ %38 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">upward</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">chart</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">wave</span></div>
+  <img src="/community_pulse/SISE.png" loading="lazy" alt="SISE kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="TAVHL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">TAVHL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    8 yorum · ▲ %25 / ▼ %12
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stock</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">tav</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">havalimanlari</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bist</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">plan</span></div>
+  <img src="/community_pulse/TAVHL.png" loading="lazy" alt="TAVHL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="YKBNK" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">YKBNK</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    8 yorum · ▲ %50 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">zone</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">kredi</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bank</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span></div>
+  <img src="/community_pulse/YKBNK.png" loading="lazy" alt="YKBNK kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="VAKBN" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">VAKBN</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %29 / ▼ %14
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pattern</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">its</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">head</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">shoulders</span></div>
+  <img src="/community_pulse/VAKBN.png" loading="lazy" alt="VAKBN kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="MGROS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">MGROS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %33 / ▼ %17
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">red</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">increase</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">line</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">gros</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">haftalik</span></div>
+  <img src="/community_pulse/MGROS.png" loading="lazy" alt="MGROS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="TCELL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">TCELL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %50 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bist</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">time</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">buy</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkcell</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">saatlik</span></div>
+  <img src="/community_pulse/TCELL.png" loading="lazy" alt="TCELL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="KRDMD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">KRDMD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    14 yorum · ▲ %21 / ▼ %21
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">kardemir</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">risk</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">fibonacci</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">tavs</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">yes</span></div>
+  <img src="/community_pulse/KRDMD.png" loading="lazy" alt="KRDMD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="SAHOL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">SAHOL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    10 yorum · ▲ %40 / ▼ %40
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">wolfe</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">wave</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bist</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span></div>
+  <img src="/community_pulse/SAHOL.png" loading="lazy" alt="SAHOL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="FROTO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">FROTO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %11 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">itime</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">itim</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">yat</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">burada</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">yer</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">alan</span></div>
+  <img src="/community_pulse/FROTO.png" loading="lazy" alt="FROTO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="TOASO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">TOASO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    5 yorum · ▲ %0 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">diren</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">nemli</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">tofa</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">oto</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">kselen</span></div>
+  <img src="/community_pulse/TOASO.png" loading="lazy" alt="TOASO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ENKAI" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ENKAI</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    2 yorum · ▲ %0 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">guys</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">enkqi</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">result</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">congratulations</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hit</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hmdulilah</span></div>
+  <img src="/community_pulse/ENKAI.png" loading="lazy" alt="ENKAI kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="HEKTS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">HEKTS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">BIST</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);font-weight:600">
+      ▼ AŞAĞI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %17 / ▼ %25
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hektas</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">close</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stop</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">loss</span></div>
+  <img src="/community_pulse/HEKTS.png" loading="lazy" alt="HEKTS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+  </div>
+</section>
+
+<section id="us" style="margin-bottom:36px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--border-2);padding-bottom:8px;margin-bottom:14px">
+    <h2 style="margin:0;font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">
+      US 30
+    </h2>
+    <span style="font-size:11px;color:var(--muted)">30 sembol</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+    
+<article id="HD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">HD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    10 yorum · ▲ %60 / ▼ %30
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">entry</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">home</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">depot</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span></div>
+  <img src="/community_pulse/HD.png" loading="lazy" alt="HD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="CRM" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">CRM</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %67 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">salesforce</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stock</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">down</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bottom</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">fill</span></div>
+  <img src="/community_pulse/CRM.png" loading="lazy" alt="CRM kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="DIS" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">DIS</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %33 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">disney</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stock</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">gap</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">walt</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">move</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">entry</span></div>
+  <img src="/community_pulse/DIS.png" loading="lazy" alt="DIS kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ORCL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ORCL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %78 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">oracle</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">structure</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">its</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trade</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">big</span></div>
+  <img src="/community_pulse/ORCL.png" loading="lazy" alt="ORCL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="PG" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">PG</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    9 yorum · ▲ %56 / ▼ %11
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trade</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">entry</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">target</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">daily</span></div>
+  <img src="/community_pulse/PG.png" loading="lazy" alt="PG kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="AMZN" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">AMZN</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %71 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">amazon</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">golden</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">new</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">time</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">highs</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span></div>
+  <img src="/community_pulse/AMZN.png" loading="lazy" alt="AMZN kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="AVGO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">AVGO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %86 / ▼ %14
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">forming</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pattern</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">watch</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">follow</span></div>
+  <img src="/community_pulse/AVGO.png" loading="lazy" alt="AVGO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="JNJ" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">JNJ</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %57 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">swing</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">johnson</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">entry</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">market</span></div>
+  <img src="/community_pulse/JNJ.png" loading="lazy" alt="JNJ kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="MA" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">MA</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %43 / ▼ %14
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">mastercard</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">nyse</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">confluence</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">setup</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">oversold</span></div>
+  <img src="/community_pulse/MA.png" loading="lazy" alt="MA kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="PEP" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">PEP</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %57 / ▼ %29
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pepsi</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">stock</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">term</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">buy</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">sma</span></div>
+  <img src="/community_pulse/PEP.png" loading="lazy" alt="PEP kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="TSLA" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">TSLA</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %71 / ▼ %14
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">tesla</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">higher</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">reach</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">rally</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">part</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">breakout</span></div>
+  <img src="/community_pulse/TSLA.png" loading="lazy" alt="TSLA kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="V" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">V</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %57 / ▼ %14
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">rsi</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trigger</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">oversold</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">visa</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">mean</span></div>
+  <img src="/community_pulse/V.png" loading="lazy" alt="V kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="MSFT" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">MSFT</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %67 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">microsoft</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">now</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">levels</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">nasdaq</span></div>
+  <img src="/community_pulse/MSFT.png" loading="lazy" alt="MSFT kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="AMD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">AMD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    5 yorum · ▲ %80 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">new</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">ath</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">major</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">higher</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span></div>
+  <img src="/community_pulse/AMD.png" loading="lazy" alt="AMD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="NFLX" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">NFLX</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    5 yorum · ▲ %80 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">another</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">leg</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">likely</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">down</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">run</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">buying</span></div>
+  <img src="/community_pulse/NFLX.png" loading="lazy" alt="NFLX kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="ABBV" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">ABBV</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %100 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bottom</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">channel</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">giving</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">retest</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">time</span></div>
+  <img src="/community_pulse/ABBV.png" loading="lazy" alt="ABBV kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="CSCO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">CSCO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %75 / ▼ %25
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">cisco</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">back</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">years</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">double</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">top</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bros</span></div>
+  <img src="/community_pulse/CSCO.png" loading="lazy" alt="CSCO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="GOOGL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">GOOGL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %75 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">earnings</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">highs</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">gap</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">rsi</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">daily</span></div>
+  <img src="/community_pulse/GOOGL.png" loading="lazy" alt="GOOGL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="JPM" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">JPM</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %75 / ▼ %25
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">key</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bounce</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">alma</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">zone</span></div>
+  <img src="/community_pulse/JPM.png" loading="lazy" alt="JPM kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="NVDA" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">NVDA</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %50 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">observation</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">chart</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">out</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">may</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">clue</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">months</span></div>
+  <img src="/community_pulse/NVDA.png" loading="lazy" alt="NVDA kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="WMT" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">WMT</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %75 / ▼ %25
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">institutional</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">capital</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">consumer</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">prior</span></div>
+  <img src="/community_pulse/WMT.png" loading="lazy" alt="WMT kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="KO" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">KO</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    3 yorum · ▲ %100 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">coca</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">cola</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">strong</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trend</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">opportunity</span></div>
+  <img src="/community_pulse/KO.png" loading="lazy" alt="KO kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="LLY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">LLY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    3 yorum · ▲ %33 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">channel</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">big</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">cap</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullflag</span></div>
+  <img src="/community_pulse/LLY.png" loading="lazy" alt="LLY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="XOM" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">XOM</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    3 yorum · ▲ %67 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">breaks</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">term</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">exxon</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">consolidating</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">channel</span></div>
+  <img src="/community_pulse/XOM.png" loading="lazy" alt="XOM kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="META" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">META</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %33 / ▼ %33
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">chart</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">moving</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">weekly</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span></div>
+  <img src="/community_pulse/META.png" loading="lazy" alt="META kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="AAPL" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">AAPL</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %33 / ▼ %33
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">apple</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">strong</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">higher</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">flipped</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">few</span></div>
+  <img src="/community_pulse/AAPL.png" loading="lazy" alt="AAPL kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="BA" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">BA</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    3 yorum · ▲ %0 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">lmt</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">boieng</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hoping</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trump</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">ping</span></div>
+  <img src="/community_pulse/BA.png" loading="lazy" alt="BA kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="BAC" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">BAC</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NYSE</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    2 yorum · ▲ %50 / ▼ %50
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bank</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">america</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">breakout</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">structure</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">strategy</span></div>
+  <img src="/community_pulse/BAC.png" loading="lazy" alt="BAC kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="INTC" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">INTC</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);font-weight:600">
+      ▼ AŞAĞI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    10 yorum · ▲ %10 / ▼ %20
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">intel</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">now</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">top</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pullback</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">parabolic</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">since</span></div>
+  <img src="/community_pulse/INTC.png" loading="lazy" alt="INTC kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="COST" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">COST</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">NASDAQ</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);font-weight:600">
+      ▼ AŞAĞI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %17 / ▼ %33
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">levels</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">new</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">hold</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">clear</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">costco</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">base</span></div>
+  <img src="/community_pulse/COST.png" loading="lazy" alt="COST kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+  </div>
+</section>
+
+<section id="fx" style="margin-bottom:36px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--border-2);padding-bottom:8px;margin-bottom:14px">
+    <h2 style="margin:0;font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">
+      FX & Emtia
+    </h2>
+    <span style="font-size:11px;color:var(--muted)">10 sembol</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+    
+<article id="EURTRY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">EURTRY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    7 yorum · ▲ %43 / ▼ %29
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">lira</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">eur</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">chart</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">drop</span></div>
+  <img src="/community_pulse/EURTRY.png" loading="lazy" alt="EURTRY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="EURUSD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">EURUSD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %50 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">inside</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">megaphone</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pattern</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">trading</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">larger</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">currently</span></div>
+  <img src="/community_pulse/EURUSD.png" loading="lazy" alt="EURUSD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="GBPUSD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">GBPUSD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %67 / ▼ %33
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">liquidity</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">pattern</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span></div>
+  <img src="/community_pulse/GBPUSD.png" loading="lazy" alt="GBPUSD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="USDTRY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">USDTRY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    6 yorum · ▲ %50 / ▼ %17
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">analysis</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">lira</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">dollar</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">inflation</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">turkish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span></div>
+  <img src="/community_pulse/USDTRY.png" loading="lazy" alt="USDTRY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="XAGUSD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">XAGUSD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    5 yorum · ▲ %40 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">silver</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">support</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">setup</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">xag</span></div>
+  <img src="/community_pulse/XAGUSD.png" loading="lazy" alt="XAGUSD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="BTCUSD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">BTCUSD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %50 / ▼ %25
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">level</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bitcoin</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">potential</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">reversal</span></div>
+  <img src="/community_pulse/BTCUSD.png" loading="lazy" alt="BTCUSD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="DXY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">DXY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);font-weight:600">
+      ▲ YUKARI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    4 yorum · ▲ %75 / ▼ %0
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">index</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bullish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">dollar</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">strong</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">confirmation</span></div>
+  <img src="/community_pulse/DXY.png" loading="lazy" alt="DXY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="GBPTRY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">GBPTRY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    12 yorum · ▲ %42 / ▼ %42
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">long</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">now</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">analysis</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">short</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">can</span></div>
+  <img src="/community_pulse/GBPTRY.png" loading="lazy" alt="GBPTRY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="XAUUSD" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">XAUUSD</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600">
+      ◇ KARARSIZ
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    2 yorum · ▲ %50 / ▼ %50
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">gold</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">move</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">xau</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">usd</span></div>
+  <img src="/community_pulse/XAUUSD.png" loading="lazy" alt="XAUUSD kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+<article id="USDJPY" class="panel" style="padding:14px 16px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.02em">USDJPY</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:.06em">FX</span>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);font-weight:600">
+      ▼ AŞAĞI
+    </span>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">
+    5 yorum · ▲ %20 / ▼ %60
+  </div>
+  <div style="margin:6px 0"><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">bearish</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">resistance</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">zone</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">near</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">price</span><span style="display:inline-block;background:rgba(255,166,48,.08);color:var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.04em;margin:1px 2px">move</span></div>
+  <img src="/community_pulse/USDJPY.png" loading="lazy" alt="USDJPY kelime bulutu" style="display:block;width:100%;height:auto;max-height:130px;object-fit:contain;background:#1a1612;margin-top:8px" />
+  
+</article>
+
+  </div>
+</section>
+
+
+  <!-- Yöntem & uyarı -->
+  <div class="panel" style="padding:16px 18px;margin-top:24px;border-left:3px solid var(--accent)">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Yöntem</div>
+    <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--text-dim);line-height:1.7">
+      <li>Veri kaynağı: <b style="color:var(--text)">TradingView Ideas</b> — sembol başına public idea sayfası</li>
+      <li>Yön sezgisi: TR + EN sözlük tabanlı bull/bear sınıflandırma (alım/satım/destek/direnç vb. kelime listesi)</li>
+      <li>Cadans: haftalık tarama; her ölçüm bir önceki ile karşılaştırılır (diff)</li>
+      <li>Ham veri saklanır (8 hafta) — denetlenebilir, paylaşılabilir</li>
+    </ul>
+    <p style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.6">
+      ⚠ Bu bülten yapay zeka destekli otomatik bir derlemedir, hata içerebilir. Yatırım tavsiyesi değildir.
+      Topluluk yorumları çoğunluk yanılgısı yansıtabilir — özellikle aşırı bull/bear bölgelerinde dikkatli okuyun.
+    </p>
+  </div>
+</div>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-05-14 16:45 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+</body>
+</html>
