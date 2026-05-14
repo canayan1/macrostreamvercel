@@ -467,6 +467,90 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
 <main>
 
+<!-- ── İLK ZİYARET TURU (oryantasyon overlay) ─────────────────── -->
+<div id="site-tour" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.92);backdrop-filter:blur(6px);z-index:9100;align-items:center;justify-content:center;padding:24px;overflow-y:auto">
+  <div style="max-width:780px;width:100%;background:var(--surface);border:1px solid var(--border-2);box-shadow:0 20px 60px rgba(0,0,0,.55);overflow:hidden">
+    <!-- Hero header -->
+    <div style="padding:26px 32px 22px;background:linear-gradient(135deg,rgba(255,166,48,.10),rgba(255,166,48,.02));border-bottom:1px solid var(--border-2)">
+      <div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Merhaba 👋 · Sitede ne var, kısa tur</div>
+      <h2 style="font-size:22px;font-weight:600;letter-spacing:-.015em;margin:0 0 8px;color:var(--text);line-height:1.25">
+        Kalibre Markets — 60 saniyede tanıyalım
+      </h2>
+      <p style="color:var(--text-dim);font-size:13.5px;line-height:1.6;margin:0">
+        Borsa, döviz ve ekonomi verisini anlaşılır biçimde özetleyen bir araştırma terminali.
+        Aşağıda <b style="color:var(--text)">7 ana bölüm</b> var; ihtiyacın hangisiyse oradan başla.
+        Bu pencereyi istediğin zaman üst menüden tekrar açabilirsin.
+      </p>
+    </div>
+
+    <!-- Tile grid -->
+    <div style="padding:22px 32px 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px">
+      <a href="/arsiv.html" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">📰</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Günlük Bültenler</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Hafta içi her sabah otomatik üretilen hisse, FX, sektör, makro bültenleri.</div>
+      </a>
+      <a href="/makro-raporu/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🇹🇷</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Türkiye Ekonomik Raporu</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Üç ayda bir kapsamlı makro analiz: enflasyon, GDP, TCMB, cari denge.</div>
+      </a>
+      <a href="/algo/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🧠</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Strateji Laboratuvarı</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">5 algoritmik yöntem · BIST + US · her hisse için drill-down sonuçları.</div>
+      </a>
+      <a href="/arsiv.html#sentiment" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">💬</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Sentiment Bülteni</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Haftalık topluluk yön özeti: yatırımcılar ne diyor, kelime bulutu.</div>
+      </a>
+      <a href="/islem-kontrolu/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎯</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">İşlem Kontrolü</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Pozisyon açmadan önce 3 dakikalık disiplin kontrolü — 0-100 skor.</div>
+      </a>
+      <a href="/egitim/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎓</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Eğitim Kütüphanesi</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">18 makale: momentum, RSI, drawdown, backtest tuzakları — sade Türkçe.</div>
+      </a>
+      <a href="/simulasyon/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎮</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Borsa Simülasyonu</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Sıfır risk · sanal sermaye ile pratik · gerçek piyasa verisi.</div>
+      </a>
+    </div>
+
+    <!-- Disclaimer + actions -->
+    <div style="padding:0 32px 18px">
+      <div style="padding:12px 14px;background:rgba(240,180,50,.06);border-left:3px solid var(--accent);font-size:12px;color:var(--text-dim);line-height:1.55">
+        <b style="color:var(--accent)">Yatırım tavsiyesi değildir.</b> Site içerikleri büyük ölçüde yapay zeka ile üretilir; hata olabilir.
+        Veriyi anlamayı kolaylaştırırız, kararlar size aittir.
+      </div>
+    </div>
+    <div style="padding:0 32px 26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button onclick="try{localStorage.setItem('km-tour-v3','1')}catch(e){}document.getElementById('site-tour').style.display='none'" style="flex:1;min-width:200px;background:linear-gradient(135deg,var(--accent),#ffd166);color:#1a1a1a;border:0;padding:13px 22px;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer">
+        ✓ Anladım · Gezinmeye Başla
+      </button>
+      <a href="/hakkinda.html" style="font-size:12.5px;color:var(--text-dim);text-decoration:none;letter-spacing:.02em">Daha fazla bilgi →</a>
+    </div>
+  </div>
+</div>
+<style>
+  .tour-tile:hover { border-color: var(--accent); background: rgba(255,166,48,.06); }
+</style>
+<script>
+(function() {
+  try {
+    if (!localStorage.getItem('km-tour-v3')) {
+      var el = document.getElementById('site-tour');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+
 <div class="wrap">
 
   <!-- ── HERO + REGIME ───────────────────────────────── -->
@@ -477,7 +561,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         <span class="dot amber"></span>
         <b style="color:var(--accent);font-weight:600">Bugün yayında</b>
         <span>·</span>
-        <span>Son güncelleme 16:45</span>
+        <span>Son güncelleme 16:49</span>
       </div>
       <h1 style="font-weight:600;font-size:30px;line-height:1.2;letter-spacing:-.015em;color:var(--text);margin-bottom:16px">
         Yapay zeka ile güçlendirilmiş <em style="font-style:normal;color:var(--accent);font-weight:600">veri ve finansal okuryazarlık</em> terminali.
@@ -493,11 +577,52 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <p style="color:var(--muted);font-size:12px;max-width:62ch;margin-bottom:22px;font-style:italic">
         Yatırım tavsiyesi vermiyoruz. Veriyi anlamayı, kendi ödevini yapmayı kolaylaştırıyoruz.
       </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px">
         <a class="btn btn-primary" href="/reports/hisse/2026-05-14/"><span class="arr">→</span> Bugünün Bülteni</a>
         <a class="btn" href="/egitim/">Önce Öğren</a>
         <a class="btn" href="/simulasyon/" style="color:var(--text-dim)">🎮 Simülasyon</a>
+        <a class="btn" href="#" onclick="document.getElementById('site-tour')?.style.setProperty('display','flex');return false;" style="color:var(--accent);border-color:var(--accent)">🧭 Site Turu</a>
       </div>
+
+      <!-- HERO ALT — özellik tile grid (sol kolon boşluğunu doldurur) -->
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px;padding-top:18px;border-top:1px dashed var(--border-2)">
+        ▸ Sitede ne var?
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+        <a href="/arsiv.html" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s">
+          <div style="font-size:20px;margin-bottom:6px">📰</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">Günlük Bültenler</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">Hisse · FX · Sektör · Makro · Nabız</div>
+        </a>
+        <a href="/makro-raporu/" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+          <div style="font-size:20px;margin-bottom:6px">🇹🇷</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">Türkiye Ekonomik Raporu</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">Çeyreklik kapsamlı makro analiz</div>
+        </a>
+        <a href="/algo/" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+          <div style="font-size:20px;margin-bottom:6px">🧠</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">Strateji Laboratuvarı</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">5 yöntem · 60 hisse drill-down</div>
+        </a>
+        <a href="/arsiv.html#sentiment" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+          <div style="font-size:20px;margin-bottom:6px">💬</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">Sentiment Bülteni</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">Topluluk yön + kelime bulutu</div>
+        </a>
+        <a href="/islem-kontrolu/" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+          <div style="font-size:20px;margin-bottom:6px">🎯</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">İşlem Kontrolü</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">Pozisyon öncesi 3 dk disiplin testi</div>
+        </a>
+        <a href="/egitim/" class="tile-card" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+          <div style="font-size:20px;margin-bottom:6px">🎓</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">Eğitim Kütüphanesi</div>
+          <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">18 makale · sade Türkçe terimler</div>
+        </a>
+      </div>
+      <style>
+        .tile-card:hover { border-color: var(--accent); background: rgba(255,166,48,.05); }
+      </style>
     </div>
     <div style="display:flex;flex-direction:column;justify-content:space-between;gap:14px">
       
@@ -550,7 +675,7 @@ duygulardan daha güvenli pusula.</p>
   </div>
 
   <!-- ── PIYASA DURUMU (mini strip — hero altı) ──────── -->
-  <div class="panel" style="margin-bottom:18px"><div class="panel-h"><span class="ttl">▣ Piyasa Durumu</span><span class="meta"><span class="dot amber"></span>16:45 TR</span></div><div style="display:grid;grid-template-columns:repeat(4,1fr)"><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">BIST 30</span><span class="on" style="font-size:10px;font-weight:600;white-space:nowrap">▲</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">61%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">50-DMA üstü · BİM Mağazalar</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">USD/TRY</span><span class="am" style="font-size:10px;font-weight:600;white-space:nowrap">◇</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">45.4002</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">DXY 5g +0.47%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">TR Makro · TÜFE</span><span class="off" style="font-size:10px;font-weight:600;white-space:nowrap">▼</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">32.4%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">İşsizlik 8.5%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">ABD · Fed Funds</span><span class="on" style="font-size:10px;font-weight:600;white-space:nowrap">▲</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">3.64%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">VIX 18.0</div></div></div></div>
+  <div class="panel" style="margin-bottom:18px"><div class="panel-h"><span class="ttl">▣ Piyasa Durumu</span><span class="meta"><span class="dot amber"></span>16:49 TR</span></div><div style="display:grid;grid-template-columns:repeat(4,1fr)"><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">BIST 30</span><span class="on" style="font-size:10px;font-weight:600;white-space:nowrap">▲</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">61%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">50-DMA üstü · BİM Mağazalar</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">USD/TRY</span><span class="am" style="font-size:10px;font-weight:600;white-space:nowrap">◇</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">45.4002</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">DXY 5g +0.47%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">TR Makro · TÜFE</span><span class="off" style="font-size:10px;font-weight:600;white-space:nowrap">▼</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">32.4%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">İşsizlik 8.5%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">ABD · Fed Funds</span><span class="on" style="font-size:10px;font-weight:600;white-space:nowrap">▲</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">3.64%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">VIX 18.0</div></div></div></div>
 
   <!-- ── DISCIPLINE PRE-TRADE CALLOUT ────────────────── -->
   <div id="pt-mini" style="display:flex;align-items:center;gap:22px;background:linear-gradient(180deg,#1c1813 0%,#13110e 100%);border:1px solid var(--border-2);padding:18px;margin-bottom:18px;flex-wrap:wrap">
@@ -632,7 +757,7 @@ duygulardan daha güvenli pusula.</p>
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-14 16:45 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-14 16:49 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
