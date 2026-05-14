@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Thu, 14 May 2026 21:57:31 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 14 May 2026 22:13:02 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -20,8 +20,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Türkiye Makro</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -31,8 +31,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -42,8 +42,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>🇺🇸 ABD Makro — Makro (ABD) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>ABD Makro</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -53,8 +53,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/pulse/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/pulse/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -64,8 +64,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>🔄 Sektör Bülteni — Sektör Rotasyon günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Sektör Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/sektor/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/sektor/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -75,8 +75,8 @@
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
     <description>📈 Hisse Bülteni — Aselsan (ASELS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -86,8 +86,8 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Türkiye Makro</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -97,8 +97,8 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -108,8 +108,8 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>🇺🇸 ABD Makro — Makro (ABD) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>ABD Makro</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fred/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -119,8 +119,8 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/pulse/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/pulse/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -130,8 +130,8 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>🔄 Sektör Bülteni — Sektör Rotasyon günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Sektör Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/sektor/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/sektor/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -141,19 +141,19 @@
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
     <description>📈 Hisse Bülteni — Arçelik (ARCLK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 + US 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
     <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
     <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
-    <pubDate>Thu, 14 May 2026 18:02:41 +0000</pubDate>
+    <pubDate>Thu, 14 May 2026 21:59:12 +0000</pubDate>
     <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
     <category>Türkiye Ekonomik Raporu</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" medium="image" />
   </item>
 
   <item>
@@ -163,8 +163,8 @@
     <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-14/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-14/og.png" medium="image" />
   </item>
 
   <item>
@@ -174,8 +174,8 @@
     <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
     <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/pulse/2026-05-14/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/pulse/2026-05-14/og.png" medium="image" />
   </item>
 
   <item>
@@ -185,8 +185,8 @@
     <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
     <description>🔄 Sektör Bülteni — Sektör Rotasyon günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Sektör Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/sektor/2026-05-14/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/sektor/2026-05-14/og.png" medium="image" />
   </item>
 
   <item>
@@ -196,8 +196,8 @@
     <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
     <description>💬 Sentiment Bülteni — Kalibre Markets Sentiment Bülteni · 14.05.2026 — TradingView yorum/idea taraması ile 68 sembol için topluluk yön özeti ve kelime bulutu.</description>
     <category>Sentiment Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/sentiment/2026-05-14/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/sentiment/2026-05-14/og.png" medium="image" />
   </item>
 
   <item>
