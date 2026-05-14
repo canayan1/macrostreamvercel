@@ -1670,5 +1670,106 @@ window.__kmShare = async function(wid, data) {
 };
 </script>
 
+
+<div class="share-widget" id="share-9cd6880d" style="display:block;margin:18px 0;padding:14px 16px;background:rgba(255,166,48,.04);border:1px solid var(--border-2);border-left:3px solid var(--accent)">
+  <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ Paylaş</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.55">
+        Bu içeriği <b style="color:var(--text)">FB / IG Story / WhatsApp / X</b> üzerinden tek tıkla paylaşabilirsin.
+        Görseli indir, telefonda IG → Story → yükle.
+      </div>
+    </div>
+    <a href="https://kalibremarkets.com/reports/fx/2026-05-14/story.png" download="story.png" style="display:block;margin-top:10px;background:#1a1612;border:1px solid var(--border);padding:6px"><img src="https://kalibremarkets.com/reports/fx/2026-05-14/story.png" alt="Story görseli" loading="lazy" style="display:block;max-width:160px;max-height:280px;width:auto;height:auto" /></a>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <button type="button"
+      onclick="window.__kmShare('share-9cd6880d', {title:'💱 Döviz Günlük Bülten',text:'Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.',url:'https://kalibremarkets.com/reports/fx/2026-05-14/',img:'https://kalibremarkets.com/reports/fx/2026-05-14/story.png',filename:'story.png'})"
+      class="btn btn-primary" style="font-size:12px;padding:8px 14px">📤 Paylaş</button>
+
+    <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkalibremarkets.com%2Freports%2Ffx%2F2026-05-14%2F" target="_blank" rel="noopener" style="font-size:12px;padding:8px 12px">Facebook</a>
+    <a class="btn" href="https://twitter.com/intent/tweet?text=%F0%9F%92%B1%20D%C3%B6viz%20G%C3%BCnl%C3%BCk%20B%C3%BClten%0A%0AD%C3%B6viz%20%2F%20FX%20g%C3%BCnl%C3%BCk%20b%C3%BClten%3A%20temel%20g%C3%B6stergeler%2C%20d%C3%B6nemsel%20de%C4%9Fi%C5%9Fim%2C%20forecast%20band%C4%B1%2C%20T%C3%BCrk%C3%A7e%20analist%20yorumu.%20Yat%C4%B1r%C4%B1m%20tavsiyesi%20de%C4%9Fildir.%0A%0Ahttps%3A%2F%2Fkalibremarkets.com%2Freports%2Ffx%2F2026-05-14%2F" target="_blank" rel="noopener" style="font-size:12px;padding:8px 12px">X (Twitter)</a>
+    <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkalibremarkets.com%2Freports%2Ffx%2F2026-05-14%2F" target="_blank" rel="noopener" style="font-size:12px;padding:8px 12px">LinkedIn</a>
+    <a class="btn" href="https://wa.me/?text=%F0%9F%92%B1%20D%C3%B6viz%20G%C3%BCnl%C3%BCk%20B%C3%BClten%0A%0AD%C3%B6viz%20%2F%20FX%20g%C3%BCnl%C3%BCk%20b%C3%BClten%3A%20temel%20g%C3%B6stergeler%2C%20d%C3%B6nemsel%20de%C4%9Fi%C5%9Fim%2C%20forecast%20band%C4%B1%2C%20T%C3%BCrk%C3%A7e%20analist%20yorumu.%20Yat%C4%B1r%C4%B1m%20tavsiyesi%20de%C4%9Fildir.%0A%0Ahttps%3A%2F%2Fkalibremarkets.com%2Freports%2Ffx%2F2026-05-14%2F" target="_blank" rel="noopener" style="font-size:12px;padding:8px 12px">WhatsApp</a>
+    <a class="btn" href="https://t.me/share/url?url=https%3A%2F%2Fkalibremarkets.com%2Freports%2Ffx%2F2026-05-14%2F&amp;text=%F0%9F%92%B1%20D%C3%B6viz%20G%C3%BCnl%C3%BCk%20B%C3%BClten" target="_blank" rel="noopener" style="font-size:12px;padding:8px 12px">Telegram</a>
+    <a class="btn" href="https://kalibremarkets.com/reports/fx/2026-05-14/story.png" download="story.png" style="font-size:12px;padding:8px 12px">⬇ Story görselini indir</a>
+  </div>
+</div>
+
+<script>
+window.__kmShare = async function(wid, data) {
+  // Mobil tespit — masaüstü Mac/Windows share sheet'i FB/IG göstermediği için bypass
+  const ua = navigator.userAgent || '';
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua) ||
+                   (navigator.maxTouchPoints > 1 && window.innerWidth < 900);
+
+  if (isMobile && navigator.share) {
+    try {
+      // Görsel varsa, image olarak paylaş — IG/FB Story bunu kabul eder
+      if (data.img && navigator.canShare) {
+        try {
+          const resp = await fetch(data.img);
+          const blob = await resp.blob();
+          const file = new File([blob], data.filename || 'kalibre-story.png', { type: blob.type });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: data.title,
+              text: data.text + '\n\n' + data.url,
+            });
+            return;
+          }
+        } catch (e) { /* file paylaşılamadıysa metin'e düş */ }
+      }
+      // Metin/URL fallback
+      await navigator.share({ title: data.title, text: data.text, url: data.url });
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+  }
+  // Masaüstü ya da Web Share API yok → kendi modalımız (FB/X/WhatsApp/Telegram + indir)
+  const enc = encodeURIComponent;
+  const fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(data.url);
+  const twUrl = 'https://twitter.com/intent/tweet?text=' + enc(data.title + '\n\n' + data.url);
+  const liUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(data.url);
+  const waUrl = 'https://wa.me/?text=' + enc(data.title + '\n\n' + data.url);
+  const tgUrl = 'https://t.me/share/url?url=' + enc(data.url) + '&text=' + enc(data.title);
+  const dlAttr = data.img ? `<a class="btn btn-primary" href="${data.img}" download="${data.filename || 'kalibre-story.png'}" style="display:block;text-align:center;padding:10px;margin-bottom:8px">⬇ Görseli indir (1080×1920, IG Story uyumlu)</a>` : '';
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(10,8,6,.92);backdrop-filter:blur(6px);z-index:9500;display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto';
+  modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
+  modal.innerHTML = `
+    <div style="max-width:520px;width:100%;background:var(--surface);border:1px solid var(--border-2);padding:24px;color:var(--text);max-height:90vh;overflow-y:auto">
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Paylaş</div>
+      <h3 style="margin:0 0 6px;font-size:17px;font-weight:600;color:var(--text);line-height:1.3">${data.title}</h3>
+      <p style="font-size:12.5px;color:var(--text-dim);line-height:1.55;margin:0 0 16px">İstediğin platformu seç. Instagram Story için görseli indir, telefonundan IG uygulamasına yükle.</p>
+
+      ${dlAttr}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+        <a class="btn" href="${fbUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#1877f2;color:white;border:0">📘 Facebook</a>
+        <a class="btn" href="${twUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#000;color:white;border:0">✕ Twitter (X)</a>
+        <a class="btn" href="${waUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#25d366;color:white;border:0">💬 WhatsApp</a>
+        <a class="btn" href="${tgUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#26a5e4;color:white;border:0">✈ Telegram</a>
+        <a class="btn" href="${liUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#0a66c2;color:white;border:0;grid-column:span 2">in LinkedIn</a>
+      </div>
+
+      <div style="padding:10px 12px;background:rgba(228,52,103,.08);border-left:3px solid #e44367;font-size:11.5px;color:var(--text-dim);line-height:1.55;margin-bottom:10px">
+        <b style="color:#e44367">📷 Instagram Story:</b> IG web'de Story paylaşımı desteklemiyor. Görseli indir, telefondan IG uygulamasını aç, Story'ye yükle.
+      </div>
+
+      <input id="km-share-url" value="${data.url}" readonly style="width:100%;padding:10px;background:var(--bg-1);color:var(--text-dim);border:1px solid var(--border);font-family:inherit;font-size:12.5px;margin-bottom:8px" />
+      <button class="btn" style="width:100%;margin-bottom:8px" onclick="
+        const i=document.getElementById('km-share-url'); i.select(); document.execCommand('copy');
+        this.textContent='✓ Bağlantı kopyalandı';">📋 Bağlantıyı kopyala</button>
+      <button class="btn" style="width:100%" onclick="this.closest('div').parentElement.remove()">Kapat</button>
+    </div>`;
+  document.body.appendChild(modal);
+};
+</script>
+
 </body>
 </html>
