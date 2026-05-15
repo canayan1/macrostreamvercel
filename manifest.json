@@ -1,15 +1,15 @@
 {
-  "last_update": "2026-05-15T08:59:00.418671Z",
+  "last_update": "2026-05-15T08:59:10.781976Z",
   "latest_report": {
-    "category": "pulse",
+    "category": "sektor",
     "date": "2026-05-15",
-    "title": "Günlük Nabız — 2026-05-15"
+    "title": "Sektör Rotasyon — 2026-05-15"
   },
-  "total_reports": 22,
+  "total_reports": 23,
   "by_category": {
     "pulse": 4,
     "hisse": 5,
-    "sektor": 3,
+    "sektor": 4,
     "fx": 4,
     "makro": 2,
     "fred": 2,
