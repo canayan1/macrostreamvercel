@@ -1,13 +1,13 @@
 {
-  "last_update": "2026-05-14T22:13:51.138486Z",
+  "last_update": "2026-05-15T08:40:56.967927Z",
   "latest_report": {
-    "category": "fx",
-    "date": "2026-05-14",
-    "title": "fx — 2026-05-14"
+    "category": "pulse",
+    "date": "2026-05-15",
+    "title": "Günlük Nabız — 2026-05-15"
   },
-  "total_reports": 19,
+  "total_reports": 20,
   "by_category": {
-    "pulse": 3,
+    "pulse": 4,
     "hisse": 4,
     "sektor": 3,
     "fx": 3,
