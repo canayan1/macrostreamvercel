@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hisse Bazlı Backtest · Hangi yöntem hangi hissede çalıştı? — Kalibre Markets</title>
+
+<meta name="description" content="58 hisse için 5 algoritmik stratejinin tarihsel sonuçları. Her hissede en iyi strateji, Al &amp; Tut&#x27;a göre üstünlük, aktif pozisyonlar.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="hisse backtest, BIST strateji, algoritmik yatırım, drill-down">
+<meta property="og:title" content="Hisse Bazlı Backtest · Hangi yöntem hangi hissede çalıştı? — Kalibre Markets">
+<meta property="og:description" content="58 hisse için 5 algoritmik stratejinin tarihsel sonuçları. Her hissede en iyi strateji, Al &amp; Tut&#x27;a göre üstünlük, aktif pozisyonlar.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hisse Bazlı Backtest · Hangi yöntem hangi hissede çalıştı? — Kalibre Markets">
+<meta name="twitter:description" content="58 hisse için 5 algoritmik stratejinin tarihsel sonuçları. Her hissede en iyi strateji, Al &amp; Tut&#x27;a göre üstünlük, aktif pozisyonlar.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
+}
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
+}
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+  white-space: nowrap;
+}
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+}
+.fkey {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 13px; color: var(--text-dim); letter-spacing: 0;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--muted); font-weight: 600; font-size: 9.5px; letter-spacing: .04em; opacity: .55; }
+.fkey.active .k { color: var(--accent); opacity: 1; }
+.fkey .lbl { font-weight: 500; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); padding: 0 10px; font-size: 12px; }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .fkey .k { display: none; }  /* F1/F2 etiketlerini gizle, sadece label kalsın */
+  .cmd-stat:not(:first-child) { display: none; }
+  .cmd-prompt input,
+  .cmd-prompt span:not(.chev):not(.kbd) { font-size: 12px; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  /* Cmd prompt mobilde gizle (sadece brand + status) */
+  .cmd-prompt { display: none; }
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  .disclaimer-banner { line-height: 1.5; }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding: 0 12px; }
+  .cmd-status { padding: 0 8px; font-size: 10px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › <a href='/trading/' style='color:inherit'>Trading</a> › Hisse Bazlı Backtest</div>
+<main>
+
+<div class="wrap">
+  <div style="margin-bottom:24px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ HİSSE BAZLI BACKTEST</div>
+    <h1 style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
+      Hangi yöntem hangi hissede çalışmış?
+    </h1>
+    <p style="margin-top:10px;font-size:14.5px;line-height:1.65;color:var(--text-dim);max-width:72ch">
+      Strateji Laboratuvarındaki 5 yöntemin <b style="color:var(--text)">tek tek her hisseye uygulanmış</b> hali.
+      Her hisse için en iyi performans veren stratejiyi, getirisini ve Al &amp; Tut'a göre üstün/altın yapma farkını
+      tabloda görebilirsiniz. Tek tıkla detay sayfasına geçin.
+    </p>
+    <p style="margin-top:6px;font-size:11.5px;color:var(--muted)">
+      28 BIST + 30 US hisse · 5 yıl geçmiş veri · 10 bps işlem maliyeti
+    </p>
+  </div>
+
+  <!-- Strateji Lab köprüsü -->
+  <a href="/algo/" class="panel" style="display:flex;align-items:center;gap:14px;padding:14px 18px;margin-bottom:18px;text-decoration:none;color:inherit;background:rgba(255,166,48,.04);flex-wrap:wrap">
+    <span style="font-size:22px">🧠</span>
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:13.5px;font-weight:600;color:var(--text)">Portföy seviyesinde 5 strateji nasıl performans verir?</div>
+      <div style="font-size:12px;color:var(--text-dim)">Strateji Laboratuvarı — BIST 30 / US 30 evren bazlı backtest</div>
+    </div>
+    <span style="color:var(--accent);font-size:12px;letter-spacing:.04em">→ Lab'a git</span>
+  </a>
+
+  <!-- Tablo başlık satırı -->
+  <div class="panel" style="overflow:hidden;margin-bottom:18px">
+    <div style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;padding:11px 16px;background:var(--bg-1);border-bottom:1px solid var(--border-2);font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:700">
+      <span>Sembol</span>
+      <span>Ad</span>
+      <span style="text-align:right">En iyi Strateji</span>
+      <span style="text-align:right">vs Al &amp; Tut</span>
+      <span style="text-align:right">Aktif Pozisyon</span>
+    </div>
+
+    <div style="padding:11px 16px;background:rgba(255,166,48,.04);font-size:10.5px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700">
+      ▸ BIST 30 (28 hisse)
+    </div>
+    <a href="/algo/hisse/ASELS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ASELS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Aselsan</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+642.1%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -2543.4pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/BIMAS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">BIMAS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">BİM Mağazalar</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+485.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -542.4pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 4 STRATEJİ</span></span></a><a href="/algo/hisse/TUPRS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">TUPRS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Tüpraş</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+407.1%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -636.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/MGROS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">MGROS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Migros</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+370.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -1191.3pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/ENKAI/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ENKAI</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Enka İnşaat</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+274.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -458.0pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/KCHOL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">KCHOL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Koç Holding</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+259.4%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -246.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/AKBNK/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">AKBNK</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Akbank</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+235.8%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -805.9pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/YKBNK/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">YKBNK</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Yapı Kredi</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+229.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -726.5pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/GARAN/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">GARAN</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Garanti BBVA</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+224.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -1011.0pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/SAHOL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">SAHOL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sabancı Holding</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+180.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -355.1pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/PETKM/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">PETKM</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Petkim</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+171.2%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +11.3pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/HEKTS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">HEKTS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Hektaş</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+163.1%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +28.7pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/DOHOL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">DOHOL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Doğan Holding</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+152.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -496.1pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/TOASO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">TOASO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Tofaş Oto</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+143.5%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -243.2pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/FROTO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">FROTO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ford Otosan</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+142.5%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -132.9pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/TCELL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">TCELL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Turkcell</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+131.8%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -349.2pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/ISCTR/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ISCTR</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">İş Bankası (C)</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+129.4%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -780.8pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/TAVHL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">TAVHL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">TAV Havalimanları</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+114.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -415.4pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/THYAO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">THYAO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Türk Hava Yolları</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+95.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -708.2pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/PGSUS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">PGSUS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Pegasus</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+89.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -621.4pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/EREGL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">EREGL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ereğli Demir Çelik</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+86.8%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -54.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/EKGYO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">EKGYO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Emlak Konut GYO</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+65.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -713.2pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/VAKBN/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">VAKBN</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">VakıfBank</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+48.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -715.5pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/KRDMD/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">KRDMD</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Kardemir (D)</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+38.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -159.7pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/ARCLK/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ARCLK</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Arçelik</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+36.3%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -44.6pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/SISE/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">SISE</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Şişe Cam</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+35.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -186.2pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/ODAS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ODAS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Odaş Elektrik</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+24.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -252.1pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/SASA/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">SASA</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sasa Polyester</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+0.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -83.1pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a>
+
+    <div style="padding:11px 16px;background:rgba(255,166,48,.04);font-size:10.5px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;border-top:1px solid var(--border)">
+      ▸ US 30 (30 hisse)
+    </div>
+    <a href="/algo/hisse/NVDA/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">NVDA</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NVIDIA</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+728.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -139.1pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/AVGO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">AVGO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Broadcom</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+484.2%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -200.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/INTC/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">INTC</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Intel</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+373.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +212.7pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 3 STRATEJİ</span></span></a><a href="/algo/hisse/AMD/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">AMD</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">AMD</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+286.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -47.2pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 3 STRATEJİ</span></span></a><a href="/algo/hisse/WMT/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">WMT</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Walmart</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+187.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +17.5pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/META/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">META</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Meta Platforms</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+174.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -4.2pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/GOOGL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">GOOGL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Alphabet</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+172.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -24.1pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 3 STRATEJİ</span></span></a><a href="/algo/hisse/NFLX/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">NFLX</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Netflix</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+165.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -98.8pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/CSCO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">CSCO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Cisco</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+140.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +1.9pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/JPM/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">JPM</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">JPMorgan Chase</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+125.7%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -26.7pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/COST/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">COST</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Costco</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+100.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +13.0pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/LLY/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">LLY</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Eli Lilly</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+85.5%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -155.4pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/MA/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">MA</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Mastercard</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+77.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +34.9pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/V/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">V</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Visa</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+52.6%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +0.4pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/JNJ/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">JNJ</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Johnson &amp; Johnson</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+49.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +7.7pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/AAPL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">AAPL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Apple</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+44.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -33.3pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 3 STRATEJİ</span></span></a><a href="/algo/hisse/PG/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">PG</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Procter &amp; Gamble</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+42.3%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +40.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/AMZN/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">AMZN</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Amazon</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+36.1%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -32.3pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/KO/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">KO</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Coca-Cola</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+34.4%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -9.2pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 3 STRATEJİ</span></span></a><a href="/algo/hisse/XOM/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">XOM</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ExxonMobil</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+29.8%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -79.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/BA/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">BA</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Boeing</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+27.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -0.3pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/ORCL/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ORCL</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Oracle</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+27.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -125.1pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/BAC/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">BAC</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Bank of America</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+25.3%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -13.8pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 1 STRATEJİ</span></span></a><a href="/algo/hisse/MSFT/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">MSFT</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Microsoft</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+22.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -19.3pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/ABBV/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">ABBV</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">AbbVie</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+21.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -23.7pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/CRM/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">CRM</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Salesforce</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+20.1%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +35.5pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/PFE/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">PFE</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Pfizer</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+1.9%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +40.5pp</span><span style="text-align:right"><span style="background:rgba(74,222,128,.12);color:var(--green);padding:2px 7px;font-size:10px;letter-spacing:.05em">▲ 2 STRATEJİ</span></span></a><a href="/algo/hisse/TSLA/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">TSLA</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Tesla</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+0.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -27.2pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/HD/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">HD</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Home Depot</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+0.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--red);text-align:right">B&amp;H -12.9pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a><a href="/algo/hisse/DIS/" style="display:grid;grid-template-columns:90px 1fr 110px 100px 130px;gap:14px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:.02em">DIS</span><span style="font-size:12.5px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Disney</span><span style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--green);font-weight:600;text-align:right">+0.0%</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);text-align:right">B&amp;H +18.6pp</span><span style="text-align:right"><span style="color:var(--muted);font-size:10px;letter-spacing:.05em">◇ pozisyonda değil</span></span></a>
+  </div>
+
+  <!-- Yöntem notu -->
+  <div class="panel" style="padding:16px 20px">
+    <div class="panel-h" style="border:none;padding:0 0 8px"><span class="ttl">▣ Tablonun okunuşu</span></div>
+    <ul style="margin:0;padding-left:20px;font-size:12.5px;color:var(--text-dim);line-height:1.75">
+      <li><b style="color:var(--text)">En iyi Strateji:</b> Hisseye uygulanan 5 yöntem arasında en yüksek toplam getiriyi veren</li>
+      <li><b style="color:var(--text)">vs Al &amp; Tut:</b> Sadece bu hisseyi alıp tutsaydık ne olurdu? Strateji bunu kaç puan geçti/altında kaldı</li>
+      <li><b style="color:var(--text)">Aktif Pozisyon:</b> Bugün itibarıyla 5 stratejiden kaçı bu hissede long pozisyonda</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:18px;padding:14px 18px;background:rgba(239,68,68,0.06);border-left:3px solid var(--red);font-size:11.5px;color:var(--text-dim);line-height:1.6">
+    <b style="color:var(--text)">Uyarı.</b> Geçmiş veri üzerinde simülasyondur, yatırım tavsiyesi değildir. Tek hisseye odaklı uygulama her zaman diversifikasyondan daha riskli.
+  </div>
+</div>
+
+<style>
+  .panel a[href^="/algo/hisse/"]:hover { background: rgba(255,166,48,.04); }
+</style>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-05-15 10:14 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+</body>
+</html>
