@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-15",
+        "metrics": {
+          "regime": "Risk-On",
+          "breadth_pct": 71.42857142857143,
+          "top_gainer": "Sasa Polyester",
+          "top_loser": "Doğan Holding",
+          "featured_stock": "Doğan Holding"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-14",
         "metrics": {
           "regime": "Olumlu eğilim",
