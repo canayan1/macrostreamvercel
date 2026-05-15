@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Fri, 15 May 2026 09:17:39 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 15 May 2026 09:18:02 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -251,8 +251,8 @@
     <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
     <description>🔄 Sektör Bülteni — Sektör Rotasyon günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Sektör Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/sektor/2026-05-15/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/sektor/2026-05-15/og.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
 
   <item>
