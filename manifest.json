@@ -1,15 +1,15 @@
 {
-  "last_update": "2026-05-16T11:58:02.329394Z",
+  "last_update": "2026-05-16T11:58:29.212694Z",
   "latest_report": {
-    "category": "fx",
+    "category": "sektor",
     "date": "2026-05-16",
-    "title": "Döviz Günlük — 2026-05-16"
+    "title": "Sektör Rotasyon — 2026-05-16"
   },
-  "total_reports": 27,
+  "total_reports": 28,
   "by_category": {
     "pulse": 4,
     "hisse": 6,
-    "sektor": 4,
+    "sektor": 5,
     "fx": 5,
     "makro": 2,
     "fred": 2,

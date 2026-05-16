@@ -96,6 +96,16 @@
     "sektor": [
       {
         "category": "sektor",
+        "date": "2026-05-16",
+        "metrics": {
+          "regime": "Lider: Tarım & Kimya",
+          "leader_sector": "Tarım & Kimya",
+          "laggard_sector": "Havacılık & Turizm",
+          "xu100_30d": 1.1646041584253197
+        }
+      },
+      {
+        "category": "sektor",
         "date": "2026-05-15",
         "metrics": {
           "regime": "Lider: Tarım & Kimya",
