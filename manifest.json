@@ -1,17 +1,17 @@
 {
-  "last_update": "2026-05-16T11:58:57.277596Z",
+  "last_update": "2026-05-16T11:59:19.480516Z",
   "latest_report": {
-    "category": "pulse",
+    "category": "makro",
     "date": "2026-05-16",
-    "title": "Günlük Nabız — 2026-05-16"
+    "title": "TR Makro — 2026-05-16"
   },
-  "total_reports": 30,
+  "total_reports": 31,
   "by_category": {
     "pulse": 5,
     "hisse": 6,
     "sektor": 5,
     "fx": 5,
-    "makro": 2,
+    "makro": 3,
     "fred": 2,
     "wb": 1,
     "sentiment": 2,

@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Sat, 16 May 2026 11:58:57 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 16 May 2026 11:59:19 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -198,6 +198,17 @@
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-14/og.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-14/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>🇹🇷 TR Makro — 2026-05-16 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-16/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-16/makro/</guid>
+    <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Türkiye Makro</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
 
   <item>
