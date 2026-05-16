@@ -209,6 +209,23 @@
     "pulse": [
       {
         "category": "pulse",
+        "date": "2026-05-16",
+        "metrics": {
+          "regime": "Sakin",
+          "xu100_last": 14367.599609375,
+          "xu100_pct_30d": 1.164604158425342,
+          "usdtry_last": 45.54199981689453,
+          "usdtry_pct_30d": 1.820347486303775,
+          "dxy_last": 99.2699966430664,
+          "dxy_pct_30d": 1.0690240371753923,
+          "us10y_last": 4.47,
+          "us10y_pct_30d": 4.195804195804187,
+          "vix_last": 17.26,
+          "vix_pct_30d": -5.008255365987891
+        }
+      },
+      {
+        "category": "pulse",
         "date": "2026-05-15",
         "metrics": {
           "regime": "Sakin",
@@ -277,6 +294,17 @@
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-16",
+        "metrics": {
+          "nir_usd": 47.090126895180255,
+          "swap_adj_usd": -56.64631498392892,
+          "nir_chg_week": 0.9178193229384064,
+          "swap_chg_week": -0.8934859631009502,
+          "usdtry": 45.4901008605957
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-05-15",

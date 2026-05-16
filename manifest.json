@@ -1,13 +1,13 @@
 {
-  "last_update": "2026-05-16T11:58:29.212694Z",
+  "last_update": "2026-05-16T11:58:57.277596Z",
   "latest_report": {
-    "category": "sektor",
+    "category": "pulse",
     "date": "2026-05-16",
-    "title": "Sektör Rotasyon — 2026-05-16"
+    "title": "Günlük Nabız — 2026-05-16"
   },
-  "total_reports": 28,
+  "total_reports": 30,
   "by_category": {
-    "pulse": 4,
+    "pulse": 5,
     "hisse": 6,
     "sektor": 5,
     "fx": 5,
@@ -15,6 +15,6 @@
     "fred": 2,
     "wb": 1,
     "sentiment": 2,
-    "tcmb": 1
+    "tcmb": 2
   }
 }
