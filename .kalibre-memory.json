@@ -226,6 +226,13 @@
     "wb": [
       {
         "category": "wb",
+        "date": "2026-05-16",
+        "metrics": {
+          "countries": "TUR,POL,BRA,ZAF,MEX,IDN"
+        }
+      },
+      {
+        "category": "wb",
         "date": "2026-05-12",
         "metrics": {
           "countries": "TUR,POL,BRA,ZAF,MEX,IDN"

@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-05-16T11:59:19.480516Z",
+  "last_update": "2026-05-16T11:59:48.328940Z",
   "latest_report": {
-    "category": "makro",
+    "category": "wb",
     "date": "2026-05-16",
-    "title": "TR Makro — 2026-05-16"
+    "title": "WB Karşılaştırma — 2026-05-16"
   },
-  "total_reports": 31,
+  "total_reports": 32,
   "by_category": {
     "pulse": 5,
     "hisse": 6,
@@ -13,7 +13,7 @@
     "fx": 5,
     "makro": 3,
     "fred": 2,
-    "wb": 1,
+    "wb": 2,
     "sentiment": 2,
     "tcmb": 2
   }
