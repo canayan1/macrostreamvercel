@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-16",
+        "metrics": {
+          "regime": "Olumlu eğilim",
+          "breadth_pct": 57.14285714285714,
+          "top_gainer": "Tüpraş",
+          "top_loser": "Sasa Polyester",
+          "featured_stock": "Doğan Holding"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-15",
         "metrics": {
           "regime": "Risk-On",
@@ -37,6 +48,17 @@
       }
     ],
     "fx": [
+      {
+        "category": "fx",
+        "date": "2026-05-16",
+        "metrics": {
+          "regime": "Güçlü Dolar",
+          "dxy_5d_pct": 1.4615702766762828,
+          "usdtry": 45.54199981689453,
+          "usdtry_30d_pct": 1.820347486303775,
+          "strongest_pair": "USD/TRY"
+        }
+      },
       {
         "category": "fx",
         "date": "2026-05-15",
@@ -241,6 +263,19 @@
           "us10y_pct_30d": 2.5522041763341052,
           "vix_last": 18.38,
           "vix_pct_30d": -4.420176807072284
+        }
+      }
+    ],
+    "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-15",
+        "metrics": {
+          "nir_usd": 47.03915086678438,
+          "swap_adj_usd": -56.584994185886266,
+          "nir_chg_week": 0.8668432945425337,
+          "swap_chg_week": -0.8321651650582993,
+          "usdtry": 45.539398193359375
         }
       }
     ]

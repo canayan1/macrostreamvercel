@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Risk Metrikleri — Sharpe, Max Drawdown, Sortino — Kalibre Markets</title>
+<title>Risk Metrikleri · Sharpe, Max Drawdown, Sortino · Kalibre Markets</title>
 
 <meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Risk Metrikleri — Sharpe, Max Drawdown, Sortino — Kalibre Markets">
+<meta property="og:title" content="Risk Metrikleri · Sharpe, Max Drawdown, Sortino · Kalibre Markets">
 <meta property="og:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Risk Metrikleri — Sharpe, Max Drawdown, Sortino — Kalibre Markets">
+<meta name="twitter:title" content="Risk Metrikleri · Sharpe, Max Drawdown, Sortino · Kalibre Markets">
 <meta name="twitter:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
 }
 .fkey {
   display: flex; align-items: center; gap: 7px;
@@ -422,6 +423,15 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   color: var(--accent); text-transform: uppercase; font-weight: 700;
   margin-bottom: 6px;
 }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
 </head>
 <body>
 <div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
@@ -464,13 +474,13 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   } catch(e) {}
 })();
 </script>
-<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Risk Metrikleri — Sharpe, Max Drawdown, Sortino</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Risk Metrikleri · Sharpe, Max Drawdown, Sortino</div>
 <main>
 
 <div style="margin-bottom:18px">
   <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ EĞİTİM</div>
-  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Risk Metrikleri — Sharpe, Max Drawdown, Sortino</h2>
-  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Bir stratejinin sadece &quot;ne kadar kazandı&quot;sı yetmez. Ne kadar acıyla kazandı? Risk-ayarlı performans nasıl ölçülür?</p>
+  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Risk Metrikleri · Sharpe, Max Drawdown, Sortino</h2>
+  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Bir stratejinin getirisi tek başına yeterli değildir. Bu getiri ne kadar oynaklık ve dip ile elde edildi? Risk ayarlı performansı nasıl ölçeriz?</p>
 </div>
 
 <div style="background:var(--bg-1);border:1px solid var(--border);margin:18px 0;overflow:hidden"><div style="padding:14px;display:flex;justify-content:center"><svg viewBox="0 0 480 220" width="100%" style="max-width:520px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="11">
@@ -488,20 +498,30 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <rect x="0" y="22" width="55" height="14" fill="#ef4444"/>
 <text x="190" y="34" fill="#ef4444" font-size="11" font-weight="600">Sharpe 0.5 ✗</text>
 </g>
-<text x="240" y="200" fill="#a89c83" font-size="10" text-anchor="middle">Aynı getiri, ama A 5 kat daha verimli — risk başına kazancı yüksek</text>
-</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Sharpe oranı: getiriyi alınan riske bölerek 'verimlilik' ölçer</div></div>
+<text x="240" y="200" fill="#a89c83" font-size="10" text-anchor="middle">Aynı getiri, ancak A 5 kat daha verimli. Risk başına kazancı yüksek.</text>
+</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Sharpe oranı: getiriyi alınan riske bölerek verimlilik ölçer.</div></div>
+
+<style>
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+</style>
 
 <div class="card" style="line-height:1.75;font-size:15px">
-<h2>Neden risk metrikleri?</h2>
-<p>Diyelim ki iki strateji:
-- <strong>A</strong>: Yıllık %15 getiri, ama en kötü 1 yılda -%50 düştü
-- <strong>B</strong>: Yıllık %12 getiri, en kötü 1 yılda -%15 düştü</p>
-<p>Hangisi daha iyi? Cevap kişisel değildir — <strong>B</strong> matematiksel olarak daha iyi çünkü daha az risk başına daha verimli kazanç üretir. Risk-ayarlı metrikler bunu sayısallaştırır.</p>
-<h2>Sharpe Ratio</h2>
-<p><strong>En yaygın risk-ayarlı performans metriği.</strong> William Sharpe (1966) tarafından tanımlandı.</p>
+<h2>Neden risk metrikleri gerekir?</h2>
+<p>İki stratejiyi karşılaştıralım:</p>
+<ul>
+<li><strong>A:</strong> Yıllık yüzde 15 getiri, en kötü yılda yüzde 50 düşüş.</li>
+<li><strong>B:</strong> Yıllık yüzde 12 getiri, en kötü yılda yüzde 15 düşüş.</li>
+</ul>
+<p>Hangisi daha iyi? Cevap kişisel değildir. <strong>B</strong> matematiksel olarak daha iyidir, çünkü aldığı risk başına daha verimli kazanç üretir. Risk ayarlı metrikler bu farkı sayısallaştırır.</p>
+
+<h2>Sharpe Oranı</h2>
+<p>En yaygın risk ayarlı performans ölçüsü, <span class="term" data-title="Sharpe ratio" data-tip="William F. Sharpe&#x27;ın 1966 yılında Journal of Business&#x27;ta tanımladığı oran. Fazla getiriyi getirilerin standart sapmasına böler. 1990 Nobel Ekonomi Ödülü&#x27;nün dayanaklarından biridir.">Sharpe oranıdır</span>. William F. Sharpe, 1966 yılında <em>Journal of Business</em>&#x27;ta yayımladığı &quot;Mutual Fund Performance&quot; makalesinde formülü tanımladı.</p>
 <pre><code>Sharpe = (Strateji getirisi - Risksiz faiz) / Strateji standart sapması
 </code></pre>
-<p>Tipik olarak yıllıklandırılmış değerlerle hesaplanır. Risksiz faiz olarak ABD için 3-aylık T-bill, TR için TCMB politika faizi kullanılır (veya pratikte 0 alınır).</p>
+<p>Tipik olarak yıllıklandırılmış değerlerle hesaplanır. Risksiz faiz olarak ABD için üç aylık T-bill getirisi, Türkiye için TCMB politika faizi kullanılır. Pratikte sıfır da alınabilir.</p>
 <h3>Yorumlama</h3>
 <table>
 <thead>
@@ -533,24 +553,24 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 </tr>
 </tbody>
 </table>
-<p>S&amp;P 500'ün buy-and-hold uzun vadeli Sharpe'i ≈ <strong>0.4-0.6</strong>. Profesyonel hedge fonların hedefi ≈ <strong>0.8-1.5</strong>.</p>
+<p>Karşılaştırma için tipik aralıklar: S&amp;P 500&#x27;ün uzun vadeli (1928 sonrası) yıllık Sharpe oranı yaklaşık <strong>0.4-0.5</strong> seviyesindedir. BIST 100&#x27;ün USD bazlı Sharpe oranı dönem dönem negatife dönmüştür; TL bazlı nominal hesapta enflasyon etkisi yanıltıcı şekilde yüksek değer üretir. Profesyonel hedge fonların hedef aralığı genellikle 0.8-1.5 düzeyindedir. <span class="term" data-title="Renaissance Medallion" data-tip="Jim Simons&#x27;ın yönettiği Renaissance Technologies&#x27;in iç fonu. 1988-2018 arası net Sharpe oranı yaklaşık 2.0 düzeyinde rapor edilmiştir; piyasanın en yüksek risk ayarlı getirisi olarak bilinir.">Renaissance Medallion</span> gibi istisnai örnekler 2&#x27;nin üstüne çıkar.</p>
 <h3>Eksiklikleri</h3>
-<p>Sharpe <strong>yukarı volatiliteyi de risk olarak sayar</strong> — ama kim yukarı volatiliteden şikayet eder? Bu yüzden Sortino daha mantıklı bir alternatif sunar.</p>
-<h2>Sortino Ratio</h2>
-<p>Sharpe'ın geliştirilmiş hali. Frank Sortino (1991).</p>
+<p>Sharpe oranı yukarı yöndeki oynaklığı da risk olarak sayar. Oysa yatırımcı, getirinin yukarı tarafını cezalandırmaz. Bu nedenle Sortino, daha tutarlı bir alternatif sunar.</p>
+<h2>Sortino Oranı</h2>
+<p><span class="term" data-title="Sortino ratio" data-tip="Frank A. Sortino&#x27;nun 1980&#x27;ler boyunca geliştirdiği ve 1991 Journal of Investing makalesinde tanımladığı oran. Yalnızca aşağı yönlü oynaklığı (downside deviation) cezalandırır.">Sortino oranı</span>, Sharpe&#x27;ın aşağı yönlü oynaklığa odaklanan biçimidir. Frank A. Sortino&#x27;nun 1980&#x27;ler boyunca geliştirdiği bu ölçü, 1991&#x27;de <em>Journal of Investing</em>&#x27;de tanımlanmıştır.</p>
 <pre><code>Sortino = (Strateji getirisi - Risksiz faiz) / Negatif getirilerin standart sapması
 </code></pre>
-<p>Sadece <strong>kayıpların volatilitesini</strong> ceza olarak alır. Bir strateji büyük yukarı patlamalar yapıyorsa, bu Sharpe'i düşürür ama Sortino'yu etkilemez.</p>
+<p>Sadece negatif getirilerin oynaklığını cezalandırır. Bir strateji büyük yukarı sıçramalar yapıyorsa, bu Sharpe oranını düşürür ancak Sortino oranını etkilemez.</p>
 <h3>Yorumlama</h3>
-<p>Tipik olarak Sortino &gt; Sharpe (çünkü payda küçülür). 1.5+ iyi, 2.5+ çok iyi.</p>
-<h2>Max Drawdown (MDD)</h2>
-<p><strong>Bir stratejinin en yüksek tepe değerinden en düşük dip değerine kadar yüzde olarak düşüşü.</strong></p>
+<p>Tipik olarak Sortino, Sharpe oranından yüksek çıkar (payda küçüldüğü için). 1.5 üzeri iyi, 2.5 üzeri çok iyi sayılır.</p>
+<h2>Maksimum Dip (Max Drawdown)</h2>
+<p>Bir stratejinin en yüksek tepe değerinden en düşük dip değerine yüzdesel düşüşüne <span class="term" data-title="Maximum drawdown" data-tip="Bir varlığın veya stratejinin geçmiş zirvesinden bir sonraki dibe yaşadığı en büyük yüzdesel düşüş. Yatırımcının yaşayabileceği en kötü ardışık kayıbı ölçer.">maksimum dip (max drawdown)</span> denir.</p>
 <pre><code>Equity curve: 100 → 130 → 95
 Max DD = (95 / 130 - 1) × 100 = -27%
 </code></pre>
-<p>Bu, "stratejiyi kullanırken karşılaşacağın en kötü an" anlamına gelir.</p>
+<p>Bu, stratejiyi uygulayan yatırımcının karşılaşacağı en kötü ardışık kayıp anlamına gelir.</p>
 <h3>Neden kritik?</h3>
-<p>İnsan psikolojisi büyük drawdown'lara dayanamaz. -%30 dahi büyük çoğunluk için "ben bu sistemi bırakıyorum" eşiğidir. -%50+ stratejiler <strong>gerçek hayatta uygulanamaz</strong>, sayılar ne kadar iyi görünürse görünsün.</p>
+<p>İnsan psikolojisi büyük dipleri kaldırmaz. Yüzde 30 düşüş bile büyük çoğunluk için &quot;bu sistemi bırakıyorum&quot; eşiğidir. Yüzde 50&#x27;yi aşan dipler, sayılar ne kadar iyi görünürse görünsün, gerçek hayatta sürdürülemez.</p>
 <h3>Eşikler</h3>
 <table>
 <thead>
@@ -574,7 +594,7 @@ Max DD = (95 / 130 - 1) × 100 = -27%
 </tr>
 <tr>
 <td>%35-50</td>
-<td>Yüksek — dikkatli ol</td>
+<td>Yüksek, dikkatli olmak gerekir</td>
 </tr>
 <tr>
 <td>&gt; %50</td>
@@ -582,11 +602,11 @@ Max DD = (95 / 130 - 1) × 100 = -27%
 </tr>
 </tbody>
 </table>
-<p>S&amp;P 500'ün buy-and-hold MDD'si tarihsel olarak ≈ <strong>-%56</strong> (2007-09). BIST 100 ise yıllar boyunca <strong>-%70+</strong> drawdown'lar yaşadı.</p>
-<h2>Calmar Ratio</h2>
+<p>Tarihsel referanslar: S&amp;P 500 endeksi 2007 Ekim zirvesinden 2009 Mart dibine yaklaşık yüzde 57 düştü (Bloomberg ve S&amp;P verisi). 2020 Mart COVID dibinde S&amp;P 500 yaklaşık yüzde 34 değer kaybetti. BIST 100&#x27;ün USD bazlı tarihsel maksimum dipi yüzde 80&#x27;in üstündedir (2000-2003 bankacılık krizi ve 2008 küresel finans krizi dönemleri).</p>
+<h2>Calmar Oranı</h2>
 <pre><code>Calmar = Yıllık getiri (CAGR) / |Max Drawdown|
 </code></pre>
-<p>Drawdown başına ne kadar yıllık getiri aldığını gösterir. Sharpe gibi ama "tipik risk" yerine "en kötü ana göre" hesaplar.</p>
+<p>Dip başına ne kadar yıllık getiri alındığını gösterir. Sharpe oranına benzer; ancak tipik risk yerine en kötü ana göre hesaplama yapar.</p>
 <h3>Yorumlama</h3>
 <table>
 <thead>
@@ -614,51 +634,64 @@ Max DD = (95 / 130 - 1) × 100 = -27%
 </tr>
 </tbody>
 </table>
-<h2>Win Rate</h2>
-<p><strong>Kazanan işlem yüzdesi.</strong></p>
-<pre><code>Win Rate = Kazanan gün/işlem sayısı / Toplam gün/işlem sayısı
+<h2>Kazanma Oranı (Win Rate)</h2>
+<p>Kazanan işlem yüzdesidir.</p>
+<pre><code>Kazanma oranı = Kazanan işlem sayısı / Toplam işlem sayısı
 </code></pre>
-<p><strong>Yanıltıcı olabilir</strong>: Bir strateji %80 win rate ile %20 kayıp olabilir, ama her kaybı 5x kazanç. Asıl önemli olan <strong>kazanç büyüklüğü × win rate</strong> kombinasyonu.</p>
+<p>Tek başına yanıltıcı olabilir. Bir strateji yüzde 80 oranında kazanabilir ancak ortalama kayıp, ortalama kazancın beş katıysa stratejinin beklenen değeri negatif olur. Asıl önemli olan kazanç büyüklüğü ile kazanma oranının birlikte değerlendirilmesidir.</p>
 <h3>Beklenen değer formülü</h3>
-<pre><code>Expectancy = (Win Rate × Ortalama kazanç) - ((1 - Win Rate) × Ortalama kayıp)
+<pre><code>Beklenen değer = (Kazanma oranı × Ortalama kazanç) − ((1 − Kazanma oranı) × Ortalama kayıp)
 </code></pre>
-<p>Bir strateji %40 win rate'li olabilir ama her kazanç 3R, her kayıp 1R → Expectancy = 0.4×3 - 0.6×1 = <strong>+0.6R</strong> — kârlı.</p>
+<p>Bir strateji yüzde 40 oranında kazansa bile, her kazancı 3R ve her kaybı 1R ise beklenen değer 0.4×3 − 0.6×1 = +0.6R olur. Sonuç kârlıdır.</p>
 <h2>Diğer önemli metrikler</h2>
-<h3>Volatility (Yıllık)</h3>
-<p>Günlük getirilerin standart sapması × √252.</p>
+<h3>Yıllık oynaklık</h3>
+<p>Günlük getirilerin standart sapmasının √252 ile çarpılmasıyla bulunur.</p>
 <h3>Beta</h3>
-<p>Stratejinin piyasaya göre duyarlılığı. Beta = 1 → piyasa ile aynı. Beta = 0.5 → piyasa hareketinin yarısı.</p>
-<h3>Alpha (Jensen's Alpha)</h3>
-<p>Beta-ayarlı fazla getiri. Bir strateji piyasaya göre ekstra ne kazandırdı?</p>
-<h3>Profit Factor</h3>
-<pre><code>Profit Factor = Toplam kazanç / Toplam kayıp
+<p>Stratejinin piyasaya göre duyarlılığı. <span class="term" data-title="Beta" data-tip="CAPM modelindeki regresyon eğimi. Bir varlığın getirisinin piyasa getirisine duyarlılığını ölçer. Beta=1 piyasa ile aynı, 0.5 piyasanın yarısı kadar hareket demektir.">Beta</span> = 1 piyasa ile aynı hareketi, 0.5 piyasanın yarısı kadar hareketi ifade eder.</p>
+<h3>Jensen alfası</h3>
+<p>Beta ayarlı fazla getiri. <span class="term" data-title="Alpha" data-tip="Michael Jensen&#x27;ın 1968 tarihli çalışmasında tanımladığı kavram. CAPM&#x27;den beklenen getiri ile gerçekleşen getiri arasındaki farktır; yöneticinin piyasa üstü beceri katkısı olarak yorumlanır.">Alfa</span>, bir stratejinin piyasaya göre ne kadar fazla kazandırdığını gösterir.</p>
+<h3>Kâr faktörü</h3>
+<pre><code>Kâr faktörü = Toplam kazanç / Toplam kayıp
 </code></pre>
 <blockquote>
-<p>1 → kârlı, &gt; 2 → güçlü, &gt; 3 → çok güçlü (nadir).</p>
+<p>1 üstü kârlı, 2 üstü güçlü, 3 üstü çok güçlü kabul edilir (nadirdir).</p>
 </blockquote>
-<h2>Backtest sonuçlarını okurken</h2>
-<p>Bir strateji sayfasında şu rakamları görüyorsan, şu sıralamayla bak:</p>
+<h2>Geriye dönük test sonuçlarını okurken</h2>
+<p>Bir strateji sayfasında rakamları görürken bakış sırası şu olmalıdır:</p>
 <ol>
-<li><strong>Önce Max Drawdown</strong> — pratikte uygulanabilir mi?</li>
-<li><strong>Sonra CAGR</strong> — değer var mı?</li>
-<li><strong>Sonra Sharpe/Sortino</strong> — risk-ayarlı?</li>
-<li><strong>Sonra Calmar</strong> — drawdown başına getiri?</li>
-<li><strong>Win Rate / Profit Factor</strong> — distribuasyon dengeli mi?</li>
+<li>Önce maksimum dip. Pratikte uygulanabilir mi?</li>
+<li>Sonra yıllık bileşik getiri (CAGR). Değer üretiyor mu?</li>
+<li>Sonra Sharpe ve Sortino. Risk ayarlı performans yeterli mi?</li>
+<li>Sonra Calmar. Dip başına getiri makul mü?</li>
+<li>Son olarak kazanma oranı ve kâr faktörü. İşlem dağılımı dengeli mi?</li>
 </ol>
-<p>Tek bir metriğe bakma. Bir strateji yüksek CAGR + yüksek MDD ile çekici görünür ama gerçekte uygulanamaz.</p>
-<h2>Buy-and-Hold karşılaştırması</h2>
-<p>Bir strateji bu metriklerin <strong>hepsinde</strong> S&amp;P 500 / BIST 30 endeksinin buy-and-hold halinden iyi mi? Yoksa sadece bazılarında? Çoğunlukla aktif stratejiler:
-- <strong>Sharpe</strong>'i iyileştirir (volatiliteyi azaltır)
-- <strong>Max DD</strong>'yi azaltır
-- Ama <strong>CAGR</strong>'da endeksi yenmek zordur</p>
-<p>İyi bir strateji düşük volatilite + düşük drawdown ile <strong>endekse yakın getiri</strong> verir. Hedef genellikle "endeks gibi getir, yarısı kadar acı" olur.</p>
+<p>Tek bir metriğe bakmak yanıltır. Yüksek CAGR ile birlikte yüksek maksimum dip gösteren bir strateji çekici görünebilir ancak gerçekte sürdürülemez.</p>
+<h2>Endekse karşı karşılaştırma</h2>
+<p>Bir strateji, S&amp;P 500 veya BIST 30 endeksinin pasif tutulmasına göre tüm metriklerde mi daha iyi, yoksa yalnızca bazılarında mı? Aktif stratejiler çoğunlukla şu sonucu verir:</p>
+<ul>
+<li>Sharpe oranını iyileştirir (oynaklığı azaltır).</li>
+<li>Maksimum dipi azaltır.</li>
+<li>Yıllık bileşik getiride endeksi geçmek zordur.</li>
+</ul>
+<p>İyi bir strateji düşük oynaklık ve düşük dip ile endekse yakın getiri verir. Hedef genellikle endeks getirisinin yarısı kadar dip ile aynı getiriyi yakalamaktır.</p>
 <h2>Son söz</h2>
-<p>Bir strateji sayfasında 100 rakam görsen bile:</p>
+<p>Bir strateji sayfasında onlarca rakam görsen bile, esas soru şudur:</p>
 <blockquote>
-<p>"Şu strateji ben uygulamaya başlasam, en kötü ne kadar kaybım olur?"</p>
+<p>Bu stratejiyi uygulamaya başlasam, en kötü ardışık kaybım ne kadar olur?</p>
 </blockquote>
-<p>Cevap = <strong>Max Drawdown</strong>. Bu eşiği kaldırabiliyor musun, kaldıramıyor musun? Cevap "hayır" ise, getirinin %50 olması bile değersiz — çünkü uygulayamazsın.</p>
-<p>İyi yatırımcılar <strong>getiriyi maksimize etmez, risk-ayarlı getiriyi maksimize eder.</strong> Çünkü uygulanabilirlik kritiktir.</p>
+<p>Cevap, maksimum diptir. Bu eşiği kaldırabiliyor musun? Cevap hayır ise getirinin yüzde 50 olması bile değersizdir. Çünkü stratejiyi uygulayamazsın.</p>
+<p>İyi yatırımcılar getiriyi değil, risk ayarlı getiriyi maksimize eder. Çünkü uygulanabilirlik en kritik koşuldur.</p>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>Sharpe, W. F. (1966). Mutual Fund Performance. <em>The Journal of Business</em>, 39(1), 119-138.</li>
+<li>Sortino, F. A. ve Price, L. N. (1994). Performance Measurement in a Downside Risk Framework. <em>The Journal of Investing</em>, 3(3), 59-64.</li>
+<li>Jensen, M. C. (1968). The Performance of Mutual Funds in the Period 1945-1964. <em>The Journal of Finance</em>, 23(2), 389-416.</li>
+<li>Magdon-Ismail, M. ve Atiya, A. F. (2004). Maximum Drawdown. <em>Risk Magazine</em>, 17(10), 99-102.</li>
+<li>Bailey, D. H. ve Lopez de Prado, M. (2014). The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting, and Non-Normality. <em>Journal of Portfolio Management</em>, 40(5), 94-107.</li>
+<li>S&amp;P Dow Jones Indices. (2009). S&amp;P 500 Historical Drawdown Analysis (Bloomberg verisi).</li>
+<li>Zuckerman, G. (2019). <em>The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution</em>. Portfolio. (Renaissance Medallion Sharpe oranı referansı.)</li>
+</ol>
 </div>
 
 <div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">

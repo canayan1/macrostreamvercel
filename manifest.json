@@ -1,19 +1,20 @@
 {
-  "last_update": "2026-05-15T09:53:01.563147Z",
+  "last_update": "2026-05-16T11:58:02.329394Z",
   "latest_report": {
     "category": "fx",
-    "date": "2026-05-15",
-    "title": "fx — 2026-05-15"
+    "date": "2026-05-16",
+    "title": "Döviz Günlük — 2026-05-16"
   },
-  "total_reports": 23,
+  "total_reports": 27,
   "by_category": {
     "pulse": 4,
-    "hisse": 5,
+    "hisse": 6,
     "sektor": 4,
-    "fx": 4,
+    "fx": 5,
     "makro": 2,
     "fred": 2,
     "wb": 1,
-    "sentiment": 1
+    "sentiment": 2,
+    "tcmb": 1
   }
 }

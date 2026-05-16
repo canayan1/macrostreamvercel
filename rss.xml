@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Fri, 15 May 2026 09:53:01 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 16 May 2026 11:58:02 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -146,17 +146,6 @@
   </item>
 
   <item>
-    <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
-    <pubDate>Thu, 14 May 2026 21:59:12 +0000</pubDate>
-    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
-    <category>Türkiye Ekonomik Raporu</category>
-    <enclosure url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" medium="image" />
-  </item>
-
-  <item>
     <title>💱 Döviz Günlük Bülten — 2026-05-14 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-05-14/fx/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-14/fx/</guid>
@@ -212,12 +201,45 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-05-16 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-16/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-16/fx/</guid>
+    <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Doğan Holding — 2026-05-16 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-16/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-16/hisse/</guid>
+    <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Doğan Holding (DOHOL.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>2026-05-11 Bülteni — MakroStream</title>
     <link>https://kalibremarkets.com/reports/2026-05-11/hisse/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-11/hisse/</guid>
     <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
     <description>📈 Hisse Bülteni — Veri &amp;amp; Teknik Analiz Bülteni. Türkçe makro ve teknik analiz bülteni. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
+    <pubDate>Fri, 15 May 2026 15:11:21 +0000</pubDate>
+    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
+    <category>Türkiye Ekonomik Raporu</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -240,8 +262,8 @@
     <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
     <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/pulse/2026-05-15/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/pulse/2026-05-15/og.png" medium="image" />
   </item>
 
   <item>
@@ -251,6 +273,17 @@
     <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
     <description>🔄 Sektör Bülteni — Sektör Rotasyon günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Sektör Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/reports/sektor/2026-05-15/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/sektor/2026-05-15/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Sentiment Bülteni · 15.05.2026 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-15/sentiment/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-15/sentiment/</guid>
+    <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+    <description>💬 Sentiment Bülteni — Kalibre Markets Sentiment Bülteni · 15.05.2026 — TradingView yorum/idea taraması ile 60 sembol için topluluk yön özeti ve kelime bulutu.</description>
+    <category>Sentiment Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>

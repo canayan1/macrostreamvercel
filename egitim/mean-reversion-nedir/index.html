@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mean Reversion (Ortalamaya Dönüş) nedir? — Kalibre Markets</title>
+<title>Mean Reversion (Ortalamaya Dönüş) nedir? · Kalibre Markets</title>
 
 <meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Mean Reversion (Ortalamaya Dönüş) nedir? — Kalibre Markets">
+<meta property="og:title" content="Mean Reversion (Ortalamaya Dönüş) nedir? · Kalibre Markets">
 <meta property="og:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mean Reversion (Ortalamaya Dönüş) nedir? — Kalibre Markets">
+<meta name="twitter:title" content="Mean Reversion (Ortalamaya Dönüş) nedir? · Kalibre Markets">
 <meta name="twitter:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
 }
 .fkey {
   display: flex; align-items: center; gap: 7px;
@@ -422,6 +423,15 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   color: var(--accent); text-transform: uppercase; font-weight: 700;
   margin-bottom: 6px;
 }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
 </head>
 <body>
 <div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
@@ -489,85 +499,115 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <text x="240" y="200" fill="#a89c83" font-size="10" text-anchor="middle">Fiyat ortalamadan saptıkça ortalamaya dönme eğilimi gösterir</text>
 </svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Ortalamaya dönüş: aşırı sapan fiyatlar zamanla ortalamaya geri çekilir</div></div>
 
+<style>
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+</style>
 <div class="card" style="line-height:1.75;font-size:15px">
 <h2>Tanım</h2>
-<p><strong>Mean reversion</strong>, finansal piyasalarda varlık fiyatlarının kısa vadede uzun vadeli ortalamasından sapsa bile zamanla bu ortalamaya geri dönme eğilimini ifade eder. Momentum'un tersi bir gözlem: kısa vadede aşırı yükselen düşer, aşırı düşen yükselir.</p>
-<h2>İki tür mean reversion</h2>
+<p><strong>Mean reversion</strong> (ortalamaya dönüş), bir varlığın fiyatı uzun vadeli ortalamasından kısa süreli sapsa bile zamanla bu ortalamaya geri dönme eğilimini ifade eder. Momentum hipotezinin karşıtıdır. Kısa vadede aşırı yükselen düşme, aşırı düşen yükselme eğilimi gösterir.</p>
+
+<h2>İki tür ortalamaya dönüş</h2>
 <ol>
-<li><strong>Kısa vadeli (gün-hafta)</strong>: Bir hisse 3-5 günde %15 düşmüşse, sonraki 1-2 haftada teknik toparlanma olasılığı yüksek. <em>Bu mean reversion'dur.</em></li>
-<li><strong>Uzun vadeli (yıllar)</strong>: Yüksek P/E hisseler düşük P/E'ye, düşük P/E hisseler yüksek P/E'ye dönme eğilimi. <em>Bu değer faktörüdür (Fama-French HML).</em></li>
+<li><strong>Kısa vadeli (gün ve hafta ölçeği).</strong> Bir hisse 3 ila 5 günde yüzde 15 düşmüşse, sonraki 1 ila 2 haftada teknik toparlanma olasılığı yüksektir. Klasik ortalamaya dönüş budur.</li>
+<li><strong>Uzun vadeli (yıllar ölçeği).</strong> Yüksek F/K oranlı hisselerin düşük F/K seviyelerine, düşük F/K hisselerin daha yüksek seviyelere dönme eğilimidir. Bu, değer faktörü olarak bilinir (Fama-French HML).</li>
 </ol>
+
 <h2>Akademik temel</h2>
-<p>İlk sistemik kanıt <strong>De Bondt &amp; Thaler (1985)</strong>'dan: son 3-5 yılda en kötü performans gösteren hisseler, sonraki 3-5 yılda en iyi performans gösterenleri yendi. Bu, "yatırımcı aşırı reaksiyonu" (overreaction) hipotezini destekledi.</p>
-<p>Kısa vadeli mean reversion için <strong>Lehmann (1990)</strong> ve <strong>Jegadeesh (1990)</strong> ABD'de 1-hafta'lık reversal etkisini gösterdi: bir önceki haftanın en kötü performans gösterenleri, gelecek hafta en iyi performans gösterdi.</p>
+<p>İlk sistematik kanıt De Bondt ve Thaler&#x27;in 1985 tarihli <em>The Journal of Finance</em>&#x27;da yayımlanan çalışmasından gelir. Yazarlar, son 3 ila 5 yılda en kötü performansı gösteren hisselerin (kaybedenler) sonraki 3 ila 5 yılda en iyi performansı gösterenleri (kazananlar) yendiğini gösterdi. Bu bulgu, davranışsal finansta "yatırımcı aşırı tepkisi" hipotezinin temel kanıtı oldu.</p>
+
+<p>Kısa vadeli ortalamaya dönüş için iki dönüm noktası vardır. Lehmann&#x27;ın 1990 yılında <em>Quarterly Journal of Economics</em>&#x27;da yayımlanan "Fads, Martingales, and Market Efficiency" başlıklı çalışması haftalık verideki ters dönüşleri belgeledi. Aynı yıl Jegadeesh&#x27;in <em>The Journal of Finance</em>&#x27;da yayımlanan "Evidence of Predictable Behavior of Security Returns" çalışması aylık veride benzer ters dönüş kalıbı buldu. Bir önceki ayın kaybedenlerinden alıp kazananlarını satan strateji, 1934 ile 1987 arası dönemde aylık ortalama yaklaşık yüzde 2 ham getiri üretiyordu.</p>
+
+<p>Bu literatür Lo ve MacKinlay&#x27;in 1988 tarihli <em>Review of Financial Studies</em> çalışmasıyla birleştiğinde net bir sonuç verir. ABD hisse getirilerinin haftalık ve aylık ufuklarda rastgele yürüyüş hipotezinden anlamlı biçimde saptığı, kısa vadede negatif otokorelasyon (yani ortalamaya dönüş) gösterdiği belgelenmiştir.</p>
+
 <h2>Neden çalışıyor?</h2>
+<p>Üç ana açıklama tartışılır.</p>
 <ul>
-<li><strong>Likidite şokları</strong>: Bir fonun büyük satışı geçici fiyat baskısı yaratır; pozisyon kapandığında fiyat toparlanır.</li>
-<li><strong>Yatırımcı duygusu</strong>: Kötü haber sonrası aşırı satış → kısa vadede "panik dibinde" alıcılar.</li>
-<li><strong>Mikro yapısal</strong>: Bid-ask sıçramaları, son işlem fiyatının kısa vadeli "ortalaması" etrafında titremesi.</li>
+<li><strong>Likidite şokları.</strong> Büyük bir fonun zorunlu satışı geçici fiyat baskısı yaratır. Pozisyon kapandığında fiyat toparlanır. 2020 Mart COVID dipinde S&amp;P 500&#x27;de bu kalıp net görüldü. 23 Mart dibinden sonra endeks 50 işlem gününde yaklaşık yüzde 40 toparlandı. Aynı dönemde BIST 100 da Mart dibinden Haziran ortasına yüzde 30&#x27;a yakın yükseldi.</li>
+<li><strong>Yatırımcı duygusu.</strong> Kötü haber sonrası aşırı satış, kısa vadeli panik dibinde alıcı yaratır. 2023 Mart ABD bankacılık krizinde (SVB iflası) bölgesel banka ETF&#x27;si KRE bir hafta içinde yaklaşık yüzde 30 düştü. Sonraki iki ayda kayıpların önemli bir kısmı geri alındı.</li>
+<li><strong>Mikro yapısal etkiler.</strong> Bid-ask sıçramaları ve son işlem fiyatı gürültüsü kısa vadeli ortalamaya dönüş ölçümlerinde önemli bir paya sahiptir.</li>
 </ul>
-<h2>RSI tabanlı uygulama</h2>
-<p>En popüler mean reversion stratejisi <strong>RSI (Relative Strength Index)</strong> kullanır:</p>
+
+<h2><span class="term" data-title="RSI" data-tip="Relative Strength Index. J. Welles Wilder tarafından 1978 yılında New Concepts in Technical Trading Systems kitabında tanıtılan, son 14 günün kazanç/kayıp dengesini 0-100 ölçeğinde ifade eden momentum osilatörü.">RSI</span> tabanlı uygulama</h2>
+<p>En yaygın ortalamaya dönüş kuralı RSI üzerinden kurulur. RSI, J. Welles Wilder tarafından 1978 yılında <em>New Concepts in Technical Trading Systems</em> kitabında tanıtıldı. Standart parametre 14 gündür.</p>
 <ul>
-<li><strong>RSI(14) &lt; 30</strong> → "aşırı satım" — al</li>
-<li><strong>RSI(14) &gt; 70</strong> → "aşırı alım" — sat</li>
-<li><strong>RSI(14) 50</strong> → nötr (genelde çıkış için kullanılır)</li>
+<li>RSI(14) 30 altında: aşırı satım kabul edilir, alım sinyali olarak yorumlanır.</li>
+<li>RSI(14) 70 üstünde: aşırı alım kabul edilir, satış sinyali olarak yorumlanır.</li>
+<li>RSI(14) 50 civarı: nötr, çıkış için kullanılır.</li>
 </ul>
-<p>RSI, son 14 günün kazanç/kayıp dengesinin oransal ifadesidir. 0-100 arası bir değer, 50 üstü = kazançlar baskın.</p>
-<p><strong>Avantajları:</strong> Basit, açık kural, hesap kolayı.
-<strong>Dezavantajları:</strong> Trend piyasalarında RSI uzun süre aşırı alımda kalır → "RSI satıştan al" tuzağa düşer.</p>
-<h2>Diğer mean reversion göstergeleri</h2>
+<p>Avantajı basit ve açık olmasıdır. Dezavantajı trend piyasalarında ortaya çıkar. Güçlü bir trendde RSI haftalarca aşırı alımda kalabilir. Bu durumda "RSI yüksek diye sat" kuralı kazananı erken bırakır.</p>
+
+<h2>Diğer ortalamaya dönüş göstergeleri</h2>
 <ul>
-<li><strong>Bollinger Bands</strong>: Fiyat üst banttan dışarı çıktığında satış, alt banttan dışarı çıktığında alış sinyali. (20g MA ± 2 std)</li>
-<li><strong>Z-score</strong>: Hisse fiyatının N-günlük ortalamasından kaç std uzakta? |Z| &gt; 2 → aşırı sapma.</li>
-<li><strong>MACD divergence</strong>: Fiyat yeni dip yapar ama MACD önceki dipten yüksekse → reversal sinyali.</li>
+<li><strong><span class="term" data-title="Bollinger Bands" data-tip="John Bollinger tarafından 1980&#x27;lerin başında geliştirilen, 20 günlük hareketli ortalamanın iki standart sapma üstünde ve altında bantlar çizen volatilite göstergesi.">Bollinger Bands</span>.</strong> 20 günlük hareketli ortalama artı/eksi 2 standart sapma. Fiyat üst banttan dışarı çıktığında aşırı alım, alt banttan dışarı çıktığında aşırı satım yorumu yapılır.</li>
+<li><strong>Z-skoru.</strong> Hisse fiyatının N günlük ortalamasından kaç standart sapma uzakta olduğu. Mutlak değer 2 üstünde aşırı sapma kabul edilir.</li>
+<li><strong>MACD uyumsuzluğu.</strong> Fiyat yeni dip yaparken MACD önceki dipten daha yüksekse ters dönüş sinyali sayılır.</li>
 </ul>
+
 <h2>Riskler</h2>
-<p>Mean reversion'ın en bilinen tehlikesi <strong>trend piyasaları</strong>. Bir hisse %30 düştü ve RSI 25'te — strateji al der. Ama hisse iflasa gidiyor olabilir. Mean reversion stratejileri:</p>
+<p>Ortalamaya dönüş stratejisinin en bilinen tehlikesi trend piyasalarıdır. Bir hisse yüzde 30 düştü ve RSI 25 seviyesinde olabilir. Kural alım der. Ancak hisse temel bozulma veya iflas yolundaysa düşüş devam eder. 2018 yılında Garanti BBVA dahil bankacılık sektöründe Ağustos kur krizinin ardından RSI uzun süre 30 altında kaldı. Ortalamaya dönüş kuralı erken alım yapanı zarara soktu. Korunma için şu kuralları kullanmak gerekir.</p>
 <ul>
-<li><strong>Trend filtresi</strong> ile birleştirilmeli: Hisse 200g MA üstündeyse uygula, altındaysa uygulama.</li>
-<li><strong>Stop-loss</strong> zorunlu: Tek bir hisse stratejiyi batırabilir.</li>
-<li><strong>Sektör/likidite filtresi</strong>: Sadece likit, büyük market cap hisselerde uygula.</li>
+<li><strong>Trend filtresi.</strong> Hisse 200 günlük hareketli ortalama üstündeyken uygula, altındaysa uygulama.</li>
+<li><strong>Zarar durdurma emri zorunlu.</strong> Tek bir hisse stratejinin yıllık getirisini silebilir.</li>
+<li><strong>Likidite filtresi.</strong> Yalnızca yüksek hacimli, büyük piyasa değerli hisselerde uygula. BIST için BIST 30, ABD için S&amp;P 500 evreni sağduyulu başlangıçtır.</li>
 </ul>
+
 <h2>"Düşen bıçağı yakalamak" sorunu</h2>
-<p>Mean reversion'ın halk arasında bilinen ifadesi budur. "Düşen bıçağı tutmak" — temellerinde bozulma olan hisseyi sadece teknik diptedir diye almak. Strateji:</p>
+<p>Halk arasındaki ifadesiyle ortalamaya dönüş, temellerinde bozulma olan hisseyi sadece teknik olarak ucuz görünüyor diye almak demektir. Riski sınırlamak için pratik öneriler şunlardır.</p>
 <ol>
-<li>Sadece <strong>şeffaf, açık kural</strong> uygulayın (RSI, BB vs)</li>
-<li><strong>Tek hisseye konsantrasyondan kaçının</strong> — 5-10 hisseye dağıt</li>
-<li><strong>Trailing stop</strong> ya da maks holding süresi koy</li>
-<li><strong>Backtest'te slipaj ve maliyeti dahil et</strong></li>
+<li>Yalnızca şeffaf, açık kural uygulayın (RSI, Bollinger Bands gibi).</li>
+<li>Tek hisseye konsantrasyondan kaçının. 5 ila 10 hisseye dağıtın.</li>
+<li>Kademeli yukarı çekilen koruyucu satış emri veya maksimum tutma süresi koyun.</li>
+<li>Geçmiş veri testinde komisyon ve <span class="term" data-title="Slipaj" data-tip="Emrin verildiği fiyat ile gerçekleşen fiyat arasındaki sapma. Yüksek volatilite ve düşük likidite dönemlerinde büyür.">slipaj</span> maliyetlerini mutlaka dahil edin.</li>
 </ol>
-<h2>BIST'te mean reversion</h2>
-<p>BIST 30 gibi az hisseli, yüksek konsantrasyonlu evrende mean reversion biraz daha zayıf çalışır çünkü:
-- 30 hisselik evrende çeşitlilik sınırlı
-- Likidite dengesizlikleri büyük hisselerde daha az
-- Yüksek volatilite (TR'ye özgü) mean'i kendisi de oynak yapar</p>
-<p>Yine de <strong>RSI 30 altı + 200g MA üstü</strong> tarzı hibrit kurallar tarihsel olarak iyi sonuç verebilir.</p>
-<h2>Mean reversion vs. Momentum</h2>
-<p>İkisi de gerçek faktörlerdir — birbirini götüren değil, <strong>farklı zaman ufuklarında</strong> çalışan stratejilerdir:</p>
+
+<h2>BIST'te ortalamaya dönüş</h2>
+<p>BIST 30 gibi dar ve konsantre bir evrende ortalamaya dönüş stratejisi farklı davranır. Üç temel sınırlama vardır.</p>
+<ul>
+<li>30 hisselik evrende çeşitlilik sınırlıdır. Sektör konsantrasyonu yüksektir (bankacılık ağırlıklı).</li>
+<li>TL volatilitesi ve makro şok dönemlerinde tüm hisseler aynı anda hareket eder. Çeşitlendirme etkisi azalır.</li>
+<li>İşlem maliyetleri (komisyon, BSMV, slipaj) ABD&#x27;ye göre yüksektir. Ham getiri ile net getiri arasındaki fark büyür.</li>
+</ul>
+<p>Buna rağmen RSI 30 altı ile 200 günlük ortalama üstü kuralının birleşimi, BIST 30 hisselerinde tarihsel olarak makul sonuçlar üretmiştir. 2020 Mart COVID dibinde ASELS, BIMAS ve TUPRS gibi hisselerde bu kural alım sinyali verdi. Sonraki üç ayda sinyal verilen hisselerin önemli bir kısmı yüzde 25 ile 40 arasında toparlandı.</p>
+
+<h2>Ortalamaya dönüş ve momentum</h2>
+<p>İki faktör birbirinin alternatifi değildir. Farklı zaman ufuklarında çalışırlar.</p>
 <table>
 <thead>
 <tr>
-<th>Periyot</th>
-<th>Yön</th>
+<th>Zaman ufku</th>
+<th>Baskın faktör</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1 hafta - 1 ay</td>
-<td>Mean reversion</td>
+<td>1 hafta ila 1 ay</td>
+<td>Ortalamaya dönüş</td>
 </tr>
 <tr>
-<td>3 ay - 12 ay</td>
+<td>3 ay ila 12 ay</td>
 <td>Momentum</td>
 </tr>
 <tr>
-<td>3 yıl +</td>
-<td>Mean reversion (değer faktörü)</td>
+<td>3 yıl ve üstü</td>
+<td>Ortalamaya dönüş (değer faktörü)</td>
 </tr>
 </tbody>
 </table>
-<p>Profesyonel portföylerde her ikisi de bir arada kullanılır — çünkü farklı dönemlerde alpha üretirler.</p>
+<p>Kurumsal portföylerde her iki faktör bir arada kullanılır. Farklı dönemlerde alfa ürettikleri için birbirini dengelerler.</p>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>De Bondt, W. F. M. ve Thaler, R. H. (1985). Does the Stock Market Overreact? <em>The Journal of Finance</em>, 40(3), 793-805.</li>
+<li>Lehmann, B. N. (1990). Fads, Martingales, and Market Efficiency. <em>Quarterly Journal of Economics</em>, 105(1), 1-28.</li>
+<li>Jegadeesh, N. (1990). Evidence of Predictable Behavior of Security Returns. <em>The Journal of Finance</em>, 45(3), 881-898.</li>
+<li>Lo, A. W. ve MacKinlay, A. C. (1988). Stock Market Prices Do Not Follow Random Walks: Evidence from a Simple Specification Test. <em>The Review of Financial Studies</em>, 1(1), 41-66.</li>
+<li>Fama, E. F. ve French, K. R. (1993). Common Risk Factors in the Returns on Stocks and Bonds. <em>Journal of Financial Economics</em>, 33(1), 3-56.</li>
+<li>Wilder, J. W. (1978). <em>New Concepts in Technical Trading Systems</em>. Trend Research, Greensboro NC.</li>
+<li>Murphy, J. J. (1999). <em>Technical Analysis of the Financial Markets</em>. New York Institute of Finance.</li>
+</ol>
 </div>
 
 <div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">

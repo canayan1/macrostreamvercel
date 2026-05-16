@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli? — Kalibre Markets</title>
+<title>Backtest Tuzakları · Geçmiş Performansa Neden Güvenmemeli? · Kalibre Markets</title>
 
 <meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli? — Kalibre Markets">
+<meta property="og:title" content="Backtest Tuzakları · Geçmiş Performansa Neden Güvenmemeli? · Kalibre Markets">
 <meta property="og:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli? — Kalibre Markets">
+<meta name="twitter:title" content="Backtest Tuzakları · Geçmiş Performansa Neden Güvenmemeli? · Kalibre Markets">
 <meta name="twitter:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
 }
 .fkey {
   display: flex; align-items: center; gap: 7px;
@@ -422,6 +423,15 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   color: var(--accent); text-transform: uppercase; font-weight: 700;
   margin-bottom: 6px;
 }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
 </head>
 <body>
 <div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
@@ -464,12 +474,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   } catch(e) {}
 })();
 </script>
-<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli?</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Backtest Tuzakları · Geçmiş Performansa Neden Güvenmemeli?</div>
 <main>
 
 <div style="margin-bottom:18px">
   <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ EĞİTİM</div>
-  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli?</h2>
+  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Backtest Tuzakları · Geçmiş Performansa Neden Güvenmemeli?</h2>
   <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Bir strateji backtest&#x27;te harika görünebilir; canlıya alınca berbat çalışabilir. İşte neden, nasıl yanlış yaparız ve nasıl korunuruz.</p>
 </div>
 
@@ -500,72 +510,90 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <text x="100" y="40" fill="#a89c83" font-size="9" text-anchor="middle">Komisyon + spread</text>
 <text x="100" y="52" fill="#a89c83" font-size="9" text-anchor="middle">getiriyi yer</text>
 </g>
-</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Geçmiş veri testlerinin 4 ana tuzağı — her birini kontrol etmeden sonuçlara güvenme</div></div>
+</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Geçmiş veri testlerinin 4 ana tuzağı. Her birini kontrol etmeden sonuçlara güvenmeyin</div></div>
 
+<style>
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+</style>
 <div class="card" style="line-height:1.75;font-size:15px">
 <h2>Neden bu sayfa kritik?</h2>
-<p>Bu sitedeki tüm strateji sayfaları <strong>geçmiş veriyle test edilmiştir</strong>. Backtest'in sonuçları gerçek ama bu, stratejinin yarın da aynı şekilde çalışacağı anlamına gelmez. Aksi savunulan her şey <strong>dolandırıcılıktır</strong>.</p>
-<p>Bu sayfada backtest'in tipik tuzaklarını ve hangilerini bizim dikkatle önlediğimizi anlatıyoruz.</p>
-<h2>Tuzak 1: Lookahead Bias (İleri Bakış)</h2>
-<p><strong>Hata</strong>: Strateji bir günün kararını verirken, o günün kapanış fiyatını (veya sonraki günleri) görmüş gibi davranmak.</p>
-<p><strong>Örnek</strong>:</p>
-<pre><code>&quot;Bugün TÜFE açıklandı, %3 sürpriz. Bunu kullanarak bugünkü hisseyi alıyorum.&quot;
+<p>Bu sitedeki tüm strateji sayfaları geçmiş veriyle test edilmiştir. Backtest sonuçları gerçektir fakat bu, stratejinin yarın da aynı şekilde çalışacağını garanti etmez. Aksi savunan her iddia yanıltıcıdır.</p>
+<p>Bu sayfada <span class="term" data-title="Backtest" data-tip="Bir alım satım kuralının geçmiş veri üzerinde simüle edilerek tarihsel getirisinin hesaplanması.">backtest</span>&#x27;in tipik tuzaklarını ve bunlardan korunmak için kullanılan yöntemleri inceliyoruz.</p>
+
+<h2>Tuzak 1: İleri Bakış Yanlılığı</h2>
+<p><strong>Hata.</strong> Strateji bir günün kararını verirken o günün kapanış fiyatını veya sonraki günleri görmüş gibi davranır. <span class="term" data-title="Look-ahead bias" data-tip="Backtest&#x27;te o anda henüz bilinmeyen bir bilgiyi karara dahil etmek. Geçmişi yapay olarak iyi gösterir.">İleri bakış yanlılığı</span> denir.</p>
+<p><strong>Örnek.</strong> "Bugün TÜFE açıklandı, yüzde 3 sürpriz oldu, bunu kullanarak bugün hisse alıyorum" der. Ama TÜFE 10:00&#x27;da açıklanır, kullanılan günlük kapanış verisi 18:00 fiyatıdır. Yani bilgi gün içinde elde edilmiş gibi davranılır fakat hesaplama akşam veriyle yapılır.</p>
+<p><strong>Önlem.</strong> Strateji sinyalini T gününde üretir, pozisyon T+1 günü açılır. Backtest motoru bu kaydırmayı zorunlu kılar.</p>
+
+<h2>Tuzak 2: Hayatta Kalan Yanlılığı</h2>
+<p><strong>Hata.</strong> Bugünkü endeks bileşenleriyle geçmişi test etmek <span class="term" data-title="Survivorship bias" data-tip="Sadece bugün yaşayan hisselerle geçmişi test etmek. İflas eden, endeksten çıkan hisseler veride yoktur. Getiri yapay olarak yüksek görünür.">hayatta kalan yanlılığıdır</span>. Bugünkü BIST 30 listesi geçmişteki BIST 30 listesi değildir. İflas eden veya endeksten çıkarılan hisseler veride yoktur.</p>
+<p><strong>Etkisi.</strong> Brown, Goetzmann, Ibbotson ve Ross&#x27;un 1992 tarihli <em>Review of Financial Studies</em> çalışması ve sonraki literatür, hayatta kalan yanlılığının yıllık getiriyi yüzde 0,5 ile 4 arasında değişen ölçüde yapay olarak yüksek gösterdiğini belgeledi. Etki dönemin volatilitesi ve iflas oranıyla artar. Türkiye için 2001 krizinde tasfiye edilen bankalar (Demirbank dahil), 2018 sonrası BIST&#x27;ten çıkarılan şirketler veride olmadığında getiri olduğundan iyi görünür.</p>
+<p><strong>Önlem.</strong> Profesyonel test için CRSP veya Bloomberg gibi noktasal tarih (point-in-time) veri seti gerekir. Bu sitenin testleri BIST 30&#x27;un güncel kompozisyonunu kullanır, dolayısıyla bu kısıt sonuçlara dahildir.</p>
+
+<h2>Tuzak 3: Aşırı Uyum</h2>
+<p><strong>Hata.</strong> Stratejinin parametrelerini geçmişe en iyi uyacak şekilde ayarlamak <span class="term" data-title="Overfitting" data-tip="Modeli geçmiş veriye o kadar iyi uydurmak ki gelecekteki tahmin gücü düşer. Sinyali değil gürültüyü öğrenir.">aşırı uyumdur</span>. Örnek olarak:</p>
+<pre><code>&quot;50 gün değil 47 gün ortalama daha iyi backtest veriyor, kullanalım.&quot;
+&quot;5 hisse yerine 6 hisse daha iyi.&quot;
+&quot;6 ay momentum yerine 7 ay daha iyi.&quot;
 </code></pre>
-<p>Ama TÜFE 10:00'da açıklanır, bizim "günlük kapanış" verimiz 18:00 fiyatı. Yani bilgi gerçekten 10:00'da elde edilmedi, akşam veriyle hesaplama yaptık.</p>
-<p><strong>Bizim önlemimiz</strong>: Strateji sinyali günde <strong>T</strong> üretir, pozisyon ertesi gün <strong>T+1</strong>'de açılır. Backtest engine bu kaydırmayı zorunlu yapar.</p>
-<h2>Tuzak 2: Survivorship Bias (Hayatta Kalan Yanlılığı)</h2>
-<p><strong>Hata</strong>: Bugünkü endekse bakıp "BIST 30 hisseleriyle test ettim" demek. Ama bugünkü BIST 30, geçmişteki BIST 30 değil — iflas edenler, çıkarılanlar yok.</p>
-<p><strong>Etkisi</strong>: Yıllık getiriyi yapay olarak <strong>%2-4 yüksek</strong> gösterir. Çünkü iflas eden hisseleri data setinizde yok.</p>
-<p><strong>Bizim önlemimiz</strong>: Şu an için BIST 30'un <strong>bugünkü</strong> kompozisyonunu kullanıyoruz — <em>bu önemli bir kısıt</em>. Profesyonel backtest için CRSP/Bloomberg gibi point-in-time verisi gerekir.</p>
-<h2>Tuzak 3: Overfitting (Aşırı Uyarlama)</h2>
-<p><strong>Hata</strong>: Bir stratejinin 50 parametresini geçmişe en iyi uydurmak. Mesela:</p>
-<pre><code>&quot;50g MA değil 47g MA daha iyi backtest verir, kullanalım.&quot;
-&quot;5 hisse değil 6 hisse daha iyi.&quot;
-&quot;6 ay momentum değil 7 ay daha iyi.&quot;
-</code></pre>
-<p>Her tweak ile geçmiş daha iyi görünür ama <strong>gelecek tahmin gücü azalır</strong>. Çünkü gürültüye uyum sağlıyorsunuz, sinyale değil.</p>
-<p><strong>Sağlık testi</strong>: Akademide kanıtlanmış, basit, yuvarlak parametreler kullan. <em>50g, 200g, RSI(14)</em> — bunlar literatürde standart. Onları değiştirme.</p>
-<p><strong>Bizim önlemimiz</strong>: Strateji parametreleri <strong>literatürden alındı</strong>:
-- Momentum: 6 ay = 126 işgünü (Jegadeesh-Titman standardı)
-- RSI: 14 gün (Wilder, 1978 standartı)
-- 52-hafta yüksek: 252 işgünü (TR'ye uyarlanmış)
-- Golden Cross: 50/200 gün</p>
-<p>Bir tek parametre bile literatür dışı değil.</p>
-<h2>Tuzak 4: Data-Snooping / Multiple Testing</h2>
-<p><strong>Hata</strong>: 100 strateji test ediyorsun, biri %25 yıllık getiri veriyor. "Buldum!" diyorsun. Aslında 100 stratejinin birinin şans eseri iyi görünmesi bekleniyor.</p>
-<p><strong>Sağlık testi</strong>: Çok büyük örneklem (&gt;15 yıl) + farklı pazarlarda <strong>aynı sonuç</strong> veriyor mu?</p>
-<p><strong>Bizim önlemimiz</strong>: 5 strateji test ediyoruz, hepsi akademide ayrı ayrı kanıtlanmış. Yeni bir kombinasyon icat etmiyoruz.</p>
-<h2>Tuzak 5: Transaction Cost &amp; Slippage'i İhmal</h2>
-<p><strong>Hata</strong>: Backtest'te işlem maliyeti %0 — gerçekte ise:
-- BIST komisyon: %0.05-0.10
-- BSMV (banka sigorta muamele vergisi): %5 komisyon üstüne
-- Slipaj (bid-ask, market impact): %0.05-0.30
-- <strong>Toplam round-trip</strong>: %0.15 - %0.50</p>
-<p>100 işlem/yıl yapan strateji, sadece maliyet ile <strong>yıllık %15-50 kayıp</strong> edebilir.</p>
-<p><strong>Bizim önlemimiz</strong>: Her trade için <strong>tek yön 10 bps (%0.10)</strong> maliyet hesaplıyoruz. Round-trip ≈ %0.20.</p>
+<p>Her ince ayarla geçmiş daha güzel görünür fakat gelecek tahmin gücü azalır. Çünkü sinyale değil rastgele gürültüye uyum sağlanmaktadır.</p>
+<p><strong>Sağlık testi.</strong> Literatürde standartlaşmış, yuvarlak parametreleri kullanın. 50 ve 200 günlük ortalamalar, RSI(14), MACD(12,26,9) gibi. Bunlar onlarca yıllık akademik literatürün ortak değerleridir.</p>
+<p>Bu sitenin strateji parametreleri literatürden alınmıştır.</p>
+<ul>
+<li>Momentum: 6 ay yaklaşık 126 iş günü (Jegadeesh ve Titman, 1993).</li>
+<li>RSI: 14 gün (Wilder, 1978).</li>
+<li>52 haftalık zirve: 252 iş günü.</li>
+<li>Golden Cross: 50 ve 200 gün (geleneksel teknik analiz standardı).</li>
+</ul>
+
+<h2>Tuzak 4: Veri Tarama ve Çoklu Test</h2>
+<p><strong>Hata.</strong> 100 strateji test edip birinin yıllık yüzde 25 getiri verdiğini görmek. "Buldum" denir. Aslında istatistiksel olarak 100 stratejiden birinin şans eseri iyi görünmesi beklenir. Bu sorun finans literatüründe Harvey, Liu ve Zhu&#x27;nun 2016 tarihli "...and the Cross-Section of Expected Returns" çalışmasında detaylı incelendi. Yazarlar yayımlanmış 300&#x27;den fazla faktörün önemli bir kısmının çoklu test düzeltmesi sonrası anlamlılığını kaybettiğini gösterdi.</p>
+<p><strong>Sağlık testi.</strong> Geniş örneklem (15 yıl ve üstü), farklı pazarlarda aynı kalıbın görünmesi ve out-of-sample doğrulama.</p>
+<p><strong>Önlem.</strong> Bu sitede test edilen stratejilerin her biri akademide bağımsız olarak kanıtlanmıştır. Yeni kombinasyon icat edilmez.</p>
+
+<h2>Tuzak 5: İşlem Maliyetlerini Yok Saymak</h2>
+<p><strong>Hata.</strong> Backtest&#x27;te işlem maliyeti sıfır kabul edilir. Gerçekte ise BIST için tipik değerler şunlardır.</p>
+<ul>
+<li>Komisyon: yaklaşık yüzde 0,05 ile 0,10 arası.</li>
+<li>BSMV: komisyon üzerine yüzde 5 ek.</li>
+<li>Slipaj (alım satım farkı ve piyasa etkisi): yaklaşık yüzde 0,05 ile 0,30 arası.</li>
+<li>Toplam gidiş dönüş: yaklaşık yüzde 0,15 ile 0,50 arası.</li>
+</ul>
+<p>Yılda 100 işlem yapan strateji yalnızca maliyet nedeniyle yıllık yüzde 15 ile 50 arası ham getirisini kaybedebilir.</p>
+<p><strong>Önlem.</strong> Bu sitede her işlem için tek yön 10 baz puan (yüzde 0,10) maliyet hesaplanır. Gidiş dönüş yaklaşık yüzde 0,20&#x27;dir.</p>
+
 <h2>Tuzak 6: Likidite Hatası</h2>
-<p><strong>Hata</strong>: Backtest'te "USD 1M almak istedim, hemen aldım" varsayar. Gerçekte BIST 30'un alt-sıra hisselerinde günde 1M USD almak fiyatı <strong>%2-5 yukarı iter</strong>.</p>
-<p><strong>Sağlık testi</strong>: Stratejinin günlük işlem hacmini hisselerin %1-5'i ile sınırla.</p>
-<p><strong>Bizim önlemimiz</strong>: Backtest pozisyonları küçük (eşit ağırlık), evren büyük likit hisseler. Yine de gerçek getiriyi olduğundan iyimser tahmin ederiz.</p>
-<h2>Tuzak 7: Yapısal Değişim</h2>
-<p>Tarihsel veri 2014-2024'ü kapsıyor olabilir. Ama:
-- 2014-2018: Düşük enflasyon, görece istikrarlı politika
-- 2018: Kur şoku
-- 2020: COVID + sıfıra yakın rates
-- 2022-2024: Yüksek enflasyon, ortodoks olmayan politika</p>
-<p>Strateji 2015'te çalıştı, 2024'te de çalışacak diye bir kural yok. <strong>Rejim değişikliklerini</strong> dikkate al.</p>
-<p><strong>Bizim önlemimiz</strong>: Stratejilerin equity curve'lerini farklı dönemlere ayırıyoruz. Yıllık performansta hangi yılın iyi/kötü olduğu görünür.</p>
+<p><strong>Hata.</strong> Backtest "1 milyon dolarlık emir verdim, hemen gerçekleşti" varsayar. Gerçekte BIST 30&#x27;un alt sıralarındaki hisselerde günde 1 milyon dolarlık emir fiyatı yüzde 2 ile 5 arasında yukarı itebilir.</p>
+<p><strong>Sağlık testi.</strong> Stratejinin pozisyon büyüklüğünü hisselerin günlük ortalama işlem hacminin yüzde 1 ile 5&#x27;i arasıyla sınırlayın.</p>
+<p><strong>Önlem.</strong> Bu sitede backtest pozisyonları eşit ağırlıklı ve küçüktür. Evren BIST 30 ve ABD&#x27;de likit hisselerden oluşur. Yine de gerçek hayatta getiriyi iyimser tahmin etme riski sürer.</p>
+
+<h2>Tuzak 7: Yapısal Rejim Değişikliği</h2>
+<p>Bir strateji 2014 ile 2024 arasında test edilmiş olabilir. Fakat dönem içinde Türkiye için makro koşullar köklü biçimde değişti.</p>
+<ul>
+<li>2014 ile 2017: Görece istikrarlı politika, tek haneli enflasyon.</li>
+<li>2018 Ağustos: Kur krizi.</li>
+<li>2020: COVID şoku ve düşük faiz.</li>
+<li>2021 Aralık: TL devalüasyonu.</li>
+<li>2022 ile 2023: Yüksek enflasyon ve ortodoks olmayan para politikası.</li>
+<li>2023 ortası sonrası: Ortodoks politikaya dönüş ve sıkılaşma.</li>
+</ul>
+<p>Strateji 2015&#x27;te çalıştığı için 2024&#x27;te de çalışacak garantisi yoktur.</p>
+<p><strong>Önlem.</strong> Stratejilerin sermaye eğrileri yıllara ayrı ayrı bölünür. Hangi yılın iyi hangi yılın kötü gittiği görünür kılınır.</p>
+
 <h2>Sağlam Backtest İçin Kurallar</h2>
 <ol>
-<li><strong>Out-of-sample test</strong> — verisinin son %20-30'unu dokunulmadan ayır, sadece sonunda test et</li>
-<li><strong>Walk-forward analysis</strong> — her N ay sonra parametreleri yeniden seç, sonraki M ay test et</li>
-<li><strong>Maliyet dahil</strong> — slipaj + komisyon + vergi</li>
-<li><strong>Birden çok pazar/dönem</strong> — aynı strateji ABD'de ve TR'de mi çalışıyor?</li>
-<li><strong>Yuvarlak parametreler</strong> — 14 gün, 50 gün gibi standart sayılar</li>
-<li><strong>Düşük frekanslı sinyal</strong> — aylık &gt; günlük (overfitting riski)</li>
+<li><span class="term" data-title="Out-of-sample" data-tip="Modelin eğitiminde kullanılmamış, ayrı tutulmuş veri parçası. Stratejinin gerçek tahmin gücünü ölçer.">Out-of-sample</span> testi. Verinin son yüzde 20 ile 30&#x27;u dokunulmadan ayrılır, yalnızca sonunda test edilir.</li>
+<li><span class="term" data-title="Walk-forward analysis" data-tip="Parametreleri her N ay sonra son veriyle yeniden seçip sonraki M ay test etmek. Sürekli ileri doğru yapılan bir doğrulama yöntemi.">Walk-forward</span> analizi. Parametreler her N ay sonra yeniden seçilir, sonraki M ay test edilir.</li>
+<li>Maliyetler dahil. Komisyon, BSMV ve slipaj birlikte hesaplanır.</li>
+<li>Birden çok pazar ve dönem. Aynı strateji ABD ve Türkiye verisinde de çalışıyor mu?</li>
+<li>Yuvarlak parametreler. 14 gün, 50 gün, 200 gün gibi standart sayılar.</li>
+<li>Düşük frekanslı sinyal. Aylık sinyaller günlüklere göre aşırı uyum riskini azaltır.</li>
 </ol>
-<h2>Backtest sonuçlarını okurken</h2>
-<p>Gördüğün rakamlar:</p>
+
+<h2>Backtest Sonuçlarını Okurken</h2>
 <table>
 <thead>
 <tr>
@@ -576,49 +604,63 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 </thead>
 <tbody>
 <tr>
-<td>Yıllık getiri (CAGR)</td>
-<td>&gt;%10 nominal</td>
-<td>Buy-and-hold ile karşılaştır</td>
+<td>Yıllık bileşik getiri (CAGR)</td>
+<td>Yüzde 10 üstü nominal</td>
+<td>Al ve tut ile karşılaştırın</td>
 </tr>
 <tr>
-<td>Sharpe ratio</td>
-<td>&gt;1.0</td>
-<td>&gt;2.0 muhtemelen aşırı uyarlama</td>
+<td><span class="term" data-title="Sharpe" data-tip="William F. Sharpe&#x27;ın geliştirdiği risk düzeltilmiş getiri ölçüsü. (Getiri eksi risksiz faiz) bölü volatilite.">Sharpe</span> oranı</td>
+<td>1,0 üstü</td>
+<td>2,0 üstü çoğu zaman aşırı uyum işaretidir</td>
 </tr>
 <tr>
-<td>Max drawdown</td>
-<td>&lt;%30</td>
-<td>&gt;%50 = pratikte uygulanamaz</td>
+<td><span class="term" data-title="Drawdown" data-tip="Sermaye eğrisinin önceki zirveden ne kadar düştüğü. Maksimum drawdown, stratejinin yaşadığı en kötü tepe-dip kaybıdır.">Maksimum dip</span></td>
+<td>Yüzde 30 altı</td>
+<td>Yüzde 50 üstü pratikte uygulanamaz</td>
 </tr>
 <tr>
-<td>Calmar (CAGR/MDD)</td>
-<td>&gt;0.5</td>
-<td>&gt;1.0 mükemmel ama nadir</td>
+<td>Calmar (CAGR / Max DD)</td>
+<td>0,5 üstü</td>
+<td>1,0 üstü mükemmel ama nadir</td>
 </tr>
 <tr>
-<td>Win rate</td>
-<td>%50-60</td>
-<td>Önemli değil — kazanç büyüklüğü daha kritik</td>
+<td>Kazanç oranı</td>
+<td>Yüzde 50 ila 60</td>
+<td>Önemli değildir, kazanç büyüklüğü kritik</td>
 </tr>
 </tbody>
 </table>
+
 <h2>Son söz</h2>
 <blockquote>
-<p>"All models are wrong, but some are useful." — George Box</p>
+<p>"All models are wrong, but some are useful." George Box, 1976.</p>
 </blockquote>
-<p>Bir backtest <strong>modeldir</strong>, gerçek değildir. <strong>Olası senaryolardan bir tanesini</strong> simüle eder. Geçmişte çalışan strateji geleceğin <strong>garantisi değil</strong> ama:</p>
+<p>Bir backtest bir modeldir, gerçek değildir. Olası senaryolardan bir tanesini simüle eder. Geçmişte çalışan strateji geleceğin garantisi değildir. Ancak iki sonuç çıkarılabilir.</p>
 <ul>
-<li>Strateji geçmişte tutarsız → gelecekte de muhtemelen tutarsız</li>
-<li>Strateji geçmişte tutarlı → gelecekte tutarlı olma olasılığı <strong>daha yüksek</strong> ama garanti değil</li>
+<li>Strateji geçmişte tutarsızsa gelecekte de büyük olasılıkla tutarsızdır.</li>
+<li>Strateji geçmişte tutarlıysa gelecekte tutarlı olma olasılığı daha yüksektir. Garanti değildir.</li>
 </ul>
-<p>Backtest bir filtre olarak değerli; bir kehanet değil.</p>
+<p>Backtest bir kehanet değil, bir filtredir.</p>
 <hr />
-<p><strong>Bu sitede backtest disipliniyle yapılır:</strong>
-- Lookahead engellenir (T+1 pozisyon)
-- Maliyet dahil (10 bps tek yön)
-- Literatürden standart parametreler
-- 5 yıl tarihsel veri (BIST 30 + US 30)
-- Walk-forward ve out-of-sample testler — gelecek versiyonlarda eklenecek</p>
+<p>Bu sitede backtest disiplini şu prensiplere göre uygulanır.</p>
+<ul>
+<li>İleri bakış engellenir (T+1 pozisyon).</li>
+<li>Maliyet dahil edilir (tek yön 10 baz puan).</li>
+<li>Literatürden standart parametreler kullanılır.</li>
+<li>5 yıl tarihsel veri kapsanır (BIST 30 ve ABD likit hisseleri).</li>
+<li>Walk-forward ve out-of-sample testler ileride eklenecektir.</li>
+</ul>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>Brown, S. J., Goetzmann, W. N., Ibbotson, R. G. ve Ross, S. A. (1992). Survivorship Bias in Performance Studies. <em>The Review of Financial Studies</em>, 5(4), 553-580.</li>
+<li>Harvey, C. R., Liu, Y. ve Zhu, H. (2016). ...and the Cross-Section of Expected Returns. <em>The Review of Financial Studies</em>, 29(1), 5-68.</li>
+<li>Bailey, D. H., Borwein, J., López de Prado, M. ve Zhu, Q. J. (2014). Pseudo-Mathematics and Financial Charlatanism: The Effects of Backtest Overfitting on Out-of-Sample Performance. <em>Notices of the AMS</em>, 61(5), 458-471.</li>
+<li>López de Prado, M. (2018). <em>Advances in Financial Machine Learning</em>. Wiley, Hoboken NJ.</li>
+<li>Jegadeesh, N. ve Titman, S. (1993). Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency. <em>The Journal of Finance</em>, 48(1), 65-91.</li>
+<li>Wilder, J. W. (1978). <em>New Concepts in Technical Trading Systems</em>. Trend Research, Greensboro NC.</li>
+<li>Box, G. E. P. (1976). Science and Statistics. <em>Journal of the American Statistical Association</em>, 71(356), 791-799.</li>
+</ol>
 </div>
 
 <div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">

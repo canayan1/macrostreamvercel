@@ -1,0 +1,158 @@
+[
+  {
+    "ticker": "AKBNK",
+    "tam_ad": "Akbank T.A.Ş.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 3558.9,
+      "toplam_krediler_mld_tl": 1921.0,
+      "musteri_mevduati_mld_tl": 2173.4,
+      "ozkaynak_mld_tl": 310.2,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 109.0,
+      "net_ucret_komisyon_geliri_mld_tl": 121.0,
+      "ticari_kar_zarar_net_mld_tl": -6.7,
+      "istirak_gelirleri_mld_tl": 0.2,
+      "diger_faaliyet_gelirleri_mld_tl": 6.7,
+      "net_donem_kari_mld_tl": 57.2
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 14.26,
+      "tier1_pct": 15.45,
+      "car_pct": 19.03,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  },
+  {
+    "ticker": "GARAN",
+    "tam_ad": "Türkiye Garanti Bankası A.Ş.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 4547.8,
+      "toplam_krediler_mld_tl": 2715.7,
+      "musteri_mevduati_mld_tl": 3150.0,
+      "ozkaynak_mld_tl": 446.6,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 204.7,
+      "net_ucret_komisyon_geliri_mld_tl": 145.5,
+      "ticari_kar_zarar_net_mld_tl": -6.5,
+      "istirak_gelirleri_mld_tl": 3.3,
+      "diger_faaliyet_gelirleri_mld_tl": 66.4,
+      "net_donem_kari_mld_tl": 111.3
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 14.56,
+      "tier1_pct": 14.56,
+      "car_pct": 19.39,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  },
+  {
+    "ticker": "HALKB",
+    "tam_ad": "Türkiye Halk Bankası A.Ş.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 4497.1,
+      "toplam_krediler_mld_tl": 2096.0,
+      "musteri_mevduati_mld_tl": 3607.8,
+      "ozkaynak_mld_tl": 222.9,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 96.5,
+      "net_ucret_komisyon_geliri_mld_tl": 61.8,
+      "ticari_kar_zarar_net_mld_tl": -12.1,
+      "istirak_gelirleri_mld_tl": 0.5,
+      "diger_faaliyet_gelirleri_mld_tl": 39.9,
+      "net_donem_kari_mld_tl": 28.9
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 10.25,
+      "tier1_pct": 13.02,
+      "car_pct": 15.56,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  },
+  {
+    "ticker": "ISCTR",
+    "tam_ad": "Türkiye İş Bankası A.Ş.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 5389.3,
+      "toplam_krediler_mld_tl": 2717.0,
+      "musteri_mevduati_mld_tl": 3172.8,
+      "ozkaynak_mld_tl": 504.8,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 155.5,
+      "net_ucret_komisyon_geliri_mld_tl": 123.1,
+      "ticari_kar_zarar_net_mld_tl": 6.5,
+      "istirak_gelirleri_mld_tl": 16.1,
+      "diger_faaliyet_gelirleri_mld_tl": 138.9,
+      "net_donem_kari_mld_tl": 90.1
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 13.48,
+      "tier1_pct": 14.92,
+      "car_pct": 17.14,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  },
+  {
+    "ticker": "VAKBN",
+    "tam_ad": "Türkiye Vakıflar Bankası T.A.O.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 5493.1,
+      "toplam_krediler_mld_tl": 3019.2,
+      "musteri_mevduati_mld_tl": 3479.8,
+      "ozkaynak_mld_tl": 344.6,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 162.5,
+      "net_ucret_komisyon_geliri_mld_tl": 71.8,
+      "ticari_kar_zarar_net_mld_tl": 7.0,
+      "istirak_gelirleri_mld_tl": 1.1,
+      "diger_faaliyet_gelirleri_mld_tl": 68.3,
+      "net_donem_kari_mld_tl": 80.8
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 11.75,
+      "tier1_pct": 14.62,
+      "car_pct": 16.89,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  },
+  {
+    "ticker": "YKBNK",
+    "tam_ad": "Yapı ve Kredi Bankası A.Ş.",
+    "rapor_tarihi": "31.12.2025",
+    "bilanco": {
+      "toplam_aktif_mld_tl": 3522.9,
+      "toplam_krediler_mld_tl": 1897.3,
+      "musteri_mevduati_mld_tl": 1959.1,
+      "ozkaynak_mld_tl": 255.6,
+      "kaynak_satir": "VARLIKLAR TOPLAMI"
+    },
+    "gelir_tablosu_2025": {
+      "net_faiz_geliri_mld_tl": 161.1,
+      "net_ucret_komisyon_geliri_mld_tl": 116.5,
+      "ticari_kar_zarar_net_mld_tl": -60.4,
+      "istirak_gelirleri_mld_tl": 1.8,
+      "diger_faaliyet_gelirleri_mld_tl": 21.1,
+      "net_donem_kari_mld_tl": 47.1
+    },
+    "sermaye_yeterliligi": {
+      "cet1_pct": 11.25,
+      "tier1_pct": 13.40,
+      "car_pct": 16.71,
+      "kaynak": "Konsolide Sermaye Yeterliliği Oranı"
+    }
+  }
+]

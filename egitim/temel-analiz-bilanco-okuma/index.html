@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temel Analiz ve Bilanço Okuma · Kalibre Markets</title>
+
+<meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
+<meta property="og:title" content="Temel Analiz ve Bilanço Okuma · Kalibre Markets">
+<meta property="og:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Temel Analiz ve Bilanço Okuma · Kalibre Markets">
+<meta name="twitter:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
+}
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
+}
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+  white-space: nowrap;
+}
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
+}
+.fkey {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 13px; color: var(--text-dim); letter-spacing: 0;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--muted); font-weight: 600; font-size: 9.5px; letter-spacing: .04em; opacity: .55; }
+.fkey.active .k { color: var(--accent); opacity: 1; }
+.fkey .lbl { font-weight: 500; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); padding: 0 10px; font-size: 12px; }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .fkey .k { display: none; }  /* F1/F2 etiketlerini gizle, sadece label kalsın */
+  .cmd-stat:not(:first-child) { display: none; }
+  .cmd-prompt input,
+  .cmd-prompt span:not(.chev):not(.kbd) { font-size: 12px; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  /* Cmd prompt mobilde gizle (sadece brand + status) */
+  .cmd-prompt { display: none; }
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  .disclaimer-banner { line-height: 1.5; }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding: 0 12px; }
+  .cmd-status { padding: 0 8px; font-size: 10px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-P6FEDBJG6N",{anonymize_ip:true});</script></head>
+<body>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Momentum nedir?</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › <a href='/egitim/' style='color:inherit'>Eğitim</a> › Temel Analiz ve Bilanço Okuma</div>
+<main>
+
+<div style="margin-bottom:18px">
+  <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ EĞİTİM</div>
+  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Temel Analiz ve Bilanço Okuma</h2>
+  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Bir şirketin değerini fiyat grafiğine değil, finansal tablolarına bakarak ölçmenin yolu. ASELSAN, BİM ve Akbank&#x27;ın 2024 yıl sonu KAP verileriyle pratik örnekler.</p>
+</div>
+
+<div style="background:var(--bg-1);border:1px solid var(--border);margin:18px 0;overflow:hidden"><div style="padding:14px;display:flex;justify-content:center"><svg viewBox="0 0 480 220" width="100%" style="max-width:520px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="11">
+<rect x="0" y="0" width="480" height="220" fill="#100e0c"/>
+<text x="240" y="28" fill="#ffa630" font-size="13" text-anchor="middle" font-weight="600">Üç Tablo, Üç Soru</text>
+<rect x="40" y="60" width="120" height="120" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+<text x="100" y="78" fill="#4ade80" font-size="11" text-anchor="middle" font-weight="600">GELİR TABLOSU</text>
+<text x="100" y="108" fill="#a89c83" font-size="10" text-anchor="middle">Şirket ne kadar</text>
+<text x="100" y="122" fill="#a89c83" font-size="10" text-anchor="middle">satıyor</text>
+<text x="100" y="140" fill="#a89c83" font-size="10" text-anchor="middle">ve ne kadar</text>
+<text x="100" y="154" fill="#a89c83" font-size="10" text-anchor="middle">kazanıyor?</text>
+<rect x="180" y="60" width="120" height="120" fill="none" stroke="#ffa630" stroke-width="1.5"/>
+<text x="240" y="78" fill="#ffa630" font-size="11" text-anchor="middle" font-weight="600">BİLANÇO</text>
+<text x="240" y="108" fill="#a89c83" font-size="10" text-anchor="middle">Şirket neye sahip</text>
+<text x="240" y="122" fill="#a89c83" font-size="10" text-anchor="middle">ve neye borçlu?</text>
+<text x="240" y="146" fill="#a89c83" font-size="10" text-anchor="middle">Ne kadar özsermayesi</text>
+<text x="240" y="160" fill="#a89c83" font-size="10" text-anchor="middle">var?</text>
+<rect x="320" y="60" width="120" height="120" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="380" y="78" fill="#60a5fa" font-size="11" text-anchor="middle" font-weight="600">NAKİT AKIŞ</text>
+<text x="380" y="108" fill="#a89c83" font-size="10" text-anchor="middle">Şirket gerçekten</text>
+<text x="380" y="122" fill="#a89c83" font-size="10" text-anchor="middle">para mı kazanıyor?</text>
+<text x="380" y="146" fill="#a89c83" font-size="10" text-anchor="middle">Kâğıt üstündeki kâr</text>
+<text x="380" y="160" fill="#a89c83" font-size="10" text-anchor="middle">cebe iniyor mu?</text>
+<text x="240" y="205" fill="#a89c83" font-size="10" text-anchor="middle">Üç tablo bir bütün anlatır</text>
+</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Temel analiz şirketin finansal sağlığını üç tablodan okur</div></div>
+
+<style>
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+.fa-table { width: 100%; border-collapse: collapse; font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-size: 12px; margin: 14px 0; }
+.fa-table th, .fa-table td { padding: 8px 10px; border-bottom: 1px dashed var(--border); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.fa-table th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--border-2); background: var(--bg-1); }
+.fa-table td.l, .fa-table th.l { text-align: left; color: var(--text); font-family: 'Inter Tight', sans-serif; font-size: 13px; }
+.fa-table tr.tot td { border-top: 1px solid var(--border-2); font-weight: 600; color: var(--text); }
+.fa-table tr.sub td { background: var(--bg-1); }
+.fa-table .pos { color: var(--green); }
+.fa-table .neg { color: var(--red); }
+.fa-table .calc { color: var(--accent); }
+</style>
+
+<div class="card" style="line-height:1.75;font-size:15px">
+
+<h2>Teknik Analiz Şirkete Bakmaz, Temel Analiz Bakar</h2>
+<p>Teknik analiz fiyat grafiğine bakar. Şirketin geçmiş fiyat hareketleri ve hacim bilgilerinden gelecek tahmini yapmaya çalışır. Temel analiz ise şirketin kendisine bakar. Şirket ne kadar satıyor, ne kadar kâr ediyor, ne kadar borçlu, sahip olduğu varlıklar ne kadar değerli. Bu sorulara cevap vermek için üç temel finansal tablo okunur.</p>
+<p>Teknik analiz kısa vadeli alım satım kararları için sıkça kullanılır. Temel analiz ise uzun vadeli yatırım kararları, &quot;bu şirketin hisselerini elimde tutar mıyım&quot; sorusu için daha doğru bir araçtır. İkisi birbirinin alternatifi değildir, birbirini tamamlar. Bu yazıda temel analizin temellerini Türk şirketlerinin gerçek 2024 verileriyle anlatıyoruz.</p>
+
+<h2>Üç Temel Tablo</h2>
+<p>Bir Türk halka açık şirketi her çeyrek <span class="term" data-title="KAP" data-tip="Kamuyu Aydınlatma Platformu. Borsada işlem gören şirketlerin yasal açıklamalarının ve finansal raporlarının yayınlandığı resmi platform. kap.org.tr">KAP</span>&#x27;a finansal raporunu sunar. Bu raporun içinde üç ana tablo vardır.</p>
+
+<h3>Gelir Tablosu (Kâr veya Zarar Tablosu)</h3>
+<p>Belirli bir dönemde şirketin ne kadar sattığını ve bu satıştan ne kadar kâr ettiğini gösterir. Tek bir cümle ile özetlersek &quot;Şirket bu yıl ne yaptı?&quot; sorusunun cevabıdır. Yapı şu şekildedir.</p>
+<ol>
+<li><strong>Hasılat (Net Satışlar).</strong> Şirketin sattığı ürün ve hizmetlerden gelen toplam para. En tepeden başlanır.</li>
+<li><strong>Satışların Maliyeti.</strong> Sattığı şeyleri üretmek için harcanan para (hammadde, işçilik, üretim giderleri).</li>
+<li><strong>Brüt Kâr.</strong> Hasılat eksi satışların maliyeti. Şirketin sadece üretim sonrası elinde kalan tutar.</li>
+<li><strong>Faaliyet Giderleri.</strong> Pazarlama, satış, idari giderler, araştırma geliştirme.</li>
+<li><strong>Esas Faaliyet Kârı.</strong> Brüt kâr eksi faaliyet giderleri. Şirketin asli işinden kazandığı tutar.</li>
+<li><strong>Finansman Giderleri.</strong> Banka kredilerinin faizi, kur farkları.</li>
+<li><strong>Vergi.</strong></li>
+<li><strong>Net Dönem Kârı.</strong> Tüm bu kalemlerden sonra şirketin sahiplerine kalan tutar.</li>
+</ol>
+
+<p><strong>ASELSAN 2024 örneği</strong> (KAP konsolide gelir tablosu, mld TL):</p>
+<table class="fa-table">
+<thead><tr><th class="l">Kalem</th><th>2024</th><th>2023</th></tr></thead>
+<tbody>
+<tr><td class="l">Hasılat (Net Satışlar)</td><td>120,2</td><td>106,3</td></tr>
+<tr><td class="l">Satışların Maliyeti</td><td class="neg">-82,0</td><td class="neg">-77,2</td></tr>
+<tr class="sub"><td class="l">Brüt Kâr</td><td class="calc">38,2</td><td class="calc">29,0</td></tr>
+<tr><td class="l">Esas Faaliyet Kârı</td><td>27,3</td><td>36,1</td></tr>
+<tr class="tot"><td class="l">Net Dönem Kârı</td><td class="pos">15,2</td><td class="pos">10,6</td></tr>
+</tbody>
+</table>
+
+<p>Bu tablo bize neyi söyler? ASELSAN 2024 yılında 120 mld TL satış yaptı. Bu satışın 82 mld TL&#x27;si üretim maliyetiydi. Yani brüt kâr 38 mld TL, brüt marj yüzde 32. Net kâr 15,2 mld TL, net marj yüzde 12,7. 2023&#x27;e göre satış arttı ama esas faaliyet kârı 36,1&#x27;den 27,3&#x27;e düştü. Net kâr ise yükseldi (10,6 mld TL&#x27;den 15,2 mld TL&#x27;ye). Bu çelişki finansman gelir-gider farkından kaynaklanıyor olabilir, derinlemesine bakmak gerekir.</p>
+
+<h3>Bilanço (Finansal Durum Tablosu)</h3>
+<p>Belirli bir tarihte şirketin neye sahip olduğunu (varlıklar) ve bunların ne kadarının kendisine, ne kadarının başkalarına ait olduğunu (yükümlülükler ve özkaynaklar) gösterir. Tek bir cümle ile &quot;Bu an şirketin finansal fotoğrafı nedir?&quot; sorusunun cevabıdır. Üç ana bölümü vardır.</p>
+
+<ol>
+<li><strong>Aktifler (Varlıklar).</strong> Şirketin sahip olduğu her şey. Nakit, alacak, stok, makine, bina, marka değeri.</li>
+<li><strong>Yükümlülükler.</strong> Şirketin başkalarına olan borçları. Banka kredileri, ödenecek faturalar, vergi borçları.</li>
+<li><strong>Özkaynaklar.</strong> Aktiflerden yükümlülükler çıkarıldığında kalan tutar. Bu, şirketin sahiplerinin (hisse sahiplerinin) gerçek payıdır.</li>
+</ol>
+
+<p>Temel denklem şudur:</p>
+<blockquote><p>Aktifler = Yükümlülükler + Özkaynaklar</p></blockquote>
+
+<p><strong>BİM 2024 örneği</strong> (KAP konsolide bilanço, mld TL):</p>
+<table class="fa-table">
+<thead><tr><th class="l">Kalem</th><th>2024</th><th>2023</th></tr></thead>
+<tbody>
+<tr class="sub"><td class="l">Toplam Aktifler</td><td class="calc">235,8</td><td class="calc">213,9</td></tr>
+<tr><td class="l">Nakit ve Nakit Benzerleri</td><td>2,8</td><td>5,2</td></tr>
+<tr><td class="l">Finansal Yatırımlar</td><td>10,9</td><td>11,3</td></tr>
+<tr><td class="l">Toplam Yükümlülükler</td><td class="neg">117,3</td><td class="neg">113,2</td></tr>
+<tr><td class="l" style="padding-left:24px;color:var(--text-dim)">Kira Borçları (KV+UV)</td><td>37,0</td><td>32,3</td></tr>
+<tr class="tot"><td class="l">Toplam Özkaynaklar</td><td class="pos">118,5</td><td class="pos">100,7</td></tr>
+</tbody>
+</table>
+
+<p>BİM&#x27;in 235,8 mld TL aktifi, 117,3 mld TL borcu, 118,5 mld TL özkaynağı var. Borçların 37 mld TL&#x27;si kiralama borcu (mağaza kiraları muhasebede borç olarak görünür). BİM&#x27;in geleneksel banka kredisi yok denecek kadar az. Bu, perakende sektöründe görülen sağlıklı bir bilanço yapısıdır.</p>
+
+<h3>Nakit Akış Tablosu</h3>
+<p>Belirli bir dönemde şirkete giren ve çıkan nakit akışlarını gösterir. &quot;Şirket gerçekten para mı kazanıyor?&quot; sorusunun cevabıdır. Bu tablo gelir tablosundan farklıdır. Gelir tablosundaki kâr muhasebe kuralları gereği henüz tahsil edilmemiş satışları, henüz ödenmemiş giderleri içerir. Nakit akış tablosu bunları temizler.</p>
+
+<p>Üç bölümü vardır.</p>
+<ol>
+<li><strong>Faaliyet Faaliyetlerinden Nakit Akışı.</strong> Şirketin asli işinden gelen para. Sağlıklı bir şirkette bu pozitif olmalıdır.</li>
+<li><strong>Yatırım Faaliyetlerinden Nakit Akışı.</strong> Yeni makine, fabrika, şirket alımı. Genellikle negatif (yatırım yapıyor demek).</li>
+<li><strong>Finansman Faaliyetlerinden Nakit Akışı.</strong> Kredi alma, ödeme, temettü dağıtımı, hisse geri alımı.</li>
+</ol>
+
+<p>Önemli kavram: <span class="term" data-title="FAVÖK" data-tip="Faiz, Amortisman ve Vergi Öncesi Kâr. İngilizce karşılığı EBITDA. Şirketin asli faaliyetlerinden ne kadar nakit ürettiğinin göstergesidir. Sermaye yapısı ve vergi etkilerinden bağımsız karşılaştırma sağlar.">FAVÖK</span> (faiz, amortisman ve vergi öncesi kâr). Şirketin asli işinden ürettiği nakdi gösterir. Faaliyet kârının üzerine amortisman eklenerek hesaplanır. ASELSAN 2024&#x27;te yaklaşık 30,6 mld TL FAVÖK üretti (esas faaliyet kârı 27,3 mld TL + amortisman 3,3 mld TL).</p>
+
+<h2>Kritik Rasyolar</h2>
+<p>Tablodaki ham rakamlar tek başına bir şey ifade etmez. ASELSAN&#x27;ın 15,2 mld TL net kârı çok mu, az mı? Bunu anlamak için rakamları birbiriyle oranlamamız gerekir. Bu oranlara <span class="term" data-title="Finansal Rasyo" data-tip="Bir finansal kalemi başka bir kaleme bölerek elde edilen oran. Şirketler arası karşılaştırmayı ve trend analizini mümkün kılar.">finansal rasyo</span> denir. Dört ana grupta toplanırlar.</p>
+
+<h3>Kârlılık Rasyoları</h3>
+<ul>
+<li><strong>Brüt Marj</strong> = Brüt Kâr / Hasılat. Şirketin ürün veya hizmetinin temel karlılığı.</li>
+<li><strong>Net Marj</strong> = Net Kâr / Hasılat. Tüm giderlerden sonra kalan kâr oranı.</li>
+<li><strong>FAVÖK Marjı</strong> = FAVÖK / Hasılat. Asli faaliyetlerin nakit üretme verimliliği.</li>
+<li><strong>ROE</strong> (Özkaynak Kârlılığı) = Net Kâr / Özkaynak. Hisse sahiplerinin bir TL özsermayesi başına kazandığı.</li>
+<li><strong>ROA</strong> (Aktif Kârlılığı) = Net Kâr / Toplam Aktif. Şirketin elindeki bir TL aktifle ne kadar kâr ürettiği.</li>
+</ul>
+
+<p>ASELSAN ve BİM&#x27;in 2024 rasyoları:</p>
+<table class="fa-table">
+<thead><tr><th class="l">Rasyo</th><th>ASELS</th><th>BIMAS</th></tr></thead>
+<tbody>
+<tr><td class="l">Brüt Marj</td><td>%31,7</td><td>%17,5</td></tr>
+<tr><td class="l">FAVÖK Marjı (yaklaşık)</td><td>%25,5</td><td>%4,3</td></tr>
+<tr><td class="l">Net Marj</td><td>%12,7</td><td>%3,6</td></tr>
+<tr><td class="l">ROE</td><td>%10,8</td><td>%15,7</td></tr>
+<tr><td class="l">ROA</td><td>%6,3</td><td>%7,9</td></tr>
+</tbody>
+</table>
+
+<p>İki şirket birbirinden çok farklı görünüyor. ASELSAN brüt marjı yüksek (yüzde 32), BİM&#x27;in çok düşük (yüzde 17). Buna karşın BİM&#x27;in ROE&#x27;si daha yüksek (%15,7 vs %10,8). Sebep nedir? BİM hızlı dönen bir perakende şirketi. Bir TL aktifi ile çok daha fazla satış yapıyor. ASELSAN ise sermaye yoğun bir savunma elektroniği şirketi, satışları daha yavaş ama her satıştan daha fazla kâr ediyor. İki farklı iş modeli, iki farklı kârlılık profili.</p>
+
+<h3>Likidite Rasyoları</h3>
+<ul>
+<li><strong>Cari Oran</strong> = Dönen Varlıklar / Kısa Vadeli Borçlar. 1&#x27;in üzerinde olması istenir, 2 üzeri sağlıklıdır.</li>
+<li><strong>Asit Test Oranı</strong> = (Dönen Varlıklar - Stoklar) / Kısa Vadeli Borçlar. Cari orandan daha sıkı bir test.</li>
+</ul>
+
+<h3>Borçluluk Rasyoları</h3>
+<ul>
+<li><strong>Net Borç / FAVÖK.</strong> Şirketin borcunu kaç yılda ödeyebileceğini gösterir. 3&#x27;ün altı sağlıklı, 5 üzeri risklidir.</li>
+<li><strong>Finansal Borç / Özkaynak.</strong> Şirketin sermaye yapısının ne kadarının borca dayalı olduğunu gösterir.</li>
+</ul>
+
+<p>ASELSAN 2024 sonu net finansal borcu yaklaşık 15,9 mld TL, FAVÖK&#x27;ü 30,6 mld TL. Net Borç / FAVÖK oranı 0,52. Çok sağlıklı bir borç yapısı. BİM&#x27;in ise geleneksel anlamda finansal borcu neredeyse yok, bilançodaki tüm yükümlülükler kira borçları (TFRS 16 muhasebesi).</p>
+
+<h3>Değerleme Rasyoları</h3>
+<p>Hisse senedi fiyatını şirketin temel verileriyle karşılaştıran rasyolardır. Bunlar piyasa fiyatına bağlı oldukları için finansal raporda doğrudan görünmezler.</p>
+<ul>
+<li><strong>F/K (Fiyat/Kazanç).</strong> Hisse fiyatı / Hisse başına kâr. Şirketin yıllık kazancını çıkarmak için kaç yıl gerektiğini gösterir.</li>
+<li><strong>PD/DD (Piyasa Değeri / Defter Değeri).</strong> Piyasa değeri / Özkaynak. 1&#x27;in altı &quot;defter değerinin altında&quot; demek, dikkat etmek gerekir, sebepsiz değildir.</li>
+<li><strong>EV/EBITDA.</strong> İşletme Değeri (Piyasa Değeri + Net Borç) / FAVÖK. Sermaye yapısından bağımsız değerleme.</li>
+<li><strong>F/Satış.</strong> Henüz kâra geçmemiş şirketler için kullanışlıdır.</li>
+</ul>
+
+<h2>İki Şirket, İki Hikaye</h2>
+<p>Aşağıdaki tablo iki şirketin 2024 yıl sonu temel verilerini yan yana getirir.</p>
+
+<table class="fa-table">
+<thead><tr><th class="l">Kalem</th><th>ASELS</th><th>BIMAS</th></tr></thead>
+<tbody>
+<tr><td class="l">Sektör</td><td>Savunma elektroniği</td><td>Perakende (gıda)</td></tr>
+<tr><td class="l">Hasılat (mld TL)</td><td>120,2</td><td>519,6</td></tr>
+<tr><td class="l">Net Kâr (mld TL)</td><td>15,2</td><td>18,6</td></tr>
+<tr><td class="l">Toplam Aktif (mld TL)</td><td>242,8</td><td>235,8</td></tr>
+<tr><td class="l">Özkaynak (mld TL)</td><td>141,4</td><td>118,5</td></tr>
+<tr><td class="l">Brüt Marj</td><td>%31,7</td><td>%17,5</td></tr>
+<tr><td class="l">Net Marj</td><td>%12,7</td><td>%3,6</td></tr>
+<tr><td class="l">ROE</td><td>%10,8</td><td>%15,7</td></tr>
+<tr><td class="l">Aktif Devir Hızı (Hasılat/Aktif)</td><td>0,50</td><td>2,20</td></tr>
+</tbody>
+</table>
+
+<p>İki şirket benzer aktif büyüklüğüne (242 ve 236 mld TL) sahip. Ama BİM dört kat daha fazla satış yapıyor. ASELSAN bir TL aktifle 50 kuruş satış üretiyor, BİM ise 2,20 TL satış üretiyor. Buna karşın BİM&#x27;in her satıştan kazandığı kâr çok daha düşük. Sonuç: iki şirket de para kazanıyor, ama farklı yollarla. ASELSAN &quot;az ama yüksek marjlı satış&quot; modeli. BİM &quot;çok ama düşük marjlı satış&quot; modeli. <span class="term" data-title="DuPont Analizi" data-tip="ROE'yi üç bileşene ayırır: Net Marj × Aktif Devir Hızı × Finansal Kaldıraç. Bir şirketin kârlılık kaynağını anlamayı sağlar.">DuPont analizi</span> bu farkı ortaya koyar.</p>
+
+<h2>Bankalar Farklı Bir Hayvan</h2>
+<p>Yukarıdaki anlatım sınai ve perakende şirketler için geçerlidir. Bankaların finansal tabloları farklı yapıdadır. Banka için &quot;hasılat&quot; yerine &quot;net faiz geliri&quot;, &quot;satışların maliyeti&quot; yerine &quot;mevduata ödenen faiz&quot; geçer. Bilançolarında stok yoktur, krediler ve mevduat ana kalemlerdir.</p>
+<p>Akbank&#x27;ın 2024 yıl sonu KAP verisinden örnek: Toplam aktif 2,653 trilyon TL, müşteri mevduatı 1,633 trilyon TL, net dönem kârı 42,4 mld TL, ROE yaklaşık yüzde 18. Banka bilançosunu okumak için <a href="/egitim/nim-bankacilik/" style="color:var(--accent)">NIM ve Bankacılık makalesi</a> daha uygun bir başlangıçtır.</p>
+
+<h2>KAP&#x27;tan Veriyi Nereden Okur</h2>
+<p>Türk halka açık şirketleri tüm finansal raporlarını <a href="https://www.kap.org.tr" target="_blank" rel="noopener" style="color:var(--accent)">kap.org.tr</a> üzerinde yayınlar. Bir şirketin finansallarına ulaşmak için adımlar şunlardır.</p>
+<ol>
+<li>KAP ana sayfasında &quot;Şirketler&quot; bölümünden ya da arama kutusundan şirketin BIST kodunu yazın (örneğin ASELS).</li>
+<li>Şirket sayfasında &quot;Bildirimler&quot; sekmesine girin.</li>
+<li>&quot;Finansal Rapor&quot; tipindeki bildirimleri filtreleyin.</li>
+<li>İlgilendiğiniz dönemin (örneğin 31.12.2024) konsolide finansal raporunu açın.</li>
+<li>Açılan PDF&#x27;i indirin. İçinde finansal durum tablosu, kâr/zarar tablosu, nakit akış tablosu ve dipnotlar yer alır.</li>
+</ol>
+
+<p>Şirketlerin yatırımcı ilişkileri sayfaları da kullanılabilir (örneğin aselsan.com/yatirimci-iliskileri). Bunlarda genellikle özet sunumlar (yatırımcı sunumu) da bulunur, KAP&#x27;taki ham PDF&#x27;e göre daha kolay okunur.</p>
+
+<h2>Yaygın Yanılgılar</h2>
+<ol>
+<li><strong>Tek başına F/K oranına bakmak.</strong> Düşük F/K her zaman ucuz değildir. Şirketin kârının kalitesini, sürdürülebilirliğini, sektör F/K&#x27;sını da değerlendirin.</li>
+<li><strong>Kârın peşin geleceğini sanmak.</strong> Gelir tablosundaki net kâr nakit demek değildir. Nakit akış tablosuna mutlaka bakın. Kâğıt üstünde kârlı görünen ama nakit yaratmayan şirketler vardır.</li>
+<li><strong>&quot;Ucuz&quot; ile &quot;değerli&quot; karıştırması.</strong> Hisse fiyatı düşmüş bir şirket ucuzlaşmış olabilir, ama aynı zamanda zayıflamış da olabilir. Sebebini araştırmadan &quot;dipten alıyorum&quot; düşüncesi tehlikelidir.</li>
+<li><strong>Tek dönem rakamına güvenmek.</strong> Bir çeyreklik veriden trend çıkarılmaz. Üç dört yıllık seri bakın, mevsimsellik varsa düzeltin.</li>
+<li><strong>Banka rasyolarını sanayi şirketine uygulamak.</strong> Her sektörün kendine özgü &quot;sağlıklı&quot; rasyo aralıkları vardır. ASELSAN için yüzde 12 net marj iyidir, BİM için yüzde 12 muhteşemdir, telekom için zayıftır.</li>
+<li><strong>TFRS 16 kira borçlarını &quot;finansal borç&quot; sanmak.</strong> 2019&#x27;dan beri kira yükümlülükleri bilançoda borç olarak görünür. BİM gibi geniş mağaza ağı olan şirketlerin borçlu görünmesinin sebebi budur, geleneksel banka borcu değildir.</li>
+</ol>
+
+<h2>İlgili Kavramlar</h2>
+<ul>
+<li><strong>Nakit dönüşüm döngüsü.</strong> Stok satın aldıktan satışın tahsilatına kadar geçen süre. Düşük olması iyidir.</li>
+<li><strong>İşletme sermayesi.</strong> Dönen varlıklar eksi kısa vadeli borçlar. Şirketin günlük operasyonu için gerekli sermaye.</li>
+<li><strong>DuPont analizi.</strong> ROE&#x27;yi üç bileşene ayırarak şirketin kârlılık kaynağını çözümler.</li>
+<li><strong>Konsolide vs solo.</strong> Konsolide rapor şirketin yanı sıra bağlı ortaklıklarını içerir. Solo rapor sadece ana şirkettir.</li>
+<li><strong>Beklenti yönetimi.</strong> Analistlerin tahminleri ve şirketin kendi rehberlik açıklamaları, gerçekleşen sonuçla karşılaştırılır. &quot;Beklenti üstü&quot; veya &quot;beklenti altı&quot; nitelendirmeleri buradan gelir.</li>
+</ul>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>ASELSAN Elektronik Sanayi ve Ticaret A.Ş., 31.12.2024 Konsolide Finansal Rapor. <a href="https://wwwcdn.aselsan.com/api/file/12_2024_Tr.pdf" target="_blank" rel="noopener">aselsan.com</a>.</li>
+<li>BİM Birleşik Mağazalar A.Ş., 31.12.2024 Konsolide Finansal Sonuçlar. <a href="https://www.bim.com.tr/Default.aspx?ref=187" target="_blank" rel="noopener">bim.com.tr</a>.</li>
+<li>Kamuyu Aydınlatma Platformu (KAP). <a href="https://www.kap.org.tr/" target="_blank" rel="noopener">kap.org.tr</a>.</li>
+<li>Penman, S. H. (2013). <em>Financial Statement Analysis and Security Valuation</em>. McGraw-Hill, 5. baskı.</li>
+<li>Bodie, Z., Kane, A. ve Marcus, A. J. (2017). <em>Investments</em>. McGraw-Hill, 11. baskı.</li>
+<li>Damodaran, A. (2012). <em>Investment Valuation: Tools and Techniques for Determining the Value of Any Asset</em>. Wiley, 3. baskı.</li>
+<li>Türkiye Muhasebe Standartları (TMS) ve Türkiye Finansal Raporlama Standartları (TFRS). Kamu Gözetimi Kurumu. <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+</ol>
+
+</div>
+
+<div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">
+  <p style="margin:0;font-size:13px;color:#f5d28a;line-height:1.6">
+    <span style="color:var(--accent)">▸</span> <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır.
+    Yatırım tavsiyesi içermez. Anılan şirketler ve veriler eğitim amaçlı örneklerdir, alım satım önerisi değildir.
+  </p>
+</div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-05-15 10:53 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+</body>
+</html>

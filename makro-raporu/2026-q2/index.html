@@ -15,13 +15,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="https://kalibremarkets.com/makro-raporu/2026-q2/og.png">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets">
 <meta name="twitter:description" content="Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.">
-<meta name="twitter:image" content="https://kalibremarkets.com/makro-raporu/2026-q2/og.png">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
 }
 .fkey {
   display: flex; align-items: center; gap: 7px;
@@ -424,7 +425,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-14</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
 <div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
@@ -432,7 +433,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
     <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
     <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
-      Burası borsa, döviz ve ekonomi verisini her gün <b style="color:var(--text)">sade Türkçe</b> ile özetleyen otomatik bir bülten.
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
     </p>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
       <div style="display:flex;gap:12px;align-items:flex-start">
@@ -445,7 +446,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       </div>
       <div style="display:flex;gap:12px;align-items:flex-start">
         <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimlerini sade Türkçe ile öğrenin</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
       </div>
     </div>
     <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
@@ -476,10 +477,10 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek
     </h1>
     <p style="margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--text-dim)">
-      <p>Türkiye'nin güncel makro fotoğrafı.</p>
+      <p>Türkiye'nin güncel makro fotoğrafı. Tüm grafikler ve özetler doğrudan EVDS (TCMB) serilerinden çekilmiş gerçek veriye dayanır; her artifact'in altında veri tarihi gösterilir. Henüz EVDS'de bulunmayan veya dış kaynak gerektiren göstergeler (PMI, getiri eğrisi tenor'ları, CDS) bir sonraki revizyonda eklenecek.</p>
     </p>
     <p style="margin-top:6px;font-size:11.5px;color:var(--muted);letter-spacing:.04em">
-      Son güncelleme tarihi: <span style="font-family:'Geist Mono','JetBrains Mono',monospace">14.05.2026</span>
+      Son güncelleme tarihi: <span style="font-family:'Geist Mono','JetBrains Mono',monospace">15.05.2026</span>
     </p>
   </div>
 
@@ -514,50 +515,44 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Genel Görünüm · Yorum
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Türkiye makro fotoğrafının özeti, global dinamikler ve önümüzdeki dönemde izlenmesi gereken ana göstergeler.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Türkiye makro fotoğrafının özeti ve önümüzdeki dönemde izlenmesi gereken ana göstergeler.</p>
     </div>
   </div>
   
 <article id="01_outlook" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
     <span class="ttl">▣ TR Makro Görünümü · Global Bağlam · İzlenecekler</span>
-    <span class="meta" style="font-size:10.5px">Editöryal sentez</span>
+    <span class="meta" style="font-size:10.5px">Editöryal sentez (raporda yayınlanan EVDS verilerine dayalı)</span>
   </div>
   
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
     <h2>Türkiye'nin makro fotoğrafı</h2>
-<p>Türkiye 2026 ortasında üç başlık altında özetlenebilecek bir denge içinde: dezenflasyon süreci işliyor ama yapışkan, büyüme yavaş ama pozitif, TCMB sıkı duruşta ama indirim hazırlığında.</p>
-<p>Yıllık TÜFE %32.4 seviyesinde. Bu oran 2022 sonu zirvesinden çok aşağıda olsa da gelişmekte olan ülke ortalamasının beş ila altı katı. Politika faizi %40, reel faiz %7.6 puan pozitif. Türkiye yüksek reel faiz tarafında EM emsallerinin üst kuyruğunda yer alıyor; bu pozisyonun kalıcılığı dezenflasyonun hızına bağlı.</p>
-<p>GSYİH büyümesi yıllık %3 civarında ve çıktı açığı hafif negatif. İmalat sanayi kapasite kullanım oranı %75.8 ile potansiyelin altında. Cari açık on iki aylık birikimli olarak GSYİH'nin %3.5'i, sürükleyici kalemler net enerji ithalatı ve altın.</p>
-<p>İşsizlik %8.6 seviyesinde manşette düşük görünse de işgücüne katılım %53 ile OECD ortalamasının (%62) çok altında; geniş tanımlı işsizlik bu yüzden manşetten anlamlı ölçüde yüksek. Kamu borç stoğunun GSYİH'ye oranı %30 bandında, mali alan sınırlı ama disiplinli.</p>
-<h2>Global çerçeve ve TR'ye etkisi</h2>
-<p>Fed politika faizi %3.64, ECB %2.5. Gelişmiş ülke merkez bankaları indirim döngüsünde. DXY 98 bandında EM kurlarına destek veriyor; bu zeminde TL reel olarak zayıf konumda (TÜFE bazlı REER 65). Brent 108 dolar civarında. Doğalgaz fiyatları toparlanıyor. Her iki kalem de Türkiye için doğrudan cari açık ve enflasyon kanalına işliyor.</p>
-<p>Çin'in zayıf büyümesi emtia talebini sınırlıyor; Türkiye'nin çelik ve baz metal ihracatı bu durumdan olumsuz etkileniyor. AB'deki toparlanma ise ihracat tarafına destek. Jeopolitik tarafta Ortadoğu görece sakin görünse de Karadeniz havzası kalıcı bir belirsizlik kaynağı.</p>
-<p>Yabancı yatırımcılar 2025 ortasından bu yana TL devlet tahvilinde net alıcı konumunda. On iki aylık birikimli giriş yaklaşık 8 milyar dolar. Bu akım cari açığın finansmanını kolaylaştırıyor ancak yön değişimine karşı hassas.</p>
-<h2>Önümüzdeki dönemin ana riskleri</h2>
-<p><strong>Yapışkan enflasyon.</strong> Uzun veriyle eğitilen SARIMA modeli Ekim için %37 öngörüyor. Bu gerçekleşirse TCMB indirim takvimi bozulur, reel faizi koruma baskısı sürer; büyüme tarafında ek fren oluşur.</p>
-<p><strong>Reel faiz erozyonu.</strong> TCMB'nin dezenflasyon hızını aşan bir indirim yapması durumunda reel faiz negatife döner. Bu senaryoda yabancı çıkışı ve TL satışı zincirlemesi 2018 ve 2023'tekine benzer hızda gelişebilir.</p>
-<p><strong>Enerji şoku.</strong> Brent 130 doların üzerine çıkarsa Türkiye yıllık 15-20 milyar dolar ek enerji faturasıyla karşılaşır. Cari açık -%5'e doğru kayar, TL üzerinde baskı oluşur.</p>
-<p><strong>Global sermaye akımlarının tersine dönmesi.</strong> Fed beklenenden yavaş indirirse ya da şahin tarafa kayarsa EM'den kaçış başlar. Türkiye bu senaryoda ilk etkilenen üç ülke arasında olur.</p>
-<p><strong>İdari maliye sürprizleri.</strong> Asgari ücret ara zammı, KDV ayarlamaları ve enerji tarifesi gibi tek seferlik şoklar TÜFE patikasını kırabilir.</p>
+<p>Bu rapor TCMB EVDS sisteminden taze çekilen veri üzerine kuruludur. Her artifact altında veri tarihi ve seri kodu gösterilir; çeyreklik ve aylık serilerin yayın gecikmesi kaynağa bağlıdır.</p>
+<p><strong>Enflasyon.</strong> Yıllık TÜFE %32.4 (Nisan 2026 EVDS okuması, TP.FE25.OKTG01). Çekirdek B %33.5, Yİ-ÜFE %28.6. Politika faizi %40, reel faiz +%7.6 puan; bu fark son 36 ayın en yüksek pozitif duruşunda. TCMB Konut Fiyat Endeksi (Mart 2026) yıllık değişim %26.4, TÜFE Y/Y'den 4.5 puan düşük — konut reel olarak değer kaybediyor.</p>
+<p><strong>Reel ekonomi · öncü göstergeler.</strong> RKGE (mevsim arındırılmış, Nisan 2026) 98.6, TGE 85.5 — her iki endeks de 100 nötr eşiğinin altında. Sanayi Üretim Endeksi (mevsim ve takvim arındırılmış, Mart 2026) yıllık %-1.5, baz dönem 2021=100'e göre 109.9 seviyesinde.</p>
+<p><strong>Büyüme.</strong> GSYİH Y/Y reel büyüme 2025-Q4 itibarıyla %3.4; son dört çeyreğin ortalaması %3.6. HP filtresi (λ=1600) çıktı açığı %+0.22 — trendin hafif pozitif tarafında. İmalat KKO (Nisan 2026) %74.0, uzun dönem ortalamasının (%75.5) 1.5 puan altında.</p>
+<p><strong>İşgücü.</strong> Manşet işsizlik Mart 2026 itibarıyla %8.1; işgücüne katılım %51.8, istihdam oranı %47.6. Katılım oranı OECD ortalamasının (yaklaşık %65-70) belirgin altında.</p>
+<p><strong>Cari &amp; kur.</strong> Cari işlemler 12 aylık kümülatif Mart 2026 verisiyle -39.7 mlr USD açık. REER (TÜFE bazlı, Nisan 2026) 106.3; son 24 ayın bandı 86.4-106.3.</p>
+<p><strong>Rezervler.</strong> 14 Mayıs 2026 analitik bilanço verisine göre brüt dış varlıklar 176.3 mlr USD; klasik net rezerv +47.3 mlr USD, sıkı ölçüm (bankalar swap düşülmüş) -56.8 mlr USD.</p>
+<p><strong>Kamu maliyesi.</strong> 12 aylık kümülatif (Mart 2026) bütçe gelirleri 14.1T TL, harcamaları 15.7T TL; manşet denge -1.6T TL açık. Faiz dışı denge +822 mlr TL fazla. Devlet iç borç stoku (tahvil) 8.34T TL; yıllık nominal değişim %+48.4.</p>
+<p><strong>Yabancı yatırımcı pozisyonu.</strong> 8 Mayıs 2026 haftalık verisine göre yurt dışı yerleşik hisse stoku 45.8 mlr USD, DİBS stoku 15.3 mlr USD. Son 52 hafta kümülatif net giriş — hisse +5.0 mlr USD, DİBS +6.5 mlr USD.</p>
+<blockquote>
+<p><strong>Kapsam notu.</strong> Bu sürümde henüz yer almayan göstergeler — Türkiye İmalat PMI (S&amp;P Global / İSO, dış kaynak), getiri eğrisi tenor'ları (2Y/5Y/10Y, EVDS'de ayrı seri olarak yayınlanmıyor), TR 5Y CDS, EMBI spread ve perakende satış hacim endeksi — bir sonraki revizyonda scraper geliştirmesi sonrası eklenecek.</p>
+</blockquote>
 <hr />
 <h2>Bu aralar izlenecekler</h2>
-<h3>Brent ham petrol · cari açık ve enflasyonun birinci kanalı</h3>
-<p>Türkiye yıllık net 50-55 milyar dolar enerji ithal ediyor. Brent'teki her 10 dolarlık kalıcı yükseliş yıllık ithalat faturasına yaklaşık 4-5 milyar dolar ek yük getirir, TÜFE'ye akaryakıt kanalından doğrudan, dolaylı maliyet kanalından gecikmeli olarak 0.4-0.6 puan katkı yapar. Şu an 108 dolar; OPEC+ disiplini ve Ortadoğu risk primiyle 115-120 dolar bandı senaryosu canlı. Eşik seviye 120 dolar olarak takip edilebilir.</p>
-<h3>Fed politika faizi patikası · sermaye akımları ve carry pozisyonu</h3>
-<p>Mart 2026 Fed dot-plot'una göre döngü sonu beklentisi %3.0-3.25. Fed beklenenden hızlı indirirse TR-Fed faiz makası açılır, TL'ye sermaye girişi hızlanır. Eşik takibi: 2027 sonu Fed faiz beklentisi. Bu beklenti %3.5'in üzerine kayarsa Türkiye DİBS'inde yabancı çıkışı senaryosu gündeme gelir.</p>
-<h3>TL reel efektif döviz kuru · ihracat rekabeti ve enflasyon ithali</h3>
-<p>REER şu an 65. TL son beş yılın görece zayıf bölgesinde. Bu seviye ihracatçı için elverişli ama ithalatı ucuzlatmadığı için dezenflasyona yardımı sınırlı. Eşik takibi: REER 60'ın altı. Bu bantta TÜFE ithalat kanalından beslenir; merkez bankasının tolere ettiği bir bant değildir.</p>
-<h3>TCMB net rezervleri · müdahale alanı</h3>
-<p>Brüt rezerv 165 milyar dolar, swap düşülmüş net rezerv yaklaşık 55 milyar dolar. Net rezervin 50 milyar doların üzerinde tutulması doğrudan müdahale alanını korur. TCMB'nin haftalık para ve banka istatistikleri Perşembe günü saat 14:30'da yayımlanıyor ve rezerv kalemi bu raporda izleniyor.</p>
-<h3>Yabancı portföy pozisyonu · cari açığın finansmanı</h3>
-<p>DİBS tarafında on iki aylık birikimli giriş 8 milyar dolar; bu, cari açığın yaklaşık dörtte birini karşılıyor. Eşik takibi: aylık net çıkış 2 milyar doları aşar ve üç ay üst üste sürerse kur baskısı ve faiz yukarı patikası tetiklenir. Veri TCMB'nin Perşembe 14:30 menkul kıymet istatistiklerinde takip ediliyor.</p>
-<h3>EM kur sepeti · TL'nin göreceli performansı</h3>
-<p>TL'yi tek başına değil MXN, ZAR, BRL ve INR sepetiyle birlikte okumak gerekir. Şu an son 12 ayda TL performansı EM medyanına yakın. TL'nin bu sepetin altında altı ay üst üste kalması Türkiye'ye özgü bir sorun sinyalidir; Türkiye'ye özgü risk primi fiyatlanıyor olabilir.</p>
-<h3>Çin imalat PMI ve emtia talebi · TR ihracat ivmesi</h3>
-<p>Çin imalat PMI'ı 49-50 bandında. Çin toparlanırsa çelik, bakır ve alüminyum fiyatları yukarı yönlü hareket eder. Türkiye ihracatçısı bundan olumlu, metal ithalat maliyeti tarafı olumsuz etkilenir.</p>
-<h3>AB ekonomik göstergeleri · TR'nin ana ihracat pazarı</h3>
-<p>Türkiye ihracatının yaklaşık %42'si AB'ye gidiyor. AB imalat PMI'ı 51 ile toparlanma bölgesinde. Bu endeksin 48'in altına inip üç ay üst üste orada kalması durumunda TR ihracat hacmi yıllık -%5 ile -%8 bandına çekilir; cari açık üzerinde ek baskı oluşur.</p>
+<h3>TÜFE patikası · ana ankraj</h3>
+<p>Aylık TÜFE açıklaması her ayın 3'ünde TÜİK'ten geliyor. Manşet TÜFE'nin yanı sıra Çekirdek B endeksi, Yİ-ÜFE ve Piyasa Katılımcıları Anketi 12 ay sonrası beklentisi birlikte takip edilir.</p>
+<h3>TCMB toplantı kararları · indirim takvimi</h3>
+<p>TCMB Para Politikası Kurulu kararları ayda bir, Perşembe 14:00'te. Faiz patikası için Karar Metni ve Enflasyon Raporu birincil kaynak.</p>
+<h3>Reel faiz · sıkılığın ölçütü</h3>
+<p>Politika faizi eksi yıllık TÜFE. Bu fark pozitif kaldığı dönemlerde TCMB'nin sıkı duruşu sürüyor; negatife döndüğü önceki dönemlerde enflasyon beklentilerinde bozulma gözlenmişti.</p>
+<h3>Güven endeksleri · 100 eşik takibi</h3>
+<p>RKGE ve TGE 100 nötr eşiğinin altında kaldığı uzun dönemlerde reel ekonomi öncü göstergeleri zayıflar; eşiğin üstüne çıkış toparlanma sinyali olarak okunur. Aylık 25'inde yayınlanır.</p>
+<h3>Yabancı portföy haftalık · cari açığın finansmanı</h3>
+<p>TCMB her Perşembe 14:30'da Menkul Kıymet İstatistikleri yayınlıyor. DİBS net hareketinin yönü ve büyüklüğü, cari açığın portföy kanalıyla finansman kalitesini doğrudan gösterir.</p>
+<h3>Bütçe gerçekleşmeleri · faiz dışı denge önceliği</h3>
+<p>HMB her ay 15'inde Aylık Bütçe Gerçekleşmeleri açıklıyor. Manşet denge faiz harcamalarını içerir; faiz dışı denge yapısal mali duruşu daha iyi yansıtır.</p>
   </div>
 </article>
 
@@ -571,7 +566,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Enflasyon
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">TÜFE / Çekirdek / Yİ-ÜFE trendi, SARIMA 6 ay tahmini, beklenti anketi, konut fiyatları, bileşen analizi.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">TÜFE / Çekirdek / Yİ-ÜFE trendi, SARIMA 6 ay tahmini, beklenti anketi, bileşen analizi, konut fiyat endeksi karşılaştırması.</p>
     </div>
   </div>
   
@@ -584,9 +579,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
     <p>TÜFE Nisan'da yıllık %32.4 düzeyinde. Bu seviye Türkiye için 2022 sonu zirvesinin (%85) çok altında olsa da gelişmekte olan ülke ortalamasının (%5-15 tipik bandı) beş ila altı katı, gelişmiş ekonomilerin %2-3 hedefinin yaklaşık on katı. Son beş yılın dip değerlerine yakın bir okuma.</p>
 <p>Yirmi yıllık veriyle eğitilen SARIMA(1,1,1)(1,1,1,12) modeli Ekim ayı için merkezi tahmini %37 olarak veriyor. Aynı model beş yıllık veriyle çalıştırıldığında %23 öngörüyor. Uzun veriyi tercih etmemizin nedeni Türkiye'nin enflasyon yapışkanlığını ve baz etkilerinin alt-yıllık dalgalanmalarla bozulmasını yakalaması; bu yönüyle daha gerçekçi bir patikadır. %95 güven bandı %18-56 arasında oldukça geniş.</p>
-<p>Grafikteki yeşil arka plan reel faizin pozitif olduğu ayları gösteriyor. Son on iki ayın tamamı yeşil bölgede; dezenflasyon politikasının teknik zemini doğru. Yine de yapısal atalet baskısı pozitif reel faizin tek başına yeterli olmadığını söylüyor.</p>
-<p><strong>Yorumumuz.</strong> Yıl sonuna kadar %30-38 bandı taban senaryomuz. Dezenflasyon devam etse de manşet rakam yüksek seviyede kalmaya devam eder.</p>
-<p><strong>Risk.</strong> Reel faizin negatife dönmesi (örneğin hızlı bir indirim döngüsü) atalet baskısını yeniden büyütür ve TÜFE bandın üst kuyruğuna (%50 ve üzeri) doğru hareket etmeye başlar.</p>
+<p>Grafikteki yeşil arka plan reel faizin pozitif olduğu ayları gösteriyor. Son on iki ayın tamamı yeşil bölgede. Aylık değişim son altı ayın ortalamasında 0.4-0.7 puan bandında; trend yönlü ancak gerileme tempolu.</p>
+<p><strong>Yorumumuz.</strong> Manşet TÜFE Nisan 2026'da %32.4 ile son altı ayın yüksek tarafında okundu; son 12 ayda bant 30.7-35.4 arasında salınmış, dezenflasyon yatay bir patikada ilerliyor. SARIMA(1,1,1)(1,1,1,12) merkezi tahmini önümüzdeki altı ay için %30-38 bandında bir patika öngörüyor, ancak %95 güven aralığı %18-56 — model belirsizliği geniş olduğu için tek nokta tahmininden çok bandın bütününü okumak güvenli. Reel faiz arka planı son 12 ayın tamamı yeşil bölgede (politika faizi &gt; TÜFE Y/Y); pozitif reel faizin yapısal olarak korunduğu önceki dönemlerde dezenflasyon yön değişikliği olmadan sürmüştü.</p>
+<p><strong>Risk.</strong> Reel faizin negatife döndüğü 2021-2023 döneminde TÜFE Y/Y %20 bandından %85 zirvesine 18 ayda taşınmıştı; politika faizinin TÜFE Y/Y'nin altına inmesi durumunda benzer atalet baskısının yeniden aktive olma olasılığı artar. Son 6 ayda aylık Y/Y farkı -1.8 ile +1.5 puan bandında dalgalandı; bandın üst sınırının (≈+2 puan) 2-3 ay üst üste aşıldığı önceki dönemlerde baz etkisi dışında yapısal hızlanma sinyali olarak yorumlanmıştı.</p>
   </div>
 </article>
 
@@ -600,9 +595,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <p>STL ayrıştırması, bir zaman serisini üç bileşene ayıran istatistiksel bir tekniktir: kalıcı eğilim (trend), yıl içinde tekrar eden dalgalanma (mevsimsellik) ve geriye kalan rastgele sapmalar (kalıntı). Beş yıllık TÜFE Y/Y serisi üzerinde uyguladığımızda her bileşen ayrı bir bilgi veriyor.</p>
 <p><strong>Trend.</strong> Son on iki ayda trendin yönü kademeli olarak aşağı. Sıkı para politikası fiyat artış hızını yavaşlatıyor ancak düşüş çok yatay, ani bir kırılma yok. Klasik dezenflasyon eğrisinin Türkiye için ne kadar tedrici olduğunu gösteriyor.</p>
 <p><strong>Mevsimsellik.</strong> Yıl içinde yaklaşık on puanlık bir salınım var. Bu büyük genlik 2022-23 hiperenflasyon döneminin baz etkileriyle şişen yapısal döngüden geliyor: asgari ücret revizyonu, idari fiyat takvimi ve kurun yıl içi seyri TÜFE'nin aylık seyrinde tahmin edilebilir kalıplar üretiyor.</p>
-<p><strong>Kalıntı.</strong> Modelin trend ve mevsimsellikle açıklayamadığı sapmalar geniş bir bantta dalgalanıyor. Türkiye'nin enflasyon dinamiğinin model dışı şoklara açık olduğunu gösteriyor: ani kur hareketleri, jeopolitik fiyat primleri ve idari kararlar bu kalıntı bileşenine yansıyor.</p>
-<p><strong>Yorumumuz.</strong> Trend gerilemesi yavaş olarak sürer; mevsim ve kalıntı bileşenlerinin büyüklüğü, tek bir aylık TÜFE açıklamasına dayalı yorumların yüksek belirsizlik içerdiğini gösteriyor.</p>
-<p><strong>Risk.</strong> Mevsimsellik kalıbının kırılması, örneğin asgari ücret ara zammı, KDV ayarlaması veya idari tarife şoku, modelin öngörü gücünü zayıflatır. Bu durumda kalıntı bileşeni büyür, kısa vadeli tahminler güvenilmez hale gelir.</p>
+<p><strong>Kalıntı.</strong> Modelin trend ve mevsimsellikle açıklayamadığı sapmalar geniş bir bantta dalgalanıyor. Standart sapması son 24 ay ortalamasında yaklaşık 2 puan; tek bir aylık TÜFE okumasının trend yönü hakkında verdiği bilginin sınırlı olduğunu gösteriyor.</p>
+<p><strong>Yorumumuz.</strong> STL ayrıştırması son 12 ayda trendin yön olarak aşağı ama yavaş ilerlediğini, mevsimsellik bileşeninin yıl içi salınımının 2022-23 hiperenflasyon baz etkilerini hâlâ taşıdığını ve kalıntı bileşeninin geniş bir bantta dalgalandığını gösteriyor. Bu üç bileşenin bir arada bulunması "yön belli, patika belirsizliği yüksek" olarak okunabilir; tek bir aylık TÜFE okumasının trend yorumuna katkısı bu nedenle sınırlı kalır.</p>
+<p><strong>Risk.</strong> Kalıntı bileşeninin belirgin büyüdüğü geçmiş dönemler (2018 son çeyrek, 2021 son çeyrek) idari fiyat şokları veya kur tabanlı geçişkenlik şokları ile çakışmıştı; benzer büyüklükte bir kalıntı pikinin tekrarlanması model patikasını geçici olarak gürültüye boğar. Mevsimsellik kalıbının kırıldığı dönemlerde (asgari ücret ara zammı, KDV ayarlamaları) trend bileşeninin de yön değiştirdiği gözlenmişti.</p>
   </div>
 </article>
 
@@ -613,22 +608,22 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/02c_expectations.png" alt="Piyasa Katılımcıları Anketi · TÜFE Beklentisi" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TCMB anketi medyan beklentilerine göre cari yıl sonu TÜFE 27.8, gelecek yıl sonu 20.0; gerçekleşen 32.4 ile cari yıl beklentisi arasında 4-5 puanlık alt-yönlü sapma var. Anketin son 3 yıllık geçmişi, piyasa katılımcılarının <strong>sistematik olarak iyimser</strong> kaldığını gösteriyor. Gerçekleşen genellikle beklentinin üstünde sonuçlanıyor. Bu kalıbı yorumlamanın iki yolu: ya katılımcılar TCMB hedeflerine fazla bağlı kalıyor (çapaya fazla bağlı kalma eğilimi), ya da Türkiye'nin enflasyon dinamiği şokları dahili modellere yeterince yerleştirmiyor.</p>
-<p><strong>Yorumumuz.</strong> Yıl sonu için baz tahminimiz 28-32 bandı, anketin biraz üstünde. Tarihsel sapma bu yöne işaret ediyor.</p>
-<p><strong>Risk.</strong> Anket beklentisinin altında gerçekleşme (dezenflasyonun beklenenden hızlı olması) zayıf olasılık; daha olası senaryo üst tarafta sürpriz.</p>
+    <p>TCMB anketi medyan beklentilerine göre cari yıl sonu TÜFE 27.8, gelecek yıl sonu 20.0. Gerçekleşen TÜFE 32.4 ile cari yıl sonu beklentisi arasındaki fark 4-5 puan, beklenti rakamın altında. Anketin son 36 aylık geçmişine bakıldığında gerçekleşmeler beklentinin çoğu zaman üstünde sonuçlandı; sapmanın yönü baskın olarak yukarı. 12 ay sonrası beklentisi cari yıl sonu beklentisinin altında (20.0 vs 27.8) — anket katılımcıları dezenflasyon patikasını fiyatlıyor.</p>
+<p><strong>Yorumumuz.</strong> Cari yıl sonu beklentisi %27.8, gerçekleşen Nisan TÜFE Y/Y %32.4 — fark 4.6 puan, beklenti gerçeğin altında. Anketin son 36 aylık sapma dağılımına bakıldığında beklentilerin gerçeğin çoğunlukla altında kaldığı görülüyor; bu kalıp ya katılımcıların TCMB hedefine fazla bağlı kaldığını ya da dinamik enflasyon şoklarının modellerine geç yerleştiğini söylüyor. 12 ay sonrası beklentisi %20.0 — cari yıl sonu beklentisinin 7.8 puan altı, yani anket dezenflasyonun süreceği bir patikayı fiyatlıyor.</p>
+<p><strong>Risk.</strong> Beklenti-gerçekleşme makasının 6 puan üzerine açıldığı önceki dönemlerde (2022 ortası, 2023 başı) anket çapasının ne kadar yapışkan olduğu sorgulanır olmuştu; benzer büyüklükte sapmanın 2-3 ay üst üste sürmesi, anketin sonraki revizyonunda yukarı yönlü düzeltme olasılığını artırır. 12 ay sonrası beklentinin TCMB hedefine yakınsadığı ama gerçekleşmenin saptığı bir senaryo, dezenflasyon iletişim güveninde aşınma riski olarak okunabilir.</p>
   </div>
 </article>
 
 <article id="02d_konut" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
     <span class="ttl">▣ Konut Fiyat Endeksi · TÜFE Karşılaştırma</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.KFE.TR (Konut Fiyat Endeksi · TCMB)</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.KFE.TR (TCMB Hedonik Konut Fiyat Endeksi, Türkiye geneli)</span>
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/02d_konut.png" alt="Konut Fiyat Endeksi · TÜFE Karşılaştırma" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Konut Y/Y 26.4, TÜFE Y/Y 32.4. Konut fiyatları reel olarak yıllık 6 puan <strong>geride</strong>. Türk hanehalkı için tarihsel olarak en büyük net varlık kalemi olan konut, son 12 ayda satın alma gücü bazında değer kaybetti. Mekanizma: yüksek mortgage faizleri talebi baskılıyor (TCMB sıkı politikası buraya doğrudan iletiliyor); ipotekli satışların düşük seyri ve konut stoğunun birikmesi fiyat ivmesini kırıyor. Bu, yapısal olarak <strong>dezenflasyon dostu</strong>. Hizmet enflasyonunun büyük kalemlerinden biri (kira) bu sayede yumuşar.</p>
-<p><strong>Yorumumuz.</strong> Reel konut düşüşü 2026 sonuna kadar sürer (TÜFE'nin altında yıllık); TCMB indirim hızlandığında dönüş olur.</p>
-<p><strong>Risk.</strong> Konut talebinin erken canlanması (örn. mortgage kampanyaları) kira enflasyonunu yukarı çeker, çekirdek TÜFE üzerinde baskı yaratır.</p>
+    <p>Mar 2026 itibarıyla TCMB Konut Fiyat Endeksi (KFE, Türkiye geneli) yıllık değişimi %26.4; aynı dönem TÜFE Y/Y %30.9. Aradaki fark -4.5 puan, yani konut fiyatları enflasyonun altında bir tempoda artıyor — yani reel olarak değer kaybediyor. Son 12 ayda KFE Y/Y bandı 26.3-32.9, TÜFE Y/Y bandı 30.7-37.9; KFE-TÜFE makasının yönü reel konut fiyatlarının trend yönünü doğrudan gösteriyor.</p>
+<p><strong>Yorumumuz.</strong> Mart 2026 itibarıyla KFE Y/Y %26.4, aynı dönem TÜFE Y/Y %30.9 — makas -4.5 puan, yani konut fiyatları enflasyonun altında bir tempoda artıyor, reel olarak değer kaybediyor. Son 12 ayda KFE Y/Y bandı 26.3-32.9'a sıkışmış durumda; bu daralma son 3 yılın çoğunda KFE'nin TÜFE'nin üzerinde kaldığı dönemden bir kırılma. Konut fiyat artışının enflasyonun altına inmesi, hane halkı reel servet birikiminin konut kanalıyla zayıfladığı dönemlerde gözlenen bir kalıptır.</p>
+<p><strong>Risk.</strong> KFE-TÜFE makasının -10 puan altına genişlediği önceki dönemlerde (2019 sonu, 2018 başı) konut piyasasında talep zayıflığı ve ipotek koşullarının sıkılığı eş zamanlıydı; makasın bu seviyeye doğru genişlemesi durumunda inşaat sektörü istihdamında 6-12 ay gecikmeli zayıflama gözlenme olasılığı artar. Tersine, makasın hızla pozitife döndüğü dönemler genellikle TL'nin reel değer kaybı + ithal inşaat malzemesi maliyet baskısı ile çakışmıştı.</p>
   </div>
 </article>
 
@@ -640,9 +635,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/02e_core_ppi.png" alt="TÜFE · Çekirdek B · Yİ-ÜFE Karşılaştırma" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
     <p>Üç temel enflasyon göstergesi son aylarda birbirine yakın seyrediyor. TÜFE %32.4, Çekirdek B %33.5, Yİ-ÜFE %28.6. Çekirdek'in genel TÜFE'nin biraz üstünde kalması, fiyat artışlarının yalnızca volatil kalemlerden (gıda, enerji) değil ana mal ve hizmet sepetinden de güç aldığını gösteriyor.</p>
-<p>Üretici fiyat endeksinin (Yİ-ÜFE) tüketici endeksinin altında seyretmesi olumlu bir sinyal. Üretici tarafında girdi baskısının yumuşaması, önümüzdeki 3-6 ayda tüketici fiyatlarına yansımanın (geçişkenliğin) zayıflamasını gündeme getiriyor.</p>
-<p><strong>Yorumumuz.</strong> Çekirdek-TÜFE makasının 1 puan civarında kalması dezenflasyonun sağlıklı şekilde sürdüğünü, hizmet enflasyonunun da yumuşadığını söylüyor.</p>
-<p><strong>Risk.</strong> Yİ-ÜFE'de tekrar hızlanma (kur veya emtia kaynaklı) 3-6 ay gecikmeyle TÜFE'ye taşınır. Üretici-tüketici makasının kapanmasıyla başlayan dönemler tarihsel olarak yapışkan enflasyona işaret etmiştir.</p>
+<p>Yİ-ÜFE manşet TÜFE'nin yaklaşık 4 puan, Çekirdek B'nin yaklaşık 5 puan altında. Üretici-tüketici makasının bu yönde açık olması son 18 aydır süren bir kalıp; öncesindeki dönemde Yİ-ÜFE TÜFE'nin üzerindeydi. Çekirdek B'nin manşet TÜFE'nin üzerinde kalması, mal ve hizmet sepetinin volatil kalemler dışındaki katılığını gösteriyor.</p>
+<p><strong>Yorumumuz.</strong> Nisan 2026 itibarıyla TÜFE %32.4, Çekirdek B %30.5, Yİ-ÜFE %28.6 — Çekirdek B manşetin yaklaşık 2 puan, Yİ-ÜFE manşetin 4 puan altında. Çekirdek B'nin manşete yakın seyretmesi, fiyat artışlarının volatil kalemler (gıda, enerji) dışında, ana mal-hizmet sepeti içinde de sürdüğünü gösteriyor. Üretici-tüketici makasının (Yİ-ÜFE − TÜFE) negatif kalması son 18 aydır gözlenen bir kalıp; öncesinde Yİ-ÜFE TÜFE'nin üzerinde seyrederek geçişkenlik baskısı yaratıyordu.</p>
+<p><strong>Risk.</strong> Yİ-ÜFE'nin TÜFE'yi geçtiği dönemlerin (2021 sonu, 2022 ortası) tipik gecikmesi 3-6 ay sonra TÜFE'ye yansıma şeklinde gerçekleşmişti; üretici-tüketici makasının yeniden pozitife dönmesi, sonraki 3-6 ayda TÜFE'de yukarı sürpriz olasılığını yapısal olarak artırır. Çekirdek B'nin manşeti belirgin geçtiği dönemlerde (örn. 2023 ortası, hizmet enflasyonu kaynaklı) TCMB sıkılaştırma kararları öne çekilmişti.</p>
   </div>
 </article>
 
@@ -656,46 +651,33 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Reel Ekonomi · Öncü Göstergeler
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">PMI, RKGE, TGE, perakende satışlar — GDP&#x27;den önce ne olduğunu gösteren leading indicators.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Reel kesim ve tüketici güven endeksleri, sanayi üretim endeksi — GDP&#x27;den önce ne olduğunu gösteren leading indicators.</p>
     </div>
   </div>
   
-<article id="03a_pmi" class="panel" style="margin-bottom:24px;overflow:hidden">
-  <div class="panel-h">
-    <span class="ttl">▣ İmalat PMI · 36 Ay Trend</span>
-    <span class="meta" style="font-size:10.5px">S&amp;P Global · TR Manufacturing PMI</span>
-  </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/03a_pmi.png" alt="İmalat PMI · 36 Ay Trend" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
-  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>S&amp;P Global Türkiye İmalat PMI Nisan'da <strong>50.4</strong>. Eşik 50'nin çok az üzerinde, "nötr genişleme" bölgesinde. Son 36 ayda PMI 2024 ortasında 47-48 dip görüp 2025 yılı boyunca toparlandı; 2026 1. çeyrek'de 50 etrafında yatay seyir hâkim. PMI'nın 50 etrafında salınması, <strong>imalat sanayinde belirgin bir ivme eksikliği</strong> olduğuna işaret. Yeni siparişler (özellikle ihracat) artıyor ama yurtiçi talebin zayıflığı üretim büyümesini sınırlıyor. KKO ile çapraz kontrol edildiğinde (%75.8) ekonomi potansiyelinin altında çalışıyor.</p>
-<p><strong>Yorumumuz.</strong> PMI 50-52 bandında kalır. sanayi büyümesi GSYİH'ye 2. çeyrek-3. çeyrek'te +1 ile +2 puan katkı verir, ancak kuvvetli bir yeniden hızlanma dalgası yok.</p>
-<p><strong>Risk.</strong> PMI tekrar 50'nin altına düşerse (yeni siparişler durur, ihracat zayıflarsa) 3. çeyrek GSYİH %3 büyümenin altına sarkar; TCMB'nin daha hızlı faiz indirimi baskısı artar.</p>
-  </div>
-</article>
-
 <article id="03b_confidence" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ Güven Endeksleri · RKGE &amp; TGE</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.IYAANKET (RKGE) + TP.TUKGUVEN (TGE)</span>
+    <span class="ttl">▣ Güven Endeksleri · RKGE (MA) &amp; TGE</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GY1.N2.MA (RKGE, mevsim arındırılmış) + TP.TG2.Y01 (TGE)</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/03b_confidence.png" alt="Güven Endeksleri · RKGE &amp; TGE" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/03b_confidence.png" alt="Güven Endeksleri · RKGE (MA) &amp; TGE" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Reel Kesim Güven Endeksi (RKGE) Nisan'da <strong>99.1</strong>, eşik 100'ün hemen altında; Tüketici Güven Endeksi (TGE) <strong>85.2</strong>. Uzun-dönem ortalaması 80'in üzerine çıkmış olsa da hâlâ "nötr-zayıf" bölgede. RKGE'nin son 6 aydaki yükseliş eğilimi ihracat siparişleri ve döviz kuru istikrarından kaynaklı. İki endeks arasındaki <strong>14 puanlık fark</strong> önemli: imalatçı şirketler tüketiciye göre daha iyimser. Bu, kurumsal tarafın enflasyon belirsizliğine alıştığını, ancak haneler tarafında satın alma gücü erozyonunun hâlâ yorum üzerinde baskı yarattığını gösteriyor.</p>
-<p><strong>Yorumumuz.</strong> TGE &gt; 90'a çıkmadan tüketim-odaklı toparlanma beklemeyin. 3. çeyrek-4. çeyrek'te asgari ücret + maaş artışları geldiğinde TGE +5 puana kadar artar; bu noktada perakende ivmelenir.</p>
-<p><strong>Risk.</strong> RKGE'nin tekrar 96-97 bandına düşmesi (yeni siparişlerin durması, kur volatilitesi) imalat yatırımlarının ertelenmesine yol açar. İstihdam 4. çeyrek'te risk altına girer.</p>
+    <p>Nis 2026 okumalarına göre Reel Kesim Güven Endeksi (mevsim arındırılmış) 98.6, Tüketici Güven Endeksi 85.5. Her iki endekste de 100 değeri iyimserlik-kötümserlik eşiğidir; güncel RKGE bu eşiğin altında, TGE eşiğin altında. Son 12 ayda RKGE bandı 98.4-104.1, TGE bandı 83.5-85.7 — iki seri kıyaslandığında üretici ve tüketici tarafının yıl içi senkronizasyonu (ya da ayrışması) doğrudan okunabilir.</p>
+<p><strong>Yorumumuz.</strong> RKGE (mevsim arındırılmış, Nisan 2026) 98.6, TGE 85.5 — her ikisi de 100 nötr eşiğinin altında, yani üretici ve tüketici tarafı kötümser bölgede. Son 12 ayda RKGE bandı 98.4-104.1 (eşik civarında salınım), TGE bandı 83.5-85.7 (daha derin kötümserlik); iki endeksin senkronize zayıflığı reel ekonomi öncü göstergelerinde tutarlı bir tablo veriyor. RKGE'nin nötr eşiğe yakın salınması, üretici tarafının kötümserliğinin tüketici kadar derin olmadığını söylüyor.</p>
+<p><strong>Risk.</strong> TGE 80'in altına indiği önceki dönemlerde (2020 pandemi başı, 2022 sonu) perakende satışlarda Y/Y daralma 3-6 ay gecikmeli olarak görülmüştü; benzer eşik kırılması olası bir reel daralma sinyali olarak okunur. RKGE'nin 95'in altına indiği dönemlerde tipik olarak imalat istihdamında zayıflama ve KKO'da düşüş eş zamanlı gözlenmişti; bu eşiğin altında kalındığı dönemler dezenflasyona katkı veren ama büyümeyi finanse eden kanalı zayıflatan bir konjonktür olarak yorumlanır.</p>
   </div>
 </article>
 
-<article id="03c_retail" class="panel" style="margin-bottom:24px;overflow:hidden">
+<article id="03c_industrial" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ Perakende Satış Hacim Endeksi · Y/Y</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.PRG.S01 (TÜİK)</span>
+    <span class="ttl">▣ Sanayi Üretim Endeksi · Toplam Sanayi (SA+TA)</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.TSANAYMT2021.Y1 (mevsim ve takvim etkilerinden arındırılmış, 2021=100)</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/03c_retail.png" alt="Perakende Satış Hacim Endeksi · Y/Y" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/03c_industrial.png" alt="Sanayi Üretim Endeksi · Toplam Sanayi (SA+TA)" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Perakende satış hacim endeksi (TÜİK) Mart'ta yıllık <strong>+14.2%</strong>. 2024'te %20'lerde olan büyüme 2025 boyunca yavaşladı, şimdi 12-15 bandında dengelendi. Bu hâlâ TR'nin uzun-dönem reel perakende büyümesi ortalamasının (~%5-7) iki katı üzerinde. Tüketim hâlâ ana büyüme motoru. Yüksek perakende büyümesi + zayıf TGE kombinasyonu görünüşte çelişkili. Açıklaması: <strong>kredi kartı taksitli alımları + asgari ücret artışı</strong> hanenin kısa-vadeli harcama kapasitesini destekliyor, ama belirsizlik nedeniyle güven endeksi geri kalıyor. Tüketim güvene değil <strong>gelir akışı + krediye</strong> bağlı.</p>
-<p><strong>Yorumumuz.</strong> Reel ücret artışı + tüketici kredi büyümesi yavaşladıkça perakende yıllık %10 civarına gerilebilir. Cari açık ile pozitif korelasyon. perakende soğursa cari de iyileşir.</p>
-<p><strong>Risk.</strong> Tüketici kredisinde sıkılaştırma + asgari ücret ara zammı olmaması. perakende 3. çeyrek-4. çeyrek'te %8'in altına gerilir, GSYİH'ye negatif etki.</p>
+    <p>Mar 2026 itibarıyla mevsim ve takvim etkilerinden arındırılmış Sanayi Üretim Endeksi (toplam sanayi) 109.9, yıllık değişim %-1.5, aylık değişim %-0.8. Son altı ayda yıllık büyüme bandı -1.8 ile +2.8, aylık değişim bandı -2.8 ile +2.7. Endeks 2021 baz dönemine göre üretim seviyesinin baz dönem ortalamasının üzerinde olduğunu gösteriyor; SÜE GSYİH'nin sanayi bileşeninin öncü göstergesidir.</p>
+<p><strong>Yorumumuz.</strong> SÜE Mart 2026 itibarıyla 109.9 (2021=100), yıllık %-1.5, aylık %-0.8 — son altı ayın yıllık değişim bandı -1.8 ile +2.8, aylık değişim bandı -2.8 ile +2.7 arasında, sanayi tarafı sıfır büyüme civarında yatay seyrediyor. Endeksin baz dönem ortalamasının üzerinde kalması nominal seviye kazancını gösteriyor; Y/Y momentumun negatife dönmesi GSYİH'nin sanayi alt-bileşeninin son çeyreklerde büyümeye katkısının sınırlı kaldığını söylüyor. Bu kalıp KKO'nun uzun dönem ortalamasının altında kaldığı dönemlerle örtüşüyor.</p>
+<p><strong>Risk.</strong> SÜE Y/Y'nin -3 puan altına 3 ay üst üste indiği önceki dönemlerde (2018 son çeyrek, 2020 ortası) çıktı açığının negatife derinleştiği ve TCMB para politikasının gevşeme alanı bulduğu görülmüştü; mevcut bandın bu eşiğe doğru hareket etmesi durumunda benzer politika tepkisi olasılığı artar. Tersine, +5 puanın üzerinde 3 ay sürdüğü dönemler KKO'da 80+ seviyelerle eşleşmişti.</p>
   </div>
 </article>
 
@@ -709,7 +691,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         GDP &amp; Büyüme
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Çıktı açığı, alt-bileşenler, sanayi üretimi, kapasite kullanım oranı.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">GSYİH Y/Y reel büyüme, HP filtresi çıktı açığı, imalat kapasite kullanım oranı.</p>
     </div>
   </div>
   
@@ -720,22 +702,22 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/04a_gdp.png" alt="GSYİH Y/Y Reel Büyüme · Çeyreklik" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Son çeyrek GSYİH Y/Y 3.4. 2021-22 pandemi-sonrası %10+ ivmenin ardından normalleşme rotasında. Bu seviye, Türkiye'nin potansiyel büyüme tahminlerinin (%4-5) bir miktar altında; sıkı para politikasının istenen yumuşamayı ürettiğinin somut göstergesi. Talep tarafında özel tüketim katkısı yavaşladı; yatırım harcamaları sermaye maliyetinin yüksekliğine duyarlılıkla geriledi. Net ihracat dengeleyici rol oynadı (REER güçlü olsa da hizmet ihracatı sağlam).</p>
-<p><strong>Yorumumuz.</strong> Yıl sonuna kadar 2.5-4.0 bandı taban senaryo. TCMB indirim hızlandığında 4 üstü mümkün.</p>
-<p><strong>Risk.</strong> Çıktı açığının daha negatife dönmesi (&gt;-%2) işsizliği yukarı çeker, kamuoyu tartışması erken indirim talebi yaratır.</p>
+    <p>En son açıklanan 2025-Q4 döneminde GSYİH Y/Y reel büyüme %3.4. Son dört çeyreğin ortalaması %3.6; aynı dört çeyrekte bant 2.5 ile 4.7 arasında. Son sekiz çeyreğin 8 tanesi pozitif bölgede tamamlandı, geri kalanı negatif.</p>
+<p><strong>Yorumumuz.</strong> 2025-Q4 GSYİH Y/Y %3.4; son dört çeyreğin ortalaması %3.6, bant 2.5-4.7 arası. Türkiye'nin uzun dönem trend büyümesi tarihsel olarak %4-5 bandında gerçekleştiğinden, son dört çeyrek ortalaması bu bandın hafif altında; potansiyel üstü büyüme değil, normalize bir tempo. Son sekiz çeyreğin tamamı pozitif bölgede tamamlanmış olması resesyon dinamiğinden uzak olduğumuzu söylüyor.</p>
+<p><strong>Risk.</strong> GSYİH Y/Y %2'nin altına 2 çeyrek üst üste indiği önceki dönemlerde (2019, 2020 Q2) işsizlik 1-2 puan yukarı sıçramış, TCMB faiz indirim alanı genişlemişti; bandın bu seviyeye doğru hareket etmesi durumunda işgücü piyasasında benzer bir gevşeme olasılığı artar. %5 üzeri 4 çeyrek üst üste büyüme dönemleri (2021) çıktı açığının pozitife açıldığı ve enflasyonun talep tarafı baskısı aldığı dönemlerdi.</p>
   </div>
 </article>
 
 <article id="04b_output_gap" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
     <span class="ttl">▣ GSYİH HP Filtresi · Trend &amp; Çıktı Açığı</span>
-    <span class="meta" style="font-size:10.5px">EVDS GSYİH zincirlenmiş hacim + statsmodels HP filter (λ=1600)</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GSYIH26.HY.ZH + statsmodels HP filter (λ=1600)</span>
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/04b_output_gap.png" alt="GSYİH HP Filtresi · Trend &amp; Çıktı Açığı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>HP filtresi (λ=1600) çıktı açığını hafif negatif bölgede gösteriyor; ekonomi potansiyel patikanın altında üretiyor. Bu, sıkı para politikasının arz-talep dengesini istenen yöne çekmeye başladığı klasik sinyal. Çıktı açığının makro değeri: enflasyon tarafında <strong>dezenflasyon kuvveti</strong> anlamına gelir; firma fiyatlama gücü zayıflar, ücret-fiyat sarmalı için yapısal sınır oluşur. TCMB için politika başarısının ölçütlerinden biri.</p>
-<p><strong>Yorumumuz.</strong> Açığın -1 ile -2 puan bandında kalması optimal koridor; TCMB'nin bunu 6-9 ay içinde sıfıra yaklaştırması beklenir.</p>
-<p><strong>Risk.</strong> Açığın -3 puan altına derinleşmesi resesyon endişesi yaratır, politika gevşemesi için baskıya neden olur.</p>
+    <p>2025-Q4 itibarıyla çıktı açığı %+0.22; trendin pozitif tarafında. Son sekiz çeyrekte açık -0.59 ile +0.31 bandında dalgalandı, ortalama %-0.08. HP filtresi (λ=1600) GSYİH zincirlenmiş hacim serisinin log dönüşümü üzerinde uygulandı; trend ve çevrim ayrıştırması model varsayımına bağlıdır.</p>
+<p><strong>Yorumumuz.</strong> 2025-Q4 çıktı açığı %+0.22 — trendin hafif pozitif tarafında, son sekiz çeyrekte bandın -0.59 ile +0.31 arasında dalgalandığı bir yapıda. Aralık dar kalıyor, yani Türkiye ekonomisi son iki yıldır potansiyel trende yakın seyrediyor. HP filtresi (λ=1600) yapısal varsayım gerektirir; uçtaki sapma örneklem sonu (end-sample) etkisinden daha duyarlıdır, bu nedenle son okuma için ±0.3 puan belirsizlik makul bir çerçeve.</p>
+<p><strong>Risk.</strong> Çıktı açığının %-1.5'in altına indiği önceki dönemlerde (2020 pandemi, 2019 daralma) işsizlik 2 puanın üzerinde yukarı tepki vermişti; benzer büyüklükte negatif açık olası bir resesyon sinyali olarak okunur. Pozitif tarafta %+1.5 üzeri açıkların gözlendiği dönemler (2017-2018) çekirdek enflasyonun talep tarafı baskısıyla yukarı koşullarda eşleşmişti.</p>
   </div>
 </article>
 
@@ -746,9 +728,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/04c_kko.png" alt="İmalat Sanayi Kapasite Kullanım Oranı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>KKO 74. 5 yıllık ortalamanın 2-3 puan altında, 2022 zirvelerinden (78-79) net gerileme. Boş kapasitenin birikmesi imalat sektöründe <strong>fiyatlama gücünün zayıflığını</strong> doğruluyor. Mikro mekanizma: kullanılmayan kapasite üretici için iki seçenek doğurur. Daha düşük marjla daha fazla satmak veya kapasite kullanımını korumak. İkisi de fiyat artış iştahını sınırlar.</p>
-<p><strong>Yorumumuz.</strong> KKO'nun 73-75 bandında dengelenmesi normal sayılır; tekrar 77+ çıkması talep canlanmasının habercisi olur, bu fiyat baskısını geri getirir.</p>
-<p><strong>Risk.</strong> 70 altına düşüş imalat istihdamında daralma anlamına gelir; PMI ve İYA göstergeleriyle yakın takipte tutulmalı.</p>
+    <p>Nis 2026 itibarıyla imalat KKO %74.0. Son altı ay bandı 74.0-74.4, ortalaması %74.1; on iki ay ortalaması %74.1. Uzun dönem ortalamasıyla (75.5%) karşılaştırıldığında güncel okuma 1.5 puan altında.</p>
+<p><strong>Yorumumuz.</strong> Nisan 2026 KKO %74.0; son altı ayın ortalaması %74.1, on iki ay ortalaması %74.1, bant 74.0-74.4 arasında sıkışmış. Uzun dönem ortalaması %75.5 ile karşılaştırıldığında 1.5 puan altta; bu yapı atıl kapasitenin olduğu ama derin bir daralma sinyali vermediği bir bölgeyi tarif ediyor. KKO'nun bu bantta yatay seyretmesi sanayi üretiminin Y/Y daralmasıyla tutarlı (bkz. 03c).</p>
+<p><strong>Risk.</strong> KKO %70'in altına indiği önceki dönemlerde (2008-09 krizi, 2020 pandemi başı) imalat istihdamında 4-6 ay gecikmeli olarak %3-5 daralma gözlenmişti; bu eşik altına doğru hareket olası bir resesyon sinyali olarak okunur. %80 üzerinde 6 ay üst üste kaldığı dönemler (2017 sonu) yatırım kararlarında ısınma ve fiyat baskısının talep tarafı katkısıyla eşleşmişti.</p>
   </div>
 </article>
 
@@ -762,20 +744,20 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         İşgücü
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">İşsizlik, geniş tanımlı işsizlik, iş gücüne katılım, atıl iş gücü.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Manşet işsizlik, işgücüne katılım ve istihdam oranlarının ortak seyri.</p>
     </div>
   </div>
   
 <article id="05a_workforce" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
     <span class="ttl">▣ İşgücü Göstergeleri · İşsizlik / Katılım / İstihdam</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.YISGUCU2.G6/G7/G8 (TÜİK)</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.YISGUCU2.G6 (katılım) / G7 (istihdam) / G8 (işsizlik)</span>
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/05a_workforce.png" alt="İşgücü Göstergeleri · İşsizlik / Katılım / İstihdam" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Manşet işsizlik 8.6. Son 10 yılın alt yarısında, görünüş olarak işgücü piyasası sıkı. Yine de işgücüne katılım oranı sadece 51.8; gelişmiş ülke ortalamasının (65-70) çok altında. Geniş tanımlı işsizlik (atıl iş gücü, ümitsiz işsizler dahil) hesaplamalara göre %20-25 bandında. Bu yapı manşet rakamın yanıltıcı olduğunu gösteriyor: çalışmayan büyük kitle resmi istatistikten görünmüyor, bu yüzden işsizlik düşük görünse de iş piyasası baskısı sınırlı.</p>
-<p><strong>Yorumumuz.</strong> TCMB için işsizlik politika kısıtı değil; sıkı duruş sürdürülebilir. Kadın istihdamı ve eğitim-istihdam köprüsü ise uzun-dönem yapısal sorun olarak gündemde kalır.</p>
-<p><strong>Risk.</strong> Çıktı açığının derinleşmesi durumunda manşet işsizlik 9-10 bandına çıkabilir; bu erken faiz indirim talebini kamuoyu tartışmalarında yer alır.</p>
+    <p>Mar 2026 itibarıyla manşet işsizlik %8.1, işgücüne katılım %51.8, istihdam oranı %47.6. Son on iki ayda işsizlik bandı 7.6-9.0, katılım bandı 51.2-55.0. İşgücüne katılım OECD ortalamasının (yaklaşık %65-70) belirgin altında; manşet işsizliğin yorumlanmasında bu yapısal bağlam dikkate alınmalı.</p>
+<p><strong>Yorumumuz.</strong> Manşet işsizlik Mart 2026 %8.1, işgücüne katılım %51.8, istihdam oranı %47.6. Son 12 ayda işsizlik bandı 7.6-9.0, katılım bandı 51.2-55.0 — manşet işsizlik son 10 yılın alt yarısında, görünüş olarak işgücü piyasası sıkı. Yine de katılım oranı OECD ortalamasının (yaklaşık %65-70) belirgin altında; resmi istatistiğe yansımayan büyük bir çalışmayan kitlenin olduğu dönemlerde manşet işsizliğin ücret-fiyat baskısı sinyali olarak değeri azalmış olarak okunmuştur.</p>
+<p><strong>Risk.</strong> İşgücüne katılımın %50'nin altına 6 ay üst üste indiği önceki dönemlerde (2020 pandemi) manşet işsizlik aşağı çekilse de geniş tanımlı işsizlik (atıl + ümitsiz) belirgin yukarı tepki vermişti; benzer bir hareket TCMB için manşet işsizliğin politika kısıtı olmamasını sürdürür. Tersine katılımın %55 üzerine çıkıp manşet işsizliğin de %10+ bandına geçtiği dönemler (2018-19) ücret-fiyat sarmal baskısı ve TCMB faiz tepkisiyle eşleşmişti.</p>
   </div>
 </article>
 
@@ -789,7 +771,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Para Politikası &amp; TCMB Bilançosu
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Politika faizi, rezervler, kredi/mevduat eksenleri, reel faiz, TCMB haftalık bültenleri.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Politika faizi, reel faiz, brüt + net rezerv durumu.</p>
     </div>
   </div>
   
@@ -801,9 +783,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/06a_tcmb_rate.png" alt="TCMB Politika Faizi · 5 Yıllık Seyir" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
     <p>Politika faizi %40 seviyesinde. 2024 zirvesi %50'den 10 puan aşağıda; kademeli gevşeme döngüsünün orta aşamasında. Bu seviye TCMB'nin dezenflasyona kararlılığının somut göstergesi.</p>
-<p>İndirim ritmi her toplantıda 100-250 baz puan arasında dalgalandı. Bu dalgalanma TÜFE açıklamalarına verilen tepkinin niceliksel ifadesi olarak okunabilir: sürpriz yukarı çıkan TÜFE daha düşük indirim üretti, sürprizsiz veya alt yönlü TÜFE ise daha cesur indirimi mümkün kıldı.</p>
-<p><strong>Yorumumuz.</strong> Yıl sonuna kadar %30-35 bandı taban senaryomuz. Yıllık 1000-1200 baz puan toplam indirim makul bir tempo.</p>
-<p><strong>Risk.</strong> Toplantı başına 300 baz puan üzerindeki hızlı indirim adımları kurda volatiliteye, dolarizasyona dönüşe ve enflasyon beklentilerinde bozulmaya yol açar.</p>
+<p>İndirim ritmi son altı toplantıda 100-250 baz puan arasında dalgalandı. Toplantı kararları TÜFE açıklamalarına yakın takip ediliyor; sürpriz yukarı çıkan TÜFE açıklamaları sonrasındaki toplantılarda indirim miktarı görece düşük, sürpriz aşağı çıkan açıklamalardan sonra görece yüksek seyretti. Son 12 ayda toplam indirim 1000 baz puan.</p>
+<p><strong>Yorumumuz.</strong> Politika faizi %40, 2024 zirvesi %50'den 10 puan aşağıda — kademeli gevşeme döngüsünün orta aşamasında. Son 12 ayda toplam indirim 1000 baz puan, toplantı başına ortalama 100-250 baz puan bandında; bu hız reel faizin pozitif kaldığı bandı koruyor (06b'ye bkz.). İndirim ritminin TÜFE açıklamalarına paralel salınması TCMB'nin veri-bağımlı tutumunu yansıtıyor.</p>
+<p><strong>Risk.</strong> Toplantı başına 300 baz puan üzeri hızlı indirim adımlarının atıldığı önceki dönemlerde (2021 Eylül-Aralık) kurda 3-6 ay içinde belirgin volatilite, dolarizasyon eğilimine dönüş ve TCMB rezerv pozisyonunda erozyon eş zamanlı gözlenmişti; mevcut indirim ritminin bu eşiğe yaklaşması durumunda benzer kalıbın tekrarlanma olasılığı artar. Tersine 0 baz puan duraklamaların uzun sürdüğü dönemler çıktı açığını daha negatife taşıyan bir konjonktür olarak yorumlanmıştı.</p>
   </div>
 </article>
 
@@ -814,23 +796,22 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/06b_real_rate.png" alt="Reel Faiz · Politika Faizi − TÜFE Y/Y" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Politika faizi %40, yıllık TÜFE %32.4. Aradaki fark reel faiz olarak %7.6 puan pozitif. Bu seviye son üç yılın en yüksek reel duruşu. Pratikte üç işlevi var: dolarizasyona fren, talep tarafında baskı, TL'ye destek.</p>
-<p><strong>Yorumumuz.</strong> TCMB önümüzdeki altı ayda dezenflasyonun hızı kadar gevşeyecek. Örneğin TÜFE %28'e iniyorsa politika faizi 35-36 bandına çekilebilir. Reel faizi pozitif tutmak ana eksen.</p>
-<p><strong>Risk.</strong> Erken ya da hızlı bir indirim dolarizasyon dalgasını yeniden tetikler. Reel faizin negatife dönmesi enflasyon beklentilerini kırar ve dezenflasyon patikasını uzatır.</p>
+    <p>Politika faizi %40, yıllık TÜFE %32.4. Aradaki fark reel faiz olarak %7.6 puanla pozitif tarafta. Bu seviye son 36 ayın en yüksek reel duruşu; öncesindeki 24 ayın büyük bölümünde reel faiz negatif bölgedeydi. Son 6 ayda reel faiz 5-8 puan bandında dalgalandı; bandın yönü TÜFE açıklamalarına paralel.</p>
+<p><strong>Yorumumuz.</strong> Politika faizi %40 eksi TÜFE Y/Y %32.4 = reel faiz +%7.6 puan. Bu seviye son 36 ayın en yüksek pozitif duruşunda; öncesindeki 24 ayın büyük bölümünde reel faiz negatif bölgedeydi. Pozitif reel faizin yapısal olarak korunduğu önceki dönemlerde (2018 başı, 2019 ortası) dolarizasyon eğiliminde gerileme ve TL mevduat tarafında reel kazanç gözlenmişti — yani ölçülebilir üç işlevi var: dolarizasyona fren, talep tarafında baskı, TL'ye carry tabanı.</p>
+<p><strong>Risk.</strong> Reel faizin negatife döndüğü 2021-2023 döneminde TÜFE Y/Y %20'den %85'e taşınmış, dolarizasyon eğilimi keskin yükselmiş ve TCMB rezervleri çıkış yönünde baskı görmüştü; mevcut +%7.6 puan tamponun erozyona uğraması (örn. &lt;%3 puana inmesi) durumunda benzer atalet baskısının yeniden aktive olma olasılığı artar. +%10 puan üzeri reel faiz tarihsel olarak büyüme tarafında 3-6 ay gecikmeli fren etkisi yaratmıştı.</p>
   </div>
 </article>
 
 <article id="06c_reserves" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ TCMB Brüt Uluslararası Rezervler</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.AB.TOPLAM / C1 / C2</span>
+    <span class="ttl">▣ TCMB Brüt + Net (Klasik) + Sıkı Ölçüm Rezervler</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.AB.A02 / A10 / A14 + USDTRY (TP.DK.USD.A.YTL)</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/06c_reserves.png" alt="TCMB Brüt Uluslararası Rezervler" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/06c_reserves.png" alt="TCMB Brüt + Net (Klasik) + Sıkı Ölçüm Rezervler" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TCMB brüt uluslararası rezervleri 165 milyar dolar civarında. Bu rakamın yaklaşık 105 milyar doları döviz, 60 milyar doları altın olarak duruyor. Altının toplam içindeki payı son 5 yılda kademeli olarak yükseldi; TCMB 2022 sonrası dönemde rezervlerini çeşitlendirmek amacıyla altın alımını öne çıkardı.</p>
-<p>Net rezerv görünümü brüt rakamdan daha kritik. Swap pozisyonu, ihracat reeskont kredileri ve diğer kısa vadeli yükümlülükler düşüldüğünde kullanılabilir döviz likiditesi daha sınırlı kalıyor. Pratik tampon olarak brüt rakamın yaklaşık yarısı kabul edilebilir.</p>
-<p><strong>Yorumumuz.</strong> Mevcut rezerv pozisyonu orta vadede kur şoklarına direnç sağlar. Net rezervin 50 milyar doların üzerinde tutulması doğrudan müdahale alanını korur.</p>
-<p><strong>Risk.</strong> Hızlı bir kur baskısı ve sermaye çıkışı senaryosunda brüt rezerv 6-9 ay içinde 30-40 milyar dolar erir. Bu seviye CDS primini ve dış borçlanma maliyetini doğrudan yukarı çeker.</p>
+    <p>May 14, 2026 tarihli analitik bilanço verisine göre brüt dış varlıklar 176.3 mlr USD; klasik net rezerv (brüt eksi döviz yükümlülükleri) +47.3 mlr USD, sıkı ölçüm (bankalar swap düşülmüş) -56.8 mlr USD. Son 90 günde sıkı ölçüm bandı -78.6 ile -16.4 mlr USD arasında dalgalandı.</p>
+<p><strong>Yorumumuz.</strong> 14 Mayıs 2026 itibarıyla brüt dış varlıklar 176.3 mlr USD, klasik net rezerv (brüt − döviz yükümlülükleri) +47.3 mlr USD, sıkı ölçüm (bankalar swap düşülmüş) -56.8 mlr USD. Son 90 günde sıkı ölçüm bandı -78.6 ile -16.4 mlr USD arasında dalgalandı; bandın yönü Mayıs'ta toparlanma tarafında. Üç ölçümün birlikte okunması önemli: brüt rakam müdahale kapasitesini, klasik NIR ödeme yeterliliğini, sıkı ölçüm ise gerçek kullanılabilir tamponu temsil eder.</p>
+<p><strong>Risk.</strong> Sıkı ölçümün -100 mlr USD altına indiği önceki dönemler (2022 başı) kur baskısı, dolarizasyon eğilimi ve müdahale kapasitesi kısıtlanması ile çakışmıştı; benzer eşik kırılması TCMB'nin manevra alanını daraltır. Brüt rezervlerin haftalık 5+ mlr USD erimesi 4 hafta üst üste sürdüğü dönemlerde döviz tevdiat çıkışları ve REER kanalında değer kaybı eş zamanlı gözlenmişti.</p>
   </div>
 </article>
 
@@ -844,34 +825,33 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Cari Denge &amp; Kur
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Cari açık, alt kalemler + 5 yıllık anomali tespit, REER, enerji kalemi etkisi.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Cari işlemler hesabı 12 ay kümülatif, TÜFE bazlı REER seyri.</p>
     </div>
   </div>
   
 <article id="07a_current_account" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ Cari İşlemler Hesabı · 12-Ay Kümülatif</span>
+    <span class="ttl">▣ Cari İşlemler Hesabı · 12 Ay Kümülatif</span>
     <span class="meta" style="font-size:10.5px">EVDS TP.ODANA6.Q01 (TCMB Ödemeler Dengesi)</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/07a_current_account.png" alt="Cari İşlemler Hesabı · 12-Ay Kümülatif" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/07a_current_account.png" alt="Cari İşlemler Hesabı · 12 Ay Kümülatif" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Cari açık 12-ay kümülatif olarak -39.7 milyar dolar. GSYİH'nin yaklaşık %3.5'i. Yapısal açık ekonomisi olan Türkiye için bu seviye <strong>finansman ihtiyacı yönetilebilir</strong> sınırın üst kuyruğunda. Açığın yapısal sürücüleri net enerji ithalatı ve altın trafiği; ikisi birlikte toplam açığın %80'inden fazlasını oluşturuyor. Mal dış ticareti dışındaki kalemler (turizm geliri özellikle) dengeleyici rol oynuyor. Bu yapı son yıllarda olumlu gelişti.</p>
-<p><strong>Yorumumuz.</strong> Yıl sonuna kadar -%3.0 ile -%4.0 bandı baz senaryo. Brent 100+ kalırsa üst sınıra yakın seyreder.</p>
-<p><strong>Risk.</strong> Brent'in 130 üstüne sıçraması + Avrupa turizmde zayıflama, açığı %5'in üstüne taşıyabilir; bu finansman cazibesinin korunmasını ek olarak zorlar.</p>
+    <p>Mar 2026 verisi itibarıyla 12 aylık kümülatif cari açıkı 39,724 milyon USD (-39,724). Son altı ayın bandı -39,724 ile -26,936 milyon USD arasında, ortalaması -32,050. Son on iki ayda seri -39,724--20,979 aralığında dalgalandı; trendin yönü açık genişliyor.</p>
+<p><strong>Yorumumuz.</strong> Mart 2026 verisiyle 12 aylık kümülatif cari açık 39.7 mlr USD (-39,724 mn USD). Son altı ayın bandı -39.7 ile -26.9 arasında, ortalaması -32.0; on iki ayın bandı -39.7 ile -21.0 — açık son 6 ayda yaklaşık 13 mlr USD genişlemiş. Bu büyüklük Türkiye'nin yıllık net enerji + altın ithalat faturasının (tipik 50-60 mlr USD) önemli bir kısmına karşılık geliyor; açığın yapısal sürücüleri büyük ölçüde bu iki kalemdir.</p>
+<p><strong>Risk.</strong> Cari açığın yıllık 60 mlr USD üzerine çıktığı önceki dönemlerde (2013, 2017) finansman kalitesi sorgulanmış, TL üzerinde kur baskısı yoğunlaşmıştı; mevcut bandın bu seviyeye doğru genişlemesi durumunda yabancı portföy çıkışlarına duyarlılık artar. Tersine açığın 20 mlr USD altına indiği dönemler (2019, 2020) tipik olarak iç talep zayıflığı + altın ithalatı sınırlamaları ile çakışmıştı.</p>
   </div>
 </article>
 
 <article id="07b_reer" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
     <span class="ttl">▣ Reel Efektif Döviz Kuru · TÜFE Bazlı</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.RK.T1.Y (TCMB REER, 2025=100)</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.RK.T1.Y (TCMB REER endeksi)</span>
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/07b_reer.png" alt="Reel Efektif Döviz Kuru · TÜFE Bazlı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TÜFE bazlı REER (2025=100) Mayıs 2026 itibariyle 65 civarında. Bu seviye TL'nin son 5 yıldaki en zayıf bandında olduğunu gösteriyor. 2022 sonrası dezenflasyon politikasının erken döneminde TL hızla değer kaybetti; REER 100'lerden 60'lara doğru kalıcı bir aşınma yaşadı. Mevcut seviye TL'nin tarihsel ortalamasının altında.</p>
-<p>Bu zayıflığın ekonomiye iki yönlü etkisi var. Bir yanda ihracatçı için fiyat rekabeti elverişli; turizm gelirleri açısından da olumlu. Öte yanda ithalat ucuzlamadığı için dezenflasyona yardımı sınırlı, üstelik enerji ve ara malı maliyetleri TL bazında baskı yaratıyor.</p>
-<p><strong>Yorumumuz.</strong> REER 60-70 bandında kalması cari dengeye olumlu, enflasyona yansıması ise ithalat kanalından kısıtlı. TCMB'nin reel faiz duruşu TL'nin daha sert zayıflamasını şu an için frenliyor.</p>
-<p><strong>Risk.</strong> Hızlı bir indirim döngüsüyle TL'nin reel olarak değer kaybetmesi (REER 55 altı) enflasyon ithalini büyütür ve beklentileri bozar. Tersine, REER'in 80'in üzerine hızlı çıkışı ise ihracatçı rekabetinde sıkıntı yaratır.</p>
+    <p>Nis 2026 itibarıyla TÜFE bazlı REER endeks değeri 106.3 (TCMB serisi TP.RK.T1.Y). Son altı ayın bandı 98.9-106.3, ortalaması 102.5; son 24 ay bandı 92.3-106.3. Endeksin yükselmesi TL'nin reel olarak değerlendiğine, düşmesi reel olarak değer kaybettiğine işaret eder; son 6 ay - 24 ay karşılaştırması: reel değerlenme yönünde.</p>
+<p><strong>Yorumumuz.</strong> Nisan 2026 itibarıyla TÜFE bazlı REER endeks değeri 106.3. Son altı ay bandı 98.9-106.3, ortalama 102.5; son 24 ay bandı 86.4-106.3, son 6 ay ortalaması son 24 ay ortalamasının üzerinde — yani TL son 24 aya kıyasla son 6 ayda reel olarak değerlendi. Endeksin uzun dönem ortalamasının üzerine çıkması, TL'nin reel olarak güçlü konumda olduğu dönemleri tarif eder.</p>
+<p><strong>Risk.</strong> REER'in 80'in altına indiği önceki dönemlerde (2022 sonu, 2023) ihracat rekabet gücü artmış ama ithalat fiyat baskısı TÜFE'ye geçişkenlik kanalını canlandırmıştı; mevcut bandın bu seviyeye doğru gerilemesi durumunda dezenflasyon patikasında ithalat geçişkenliği kaynaklı yukarı sapma olasılığı artar. 110+ seviyeleri tarihsel olarak ithalat patlaması + cari açık genişlemesi ile çakışmıştı.</p>
   </div>
 </article>
 
@@ -885,20 +865,20 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Kamu Maliyesi
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Bütçe gerçekleşmeleri, borç stoku, OECD karşılaştırma, borçlanma takvimi.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Genel bütçe gelir / harcama / denge / faiz dışı denge (12 ay kümülatif), devlet iç borç stoku.</p>
     </div>
   </div>
   
-<article id="08a_budget_revenue" class="panel" style="margin-bottom:24px;overflow:hidden">
+<article id="08a_budget" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ Genel Bütçe Gelirleri · Kümülatif</span>
-    <span class="meta" style="font-size:10.5px">EVDS TP.KB.GEN01 (Maliye Bakanlığı)</span>
+    <span class="ttl">▣ Genel Bütçe · Gelir · Harcama · Denge (12A Kümülatif)</span>
+    <span class="meta" style="font-size:10.5px">EVDS bie_kbgen: TP.KB.GEN01 (gelir), TP.KB.GEN12 (harcama), TP.KB.GEN35 (denge), TP.KB.GEN34 (faiz dışı denge)</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/08a_budget_revenue.png" alt="Genel Bütçe Gelirleri · Kümülatif" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/08a_budget.png" alt="Genel Bütçe · Gelir · Harcama · Denge (12A Kümülatif)" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Bütçe gelirleri nominal olarak TÜFE'nin üstünde büyüyor; vergi tabanı genişlemesi ve dolaylı vergilerde tahsilat sağlam. Reel terimlerle de gelir tarafı 2024'e göre net pozitif. Sıkı politika döneminde nadir görülen sağlıklı bir tablo. Vergi yapısı <strong>dolaylı ağırlıklı</strong> (KDV + ÖTV). Toplam tahsilatın yaklaşık üçte ikisi. Dolaysız vergilerin (gelir + kurumlar) payının artması adalet ve sürdürülebilirlik için önemli; son verilerde küçük ama anlamlı bir iyileşme görülüyor.</p>
-<p><strong>Yorumumuz.</strong> Bütçe gelirleri yıl boyunca nominal güçlü kalır; reel büyüme yumuşar (TÜFE düştükçe baz etkisi gelirde de görülür).</p>
-<p><strong>Risk.</strong> İç talebin sertçe daralması dolaylı vergi gelirlerinde aşınma yaratır; harcama tarafındaki katılıkla birleşirse bütçe açığı genişler.</p>
+    <p>Mar 2026 itibarıyla 12 aylık kümülatif genel bütçe gelirleri 14,107 mlr TL, harcamaları 15,749 mlr TL; ortaya çıkan denge açık olarak 1,642 mlr TL (-1,642). Faiz dışı denge aynı dönemde fazla olarak 822 mlr TL (+822); manşet denge ile faiz dışı denge arasındaki fark dönem için faiz harcamalarının büyüklüğüne karşılık geliyor. Harcama/gelir oranı %111.6 (son 12 ay ortalaması %119.6); bu oran 100'ün altındaysa cari yılda gelir harcamaları karşılıyor, üzerindeyse açık veriliyor.</p>
+<p><strong>Yorumumuz.</strong> Mart 2026 itibarıyla 12 aylık kümülatif gelir 14.1T TL, harcama 15.7T TL, denge -1.6T TL açık. Faiz dışı denge +822 mlr TL fazla — manşet ile faiz dışı arasındaki yaklaşık 2.5T TL'lik makas dönem faiz harcamalarına karşılık geliyor. Harcama/gelir oranı %111.6, son 12 ay ortalaması %119.6; oranın 100'ün belirgin üstünde kalması yapısal açığın faiz harcamalarının yanı sıra ana harcama kaleminde de baskı taşıdığını gösteriyor.</p>
+<p><strong>Risk.</strong> Faiz dışı dengenin negatife döndüğü önceki dönemlerde (2020-21 pandemi destek paketi) bütçe disiplini sorgulanmış, dış borçlanma maliyetlerinde primlerin yükseldiği gözlenmişti; mevcut +822 mlr TL fazlanın aşınması durumunda yapısal mali alan daralır. Tersine harcama/gelir oranının %105'in altına 2-3 çeyrek üst üste indiği dönemler (2019 ilk yarı) TL kontrollü yıllarla çakışmıştı.</p>
   </div>
 </article>
 
@@ -909,22 +889,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
   <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/08b_internal_debt.png" alt="Devlet İç Borç Stoku · Tahvil" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>İç borç tahvil stoku 5 yıllık dönemde nominal olarak hızla büyüdü; reel ve GSYİH'ye oran bazında daha ölçülü bir artış görülüyor. TR'nin borç dinamiği global EM emsallerine kıyasla <strong>görece sağlam</strong> kabul edilir (GSYİH borç oranı %30'lar civarı). Vade yapısı orta-uzun ağırlıklı (3-5 yıl); faiz tipi karışım sabit + TÜFE'ye endeksli + değişken. Sıkı politika döneminde yeni ihraçlar yüksek faizle yapılıyor; bu mali cost'u kademeli olarak yukarı çekiyor.</p>
-<p><strong>Yorumumuz.</strong> Borç stoğunun GSYİH oranı %30-32 bandında stabilize. Faiz harcaması bütçe içinde önümüzdeki 2-3 yıl baskı kalemi.</p>
-<p><strong>Risk.</strong> Hazine ihalelerinde alıcı talep zayıflığı (yabancı yatırımcı çıkışı senaryosu) finansman maliyetini hızla yukarı çeker; bu faiz harcamasını kademeli artışın ötesine taşır.</p>
-  </div>
-</article>
-
-<article id="08c_borrowing_calendar" class="panel" style="margin-bottom:24px;overflow:hidden">
-  <div class="panel-h">
-    <span class="ttl">▣ Hazine Borçlanma Takvimi · Mayıs-Temmuz 2026</span>
-    <span class="meta" style="font-size:10.5px">Hazine ve Maliye Bakanlığı · İç Borçlanma Stratejisi</span>
-  </div>
-  
-  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Hazine'nin Mayıs-Temmuz 2026 dönemi için açıkladığı <strong>125 milyar TL + 1.5 milyar USD</strong> brüt borçlanma programı; itfa baskısı yüksek aylar. Önümüzdeki 90 günde 6 ihale planlı: 4 TL bono (2A sabit + 5A TÜFE'ye endeksli + 10A sabit + 2A FRN), 1 sukuk, 1 Eurobond. <strong>Kompozisyon analizi:</strong> Sabit kuponlu TL bono ağırlığı (~%52), TÜFE'ye endeksli oran %16, FRN %24. Bu kompozisyon TL faiz beklentilerinin <strong>düşeceği yönünde</strong> Hazine'nin pozisyon aldığını gösteriyor. Sabit kuponlu uzun vadeyi şimdi kilitlemek, faiz indikten sonra yeniden borçlanmaktan daha avantajlı.</p>
-<p><strong>Yorumumuz.</strong> Haziran Eurobond ihracı (10Y USD 1.5 mlr) CDS'in 240bp seviyesinde gerçekleşirse maliyet ~%7.0 civarı (US 10Y + 240). Bu Türkiye için son 5 yılın en avantajlı dolar borçlanma fırsatı.</p>
-<p><strong>Risk.</strong> İhalelerde <strong>ihale talep katsayısı oranlarının 2.0'ın altına düşmesi</strong> talep zayıflığı sinyali; özellikle uzun vadeli TL bono talebi kırılırsa Hazine itfaları borç yenileme için ek prim ödemek zorunda kalır. faiz baskısı yukarı. 📅 Detaylı takvim için. <a href="./tables/08c_borrowing_calendar.md"><code>tables/08c_borrowing_calendar.md</code></a></p>
+    <p>Mar 2026 itibarıyla devlet iç borç stoku (tahvil) 8,341 mlr TL. Yıllık değişim %+48.4; 12 ay önce stok 5,621 mlr TL düzeyindeydi, mutlak artış +2,719 mlr TL. Seri nominal TL bazında; reel büyüklük için aynı dönemin TÜFE seyri ile beraber okunmalı (12 aylık TÜFE şu an %32.4).</p>
+<p><strong>Yorumumuz.</strong> Mart 2026 itibarıyla iç borç stoku 8.34T TL; yıllık nominal değişim %+48.4. 12 ay önce stok 5.62T TL idi, mutlak artış 2.72T TL. Aynı dönemde TÜFE Y/Y %32.4 olduğundan reel büyüme yaklaşık +%12 — yani borç stoku nominal hızı enflasyondan belirgin yüksek, reel olarak da büyüyor. Bu kalıp yeni borçlanmanın eski borç servisini aşan ölçekte gerçekleştiği dönemleri tarif eder.</p>
+<p><strong>Risk.</strong> İç borç stokunun reel büyümesinin %20 üzerine çıktığı dönemler yapısal mali kırılma sinyali olarak okunur — tarihsel olarak (son 20 yıllık çerçevede) stok reel büyümesi tipik olarak %5-15 bandında seyretti. Mevcut +%12 reel hızın bu bandın üst ucuna yakın olması mali alan tartışmalarının yoğunlaştığı bir konjonktürle örtüşür. Reel daralma (negatif reel büyüme) dönemleri (2010-2013) tipik olarak güçlü vergi tahsilatı + faiz dışı fazla ile çakışmıştı.</p>
   </div>
 </article>
 
@@ -938,47 +905,20 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
         Finansal Piyasalar Bağlamı
       </h2>
-      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">TR 5Y CDS, EMBI spread, getiri eğrisi, yabancı portföy pozisyonu.</p>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Yabancı yatırımcı menkul kıymet stoku ve net hareketi (DİBS + hisse).</p>
     </div>
   </div>
   
-<article id="09a_yield_curve" class="panel" style="margin-bottom:24px;overflow:hidden">
-  <div class="panel-h">
-    <span class="ttl">▣ TL Devlet Tahvili Getiri Eğrisi</span>
-    <span class="meta" style="font-size:10.5px">TCMB · İhale getirisi referans</span>
-  </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/09a_yield_curve.png" alt="TL Devlet Tahvili Getiri Eğrisi" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
-  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TL devlet tahvili getiri eğrisi ters eğimli. İki yıllık tahvil getirisi %39.8, on yıllık %28.5. İki ile on yıl arasındaki makas 11.3 puan negatif (kısa uç uzun ucun üzerinde). Piyasa bu kompozisyonla TCMB'nin önümüzdeki 12-18 ayda faiz indirimine başlayacağını ve uzun vadede enflasyonun %20-25 bandına oturacağını fiyatlıyor.</p>
-<p>Altı ay önceki eğriyle karşılaştırıldığında kısa uçta (1-2 yıl) 400-500 baz puanlık düşüş, uzun uçta (10 yıl) 350 baz puanlık düşüş var. Tüm eğri aşağı kaydı, ancak kısa ucun düşüş hızı daha yüksek. Bu davranış piyasanın TCMB'nin 2026 ikinci yarısında daha cesur indirim adımları atacağını baz senaryoya yerleştirdiğini gösteriyor.</p>
-<p><strong>Yorumumuz.</strong> On yıl vadeli tahvilin %28-30 fiyatlaması, kalıcı %20-25 enflasyon ve beş yıl içinde normalleşme anlatısını ima ediyor. Bu görüş yapışkan enflasyon riskine karşı yeterince koruyucu değil. Eğrinin düzleşmesini izleyin; TCMB indirim sinyali geldiğinde başlayacaktır.</p>
-<p><strong>Risk.</strong> TÜFE'nin yılın üçüncü ve dördüncü çeyreğinde %30'un üzerinde yapışıp kalması durumunda kısa uç tekrar yukarı sıçrar (%40+) ve eğri daha sert biçimde tersine döner. TL faiz pozisyonu açık olan portföyler için piyasaya göre değerleme kaybı anlamına gelir.</p>
-  </div>
-</article>
-
-<article id="09b_risk" class="panel" style="margin-bottom:24px;overflow:hidden">
-  <div class="panel-h">
-    <span class="ttl">▣ TR Ülke Riski · CDS &amp; EMBI</span>
-    <span class="meta" style="font-size:10.5px">Bloomberg · Investing.com snapshot (Mayıs 2026)</span>
-  </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/09b_risk.png" alt="TR Ülke Riski · CDS &amp; EMBI" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
-  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>TR 5Y CDS spread <strong>238 bp</strong>, EMBI Türkiye spread <strong>178 bp</strong>. 2022 sonu 800+bp zirvesinden bu yana <strong>~570 bp düşüş</strong>. Yatırımcı algısında kayda değer iyileşme. Mevcut seviye Türkiye için son 5 yılın dip bandı; CDS'in 2017-19 dönemindeki 200-280 normal bandına geri dönmüş durumda. CDS-EMBI makası <strong>~60 bp</strong> (CDS yüksek). EMBI dolar tahvil getirisinden türetilen bir spread, CDS ise türev piyasasının fiyatı; aradaki fark sınırlı arbitraj demek. Risk algısının her iki kanal tarafından da tutarlı fiyatlandığını gösteriyor.</p>
-<p><strong>Yorumumuz.</strong> CDS'in 220-260 bandında dengelenmesi, Hazine'nin Eurobond ihraçlarını <strong>avantajlı koşullarda</strong> yapabileceği anlamına geliyor (US 10Y + 250 ≈ %7 civarı USD borçlanma maliyeti). 2026 borçlanma takvimi bu seviyelerde gerçekleştirilirse maliyet düşer.</p>
-<p><strong>Risk.</strong> Jeopolitik şok (bölgesel) veya kurumsal çerçeveye güven zayıflar. CDS hızla 350-400 bp'a sıçrar; bu Hazine'nin dış borçlanma maliyetini doğrudan yukarı çeker, mali alan daralır.</p>
-  </div>
-</article>
-
 <article id="09c_foreign" class="panel" style="margin-bottom:24px;overflow:hidden">
   <div class="panel-h">
-    <span class="ttl">▣ Yabancı Yatırımcı Net Pozisyon · Hisse &amp; DİBS</span>
-    <span class="meta" style="font-size:10.5px">TCMB · Haftalık Vaziyet / Menkul Kıymet İstatistikleri</span>
+    <span class="ttl">▣ Yabancı Yatırımcı Portföyü · Stok + Net Hareket</span>
+    <span class="meta" style="font-size:10.5px">EVDS bie_mknethar: TP.MKNETHAR.M1 (hisse stok), .M2 (DİBS stok), .M7 (hisse net), .M8 (DİBS net) · haftalık</span>
   </div>
-  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/09c_foreign.png" alt="Yabancı Yatırımcı Net Pozisyon · Hisse &amp; DİBS" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q2/charts/09c_foreign.png" alt="Yabancı Yatırımcı Portföyü · Stok + Net Hareket" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
-    <p>Nisan 2026'da yabancı yatırımcı: hisse senedi tarafında <strong>+331 mn USD net giriş</strong>, DİBS tarafında <strong>+624 mn USD net giriş</strong>. Son 24 ayda 2024 başında ciddi çıkışlar (-1.5 mlr USD aylık) yaşandıktan sonra 2025 ortasından itibaren net giriş trendi kalıcılaştı; toplam 12 aylık net pozisyon <strong>+8 mlr USD</strong> civarı. Bono tarafının hisseden daha güçlü giriş alması, <strong>yüksek reel faize bağlı pozisyonun</strong> ana motor olduğunu gösteriyor. Yabancılar TL DİBS'lerde reel faizi ve TL'nin görece istikrarını fiyatlıyor; hisse seçici (bankacılık + iştirakli holdingler) ve daha düşük tutarlı.</p>
-<p><strong>Yorumumuz.</strong> TL volatilitesi düşük + reel faiz pozitif kaldığı sürece yabancı bono pozisyonu artmaya devam eder; 2. çeyrek sonunda 12 aylık kümülatif giriş 12 mlr USD'yi geçebilir. Bu cari açığın finansmanına doğrudan katkı.</p>
-<p><strong>Risk.</strong> TCMB'nin reel faiz erozyonuna izin vermesi veya bölgesel risk olayı. 1-2 ayda 3-5 mlr USD çıkış mümkün. 2018 ve 2023 gibi dönemlerde yabancı çıkış kur şokunu tetikleyen ana kanal olmuştu.</p>
+    <p>2026-05-08 itibarıyla yurt dışında yerleşik yatırımcıların yurt içi piyasada hisse stoku 45,832 mn USD, DİBS stoku 15,273 mn USD. Son 52 hafta kümülatif net hareket — hisse tarafında +4,963 mn USD (giriş), DİBS tarafında +6,507 mn USD (giriş). Seri TCMB'nin haftalık "Yurt Dışı Yerleşiklerin Menkul Kıymet Portföyü" yayınından gelir (USD piyasa değeri); stok değişimi hem net işlem hem fiyat ve kur etkisini içerir, akım serisi yalnızca net alış-satışı yansıtır.</p>
+<p><strong>Yorumumuz.</strong> 8 Mayıs 2026 itibarıyla yurt dışında yerleşik yatırımcıların yurt içi hisse stoku 45.8 mlr USD, DİBS stoku 15.3 mlr USD. Son 52 hafta kümülatif net hareket — hisse +5.0 mlr USD giriş, DİBS +6.5 mlr USD giriş. Bono tarafındaki net girişin hisseye yakın büyüklükte olması yüksek reel faize bağlı carry pozisyonunun ana motor olduğunu söylüyor. Bu kombinasyon TL DİBS'lerde reel faizi ve TL'nin görece istikrarını fiyatlayan bir konumlanma.</p>
+<p><strong>Risk.</strong> Aylık yabancı net çıkışın 2 mlr USD üzerine çıktığı ve 3 ay üst üste sürdüğü önceki dönemlerde (2018 Ağustos, 2023 başı) kur baskısı keskinleşmiş, faiz yukarı patika eş zamanlı gözlenmişti; mevcut girişin bu hızda çıkışa dönmesi durumunda cari açığın finansman kalitesi sorgulanır. Hisse tarafının ayrı bir dinamikle (sektörel haber, banka kâr beklentisi) çıkışa dönüp DİBS girişinin sürdüğü senaryolar risk algısının sektörel kaldığı, sistemik olmadığı dönemler olarak okunmuştu.</p>
   </div>
 </article>
 
@@ -992,7 +932,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-14 22:57 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-15 16:11 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">

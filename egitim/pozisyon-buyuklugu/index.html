@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Kalibre Markets</title>
+<title>Pozisyon Büyüklüğü ve Kelly Kriteri · Ne Kadar Almak Makul? · Kalibre Markets</title>
 
 <meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
 <meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
-<meta property="og:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Kalibre Markets">
+<meta property="og:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri · Ne Kadar Almak Makul? · Kalibre Markets">
 <meta property="og:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı? — Kalibre Markets">
+<meta name="twitter:title" content="Pozisyon Büyüklüğü ve Kelly Kriteri · Ne Kadar Almak Makul? · Kalibre Markets">
 <meta name="twitter:description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .fkeys {
   display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+  position: sticky; top: 38px; z-index: 49;
 }
 .fkey {
   display: flex; align-items: center; gap: 7px;
@@ -422,6 +423,15 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   color: var(--accent); text-transform: uppercase; font-weight: 700;
   margin-bottom: 6px;
 }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
 </head>
 <body>
 <div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-15</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
@@ -464,13 +474,13 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   } catch(e) {}
 })();
 </script>
-<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı?</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Pozisyon Büyüklüğü ve Kelly Kriteri · Ne Kadar Almak Makul?</div>
 <main>
 
 <div style="margin-bottom:18px">
   <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ EĞİTİM</div>
-  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Pozisyon Büyüklüğü ve Kelly Kriteri — Ne Kadar Almak Mantıklı?</h2>
-  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Hangi hisseyi alacağım&quot; değil &quot;ne kadar alacağım&quot; sorusunun cevabı. Kelly kriteri, %1 risk kuralı ve neden tek pozisyonda portföyün %5&#x27;ini geçmemeli.</p>
+  <h2 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text)">Pozisyon Büyüklüğü ve Kelly Kriteri · Ne Kadar Almak Makul?</h2>
+  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Asıl soru &quot;hangi hisseyi alacağım&quot; değildir. &quot;Ne kadar alacağım&quot; sorusunun cevabıdır. Kelly kriteri, yüzde 1 risk kuralı ve neden tek pozisyonun portföyün yüzde 5&#x27;ini geçmemesi gerektiği.</p>
 </div>
 
 <div style="background:var(--bg-1);border:1px solid var(--border);margin:18px 0;overflow:hidden"><div style="padding:14px;display:flex;justify-content:center"><svg viewBox="0 0 480 220" width="100%" style="max-width:520px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="11">
@@ -485,20 +495,27 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <rect x="40" y="135" width="160" height="36" fill="#4ade80" opacity=".5"/>
 <text x="60" y="158" fill="#ebe3d3" font-size="11">%40</text>
 <text x="220" y="158" fill="#ebe3d3" font-size="11">Pozisyon = 40.000 TL alabilirsin</text>
-<text x="240" y="200" fill="#a89c83" font-size="10" text-anchor="middle">Pozisyon büyüklüğü = Risk bütçesi ÷ Stop mesafesi</text>
-</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Pozisyon büyüklüğünü stop mesafene göre belirle — sabit oran değil</div></div>
+<text x="240" y="200" fill="#a89c83" font-size="10" text-anchor="middle">Pozisyon büyüklüğü, risk bütçesinin zarar kes mesafesine bölümüdür.</text>
+</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Pozisyon büyüklüğünü zarar kes mesafesine göre belirleyin, sabit oran kullanmayın.</div></div>
+
+<style>
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+</style>
 
 <div class="card" style="line-height:1.75;font-size:15px">
-<h2>Soru: "Hangi hisse?" değil "Ne kadar?"</h2>
+<h2>Soru hangi hisse değildir; ne kadardır</h2>
 <p>Bireysel yatırımcı sohbetleri tek soru etrafında döner: "Hangi hisseyi alayım?" Oysa profesyonel para yöneticilerinin mesaisinin büyük bölümünü dolduran soru farklıdır: "Bu fikre ne kadar para koyayım?"</p>
 <p>Tahmin etmesi şaşırtıcı: uzun vadeli getiriyi belirleyen en önemli faktör hisse seçimi değil, pozisyon büyüklüğüdür.</p>
 <ul>
 <li>Yanlış pozisyon büyüklüğü, doğru seçim yapan stratejiyi bile batırır. %70 isabetli sistem, tek pozisyonda portföyün %40'ını riske attığında üç sıra dışı kayıpla biter.</li>
 <li>Doğru pozisyon büyüklüğü, ortalama strateji ile bile hayatta kalmanı sağlar. Hayatta kalmak, kazanmanın ön koşuludur.</li>
 </ul>
-<h2>Risk Bazlı Yaklaşım — "%1 Kuralı"</h2>
+<h2>Risk bazlı yaklaşım: yüzde 1 kuralı</h2>
 <p>Klasik kural: Tek işlemde portföyün en fazla %1'ini kaybetmeyi göze al.</p>
-<p>Anahtar kelime "kaybetmek". Referans, pozisyon değil <strong>stop loss'a kadar olan kayıp</strong>tır.</p>
+<p>Anahtar kelime kaybetmektir. Referans, pozisyonun nominal büyüklüğü değil, zarar kes seviyesine kadar olan kayıptır.</p>
 <p>Formül:</p>
 <p><code>Pozisyon büyüklüğü = (Portföy × Risk %) / (Giriş − Stop)</code></p>
 <p><strong>Sayısal örnek:</strong> 100.000 TL portföy, %1 risk → max kayıp 1.000 TL.</p>
@@ -507,86 +524,95 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <li>Stop %10 uzakta: pozisyon = 10.000 TL (%10)</li>
 <li>Stop %2 sıkı: pozisyon = 50.000 TL (%50 nominal, ama yine %1 risk)</li>
 </ul>
-<p>Yaklaşımın gücü, volatil ve sıkı stoplu hisse ile sakin geniş stoplu hisseyi <strong>risk üzerinden eşitlemesidir</strong>.</p>
-<p>%1 muhafazakâr bulunuyorsa, %2'ye çıkmak yaygındır. %2 üstü ciddi gerekçe ister; 5 ardışık kayıp portföyün %10'unu götürür, psikolojik sınırı aşar.</p>
-<h2>"%5 Konsantrasyon Sınırı"</h2>
-<p>Tek varlığın portföyde %5'i geçtiğinde:</p>
+<p>Yaklaşımın gücü, oynak ve dar zarar keskili bir hisseyi sakin ve geniş zarar keskili bir hisseyle risk üzerinden eşitleyebilmesidir.</p>
+<p>Yüzde 1 muhafazakâr bulunuyorsa yüzde 2 yaygındır. Yüzde 2 üstü ciddi gerekçe ister; beş ardışık kayıp portföyün yüzde 10&#x27;unu götürür, psikolojik dayanma eşiğini aşar.</p>
+<h2>Yüzde 5 yoğunlaşma sınırı</h2>
+<p>Tek bir varlığın portföyde yüzde 5&#x27;i aştığı andan itibaren şu üç risk büyür:</p>
 <ul>
-<li><strong>Black swan riski:</strong> Şirkete özgü olay (CEO istifası, skandalı, ürün geri çağırması) portföyü orantısız etkiler.</li>
-<li><strong>Çeşitlendirme avantajı kaybolur.</strong> Modern portföy teorisi 15-25 varlıkta sistematik olmayan riskin elimine olduğunu söyler. Tek pozisyon %10 üstü, çeşitlendirme yok demek.</li>
-<li><strong>Davranışsal etki:</strong> Büyük pozisyon → büyük duygu → kötü karar.</li>
+<li><strong>Şirket özelinde şok riski:</strong> CEO istifası, muhasebe skandalı, ürün geri çağırması gibi olaylar portföyü orantısız etkiler. 2024 Şubat ESEN ve 2018 yılındaki ETI gibi BIST hisseleri tek günde yüzde 30 üzeri kayıp gösterebilir.</li>
+<li><strong>Çeşitlendirme avantajı kaybolur:</strong> Modern Portföy Teorisi 15-25 varlıkla sistematik olmayan riskin büyük ölçüde elendiğini söyler. Tek pozisyonun yüzde 10 üstü olması, çeşitlendirmenin pratikte yok olduğu anlamına gelir.</li>
+<li><strong>Davranışsal etki:</strong> Büyük pozisyon, güçlü duygu üretir; bu da bozuk karar üretir.</li>
 </ul>
-<p>Kurumsal hedge fonlarda tek pozisyon %5-10. %15 üzeri "concentrated bet"lerde çıkılır. Buffett'in %20-40'a varan ağırlıkları istisnadır — onun sınırsız zamanı ve sermayesi var.</p>
-<p>Pratik kural: tek hisse %5'i geçince ya çık ya da neden artırdığını yazılı gerekçelendir.</p>
-<h2>Kelly Kriteri — Matematiksel Optimum</h2>
-<p>1956'da John L. Kelly Jr.'ın formülü — uzun vadeli logaritmik büyümeyi maksimize eden pozisyon fraksiyonu:</p>
+<p>Kurumsal hedge fonların büyük çoğunluğunda tek pozisyon yüzde 5-10 bandındadır. Yüzde 15 üstü &quot;yoğunlaşmış bahis&quot; sayılır. Warren Buffett&#x27;ın Berkshire portföyündeki tek hisse ağırlıklarının yüzde 20-40&#x27;a ulaşması istisnadır; çünkü sınırsız tutma süresine ve kalıcı sermayeye sahiptir.</p>
+<p>Pratik kural: tek hisse yüzde 5&#x27;i aştığında ya azaltılır ya da artırma gerekçesi yazılı olarak konulur.</p>
+<h2>Kelly kriteri</h2>
+<p><span class="term" data-title="Kelly Criterion" data-tip="John L. Kelly Jr.&#x27;ın 1956&#x27;da Bell System Technical Journal&#x27;da yayımladığı formül. Bahis veya yatırım fraksiyonunu, beklenen logaritmik büyümeyi maksimize edecek biçimde belirler. Edward Thorp tarafından finans piyasasına uyarlanmıştır.">Kelly kriteri</span>, John L. Kelly Jr.&#x27;ın 1956 yılında <em>Bell System Technical Journal</em>&#x27;da yayımladığı &quot;A New Interpretation of Information Rate&quot; makalesinde tanımlanmıştır. Formül, uzun vadeli logaritmik servet büyümesini maksimize eden pozisyon fraksiyonunu verir. Daha sonra Edward Thorp tarafından blackjack ve finans piyasalarına uyarlandı.</p>
 <p><strong>f* = (p × b − q) / b</strong></p>
 <ul>
 <li>p = kazanma olasılığı</li>
 <li>q = 1 − p = kaybetme olasılığı</li>
 <li>b = kazanç/kayıp oranı (RR)</li>
 </ul>
-<p><strong>Örnek:</strong> %55 win rate, RR 1.5.</p>
-<p>f<em> = (0.55 × 1.5 − 0.45) / 1.5 = (0.825 − 0.45) / 1.5 = </em><em>0.25</em>*</p>
-<p>Kelly: pozisyon başına portföyün %25'i.</p>
-<h3>Neden Yarı-Kelly?</h3>
-<p>Profesyonellerin hiçbiri tam Kelly kullanmaz. Yarı-Kelly veya çeyrek-Kelly tercih edilir:</p>
+<p><strong>Sayısal örnek:</strong> Yüzde 55 kazanma oranı, RR 1.5.</p>
+<p>f* = (0.55 × 1.5 − 0.45) / 1.5 = (0.825 − 0.45) / 1.5 = <strong>0.25</strong></p>
+<p>Kelly sonucu: pozisyon başına portföyün yüzde 25&#x27;i.</p>
+<h3>Neden yarım Kelly tercih edilir?</h3>
+<p>Profesyonellerin neredeyse hiçbiri tam Kelly kullanmaz. Yarım veya çeyrek Kelly tercih edilir. Üç temel neden vardır:</p>
 <ol>
-<li><strong>Parametre belirsizliği:</strong> Win rate ve RR tahminleri çoğunlukla iyimserdir. %5 yanlış hesap → Kelly fraksiyonu kabaca ikiye katlanır.</li>
-<li><strong>Drawdown derinliği:</strong> Tam Kelly'nin beklenen max drawdown'u portföyün ~yarısıdır. Tarihsel olarak %50-70 düşüşler sıradan. Psikoloji dayanmaz.</li>
-<li><strong>Dağılım varsayımı:</strong> Kuyruk olayları, korelasyon kayması, rejim değişimi formülü zayıflatır.</li>
+<li><strong>Parametre belirsizliği:</strong> Kazanma oranı ve RR tahminleri çoğu zaman iyimserdir. Yüzde 5 yanlış hesap, Kelly fraksiyonunu kabaca ikiye katlayabilir.</li>
+<li><strong>Dip derinliği:</strong> Tam Kelly&#x27;nin beklenen maksimum dipi portföyün yaklaşık yarısıdır. Tarihsel olarak yüzde 50-70 dipler sıradandır. Psikoloji bu kayba dayanmaz.</li>
+<li><strong>Dağılım varsayımı:</strong> Aşırı uç olaylar, kriz anlarındaki korelasyon kaymaları ve rejim değişimleri formülün varsayımlarını ihlal eder.</li>
 </ol>
-<p>Yarı-Kelly uzun vadeli büyümenin ~%75'ini sağlar ama drawdown'u yarı yarıya azaltır.</p>
-<p>Yukarıdaki örnekte: yarı-Kelly %12.5, çeyrek-Kelly %6.25 — makul tek-pozisyon ağırlığı.</p>
-<h2>Volatilite Bazlı Pozisyon Boyutlama</h2>
-<p>Modern yaklaşım: stop fiyatı yerine <strong>ATR (Average True Range)</strong> ile boyutla.</p>
-<p><strong>Örnek:</strong> 100.000 TL portföy, %1 risk = 1.000 TL. ATR-20 = 5 TL, stop 2 ATR uzaklıkta (10 TL).</p>
+<p>Yarım Kelly, uzun vadeli büyümenin yaklaşık yüzde 75&#x27;ini sağlarken dip derinliğini yarı yarıya azaltır. Yukarıdaki örnekte yarım Kelly yüzde 12.5, çeyrek Kelly yüzde 6.25 olur. Bu, makul tek pozisyon ağırlığı bandıdır.</p>
+<h2>Oynaklık bazlı pozisyon boyutlama</h2>
+<p>Modern yaklaşımda zarar kes seviyesi yerine <span class="term" data-title="ATR" data-tip="Average True Range. J. Welles Wilder&#x27;in 1978 tarihli &quot;New Concepts in Technical Trading Systems&quot; kitabında tanımladığı oynaklık göstergesi. Belirli sürede gerçek aralıkların ortalamasıdır.">ATR (Average True Range)</span> kullanılır.</p>
+<p><strong>Sayısal örnek:</strong> 100.000 TL portföy, yüzde 1 risk = 1.000 TL. 20 günlük ATR = 5 TL, zarar kes 2 ATR uzaklıkta (10 TL).</p>
 <p>Pozisyon adet = 1.000 / 10 = 100 adet.</p>
-<p>ATR'si 2 TL olan başka hissede stop 4 TL uzakta, pozisyon 250 adete çıkar. Risk yine sabit %1. Bu, kurumsal "risk parity" mantığının sade uygulamasıdır.</p>
-<h2>Davranışsal Boyut — "Geceyi Geçirebilir misin?"</h2>
-<p>Tüm matematiğin üstünde bir test:</p>
+<p>ATR&#x27;si 2 TL olan başka bir hissede zarar kes 4 TL uzaklıktaysa pozisyon 250 adete çıkar. Risk yine yüzde 1&#x27;dir. Bu, kurumsal risk paritesi mantığının sade uygulamasıdır.</p>
+<h2>Davranışsal sınav</h2>
+<p>Tüm matematiğin üstünde tek bir test vardır:</p>
 <blockquote>
-<p>"Bu pozisyon 24 saatte %30 düşse, sabaha rahat uyuyabilir miyim?"</p>
+<p>Bu pozisyon 24 saatte yüzde 30 düşse, sabaha rahat uyuyabilir miyim?</p>
 </blockquote>
-<p>"Hayır" → pozisyon çok büyük. Çok büyük pozisyon → ilk düşüşte panik satış → "haklıydım, beklemeliydim" pişmanlığı.</p>
-<p>Doğru pozisyon büyüklüğü, planlanan stop'a kadar dayanabileceğin büyüklüktür.</p>
-<h2>Pozisyon Büyüklüğü ve Kaldıraç</h2>
-<p>Kaldıraç hem getiriyi hem riski çarpan faktördür.</p>
-<p>5x kaldıraç + portföyün %20'si tek pozisyonda → gerçek maruziyet %100. %20 ters hareket = teorik hesap sıfırlanır.</p>
-<p>Kaldıraç edge varsa avantajdır, yoksa hızlı kayıptır. Pratik: kaldıraçlı işlemlerde bile %1 risk kuralı korunmalı.</p>
-<h2>TR'de Pozisyon Büyüklüğü Pratiği</h2>
+<p>Cevap hayır ise pozisyon çok büyüktür. Büyük pozisyon ilk düşüşte panik satışa yol açar. Sonrasında &quot;haklıydım, beklemeliydim&quot; pişmanlığı gelir.</p>
+<p>Doğru pozisyon büyüklüğü, planlanan zarar kes seviyesine kadar duygusal olarak dayanabileceğin büyüklüktür.</p>
+<h2>Pozisyon büyüklüğü ve kaldıraç</h2>
+<p>Kaldıraç hem getiriyi hem riski çarpan etkisiyle büyütür.</p>
+<p>5x kaldıraç ile portföyün yüzde 20&#x27;si tek pozisyonda kullanıldığında gerçek maruziyet yüzde 100&#x27;dür. Yüzde 20 ters hareket teorik olarak hesabı sıfırlar. 1998 LTCM çöküşü ve 2023 Mart SVB krizinin arkasında bu çarpan mekanizması vardır.</p>
+<p>Kaldıraç, gerçek bir bilgi avantajı varsa fayda sağlar. Yoksa hızlı kayba yol açar. Kaldıraçlı işlemlerde bile yüzde 1 risk kuralı korunmalıdır.</p>
+<h2>BIST&#x27;te pozisyon büyüklüğü pratiği</h2>
 <ul>
-<li><strong>Likidite sınırı:</strong> BIST 30 dışı küçük-orta cap, günlük hacmin %1'ini geçen pozisyonda slipaj. Açabilirsin, ama kapatamayabilirsin.</li>
-<li><strong>Komisyon:</strong> Çok küçük pozisyonda komisyon RR'i bozar.</li>
-<li><strong>Konsantrasyon ve vergi:</strong> Kayıp-kâr mahsubu için çeşitlendirme esneklik sağlar.</li>
-<li><strong>Volatilite:</strong> BIST ATR'si gelişmişlerden yüksek. Stop mesafesi geniş tutulur, pozisyon adet matematiksel olarak küçük çıkar.</li>
+<li><strong>Likidite sınırı:</strong> BIST 30 dışındaki küçük ve orta ölçekli hisselerde günlük hacmin yüzde 1&#x27;ini geçen pozisyonlarda <span class="term" data-title="Slippage" data-tip="Emir verildiği fiyat ile gerçekleşen ortalama fiyat arasındaki sapma.">slipaj</span> büyür. Pozisyon açılabilir ancak kapatılması zor olabilir.</li>
+<li><strong>Komisyon ve BSMV:</strong> Çok küçük pozisyonda işlem maliyetleri risk-kazanç oranını bozar.</li>
+<li><strong>Yoğunlaşma ve vergi:</strong> Türkiye&#x27;de kayıp ve kâr mahsubu için çeşitlendirme esneklik sağlar.</li>
+<li><strong>Oynaklık:</strong> BIST ortalama ATR&#x27;si gelişmiş piyasalardan yüksektir. Zarar kes mesafesi geniş tutulur, pozisyon adedi matematiksel olarak küçük çıkar.</li>
 </ul>
-<h2>Yaygın Yanılgılar</h2>
+<h2>Yaygın yanılgılar</h2>
 <ul>
-<li><strong>"Para çoktu, hisse ucuzdu, hepsini aldım."</strong> Konsantrasyon hatasının klasiği. Ucuzluk pozisyon büyüklüğünü meşrulaştırmaz.</li>
-<li><strong>"Stop yok, düştü, ortalama aldım."</strong> Ortalama düşürmek, pozisyonu büyütür. Edge net değilse katlanarak büyüyen kumar.</li>
-<li><strong>"Yarın yine alırım, ortalamaya döner."</strong> İstatistiksel olarak güçlü değildir.</li>
-<li><strong>"Düştükçe stop'u genişlettim."</strong> Plan bozuldu, "umarım" kaldı.</li>
+<li><strong>&quot;Param vardı, hisse ucuzdu, hepsini aldım.&quot;</strong> Yoğunlaşma hatasının klasik örneğidir. Ucuzluk, pozisyon büyüklüğünü meşrulaştırmaz.</li>
+<li><strong>&quot;Zarar kes yoktu, düştü, ortalama aldım.&quot;</strong> Ortalama düşürmek pozisyonu büyütür. Bilgi avantajı net değilse katlanarak büyüyen kumardır.</li>
+<li><strong>&quot;Yarın geri alırım, ortalamaya döner.&quot;</strong> İstatistiksel olarak güçlü bir önerme değildir.</li>
+<li><strong>&quot;Düştükçe zarar kes seviyesini genişlettim.&quot;</strong> Plan bozulmuş, yerini umut almıştır.</li>
 </ul>
-<h2>Pratik Kontrol Listesi</h2>
-<p>İşlem öncesi 5 soru:</p>
+<h2>Pratik kontrol listesi</h2>
+<p>İşlem öncesi beş soru:</p>
 <ol>
-<li>Portföye göre pozisyon büyüklüğü ne?</li>
-<li>Stop'a kadar gerçek kayıp portföyün yüzde kaçı? (%1-2'yi geçmesin)</li>
-<li>Bu hisse portföyün %5'inden fazlasını mı oluşturacak? Eğer evet, gerekçe yazılı mı?</li>
-<li>Win rate + RR tahminime göre Kelly fraksiyonu ne? Yarısını mı alıyorum?</li>
-<li>Pozisyon -%30 düşse rahat uyur muyum?</li>
+<li>Portföye göre pozisyon büyüklüğü ne kadar?</li>
+<li>Zarar kes seviyesine kadar gerçek kayıp portföyün yüzde kaçı? Yüzde 1-2&#x27;yi geçmemeli.</li>
+<li>Bu hisse portföyün yüzde 5&#x27;ini aşacak mı? Aşacaksa gerekçe yazılı mı?</li>
+<li>Kazanma oranı ve RR tahminime göre Kelly fraksiyonu ne? Yarım veya çeyrek mi alıyorum?</li>
+<li>Pozisyon yüzde 30 düşse rahat uyuyabilir miyim?</li>
 </ol>
-<p>5 cevap makul değilse pozisyon büyüklüğü yanlıştır.</p>
-<h2>İlgili Kavramlar</h2>
+<p>Beş cevaptan herhangi biri makul değilse pozisyon büyüklüğü yanlıştır.</p>
+<h2>İlgili kavramlar</h2>
 <ul>
-<li><strong>Sharpe ratio:</strong> Ölçek bağımsızdır, drawdown derinliği etkilenir.</li>
-<li><strong>Maximum drawdown:</strong> Pozisyon büyüklüğünün doğrudan çıktısı.</li>
-<li><strong>Risk parity:</strong> Sektörler arası eşit risk dağıtımı.</li>
-<li><strong>Kelly fraction:</strong> Logaritmik büyümeyi maksimize eden teorik oran.</li>
-<li><strong>Volatility scaling:</strong> ATR/standart sapma bazlı pozisyon boyutlama.</li>
+<li><strong>Sharpe oranı:</strong> Ölçek bağımsızdır ancak dip derinliği pozisyon büyüklüğüne göre değişir.</li>
+<li><strong>Maksimum dip:</strong> Pozisyon büyüklüğünün doğrudan çıktısıdır.</li>
+<li><strong>Risk paritesi:</strong> Sektörler arası eşit risk dağılımı.</li>
+<li><strong>Kelly fraksiyonu:</strong> Logaritmik büyümeyi maksimize eden teorik oran.</li>
+<li><strong>Oynaklık ölçeklemesi:</strong> ATR veya standart sapma bazlı pozisyon boyutlama.</li>
 </ul>
-<p>Pozisyon büyüklüğü, yatırımcının görünmeyen kasıdır. Manşetlere değil, Excel hesabına bağlıdır portföyün hayatta kalması.</p>
+<p>Pozisyon büyüklüğü yatırımcının görünmeyen koruyucu kalkanıdır. Portföyün hayatta kalması manşetlere değil, hesaplara bağlıdır.</p>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>Kelly, J. L. (1956). A New Interpretation of Information Rate. <em>Bell System Technical Journal</em>, 35(4), 917-926.</li>
+<li>Thorp, E. O. (2006). The Kelly Criterion in Blackjack, Sports Betting, and the Stock Market. <em>Handbook of Asset and Liability Management</em>, Volume 1, North-Holland, 385-428.</li>
+<li>MacLean, L. C., Thorp, E. O. ve Ziemba, W. T. (2010). Good and Bad Properties of the Kelly Criterion. <em>Risk Magazine</em>, 23(1).</li>
+<li>Wilder, J. W. (1978). <em>New Concepts in Technical Trading Systems</em>. Trend Research. (ATR tanımı.)</li>
+<li>Vince, R. (1990). <em>Portfolio Management Formulas: Mathematical Trading Methods for the Futures, Options, and Stock Markets</em>. Wiley.</li>
+<li>Markowitz, H. (1952). Portfolio Selection. <em>The Journal of Finance</em>, 7(1), 77-91. (Sistematik olmayan riskin çeşitlendirme ile elenmesi.)</li>
+</ol>
 </div>
 
 <div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">

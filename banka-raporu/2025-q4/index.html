@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banka Bilanço Raporu · 2025 Dördüncü Çeyrek · Kalibre Markets</title>
+
+<meta name="description" content="BIST mevduat bankalarının 2025 yıl sonu KAP konsolide finansal sonuçları. Bilanço, gelir tablosu, sermaye yeterliliği ve türetilmiş kârlılık rasyoları.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="Türkiye makro, enflasyon, TÜFE, GDP, TCMB, makroekonomi raporu">
+<meta property="og:title" content="Banka Bilanço Raporu · 2025 Dördüncü Çeyrek · Kalibre Markets">
+<meta property="og:description" content="BIST mevduat bankalarının 2025 yıl sonu KAP konsolide finansal sonuçları. Bilanço, gelir tablosu, sermaye yeterliliği ve türetilmiş kârlılık rasyoları.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Banka Bilanço Raporu · 2025 Dördüncü Çeyrek · Kalibre Markets">
+<meta name="twitter:description" content="BIST mevduat bankalarının 2025 yıl sonu KAP konsolide finansal sonuçları. Bilanço, gelir tablosu, sermaye yeterliliği ve türetilmiş kârlılık rasyoları.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── COMMAND BAR ──────────────────────────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 38px; position: sticky; top: 0; z-index: 50;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
+}
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px; position: relative;
+}
+.brand-mark::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 1px solid var(--accent); opacity: .25;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-prompt {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 0 16px; height: 100%; border-right: 1px solid var(--border);
+  color: var(--text-dim); min-width: 0;
+}
+.cmd-prompt .chev { color: var(--accent); font-weight: 700; }
+.cmd-prompt input {
+  flex: 1; background: transparent; border: 0; outline: 0;
+  color: var(--text); font: inherit; letter-spacing: .02em; min-width: 0;
+}
+.cmd-prompt input::placeholder { color: var(--muted); }
+.kbd {
+  border: 1px solid var(--border-2); padding: 1px 6px;
+  font-size: 10px; color: var(--muted); letter-spacing: .06em;
+}
+.cmd-status { display: flex; align-items: center; gap: 0; height: 100%; }
+.cmd-stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+  white-space: nowrap;
+}
+.cmd-stat .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── FUNCTION KEYS ────────────────────────────────── */
+.fkeys {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  background: var(--bg-1); border-bottom: 1px solid var(--border); height: 36px;
+}
+.fkey {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 14px; height: 100%; border-right: 1px solid var(--border);
+  font-size: 13px; color: var(--text-dim); letter-spacing: 0;
+  cursor: pointer; transition: background .12s, color .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fkey:hover { background: var(--surface); color: var(--text); }
+.fkey.active { background: var(--surface-2); color: var(--accent); }
+.fkey .k { color: var(--muted); font-weight: 600; font-size: 9.5px; letter-spacing: .04em; opacity: .55; }
+.fkey.active .k { color: var(--accent); opacity: 1; }
+.fkey .lbl { font-weight: 500; }
+.fkey:last-child { border-right: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .fkeys { grid-template-columns: repeat(4, 1fr); height: auto; }
+  .fkey { border-bottom: 1px solid var(--border); padding: 0 10px; font-size: 12px; }
+  .fkey:nth-child(4n) { border-right: 0; }
+  .fkey .k { display: none; }  /* F1/F2 etiketlerini gizle, sadece label kalsın */
+  .cmd-stat:not(:first-child) { display: none; }
+  .cmd-prompt input,
+  .cmd-prompt span:not(.chev):not(.kbd) { font-size: 12px; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  /* Cmd prompt mobilde gizle (sadece brand + status) */
+  .cmd-prompt { display: none; }
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  .disclaimer-banner { line-height: 1.5; }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding: 0 12px; }
+  .cmd-status { padding: 0 8px; font-size: 10px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-14</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün <b style="color:var(--text)">sade Türkçe</b> ile özetleyen otomatik bir bülten.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimlerini sade Türkçe ile öğrenin</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › <a href='/arastirma/' style='color:inherit'>Araştırma</a> › Banka Bilanço Raporu · 2025 Q4</div>
+<main>
+
+<div class="wrap">
+  <div style="margin-bottom:24px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">
+      ▸ Banka Bilanço Raporu
+    </div>
+    <h1 style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
+      Banka Bilanço Raporu · 2025 Dördüncü Çeyrek
+    </h1>
+    <p style="margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--text-dim)">
+      BIST&#x27;te işlem gören altı büyük mevduat bankasının 31.12.2025 finansal sonuçlarının karşılaştırmalı görünümü. Net kâr, kârlılık marjları, aktif kalitesi ve sermaye yeterliliği. Her veri için doğrulanmış kaynak.
+    </p>
+    <p style="margin-top:6px;font-size:11.5px;color:var(--muted);letter-spacing:.04em">
+      Son güncelleme tarihi: <span style="font-family:'Geist Mono','JetBrains Mono',monospace">16.05.2026</span> · KAP konsolide rapor doğrulamasıyla
+    </p>
+  </div>
+
+  <style>
+    .br-table { width:100%; border-collapse:collapse; font-family:'Geist Mono','JetBrains Mono',monospace; font-size:12px; }
+    .br-table th, .br-table td { padding:9px 10px; border-bottom:1px dashed var(--border); text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .br-table th { color:var(--muted); font-weight:500; font-size:10px; letter-spacing:.06em; text-transform:uppercase; border-bottom:1px solid var(--border-2); }
+    .br-table td.bank { text-align:left; color:var(--text); font-weight:600; font-family:'Inter Tight',sans-serif; font-size:13px; }
+    .br-table td.dim { color:var(--muted); }
+    .br-table tbody tr:hover { background:var(--bg-1); }
+    .br-table .na { color:var(--muted); font-size:11px; }
+    .br-table .fn { color:var(--accent); font-size:10px; vertical-align:super; margin-left:2px; cursor:help; }
+    .br-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    @media (max-width:900px) { .br-grid { grid-template-columns:1fr; } .br-table { font-size:11px; } .br-table th, .br-table td { padding:7px 6px; } }
+    .br-card { background:var(--surface); border:1px solid var(--border); padding:18px 20px; }
+    .br-card h3 { font-size:15px; color:var(--text); margin:0 0 4px; font-weight:600; }
+    .br-card .ticker { font-family:'Geist Mono',monospace; color:var(--accent); font-size:11px; letter-spacing:.06em; margin-bottom:10px; }
+    .br-card .kv { display:grid; grid-template-columns:1fr auto; gap:5px 14px; font-size:12.5px; margin-bottom:10px; }
+    .br-card .kv .k { color:var(--text-dim); }
+    .br-card .kv .v { color:var(--text); font-family:'Geist Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; }
+    .br-card .note { font-size:11.5px; color:var(--text-dim); line-height:1.55; padding-top:10px; border-top:1px dashed var(--border); }
+    .footnotes { font-size:12px; color:var(--text-dim); line-height:1.65; padding:14px 16px; background:var(--bg-1); border-left:2px solid var(--accent); margin:18px 0; }
+    .footnotes ol { padding-left:18px; margin-top:6px; }
+    .footnotes li { margin-bottom:4px; }
+    .kaynakca-bank { padding-left:20px; font-size:12.5px; color:var(--text-dim); line-height:1.7; }
+    .kaynakca-bank li { margin-bottom:6px; }
+    .kaynakca-bank a { color:var(--accent); border-bottom:1px dotted var(--accent); }
+    .kaynakca-bank em { color:var(--text); font-style:italic; }
+  </style>
+
+  <!-- KAPAK YORUM -->
+  <div class="card" style="border-left:2px solid var(--accent);margin-bottom:24px;line-height:1.7;font-size:14px">
+    <h2 style="margin:0 0 10px;font-size:18px">Genel Görünüm</h2>
+    <p>2025 yılı, Türk bankacılık sektörü için sıkı para politikasının yarattığı zorlu bir geçiş dönemiydi. TCMB politika faizi yılın büyük bölümünde %40 üzerinde kaldı. Bu ortamda bankaların net faiz marjı (NIM) genellikle baskı altındaydı. Mevduat fiyatlamasının kredi getirilerinden daha hızlı yukarı çekilmesi marj daralmasına yol açtı.</p>
+    <p>Yıl sonuna doğru, TCMB&#x27;nin Aralık 2024 sonu başlayan ölçülü gevşeme adımları ve TÜFE&#x27;ye endeksli devlet tahvilleri (TÜFEX) portföyünün desteğiyle marjlar yeniden toparlanmaya başladı. Bu durum, çeyrek bazlı NIM rakamlarının yıllık ortalamadan belirgin biçimde yüksek olmasının ana nedenidir.</p>
+    <p>Altı büyük mevduat bankasının 2025 konsolide net kârı toplamı 415,4 mld TL düzeyinde. Garanti BBVA 111,3 mld TL ile sektörde tek başına lider. İş Bankası 90,1 mld TL ve VakıfBank 80,8 mld TL onu izliyor. Halkbank 28,9 mld TL ile karşılaştırma grubunun en geride kalan bankası. Sermaye yeterliliği cephesinde Akbank ve Garanti BBVA %19 üzerinde CAR ile en güçlü konumda. Halkbank ise CET1 oranı %10,25 ile BDDK&#x27;nın minimum eşiğine en yakın bankalardan biri.</p>
+    <p>KAP konsolide gelir tablosunda ticari kâr/zarar kaleminde bazı bankalarda (özellikle Yapı Kredi&#x27;de -60,4 mld TL) yüksek negatif değerler görülüyor. Bu kalem türev ve kambiyo işlemlerini kapsıyor ve genellikle net faiz geliriyle dengeleniyor. İştirak gelirleri açısından İş Bankası 16,1 mld TL ile sektörde tek başına ön plana çıkıyor. Diğer beş bankada bu kalem 0,2 ile 3,3 mld TL arasında. Aktif kalitesi göstergeleri (Donuk Alacaklar oranı, kredi maliyeti) bu raporda yer almıyor. Bu rakamlar her bankanın KAP konsolide raporundaki krediler dipnotundan ayrıca okunmalıdır.</p>
+  </div>
+
+  <!-- ANA KARŞILAŞTIRMA TABLOSU -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">Bilanço ve Sermaye Yeterliliği</h2>
+    <div class="commentary" style="margin-bottom:14px">
+      <p style="margin:0"><b>Ne gösteriyor.</b> Bankaların büyüklüğünü ve sermaye gücünü. Soldan sağa: bilanço büyüklüğü (aktif, kredi, mevduat), özkaynak ve sermaye yeterliliği oranları.</p>
+      <p style="margin:6px 0 0"><b>Nasıl okunmalı.</b> Yüksek CET1 ve CAR oranı, kötü senaryolara karşı daha güçlü tampon demektir. BDDK minimum eşiği CAR için %12. Tablodaki bankalar bu eşiğin üzerinde, ancak aralarındaki fark sermaye sağlamlığı sıralamasını ortaya koyuyor.</p>
+      <p style="margin:6px 0 0;font-size:11px;color:var(--muted)">Tüm bilanço rakamları milyar TL (mld TL). Veriler 31.12.2025 KAP konsolide finansal raporundan.</p>
+    </div>
+    <div style="overflow-x:auto;background:var(--surface);border:1px solid var(--border)">
+      <table class="br-table">
+        <thead>
+          <tr>
+            <th class="bank" style="text-align:left">Banka</th>
+            <th>Toplam Aktif</th>
+            <th>Toplam Krediler</th>
+            <th>Müşteri Mevduatı</th>
+            <th>Özkaynak</th>
+            <th>CET1<span class="fn" title="Çekirdek Sermaye Yeterlilik Oranı (Konsolide). KAP konsolide finansal rapordaki sermaye yeterliliği notundan doğrulandı.">¹</span></th>
+            <th>Tier 1</th>
+            <th>CAR<span class="fn" title="Sermaye Yeterlilik Oranı (SYR), Konsolide. BDDK regülatif standardına göre.">²</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bank">Akbank<br><span style="color:var(--muted);font-size:10px;font-weight:400">AKBNK</span></td>
+            <td>3.559</td>
+            <td>1.921</td>
+            <td>2.173</td>
+            <td>310</td>
+            <td>%14,26</td>
+            <td>%15,45</td>
+            <td>%19,03</td>
+          </tr>
+          <tr>
+            <td class="bank">Garanti BBVA<br><span style="color:var(--muted);font-size:10px;font-weight:400">GARAN</span></td>
+            <td>4.548</td>
+            <td>2.716</td>
+            <td>3.150</td>
+            <td>447</td>
+            <td>%14,56</td>
+            <td>%14,56</td>
+            <td>%19,39<span class="fn">a</span></td>
+          </tr>
+          <tr>
+            <td class="bank">Halkbank<br><span style="color:var(--muted);font-size:10px;font-weight:400">HALKB</span></td>
+            <td>4.497</td>
+            <td>2.096</td>
+            <td>3.608</td>
+            <td>223</td>
+            <td>%10,25</td>
+            <td>%13,02</td>
+            <td>%15,56</td>
+          </tr>
+          <tr>
+            <td class="bank">İş Bankası<br><span style="color:var(--muted);font-size:10px;font-weight:400">ISCTR</span></td>
+            <td>5.389<span class="fn">b</span></td>
+            <td>2.717</td>
+            <td>3.173</td>
+            <td>505</td>
+            <td>%13,48</td>
+            <td>%14,92</td>
+            <td>%17,14</td>
+          </tr>
+          <tr>
+            <td class="bank">VakıfBank<br><span style="color:var(--muted);font-size:10px;font-weight:400">VAKBN</span></td>
+            <td>5.493</td>
+            <td>3.019</td>
+            <td>3.480</td>
+            <td>345</td>
+            <td>%11,75</td>
+            <td>%14,62</td>
+            <td>%16,89</td>
+          </tr>
+          <tr>
+            <td class="bank">Yapı Kredi<br><span style="color:var(--muted);font-size:10px;font-weight:400">YKBNK</span></td>
+            <td>3.523</td>
+            <td>1.897</td>
+            <td>1.959</td>
+            <td>256</td>
+            <td>%11,25</td>
+            <td>%13,40</td>
+            <td>%16,71</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">Aktif, kredi, mevduat ve özkaynak değerleri milyar TL (mld TL). · CET1 = Çekirdek Sermaye Yeterlilik Oranı · Tier 1 = Ana Sermaye Yeterlilik Oranı · CAR = Toplam Sermaye Yeterlilik Oranı (SYR)</p>
+  </section>
+
+  <!-- KARLILIK VE GELİR TABLOSU TABLOSU -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">Gelir Tablosu ve Kârlılık</h2>
+    <div class="commentary" style="margin-bottom:14px">
+      <p style="margin:0"><b>Ne gösteriyor.</b> Bankaların 2025 yılında nereden para kazandığını. Net Faiz Geliri ana motor. Net Ücret/Komisyon ikinci sırada. Ticari Kâr/Zarar (türev ve kambiyo işlemleri) sıklıkla negatif çıkar. İştirak Geliri, bankanın bağlı şirketlerinden gelen kâr payı.</p>
+      <p style="margin:6px 0 0"><b>Nasıl okunmalı.</b> Net Faiz Geliri yüksek olan banka temel bankacılık işinde güçlü. Ticari K/Z negatifse panik yapmayın, bunlar genellikle net faiz geliriyle dengelenen riskten korunma işlemleridir. İş Bankası&#x27;nın 16,1 mld TL iştirak geliri sektörden açık ara yüksek, çünkü bağlı ortaklık portföyü en geniş olan.</p>
+      <p style="margin:6px 0 0;font-size:11px;color:var(--muted)">Tüm değerler milyar TL. 2025 yıllık dönem (1 Ocak ile 31 Aralık 2025 arası). Veriler KAP konsolide kâr veya zarar tablosundan.</p>
+    </div>
+    <div style="overflow-x:auto;background:var(--surface);border:1px solid var(--border)">
+      <table class="br-table">
+        <thead>
+          <tr>
+            <th class="bank" style="text-align:left">Banka</th>
+            <th>Net Faiz Geliri</th>
+            <th>Net Ücret/Kom.</th>
+            <th>Ticari K/Z<span class="fn" title="Türev finansal işlemlerden + sermaye piyasası işlem + kambiyo kâr/zararı net toplamı.">³</span></th>
+            <th>İştirak Geliri<span class="fn" title="Özkaynak yöntemi uygulanan ortaklıklardan (bağlı ortaklık, iştirak, iş ortaklığı) kâr/zarar payı.">⁴</span></th>
+            <th>Diğer Faaliyet</th>
+            <th>Net Dönem Kârı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bank">AKBNK</td>
+            <td>109,0</td>
+            <td>121,0</td>
+            <td>-6,7</td>
+            <td>0,2</td>
+            <td>6,7</td>
+            <td>57,2</td>
+          </tr>
+          <tr>
+            <td class="bank">GARAN</td>
+            <td>204,7</td>
+            <td>145,5</td>
+            <td>-6,5</td>
+            <td>3,3</td>
+            <td>66,4</td>
+            <td>111,3</td>
+          </tr>
+          <tr>
+            <td class="bank">HALKB</td>
+            <td>96,5</td>
+            <td>61,8</td>
+            <td>-12,1</td>
+            <td>0,5</td>
+            <td>39,9</td>
+            <td>28,9</td>
+          </tr>
+          <tr>
+            <td class="bank">ISCTR</td>
+            <td>155,5</td>
+            <td>123,1</td>
+            <td>6,5</td>
+            <td>16,1<span class="fn">c</span></td>
+            <td>138,9</td>
+            <td>90,1</td>
+          </tr>
+          <tr>
+            <td class="bank">VAKBN</td>
+            <td>162,5</td>
+            <td>71,8</td>
+            <td>7,0</td>
+            <td>1,1</td>
+            <td>68,3</td>
+            <td>80,8</td>
+          </tr>
+          <tr>
+            <td class="bank">YKBNK</td>
+            <td>161,1</td>
+            <td>116,5</td>
+            <td>-60,4<span class="fn">d</span></td>
+            <td>1,8</td>
+            <td>21,1</td>
+            <td>47,1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TANIM NOTLARI -->
+  <section class="footnotes" style="margin-bottom:32px">
+    <strong style="color:var(--text);font-size:13px">Tablo Notları ve Tanım Farkları</strong>
+    <ol>
+      <li><strong>CET1 ve Tier 1.</strong> KAP konsolide raporun sermaye yeterliliği notundan okundu. Garanti BBVA&#x27;da ilave ana sermaye olmadığı için CET1 ve Tier 1 eşit.</li>
+      <li><strong>CAR ve forbearance.</strong> Tablodaki tüm CAR değerleri KAP konsolide rapordaki Sermaye Yeterlilik Oranı satırından okundu. BDDK forbearance uygulamaları dahil. Bankaların basın bültenlerinde zaman zaman geçen &quot;forbearance hariç&quot; rakamlar bu değerlerden daha düşüktür.</li>
+      <li><strong>Ticari K/Z.</strong> KAP gelir tablosunda &quot;Türev Finansal İşlemlerden Kâr/Zarar&quot; + &quot;Sermaye Piyasası İşlem Kâr/Zararı&quot; + &quot;Kambiyo İşlemleri Kâr/Zararı&quot; alt kalemlerinin net toplamıdır. Negatif değer, türev ve kambiyo işlemlerinden net zarar olduğunu gösterir. Bu zararlar genellikle net faiz geliri kalemi tarafından telafi edilir.</li>
+      <li><strong>İştirak Geliri.</strong> KAP konsolide gelir tablosunda &quot;Özkaynak Yöntemi Uygulanan Ortaklıklardan Kâr/Zarar&quot; satırıdır. Banka&#x27;nın iştiraklerinden, bağlı ortaklıklarından ve iş ortaklıklarından elde ettiği net gelirin payını ifade eder.</li>
+      <li><strong>(a) GARAN CAR.</strong> KAP konsolide raporda %19,39. Bankanın basın bülteninde &quot;forbearance hariç %17,5&quot; olarak da geçer. İki rakam farklı bazları temsil eder.</li>
+      <li><strong>(b) ISCTR Konsolide Aktif.</strong> KAP konsolide bilançodan: 5.389 mld TL. Bankanın solo (yalnız banka, iştirakler hariç) aktif büyüklüğü 4.600 mld TL civarındadır. Bu raporda &quot;konsolide&quot; baz kullanıldı.</li>
+      <li><strong>(c) ISCTR İştirak Geliri 16,1 mld TL.</strong> Sektörün en yüksek değeri. Şişe Cam, Anadolu Hayat, İş Yatırım ve diğer iştirak portföyünün konsolide gelir tablosuna katkısıdır.</li>
+      <li><strong>(d) YKBNK Ticari K/Z -60,4 mld TL.</strong> Sektörün en negatif değeri. Türev ve kambiyo işlemlerinden net zarar olarak görülen bu kalem, bankanın net faiz geliri (161,1 mld TL) tarafından fazlasıyla telafi edilmektedir. Bilanço üzerindeki etkisi nötrdür.</li>
+    </ol>
+  </section>
+
+  <!-- KAP'tan TÜRETİLEN KARLILIK RASYOLARI -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">KAP&#x27;tan Türetilen Kârlılık Rasyoları</h2>
+    <div class="commentary" style="margin-bottom:14px">
+      <p style="margin:0"><b>Ne gösteriyor.</b> Bankaların ne kadar verimli kâr ürettiğini. ROE özkaynağın yüzde kaçını kâr olarak geri verdiğini söyler. ROAA aynı şeyi aktif üzerinden ölçer. NFG/Aktif basit bir net faiz marjı göstergesidir.</p>
+      <p style="margin:6px 0 0"><b>Nasıl okunmalı.</b> Yüksek ROE iyidir ama tek başına yeterli değildir. Yüksek kaldıraçla çalışan banka da yüksek ROE üretir, ancak risk daha fazladır. ROAA ve sermaye oranlarıyla birlikte değerlendirin. İştirak Geliri / Net Kâr oranı yüksekse, bankanın kârı esas bankacılık işinden değil bağlı şirketlerinden geliyor demektir.</p>
+      <p style="margin:6px 0 0;font-size:11px;color:var(--muted)">Rasyolar dönem-sonu (31.12.2025) seviyeleri kullanır. Banka raporlarında görülen ROAE (ortalama özkaynak) değerlerinden bir miktar farklı çıkar. NFG/Aktif, bankaların raporladığı NIM ile aynı tanım değildir.</p>
+    </div>
+    <div style="overflow-x:auto;background:var(--surface);border:1px solid var(--border)">
+      <table class="br-table">
+        <thead>
+          <tr>
+            <th class="bank" style="text-align:left">Banka</th>
+            <th>ROE<span class="fn" title="Net Dönem Kârı / Özkaynak (her ikisi 31.12.2025). Dönem-sonu seviye. Bankalar genellikle ROAE (ortalama özkaynak) raporlar, bu rakam ondan biraz farklı çıkabilir.">⁵</span></th>
+            <th>ROAA<span class="fn" title="Net Dönem Kârı / Toplam Aktif (her ikisi 31.12.2025). Dönem-sonu seviye.">⁶</span></th>
+            <th>NFG/Aktif<span class="fn" title="Net Faiz Geliri / Toplam Aktif. Basit bir net faiz marjı göstergesidir. Bankaların raporladığı NIM (Net Faiz Marjı / Ortalama Faiz Getirili Aktif) ile aynı tanım değildir.">⁷</span></th>
+            <th>Kredi/Mevduat</th>
+            <th>İştirak Geliri / Net Kâr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bank">AKBNK</td>
+            <td>%18,4</td>
+            <td>%1,61</td>
+            <td>%3,06</td>
+            <td>%88</td>
+            <td>%0,3</td>
+          </tr>
+          <tr>
+            <td class="bank">GARAN</td>
+            <td>%24,9</td>
+            <td>%2,45</td>
+            <td>%4,50</td>
+            <td>%86</td>
+            <td>%3,0</td>
+          </tr>
+          <tr>
+            <td class="bank">HALKB</td>
+            <td>%12,96</td>
+            <td>%0,64</td>
+            <td>%2,15</td>
+            <td>%58</td>
+            <td>%1,7</td>
+          </tr>
+          <tr>
+            <td class="bank">ISCTR</td>
+            <td>%17,8</td>
+            <td>%1,67</td>
+            <td>%2,89</td>
+            <td>%86</td>
+            <td>%17,9</td>
+          </tr>
+          <tr>
+            <td class="bank">VAKBN</td>
+            <td>%23,4</td>
+            <td>%1,47</td>
+            <td>%2,96</td>
+            <td>%87</td>
+            <td>%1,4</td>
+          </tr>
+          <tr>
+            <td class="bank">YKBNK</td>
+            <td>%18,4</td>
+            <td>%1,34</td>
+            <td>%4,57</td>
+            <td>%97</td>
+            <td>%3,8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">ROE ve ROAA dönem-sonu seviyeleri kullanır. Banka IR sunumlarında raporlanan ROAE (ortalama özkaynak) değerleri biraz farklı çıkar. NFG/Aktif standart NIM tanımı değildir, banka raporlarındaki NIM ile karıştırılmamalıdır.</p>
+  </section>
+
+  <!-- PER-BANK CARDS -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">Banka Banka Özetler</h2>
+    <div class="commentary" style="margin-bottom:14px">
+      <p style="margin:0"><b>Ne gösteriyor.</b> Her bankanın en kritik dokuz finansal göstergesini tek bakışta. Aktif, kredi, mevduat, özkaynak, net kâr, net faiz geliri, iştirak geliri ve sermaye oranları.</p>
+      <p style="margin:6px 0 0"><b>Nasıl okunmalı.</b> Kartın altındaki kısa not, bankanın bu çeyrekte en dikkat çekici özelliğini özetler. Bankaları kıyaslamak için yukarıdaki tablolar daha hızlıdır, kartlar derinlemesine bakmak içindir.</p>
+    </div>
+    <div class="br-grid">
+
+      <!-- AKBNK -->
+      <div class="br-card">
+        <h3>Akbank</h3>
+        <div class="ticker">AKBNK · Özel sermaye</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif</div><div class="v">3.559 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">1.921 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">2.173 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">310 mld TL</div>
+          <div class="k">Net Kâr 2025</div><div class="v">57,2 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">109,0 mld TL</div>
+          <div class="k">İştirak Geliri</div><div class="v">0,2 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%14,26 / %19,03</div>
+        </div>
+        <div class="note">Net ücret ve komisyon gelirleri 121 mld TL ile net faiz gelirini aştı. Bu durum sektörde dikkat çekici bir yapısal özellik. Sermaye yeterliliği güçlü, CAR %19&#x27;un üzerinde. İştirak portföyü küçük olduğu için konsolide gelir tablosunda iştirak geliri katkısı sınırlı.</div>
+      </div>
+
+      <!-- GARAN -->
+      <div class="br-card">
+        <h3>Garanti BBVA</h3>
+        <div class="ticker">GARAN · Özel sermaye (BBVA grubu)</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif</div><div class="v">4.548 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">2.716 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">3.150 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">447 mld TL</div>
+          <div class="k">Net Kâr 2025</div><div class="v">111,3 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">204,7 mld TL</div>
+          <div class="k">İştirak Geliri</div><div class="v">3,3 mld TL</div>
+          <div class="k">Diğer Faaliyet Geliri</div><div class="v">66,4 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%14,56 / %19,39</div>
+        </div>
+        <div class="note">Sektörün en yüksek net kârını üreten banka. Net faiz geliri 204,7 mld TL ile sektörde tek başına en yüksek. Düşük maliyetli talep mevduatı ağırlığı yüksek, fonlama avantajı belirgin. Sermaye yeterliliği rakipleri arasında en güçlüsü. BBVA basın bülteninde &quot;forbearance hariç CAR %17,5&quot; olarak da görünür; tablodaki %19,39 forbearance dahil KAP standart değeridir.</div>
+      </div>
+
+      <!-- HALKB -->
+      <div class="br-card">
+        <h3>Halkbank</h3>
+        <div class="ticker">HALKB · Kamu bankası, KOBİ ağırlıklı</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif</div><div class="v">4.497 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">2.096 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">3.608 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">223 mld TL</div>
+          <div class="k">Net Kâr 2025</div><div class="v">28,9 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">96,5 mld TL</div>
+          <div class="k">Ticari K/Z (Net)</div><div class="v">-12,1 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%10,25 / %15,56</div>
+        </div>
+        <div class="note">Karşılaştırma grubunda en düşük net kâr ve en düşük sermaye yeterliliği. CET1 %10,25, BDDK&#x27;nın minimum eşiğine en yakın seviyede. KOBİ ve kamu kredisi ağırlığı, marj cephesinde mevduat fiyatlamasına yüksek duyarlılık yaratıyor. Mevduat tabanı geniş (3.608 mld TL) ama net faiz marjı zayıf.</div>
+      </div>
+
+      <!-- ISCTR -->
+      <div class="br-card">
+        <h3>İş Bankası</h3>
+        <div class="ticker">ISCTR · Türkiye İş Bankası, geniş iştirak portföyü</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif (konsolide)</div><div class="v">5.389 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">2.717 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">3.173 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">505 mld TL</div>
+          <div class="k">Net Kâr 2025 (konsolide)</div><div class="v">90,1 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">155,5 mld TL</div>
+          <div class="k">İştirak Geliri</div><div class="v">16,1 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%13,48 / %17,14</div>
+        </div>
+        <div class="note">Konsolide net kâr 90,1 mld TL ile sektörde Garanti&#x27;nin ardından ikinci sıradadır. Bankanın solo (yalnız banka) net kârı 67,4 mld TL düzeyindedir. Aradaki 16,1 mld TL fark, Şişe Cam, Anadolu Hayat, İş Yatırım gibi iştiraklerden gelen kârın konsolidasyon yoluyla gelir tablosuna yansımasıdır. Sektördeki en yüksek iştirak geliri.</div>
+      </div>
+
+      <!-- VAKBN -->
+      <div class="br-card">
+        <h3>VakıfBank</h3>
+        <div class="ticker">VAKBN · Kamu bankası, en büyük bilanço</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif</div><div class="v">5.493 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">3.019 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">3.480 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">345 mld TL</div>
+          <div class="k">Net Kâr 2025</div><div class="v">80,8 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">162,5 mld TL</div>
+          <div class="k">Diğer Faaliyet Geliri</div><div class="v">68,3 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%11,75 / %16,89</div>
+        </div>
+        <div class="note">Toplam aktifte sektörün en büyük bankası. 2025 yıl sonunda 5.493 mld TL ile İş Bankası&#x27;nın üzerinde. Kredi/Mevduat oranı %87 ile karşılaştırma grubunda en yüksek. CET1 oranı %11,75 ile sermaye tamponu görece zayıf, kamu bankaları arasında HALKB&#x27;den daha güçlü ama özel bankaların altında.</div>
+      </div>
+
+      <!-- YKBNK -->
+      <div class="br-card">
+        <h3>Yapı Kredi</h3>
+        <div class="ticker">YKBNK · Özel sermaye (Koç Holding kontrolü)</div>
+        <div class="kv">
+          <div class="k">Toplam Aktif</div><div class="v">3.523 mld TL</div>
+          <div class="k">Toplam Krediler</div><div class="v">1.897 mld TL</div>
+          <div class="k">Müşteri Mevduatı</div><div class="v">1.959 mld TL</div>
+          <div class="k">Özkaynak</div><div class="v">256 mld TL</div>
+          <div class="k">Net Kâr 2025</div><div class="v">47,1 mld TL</div>
+          <div class="k">Net Faiz Geliri</div><div class="v">161,1 mld TL</div>
+          <div class="k">Ticari K/Z (Net)</div><div class="v">-60,4 mld TL</div>
+          <div class="k">CET1 / CAR</div><div class="v">%11,25 / %16,71</div>
+        </div>
+        <div class="note">KAP konsolide net kâr 47,1 mld TL. Ticari kâr/zarar -60,4 mld TL ile sektörde en negatif değer. Bu büyük türev ve kambiyo zararı, net faiz geliri 161,1 mld TL ve diğer faaliyet gelirleri 21,1 mld TL ile telafi ediliyor. CET1 %11,25 ve CAR %16,71 ile sermaye yapısı dengeli.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- METODOLOJİ -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">Metodoloji ve Veri Sınırlamaları</h2>
+    <div class="card" style="line-height:1.7;font-size:13.5px">
+      <p>Bu rapordaki <strong>tüm sayısal veriler tek bir kaynaktan gelir: bankaların 31.12.2025 KAP konsolide finansal rapor PDF&#x27;leri</strong>. PDF&#x27;ler bankaların yatırımcı ilişkileri sayfalarından indirildi, pdftotext ile metne çevrildi ve ilgili satırlar (konsolide bilanço, konsolide kâr veya zarar tablosu, sermaye yeterliliği notu) doğrudan okundu. Banka basın açıklamaları, IR sunumları ve aracı kurum analiz raporları bu sayfayı <strong>beslemek için kullanılmaz</strong>. Yalnızca KAP rakamlarının çapraz kontrolü ve bağlam için referans alınır.</p>
+
+      <p style="margin-top:10px">Bu kuralın gerekçesi şudur. Basın açıklamalarında ve aracı kurum raporlarında zaman zaman dönem farkı, tanım farkı veya yuvarlama hatası bulunur. Aynı bankanın aynı çeyreğindeki ROE iki kaynakta iki farklı değerle çıkabilir. Karşılaştırma standardını korumak için tek bir birincil kaynak kullanılır.</p>
+
+      <p style="margin-top:14px"><strong>Konsolide vs Solo ayrımı.</strong> Bu raporda &quot;konsolide&quot; baz kullanıldı. Konsolide rakamlar bankanın yanı sıra bağlı ortaklıklarını, iştiraklerini ve iş ortaklıklarını içerir. Bu özellikle geniş iştirak portföyü olan bankalarda (örneğin İş Bankası) anlamlı bir fark yaratır. İş Bankası&#x27;nın 31.12.2025 solo net kârı 67,4 mld TL düzeyindeyken konsolide kârı 90,1 mld TL&#x27;dir. Aradaki 16,1 mld TL iştirak gelirleri kaynaklıdır.</p>
+
+      <p style="margin-top:14px"><strong>Kârlılık rasyoları neden türetilmiş?</strong> Bankaların IR sunumlarında raporladığı NIM, ROE, NPL gibi rasyolar farklı tanımlar kullanır (yıllık ortalama vs çeyreklik, swap düzeltilmiş vs raw, ROAE vs ROTE). Karşılaştırma standardını korumak için bu rapor sadece KAP konsolide tablodan doğrudan hesaplanabilen rasyoları gösterir. ROE = Net Kâr / Özkaynak (dönem-sonu). ROAA = Net Kâr / Toplam Aktif (dönem-sonu). Bunlar bankaların raporladığı ROAE veya ROTE değerlerinden bir miktar farklı çıkar.</p>
+
+      <p style="margin-top:14px"><strong>CAR ve forbearance.</strong> Tablodaki CAR değerleri KAP konsolide raporun sermaye yeterliliği notundaki standart oranlardır (BDDK forbearance dahil). Bankalar basın bültenlerinde zaman zaman &quot;forbearance hariç&quot; rakam da paylaşır. İki tanım farklı görünür ve karıştırılmamalıdır.</p>
+
+      <p style="margin-top:14px"><strong>Donuk Alacaklar (NPL) bu raporda yok.</strong> KAP konsolide raporun krediler dipnotunda banka bazında detay olarak yer alır. Standartlı ekstraksiyon her bankanın farklı format kullanması nedeniyle zaman alıcı olduğu için bu sürümde dahil edilmedi. Bir sonraki rapor turunda eklenmesi planlanıyor.</p>
+
+      <p style="margin-top:14px"><strong>Bu rapor ne sağlar?</strong> Altı büyük mevduat bankasının 2025 yıl sonu konsolide finansal görünümünü tek bir sayfada gösterir. KAP&#x27;tan doğrudan doğrulanmış bilanço, gelir tablosu ve sermaye yeterliliği verisi sunar.</p>
+      <p><strong>Bu rapor neyi yerine koyamaz?</strong> Bankanın detaylı dipnotları, risk yönetimi açıklamaları, segment raporlaması ve denetim görüşü için KAP konsolide finansal rapor PDF&#x27;i kaçınılmazdır. Bağlantılar kaynaklar bölümünde verilmiştir.</p>
+    </div>
+  </section>
+
+  <!-- KAYNAKÇA -->
+  <section style="margin-bottom:32px">
+    <h2 style="font-size:20px;margin-bottom:10px">Kaynaklar</h2>
+    <div class="card">
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:10px"><strong>Genel ve düzenleyici:</strong></p>
+      <ul class="kaynakca-bank">
+        <li>Kamuyu Aydınlatma Platformu (KAP) · <a href="https://www.kap.org.tr/" target="_blank" rel="noopener">kap.org.tr</a></li>
+        <li>BDDK Aylık Bülteni Aralık 2025 · <a href="https://www.bddk.org.tr/BultenAylik/tr/Home/HaberBulteni" target="_blank" rel="noopener">bddk.org.tr</a></li>
+        <li>TCMB EVDS (Elektronik Veri Dağıtım Sistemi) · <a href="https://evds2.tcmb.gov.tr/" target="_blank" rel="noopener">evds2.tcmb.gov.tr</a></li>
+      </ul>
+
+      <p style="font-size:13px;color:var(--text-dim);margin:14px 0 10px"><strong>Banka bazında KAP konsolide finansal rapor PDF&#x27;leri (birincil kaynak):</strong></p>
+      <ul class="kaynakca-bank">
+        <li><strong>AKBNK:</strong> <a href="https://www.akbankinvestorrelations.com/tr/images/pdf/bddk-konsolide-finansal-raporlar/4c2025_akbank_konsolide_finansal_tablolar_ve_dipnotlar.pdf" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Finansal Rapor PDF</a></li>
+        <li><strong>GARAN:</strong> <a href="https://www.garantibbvainvestorrelations.com/tr/images/pdf/31_Aralik_2025_Konsolide_finansal_tablo_ve_aciklamalari.pdf" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Finansal Tablolar PDF</a></li>
+        <li><strong>HALKB:</strong> <a href="https://www.halkbank.com.tr/content/dam/corporate-website/tr/dokumanlar/yatirimci-iliskileri/finansal-tablolar-ve-bagimsiz-denetim-raporlari/2025/Turkiye-Halk-Bankasi-AS-Konsolide-Rapor-31-12-2025.pdf" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Rapor PDF</a></li>
+        <li><strong>ISCTR:</strong> <a href="https://storage.fintables.com/media/uploads/kap-attachments/ISBTR-31122025-Konsolide%20Finansal%20Rapor.pdf" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Finansal Rapor PDF</a></li>
+        <li><strong>VAKBN:</strong> <a href="https://www.vakifbank.com.tr/documents/bankamiz/yatirimci-iliskileri/finansal-bilgiler/konsolide-raporlar/aralik-2025-konsolide-raporlar.zip" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Raporlar (zip)</a></li>
+        <li><strong>YKBNK:</strong> <a href="https://www.yapikrediinvestorrelations.com/tr/images/pdf/bddk-konsolide-finansal-raporlar/2025/31122025_konsolide_finansal_rapor.pdf" target="_blank" rel="noopener">31.12.2025 KAP Konsolide Finansal Rapor PDF</a></li>
+      </ul>
+
+      <p style="font-size:13px;color:var(--text-dim);margin:14px 0 10px"><strong>Çapraz kontrol kaynakları (bu rapora veri sağlamaz, sadece KAP rakamlarının doğrulanmasında kullanıldı):</strong></p>
+      <ul class="kaynakca-bank">
+        <li>Akbank IR · <a href="https://www.akbankinvestorrelations.com/" target="_blank" rel="noopener">akbankinvestorrelations.com</a> · <a href="https://arastirma.isyatirim.com.tr/2026/02/03/akbank-akbnk-is-4-ceyrek-sonuclari-ve-hedef-fiyat-degisikligi/" target="_blank" rel="noopener">İş Yatırım 4Ç25 raporu</a></li>
+        <li>Garanti BBVA Grubu basın açıklaması · <a href="https://www.bbva.com/en/economy-and-finance/garanti-bbva-shows-solid-performance-reports-robust-2025-earnings/" target="_blank" rel="noopener">bbva.com</a></li>
+        <li>İş Bankası AA basın açıklaması · <a href="https://www.aa.com.tr/tr/isdunyasi/finans/is-bankasi-2025te-67-4-milyar-lira-net-kar-elde-etti/700381" target="_blank" rel="noopener">aa.com.tr</a> · <a href="https://infoyatirim.com/blog/bilanco-analizleri/is-bankasi-isctr-2025-4-ceyrek-finansal-sonuclari-aciklandi" target="_blank" rel="noopener">Infoyatirim analiz</a></li>
+        <li>Halkbank · <a href="https://arastirma.isyatirim.com.tr/2026/02/23/halkbank-halkb-is-4-ceyrek-sonuclari-ve-hedef-fiyat-degisikligi/" target="_blank" rel="noopener">İş Yatırım 4Ç25 raporu</a></li>
+        <li>VakıfBank · <a href="https://arastirma.isyatirim.com.tr/2026/02/10/vakifbank-vakbn-is-4-ceyrek-sonuclari-ve-hedef-fiyat-degisikligi/" target="_blank" rel="noopener">İş Yatırım 4Ç25 raporu</a> · <a href="https://www.bloomberght.com/vakifbank-tan-2025-te-70-milyar-liralik-net-kr-3768705" target="_blank" rel="noopener">Bloomberg HT</a></li>
+        <li>Yapı Kredi · <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-yapi-kredis-q4-2025-profit-soars-tech-investments-rise-93CH-4488293" target="_blank" rel="noopener">Investing.com earnings call transkripti</a> · <a href="https://arastirma.isyatirim.com.tr/2026/02/06/yapi-kredi-ykbnk-is-4-ceyrek-sonuclari-ve-hedef-fiyat-degisikligi/" target="_blank" rel="noopener">İş Yatırım 4Ç25 raporu</a></li>
+      </ul>
+
+      <p style="font-size:13px;color:var(--text-dim);margin:14px 0 10px"><strong>Veri dosyası:</strong></p>
+      <ul class="kaynakca-bank">
+        <li><a href="/banka-raporu/2025-q4/data.json" target="_blank" rel="noopener">data.json</a> · Bu raporun arkasındaki yapılandırılmış veri (JSON formatında). Tüm bilanço ve gelir tablosu kalemleri.</li>
+      </ul>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.5">Veriler derleme tarihinden itibaren bankaların revize açıklamalarıyla güncellenmiş olabilir. Yatırım kararı vermeden önce her bankanın güncel KAP raporunu doğrudan inceleyin.</p>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">
+    <p style="margin:0;font-size:13px;color:#f5d28a;line-height:1.6">
+      <span style="color:var(--accent)">▸</span> <strong>Not:</strong> Bu rapor eğitim ve araştırma amaçlıdır. Yatırım tavsiyesi içermez. Anlatılan banka verileri 31.12.2025 itibarıyla geçerlidir ve geçmiş performans gelecek için garanti vermez. Yatırım kararı vermeden önce lisanslı bir yatırım danışmanına başvurun.
+    </p>
+  </div>
+
+  <p style="margin-top:20px"><a href="/arastirma/" style="color:var(--accent)">← Tüm araştırma raporları</a></p>
+
+</div>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-05-14 22:57 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+</body>
+</html>
