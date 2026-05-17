@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-17",
+        "metrics": {
+          "regime": "Olumlu eğilim",
+          "breadth_pct": 57.14285714285714,
+          "top_gainer": "Tüpraş",
+          "top_loser": "Sasa Polyester",
+          "featured_stock": "Doğan Holding"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-16",
         "metrics": {
           "regime": "Olumlu eğilim",

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Özel Analiz Talebi · PREMIUM — Kalibre Markets</title>
+<title>Özel Analiz Talebi — Kalibre Markets</title>
 
-<meta name="description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Kalibre Markets PREMIUM.">
+<meta name="description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Ücretsiz.">
 <meta name="author" content="Kalibre Markets">
 <link rel="canonical" href="https://kalibremarkets.com/">
-<meta name="keywords" content="özel analiz, hisse analizi talep, yatırım danışmanlığı, premium analiz">
-<meta property="og:title" content="Özel Analiz Talebi · PREMIUM — Kalibre Markets">
-<meta property="og:description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Kalibre Markets PREMIUM.">
+<meta name="keywords" content="özel analiz, hisse analizi talep, AI analiz, yatırım araştırma">
+<meta property="og:title" content="Özel Analiz Talebi — Kalibre Markets">
+<meta property="og:description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Ücretsiz.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
@@ -19,8 +19,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Özel Analiz Talebi · PREMIUM — Kalibre Markets">
-<meta name="twitter:description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Kalibre Markets PREMIUM.">
+<meta name="twitter:title" content="Özel Analiz Talebi — Kalibre Markets">
+<meta name="twitter:description" content="Belirli bir hisse, döviz, sektör ya da makro konu için yapay zeka destekli özel analiz talebi gönderin. Ücretsiz.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
@@ -375,7 +375,13 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   #pt-mini .btn { flex: 1; }
   /* Banner */
   .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
-  .disclaimer-banner { line-height: 1.5; }
+  /* Mobil: disclaimer flex → block, satır sarması doğal aksın, üst üste binme olmasın */
+  .disclaimer-banner {
+    display: block;
+    line-height: 1.55;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
   /* Panel başlıkları sıkış */
   .panel-h { padding: 8px 12px; font-size: 11px; }
   .panel-h .ttl { font-size: 12px; }
@@ -433,7 +439,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></div><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">PREMIUM →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-16</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
+<div class="cmdbar"><a href="/" class="brand" style="text-decoration:none;color:inherit" title="Ana sayfaya dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a><a href="/talep/" class="cmd-prompt cmd-prompt-soon" style="text-decoration:none;cursor:pointer" title="Belirli bir hisse, sektör ya da makro konu için yapay zeka destekli özel analiz talep edin"><span class="chev" style="opacity:.85;color:var(--accent)">✦</span><span style="color:var(--text-dim);font-size:12.5px;letter-spacing:.01em">İlgilendiğiniz bir varlık için <b style="color:var(--text)">özel analiz talebi</b> oluşturun · yapay zeka destekli</span><span class="kbd" style="margin-left:auto;font-size:9.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a">TALEP OLUŞTUR →</span></a><div class="cmd-status"><div class="cmd-stat" title="Veri kaynakları"><span class="dot"></span><span><span class="lbl">Veri canlı</span></span></div><div class="cmd-stat"><span class="lbl">Bugün</span> 2026-05-17</div><div class="cmd-stat lang-switcher" title="Sayfayı çevir"><span class="lbl" style="cursor:pointer" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div></div></div></div><div class="fkeys"><a class="fkey active" href="/" title="Genel görünüm"><span class="k">F1</span><span class="lbl">Ana Sayfa</span></a><a class="fkey" href="/arastirma/" title="Türkiye raporu, günlük bültenler, sentiment, haftanın grafiği"><span class="k">F2</span><span class="lbl">🔍 Araştırma</span></a><a class="fkey" href="/egitim/" title="18 makale: borsa terimleri, momentum, RSI, drawdown"><span class="k">F3</span><span class="lbl">🎓 Eğitim</span></a><a class="fkey" href="/trading/" title="İşlem öncesi disiplin kontrolü, strateji laboratuvarı, hisse bazlı backtest"><span class="k">F4</span><span class="lbl">🎯 Trading</span></a><a class="fkey" href="/simulasyon/" title="Sıfır risk borsa simülasyonu"><span class="k">F5</span><span class="lbl">🎮 Oyun</span></a><a class="fkey" href="/hakkinda.html" title="Site nedir, neyi sunar"><span class="k">F6</span><span class="lbl">Hakkında</span></a></div>
 <div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
@@ -473,7 +479,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   } catch(e) {}
 })();
 </script>
-<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › PREMIUM · Özel Analiz</div>
+<div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:14px 24px 0;max-width:1440px;margin:0 auto"><a href='/' style='color:inherit'>Ana sayfa</a> › Özel Analiz Talebi</div>
 <main>
 
 <div class="wrap">
@@ -481,7 +487,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <!-- Başlık -->
   <div style="margin-bottom:26px">
     <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">
-      ▸ PREMIUM · ÖZEL ANALİZ TALEBİ
+      ▸ ÖZEL ANALİZ TALEBİ
     </div>
     <h1 style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
       Belirli bir varlık ya da konu için özel analiz mi istiyorsunuz?
@@ -539,15 +545,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
                     style="width:100%;padding:11px 14px;background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);font-family:inherit;font-size:13.5px;outline:none;resize:vertical"></textarea>
         </div>
 
-        <div>
-          <label style="display:block;font-size:11px;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:6px">Aciliyet</label>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <label class="t-chip"><input type="radio" name="urgency" value="Esnek (1 hafta içinde)" checked> Esnek (1 hafta)</label>
-            <label class="t-chip"><input type="radio" name="urgency" value="Bu hafta içinde"> Bu hafta</label>
-            <label class="t-chip"><input type="radio" name="urgency" value="2 gün içinde"> 2 gün</label>
-          </div>
-        </div>
-
         <div style="padding:12px 14px;background:rgba(255,166,48,.04);border-left:3px solid var(--accent);font-size:11.5px;color:var(--text-dim);line-height:1.55">
           ⚠ Bu özel analiz <b style="color:var(--text)">yatırım tavsiyesi değildir</b>;
           bilgilendirme ve eğitim amaçlıdır. Tarafımıza ilettiğiniz e-posta sadece bu talebe
@@ -589,13 +586,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         </ul>
       </div>
 
-      <div class="panel" style="padding:18px 20px;background:linear-gradient(135deg,rgba(255,166,48,.05),transparent)">
-        <div class="panel-h" style="border:none;padding:0 0 8px"><span class="ttl">▣ Maliyet</span></div>
-        <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.6">
-          Şu an <b style="color:var(--text)">pilot dönem</b>. Önce talebinizi inceler, karşılıklı kapsamı netleştirir,
-          ardından çalışmayı paylaşırız. Ücret modeli kullanıcı tabanı genişledikçe kademeli olarak şekillenecek.
-        </p>
-      </div>
     </div>
   </div>
 
@@ -627,7 +617,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       const asset = document.getElementById('t-asset').value.trim();
       const question = document.getElementById('t-question').value.trim();
       const types = Array.from(form.querySelectorAll('input[type=checkbox]:checked')).map(c => c.value);
-      const urgency = (form.querySelector('input[name=urgency]:checked') || {}).value || 'Esnek';
 
       const subject = `Özel Analiz Talebi · ${asset}`;
       const body = [
@@ -639,7 +628,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         `─ E-posta: ${email}`,
         `─ Varlık / Konu: ${asset}`,
         `─ Analiz türü: ${types.join(', ') || 'Belirtilmedi'}`,
-        `─ Aciliyet: ${urgency}`,
         ``,
         `Spesifik soru / odak:`,
         question || '(belirtilmedi)',
@@ -661,7 +649,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-16 12:48 TR</div>
+    <div>v2026.05 · son güncelleme 2026-05-17 17:26 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">

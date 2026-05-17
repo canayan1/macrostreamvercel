@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-05-16T11:59:48.328940Z",
+  "last_update": "2026-05-17T19:15:30.199221Z",
   "latest_report": {
-    "category": "wb",
-    "date": "2026-05-16",
-    "title": "WB Karşılaştırma — 2026-05-16"
+    "category": "hisse",
+    "date": "2026-05-17",
+    "title": "Doğan Holding — Günün Merceği"
   },
-  "total_reports": 32,
+  "total_reports": 34,
   "by_category": {
     "pulse": 5,
-    "hisse": 6,
+    "hisse": 7,
     "sektor": 5,
     "fx": 5,
     "makro": 3,
     "fred": 2,
     "wb": 2,
-    "sentiment": 2,
+    "sentiment": 3,
     "tcmb": 2
   }
 }
