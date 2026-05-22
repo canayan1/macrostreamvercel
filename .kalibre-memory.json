@@ -83,6 +83,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-05-22",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.31351658232126045,
+          "usdtry": 45.59130096435547,
+          "usdtry_30d_pct": 1.4962422610245385,
+          "strongest_pair": "USD/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-05-21",
         "metrics": {
           "regime": "Güçlü Dolar",
