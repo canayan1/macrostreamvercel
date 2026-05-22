@@ -1,0 +1,13 @@
+{
+  "name": "kalibremarkets-canli",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.4.0",
+    "@vercel/node": "^5.0.0"
+  }
+}

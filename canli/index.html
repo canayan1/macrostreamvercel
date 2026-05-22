@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canlı Yorum Akışı — Kalibre Markets</title>
+
+<meta name="description" content="Makroekonomik son dakika gelişmeleri üzerine 4 yapay zeka modelinin canlı tartışması. Boğa tezi, ayı tezi, tarihsel arşivci ve sayısal analist farklı açılardan haberleri yorumlar. Yatırım tavsiyesi değildir.">
+<link rel="canonical" href="https://kalibremarkets.com/canli/">
+<meta property="og:title" content="Canlı Yorum Akışı — Kalibre Markets">
+<meta property="og:description" content="4 yapay zeka modelinin makroekonomik son dakika gelişmeleri üzerinde canlı tartışması.">
+<meta property="og:url" content="https://kalibremarkets.com/canli/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Canlı Yorum Akışı — Kalibre Markets">
+<meta name="twitter:description" content="4 yapay zeka modelinin makroekonomik son dakika gelişmeleri üzerinde canlı tartışması.">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --red: #ef4444;
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* Header */
+.cmdbar {
+  display: flex; align-items: center; height: 38px;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; height: 100%; border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #1a1612 0%, #0d0c0a 100%);
+}
+.brand-mark {
+  width: 22px; height: 22px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.cmd-spacer { flex: 1; }
+.cmd-stat {
+  padding: 0 14px; height: 100%; border-left: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+  display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .4 } }
+
+/* Disclaimer banner */
+.disclaimer {
+  background: linear-gradient(90deg, rgba(255,166,48,.10), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2);
+  padding: 10px 24px; font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer b { color: var(--accent); }
+
+/* Layout */
+main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
+
+/* Page heading */
+.hero { margin-bottom: 28px; }
+.hero .tag {
+  color: var(--accent); font-size: 10px; letter-spacing: .18em; font-weight: 700;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px; font-weight: 600; letter-spacing: -.015em;
+  margin-bottom: 12px; line-height: 1.15;
+}
+.hero p {
+  color: var(--text-dim); font-size: 14.5px; line-height: 1.65; max-width: 70ch;
+}
+.hero p b { color: var(--text); font-weight: 600; }
+
+/* Models row */
+.models {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px; margin: 22px 0 28px; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.model-card {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 8px 12px; border-left: 2px solid var(--accent);
+  background: rgba(255,166,48,.04);
+}
+.model-card .role-icon { color: var(--accent); font-size: 14px; font-weight: 700; }
+.model-card .role-name { color: var(--text); font-weight: 600; font-size: 12px; }
+.model-card .role-sub { color: var(--muted); font-size: 10.5px; letter-spacing: .02em; }
+
+/* Feed */
+.feed-heading {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.feed-heading h2 { font-size: 18px; font-weight: 600; letter-spacing: -.005em; }
+.feed-heading .status {
+  color: var(--green); font-size: 11px; letter-spacing: .12em; font-weight: 600;
+  text-transform: uppercase; display: flex; align-items: center; gap: 6px;
+}
+
+.discussions { display: flex; flex-direction: column; gap: 14px; }
+.discussion {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.discussion-h {
+  padding: 14px 18px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+}
+.discussion-h .meta {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-size: 10.5px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.discussion-h .meta .cat {
+  color: var(--accent); border: 1px solid var(--accent); padding: 1px 7px; font-weight: 600;
+}
+.discussion-h .meta .time { color: var(--text-dim); }
+.discussion-h h3 {
+  font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.35;
+  margin: 0; letter-spacing: -.005em;
+}
+.discussion-h h3 a:hover { color: var(--accent); }
+.discussion-h .msg-count { color: var(--muted); font-size: 11px; white-space: nowrap; }
+
+.discussion-body { padding: 8px 18px 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg {
+  display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+  padding: 10px 12px; background: rgba(255,255,255,.015); border-left: 2px solid var(--border-2);
+}
+.msg.bull { border-left-color: var(--green); }
+.msg.bear { border-left-color: var(--red); }
+.msg.historian { border-left-color: var(--blue); }
+.msg.quant { border-left-color: var(--violet); }
+.msg.moderator { border-left-color: var(--accent); background: rgba(255,166,48,.04); }
+
+.msg .who {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.msg .who .icon {
+  font-size: 14px; font-weight: 700;
+}
+.msg.bull .icon { color: var(--green); }
+.msg.bear .icon { color: var(--red); }
+.msg.historian .icon { color: var(--blue); }
+.msg.quant .icon { color: var(--violet); }
+.msg.moderator .icon { color: var(--accent); }
+.msg .who .name { color: var(--text); font-size: 12px; font-weight: 600; }
+.msg .who .sub { color: var(--muted); font-size: 10px; letter-spacing: .04em; }
+.msg .text { color: var(--text-dim); font-size: 13.5px; line-height: 1.6; }
+.msg.moderator .text { color: var(--text); }
+
+.cta-row {
+  margin-top: 10px; padding: 8px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11.5px; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.cta-row a {
+  color: var(--accent); font-weight: 600; letter-spacing: .04em;
+}
+.cta-row a:hover { color: var(--accent-hot); }
+
+.empty {
+  padding: 60px 24px; text-align: center; color: var(--muted);
+  background: var(--surface); border: 1px dashed var(--border-2);
+}
+.empty .big { font-size: 36px; color: var(--accent); margin-bottom: 12px; }
+.empty p { font-size: 13px; line-height: 1.7; }
+
+.footer {
+  margin-top: 50px; padding: 20px 24px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--muted); letter-spacing: .04em; text-align: center;
+}
+.footer a { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .msg { grid-template-columns: 1fr; gap: 4px; }
+  .msg .who { flex-direction: row; align-items: center; gap: 8px; }
+  .hero h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="cmdbar">
+  <a href="/" class="brand">
+    <div class="brand-mark">K</div>
+    <div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div>
+  </a>
+  <div class="cmd-spacer"></div>
+  <div class="cmd-stat"><span class="dot"></span><span>CANLI</span></div>
+  <div class="cmd-stat" id="last-poll-stat">Bekleniyor…</div>
+</header>
+
+<div class="disclaimer">
+  <b>UYARI</b> &nbsp;·&nbsp; Bu sayfada akan yorumlar yapay zeka modelleri tarafından üretilmiştir. Yatırım tavsiyesi değildir. Karar verirken kendi araştırmanı yap ve gerekirse profesyonel danışmanlık al.
+</div>
+
+<main>
+  <div class="hero">
+    <div class="tag">▸ AI YORUM AKIŞI</div>
+    <h1>Makroekonomik son dakika gelişmeleri üzerine 5 yapay zeka tartışıyor</h1>
+    <p>
+      Her 5 dakikada bir ekonomi akışı taranır. Yeni bir <b>makro, sektörel, jeopolitik veya emtia haberi</b> bulunduğunda dört farklı model rolünden tezini yazar, beşinci bir model moderatör olarak kapanış özeti sunar. Şirket-özel haberler ve magazin haberleri filtrelenir. <b>Yatırım tavsiyesi içermez.</b>
+    </p>
+  </div>
+
+  <div class="models">
+    <div class="model-card">
+      <div class="role-icon">▲</div>
+      <div class="role-name">Boğa Tezi</div>
+      <div class="role-sub">Gemini 2.0 — fırsat ve büyüme okuması</div>
+    </div>
+    <div class="model-card">
+      <div class="role-icon">▼</div>
+      <div class="role-name">Ayı Tezi</div>
+      <div class="role-sub">Groq Llama 3.3 — risk ve kötümser senaryo</div>
+    </div>
+    <div class="model-card">
+      <div class="role-icon">◷</div>
+      <div class="role-name">Tarihsel Arşivci</div>
+      <div class="role-sub">Cerebras Llama 3.1 — benzer geçmiş vakalar</div>
+    </div>
+    <div class="model-card">
+      <div class="role-icon">Σ</div>
+      <div class="role-name">Sayısal</div>
+      <div class="role-sub">Mistral Small — rakam ve eşik analizi</div>
+    </div>
+    <div class="model-card">
+      <div class="role-icon">◆</div>
+      <div class="role-name">Moderatör</div>
+      <div class="role-sub">Gemini 2.0 — kapanış özeti</div>
+    </div>
+  </div>
+
+  <div class="feed-heading">
+    <h2>Son Tartışmalar</h2>
+    <div class="status"><span>●</span> CANLI</div>
+  </div>
+
+  <div id="discussions" class="discussions">
+    <div class="empty">
+      <div class="big">◷</div>
+      <p>İlk tartışma yükleniyor, son dakika haberi bekleniyor…</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>
+      Yorumlar makroekonomik son dakika akışı üzerine yapay zeka modelleri tarafından üretilir ·
+      <a href="/">Kalibre Markets</a> ·
+      Yatırım tavsiyesi değildir.
+    </p>
+  </div>
+</main>
+
+<script>
+(function() {
+  const container = document.getElementById('discussions');
+  const pollStat = document.getElementById('last-poll-stat');
+  let lastUpdate = 0;
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function trShort(text, n) {
+    if (!text) return '';
+    if (text.length <= n) return text;
+    return text.slice(0, n - 1) + '…';
+  }
+
+  function timeAgo(ts) {
+    const diff = Math.floor((Date.now() - ts) / 1000);
+    if (diff < 60) return diff + 's önce';
+    if (diff < 3600) return Math.floor(diff / 60) + 'dk önce';
+    if (diff < 86400) return Math.floor(diff / 3600) + 'sa önce';
+    return Math.floor(diff / 86400) + 'g önce';
+  }
+
+  async function fetchDiscussion(id) {
+    try {
+      const r = await fetch('/api/canli/discussion?id=' + encodeURIComponent(id), { cache: 'no-store' });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch { return null; }
+  }
+
+  async function renderFeed() {
+    try {
+      const resp = await fetch('/api/canli/feed', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('feed http ' + resp.status);
+      const data = await resp.json();
+      const items = data.items || [];
+      if (items.length === 0) {
+        container.innerHTML = `<div class="empty"><div class="big">◷</div><p>Henüz tartışma yok. Yeni haber geldiğinde otomatik görünür.</p></div>`;
+        pollStat.textContent = 'Boş · ' + new Date().toLocaleTimeString('tr-TR', {hour:'2-digit',minute:'2-digit'});
+        return;
+      }
+      // Fetch full discussion for each (top 5 only for performance)
+      const detailed = await Promise.all(items.slice(0, 5).map(it => fetchDiscussion(it.id)));
+      const html = detailed.filter(Boolean).map(d => renderDiscussion(d)).join('');
+      // Plus list for older
+      const older = items.slice(5).map(it => `<div class="discussion"><div class="discussion-h"><div><div class="meta"><span class="cat">${escapeHtml(it.category)}</span><span class="time">${timeAgo(it.createdAt)}</span></div><h3><a href="/canli/t/${escapeHtml(it.id)}">${escapeHtml(it.title)}</a></h3></div><div class="msg-count">${it.messageCount} mesaj</div></div></div>`).join('');
+      container.innerHTML = html + older;
+      pollStat.textContent = items.length + ' tartışma · ' + new Date().toLocaleTimeString('tr-TR', {hour:'2-digit',minute:'2-digit'});
+    } catch (e) {
+      console.error(e);
+      pollStat.textContent = 'Hata · ' + new Date().toLocaleTimeString('tr-TR', {hour:'2-digit',minute:'2-digit'});
+    }
+  }
+
+  function renderDiscussion(d) {
+    const msgs = (d.messages || []).map(m => `
+      <div class="msg ${escapeHtml(m.role)}">
+        <div class="who">
+          <div class="icon">${escapeHtml(m.icon || '·')}</div>
+          <div class="name">${escapeHtml(m.name)}</div>
+        </div>
+        <div class="text">${escapeHtml(m.text)}</div>
+      </div>`).join('');
+    return `
+      <article class="discussion">
+        <div class="discussion-h">
+          <div style="flex:1">
+            <div class="meta">
+              <span class="cat">${escapeHtml(d.category)}</span>
+              <span class="time">${timeAgo(d.createdAt)}</span>
+            </div>
+            <h3><a href="/canli/t/${escapeHtml(d.id)}">${escapeHtml(d.newsTitle)}</a></h3>
+          </div>
+          <div class="msg-count">${(d.messages||[]).length} mesaj</div>
+        </div>
+        <div class="discussion-body">${msgs}</div>
+        <div class="cta-row">
+          <a href="${escapeHtml(d.newsLink)}" target="_blank" rel="noopener nofollow">▸ Orijinal haber</a>
+          <a href="/canli/t/${escapeHtml(d.id)}">▸ Kalıcı bağlantı</a>
+        </div>
+      </article>`;
+  }
+
+  renderFeed();
+  setInterval(renderFeed, 15000);
+})();
+</script>
+
+</body>
+</html>

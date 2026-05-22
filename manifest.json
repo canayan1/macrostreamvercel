@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-05-17T19:15:30.199221Z",
+  "last_update": "2026-05-22T17:22:45.673170Z",
   "latest_report": {
-    "category": "hisse",
-    "date": "2026-05-17",
-    "title": "Doğan Holding — Günün Merceği"
+    "category": "pulse",
+    "date": "2026-05-22",
+    "title": "Günlük Nabız — 2026-05-22"
   },
-  "total_reports": 34,
+  "total_reports": 44,
   "by_category": {
-    "pulse": 5,
+    "pulse": 8,
     "hisse": 7,
-    "sektor": 5,
-    "fx": 5,
-    "makro": 3,
-    "fred": 2,
-    "wb": 2,
+    "sektor": 6,
+    "fx": 7,
+    "makro": 4,
+    "fred": 3,
+    "wb": 3,
     "sentiment": 3,
-    "tcmb": 2
+    "tcmb": 3
   }
 }

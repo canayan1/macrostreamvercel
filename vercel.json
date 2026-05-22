@@ -1,4 +1,7 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/canli/t/:id", "destination": "/api/canli/page?id=:id" }
+  ]
 }
