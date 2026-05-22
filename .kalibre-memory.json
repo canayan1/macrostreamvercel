@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-22",
+        "metrics": {
+          "regime": "Risk-Off",
+          "breadth_pct": 21.428571428571427,
+          "top_gainer": "VakıfBank",
+          "top_loser": "Hektaş",
+          "featured_stock": "Garanti BBVA"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-21",
         "metrics": {
           "regime": "Zayıflık",
@@ -497,6 +508,17 @@
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-22",
+        "metrics": {
+          "nir_usd": 46.02361816931265,
+          "swap_adj_usd": -52.20589793773747,
+          "nir_chg_week": -1.1282868407805324,
+          "swap_chg_week": 4.514732041440034,
+          "usdtry": 45.733699798583984
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-05-21",
