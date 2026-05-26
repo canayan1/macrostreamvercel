@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-26",
+        "metrics": {
+          "regime": "Karışık",
+          "breadth_pct": 42.857142857142854,
+          "top_gainer": "Hektaş",
+          "top_loser": "Tüpraş",
+          "featured_stock": "İş Bankası (C)"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-25",
         "metrics": {
           "regime": "Zayıflık",
@@ -648,6 +659,17 @@
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-26",
+        "metrics": {
+          "nir_usd": 40.5738161712642,
+          "swap_adj_usd": -57.23895756368,
+          "nir_chg_week": -4.297854818508945,
+          "swap_chg_week": -0.7046602260194064,
+          "usdtry": 45.89979934692383
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-05-25",

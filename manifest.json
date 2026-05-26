@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-05-26T06:42:24.965137Z",
+  "last_update": "2026-05-26T06:42:45.449236Z",
   "latest_report": {
-    "category": "fx",
+    "category": "hisse",
     "date": "2026-05-26",
-    "title": "Döviz Günlük — 2026-05-26"
+    "title": "İş Bankası (C) — Günün Merceği"
   },
-  "total_reports": 59,
+  "total_reports": 61,
   "by_category": {
     "pulse": 10,
-    "hisse": 9,
+    "hisse": 10,
     "sektor": 8,
     "fx": 10,
     "makro": 5,
     "fred": 5,
     "wb": 4,
     "sentiment": 3,
-    "tcmb": 5
+    "tcmb": 6
   }
 }
