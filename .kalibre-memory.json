@@ -105,6 +105,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-05-26",
+        "metrics": {
+          "regime": "Dolar Yatay",
+          "dxy_5d_pct": 0.11518481527723612,
+          "usdtry": 45.89979934692383,
+          "usdtry_30d_pct": 1.9705529780712938,
+          "strongest_pair": "USD/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-05-25",
         "metrics": {
           "regime": "Dolar Yatay",
