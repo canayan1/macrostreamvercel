@@ -116,6 +116,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-05-27",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.21450660561102008,
+          "usdtry": 45.90019989013672,
+          "usdtry_30d_pct": 1.932941001459465,
+          "strongest_pair": "USD/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-05-26",
         "metrics": {
           "regime": "Dolar Yatay",
