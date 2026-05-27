@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-27",
+        "metrics": {
+          "regime": "Zayıflık",
+          "breadth_pct": 32.142857142857146,
+          "top_gainer": "Doğan Holding",
+          "top_loser": "Aselsan",
+          "featured_stock": "Koç Holding"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-26",
         "metrics": {
           "regime": "Karışık",
@@ -687,6 +698,17 @@
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-27",
+        "metrics": {
+          "nir_usd": 41.396264546893306,
+          "swap_adj_usd": -56.05845397397084,
+          "nir_chg_week": -2.3591897468459564,
+          "swap_chg_week": 0.8545609966432579,
+          "usdtry": 45.88629913330078
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-05-26",
