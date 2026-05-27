@@ -489,6 +489,23 @@
     "pulse": [
       {
         "category": "pulse",
+        "date": "2026-05-27",
+        "metrics": {
+          "regime": "Sakin",
+          "xu100_last": 13662.7998046875,
+          "xu100_pct_30d": -4.692547837972172,
+          "usdtry_last": 45.9005012512207,
+          "usdtry_pct_30d": 1.9336102495600693,
+          "dxy_last": 99.08599853515625,
+          "dxy_pct_30d": 0.6153484540676546,
+          "us10y_last": 4.56,
+          "us10y_pct_30d": 5.069124423963123,
+          "vix_last": 16.59,
+          "vix_pct_30d": -11.330839123463399
+        }
+      },
+      {
+        "category": "pulse",
         "date": "2026-05-26",
         "metrics": {
           "regime": "Sakin",
