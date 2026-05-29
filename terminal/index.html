@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal — Kalibre Markets</title>
+
+<meta name="description" content="Kalibre Markets terminali. Karar destek araçları, strateji laboratuvarı, günlük makro & piyasa raporları, araştırma ve eğitim — tek panelden yönetilen modüler dashboard. Yatırım tavsiyesi değildir.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/terminal/">
+<meta property="og:title" content="Terminal — Kalibre Markets">
+<meta property="og:description" content="Karar destek, strateji, günlük veri, araştırma ve eğitim — modüler terminal dashboard.">
+<meta property="og:url" content="https://kalibremarkets.com/terminal/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #100e0c; --bg-1: #14110e; --surface: #1a1612; --surface-2: #221d18;
+  --border: #26221d; --border-2: #36302a; --text: #ebe3d3; --text-dim: #a89c83;
+  --muted: #6f6553; --accent: #ffa630; --accent-hot: #ff7a00;
+  --green: #4ade80; --red: #ef4444; --blue: #60a5fa; --violet: #a78bfa;
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+body {
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.mono { font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+/* ── TOP BAR (canlı veri) ──────────────────────────── */
+.topbar {
+  display: flex; align-items: center; height: 46px; padding: 0 18px;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 60; gap: 0;
+}
+.brand { display: flex; align-items: center; gap: 10px; padding-right: 18px; border-right: 1px solid var(--border); height: 100%; }
+.brand-mark {
+  width: 24px; height: 24px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.market-strip {
+  display: flex; align-items: center; gap: 0; flex: 1; overflow-x: auto;
+  height: 100%; scrollbar-width: none;
+}
+.market-strip::-webkit-scrollbar { display: none; }
+.market-cell {
+  display: flex; align-items: center; gap: 7px; padding: 0 16px; height: 100%;
+  border-right: 1px solid var(--border); white-space: nowrap;
+  font-size: 11.5px;
+}
+.market-cell .lbl { color: var(--muted); text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }
+.market-cell .val { color: var(--text); font-weight: 600; }
+.topbar .site-link {
+  margin-left: auto; padding-left: 16px; font-size: 12px; color: var(--text-dim);
+  white-space: nowrap;
+}
+.topbar .site-link:hover { color: var(--accent); }
+
+/* ── LAYOUT (panel + workspace) ────────────────────── */
+.shell { display: flex; min-height: calc(100vh - 46px); }
+.panel {
+  width: 232px; flex-shrink: 0; background: var(--bg-1);
+  border-right: 1px solid var(--border); padding: 16px 0;
+  position: sticky; top: 46px; height: calc(100vh - 46px); overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.panel-section-label {
+  font-size: 9.5px; letter-spacing: .16em; color: var(--muted);
+  text-transform: uppercase; font-weight: 700; padding: 0 18px 8px;
+}
+.panel-item {
+  display: flex; align-items: center; gap: 10px; padding: 11px 18px;
+  cursor: pointer; border-left: 2px solid transparent; transition: background .12s, border-color .12s;
+  color: var(--text-dim); font-size: 14px; font-weight: 500;
+}
+.panel-item:hover { background: var(--surface); color: var(--text); }
+.panel-item.active {
+  background: var(--surface-2); border-left-color: var(--accent); color: var(--accent);
+}
+.panel-item .ico { font-size: 16px; width: 20px; text-align: center; }
+.panel-item .star { margin-left: auto; color: var(--accent); font-size: 10px; opacity: .8; }
+.panel-foot {
+  margin-top: auto; padding: 16px 18px 4px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--muted); line-height: 1.7;
+}
+.panel-foot .live-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 6px var(--green); margin-right: 5px;
+  animation: pulse 2.4s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .4 } }
+.panel-foot a { color: var(--text-dim); }
+.panel-foot a:hover { color: var(--accent); }
+
+/* ── WORKSPACE ─────────────────────────────────────── */
+.workspace { flex: 1; padding: 28px 32px 60px; min-width: 0; }
+.module { display: none; }
+.module.active { display: block; animation: fadeIn .25s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.module-header { margin-bottom: 22px; }
+.module-header .eyebrow {
+  font-size: 10px; letter-spacing: .18em; color: var(--accent);
+  font-weight: 700; text-transform: uppercase; margin-bottom: 8px;
+}
+.module-header h1 {
+  font-size: 26px; font-weight: 600; letter-spacing: -.015em; color: var(--text);
+  margin-bottom: 8px;
+}
+.module-header p { font-size: 14.5px; color: var(--text-dim); line-height: 1.6; max-width: 70ch; }
+
+/* ── Card grid ─────────────────────────────────────── */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 20px; }
+.tool-card {
+  display: flex; flex-direction: column; background: var(--surface);
+  border: 1px solid var(--border); overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.tool-card .shot {
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  cursor: zoom-in; overflow: hidden; position: relative;
+}
+.tool-card .shot img {
+  display: block; width: 100%; height: 188px; object-fit: cover; object-position: top;
+  transition: opacity .15s;
+}
+.tool-card .shot:hover img { opacity: .9; }
+.tool-card .shot .zoom-hint {
+  position: absolute; top: 8px; right: 8px; background: rgba(16,14,12,.8);
+  color: var(--text-dim); font-size: 10px; padding: 2px 7px; letter-spacing: .04em;
+  opacity: 0; transition: opacity .15s;
+}
+.tool-card .shot:hover .zoom-hint { opacity: 1; }
+.tool-card .body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+.tool-card .badge {
+  display: inline-block; font-size: 9.5px; letter-spacing: .12em; color: var(--accent);
+  font-weight: 700; text-transform: uppercase; margin-bottom: 7px;
+}
+.tool-card .badge .date { color: var(--muted); margin-left: 6px; }
+.tool-card h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 7px; letter-spacing: -.005em; }
+.tool-card p { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-bottom: 14px; flex: 1; }
+.tool-card .open {
+  color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .04em;
+}
+.tool-card:hover .open { color: var(--accent-hot); }
+
+/* ── Eğitim özel: link listesi ─────────────────────── */
+.edu-extra { margin-top: 22px; }
+.edu-extra h4 { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; letter-spacing: .02em; }
+.edu-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 8px; }
+.edu-links a {
+  padding: 9px 13px; background: var(--surface); border: 1px solid var(--border);
+  font-size: 12.5px; color: var(--text-dim); border-left: 2px solid var(--border-2);
+  transition: border-color .15s, color .15s;
+}
+.edu-links a:hover { border-left-color: var(--accent); color: var(--text); }
+
+/* ── PİYASALAR / Launchpad ─────────────────────────── */
+.motto {
+  padding: 16px 20px; background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 70%);
+  border-left: 2px solid var(--accent); margin-bottom: 22px;
+  font-size: 13.5px; color: var(--text-dim); line-height: 1.6; font-style: italic;
+}
+.motto b { color: var(--text); font-style: normal; }
+.lp-controls {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.lp-select {
+  background: var(--surface); border: 1px solid var(--border-2); color: var(--text);
+  padding: 10px 14px; font-family: inherit; font-size: 13.5px; min-width: 240px;
+  cursor: pointer; letter-spacing: -.005em;
+}
+.lp-select:focus { outline: none; border-color: var(--accent); }
+.lp-count { font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.lp-reset { font-size: 12px; color: var(--text-dim); cursor: pointer; border: 0; background: none; }
+.lp-reset:hover { color: var(--red); }
+
+.lp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.lp-card {
+  background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column;
+}
+.lp-card.has-flag { border-left: 2px solid var(--accent); }
+.lp-card-h {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--border); gap: 10px;
+}
+.lp-card-h .sym { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: .02em; }
+.lp-card-h .nm { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.lp-card-h .px { text-align: right; }
+.lp-card-h .px .last { font-family: 'Geist Mono', monospace; font-size: 15px; font-weight: 600; color: var(--text); }
+.lp-card-h .px .chg { font-family: 'Geist Mono', monospace; font-size: 12px; margin-top: 2px; }
+.lp-card-h .px .chg.up { color: var(--green); }
+.lp-card-h .px .chg.dn { color: var(--red); }
+.lp-card-h .px .chg.flat { color: var(--muted); }
+.lp-card-h .rm { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 0 0 0 4px; }
+.lp-card-h .rm:hover { color: var(--red); }
+.lp-card-body { padding: 12px 16px; flex: 1; }
+.lp-flag {
+  display: flex; align-items: center; gap: 8px; padding: 7px 0;
+  font-size: 12.5px; color: var(--text); border-bottom: 1px dashed var(--border);
+}
+.lp-flag:last-child { border-bottom: 0; }
+.lp-flag .dot { width: 6px; height: 6px; flex-shrink: 0; }
+.lp-flag.high .dot { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.lp-flag.med .dot { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+.lp-calm { padding: 18px 4px; text-align: center; color: var(--muted); font-size: 12.5px; }
+.lp-calm .ico { color: var(--green); font-size: 18px; display: block; margin-bottom: 6px; }
+.lp-empty {
+  padding: 50px 24px; text-align: center; color: var(--muted);
+  background: var(--surface); border: 1px dashed var(--border-2);
+}
+.lp-empty .ico { font-size: 30px; color: var(--accent); margin-bottom: 12px; display: block; }
+.lp-empty p { font-size: 13.5px; line-height: 1.7; }
+.lp-meta { margin-top: 18px; font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+
+/* Accordion dosya */
+.lp-card-h { cursor: pointer; }
+.lp-card-h .toggle { color: var(--muted); font-size: 13px; transition: transform .2s; margin-left: 2px; }
+.lp-card.open .lp-card-h .toggle { transform: rotate(180deg); color: var(--accent); }
+.lp-card .summary-flags { padding: 10px 16px; font-size: 11.5px; color: var(--text-dim); border-bottom: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.lp-card .summary-flags .pill { background: rgba(255,166,48,.08); color: var(--accent); padding: 2px 8px; font-size: 10.5px; letter-spacing: .02em; }
+.lp-card .summary-flags .calm { color: var(--green); }
+.lp-dossier { display: none; }
+.lp-card.open .lp-dossier { display: block; animation: fadeIn .2s ease-out; }
+.lp-sec { border-bottom: 1px solid var(--border); padding: 13px 16px; }
+.lp-sec:last-child { border-bottom: 0; }
+.lp-sec .sec-h {
+  font-size: 9.5px; letter-spacing: .14em; color: var(--accent); text-transform: uppercase;
+  font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 7px;
+}
+.lp-sec .sec-h .num { color: var(--muted); }
+.lp-sec p { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; margin: 0; }
+.lp-sec p b { color: var(--text); }
+.lp-sec .strat-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.lp-sec .strat-row .sh { font-family: 'Geist Mono', monospace; color: var(--accent); font-weight: 600; }
+.lp-sec .disc { font-size: 10.5px; color: var(--muted); font-style: italic; margin-top: 6px; }
+.lp-sec.pretrade { background: rgba(255,166,48,.03); }
+.lp-sec.pretrade p { color: var(--text); }
+
+/* ── Lightbox ──────────────────────────────────────── */
+#lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.93); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center; z-index: 9999;
+  padding: 40px; cursor: zoom-out;
+}
+#lightbox img { max-width: 100%; max-height: 100%; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+
+/* ── Mobil ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .shell { flex-direction: column; }
+  .panel {
+    width: 100%; height: auto; position: static; flex-direction: row;
+    overflow-x: auto; padding: 8px; gap: 4px; border-right: 0; border-bottom: 1px solid var(--border);
+  }
+  .panel-section-label, .panel-foot { display: none; }
+  .panel-item {
+    white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent;
+    padding: 8px 12px; font-size: 13px;
+  }
+  .panel-item.active { border-left: 0; border-bottom-color: var(--accent); background: transparent; }
+  .panel-item .star { display: none; }
+  .workspace { padding: 20px 16px 50px; }
+  .market-cell { padding: 0 11px; }
+  .brand-name .sub { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ───────────────────────────────────────── -->
+<header class="topbar">
+  <a href="/terminal/" class="brand">
+    <div class="brand-mark">K</div>
+    <div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div>
+  </a>
+  <div class="market-strip" id="market-strip">
+    <div class="market-cell"><span class="lbl">USD/TRY</span> <span class="val mono" data-m="usdtry">—</span></div>
+    <div class="market-cell"><span class="lbl">BIST 100</span> <span class="val mono" data-m="bist">—</span></div>
+    <div class="market-cell"><span class="lbl">TÜFE</span> <span class="val mono" data-m="tufe">—</span></div>
+    <div class="market-cell"><span class="lbl">Fed</span> <span class="val mono" data-m="fed">—</span></div>
+    <div class="market-cell"><span class="lbl">DXY</span> <span class="val mono" data-m="dxy">—</span></div>
+    <div class="market-cell"><span class="lbl">VIX</span> <span class="val mono" data-m="vix">—</span></div>
+  </div>
+  <a href="/" class="site-link">Site Hakkında →</a>
+</header>
+
+<!-- ── SHELL ─────────────────────────────────────────── -->
+<div class="shell">
+
+  <!-- ── PANEL ─────────────────────────────────────── -->
+  <nav class="panel">
+    <div class="panel-section-label">▸ Modüller</div>
+    <div class="panel-item active" data-module="piyasalar"><span class="ico">📡</span> Piyasalar</div>
+    <div class="panel-item" data-module="karar"><span class="ico">🧠</span> Karar Destek <span class="star">★</span></div>
+    <div class="panel-item" data-module="strateji"><span class="ico">🔬</span> Strateji <span class="star">★</span></div>
+    <div class="panel-item" data-module="veri"><span class="ico">📊</span> Günlük Veri</div>
+    <div class="panel-item" data-module="arastirma"><span class="ico">🔍</span> Araştırma</div>
+    <div class="panel-item" data-module="egitim"><span class="ico">🎓</span> Eğitim</div>
+
+    <div class="panel-foot">
+      <span class="live-dot"></span><span id="foot-status">Yükleniyor…</span><br>
+      <a href="/terminal/akis/">Tüm bültenler akışı →</a><br>
+      <a href="/arsiv.html">Arşiv →</a>
+    </div>
+  </nav>
+
+  <!-- ── WORKSPACE ─────────────────────────────────── -->
+  <main class="workspace">
+
+    <!-- PİYASALAR (Launchpad — göz bebeği) -->
+    <section class="module active" id="mod-piyasalar">
+      <div class="module-header">
+        <div class="eyebrow">📡 İZLEME · KENDİ TAKİP PANELİN</div>
+        <h1>Piyasalar</h1>
+      </div>
+      <div class="motto">
+        <b>Bazen az, çoktur.</b> Finansal piyasada gürültü düşmandır. İhtiyacın olmayan veri, seni doğru karardan uzaklaştırır. İyi analiz ve önyargılarından arınmış berrak bir akıl, seni daha iyi bir yatırımcı yapar.
+      </div>
+      <div class="lp-controls">
+        <select class="lp-select" id="lp-add"><option value="">+ Hisse ekle (BIST30)…</option></select>
+        <span class="lp-count" id="lp-count">0 / 5 seçili</span>
+        <button class="lp-reset" id="lp-reset">sıfırla</button>
+      </div>
+      <div class="lp-grid" id="lp-grid"></div>
+      <div class="lp-meta" id="lp-meta"></div>
+    </section>
+
+    <!-- KARAR DESTEK -->
+    <section class="module" id="mod-karar">
+      <div class="module-header">
+        <div class="eyebrow">★ ÖNE ÇIKAN · KARAR DESTEK</div>
+        <h1>Karar Destek Araçları</h1>
+        <p>Yatırım kararını daha bilinçli vermek için davranışsal ve disiplin araçları. Önce kendini tanı, sonra pratik yap.</p>
+      </div>
+      <div class="card-grid">
+        <a href="/trading/onyargi-testi/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/onyargi-preview.png')">
+            <img src="/static/landing/onyargi-preview.png" alt="Yatırımcı Önyargı Testi" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">İnteraktif</span>
+            <h3>Yatırımcı Önyargı Testi</h3>
+            <p>12 senaryo, 8 davranışsal önyargı için kişisel skor, radar chart, üst 3 önyargı için pratik öneriler.</p>
+            <span class="open">Testi Başlat (3 dk) →</span>
+          </div>
+        </a>
+        <a href="/islem-kontrolu/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/islem-kontrolu-preview.png')">
+            <img src="/static/landing/islem-kontrolu-preview.png" alt="İşlem Öncesi Kontrol" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Disiplin</span>
+            <h3>İşlem Öncesi Kontrol</h3>
+            <p>Pozisyon açmadan önce 3 dakikalık disiplin kontrolü. Tezini ve çıkış planını duygusuz anda yaz.</p>
+            <span class="open">Kontrolü Aç →</span>
+          </div>
+        </a>
+        <a href="/simulasyon/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/simulasyon-preview.png')">
+            <img src="/static/landing/simulasyon-preview.png" alt="Borsa Simülasyonu" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Pratik</span>
+            <h3>Borsa Simülasyonu</h3>
+            <p>Sanal sermaye ile pratik. Gerçek BIST verisi, gerçek zamanlı emir defteri. Sıfır risk.</p>
+            <span class="open">Simülasyona Başla →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- STRATEJİ -->
+    <section class="module" id="mod-strateji">
+      <div class="module-header">
+        <div class="eyebrow">★ ÖNE ÇIKAN · STRATEJİ</div>
+        <h1>Strateji Laboratuvarı</h1>
+        <p>5 algoritmik yöntem, 60+ BIST ve ABD hissesi üzerinde geçmiş veriyle test edilmiş sonuçlar. Şeffaf metrikler: Sharpe, Max Drawdown, hit rate.</p>
+      </div>
+      <div class="card-grid">
+        <a href="/algo/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/algo-preview.png')">
+            <img src="/static/landing/algo-preview.png" alt="Strateji Laboratuvarı" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Backtest</span>
+            <h3>Strateji Laboratuvarı</h3>
+            <p>Momentum, mean reversion, golden cross, breakout, RSI. 5 yöntem × 60+ hisse, karşılaştırmalı performans.</p>
+            <span class="open">Lab'a Gir →</span>
+          </div>
+        </a>
+        <a href="/algo/hisse/AKBNK/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/strateji-detay-preview.png')">
+            <img src="/static/landing/strateji-detay-preview.png" alt="Hisse Bazlı Backtest" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Drill-down</span>
+            <h3>Hisse Bazlı Backtest</h3>
+            <p>Her hisse için 5 stratejinin detaylı sonucu: fiyat grafiği, sinyal noktaları, getiri eğrisi, risk metrikleri.</p>
+            <span class="open">Örnek: AKBNK →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- GÜNLÜK VERİ -->
+    <section class="module" id="mod-veri">
+      <div class="module-header">
+        <div class="eyebrow">GÜNCEL · HER SABAH 09:00</div>
+        <h1>Günlük Veri</h1>
+        <p>Her sabah otomatik üretilen makro ve piyasa raporları. Veri kaynakları açık, formüller görünür.</p>
+      </div>
+      <div class="card-grid">
+        <a class="tool-card" data-cat="pulse" href="/reports/pulse/">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/nabiz-preview.png')">
+            <img src="/static/landing/nabiz-preview.png" alt="Günlük Nabız" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Günlük <span class="date" data-date></span></span>
+            <h3>Günlük Nabız</h3>
+            <p>BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + yorum + makro bağlam.</p>
+            <span class="open">Bugünün Nabzı →</span>
+          </div>
+        </a>
+        <a class="tool-card" data-cat="fx" href="/reports/fx/">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/fx-preview.png')">
+            <img src="/static/landing/fx-preview.png" alt="Döviz Günlük" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Günlük <span class="date" data-date></span></span>
+            <h3>Döviz Günlük</h3>
+            <p>Majör pariteler + TRY çaprazları. RSI, hareketli ortalama, 30 günlük forecast, mevsimsellik.</p>
+            <span class="open">Döviz Raporu →</span>
+          </div>
+        </a>
+        <a class="tool-card" data-cat="tcmb" href="/reports/tcmb/">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/tcmb-preview.png')">
+            <img src="/static/landing/tcmb-preview.png" alt="TCMB Analitik Bilanço" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Günlük <span class="date" data-date></span></span>
+            <h3>TCMB Analitik Bilanço</h3>
+            <p>Net rezerv (klasik + swap-arındırılmış), brüt rezerv, döviz yükümlülükleri. T+1 EVDS verisi.</p>
+            <span class="open">Bilanço Raporu →</span>
+          </div>
+        </a>
+        <a class="tool-card" data-cat="sektor" href="/reports/sektor/">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/sektor-preview.png')">
+            <img src="/static/landing/sektor-preview.png" alt="Sektör Rotasyon" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Haftalık <span class="date" data-date></span></span>
+            <h3>Sektör Rotasyon</h3>
+            <p>10 BIST sektörü + XU100 karşılaştırması. Hangi sektör öne çıkıyor, momentum nereye dönüyor.</p>
+            <span class="open">Sektör Raporu →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ARAŞTIRMA -->
+    <section class="module" id="mod-arastirma">
+      <div class="module-header">
+        <div class="eyebrow">DERİNLEMESİNE · HAFTALIK & ÇEYREKLİK</div>
+        <h1>Araştırma</h1>
+        <p>Tek konuya odaklanan derinlemesine analizler: banka bilançoları, haftalık grafik, global haber sentezi, makro göstergeler.</p>
+      </div>
+      <div class="card-grid">
+        <a href="/banka-raporu/2025-q4/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/banka-preview.png')">
+            <img src="/static/landing/banka-preview.png" alt="Banka Bilanço Raporu" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Çeyreklik</span>
+            <h3>Banka Bilanço Raporu</h3>
+            <p>6 büyük BIST bankası için KAP doğrulamalı NIM, ROE, CAR analizi. Çapraz karşılaştırma + tarihsel trend.</p>
+            <span class="open">Q4 2025 Raporu →</span>
+          </div>
+        </a>
+        <a href="/haftanin-grafikleri/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/haftanin-preview.png')">
+            <img src="/static/landing/haftanin-preview.png" alt="Haftanın Grafiği" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Haftalık</span>
+            <h3>Haftanın Grafiği</h3>
+            <p>Her hafta bir konu derinlemesine grafik: TCMB rezerv, tahvil getirileri, makro ilişkiler.</p>
+            <span class="open">Bu Haftaya Bak →</span>
+          </div>
+        </a>
+        <a href="/haftanin-haberleri/2026-05-23/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/haberler-preview.png')">
+            <img src="/static/landing/haberler-preview.png" alt="Haftanın Haberleri" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Haftalık</span>
+            <h3>Haftanın Haberleri</h3>
+            <p>FT, Bloomberg, Reuters, WSJ haftalık manşet sentezi ve her başlık için piyasa etkisi yorumu.</p>
+            <span class="open">Haber Bülteni →</span>
+          </div>
+        </a>
+        <a class="tool-card" data-cat="makro" href="/reports/makro/">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/makro-preview.png')">
+            <img src="/static/landing/makro-preview.png" alt="TR & ABD Makro" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Haftalık <span class="date" data-date></span></span>
+            <h3>TR & ABD Makro</h3>
+            <p>Enflasyon, faiz, büyüme, işsizlik. TCMB EVDS + FRED + Dünya Bankası göstergeleri tek panelde.</p>
+            <span class="open">Makro Raporu →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- EĞİTİM -->
+    <section class="module" id="mod-egitim">
+      <div class="module-header">
+        <div class="eyebrow">ÖĞREN · 24 MAKALE</div>
+        <h1>Eğitim Kütüphanesi</h1>
+        <p>Temel ve teknik analiz, risk yönetimi, yatırımcı psikolojisi, davranışsal önyargılar. Sade Türkçe, akademik kaynakça.</p>
+      </div>
+      <div class="card-grid">
+        <a href="/egitim/" class="tool-card">
+          <div class="shot" onclick="event.preventDefault();zoom('/static/landing/egitim-preview.png')">
+            <img src="/static/landing/egitim-preview.png" alt="Eğitim Kütüphanesi" loading="lazy"><span class="zoom-hint">⤢ büyüt</span>
+          </div>
+          <div class="body">
+            <span class="badge">Kütüphane</span>
+            <h3>Tüm Makaleler</h3>
+            <p>24 makale: PE, RSI, drawdown, portföy optimizasyonu, Kelly kriteri, NIM, carry trade, likidite riski.</p>
+            <span class="open">Kütüphaneye Gir →</span>
+          </div>
+        </a>
+      </div>
+      <div class="edu-extra">
+        <h4>Popüler başlıklar</h4>
+        <div class="edu-links">
+          <a href="/egitim/temel-analiz-bilanco-okuma/">Temel Analiz & Bilanço Okuma</a>
+          <a href="/egitim/yatirimci-psikolojisi/">Yatırımcı Psikolojisi</a>
+          <a href="/egitim/risk-metrikleri/">Risk Metrikleri (Sharpe, Drawdown)</a>
+          <a href="/egitim/pozisyon-buyuklugu/">Pozisyon Büyüklüğü & Kelly</a>
+          <a href="/egitim/nim-bankacilik/">NIM ve Banka Karlılığı</a>
+          <a href="/egitim/aciga-satis-mekanigi/">Açığa Satış Mekaniği</a>
+          <a href="/egitim/carry-trade/">Carry Trade & Swap</a>
+          <a href="/egitim/portfoy-optimizasyonu/">Portföy Optimizasyonu</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── LIGHTBOX ─────────────────────────────────────── -->
+<div id="lightbox" onclick="closeZoom()"><img id="lightbox-img" src="" alt=""></div>
+
+<script>
+// ── Modül geçişi ──
+const items = document.querySelectorAll('.panel-item');
+const modules = { piyasalar:'mod-piyasalar', karar:'mod-karar', strateji:'mod-strateji', veri:'mod-veri', arastirma:'mod-arastirma', egitim:'mod-egitim' };
+items.forEach(it => it.addEventListener('click', () => {
+  const m = it.dataset.module;
+  items.forEach(x => x.classList.toggle('active', x === it));
+  Object.entries(modules).forEach(([k, id]) =>
+    document.getElementById(id).classList.toggle('active', k === m));
+  history.replaceState(null, '', '#' + m);
+  window.scrollTo({top:0, behavior:'smooth'});
+}));
+(function(){ const h = location.hash.slice(1); if (h && modules[h]) {
+  const it = document.querySelector('.panel-item[data-module="'+h+'"]'); if (it) it.click();
+}})();
+
+// ── Lightbox ──
+function zoom(src){ const lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=src; lb.style.display='flex'; document.body.style.overflow='hidden'; }
+function closeZoom(){ document.getElementById('lightbox').style.display='none'; document.body.style.overflow=''; }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); });
+
+// ── Canlı veri (latest.json) ──
+(async function(){
+  try {
+    const r = await fetch('/terminal/latest.json', {cache:'no-store'});
+    if (!r.ok) throw new Error('latest.json '+r.status);
+    const d = await r.json();
+    const snap = d.snapshot || {};
+    const m = (cat) => (snap[cat] && snap[cat][0] && snap[cat][0].metrics) || {};
+    const pulse = m('pulse'), makro = m('makro'), fred = m('fred');
+    const fmt = (v, dig=2) => (v==null||isNaN(v)) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:dig,maximumFractionDigits:dig});
+    const set = (key, val) => { const el = document.querySelector('[data-m="'+key+'"]'); if(el) el.textContent = val; };
+    if (pulse.usdtry_last) set('usdtry', fmt(pulse.usdtry_last));
+    if (pulse.xu100_last) set('bist', fmt(pulse.xu100_last, 0));
+    if (makro.tufe_yoy) set('tufe', fmt(makro.tufe_yoy,1)+'%');
+    if (fred.fed_funds) set('fed', fmt(fred.fed_funds,2)+'%');
+    if (pulse.dxy_last) set('dxy', fmt(pulse.dxy_last,2));
+    if (pulse.vix_last) set('vix', fmt(pulse.vix_last,1));
+
+    const byCat = {}; (d.reports||[]).forEach(rep => { byCat[rep.category] = rep; });
+    document.querySelectorAll('.tool-card[data-cat]').forEach(card => {
+      const cat = card.dataset.cat; const rep = byCat[cat];
+      if (rep) {
+        card.setAttribute('href', rep.path);
+        const dt = card.querySelector('[data-date]'); if (dt) dt.textContent = rep.date;
+      }
+    });
+
+    const n = (d.reports||[]).length;
+    const fs = document.getElementById('foot-status');
+    if (fs) fs.textContent = n + ' rapor güncel';
+  } catch(e) {
+    console.warn('latest.json yüklenemedi', e);
+    const fs = document.getElementById('foot-status'); if (fs) fs.textContent = 'çevrimdışı';
+  }
+})();
+
+// ── PİYASALAR launchpad ──
+(function(){
+  const LS_KEY = 'km-launchpad-v1';
+  const MAX = 5;
+  const grid = document.getElementById('lp-grid');
+  const sel = document.getElementById('lp-add');
+  const countEl = document.getElementById('lp-count');
+  const resetBtn = document.getElementById('lp-reset');
+  const metaEl = document.getElementById('lp-meta');
+  if (!grid) return;
+
+  let DATA = null;
+  let picks = [];
+  try { picks = JSON.parse(localStorage.getItem(LS_KEY) || '[]').slice(0, MAX); } catch(e){ picks = []; }
+
+  function save(){ try { localStorage.setItem(LS_KEY, JSON.stringify(picks)); } catch(e){} }
+  function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function fillSelect(){
+    if (!DATA) return;
+    const syms = Object.keys(DATA.stocks).sort();
+    sel.innerHTML = '<option value="">+ Hisse ekle (BIST30)…</option>' +
+      syms.filter(s => !picks.includes(s)).map(s =>
+        `<option value="${s}">${s} · ${esc(DATA.stocks[s].name)}</option>`).join('');
+    sel.disabled = picks.length >= MAX;
+    if (picks.length >= MAX) sel.options[0].textContent = 'Maksimum 5 hisse seçildi';
+  }
+
+  function chgClass(v){ return v == null ? 'flat' : (v > 0.05 ? 'up' : (v < -0.05 ? 'dn' : 'flat')); }
+  function chgStr(v){ return v == null ? '—' : (v>0?'▲ ':v<0?'▼ ':'─ ') + v.toFixed(2) + '%'; }
+
+  // Önyargı testi sonucu (⑦ için)
+  const BIAS_LABEL = {
+    loss_aversion:'Kayıp Aversiyonu', overconfidence:'Aşırı Güven', confirmation:'Onay Arayışı',
+    anchoring:'Çapalama', recency:'Yakın Etki', herding:'Sürü Davranışı',
+    endowment:'Sahiplenme Etkisi', disposition:'Disposition Etkisi'
+  };
+  function getBias(){
+    try { const p = JSON.parse(localStorage.getItem('km-onyargi-skor')||'null'); return p && p.top ? p.top : null; } catch(e){ return null; }
+  }
+
+  function pretradeText(s){
+    const bias = getBias();
+    const w = s.pretrade || {};
+    const parts = [];
+    // Hisseye özel davranışsal uyarı
+    if (bias && BIAS_LABEL[bias]) {
+      let warn = `Senin en güçlü önyargın <b>${BIAS_LABEL[bias]}</b>.`;
+      if ((bias==='disposition'||bias==='loss_aversion') && w.chg_22d != null && w.chg_22d < -3)
+        warn += ` Bu hisse son ayda ${w.chg_22d}% düşmüş — zarardaki pozisyonu inatla tutma (erken çıkış kuralını hatırla).`;
+      else if (bias==='herding')
+        warn += ` Bu hisseyi "herkes konuşuyor" diye değil, kendi tezinle aldığından emin ol.`;
+      else if (bias==='overconfidence')
+        warn += ` Girmeden önce "yanılıyor olabilir miyim?" sorusunu bir kez sor.`;
+      else if (bias==='anchoring' && s.last!=null)
+        warn += ` Alış fiyatını veya eski zirveyi referans alma; "bugün ilk kez görseydim alır mıydım?" diye sor.`;
+      else warn += ` Pozisyon öncesi çıkış planını yazılı koy.`;
+      parts.push(warn);
+    } else {
+      parts.push(`İşlem öncesi: çıkış planını ve tezini <b>duygusuz anda</b> yaz. <a href="/trading/onyargi-testi/" style="color:var(--accent)">Önyargı testini</a> yaparsan bu bölüm sana özelleşir.`);
+    }
+    if (w.chg_5d != null) parts.push(`Son 5 gün ${w.chg_5d>0?'+':''}${w.chg_5d}% · son ay ${w.chg_22d>0?'+':''}${w.chg_22d}%.`);
+    return parts.join(' ');
+  }
+
+  function render(){
+    countEl.textContent = picks.length + ' / ' + MAX + ' seçili';
+    if (!DATA) { grid.innerHTML = '<div class="lp-empty"><span class="ico">◷</span><p>Veri yükleniyor…</p></div>'; return; }
+    if (picks.length === 0) {
+      grid.innerHTML = '<div class="lp-empty"><span class="ico">📡</span><p>Henüz hisse seçmedin.<br>Yukarıdan en fazla 5 BIST30 hissesi ekle.<br>Her hisse için site genelinde tarama yapıp sadece <b style="color:var(--text-dim)">en fark yaratan</b> bilgileri göstereceğiz.</p></div>';
+      return;
+    }
+    grid.innerHTML = picks.map(sym => {
+      const s = DATA.stocks[sym];
+      if (!s) return '';
+      const flags = s.flags || [];
+      const hasFlag = flags.length > 0;
+      const summ = hasFlag
+        ? flags.slice(0,3).map(f => `<span class="pill">${esc(f.label)}</span>`).join('')
+        : '<span class="calm">✓ Sakin — dikkat çeken yok</span>';
+      const flagsSec = hasFlag
+        ? flags.map(f => `<div class="lp-flag ${esc(f.sev)}"><span class="dot"></span><span>${esc(f.label)}</span></div>`).join('')
+        : '<div class="lp-calm"><span class="ico">✓</span>Bugün dikkat çeken bir hareket yok</div>';
+      const macro = s.macro || {};
+      const strat = s.strategy;
+      const stratHtml = strat
+        ? `<div class="strat-row"><span><b>${esc(strat.strategy)}</b> kuralı geçmişte Sharpe <span class="sh">${strat.sharpe}</span> verdi</span></div>
+           <p style="margin-top:5px">Şu an: ${esc(strat.state)}.</p>
+           <div class="disc">Geçmiş performans; eğitim amaçlı, yatırım tavsiyesi değildir.</div>`
+        : `<p>Yeterli geçmiş veri yok.</p>`;
+      return `<div class="lp-card ${hasFlag?'has-flag':''}" data-card="${esc(sym)}">
+        <div class="lp-card-h" data-toggle="${esc(sym)}">
+          <div><div class="sym">${esc(sym)}</div><div class="nm">${esc(s.name)} · ${esc((s.ozet&&s.ozet.sector)||'')}</div></div>
+          <div class="px"><div class="last">${s.last==null?'—':s.last.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+            <div class="chg ${chgClass(s.chg)}">${chgStr(s.chg)}</div></div>
+          <span class="toggle">▾</span>
+          <button class="rm" data-rm="${esc(sym)}" title="Kaldır">×</button>
+        </div>
+        <div class="summary-flags">${summ}</div>
+        <div class="lp-dossier">
+          <div class="lp-sec"><div class="sec-h"><span class="num">02</span> Dikkat Çekenler</div>${flagsSec}</div>
+          <div class="lp-sec"><div class="sec-h"><span class="num">05</span> Makro Bağlam · ${esc(macro.sector||'')}</div><p>${esc(macro.line||'')}</p></div>
+          <div class="lp-sec"><div class="sec-h"><span class="num">06</span> Geçmiş Strateji Davranışı</div>${stratHtml}</div>
+          <div class="lp-sec pretrade"><div class="sec-h"><span class="num">07</span> İşlem Öncesi Aklında Bulundur</div><p>${pretradeText(s)}</p></div>
+        </div>
+      </div>`;
+    }).join('');
+    // toggle accordion
+    grid.querySelectorAll('[data-toggle]').forEach(h => h.addEventListener('click', (e) => {
+      if (e.target.closest('[data-rm]')) return;
+      h.closest('.lp-card').classList.toggle('open');
+    }));
+    grid.querySelectorAll('[data-rm]').forEach(b => b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      picks = picks.filter(p => p !== b.dataset.rm); save(); fillSelect(); render();
+    }));
+  }
+
+  sel.addEventListener('change', () => {
+    const v = sel.value;
+    if (v && !picks.includes(v) && picks.length < MAX) { picks.push(v); save(); fillSelect(); render(); }
+    sel.value = '';
+  });
+  resetBtn.addEventListener('click', () => { picks = []; save(); fillSelect(); render(); });
+
+  fetch('/terminal/data/bist30-dossier.json', {cache:'no-store'})
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => {
+      DATA = d;
+      picks = picks.filter(p => d.stocks[p]); save();
+      fillSelect(); render();
+      if (metaEl && d.generated) {
+        const dt = new Date(d.generated);
+        metaEl.textContent = 'Veri: ' + dt.toLocaleDateString('tr-TR') + ' ' +
+          dt.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}) +
+          ' · yfinance 15 dk gecikmeli · BIST30 · kartı aç: makro bağlam, strateji, işlem öncesi';
+      }
+    })
+    .catch(e => { console.warn('dossier yüklenemedi', e); grid.innerHTML = '<div class="lp-empty"><span class="ico">⚠</span><p>İzleme verisi şu an yüklenemedi.</p></div>'; });
+})();
+</script>
+
+</body>
+</html>

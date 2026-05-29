@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-05-27T07:27:44.863345Z",
+  "last_update": "2026-05-29T09:03:01.871448Z",
   "latest_report": {
-    "category": "hisse",
-    "date": "2026-05-27",
-    "title": "Koç Holding — Günün Merceği"
+    "category": "pulse",
+    "date": "2026-05-29",
+    "title": "Günlük Nabız — 2026-05-29"
   },
-  "total_reports": 65,
+  "total_reports": 70,
   "by_category": {
-    "pulse": 11,
-    "hisse": 11,
+    "pulse": 13,
+    "hisse": 12,
     "sektor": 8,
-    "fx": 11,
+    "fx": 12,
     "makro": 5,
     "fred": 5,
     "wb": 4,
     "sentiment": 3,
-    "tcmb": 7
+    "tcmb": 8
   }
 }

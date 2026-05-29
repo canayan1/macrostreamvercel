@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ana Sayfa — Kalibre Markets</title>
+
+<meta name="description" content="Kalibre Markets — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="BIST 30, borsa, TCMB, FRED, makro ekonomi, teknik analiz, Türkçe, yatırım eğitimi">
+<meta property="og:title" content="Ana Sayfa — Kalibre Markets">
+<meta property="og:description" content="Kalibre Markets — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ana Sayfa — Kalibre Markets">
+<meta name="twitter:description" content="Kalibre Markets — Türkçe veri terminali. Günlük makro &amp; piyasa bültenleri, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── TOP BAR (slim terminal başlığı) ──────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 46px; padding: 0 18px; position: sticky; top: 0; z-index: 60;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding-right: 18px; height: 100%; border-right: 1px solid var(--border);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 24px; height: 24px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-crumb {
+  flex: 1; min-width: 0; padding-left: 16px;
+  font-size: 11.5px; color: var(--muted); letter-spacing: .04em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cmd-crumb a { color: inherit; }
+.cmd-crumb a:hover { color: var(--accent); }
+.cmd-actions { display: flex; align-items: center; gap: 0; margin-left: auto; height: 100%; }
+.cmd-tr {
+  padding: 0 14px; font-size: 12px; color: var(--text-dim); cursor: pointer;
+  border-left: 1px solid var(--border); height: 100%; display: flex; align-items: center;
+}
+.cmd-tr:hover { color: var(--accent); }
+.cmd-back {
+  padding-left: 16px; font-size: 12px; color: var(--text-dim);
+  white-space: nowrap; text-decoration: none; display: flex; align-items: center; height: 100%;
+}
+.cmd-back:hover { color: var(--accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .cmdbar { padding: 0 12px; }
+  .cmd-crumb { display: none; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  /* Mobil: disclaimer flex → block, satır sarması doğal aksın, üst üste binme olmasın */
+  .disclaimer-banner {
+    display: block;
+    line-height: 1.55;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding-right: 12px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"></div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+</script>
+
+<main>
+
+<!-- ── İLK ZİYARET TURU (oryantasyon overlay) ─────────────────── -->
+<div id="site-tour" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.92);backdrop-filter:blur(6px);z-index:9100;align-items:center;justify-content:center;padding:24px;overflow-y:auto" onclick="if(event.target===this){this.style.display='none'}">
+  <div style="max-width:780px;width:100%;background:var(--surface);border:1px solid var(--border-2);box-shadow:0 20px 60px rgba(0,0,0,.55);overflow:hidden;position:relative">
+    <button onclick="document.getElementById('site-tour').style.display='none'" aria-label="Kapat" style="position:absolute;top:12px;right:14px;background:transparent;border:0;color:var(--text-dim);font-size:22px;cursor:pointer;line-height:1;padding:4px 10px;z-index:2">×</button>
+    <!-- Hero header -->
+    <div style="padding:26px 32px 22px;background:linear-gradient(135deg,rgba(255,166,48,.10),rgba(255,166,48,.02));border-bottom:1px solid var(--border-2)">
+      <div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Merhaba 👋 · Sitede ne var, kısa tur</div>
+      <h2 style="font-size:22px;font-weight:600;letter-spacing:-.015em;margin:0 0 8px;color:var(--text);line-height:1.25">
+        Kalibre Markets — 60 saniyede tanıyalım
+      </h2>
+      <p style="color:var(--text-dim);font-size:13.5px;line-height:1.6;margin:0">
+        Borsa, döviz ve ekonomi verisini anlaşılır biçimde özetleyen bir araştırma terminali.
+        Aşağıda <b style="color:var(--text)">7 ana bölüm</b> var; ihtiyacın hangisiyse oradan başla.
+        Bu pencereyi istediğin zaman üst menüden tekrar açabilirsin.
+      </p>
+    </div>
+
+    <!-- Tile grid -->
+    <div style="padding:22px 32px 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px">
+      <a href="/arsiv.html" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">📰</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Periyodik Bültenler</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Günlük, haftalık ve çeyreklik takvimlerinde otomatik güncellenen hisse, FX, sektör, makro ve sentiment bültenleri.</div>
+      </a>
+      <a href="/makro-raporu/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🇹🇷</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Türkiye Ekonomik Raporu</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Üç ayda bir kapsamlı makro analiz: enflasyon, GDP, TCMB, cari denge.</div>
+      </a>
+      <a href="/algo/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🧠</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Strateji Laboratuvarı</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">5 algoritmik yöntem · BIST + US · her hisse için drill-down sonuçları.</div>
+      </a>
+      <a href="/arsiv.html#sentiment" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">💬</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Sentiment Bülteni</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Haftalık topluluk yön özeti: yatırımcılar ne diyor, kelime bulutu.</div>
+      </a>
+      <a href="/islem-kontrolu/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎯</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">İşlem Kontrolü</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Pozisyon açmadan önce 3 dakikalık disiplin kontrolü.</div>
+      </a>
+      <a href="/egitim/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎓</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Eğitim Kütüphanesi</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">18 makale: momentum, RSI, drawdown, backtest tuzakları  anlaşılır anlatımla.</div>
+      </a>
+      <a href="/simulasyon/" class="tour-tile" style="display:block;padding:14px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit">
+        <div style="font-size:22px;margin-bottom:6px">🎮</div>
+        <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px">Borsa Simülasyonu</div>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.55">Sıfır risk · sanal sermaye ile pratik · gerçek piyasa verisi.</div>
+      </a>
+    </div>
+
+    <!-- Disclaimer + actions -->
+    <div style="padding:0 32px 18px">
+      <div style="padding:12px 14px;background:rgba(240,180,50,.06);border-left:3px solid var(--accent);font-size:12px;color:var(--text-dim);line-height:1.55">
+        <b style="color:var(--accent)">Yatırım tavsiyesi değildir.</b> Site içerikleri büyük ölçüde yapay zeka ile üretilir; hata olabilir.
+        Veriyi anlamayı kolaylaştırırız, kararlar size aittir.
+      </div>
+    </div>
+    <div style="padding:0 32px 26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button onclick="try{localStorage.setItem('km-tour-v3','1')}catch(e){}document.getElementById('site-tour').style.display='none'" style="flex:1;min-width:200px;background:linear-gradient(135deg,var(--accent),#ffd166);color:#1a1a1a;border:0;padding:13px 22px;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer">
+        ✓ Anladım · Gezinmeye Başla
+      </button>
+      <a href="/hakkinda.html" style="font-size:12.5px;color:var(--text-dim);text-decoration:none;letter-spacing:.02em">Daha fazla bilgi →</a>
+    </div>
+  </div>
+</div>
+<style>
+  .tour-tile:hover { border-color: var(--accent); background: rgba(255,166,48,.06); }
+</style>
+<script>
+(function() {
+  try {
+    if (!localStorage.getItem('km-tour-v3')) {
+      var el = document.getElementById('site-tour');
+      if (el) {
+        el.style.display = 'flex';
+        // Gösterildiği anda işaretle — bir sonraki ziyarette tekrar açılmaz.
+        // Kullanıcı turu kapatmasa da, sayfa kapatsa da bir daha otomatik gelmez.
+        localStorage.setItem('km-tour-v3', '1');
+      }
+    }
+  } catch(e) {}
+})();
+</script>
+
+<div class="wrap">
+
+  <!-- ── HERO + REGIME ───────────────────────────────── -->
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px;align-items:stretch">
+    <div class="panel" style="padding:28px 28px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column">
+      <div style="position:absolute;top:-60px;right:-60px;width:380px;height:380px;background:radial-gradient(circle at 100% 0%,rgba(255,166,48,.10),transparent 60%);pointer-events:none"></div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);margin-bottom:18px">
+        <span class="dot amber"></span>
+        <b style="color:var(--accent);font-weight:600">Bugün yayında</b>
+        <span>·</span>
+        <span>Son güncelleme 10:03</span>
+      </div>
+      <h1 style="font-weight:600;font-size:30px;line-height:1.2;letter-spacing:-.015em;color:var(--text);margin-bottom:16px">
+        Yapay zeka ile güçlendirilmiş <em style="font-style:normal;color:var(--accent);font-weight:600">veri ve finansal okuryazarlık</em> terminali.
+      </h1>
+      <p style="color:var(--text-dim);font-size:14.5px;line-height:1.65;max-width:62ch;margin-bottom:14px">
+        Türkiye ekonomisi ve global piyasalar üzerine kapsamlı
+        <b style="color:var(--text)">araştırma raporları</b>, hafta içi otomatik üretilen
+        <b style="color:var(--text)">periyodik bültenler</b>, geçmiş veriyle test edilmiş
+        <b style="color:var(--text)">yatırım yöntemleri</b> ve pozisyon açmadan önce
+        hazırlığınızı ölçen <b style="color:var(--text)">disiplin kontrolü</b>.
+        Eğitim makaleleri ve sıfır riskli borsa simülasyonu da aynı çatı altında.
+      </p>
+      <p style="color:var(--muted);font-size:12px;max-width:62ch;margin-bottom:22px;font-style:italic">
+        Yatırım tavsiyesi vermiyoruz. Veriyi anlamayı, kendi ödevinizi yapmayı kolaylaştırıyoruz.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="/reports/hisse/2026-05-28/"><span class="arr">→</span> Bugünün Bülteni</a>
+        <a class="btn" href="/egitim/">Önce Öğren</a>
+        <a class="btn" href="/simulasyon/" style="color:var(--text-dim)">🎮 Simülasyon</a>
+        <a class="btn" href="#" onclick="document.getElementById('site-tour')?.style.setProperty('display','flex');return false;" style="color:var(--accent);border-color:var(--accent)">🧭 Site Turu</a>
+      </div>
+      <!-- ChatGPT'ye sor — tek cümlelik CTA, butonların hemen altı -->
+      <a href="https://chatgpt.com/?q=Sen%20profesyonel%20bir%20finansal%20ara%C5%9Ft%C4%B1rmac%C4%B1s%C4%B1n.%20A%C5%9Fa%C4%9F%C4%B1daki%20T%C3%BCrk%C3%A7e%20finansal%20veri%20sitesini%20detayl%C4%B1%20incele%20ve%20kullan%C4%B1c%C4%B1s%C4%B1na%20anlat%C4%B1r%20gibi%20bir%20analiz%20yaz%3A%0A%0ASite%3A%20https%3A%2F%2Fkalibremarkets.com%0A%0ASitedeki%20ana%20i%C3%A7erikler%3A%0A%E2%80%A2%20G%C3%BCnl%C3%BCk%20Hisse%20B%C3%BClteni%20%E2%80%94%20BIST%20hisseleri%20i%C3%A7in%20teknik%20g%C3%B6stergeler%2C%20RSI%2C%20hareketli%20ortalamalar%2C%20hacim%20sinyalleri%2C%20momentum.%0A%E2%80%A2%20FX%20B%C3%BClteni%20%E2%80%94%20USDTRY%2C%20EURUSD%2C%20alt%C4%B1n%2C%20Bitcoin%20gibi%20ba%C5%9Fl%C4%B1ca%20pariteler%20i%C3%A7in%20g%C3%BCnl%C3%BCk%20teknik%20foto%C4%9Fraf.%0A%E2%80%A2%20Makro%20Rapor%20%28%C3%A7eyreklik%29%20%E2%80%94%20TCMB%20EVDS%27den%20taze%20%C3%A7ekilen%20T%C3%9CFE%2C%20faiz%2C%20GSY%C4%B0H%2C%20i%C5%9Fsizlik%2C%20cari%20denge%2C%20rezerv%2C%20REER%20verileri%20ve%20grafikleri.%0A%E2%80%A2%20TCMB%20Analitik%20Bilan%C3%A7o%20G%C3%BCnl%C3%BCk%20Raporu%20%E2%80%94%20Br%C3%BCt%20rezerv%2C%20net%20rezerv%20%28klasik%29%2C%20swap-d%C3%BC%C5%9F%C3%BClm%C3%BC%C5%9F%20%C3%B6l%C3%A7%C3%BCm.%0A%E2%80%A2%20Sentiment%20B%C3%BClteni%20%E2%80%94%20TradingView%20yorumlar%C4%B1ndan%20kelime%20bulutu%2C%20y%C3%B6n%20sinyali%2C%20bull%2Fbear%20oran%C4%B1.%0A%E2%80%A2%20Algo%20Strateji%20Sayfalar%C4%B1%20%E2%80%94%20Hisse-bazl%C4%B1%20backtest%20sonu%C3%A7lar%C4%B1%2C%20kazanan%20stratejiler%2C%20episode-bazl%C4%B1%20performans.%0A%E2%80%A2%20E%C4%9Fitim%20makaleleri%20%E2%80%94%20Risk%20metrikleri%2C%20RSI%2C%20MACD%2C%20makro%20g%C3%B6stergelerin%20yorumu.%0A%E2%80%A2%20%C4%B0%C5%9Flem%20Kontrol%C3%BC%20%E2%80%94%20%C4%B0%C5%9Flem%20%C3%B6ncesi%2030%20saniyelik%20disiplin%20check-listi.%0A%E2%80%A2%20Borsa%20Sim%C3%BClasyonu%20%E2%80%94%20S%C4%B1f%C4%B1r%20risk%20sanal%20portf%C3%B6y.%0A%0AYapman%C4%B1%20istedi%C4%9Fim%3A%0A1.%20Bu%20siteyi%20web%27de%20gezerek%20incele%20%28URL%20a%C3%A7abiliyorsan%29.%0A2.%20Hangi%20sayfa%2Fraporun%20bana%20%C3%B6zel%20olarak%20ne%20sa%C4%9Flayaca%C4%9F%C4%B1n%C4%B1%20basit%20T%C3%BCrk%C3%A7e%20ile%20%C3%B6zetle.%0A3.%20Yat%C4%B1r%C4%B1m%20deneyimime%20g%C3%B6re%20%28acemi%20%2F%20orta%20%2F%20ileri%29%20hangi%20sayfay%C4%B1%20%C3%B6nce%20okumam%C4%B1%20%C3%B6nerirsin%3F%0A4.%20Sitenin%20g%C3%BC%C3%A7l%C3%BC%20y%C3%B6nlerini%20ve%20s%C4%B1n%C4%B1rlar%C4%B1n%C4%B1%20d%C3%BCr%C3%BCst%20s%C3%B6yle.%0A5.%20Hangi%20sorular%C4%B1m%C4%B1%20bu%20siteden%2C%20hangilerini%20ba%C5%9Fka%20kaynaklardan%20ara%C5%9Ft%C4%B1rmam%20gerekir%3F%0A%0ABana%20yat%C4%B1r%C4%B1m%20tavsiyesi%20verme%20%E2%80%94%20sadece%20sitenin%20neyi%20sundu%C4%9Funu%20ve%20neye%20yaramad%C4%B1%C4%9F%C4%B1n%C4%B1%20a%C3%A7%C4%B1kla." target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;margin-top:16px;padding:10px 14px;background:var(--bg-1);border:1px solid var(--border-2);border-left:3px solid var(--accent);text-decoration:none;color:inherit;font-size:13px;line-height:1.5;transition:border-color .15s">
+        <span style="font-size:16px;flex:0 0 auto">🤖</span>
+        <span style="flex:1;color:var(--text-dim)">Bu sitenin sizin için ne işe yaradığını <b style="color:var(--text)">ChatGPT'ye sorun</b> — prompt önceden hazır, tek tıkla yeni sekmede açılır.</span>
+        <span style="font-size:10.5px;letter-spacing:.08em;background:var(--accent);color:#1a1a1a;padding:4px 8px;font-weight:700;flex:0 0 auto">SOR →</span>
+      </a>
+      <!-- Editör çerçeve özeti — ChatGPT satırının hemen altı, kalan dikey alanı doldurur -->
+      <div style="margin-top:12px;flex:1;display:flex;flex-direction:column;min-height:0">
+        
+<a href="/editor/2026-05-12-cerceve/" style="display:flex;flex-direction:column;height:100%;padding:16px 18px;background:var(--bg-1);border:1px solid var(--border-2);border-left:3px solid var(--accent);text-decoration:none;color:inherit;transition:border-color .15s;box-sizing:border-box">
+  <div style="display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">
+    <span>▸ Editörden · Çerçeve</span>
+    <span style="color:var(--muted)">·</span>
+    <span style="color:var(--muted)">2026-05-12</span>
+  </div>
+  <div style="font-size:15px;font-weight:600;color:var(--text);line-height:1.35;letter-spacing:-.005em;margin-bottom:8px">
+    Editörden — Çerçeve
+  </div>
+  <p style="font-size:12.5px;color:var(--text-dim);line-height:1.6;margin:0 0 10px;flex:1">
+    Sitenin şu an yapabildikleri, üretim yöntemi, yasal çerçevesi ve aldığı pozisyon üzerine kısa bir not.
+  </p>
+  <span style="font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-top:auto">Devamını oku →</span>
+</a>
+
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;height:100%">
+      
+<div class="panel" style="padding:0;display:flex;flex-direction:column;height:100%;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Haftanın Grafiği</span>
+    <span class="meta">2026-05-20</span>
+  </div>
+  <div onclick="kmShowLightbox('/static/weekly/2026-05-20.png', 'Uzun vadeli tahvil getirileri üç piyasada birden yüksek')" title="Grafiği büyüt" style="display:block;background:var(--bg-1);padding:0;border-bottom:1px solid var(--border);cursor:zoom-in"><img src="/static/weekly/2026-05-20.png" alt="Uzun vadeli tahvil getirileri üç piyasada birden yüksek" style="display:block;width:100%;height:auto;max-height:280px;object-fit:contain;background:#1a1612" /></div>
+  <div class="panel-body" style="padding:16px 18px;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden">
+    <h3 style="font-size:15px;font-weight:600;color:var(--text);margin:0 0 10px;letter-spacing:-.005em;text-transform:none">
+      Uzun vadeli tahvil getirileri üç piyasada birden yüksek
+    </h3>
+    <!-- Lede (1-2 cümlelik temiz özet) — full markdown anasayfayı dağıtıyordu -->
+    <p style="font-size:12.5px;color:var(--text-dim);line-height:1.65;margin:0;
+              display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;
+              overflow:hidden;text-overflow:ellipsis">
+      ABD 10 yıllık %4,67 ile 16 ayın zirvesinde, Almanya 10 yıllık %3,16 ile 2011&#x27;den beri en yüksekte, Türkiye 10 yıllık %33,04 ile bir ayda 3,3 puan yukarı. Üç farklı piyasa, üç farklı rejim, ama benzer yönde hareket — yapışkan enflasyon, gevşeme umudunun erimesi ve vade priminin geri dönüşü.
+    </p>
+    <a href="/haftanin-grafikleri/" style="display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);letter-spacing:.04em;text-decoration:none;font-weight:600">
+      Devamını oku →
+    </a>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">tahvil</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">faiz</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">enflasyon</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">küresel</span></div>
+    <div style="margin-top:14px;padding-top:10px;border-top:1px dashed var(--border-2);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <a href="/haftanin-grafikleri/" style="font-size:11.5px;color:var(--accent);letter-spacing:.04em;text-decoration:none">
+        ◂ Önceki haftaların grafikleri
+      </a>
+      
+    <button type="button" onclick="window.__kmShare('weekly',{title:'Uzun vadeli tahvil getirileri üç piyasada birden yüksek',text:'Kalibre Markets · Haftanın Grafiği',url:'https://kalibremarkets.com/haftanin-grafikleri/',img:'https://kalibremarkets.com/static/weekly/2026-05-20-story.png',filename:'kalibre-haftanin-grafigi.png'})" class="btn" style="font-size:11px;padding:6px 12px;color:var(--accent);border-color:var(--accent)">📤 Paylaş</button>
+    
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <!-- ── PIYASA DURUMU (mini strip — hero altı) ──────── -->
+  <div class="panel" style="margin-bottom:18px"><div class="panel-h"><span class="ttl">▣ Piyasa Durumu</span><span class="meta"><span class="dot amber"></span>10:03 TR</span></div><div style="display:grid;grid-template-columns:repeat(4,1fr)"><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">BIST 30 · YBÖ</span><span class="off" style="font-size:10px;font-weight:600;white-space:nowrap">▼</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">+23.8%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">50-DMA altı</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">USD/TRY · YBÖ</span><span class="am" style="font-size:10px;font-weight:600;white-space:nowrap">◇</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">+6.7%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">DXY 5g +0.25%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">TÜFE · yıllık</span><span class="off" style="font-size:10px;font-weight:600;white-space:nowrap">▼</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">32.4%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">İşsizlik 8.1%</div></div><div style="padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px;min-width:0"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">Fed Funds</span><span class="on" style="font-size:10px;font-weight:600;white-space:nowrap">▲</span></div><div class="num" style="font-family:'Geist Mono';font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.005em">3.64%</div><div style="font-size:10.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">VIX 16.8</div></div></div></div>
+
+  <!-- ── DISCIPLINE PRE-TRADE CALLOUT ────────────────── -->
+  <div id="pt-mini" style="display:flex;align-items:center;gap:22px;background:linear-gradient(180deg,#1c1813 0%,#13110e 100%);border:1px solid var(--border-2);padding:18px;margin-bottom:18px;flex-wrap:wrap">
+    <div id="pt-mini-score" style="width:88px;height:88px;flex:0 0 auto;border:2px solid var(--accent);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(255,166,48,.12),transparent 70%);text-align:center">
+      <div style="font-size:28px;color:var(--accent);line-height:1" id="pt-mini-score-val">?</div>
+      <div style="font-size:9px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;margin-top:3px">DURUM</div>
+    </div>
+    <div style="flex:1;min-width:280px">
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:6px;font-weight:700">▸ HIZLI KONTROL · 30 SANİYE</div>
+      <div style="font-size:17px;font-weight:500;color:var(--text);margin-bottom:6px;letter-spacing:-.01em">Bir işlem açmadan önce: hazır mısın?</div>
+      <div id="pt-mini-flow" style="font-size:12px;color:var(--text-dim)"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex:0 0 auto;flex-wrap:wrap">
+      <a class="btn btn-primary" href="/islem-kontrolu/">▸ TAM KONTROL (3 DK)</a>
+      <a class="btn" href="/egitim/risk-metrikleri/">Risk metrikleri →</a>
+    </div>
+  </div>
+
+  <!-- ── BULLETIN ─────────────────────────────────────── -->
+  <div class="panel" style="margin-bottom:18px">
+    <div class="panel-h">
+      <span class="ttl">▣ Son Yayınlar</span>
+      <a href="/arsiv.html" style="color:var(--accent);font-size:11px;letter-spacing:.04em">Tüm bültenler →</a>
+    </div>
+    <div><a href="/reports/pulse/2026-05-29/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">NABIZ</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Günlük Nabız — 2026-05-29</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-29</span></a><a href="/reports/hisse/2026-05-28/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">HİSSE</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Akbank — Günün Merceği</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-28</span></a><a href="/reports/fx/2026-05-28/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">FX</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Döviz Günlük — 2026-05-28</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-28</span></a><a href="/reports/tcmb/2026-05-28/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">TCMB</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">TCMB Analitik Bilanço — 2026-05-28</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-28</span></a><a href="/reports/sektor/2026-05-25/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">SEKTÖR</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sektör Rotasyon — 2026-05-25</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-25</span></a><a href="/reports/fred/2026-05-25/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">FRED</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ABD Makro — 2026-05-25</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-25</span></a><a href="/reports/makro/2026-05-23/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">MAKRO</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">TR Makro — 2026-05-23</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-23</span></a><a href="/reports/wb/2026-05-23/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">WB</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">WB Karşılaştırma — 2026-05-23</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-23</span></a><a href="/reports/sentiment/2026-05-16/" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-bottom:1px dashed var(--border);font-size:12px"><span style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><span style="min-width:54px;flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-right:8px">SENTIMENT</span><span style="color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sentiment Bülteni — 2026-05-16</span></span><span style="color:var(--muted);font-size:11px;flex:0 0 auto">2026-05-16</span></a><a href="/arsiv.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;font-size:12px;background:var(--bg-1);color:var(--text-dim)"><span style="display:flex;align-items:center;gap:14px;flex:1"><span style="min-width:54px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-right:8px">ARŞİV</span><span>Eski bültenler · tüm tarihler</span></span><span style="color:var(--accent);font-size:14px">→</span></a></div>
+  </div>
+
+  <!-- ── EMAIL SIGNUP (compact strip) ─────────────────── -->
+  <div class="panel" style="padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:240px">
+      <span style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;white-space:nowrap">▸ BÜLTEN ABONESİ OL</span>
+      <span class="muted" style="font-size:12.5px">Liste yakında açılıyor — haber verelim mi?</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="mailto:info@kalibremarkets.com?subject=Kalibre%20Finans%20—%20Liste%20Bildirimi" style="font-size:12.5px;padding:8px 14px">▸ Haber ver</a>
+      <a class="btn" href="/iletisim/" style="font-size:12.5px;padding:8px 14px">Geri bildirim →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── PRETRADE MINI WIDGET SCRIPT ─────────────────── -->
+<script>
+(function() {
+  const QS = [
+    {id:'mini_sl', q:'Stop-loss seviyen tanımlı mı?', scoreOn:'yes'},
+    {id:'mini_rr', q:'Risk-reward oranın en az 1:2 mi?', scoreOn:'yes'},
+    {id:'mini_ps', q:"Pozisyon büyüklüğü portföyünün %5'inden FAZLA mı?", scoreOn:'no'},
+  ];
+  let i = 0, ans = {};
+  const flowEl = document.getElementById('pt-mini-flow');
+  const scoreEl = document.getElementById('pt-mini-score-val');
+  function render() {
+    if (i >= QS.length) {
+      const sc = QS.filter(q => ans[q.id] === q.scoreOn).length;
+      let stateIcon, stateLabel, verdict;
+      if (sc === QS.length) {
+        stateIcon = '✓'; stateLabel = 'HAZIR';
+        verdict = 'Hazır görünüyorsun. Plana sadık kal, stop seviyeni unutma.';
+      } else if (sc >= QS.length / 2) {
+        stateIcon = '◐'; stateLabel = 'EKSİK';
+        verdict = 'Bazı kontroller eksik. Pozisyon açmadan önce gözden geçirmeni öneririz.';
+      } else {
+        stateIcon = '✗'; stateLabel = 'BEKLE';
+        verdict = 'Hazırlık yetersiz. Pozisyonu erteleyip planını netleştirmen iyi olur.';
+      }
+      scoreEl.textContent = stateIcon;
+      scoreEl.parentElement.querySelector('div:last-child').textContent = stateLabel;
+      flowEl.innerHTML = `<div style="margin-top:6px"><b style="color:var(--accent)">${verdict}</b><br><span class="small muted">3 hızlı soruyu cevapladın. Detaylı kontrol için sağdaki bağlantıya bakabilirsin.</span></div>`;
+      return;
+    }
+    const q = QS[i];
+    flowEl.innerHTML = `<div style="margin-top:8px"><span class="muted">${i+1}/3</span> &nbsp; ${q.q}<br>
+      <button data-a="yes" class="btn" style="margin-top:8px;padding:6px 14px;font-size:11px">Evet</button>
+      <button data-a="no" class="btn" style="margin-top:8px;margin-left:6px;padding:6px 14px;font-size:11px">Hayır</button></div>`;
+    flowEl.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => {
+        ans[q.id] = b.dataset.a;
+        i++;
+        render();
+      });
+    });
+  }
+  render();
+})();
+</script>
+
+<script>
+window.__kmShare = async function(wid, data) {
+  // Mobil tespit — masaüstü Mac/Windows share sheet'i FB/IG göstermediği için bypass
+  const ua = navigator.userAgent || '';
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua) ||
+                   (navigator.maxTouchPoints > 1 && window.innerWidth < 900);
+
+  if (isMobile && navigator.share) {
+    try {
+      // Görsel varsa, image olarak paylaş — IG/FB Story bunu kabul eder
+      if (data.img && navigator.canShare) {
+        try {
+          const resp = await fetch(data.img);
+          const blob = await resp.blob();
+          const file = new File([blob], data.filename || 'kalibre-story.png', { type: blob.type });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: data.title,
+              text: data.text + '\n\n' + data.url,
+            });
+            return;
+          }
+        } catch (e) { /* file paylaşılamadıysa metin'e düş */ }
+      }
+      // Metin/URL fallback
+      await navigator.share({ title: data.title, text: data.text, url: data.url });
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+  }
+  // Masaüstü ya da Web Share API yok → kendi modalımız (FB/X/WhatsApp/Telegram + indir)
+  const enc = encodeURIComponent;
+  const fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(data.url);
+  const twUrl = 'https://twitter.com/intent/tweet?text=' + enc(data.title + '\n\n' + data.url);
+  const liUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(data.url);
+  const waUrl = 'https://wa.me/?text=' + enc(data.title + '\n\n' + data.url);
+  const tgUrl = 'https://t.me/share/url?url=' + enc(data.url) + '&text=' + enc(data.title);
+  const dlAttr = data.img ? `<a class="btn btn-primary" href="${data.img}" download="${data.filename || 'kalibre-story.png'}" style="display:block;text-align:center;padding:10px;margin-bottom:8px">⬇ Görseli indir (1080×1920, IG Story uyumlu)</a>` : '';
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(10,8,6,.92);backdrop-filter:blur(6px);z-index:9500;display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto';
+  modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
+  modal.innerHTML = `
+    <div style="max-width:520px;width:100%;background:var(--surface);border:1px solid var(--border-2);padding:24px;color:var(--text);max-height:90vh;overflow-y:auto">
+      <div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Paylaş</div>
+      <h3 style="margin:0 0 6px;font-size:17px;font-weight:600;color:var(--text);line-height:1.3">${data.title}</h3>
+      <p style="font-size:12.5px;color:var(--text-dim);line-height:1.55;margin:0 0 16px">İstediğin platformu seç. Instagram Story için görseli indir, telefonundan IG uygulamasına yükle.</p>
+
+      ${dlAttr}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+        <a class="btn" href="${fbUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#1877f2;color:white;border:0">📘 Facebook</a>
+        <a class="btn" href="${twUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#000;color:white;border:0">✕ Twitter (X)</a>
+        <a class="btn" href="${waUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#25d366;color:white;border:0">💬 WhatsApp</a>
+        <a class="btn" href="${tgUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#26a5e4;color:white;border:0">✈ Telegram</a>
+        <a class="btn" href="${liUrl}" target="_blank" rel="noopener" style="text-align:center;padding:10px;background:#0a66c2;color:white;border:0;grid-column:span 2">in LinkedIn</a>
+      </div>
+
+      <div style="padding:10px 12px;background:rgba(228,52,103,.08);border-left:3px solid #e44367;font-size:11.5px;color:var(--text-dim);line-height:1.55;margin-bottom:10px">
+        <b style="color:#e44367">📷 Instagram Story:</b> IG web'de Story paylaşımı desteklemiyor. Görseli indir, telefondan IG uygulamasını aç, Story'ye yükle.
+      </div>
+
+      <input id="km-share-url" value="${data.url}" readonly style="width:100%;padding:10px;background:var(--bg-1);color:var(--text-dim);border:1px solid var(--border);font-family:inherit;font-size:12.5px;margin-bottom:8px" />
+      <button class="btn" style="width:100%;margin-bottom:8px" onclick="
+        const i=document.getElementById('km-share-url'); i.select(); document.execCommand('copy');
+        this.textContent='✓ Bağlantı kopyalandı';">📋 Bağlantıyı kopyala</button>
+      <button class="btn" style="width:100%" onclick="this.closest('div').parentElement.remove()">Kapat</button>
+    </div>`;
+  document.body.appendChild(modal);
+};
+</script>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-05-29 10:03 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+
+<!-- ── Lightbox (resim büyütme overlay) ──────────────────────────── -->
+<div id="km-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)">
+  <button type="button" onclick="kmCloseLightbox()" aria-label="Kapat"
+    style="position:absolute;top:14px;right:18px;width:42px;height:42px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center">×</button>
+  <img id="km-lightbox-img" src="" alt="" style="max-width:96%;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0d0c0a" />
+  <div id="km-lightbox-cap" style="position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#bbb;font-size:12px;letter-spacing:.04em;padding:0 24px"></div>
+</div>
+<script>
+window.kmShowLightbox = function(src, caption) {
+  var lb = document.getElementById('km-lightbox');
+  var im = document.getElementById('km-lightbox-img');
+  var cp = document.getElementById('km-lightbox-cap');
+  if (!lb || !im) return;
+  im.src = src;
+  im.alt = caption || '';
+  if (cp) cp.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+window.kmCloseLightbox = function() {
+  var lb = document.getElementById('km-lightbox');
+  if (!lb) return;
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') window.kmCloseLightbox();
+});
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'km-lightbox') window.kmCloseLightbox();
+});
+</script>
+
+</body>
+</html>

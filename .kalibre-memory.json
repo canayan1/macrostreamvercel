@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-05-28",
+        "metrics": {
+          "regime": "Zayıflık",
+          "breadth_pct": 32.142857142857146,
+          "top_gainer": "Doğan Holding",
+          "top_loser": "Aselsan",
+          "featured_stock": "Akbank"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-05-27",
         "metrics": {
           "regime": "Zayıflık",
@@ -125,6 +136,17 @@
       }
     ],
     "fx": [
+      {
+        "category": "fx",
+        "date": "2026-05-28",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.25022812743975553,
+          "usdtry": 45.897499084472656,
+          "usdtry_30d_pct": 1.85706702877233,
+          "strongest_pair": "USD/TRY"
+        }
+      },
       {
         "category": "fx",
         "date": "2026-05-27",
@@ -511,6 +533,40 @@
     "pulse": [
       {
         "category": "pulse",
+        "date": "2026-05-29",
+        "metrics": {
+          "regime": "Sakin",
+          "xu100_last": 13662.7998046875,
+          "xu100_pct_30d": -4.692547837972172,
+          "usdtry_last": 45.88029861450195,
+          "usdtry_pct_30d": 1.5814954667214387,
+          "dxy_last": 99.15699768066406,
+          "dxy_pct_30d": 0.23958705631390576,
+          "us10y_last": 4.48,
+          "us10y_pct_30d": 2.9885057471264576,
+          "vix_last": 16.29,
+          "vix_pct_30d": -8.63712843522153
+        }
+      },
+      {
+        "category": "pulse",
+        "date": "2026-05-28",
+        "metrics": {
+          "regime": "Sakin",
+          "xu100_last": 13662.7998046875,
+          "xu100_pct_30d": -4.692547837972172,
+          "usdtry_last": 45.895999908447266,
+          "usdtry_pct_30d": 1.8537400136636295,
+          "dxy_last": 99.35800170898438,
+          "dxy_pct_30d": 0.7483258384191505,
+          "us10y_last": 4.5,
+          "us10y_pct_30d": 4.408352668213467,
+          "vix_last": 17.01,
+          "vix_pct_30d": -5.6048834628190765
+        }
+      },
+      {
+        "category": "pulse",
         "date": "2026-05-27",
         "metrics": {
           "regime": "Sakin",
@@ -698,6 +754,17 @@
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-05-28",
+        "metrics": {
+          "nir_usd": 41.385801821184245,
+          "swap_adj_usd": -56.044285443693454,
+          "nir_chg_week": -2.3696524725550177,
+          "swap_chg_week": 0.8687295269206459,
+          "usdtry": 45.89789962768555
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-05-27",

@@ -1,0 +1,268 @@
+{
+  "generated": "2026-05-28T13:19:58",
+  "xu100_daily": -1.64,
+  "universe": "BIST30",
+  "stocks": {
+    "AKBNK": {
+      "name": "Akbank",
+      "last": 64.0,
+      "chg": -2.14,
+      "flags": []
+    },
+    "ARCLK": {
+      "name": "Arçelik",
+      "last": 103.7,
+      "chg": -1.24,
+      "flags": [
+        {
+          "t": "52w",
+          "sev": "med",
+          "label": "52-hafta dibine yakın"
+        }
+      ]
+    },
+    "ASELS": {
+      "name": "Aselsan",
+      "last": 380.25,
+      "chg": -5.35,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.7p)"
+        }
+      ]
+    },
+    "BIMAS": {
+      "name": "BİM",
+      "last": 373.0,
+      "chg": -1.52,
+      "flags": []
+    },
+    "EKGYO": {
+      "name": "Emlak Konut",
+      "last": 19.1,
+      "chg": -2.45,
+      "flags": []
+    },
+    "ENKAI": {
+      "name": "Enka İnşaat",
+      "last": 100.5,
+      "chg": 1.52,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.2p)"
+        }
+      ]
+    },
+    "EREGL": {
+      "name": "Ereğli Demir Çelik",
+      "last": 39.18,
+      "chg": -0.76,
+      "flags": []
+    },
+    "FROTO": {
+      "name": "Ford Otosan",
+      "last": 84.15,
+      "chg": -3.94,
+      "flags": [
+        {
+          "t": "vol",
+          "sev": "high",
+          "label": "Hacim patlaması 2.3x"
+        },
+        {
+          "t": "rsi",
+          "sev": "med",
+          "label": "RSI 24 · aşırı satım"
+        }
+      ]
+    },
+    "GARAN": {
+      "name": "Garanti BBVA",
+      "last": 122.9,
+      "chg": -1.84,
+      "flags": []
+    },
+    "GUBRF": {
+      "name": "Gübre Fabrikaları",
+      "last": 550.0,
+      "chg": -3.76,
+      "flags": []
+    },
+    "HEKTS": {
+      "name": "Hektaş",
+      "last": 4.0,
+      "chg": -5.21,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.6p)"
+        }
+      ]
+    },
+    "ISCTR": {
+      "name": "İş Bankası",
+      "last": 13.14,
+      "chg": -0.98,
+      "flags": []
+    },
+    "KCHOL": {
+      "name": "Koç Holding",
+      "last": 189.1,
+      "chg": -0.94,
+      "flags": []
+    },
+    "KRDMD": {
+      "name": "Kardemir",
+      "last": 39.74,
+      "chg": -0.7,
+      "flags": []
+    },
+    "ODAS": {
+      "name": "Odaş Elektrik",
+      "last": 7.44,
+      "chg": 2.62,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+4.3p)"
+        }
+      ]
+    },
+    "OYAKC": {
+      "name": "Oyak Çimento",
+      "last": 20.82,
+      "chg": -1.23,
+      "flags": [
+        {
+          "t": "rsi",
+          "sev": "med",
+          "label": "RSI 29 · aşırı satım"
+        }
+      ]
+    },
+    "PETKM": {
+      "name": "Petkim",
+      "last": 22.1,
+      "chg": -1.25,
+      "flags": []
+    },
+    "PGSUS": {
+      "name": "Pegasus",
+      "last": 170.1,
+      "chg": -1.51,
+      "flags": []
+    },
+    "SAHOL": {
+      "name": "Sabancı Holding",
+      "last": 92.0,
+      "chg": 1.88,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.5p)"
+        }
+      ]
+    },
+    "SASA": {
+      "name": "Sasa Polyester",
+      "last": 2.64,
+      "chg": -2.22,
+      "flags": []
+    },
+    "SISE": {
+      "name": "Şişecam",
+      "last": 45.8,
+      "chg": -1.97,
+      "flags": []
+    },
+    "TCELL": {
+      "name": "Turkcell",
+      "last": 101.0,
+      "chg": -4.81,
+      "flags": [
+        {
+          "t": "move",
+          "sev": "high",
+          "label": "Anormal hareket -4.8% (>2σ)"
+        },
+        {
+          "t": "rsi",
+          "sev": "med",
+          "label": "RSI 29 · aşırı satım"
+        },
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.2p)"
+        }
+      ]
+    },
+    "THYAO": {
+      "name": "Türk Hava Yolları",
+      "last": 296.75,
+      "chg": -0.25,
+      "flags": []
+    },
+    "TOASO": {
+      "name": "Tofaş",
+      "last": 296.0,
+      "chg": -2.39,
+      "flags": []
+    },
+    "TTKOM": {
+      "name": "Türk Telekom",
+      "last": 61.25,
+      "chg": 1.41,
+      "flags": [
+        {
+          "t": "decouple",
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.0p)"
+        }
+      ]
+    },
+    "TUPRS": {
+      "name": "Tüpraş",
+      "last": 236.2,
+      "chg": 0.9,
+      "flags": [
+        {
+          "t": "rsi",
+          "sev": "med",
+          "label": "RSI 21 · aşırı satım"
+        }
+      ]
+    },
+    "VAKBN": {
+      "name": "VakıfBank",
+      "last": 30.84,
+      "chg": -2.03,
+      "flags": []
+    },
+    "YKBNK": {
+      "name": "Yapı Kredi",
+      "last": 33.16,
+      "chg": -0.54,
+      "flags": []
+    },
+    "KONTR": {
+      "name": "Kontrolmatik",
+      "last": 7.85,
+      "chg": 0.0,
+      "flags": [
+        {
+          "t": "52w",
+          "sev": "med",
+          "label": "52-hafta dibine yakın"
+        }
+      ]
+    }
+  }
+}

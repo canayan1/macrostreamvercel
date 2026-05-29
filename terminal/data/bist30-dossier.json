@@ -1,0 +1,738 @@
+{
+  "generated": "2026-05-28T19:32:09",
+  "universe": "BIST30",
+  "macro": {
+    "tufe": "32.4",
+    "usdtry": "45.90",
+    "fed": "3.64",
+    "oil": "92"
+  },
+  "xu100_daily": -1.64,
+  "stocks": {
+    "AKBNK": {
+      "name": "Akbank",
+      "last": 64.0,
+      "chg": -2.14,
+      "ozet": {
+        "sector": "Bankacılık"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 0.41,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Bankacılık",
+        "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.4; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
+      },
+      "pretrade": {
+        "chg_5d": -8.7,
+        "chg_22d": -19.2
+      }
+    },
+    "ARCLK": {
+      "name": "Arçelik",
+      "last": 103.7,
+      "chg": -1.24,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "52-hafta dibine yakın",
+          "score": 60
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": -0.87,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": -3.4,
+        "chg_22d": -10.0
+      }
+    },
+    "ASELS": {
+      "name": "Aselsan",
+      "last": 380.25,
+      "chg": -5.35,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.7p)",
+          "score": 44.5140049111251
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 3.23,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": -5.4,
+        "chg_22d": -4.1
+      }
+    },
+    "BIMAS": {
+      "name": "BİM",
+      "last": 373.0,
+      "chg": -1.52,
+      "ozet": {
+        "sector": "Perakende/Tüketim"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.89,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Perakende/Tüketim",
+        "line": "İç talep ve enflasyon belirleyici. TÜFE %32.4; yüksek enflasyon ciroyu nominal şişirir ama reel marj ve hacim baskı altında olabilir."
+      },
+      "pretrade": {
+        "chg_5d": -5.0,
+        "chg_22d": -1.8
+      }
+    },
+    "EKGYO": {
+      "name": "Emlak Konut",
+      "last": 19.1,
+      "chg": -2.45,
+      "ozet": {
+        "sector": "İnşaat/GYO"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": -0.74,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "İnşaat/GYO",
+        "line": "GYO/inşaat faiz ve iç talebe duyarlı. TÜFE %32.4; faiz patikası konut talebini ve değerlemeyi belirler."
+      },
+      "pretrade": {
+        "chg_5d": -3.8,
+        "chg_22d": -9.7
+      }
+    },
+    "ENKAI": {
+      "name": "Enka İnşaat",
+      "last": 100.5,
+      "chg": 1.52,
+      "ozet": {
+        "sector": "Holding"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.2p)",
+          "score": 37.88685496328803
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.82,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Holding",
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.4, USD/TRY 45.90, Fed %3.64."
+      },
+      "pretrade": {
+        "chg_5d": 2.3,
+        "chg_22d": -5.9
+      }
+    },
+    "EREGL": {
+      "name": "Ereğli Demir Çelik",
+      "last": 39.18,
+      "chg": -0.76,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.92,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": 1.7,
+        "chg_22d": 20.2
+      }
+    },
+    "FROTO": {
+      "name": "Ford Otosan",
+      "last": 84.15,
+      "chg": -3.94,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [
+        {
+          "sev": "high",
+          "label": "Hacim patlaması 2.3x",
+          "score": 45.72013543577597
+        },
+        {
+          "sev": "med",
+          "label": "RSI 24 · aşırı satım",
+          "score": 12.851726027524421
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 0.08,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": -3.7,
+        "chg_22d": -17.7
+      }
+    },
+    "GARAN": {
+      "name": "Garanti BBVA",
+      "last": 122.9,
+      "chg": -1.84,
+      "ozet": {
+        "sector": "Bankacılık"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": -0.6,
+        "state": "son 6 ayda negatif"
+      },
+      "macro": {
+        "sector": "Bankacılık",
+        "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.4; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
+      },
+      "pretrade": {
+        "chg_5d": -4.9,
+        "chg_22d": -11.8
+      }
+    },
+    "GUBRF": {
+      "name": "Gübre Fabrikaları",
+      "last": 550.0,
+      "chg": -3.76,
+      "ozet": {
+        "sector": "Kimya/Tarım"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 2.56,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Kimya/Tarım",
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 45.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+      },
+      "pretrade": {
+        "chg_5d": -3.7,
+        "chg_22d": 6.5
+      }
+    },
+    "HEKTS": {
+      "name": "Hektaş",
+      "last": 4.0,
+      "chg": -5.21,
+      "ozet": {
+        "sector": "Kimya/Tarım"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.6p)",
+          "score": 42.854148373842854
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 0.6,
+        "state": "50 günlük ortalamanın üstünde"
+      },
+      "macro": {
+        "sector": "Kimya/Tarım",
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 45.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+      },
+      "pretrade": {
+        "chg_5d": -3.4,
+        "chg_22d": 23.5
+      }
+    },
+    "ISCTR": {
+      "name": "İş Bankası",
+      "last": 13.14,
+      "chg": -0.98,
+      "ozet": {
+        "sector": "Bankacılık"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": -0.01,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Bankacılık",
+        "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.4; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
+      },
+      "pretrade": {
+        "chg_5d": -4.2,
+        "chg_22d": -11.2
+      }
+    },
+    "KCHOL": {
+      "name": "Koç Holding",
+      "last": 189.1,
+      "chg": -0.94,
+      "ozet": {
+        "sector": "Holding"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.17,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Holding",
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.4, USD/TRY 45.90, Fed %3.64."
+      },
+      "pretrade": {
+        "chg_5d": -3.0,
+        "chg_22d": -7.7
+      }
+    },
+    "KRDMD": {
+      "name": "Kardemir",
+      "last": 39.74,
+      "chg": -0.7,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 2.1,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": 1.4,
+        "chg_22d": 9.9
+      }
+    },
+    "ODAS": {
+      "name": "Odaş Elektrik",
+      "last": 7.44,
+      "chg": 2.62,
+      "ozet": {
+        "sector": "Enerji/Çimento"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+4.3p)",
+          "score": 51.15332211451138
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.01,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Enerji/Çimento",
+        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.4, USD/TRY 45.90; inşaat döngüsü ve enerji fiyatları etkili."
+      },
+      "pretrade": {
+        "chg_5d": 2.9,
+        "chg_22d": 8.8
+      }
+    },
+    "OYAKC": {
+      "name": "Oyak Çimento",
+      "last": 20.82,
+      "chg": -1.23,
+      "ozet": {
+        "sector": "Enerji/Çimento"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "RSI 29 · aşırı satım",
+          "score": 2.1750652394101735
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 0.16,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Enerji/Çimento",
+        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.4, USD/TRY 45.90; inşaat döngüsü ve enerji fiyatları etkili."
+      },
+      "pretrade": {
+        "chg_5d": -2.4,
+        "chg_22d": -14.3
+      }
+    },
+    "PETKM": {
+      "name": "Petkim",
+      "last": 22.1,
+      "chg": -1.25,
+      "ozet": {
+        "sector": "Rafineri/Petrokimya"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.88,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Rafineri/Petrokimya",
+        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~92 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 45.90 ek kaldıraç."
+      },
+      "pretrade": {
+        "chg_5d": -13.0,
+        "chg_22d": -3.9
+      }
+    },
+    "PGSUS": {
+      "name": "Pegasus",
+      "last": 170.1,
+      "chg": -1.51,
+      "ozet": {
+        "sector": "Havayolu"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": -1.32,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Havayolu",
+        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~92 USD, USD/TRY 45.90; yakıt ve leasing döviz, bilet geliri karma."
+      },
+      "pretrade": {
+        "chg_5d": -0.9,
+        "chg_22d": -10.6
+      }
+    },
+    "SAHOL": {
+      "name": "Sabancı Holding",
+      "last": 92.0,
+      "chg": 1.88,
+      "ozet": {
+        "sector": "Holding"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.5p)",
+          "score": 42.29635758930348
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.53,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Holding",
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.4, USD/TRY 45.90, Fed %3.64."
+      },
+      "pretrade": {
+        "chg_5d": -0.3,
+        "chg_22d": -7.0
+      }
+    },
+    "SASA": {
+      "name": "Sasa Polyester",
+      "last": 2.64,
+      "chg": -2.22,
+      "ozet": {
+        "sector": "Kimya/Tarım"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": -0.17,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Kimya/Tarım",
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 45.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+      },
+      "pretrade": {
+        "chg_5d": -2.6,
+        "chg_22d": -11.1
+      }
+    },
+    "SISE": {
+      "name": "Şişecam",
+      "last": 45.8,
+      "chg": -1.97,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.22,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": -0.2,
+        "chg_22d": -3.4
+      }
+    },
+    "TCELL": {
+      "name": "Turkcell",
+      "last": 101.0,
+      "chg": -4.81,
+      "ozet": {
+        "sector": "Telekom"
+      },
+      "flags": [
+        {
+          "sev": "high",
+          "label": "Anormal hareket -4.8% (>2σ)",
+          "score": 38.45427745498063
+        },
+        {
+          "sev": "med",
+          "label": "Endeksten negatif ayrıştı (-3.2p)",
+          "score": 37.976379401001076
+        },
+        {
+          "sev": "med",
+          "label": "RSI 29 · aşırı satım",
+          "score": 2.771079076843165
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.68,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Telekom",
+        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.4, USD/TRY 45.90; tarife artışı vs yatırım maliyeti dengesi."
+      },
+      "pretrade": {
+        "chg_5d": -5.4,
+        "chg_22d": -11.5
+      }
+    },
+    "THYAO": {
+      "name": "Türk Hava Yolları",
+      "last": 296.75,
+      "chg": -0.25,
+      "ozet": {
+        "sector": "Havayolu"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": -0.0,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Havayolu",
+        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~92 USD, USD/TRY 45.90; yakıt ve leasing döviz, bilet geliri karma."
+      },
+      "pretrade": {
+        "chg_5d": 0.8,
+        "chg_22d": -8.3
+      }
+    },
+    "TOASO": {
+      "name": "Tofaş",
+      "last": 296.0,
+      "chg": -2.39,
+      "ozet": {
+        "sector": "İhracatçı sanayi"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.58,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "İhracatçı sanayi",
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 45.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+      },
+      "pretrade": {
+        "chg_5d": 0.9,
+        "chg_22d": 1.0
+      }
+    },
+    "TTKOM": {
+      "name": "Türk Telekom",
+      "last": 61.25,
+      "chg": 1.41,
+      "ozet": {
+        "sector": "Telekom"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+3.0p)",
+          "score": 36.592423257913694
+        }
+      ],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.5,
+        "state": "son 6 ayda pozitif"
+      },
+      "macro": {
+        "sector": "Telekom",
+        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.4, USD/TRY 45.90; tarife artışı vs yatırım maliyeti dengesi."
+      },
+      "pretrade": {
+        "chg_5d": -0.5,
+        "chg_22d": -3.8
+      }
+    },
+    "TUPRS": {
+      "name": "Tüpraş",
+      "last": 236.2,
+      "chg": 0.9,
+      "ozet": {
+        "sector": "Rafineri/Petrokimya"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "RSI 21 · aşırı satım",
+          "score": 18.018474023802668
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 1.75,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Rafineri/Petrokimya",
+        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~92 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 45.90 ek kaldıraç."
+      },
+      "pretrade": {
+        "chg_5d": -7.0,
+        "chg_22d": -10.2
+      }
+    },
+    "VAKBN": {
+      "name": "VakıfBank",
+      "last": 30.84,
+      "chg": -2.03,
+      "ozet": {
+        "sector": "Bankacılık"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": 1.02,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Bankacılık",
+        "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.4; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
+      },
+      "pretrade": {
+        "chg_5d": -0.3,
+        "chg_22d": -7.5
+      }
+    },
+    "YKBNK": {
+      "name": "Yapı Kredi",
+      "last": 33.16,
+      "chg": -0.54,
+      "ozet": {
+        "sector": "Bankacılık"
+      },
+      "flags": [],
+      "strategy": {
+        "strategy": "Momentum (6 ay)",
+        "sharpe": -0.08,
+        "state": "son 6 ayda negatif"
+      },
+      "macro": {
+        "sector": "Bankacılık",
+        "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.4; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
+      },
+      "pretrade": {
+        "chg_5d": -8.8,
+        "chg_22d": -12.6
+      }
+    },
+    "KONTR": {
+      "name": "Kontrolmatik",
+      "last": 7.85,
+      "chg": 0.0,
+      "ozet": {
+        "sector": "Teknoloji"
+      },
+      "flags": [
+        {
+          "sev": "med",
+          "label": "52-hafta dibine yakın",
+          "score": 60
+        }
+      ],
+      "strategy": {
+        "strategy": "Trend takip (50-GO)",
+        "sharpe": -0.76,
+        "state": "50 günlük ortalamanın altında"
+      },
+      "macro": {
+        "sector": "Teknoloji",
+        "line": "Proje bazlı büyüme; genel makro ve kur. USD/TRY 45.90, TÜFE %32.4."
+      },
+      "pretrade": {
+        "chg_5d": -1.8,
+        "chg_22d": -32.9
+      }
+    }
+  }
+}
