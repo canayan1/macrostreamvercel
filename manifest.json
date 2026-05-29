@@ -1,16 +1,16 @@
 {
-  "last_update": "2026-05-29T09:03:01.871448Z",
+  "last_update": "2026-05-29T09:03:35.103179Z",
   "latest_report": {
-    "category": "pulse",
+    "category": "fx",
     "date": "2026-05-29",
-    "title": "Günlük Nabız — 2026-05-29"
+    "title": "Döviz Günlük — 2026-05-29"
   },
-  "total_reports": 70,
+  "total_reports": 71,
   "by_category": {
     "pulse": 13,
     "hisse": 12,
     "sektor": 8,
-    "fx": 12,
+    "fx": 13,
     "makro": 5,
     "fred": 5,
     "wb": 4,
