@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Hazineci için Hap Bilgi Serisi · Kurumsal Eğitim · Kalibre Markets</title>
+<meta name="description" content="Özel sektör hazinecisinin bilmesi gerekenler; kısa, uygulamalı eğitim serisi: kur riski, doğal hedge, vadeli araçlar, faiz-kur ilişkisi, nakit yönetimi, vade uyumu. Ekip eğitim paketinin temeli.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/kurumsal/egitim/">
+<meta property="og:title" content="Hazineci için Hap Bilgi Serisi · Kalibre Markets">
+<meta property="og:description" content="Özel sektör hazinecisinin bilmesi gerekenler; kısa, uygulamalı eğitim serisi.">
+<meta property="og:url" content="https://kalibremarkets.com/kurumsal/egitim/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18;
+  --border:#26221d; --border-2:#36302a;
+  --text:#ebe3d3; --text-dim:#a89c83; --muted:#6f6553;
+  --accent:#ffa630; --accent-hot:#ff7a00; --green:#4ade80;
+  --grid:rgba(255,166,48,.025);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { background:var(--bg); color:var(--text); font-family:'Inter Tight', ui-sans-serif, system-ui, sans-serif; font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
+body { background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size:48px 48px; }
+a { color:inherit; text-decoration:none; }
+.cmdbar { display:flex; align-items:center; background:var(--bg-1); border-bottom:1px solid var(--border); height:46px; padding:0 18px; position:sticky; top:0; z-index:60; }
+.brand { display:flex; align-items:center; gap:10px; padding-right:18px; height:100%; border-right:1px solid var(--border); }
+.brand-mark { width:24px; height:24px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:12px; }
+.brand-name { font-weight:700; font-size:13px; letter-spacing:.12em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:.06em; }
+.cmd-crumb { flex:1; min-width:0; padding-left:16px; font-size:11.5px; color:var(--muted); letter-spacing:.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cmd-crumb a:hover { color:var(--accent); }
+.cmd-back { margin-left:auto; padding-left:16px; font-size:12px; color:var(--text-dim); display:flex; align-items:center; height:100%; }
+.cmd-back:hover { color:var(--accent); }
+main { padding:28px 24px 80px; max-width:920px; margin:0 auto; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+h1 { font-size:30px; font-weight:600; color:var(--text); line-height:1.15; letter-spacing:-.015em; }
+.lead { color:var(--text-dim); font-size:15px; line-height:1.7; max-width:72ch; margin-top:12px; }
+.lead strong { color:var(--text); }
+.series { list-style:none; padding:0; margin:26px 0 0; }
+.series li { background:var(--surface); border:1px solid var(--border); margin-bottom:10px; padding:16px 18px; display:flex; gap:16px; align-items:flex-start; transition:border-color .15s; }
+.series li.ready:hover { border-color:var(--accent); }
+.num { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); font-weight:600; flex-shrink:0; width:26px; }
+.series .t { flex:1; }
+.series h3 { font-size:15px; color:var(--text); font-weight:600; margin-bottom:4px; }
+.series p { font-size:12.5px; color:var(--text-dim); line-height:1.55; }
+.badge { font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:3px 8px; border-radius:4px; flex-shrink:0; align-self:center; }
+.badge.r { color:#1a1a1a; background:var(--green); }
+.badge.s { color:var(--muted); border:1px solid var(--border-2); }
+.cta { background:var(--bg-1); border:1px solid var(--border); border-left:2px solid var(--accent); padding:16px 20px; margin-top:26px; font-size:13px; color:var(--text-dim); line-height:1.7; }
+.cta a { color:var(--accent); }
+footer.pf-foot { margin-top:40px; border-top:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:11px; letter-spacing:.04em; max-width:920px; margin:40px auto 0; flex-wrap:wrap; }
+footer.pf-foot a { color:var(--text-dim); } footer.pf-foot a:hover { color:var(--accent); }
+footer.pf-foot b { color:var(--text); }
+@media (max-width:680px){ main { padding:18px 14px 60px; } h1 { font-size:24px; } .cmd-crumb { display:none; } }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kurumsal/" style="color:inherit">Kurumsal</a> › Eğitim</div>
+  <a href="/kurumsal/" class="cmd-back">← Kurumsal</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ KURUMSAL EĞİTİM</div>
+  <h1>Hazineci için Hap Bilgi Serisi</h1>
+  <p class="lead">Özel sektör hazinecisinin <strong>pratikte bilmesi gereken</strong> konular; kısa, sade, uygulamalı. Yeni başlayan bir finans uzmanını hızla yetkin kılmak, deneyimli ekibe ortak bir dil vermek için tasarlandı. Bu seri, kurumsal <strong>ekip eğitim paketinin</strong> da temelidir.</p>
+
+  <ul class="series">
+    <li class="ready"><span class="num">01</span><div class="t"><a href="/kurumsal/egitim/kur-riski-dogal-hedge/"><h3>Kur riski ve doğal hedge</h3><p>İşlem, çevrim ve ekonomik kur riski; bilanço vs nakit akışı; doğal hedge nasıl çalışır, ne zaman yetmez.</p></a></div><span class="badge r">Hazır</span></li>
+    <li><span class="num">02</span><div class="t"><h3>Vadeli koruma araçları: forward, swap, opsiyon</h3><p>Finansal hedge araçlarının mantığı, maliyeti ve hangi durumda hangisi; sade örneklerle.</p></div><span class="badge s">Yakında</span></li>
+    <li><span class="num">03</span><div class="t"><h3>Faiz–kur ilişkisi ve taşıma (carry) mantığı</h3><p>Faiz farkı kuru nasıl etkiler, gecelik fonlama maliyeti pozisyonunuza ne yapar.</p></div><span class="badge s">Yakında</span></li>
+    <li><span class="num">04</span><div class="t"><h3>Nakit ve likidite yönetimi</h3><p>İşletme sermayesi döngüsü, nakit tamponu, likidite riskinin görünmez maliyeti.</p></div><span class="badge s">Yakında</span></li>
+    <li><span class="num">05</span><div class="t"><h3>Vade uyumu ve borç yapılandırması</h3><p>Varlık-yükümlülük vade uyumu, kısa borç/uzun varlık tuzağı, yeniden finansman riski.</p></div><span class="badge s">Yakında</span></li>
+    <li><span class="num">06</span><div class="t"><h3>Reel kur, enflasyon ve maliyet</h3><p>Nominal vs reel kur, enflasyon ortamında fiyatlama ve maliyet koruması.</p></div><span class="badge s">Yakında</span></li>
+    <li><span class="num">07</span><div class="t"><h3>İşlem maliyeti pazarlığı: spread, valör, teminat</h3><p>Kur/işlem maliyetini düşürmenin pratiği; valör, teminat ve limit görüşmeleri.</p></div><span class="badge s">Yakında</span></li>
+  </ul>
+
+  <div class="eyebrow" style="margin-top:30px">▸ TFRS RİSK VE SERMAYE YETERLİLİĞİ</div>
+  <p class="lead" style="margin-top:6px;margin-bottom:0">Finansal risk yönetimini TFRS çerçevesiyle ele alan modül: risk ölçütleri, korunma muhasebesi, kredi zararı ve reel sektör için finansal yapı yeterliliği.</p>
+  <ul class="series">
+    <li class="ready"><span class="num">08</span><div class="t"><a href="/kurumsal/egitim/tfrs-risk-olcutleri/"><h3>Risk ölçütleri: duyarlılık analizi, VaR ve stres testi (TFRS 7)</h3><p>TFRS 7 madde 40-41 kapsamında zorunlu duyarlılık analizi, riske maruz değer ve stres testi; uygulamalı örnek ve dipnot mantığı.</p></a></div><span class="badge r">Hazır</span></li>
+    <li class="ready"><span class="num">09</span><div class="t"><a href="/kurumsal/egitim/korunma-muhasebesi/"><h3>Korunma muhasebesi (TFRS 9)</h3><p>Kur ve faiz riskinin korunması; korunma etkinliği; nakit akışı korunmasının finansal tablolara etkisi.</p></a></div><span class="badge r">Hazır</span></li>
+    <li class="ready"><span class="num">10</span><div class="t"><a href="/kurumsal/egitim/beklenen-kredi-zarari/"><h3>Beklenen kredi zararı / ECL, ticari alacaklar (TFRS 9)</h3><p>Reel sektörde basitleştirilmiş yaklaşım ve karşılık matrisi; ticari alacak kredi riskinin ölçümü.</p></a></div><span class="badge r">Hazır</span></li>
+    <li class="ready"><span class="num">11</span><div class="t"><a href="/kurumsal/egitim/finansal-yapi-yeterliligi/"><h3>Finansal yapı yeterliliği: kaldıraç, faiz karşılama, likidite</h3><p>Reel sektör için "sermaye yeterliliği": borç/özkaynak, net borç/FAVÖK, faiz karşılama ve likidite oranları; bankaların SYR'sinden farkı.</p></a></div><span class="badge r">Hazır</span></li>
+    <li class="ready"><span class="num">12</span><div class="t"><a href="/kurumsal/egitim/likidite-riski-yonetimi/"><h3>Likidite riski yönetimi</h3><p>Nakit akışı projeksiyonu, likidite tamponu, vade uyumu ve kovenant izleme.</p></a></div><span class="badge r">Hazır</span></li>
+    <li class="ready"><span class="num">13</span><div class="t"><a href="/kurumsal/egitim/tfrs7-risk-aciklamalari/"><h3>TFRS 7 risk açıklamaları: kredi, likidite, piyasa dipnotları</h3><p>Finansal araçlardan doğan üç risk türünün dipnotlarda nasıl açıklandığı; nitel ve nicel açıklama yükümlülükleri.</p></a></div><span class="badge r">Hazır</span></li>
+  </ul>
+
+  <div class="cta">
+    Bu seriyi <strong>ekibinize özel bir eğitim paketine</strong> dönüştürebiliriz (canlı oturum + uygulamalı örnekler + şirketinize uyarlanmış vaka). Ücretsiz pilotla başlayın: <a href="/kurumsal/#pilot">pilot başvurusu →</a> &nbsp;·&nbsp; <a href="/kurumsal/">Kurumsal sayfası</a>
+  </div>
+</main>
+
+<footer class="pf-foot">
+  <div><div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div><div>Kurumsal eğitim · hazine ve finans</div></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="/kurumsal/">Kurumsal</a><a href="/egitim/">Genel eğitim</a><a href="/terminal/">Terminal</a><a href="/iletisim/">İletişim</a></div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">⚠ Yatırım tavsiyesi değildir.<br>Kalibre Markets © 2026.</div>
+</footer>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

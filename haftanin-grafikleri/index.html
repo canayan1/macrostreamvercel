@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Haftanın Grafikleri · Arşiv — Kalibre Markets</title>
 
 <meta name="description" content="Her hafta seçtiğimiz bir grafik ve sade yorum. Geriye dönük tüm haftalık grafikler arşivi.">
@@ -15,13 +18,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="https://kalibremarkets.com/static/weekly/2026-05-20-story.png">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Haftanın Grafikleri · Arşiv — Kalibre Markets">
 <meta name="twitter:description" content="Her hafta seçtiğimiz bir grafik ve sade yorum. Geriye dönük tüm haftalık grafikler arşivi.">
-<meta name="twitter:image" content="https://kalibremarkets.com/static/weekly/2026-05-20-story.png">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
@@ -402,7 +405,8 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Bültenler › Haftanın Grafikleri</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div><div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Bültenler › Haftanın Grafikleri</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
   <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
@@ -440,7 +444,28 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     }
   } catch(e) {}
 })();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
 </script>
+
 <main>
 
 <div class="wrap">
@@ -455,53 +480,45 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       Her hafta seçtiğimiz bir grafik ve sade bir yorum. Geriye dönüp piyasaların
       seyrini hatırlamak için bu sayfayı bir günlük gibi kullanın.
     </p>
-    <p style="margin-top:6px;font-size:11.5px;color:var(--muted)">3 hafta arşivlendi</p>
+    <p style="margin-top:6px;font-size:11.5px;color:var(--muted)">4 hafta arşivlendi</p>
   </div>
+  
+<article class="panel" style="overflow:hidden;margin-bottom:28px">
+  <div class="panel-h">
+    <span class="ttl">▣ İstihdam verisi şahin okundu: dolar güçlendi, altın ve Bitcoin düştü</span>
+    <span class="meta">2026-06-06</span>
+  </div>
+  <div onclick="kmShowLightbox('/static/weekly/2026-06-06.png', 'İstihdam verisi şahin okundu: dolar güçlendi, altın ve Bitcoin düştü')" title="Grafiği büyüt" style="background:var(--bg-1);border-bottom:1px solid var(--border);cursor:zoom-in"><img src="/static/weekly/2026-06-06.png" alt="İstihdam verisi şahin okundu: dolar güçlendi, altın ve Bitcoin düştü" style="display:block;width:100%;height:auto;max-height:340px;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.7;font-size:13.5px;color:var(--text-dim)">
+    <p>5 Haziran 2026 Cuma günü açıklanan ABD tarım dışı istihdam verisinin ardından piyasalarda klasik bir "güçlü dolar" tepkisi gördük. Veriden sonra dolar endeksi (DXY) %0,66 yükselirken, EUR/USD %0,71 geriledi. Aynı gün ons altın %3,1 düştü; grafiğin asıl dikkat çekeni Bitcoin ise haftalık tepe noktası olan yaklaşık 77.280 dolardan yaklaşık 60.710 dolara, yani %21 aşağıya indi. Faiz getirmeyen altın ile uzun vadeli ve riskli Bitcoin'in aynı anda satılması tesadüf değil; ikisi de aynı iki değişkene, yani reel faize ve dolara, ters yönde duyarlı.</p>
+<p>Veri neden bu kadar etkili oldu? Beklentiden güçlü bir istihdam, ücret ve talep baskısının sürdüğü anlamına gelir. Bu da merkez bankasının faiz indirimlerini erteleyeceği beklentisini güçlendirir; piyasa, "daha uzun süre yüksek faiz" senaryosunu fiyatlar. Sonuç olarak tahvil getirileri yukarı gider; reel faiz beklentisi yükseldikçe getiri üretmeyen altını tutmanın maliyeti artar ve altına satış gelir, dolar ise diğer para birimleri karşısında değer kazanır.</p>
+<p>Bitcoin neden bu kadar sert düştü? Bitcoin son yıllarda giderek uzun vadeli bir risk varlığı gibi davranıyor; reel faiz yükseldiğinde, getirisi uzak geleceğe yayılan diğer varlıklar gibi orantısız değer kaybediyor. Üstüne bir de kaldıraç var; sert düşüşlerde kaldıraçlı pozisyonların zorunlu kapanması, yani tasfiye, hareketi hızlandırıyor. Bitcoin'in zayıflığı hafta içinde başlamış olsa da, güçlü istihdam verisi riskten kaçışı derinleştirdi.</p>
+<p>TL neden oynamadı? Grafikte göze çarpmayan ama Türk yatırımcı için en önemli ayrıntı bu: USDTRY neredeyse yatay kaldı (yaklaşık 46,04). Sebep doların zayıflaması değil; tam tersine dolar güçlendi. TL yönetimli bir kur rejiminde olduğu için doların küresel gücü USDTRY'de değil, EUR/USD ve DXY'de görünür. "Dolar bugün sakin" yanılgısına düşmemek gerekir; dolar aslında güçlendi, bu baskı yalnızca TL tarafında bastırılıyor.</p>
+<p>Türk yatırımcı için anlamı ne? Ons altının %3 düşmesi ama USDTRY'nin yatay kalması, gram altının da gerilemesi demektir; çünkü gram altın, ons dolar fiyatının USD/TRY ile çarpılıp 31,1035'e bölünmesiyle bulunur. Yani "altın düştü" derken bu kez düşüşün kaynağı kur değil, doğrudan ons fiyatı. İthalata bağımlı sektörler içinse güçlü dolar, USDTRY sabit görünse bile maliyet tarafında sessiz bir baskıdır; çünkü küresel emtia ve ara malları dolarla fiyatlanır.</p>
+<p>Bundan sonra ne izlemeli? Sıradaki kritik eşik, 16-17 Haziran FOMC toplantısı ve onunla açıklanacak faiz patikasıdır. Onun öncesinde üç gösterge belirleyici: ABD reel faizi (10 yıllık TIPS), altın ve Bitcoin'in ortak sürücüsüdür; DXY, doların genel yönünü gösterir; gelecek enflasyon verileri ise bu senaryoyu teyit eder ya da yumuşatır. Türk tarafında ise gram altını ons ve kur olarak ayrıştırmak, hareketin gerçek kaynağını görmenin en sağlıklı yolu.</p>
+<p>Özet: Tek bir veri, yani istihdam raporu, dört piyasada aynı temayı çizdi; güçlü dolar, zayıf altın ve satış baskısındaki Bitcoin. USDTRY'nin sessizliği bir istisna değil, yönetimli kur rejiminin doğal sonucudur. Yatırım tavsiyesi değildir; amaç hareketin arkasındaki mantığı görünür kılmaktır.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">istihdam</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">dolar</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">altın</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">Bitcoin</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">faiz</span></div>
+  </div>
+</article>
+
 
 <article class="panel" style="overflow:hidden;margin-bottom:28px">
   <div class="panel-h">
     <span class="ttl">▣ Uzun vadeli tahvil getirileri üç piyasada birden yüksek</span>
     <span class="meta">2026-05-20</span>
   </div>
-  <div onclick="kmShowLightbox('/static/weekly/2026-05-20.png', 'Uzun vadeli tahvil getirileri üç piyasada birden yüksek')" title="Grafiği büyüt" style="background:var(--bg-1);border-bottom:1px solid var(--border);cursor:zoom-in"><img src="/static/weekly/2026-05-20.png" alt="ABD, Almanya ve Türkiye 10 yıl tahvil getirileri 2021-2026" style="display:block;width:100%;height:auto;max-height:340px;object-fit:contain" /></div>
+  <div onclick="kmShowLightbox('/static/weekly/2026-05-20.png', 'Uzun vadeli tahvil getirileri üç piyasada birden yüksek')" title="Grafiği büyüt" style="background:var(--bg-1);border-bottom:1px solid var(--border);cursor:zoom-in"><img src="/static/weekly/2026-05-20.png" alt="Uzun vadeli tahvil getirileri üç piyasada birden yüksek" style="display:block;width:100%;height:auto;max-height:340px;object-fit:contain" /></div>
   <div class="panel-body" style="padding:18px 22px;line-height:1.7;font-size:13.5px;color:var(--text-dim)">
-    <p>20 Mayıs 2026 itibarıyla üç farklı piyasanın en likit uzun vadeli tahvili aynı anda dikkat çeken seviyelerde işlem görüyor. <strong>ABD 10 yıllık Hazine tahvili <span style="color:var(--text)">%4,67</span></strong> ile yaklaşık 16 ayın zirvesinde. <strong>Almanya 10 yıllık Bund <span style="color:var(--text)">%3,16</span></strong> ile Mayıs 2011&#x27;den bu yana en yüksek seviyede. <strong>Türkiye 10 yıllık devlet tahvili <span style="color:var(--accent)">%33,04</span></strong> ile son bir ayda 3,3 puan yükselmiş halde. Üç farklı para birimi, üç farklı para politikası rejimi, ama benzer yönde bir hareket.</p>
-
-    <h3 style="color:var(--text);margin:18px 0 8px;font-size:15px">Neden Üçü de Yüksek?</h3>
-    <p>Ortak neden birden fazla. <strong>Birincisi, enflasyon yapışkanlığı.</strong> ABD&#x27;de Nisan TÜFE&#x27;si üç yılın en yükseğine çıktı, ÜFE Aralık 2022&#x27;den bu yana en sert sürprizi verdi. Euro Bölgesi&#x27;nde Nisan enflasyonu %3&#x27;e yükselerek Eylül 2023&#x27;ten beri en yüksek seviyeye geldi. Türkiye&#x27;de manşet enflasyon hâlâ %30&#x27;un üzerinde. Tahvil yatırımcısı uzun vadede satın alma gücünü korumak istiyor, bunun için yüksek nominal getiri talep ediyor.</p>
-
-    <p><strong>İkincisi, merkez bankalarının faiz indirim umudunun erimesi.</strong> Eylül 2025&#x27;te piyasa Fed&#x27;in 2026 yılında 6 kez faiz indirmesini tartışıyordu. Bugün indirim olasılığı çok düşük, bazı tahminciler yıl sonuna kadar artırım senaryosunu konuşuyor. ECB benzer şekilde gevşeme döngüsünü duraklatma sinyali veriyor. TCMB&#x27;nin Aralık 2024&#x27;ten itibaren başlattığı ölçülü indirim adımları da yavaşladı. Merkez bankalarının indirim takvimi geriye atıldıkça uzun vadeli tahvil getirileri de yüksek seyretmeye devam ediyor; çünkü yatırımcı kısa vadeli yüksek faizin daha uzun süre süreceğine inanıyor.</p>
-
-    <p><strong>Üçüncüsü, vade primi (term premium) tekrar pozitife dönüyor.</strong> 2019 ile 2021 arasında uzun tahvil tutmak için yatırımcıya neredeyse hiç prim verilmiyordu, niceliksel gevşeme dönemi bunu sıfırlamıştı. <span class="term" data-title="Niceliksel Sıkılaşma" data-tip="İngilizcesi Quantitative Tightening (QT). Merkez bankasının önceden satın aldığı tahvilleri yeniden satması ya da vadeleri dolduğunda yenilememesi yoluyla bilanço büyüklüğünü azaltması. Piyasada tahvil arzını artırarak getirileri yukarı çeker. Niceliksel gevşemenin (QE) tersidir.">Fed&#x27;in niceliksel sıkılaşma dönemi</span>, Hazine&#x27;nin yüksek arzı ve mali açık endişeleri vade primini tekrar pozitif bölgeye çıkardı. Almanya, AB ortak borçlanma ve savunma harcaması artışıyla benzer bir yapısal baskı altında. Türkiye için zaten yüksek olan risk primi son haftalarda 50 baz puan ek genişledi.</p>
-
-    <h3 style="color:var(--text);margin:18px 0 8px;font-size:15px">Yatırımcı İçin Anlamı</h3>
-    <p>Yüksek uzun vade getirisi farklı varlık sınıflarına farklı yansıyor.</p>
-    <ul style="margin:6px 0">
-      <li><strong>Hisse senedi:</strong> İskonto oranı yüksek olduğunda yüksek büyüme şirketlerinin değerlemesi orantısız sıkışır. Defansif sektörler (telekom, kamu hizmetleri) görece dayanıklı. ABD&#x27;de mega-cap teknoloji baskı altında, Avrupa&#x27;da savunma ve enerji öne çıkıyor.</li>
-      <li><strong>Konut ve gayrimenkul:</strong> İpotek faizleri ABD&#x27;de %7 üzerinde, Avrupa&#x27;da %4-5 bandında. Talep yavaşlıyor, bu da inşaat sektörüne ve GYO&#x27;lara yansıyor.</li>
-      <li><strong>Türk yatırımcı için:</strong> %33 nominal getiri kulağa cazip gelse de yıllık TÜFE&#x27;ye karşı reel getiri henüz yüksek değil. TÜFE&#x27;ye endeksli devlet tahvilleri (TÜFEX) ya da reel faiz farkını yakalayan portföy yapısı daha dengeli sonuç verir.</li>
-      <li><strong>Carry trade:</strong> Türk lirası varlıkların yüksek nominal getirisi yabancı yatırımcı için cazip, ama TL&#x27;nin değer kaybetmemesi şartıyla. CDS&#x27;in yeniden genişlemesi bu hesabı bozar.</li>
-    </ul>
-
-    <h3 style="color:var(--text);margin:18px 0 8px;font-size:15px">İzlenmesi Gerekenler</h3>
-    <p>Önümüzdeki birkaç hafta için kritik göstergeler:</p>
-    <ul style="margin:6px 0">
-      <li><strong>Haziran Fed toplantısı:</strong> Dot plot güncellemesi, 2026 indirim sayısı beklentisi.</li>
-      <li><strong>ECB Haziran toplantısı:</strong> Gevşeme döngüsünün son adımı mı?</li>
-      <li><strong>TCMB PPK kararı (gelecek toplantı):</strong> İndirim hızı, AOFM rejimi.</li>
-      <li><strong>ABD ve Almanya Hazine ihaleleri:</strong> Talep zayıflarsa uzun uç daha da satılır.</li>
-      <li><strong>Türkiye CDS:</strong> 250 baz puan üzerinde kalıcılaşırsa risk primi şişer.</li>
-    </ul>
-
-    <p style="margin-top:14px;padding:12px 16px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);color:#f5d28a;font-size:12.5px">
-      <strong>Özet:</strong> Üç ekonomide birden uzun vade getirilerinin yüksek olması rastlantı değil. Yapışkan enflasyon, merkez bankası gevşeme tahminlerinin geri çekilmesi ve yapısal arz baskısı küresel bir tablo çiziyor. Türk yatırımcısı için bu hem fırsat (yüksek nominal getiri) hem risk (kur ve sermaye akışı kırılganlığı) anlamına geliyor.
-    </p>
-  </div>
-  <div style="padding:10px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-    <span>Kaynak: FRED (DGS10, IRLTLT01DEM), Trading Economics, worldgovernmentbonds.com</span>
-    <span>📊 Çizim: 20 Mayıs 2026</span>
+    <p>20 Mayıs 2026 itibarıyla üç farklı piyasanın en likit uzun vadeli tahvili aynı anda dikkat çeken seviyelerde işlem görüyor. <strong>ABD 10 yıllık Hazine tahvili %4,67</strong> ile yaklaşık 16 ayın zirvesinde. <strong>Almanya 10 yıllık Bund %3,16</strong> ile Mayıs 2011'den bu yana en yüksek seviyede. <strong>Türkiye 10 yıllık devlet tahvili %33,04</strong> ile son bir ayda 3,3 puan yükselmiş halde. Üç farklı para birimi, üç farklı para politikası rejimi, ama benzer yönde bir hareket.</p>
+<p><strong>Neden üçü de yüksek?</strong> Ortak neden birden fazla. Birincisi, enflasyon yapışkanlığı. ABD'de Nisan TÜFE'si üç yılın en yükseğine çıktı. Euro Bölgesi'nde Nisan enflasyonu %3'e yükselerek Eylül 2023'ten beri en yüksek seviyeye geldi. Türkiye'de manşet enflasyon hâlâ %30'un üzerinde. Tahvil yatırımcısı uzun vadede satın alma gücünü korumak istiyor, bunun için yüksek nominal getiri talep ediyor.</p>
+<p>İkincisi, merkez bankalarının faiz indirim umudunun erimesi. Eylül 2025'te piyasa Fed'in 2026 yılında 6 kez faiz indirmesini tartışıyordu. Bugün indirim olasılığı çok düşük. ECB benzer şekilde gevşeme döngüsünü duraklatma sinyali veriyor. TCMB'nin Aralık 2024'ten itibaren başlattığı ölçülü indirim adımları da yavaşladı. Merkez bankalarının indirim takvimi geriye atıldıkça uzun vadeli tahvil getirileri de yüksek seyretmeye devam ediyor.</p>
+<p>Üçüncüsü, vade primi (term premium) tekrar pozitife dönüyor. 2019 ile 2021 arasında uzun tahvil tutmak için yatırımcıya neredeyse hiç prim verilmiyordu. Fed'in niceliksel sıkılaşma dönemi, Hazine'nin yüksek arzı ve mali açık endişeleri vade primini tekrar pozitif bölgeye çıkardı.</p>
+<p><strong>Yatırımcı için anlamı.</strong> Yüksek uzun vade getirisi farklı varlık sınıflarına farklı yansıyor. İskonto oranı yüksek olduğunda yüksek büyüme şirketlerinin değerlemesi orantısız sıkışır. İpotek faizleri ABD'de %7 üzerinde, Avrupa'da %4-5 bandında, talep yavaşlıyor. Türk yatırımcı için %33 nominal getiri cazip gelse de yıllık TÜFE'ye karşı reel getiri henüz yüksek değil.</p>
+<p><strong>Özet:</strong> Üç ekonomide birden uzun vade getirilerinin yüksek olması rastlantı değil. Yapışkan enflasyon, merkez bankası gevşeme tahminlerinin geri çekilmesi ve yapısal arz baskısı küresel bir tablo çiziyor. Türk yatırımcısı için bu hem fırsat (yüksek nominal getiri) hem risk (kur ve sermaye akışı kırılganlığı) anlamına geliyor.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">tahvil</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">faiz</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">enflasyon</span><span style="background:rgba(255,166,48,.08);color:var(--accent);padding:2px 8px;font-size:10px;letter-spacing:.04em">küresel</span></div>
   </div>
 </article>
+
 
 <article class="panel" style="overflow:hidden;margin-bottom:28px">
   <div class="panel-h">
@@ -572,8 +589,8 @@ daha sağlıklı bir yol gösterici.</p>
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-27 08:00 TR</div>
-    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP</div>
+    <div>v2026.05 · son güncelleme 2026-06-06 14:00 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
     <a href="/iletisim/">İletişim</a>
@@ -594,8 +611,9 @@ daha sağlıklı bir yol gösterici.</p>
   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
        gap:14px;flex-wrap:wrap;justify-content:space-between">
     <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
-      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
-      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
     </div>
     <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
             padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
@@ -727,5 +745,7 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
 </body>
 </html>

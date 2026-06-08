@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Araştırma Bültenleri — Kalibre Markets</title>
 
 <meta name="description" content="Yapay zeka destekli veri, araştırma ve eğitim platformu. Türkçe periyodik bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı ve eğitim. Yatırım tavsiyesi değildir.">
@@ -441,6 +444,26 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     }
   } catch(e) {}
 })();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
 </script>
 
 <main>
@@ -453,84 +476,97 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     Kapsamlı çeyreklik <a href="/makro-raporu/" style="color:var(--accent)">Türkiye Ekonomik Raporu</a> ve
     her hafta seçtiğimiz <a href="/haftanin-grafikleri/" style="color:var(--accent)">Haftanın Grafikleri</a> arşivi için ayrı sayfalar var.
   </p>
-  <p class="muted" style="margin-top:10px;font-size:12px"><a href="#pulse" style="color:var(--accent)">📊 Günlük Nabız</a> · <a href="#hisse" style="color:var(--accent)">📈 Hisse Senedi</a> · <a href="#sektor" style="color:var(--accent)">🔄 Sektör Rotasyon</a> · <a href="#fx" style="color:var(--accent)">💱 Döviz / FX</a> · <a href="#makro" style="color:var(--accent)">🇹🇷 Makro (TR)</a> · <a href="#fred" style="color:var(--accent)">🇺🇸 Makro (ABD)</a> · <a href="#wb" style="color:var(--accent)">🌐 Uluslararası (World Bank)</a> · <a href="#sentiment" style="color:var(--accent)">💬 Sentiment Bülteni</a> · <a href="#tcmb" style="color:var(--accent)">🏦 TCMB Analitik Bilanço</a> · <a href="/haftanin-grafikleri/" style="color:var(--accent)">🗓 Haftanın Grafikleri Arşivi</a></p>
+  <p class="muted" style="margin-top:10px;font-size:12px"><a href="#pulse" style="color:var(--accent)">📊 Günlük Nabız</a> · <a href="#hisse" style="color:var(--accent)">📈 Hisse Senedi</a> · <a href="#sektor" style="color:var(--accent)">🔄 Sektör Rotasyon</a> · <a href="#fx" style="color:var(--accent)">💱 Döviz / FX</a> · <a href="#metals" style="color:var(--accent)">🪙 Değerli Metaller</a> · <a href="#makro" style="color:var(--accent)">🇹🇷 Makro (TR)</a> · <a href="#fred" style="color:var(--accent)">🇺🇸 Makro (ABD)</a> · <a href="#wb" style="color:var(--accent)">🌐 Uluslararası (World Bank)</a> · <a href="#tcmb" style="color:var(--accent)">🏦 TCMB Analitik Bilanço</a> · <a href="/haftanin-grafikleri/" style="color:var(--accent)">🗓 Haftanın Grafikleri Arşivi</a></p>
 </div>
 
 <h2 id="pulse">📊 Günlük Nabız</h2>
 <p class="small muted" style="margin:0 0 12px">5 grafikte dünyanın özeti: XU100, USD/TRY, DXY, ABD 10Y, VIX (1y + Y-1 overlay)</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-29</span><a href="/reports/pulse/2026-05-29/">Günlük Nabız — 2026-05-29</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-06-05</span><a href="/reports/pulse/2026-06-05/">Günlük Nabız — 2026-06-05</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 12 bülten
+      ↓ Daha eski 17 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-28</span><a href="/reports/pulse/2026-05-28/">Günlük Nabız — 2026-05-28</a></li><li><span class="date">2026-05-27</span><a href="/reports/pulse/2026-05-27/">Günlük Nabız — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/pulse/2026-05-26/">Günlük Nabız — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/pulse/2026-05-25/">Günlük Nabız — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/pulse/2026-05-22/">Günlük Nabız — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/pulse/2026-05-21/">Günlük Nabız — 2026-05-21</a></li><li><span class="date">2026-05-20</span><a href="/reports/pulse/2026-05-20/">Günlük Nabız — 2026-05-20</a></li><li><span class="date">2026-05-16</span><a href="/reports/pulse/2026-05-16/">Günlük Nabız — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/pulse/2026-05-15/">Günlük Nabız — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/pulse/2026-05-14/">Günlük Nabız — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/pulse/2026-05-13/">Günlük Nabız — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/pulse/2026-05-12/">Günlük Pulse — 2026-05-12</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-06-04</span><a href="/reports/pulse/2026-06-04/">Günlük Nabız — 2026-06-04</a></li><li><span class="date">2026-06-03</span><a href="/reports/pulse/2026-06-03/">Günlük Nabız — 2026-06-03</a></li><li><span class="date">2026-06-02</span><a href="/reports/pulse/2026-06-02/">Günlük Nabız — 2026-06-02</a></li><li><span class="date">2026-06-01</span><a href="/reports/pulse/2026-06-01/">Günlük Nabız — 2026-06-01</a></li><li><span class="date">2026-05-29</span><a href="/reports/pulse/2026-05-29/">Günlük Nabız — 2026-05-29</a></li><li><span class="date">2026-05-28</span><a href="/reports/pulse/2026-05-28/">Günlük Nabız — 2026-05-28</a></li><li><span class="date">2026-05-27</span><a href="/reports/pulse/2026-05-27/">Günlük Nabız — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/pulse/2026-05-26/">Günlük Nabız — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/pulse/2026-05-25/">Günlük Nabız — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/pulse/2026-05-22/">Günlük Nabız — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/pulse/2026-05-21/">Günlük Nabız — 2026-05-21</a></li><li><span class="date">2026-05-20</span><a href="/reports/pulse/2026-05-20/">Günlük Nabız — 2026-05-20</a></li><li><span class="date">2026-05-16</span><a href="/reports/pulse/2026-05-16/">Günlük Nabız — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/pulse/2026-05-15/">Günlük Nabız — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/pulse/2026-05-14/">Günlük Nabız — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/pulse/2026-05-13/">Günlük Nabız — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/pulse/2026-05-12/">Günlük Pulse — 2026-05-12</a></li></ul>
   </details>
 </div>
 
 <h2 id="hisse">📈 Hisse Senedi</h2>
 <p class="small muted" style="margin:0 0 12px">BIST 30 teknik tarama, günün mercek altındaki hissesi</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-28</span><a href="/reports/hisse/2026-05-28/">Akbank — Günün Merceği</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-06-05</span><a href="/reports/hisse/2026-06-05/">Pegasus — Günün Merceği</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 11 bülten
+      ↓ Daha eski 17 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-27</span><a href="/reports/hisse/2026-05-27/">Koç Holding — Günün Merceği</a></li><li><span class="date">2026-05-26</span><a href="/reports/hisse/2026-05-26/">İş Bankası (C) — Günün Merceği</a></li><li><span class="date">2026-05-25</span><a href="/reports/hisse/2026-05-25/">Hektaş — Günün Merceği</a></li><li><span class="date">2026-05-22</span><a href="/reports/hisse/2026-05-22/">Garanti BBVA — Günün Merceği</a></li><li><span class="date">2026-05-21</span><a href="/reports/hisse/2026-05-21/">Ford Otosan — Günün Merceği</a></li><li><span class="date">2026-05-20</span><a href="/reports/hisse/2026-05-20/">Ereğli Demir Çelik — Günün Merceği</a></li><li><span class="date">2026-05-15</span><a href="/reports/hisse/2026-05-15/">Doğan Holding — Günün Merceği</a></li><li><span class="date">2026-05-14</span><a href="/reports/hisse/2026-05-14/">BİM Mağazalar — Günün Merceği</a></li><li><span class="date">2026-05-13</span><a href="/reports/hisse/2026-05-13/">Aselsan — Günün Merceği</a></li><li><span class="date">2026-05-12</span><a href="/reports/hisse/2026-05-12/">Arçelik — Günün Merceği</a></li><li><span class="date">2026-05-11</span><a href="/reports/hisse/2026-05-11/">Akbank — Günün Hissesi</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-06-04</span><a href="/reports/hisse/2026-06-04/">Petkim — Günün Merceği</a></li><li><span class="date">2026-06-03</span><a href="/reports/hisse/2026-06-03/">Odaş Elektrik — Günün Merceği</a></li><li><span class="date">2026-06-02</span><a href="/reports/hisse/2026-06-02/">Migros — Günün Merceği</a></li><li><span class="date">2026-06-01</span><a href="/reports/hisse/2026-06-01/">Kardemir (D) — Günün Merceği</a></li><li><span class="date">2026-05-29</span><a href="/reports/hisse/2026-05-29/">Akbank — Günün Merceği</a></li><li><span class="date">2026-05-28</span><a href="/reports/hisse/2026-05-28/">Akbank — Günün Merceği</a></li><li><span class="date">2026-05-27</span><a href="/reports/hisse/2026-05-27/">Koç Holding — Günün Merceği</a></li><li><span class="date">2026-05-26</span><a href="/reports/hisse/2026-05-26/">İş Bankası (C) — Günün Merceği</a></li><li><span class="date">2026-05-25</span><a href="/reports/hisse/2026-05-25/">Hektaş — Günün Merceği</a></li><li><span class="date">2026-05-22</span><a href="/reports/hisse/2026-05-22/">Garanti BBVA — Günün Merceği</a></li><li><span class="date">2026-05-21</span><a href="/reports/hisse/2026-05-21/">Ford Otosan — Günün Merceği</a></li><li><span class="date">2026-05-20</span><a href="/reports/hisse/2026-05-20/">Ereğli Demir Çelik — Günün Merceği</a></li><li><span class="date">2026-05-15</span><a href="/reports/hisse/2026-05-15/">Doğan Holding — Günün Merceği</a></li><li><span class="date">2026-05-14</span><a href="/reports/hisse/2026-05-14/">BİM Mağazalar — Günün Merceği</a></li><li><span class="date">2026-05-13</span><a href="/reports/hisse/2026-05-13/">Aselsan — Günün Merceği</a></li><li><span class="date">2026-05-12</span><a href="/reports/hisse/2026-05-12/">Arçelik — Günün Merceği</a></li><li><span class="date">2026-05-11</span><a href="/reports/hisse/2026-05-11/">Akbank — Günün Hissesi</a></li></ul>
   </details>
 </div>
 
 <h2 id="sektor">🔄 Sektör Rotasyon</h2>
 <p class="small muted" style="margin:0 0 12px">BIST sektör endeksleri (XBANK/XHOLD/XGIDA) XU100&#x27;e göre relatif performans</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-25</span><a href="/reports/sektor/2026-05-25/">Sektör Rotasyon — 2026-05-25</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-06-01</span><a href="/reports/sektor/2026-06-01/">Sektör Rotasyon — 2026-06-01</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 7 bülten
+      ↓ Daha eski 8 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-23</span><a href="/reports/sektor/2026-05-23/">Sektör Rotasyon — 2026-05-23</a></li><li><span class="date">2026-05-22</span><a href="/reports/sektor/2026-05-22/">Sektör Rotasyon — 2026-05-22</a></li><li><span class="date">2026-05-16</span><a href="/reports/sektor/2026-05-16/">Sektör Rotasyon — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/sektor/2026-05-15/">Sektör Rotasyon — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/sektor/2026-05-14/">Sektör Rotasyon — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/sektor/2026-05-13/">Sektör Rotasyon — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/sektor/2026-05-12/">Sektör Rotasyon — 2026-05-12</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-25</span><a href="/reports/sektor/2026-05-25/">Sektör Rotasyon — 2026-05-25</a></li><li><span class="date">2026-05-23</span><a href="/reports/sektor/2026-05-23/">Sektör Rotasyon — 2026-05-23</a></li><li><span class="date">2026-05-22</span><a href="/reports/sektor/2026-05-22/">Sektör Rotasyon — 2026-05-22</a></li><li><span class="date">2026-05-16</span><a href="/reports/sektor/2026-05-16/">Sektör Rotasyon — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/sektor/2026-05-15/">Sektör Rotasyon — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/sektor/2026-05-14/">Sektör Rotasyon — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/sektor/2026-05-13/">Sektör Rotasyon — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/sektor/2026-05-12/">Sektör Rotasyon — 2026-05-12</a></li></ul>
   </details>
 </div>
 
 <h2 id="fx">💱 Döviz / FX</h2>
 <p class="small muted" style="margin:0 0 12px">Majör pariteler, EM kurlar, teknik durum</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-29</span><a href="/reports/fx/2026-05-29/">Döviz Günlük — 2026-05-29</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-06-05</span><a href="/reports/fx/2026-06-05/">Döviz Günlük — 2026-06-05</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 12 bülten
+      ↓ Daha eski 17 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-28</span><a href="/reports/fx/2026-05-28/">Döviz Günlük — 2026-05-28</a></li><li><span class="date">2026-05-27</span><a href="/reports/fx/2026-05-27/">Döviz Günlük — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/fx/2026-05-26/">Döviz Günlük — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/fx/2026-05-25/">Döviz Günlük — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/fx/2026-05-22/">Döviz Günlük — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/fx/2026-05-21/">Döviz Günlük — 2026-05-21</a></li><li><span class="date">2026-05-20</span><a href="/reports/fx/2026-05-20/">Döviz Günlük — 2026-05-20</a></li><li><span class="date">2026-05-16</span><a href="/reports/fx/2026-05-16/">Döviz Günlük — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/fx/2026-05-15/">fx — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/fx/2026-05-14/">fx — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/fx/2026-05-13/">Döviz Günlük — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/fx/2026-05-12/">Döviz Günlük — 2026-05-12</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-06-04</span><a href="/reports/fx/2026-06-04/">Döviz Günlük — 2026-06-04</a></li><li><span class="date">2026-06-03</span><a href="/reports/fx/2026-06-03/">Döviz Günlük — 2026-06-03</a></li><li><span class="date">2026-06-02</span><a href="/reports/fx/2026-06-02/">Döviz Günlük — 2026-06-02</a></li><li><span class="date">2026-06-01</span><a href="/reports/fx/2026-06-01/">Döviz Günlük — 2026-06-01</a></li><li><span class="date">2026-05-29</span><a href="/reports/fx/2026-05-29/">Döviz Günlük — 2026-05-29</a></li><li><span class="date">2026-05-28</span><a href="/reports/fx/2026-05-28/">Döviz Günlük — 2026-05-28</a></li><li><span class="date">2026-05-27</span><a href="/reports/fx/2026-05-27/">Döviz Günlük — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/fx/2026-05-26/">Döviz Günlük — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/fx/2026-05-25/">Döviz Günlük — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/fx/2026-05-22/">Döviz Günlük — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/fx/2026-05-21/">Döviz Günlük — 2026-05-21</a></li><li><span class="date">2026-05-20</span><a href="/reports/fx/2026-05-20/">Döviz Günlük — 2026-05-20</a></li><li><span class="date">2026-05-16</span><a href="/reports/fx/2026-05-16/">Döviz Günlük — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/fx/2026-05-15/">fx — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/fx/2026-05-14/">fx — 2026-05-14</a></li><li><span class="date">2026-05-13</span><a href="/reports/fx/2026-05-13/">Döviz Günlük — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/fx/2026-05-12/">Döviz Günlük — 2026-05-12</a></li></ul>
+  </details>
+</div>
+
+<h2 id="metals">🪙 Değerli Metaller</h2>
+<p class="small muted" style="margin:0 0 12px">Ons altın/gümüş ($), gram altın/gümüş (₺), platin, bakır, altın/gümüş oranı — teknik durum + forecast</p>
+<div class="card">
+  <ul class="report-list"><li><span class="date">2026-06-05</span><a href="/reports/metals/2026-06-05/">Değerli Metaller Günlük — 2026-06-05</a></li></ul>
+  
+  <details style="margin-top:8px">
+    <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
+      ↓ Daha eski 3 bülten
+    </summary>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-06-04</span><a href="/reports/metals/2026-06-04/">Değerli Metaller Günlük — 2026-06-04</a></li><li><span class="date">2026-06-03</span><a href="/reports/metals/2026-06-03/">Değerli Metaller Günlük — 2026-06-03</a></li><li><span class="date">2026-06-02</span><a href="/reports/metals/2026-06-02/">Değerli Metaller Günlük — 2026-06-02</a></li></ul>
   </details>
 </div>
 
 <h2 id="makro">🇹🇷 Makro (TR)</h2>
 <p class="small muted" style="margin:0 0 12px">TCMB EVDS — enflasyon, cari işlemler, büyüme</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-23</span><a href="/reports/makro/2026-05-23/">TR Makro — 2026-05-23</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-05-30</span><a href="/reports/makro/2026-05-30/">TR Makro — 2026-05-30</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 4 bülten
+      ↓ Daha eski 5 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-22</span><a href="/reports/makro/2026-05-22/">TR Makro — 2026-05-22</a></li><li><span class="date">2026-05-16</span><a href="/reports/makro/2026-05-16/">TR Makro — 2026-05-16</a></li><li><span class="date">2026-05-13</span><a href="/reports/makro/2026-05-13/">makro — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/makro/2026-05-12/">makro — 2026-05-12</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-23</span><a href="/reports/makro/2026-05-23/">TR Makro — 2026-05-23</a></li><li><span class="date">2026-05-22</span><a href="/reports/makro/2026-05-22/">TR Makro — 2026-05-22</a></li><li><span class="date">2026-05-16</span><a href="/reports/makro/2026-05-16/">TR Makro — 2026-05-16</a></li><li><span class="date">2026-05-13</span><a href="/reports/makro/2026-05-13/">makro — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/makro/2026-05-12/">makro — 2026-05-12</a></li></ul>
   </details>
 </div>
 
 <h2 id="fred">🇺🇸 Makro (ABD)</h2>
 <p class="small muted" style="margin:0 0 12px">FRED — Fed faizi, tahvil, ekonomik veriler</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-25</span><a href="/reports/fred/2026-05-25/">ABD Makro — 2026-05-25</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-05-31</span><a href="/reports/fred/2026-05-31/">ABD Makro — 2026-05-31</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 4 bülten
+      ↓ Daha eski 5 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-23</span><a href="/reports/fred/2026-05-23/">ABD Makro — 2026-05-23</a></li><li><span class="date">2026-05-22</span><a href="/reports/fred/2026-05-22/">ABD Makro — 2026-05-22</a></li><li><span class="date">2026-05-13</span><a href="/reports/fred/2026-05-13/">ABD Makro — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/fred/2026-05-12/">ABD Makro — 2026-05-12</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-25</span><a href="/reports/fred/2026-05-25/">ABD Makro — 2026-05-25</a></li><li><span class="date">2026-05-23</span><a href="/reports/fred/2026-05-23/">ABD Makro — 2026-05-23</a></li><li><span class="date">2026-05-22</span><a href="/reports/fred/2026-05-22/">ABD Makro — 2026-05-22</a></li><li><span class="date">2026-05-13</span><a href="/reports/fred/2026-05-13/">ABD Makro — 2026-05-13</a></li><li><span class="date">2026-05-12</span><a href="/reports/fred/2026-05-12/">ABD Makro — 2026-05-12</a></li></ul>
   </details>
 </div>
 
@@ -547,29 +583,16 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </details>
 </div>
 
-<h2 id="sentiment">💬 Sentiment Bülteni</h2>
-<p class="small muted" style="margin:0 0 12px">TradingView yorum/idea taramasından üretilmiş haftalık topluluk yön ve kelime özeti</p>
-<div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-16</span><a href="/reports/sentiment/2026-05-16/">Sentiment Bülteni — 2026-05-16</a></li></ul>
-  
-  <details style="margin-top:8px">
-    <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 2 bülten
-    </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-15</span><a href="/reports/sentiment/2026-05-15/">Sentiment Bülteni — 2026-05-15</a></li><li><span class="date">2026-05-14</span><a href="/reports/sentiment/2026-05-14/">Sentiment Bülteni — 2026-05-14</a></li></ul>
-  </details>
-</div>
-
 <h2 id="tcmb">🏦 TCMB Analitik Bilanço</h2>
 <p class="small muted" style="margin:0 0 12px">Günlük net rezerv hesabı (klasik + sıkı ölçüm) ve analitik bilanço özeti</p>
 <div class="card">
-  <ul class="report-list"><li><span class="date">2026-05-28</span><a href="/reports/tcmb/2026-05-28/">TCMB Analitik Bilanço — 2026-05-28</a></li></ul>
+  <ul class="report-list"><li><span class="date">2026-06-05</span><a href="/reports/tcmb/2026-06-05/">TCMB Analitik Bilanço — 2026-06-05</a></li></ul>
   
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em;padding:4px 0;list-style:none">
-      ↓ Daha eski 7 bülten
+      ↓ Daha eski 13 bülten
     </summary>
-    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-05-27</span><a href="/reports/tcmb/2026-05-27/">TCMB Analitik Bilanço — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/tcmb/2026-05-26/">TCMB Analitik Bilanço — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/tcmb/2026-05-25/">TCMB Analitik Bilanço — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/tcmb/2026-05-22/">TCMB Analitik Bilanço — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/tcmb/2026-05-21/">TCMB Analitik Bilanço — 2026-05-21</a></li><li><span class="date">2026-05-16</span><a href="/reports/tcmb/2026-05-16/">TCMB Analitik Bilanço — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/tcmb/2026-05-15/">TCMB Analitik Bilanço — 2026-05-15</a></li></ul>
+    <ul class="report-list" style="margin-top:6px"><li><span class="date">2026-06-04</span><a href="/reports/tcmb/2026-06-04/">TCMB Analitik Bilanço — 2026-06-04</a></li><li><span class="date">2026-06-03</span><a href="/reports/tcmb/2026-06-03/">TCMB Analitik Bilanço — 2026-06-03</a></li><li><span class="date">2026-06-02</span><a href="/reports/tcmb/2026-06-02/">TCMB Analitik Bilanço — 2026-06-02</a></li><li><span class="date">2026-06-01</span><a href="/reports/tcmb/2026-06-01/">TCMB Analitik Bilanço — 2026-06-01</a></li><li><span class="date">2026-05-29</span><a href="/reports/tcmb/2026-05-29/">TCMB Analitik Bilanço — 2026-05-29</a></li><li><span class="date">2026-05-28</span><a href="/reports/tcmb/2026-05-28/">TCMB Analitik Bilanço — 2026-05-28</a></li><li><span class="date">2026-05-27</span><a href="/reports/tcmb/2026-05-27/">TCMB Analitik Bilanço — 2026-05-27</a></li><li><span class="date">2026-05-26</span><a href="/reports/tcmb/2026-05-26/">TCMB Analitik Bilanço — 2026-05-26</a></li><li><span class="date">2026-05-25</span><a href="/reports/tcmb/2026-05-25/">TCMB Analitik Bilanço — 2026-05-25</a></li><li><span class="date">2026-05-22</span><a href="/reports/tcmb/2026-05-22/">TCMB Analitik Bilanço — 2026-05-22</a></li><li><span class="date">2026-05-21</span><a href="/reports/tcmb/2026-05-21/">TCMB Analitik Bilanço — 2026-05-21</a></li><li><span class="date">2026-05-16</span><a href="/reports/tcmb/2026-05-16/">TCMB Analitik Bilanço — 2026-05-16</a></li><li><span class="date">2026-05-15</span><a href="/reports/tcmb/2026-05-15/">TCMB Analitik Bilanço — 2026-05-15</a></li></ul>
   </details>
 </div>
 
@@ -578,7 +601,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-29 10:03 TR</div>
+    <div>v2026.05 · son güncelleme 2026-06-05 00:12 TR</div>
     <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -734,5 +757,7 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
 </body>
 </html>

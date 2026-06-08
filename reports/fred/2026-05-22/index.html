@@ -460,6 +460,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <span class="dot amber"></span>
       <b style="color:var(--accent);font-weight:700;letter-spacing:.16em">▣ Bülten · Makro (Abd)</b>
       <span>·</span><span>2026-05-22</span>
+      <span class="data-age" data-report-date="2026-05-22"></span>
     </div>
     <h1 style="font-weight:500;font-size:26px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px">
       🇺🇸 ABD Makro — 2026-05-22
@@ -828,5 +829,29 @@ window.__kmShare = async function(wid, data) {
 };
 </script>
 
+<script>
+// Veri yaşı rozeti (enjekte): rapor tarihini "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
 </body>
 </html>

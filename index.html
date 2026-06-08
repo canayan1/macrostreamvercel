@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Kalibre Markets — Türkçe finansal verinin terminal hissi</title>
 
 <meta name="description" content="Türkçe yatırımcı için ücretsiz, reklamsız, açık metodolojili veri terminali. Günlük makro & piyasa raporları, 24 eğitim makalesi, davranışsal önyargı testi, strateji laboratuvarı, sıfır risk simülasyon. Yatırım tavsiyesi değildir.">
@@ -393,13 +396,13 @@ footer .disclaimer {
 
 <section class="hero">
   <div class="chip-row" id="hero-chips">
-    <span><span class="dot"></span><span class="label">USD/TRY</span> <span class="val mono">45.65</span></span>
+    <span><span class="dot"></span><span class="label">USD/TRY</span> <span class="val mono" id="chip-usdtry">—</span></span>
     <span class="sep">·</span>
-    <span><span class="dot"></span><span class="label">BIST 100</span> <span class="val mono">13,891</span></span>
+    <span><span class="dot"></span><span class="label">BIST 100</span> <span class="val mono" id="chip-bist">—</span></span>
     <span class="sep">·</span>
-    <span><span class="dot"></span><span class="label">TÜFE</span> <span class="val mono">32.4%</span></span>
+    <span><span class="dot"></span><span class="label">TÜFE</span> <span class="val mono" id="chip-tufe">—</span></span>
     <span class="sep">·</span>
-    <span><span class="dot"></span><span class="label">Fed Funds</span> <span class="val mono">3.64%</span></span>
+    <span><span class="dot"></span><span class="label">Fed Funds</span> <span class="val mono" id="chip-fed">—</span></span>
   </div>
 
   <h1>Türkçe finansal verinin <span class="accent">terminal hissi</span>.</h1>
@@ -664,7 +667,7 @@ footer .disclaimer {
           <li><b>Banka Bilanço Raporu</b> — KAP doğrulamalı çeyreklik analiz</li>
           <li><b>TR Makro</b> + <b>ABD Makro</b> + <b>Dünya Bankası</b> raporları</li>
           <li><b>Haftanın Grafiği</b> uzun-form analiz</li>
-          <li><b>Özel Analiz Talebi</b> ile spesifik konu için derinleştirme</li>
+          <li><a href="/talep/" style="color:var(--accent)"><b>Özel Analiz Talebi</b></a> ile spesifik konu için derinleştirme</li>
         </ol>
       </div>
     </div>
@@ -729,7 +732,7 @@ footer .disclaimer {
   <div class="container">
     <div>
       <div class="brand-block">KALIBRE · MARKETS</div>
-      <div>v2026.05 · son güncelleme 2026-05-27 09:00 TR</div>
+      <div>v2026.05 · son güncelleme <span id="foot-updated">—</span></div>
       <div class="source-line">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası · KAP</div>
     </div>
     <div class="links-block">
@@ -759,7 +762,36 @@ function hideLightbox() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') hideLightbox(); });
+
+// Hero chip'lerini canlı snapshot ile doldur (terminal/latest.json)
+(function(){
+  function pick(arr){ return (Array.isArray(arr) && arr.length) ? arr[0].metrics : null; }
+  function nf(v, dec){ return (typeof v === 'number' && isFinite(v))
+      ? v.toLocaleString('tr-TR', {minimumFractionDigits:dec, maximumFractionDigits:dec}) : null; }
+  function set(id, txt){ var el = document.getElementById(id); if(el && txt) el.textContent = txt; }
+  fetch('/terminal/latest.json', {cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var s = d.snapshot || {};
+      var pulse = pick(s.pulse), makro = pick(s.makro), fred = pick(s.fred), fx = pick(s.fx);
+      var usdtry = (pulse && pulse.usdtry_last) || (fx && fx.usdtry);
+      set('chip-usdtry', nf(usdtry, 2));
+      set('chip-bist', pulse ? nf(pulse.xu100_last, 0) : null);
+      set('chip-tufe', makro ? (nf(makro.tufe_yoy, 1) + '%') : null);
+      set('chip-fed', fred ? (nf(fred.fed_funds, 2) + '%') : null);
+      // Footer "son güncelleme" — latest.json üretim zamanından
+      if (d.generated) {
+        var g = new Date(d.generated);
+        if (!isNaN(g)) set('foot-updated',
+          g.toLocaleDateString('tr-TR') + ' ' +
+          g.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'}) + ' TR');
+      }
+    })
+    .catch(function(){ /* sessizce: chip'ler "—" kalır, sahte sayı gösterilmez */ });
+})();
 </script>
 
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
 </body>
 </html>

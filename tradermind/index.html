@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>TraderMind — İşlem Günlüğü (iOS) · Kalibre Markets</title>
+
+<meta name="description" content="TraderMind: psikolojini merkeze alan bir işlem günlüğü. İşlem öncesi önyargı kontrolü, saniyeler içinde işlem kaydı, disiplin serileri. Tamamen cihazında, hesap gerektirmez. Şimdilik yalnızca iOS. Telefonunla QR'ı okutarak App Store'dan indir.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/tradermind/">
+<meta property="og:title" content="TraderMind — İşlem Günlüğü (iOS) · Kalibre Markets">
+<meta property="og:description" content="Psikolojini merkeze alan işlem günlüğü. İşlem öncesi önyargı kontrolü, disiplin serileri, tamamen cihazında. Şimdilik yalnızca iOS.">
+<meta property="og:url" content="https://kalibremarkets.com/tradermind/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/static/tradermind/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TraderMind — İşlem Günlüğü (iOS)">
+<meta name="twitter:description" content="Psikolojini merkeze alan işlem günlüğü. Şimdilik yalnızca iOS. Telefonunla QR'ı okutarak indir.">
+<meta name="twitter:image" content="https://kalibremarkets.com/static/tradermind/logo.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c; --bg-1: #14110e; --surface: #1a1612; --surface-2: #221d18;
+  --border: #26221d; --border-2: #36302a;
+  --text: #ebe3d3; --text-dim: #a89c83; --muted: #6f6553;
+  --accent: #ffa630; --accent-hot: #ff7a00;
+  --green: #4ade80; --red: #ef4444; --blue: #60a5fa;
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; letter-spacing: -0.005em;
+}
+.mono { font-family: 'JetBrains Mono','Geist Mono',ui-monospace,monospace; }
+body {
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+
+/* TOP BAR */
+.cmdbar { display:flex; align-items:center; gap:0; background:var(--bg-1); border-bottom:1px solid var(--border); height:46px; padding:0 18px; position:sticky; top:0; z-index:60; }
+.brand { display:flex; align-items:center; gap:10px; padding-right:18px; height:100%; border-right:1px solid var(--border); }
+.brand-mark { width:24px; height:24px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:12px; }
+.brand-name { font-weight:700; font-size:13px; letter-spacing:.12em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:.06em; }
+.cmd-crumb { flex:1; min-width:0; padding-left:16px; font-size:11.5px; color:var(--muted); letter-spacing:.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cmd-crumb a:hover { color:var(--accent); }
+.cmd-back { margin-left:auto; padding-left:16px; font-size:12px; color:var(--text-dim); white-space:nowrap; display:flex; align-items:center; height:100%; }
+.cmd-back:hover { color:var(--accent); }
+
+/* BANNER */
+.disclaimer-banner { display:flex; align-items:center; gap:14px; background:linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%); border-bottom:1px solid var(--border-2); padding:10px 24px; font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
+.disclaimer-banner b { color:var(--accent); }
+
+/* LAYOUT */
+main { padding:24px 24px 80px; max-width:1100px; margin:0 auto; }
+h1 { font-size:30px; font-weight:600; color:var(--text); line-height:1.15; letter-spacing:-.015em; }
+h2 { font-size:19px; font-weight:600; margin:34px 0 14px; color:var(--text); letter-spacing:-.01em; }
+
+/* HERO */
+.hero { display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+.hero-logo { width:96px; height:96px; border-radius:20px; border:1px solid var(--border-2); flex-shrink:0; box-shadow:0 8px 28px rgba(0,0,0,.45); }
+.hero-meta { flex:1; min-width:260px; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:7px; }
+.hero-sub { color:var(--text-dim); font-size:14px; margin-top:8px; line-height:1.6; max-width:62ch; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+.chip { font-size:11px; letter-spacing:.04em; color:var(--text-dim); border:1px solid var(--border-2); padding:4px 10px; border-radius:20px; }
+.chip.on { color:var(--accent); border-color:var(--accent); }
+.appstore-btn { display:inline-flex; align-items:center; gap:9px; margin-top:16px; background:var(--accent); color:#1a1a1a; font-weight:700; font-size:13px; letter-spacing:.02em; padding:11px 18px; border-radius:10px; transition:background .15s; }
+.appstore-btn:hover { background:var(--accent-hot); }
+
+/* DOWNLOAD / QR */
+.dl { display:flex; gap:24px; align-items:center; flex-wrap:wrap; background:var(--surface); border:1px solid var(--border); border-left:2px solid var(--accent); padding:22px 24px; margin:26px 0; }
+.qr-box { background:#fff; padding:12px; border-radius:12px; flex-shrink:0; line-height:0; }
+.qr-box img { width:168px; height:168px; display:block; }
+.dl-text h3 { font-size:16px; font-weight:600; color:var(--text); margin-bottom:8px; }
+.dl-text p { color:var(--text-dim); font-size:13.5px; line-height:1.65; max-width:54ch; margin-bottom:8px; }
+.dl-note { display:inline-flex; align-items:center; gap:8px; margin-top:6px; font-size:12px; color:var(--accent); background:rgba(255,166,48,.08); border:1px solid rgba(255,166,48,.3); padding:6px 12px; border-radius:8px; letter-spacing:.02em; }
+
+/* FEATURES */
+.feat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; }
+.feat { background:var(--surface); border:1px solid var(--border); padding:16px 18px; }
+.feat .ico { font-size:20px; margin-bottom:8px; display:block; }
+.feat h3 { font-size:14.5px; font-weight:600; color:var(--text); margin-bottom:6px; }
+.feat p { font-size:12.5px; color:var(--text-dim); line-height:1.6; }
+
+/* SHOTS */
+.shots { display:flex; gap:16px; overflow-x:auto; padding:6px 2px 16px; scroll-snap-type:x mandatory; }
+.shot-card { flex:0 0 auto; width:200px; scroll-snap-align:start; }
+.shot-card img { width:200px; height:auto; border-radius:16px; border:1px solid var(--border-2); display:block; background:var(--bg-1); }
+.shot-card .cap { font-size:11.5px; color:var(--text-dim); margin-top:9px; text-align:center; letter-spacing:.02em; line-height:1.4; }
+
+/* FOOTER */
+footer.pf-foot { margin-top:40px; border-top:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; color:var(--muted); font-size:11px; letter-spacing:.04em; max-width:1100px; margin-left:auto; margin-right:auto; flex-wrap:wrap; }
+footer.pf-foot a { color:var(--text-dim); } footer.pf-foot a:hover { color:var(--accent); }
+footer.pf-foot b { color:var(--text); }
+
+@media (max-width:700px){
+  main { padding:18px 14px 60px; }
+  h1 { font-size:24px; }
+  .cmd-crumb { display:none; }
+  .qr-box img { width:148px; height:148px; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/terminal/#karar" style="color:inherit">Karar Destek</a> › TraderMind</div>
+  <a href="/terminal/#karar" class="cmd-back">← Karar Destek</a>
+</div>
+<div class="disclaimer-banner"><b>Bilgi</b> · TraderMind bağımsız bir <b>iOS uygulamasıdır</b>. Bir işlem günlüğüdür; yatırım tavsiyesi vermez. App Store'dan ücretsiz indirilir (uygulama içi Pro aboneliği mevcuttur).</div>
+
+<main>
+
+  <div class="hero">
+    <img class="hero-logo" src="/static/tradermind/logo.png" alt="TraderMind uygulama logosu" width="96" height="96">
+    <div class="hero-meta">
+      <div class="eyebrow">▸ iOS UYGULAMASI · İŞLEM GÜNLÜĞÜ</div>
+      <h1>TraderMind — İşlem Günlüğü</h1>
+      <p class="hero-sub">Stratejin sorun değil; disiplinin. TraderMind, çoğu günlüğün görmezden geldiği tek şeyi merkeze alır: <strong>psikolojin</strong>. Aynı hataları neden tekrarladığını (intikam işlemi, FOMO girişleri, kendi kuralını bozma) görünür kılar ve bu farkındalığı kalıcı disipline çevirir.</p>
+      <div class="chips">
+        <span class="chip on">iPhone / iOS</span>
+        <span class="chip">Ücretsiz · Pro abonelik</span>
+        <span class="chip">Finans</span>
+        <span class="chip">Hesap gerektirmez</span>
+      </div>
+      <a class="appstore-btn" href="https://apps.apple.com/app/tradermind-trading-journal/id6775081248" target="_blank" rel="noopener"> App Store'da Aç →</a>
+    </div>
+  </div>
+
+  <div class="dl">
+    <div class="qr-box"><img src="/static/tradermind-qr.svg" alt="TraderMind App Store QR kodu" width="168" height="168"></div>
+    <div class="dl-text">
+      <h3>Telefonundan indir</h3>
+      <p>Telefonunun kamerasını bu QR koduna tut; açılan bağlantıdan uygulamayı App Store'dan indirebilirsin. Masaüstündeysen QR'ı okutman en pratik yol; telefonundaysan doğrudan yukarıdaki <strong>App Store'da Aç</strong> butonunu kullan.</p>
+      <span class="dl-note">📱 Şimdilik yalnızca iOS (iPhone) cihazlarda destekleniyor. Android sürümü henüz yok.</span>
+    </div>
+  </div>
+
+  <h2>Ne işe yarar?</h2>
+  <div class="feat-grid">
+    <div class="feat"><span class="ico">🔒</span><h3>Tamamen cihazında</h3><p>Hesap yok, kayıt yok, bulut yok. İşlemlerin, duyguların ve notların yalnızca telefonunda saklanır — uygulama hiçbir şey toplamaz.</p></div>
+    <div class="feat"><span class="ico">🧠</span><h3>İşlem öncesi önyargı kontrolü</h3><p>Pozisyon açmadan 60 saniyelik kontrol. Sana pahalıya patlayacak duygusal hali, "al" düğmesine basmadan önce yakala.</p></div>
+    <div class="feat"><span class="ico">⏱️</span><h3>Saniyeler içinde işlem kaydı</h3><p>İşlemi ve dersi tazeyken yaz. Pro'da mikrofona dokunup notlarını sesle dikte et — tümü cihazda yazıya dökülür.</p></div>
+    <div class="feat"><span class="ico">📊</span><h3>Tetikleyiciler: gerçek kalıpların</h3><p>Tahmin yok. Kendi verini (duygu, seans, kurulum kalitesi, kural disiplini) kazanma oranınla ilişkilendirir; P&L'ini gerçekten etkileyen kalıpları gösterir. <span class="muted">(Pro)</span></p></div>
+    <div class="feat"><span class="ico">🔥</span><h3>Disiplin serileri & değerlendirme</h3><p>Haftalık yansımalar, disiplin serileri ve kişisel içgörüler işlemler arasında seni hesap verebilir tutar.</p></div>
+    <div class="feat"><span class="ico">🎯</span><h3>Her piyasa için</h3><p>Forex, kripto, hisse ve vadeli işlemler — gün içi işlemciler, scalper'lar ve prop firm sınavına girenler için. En zor rakip: kendin.</p></div>
+  </div>
+
+  <h2>Ekran görüntüleri</h2>
+  <div class="shots">
+    <div class="shot-card"><img src="/static/tradermind/01_dashboard.jpg" alt="Gösterge paneli" loading="lazy"><div class="cap">Gösterge Paneli — disiplin & özet</div></div>
+    <div class="shot-card"><img src="/static/tradermind/02_emotion.jpg" alt="İşlem öncesi duygu kontrolü" loading="lazy"><div class="cap">İşlem Öncesi Duygu Kontrolü</div></div>
+    <div class="shot-card"><img src="/static/tradermind/03_bias.jpg" alt="Önyargı soruları" loading="lazy"><div class="cap">Önyargı Kontrolü (60 sn)</div></div>
+    <div class="shot-card"><img src="/static/tradermind/04_log.jpg" alt="İşlem kaydı formu" loading="lazy"><div class="cap">İşlem Kaydı Formu</div></div>
+    <div class="shot-card"><img src="/static/tradermind/05_result.jpg" alt="İşlem sonucu ve ders" loading="lazy"><div class="cap">İşlem Sonucu & Ders</div></div>
+    <div class="shot-card"><img src="/static/tradermind/06_learn.jpg" alt="Önyargıları öğren" loading="lazy"><div class="cap">Önyargıları Öğren</div></div>
+    <div class="shot-card"><img src="/static/tradermind/07_profile.jpg" alt="Profil ve istatistikler" loading="lazy"><div class="cap">Profil & İstatistikler</div></div>
+  </div>
+
+  <p style="margin-top:28px;color:var(--muted);font-size:12px;line-height:1.6">
+    TraderMind, Kalibre Markets ekibinin geliştirdiği bağımsız bir iOS uygulamasıdır. Uygulama ücretsizdir; bazı gelişmiş özellikler (sesli kayıt, tetikleyici desen motoru, tüm içgörüler) TraderMind Pro aboneliğiyle açılır. Görseller App Store'dan alınmıştır.
+  </p>
+
+  <p style="margin-top:18px"><a href="/terminal/#karar" style="color:var(--accent)">← Karar Destek araçlarına dön</a></p>
+
+</main>
+
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>TraderMind · iOS işlem günlüğü</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/terminal/">Terminal</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. TraderMind bir işlem günlüğüdür.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

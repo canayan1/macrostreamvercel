@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-05-29T09:03:35.103179Z",
+  "last_update": "2026-06-04T23:12:12.769522Z",
   "latest_report": {
-    "category": "fx",
-    "date": "2026-05-29",
-    "title": "Döviz Günlük — 2026-05-29"
+    "category": "hisse",
+    "date": "2026-06-05",
+    "title": "Pegasus — Günün Merceği"
   },
-  "total_reports": 71,
+  "total_reports": 97,
   "by_category": {
-    "pulse": 13,
-    "hisse": 12,
-    "sektor": 8,
-    "fx": 13,
-    "makro": 5,
-    "fred": 5,
+    "pulse": 18,
+    "hisse": 18,
+    "sektor": 9,
+    "fx": 18,
+    "metals": 4,
+    "makro": 6,
+    "fred": 6,
     "wb": 4,
-    "sentiment": 3,
-    "tcmb": 8
+    "tcmb": 14
   }
 }

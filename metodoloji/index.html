@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Metodoloji ve Güven — Veri kaynakları ve şeffaflık · Kalibre Markets</title>
+<meta name="description" content="Kalibre Markets'ın veri kaynakları, güncelleme sıklığı, hesaplama yöntemleri, bağımsızlık ilkesi ve sorumluluk sınırları. Her sayının kaynağı ve formülü açıktır.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/metodoloji/">
+<meta property="og:title" content="Metodoloji ve Güven · Kalibre Markets">
+<meta property="og:description" content="Veri kaynakları, güncelleme sıklığı, hesaplama yöntemleri, bağımsızlık ve sorumluluk sınırları — şeffaf metodoloji.">
+<meta property="og:url" content="https://kalibremarkets.com/metodoloji/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18;
+  --border:#26221d; --border-2:#36302a;
+  --text:#ebe3d3; --text-dim:#a89c83; --muted:#6f6553;
+  --accent:#ffa630; --accent-hot:#ff7a00; --green:#4ade80; --red:#ef4444;
+  --grid:rgba(255,166,48,.025);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { background:var(--bg); color:var(--text); font-family:'Inter Tight', ui-sans-serif, system-ui, sans-serif; font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
+.mono { font-family:'JetBrains Mono','Geist Mono',ui-monospace,monospace; }
+body { background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size:48px 48px; }
+a { color:inherit; text-decoration:none; }
+
+.cmdbar { display:flex; align-items:center; gap:0; background:var(--bg-1); border-bottom:1px solid var(--border); height:46px; padding:0 18px; position:sticky; top:0; z-index:60; }
+.brand { display:flex; align-items:center; gap:10px; padding-right:18px; height:100%; border-right:1px solid var(--border); }
+.brand-mark { width:24px; height:24px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:12px; }
+.brand-name { font-weight:700; font-size:13px; letter-spacing:.12em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:.06em; }
+.cmd-crumb { flex:1; min-width:0; padding-left:16px; font-size:11.5px; color:var(--muted); letter-spacing:.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cmd-crumb a:hover { color:var(--accent); }
+.cmd-back { margin-left:auto; padding-left:16px; font-size:12px; color:var(--text-dim); white-space:nowrap; display:flex; align-items:center; height:100%; }
+.cmd-back:hover { color:var(--accent); }
+
+main { padding:28px 24px 80px; max-width:920px; margin:0 auto; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+h1 { font-size:30px; font-weight:600; color:var(--text); line-height:1.15; letter-spacing:-.015em; }
+h2 { font-size:18px; font-weight:600; margin:32px 0 12px; color:var(--text); letter-spacing:-.01em; padding-bottom:7px; border-bottom:1px solid var(--border-2); }
+.lead { color:var(--text-dim); font-size:15px; line-height:1.7; max-width:72ch; margin-top:12px; }
+.lead strong, p.body strong { color:var(--text); }
+p.body { font-size:13.5px; color:var(--text-dim); line-height:1.7; margin-bottom:10px; }
+
+table.grid { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:6px; }
+table.grid th, table.grid td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+table.grid th { color:var(--muted); font-weight:500; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+table.grid td.s { white-space:nowrap; color:var(--text); font-weight:600; }
+table.grid td.d { color:var(--text-dim); line-height:1.55; }
+
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+.card { background:var(--surface); border:1px solid var(--border); padding:16px 18px; }
+.card.acc { border-left:2px solid var(--accent); }
+.card h3 { font-size:14px; color:var(--text); margin-bottom:7px; font-weight:600; }
+.card p { font-size:12.5px; color:var(--text-dim); line-height:1.6; }
+.formula { font-family:'JetBrains Mono',monospace; background:var(--bg-1); border-left:2px solid var(--accent); padding:11px 14px; font-size:12.5px; color:var(--text); margin:8px 0; }
+
+.note { background:rgba(255,166,48,.06); border:1px solid rgba(255,166,48,.28); border-left:2px solid var(--accent); padding:14px 16px; margin-top:10px; font-size:13px; color:var(--text-dim); line-height:1.7; }
+.note strong { color:var(--text); }
+
+footer.pf-foot { margin-top:42px; border-top:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:11px; letter-spacing:.04em; max-width:920px; margin:42px auto 0; flex-wrap:wrap; }
+footer.pf-foot a { color:var(--text-dim); } footer.pf-foot a:hover { color:var(--accent); }
+footer.pf-foot b { color:var(--text); }
+@media (max-width:680px){ main { padding:18px 14px 60px; } h1 { font-size:24px; } .cmd-crumb { display:none; } }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kurumsal/" style="color:inherit">Kurumsal</a> › Metodoloji</div>
+  <a href="/kurumsal/" class="cmd-back">← Kurumsal</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ ŞEFFAFLIK</div>
+  <h1>Metodoloji ve Güven</h1>
+  <p class="lead">Bir karar destek hizmetine güvenmenin ön koşulu, <strong>her sayının nereden geldiğini görebilmektir</strong>. Bu sayfa; veri kaynaklarımızı, güncelleme sıklığımızı, hesaplama yöntemlerimizi, bağımsızlık ilkemizi ve sorumluluk sınırlarımızı açıkça anlatır. Gizli bir "kara kutu" yoktur.</p>
+
+  <h2>Veri kaynakları</h2>
+  <p class="body">Tüm veriler, kurumsal olarak tanınan açık/lisanslı kaynaklardan gelir. Hiçbir veriyi kendimiz "tahmin" etmeyiz; türetilen değerlerin (ör. gram altın) formülü açıktır.</p>
+  <table class="grid">
+    <thead><tr><th>Kaynak</th><th>Ne için</th></tr></thead>
+    <tbody>
+      <tr><td class="s">TCMB EVDS</td><td class="d">USD/TRY ve döviz kurları, faiz, rezerv ve makro seriler (resmî).</td></tr>
+      <tr><td class="s">FRED — St. Louis Fed</td><td class="d">ABD makro: 10Y tahvil/reel getiri (TIPS), dolar endeksi, enflasyon serileri.</td></tr>
+      <tr><td class="s">Piyasa verisi (Yahoo Finance)</td><td class="d">BIST ve küresel hisse/endeks/emtia kapanış serileri (gecikmeli olabilir).</td></tr>
+      <tr><td class="s">Stooq</td><td class="d">Terminaldeki ~anlık kotasyonlar (kur, endeks, metal). Gecikmeli olabilir.</td></tr>
+      <tr><td class="s">World Gold Council / LBMA</td><td class="d">Altın/gümüş referans fiyatları ve talep verileri.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Güncelleme sıklığı</h2>
+  <div class="cards">
+    <div class="card acc"><h3>Günlük bültenler</h3><p>Her sabah otomatik üretilir (kur, faiz, değerli metal, makro, piyasa nabzı). Tarih ve "veri yaşı" her raporda görünür.</p></div>
+    <div class="card acc"><h3>Canlı terminal</h3><p>İzleme kartları ~anlık kotasyonla güncellenir (gecikmeli olabilir; özellikle BIST). Kaynak ve saat ekranda yazar.</p></div>
+    <div class="card acc"><h3>Haftalık/periyodik</h3><p>Sektör, makro ve tematik raporlar düzenli aralıklarla yayımlanır.</p></div>
+  </div>
+
+  <h2>Hesaplama yöntemi</h2>
+  <p class="body">Türetilen ve teknik göstergeler standart, kamuya açık formüllerle hesaplanır. Örnek:</p>
+  <div class="formula">Gram Altın (₺) = Ons Altın ($) × USD/TRY ÷ 31,1035</div>
+  <p class="body">Teknik göstergeler (RSI, hareketli ortalamalar, getiri/oynaklık) yaygın akademik tanımlarıyla uygulanır; eğitim sayfalarında her birinin tanımı ve sınırları açıklanır. "Yapay zekâ tahmini" diye sunulan opak skorlar kullanmayız — gösterdiğimiz her şey ham veriye kadar izlenebilir.</p>
+
+  <h2>Bağımsızlık</h2>
+  <p class="body">Hiçbir ürün, aracı kurum veya finansal hizmet adına yönlendirme yapmayız; belirli bir varlığı "al/sat" diye önermeyiz. Gelir modelimiz <strong>içerik, terminal ve kurumsal hizmet</strong> üzerinedir — işlem komisyonu veya ürün satışı değil. Bu yüzden gösterdiğimiz veri tarafsızdır: amacı karar vermenizi <em>kolaylaştırmak</em>, sizin yerinize karar vermek değil.</p>
+
+  <h2>Sorumluluk ve sınırlar</h2>
+  <div class="note">
+    Kalibre Markets bir <strong>karar destek ve eğitim</strong> platformudur; <strong>yatırım tavsiyesi vermez</strong>. Veriler gecikmeli veya hatalı olabilir; kaynak sağlayıcılardan kaynaklanan eksiklikler olabilir. Sunulan hiçbir içerik alım-satım önerisi değildir ve geçmiş performans gelecek için garanti taşımaz. Yatırım ve hazine kararlarının sorumluluğu tümüyle kullanıcıya/kuruma aittir; gerektiğinde lisanslı bir uzmana danışılmalıdır.
+  </div>
+
+  <h2>Veri ve gizlilik</h2>
+  <p class="body">Kurumsal pilotlarda paylaştığınız takip listeleri ve tercihler yalnızca size sunulan hizmet için kullanılır; talep ettiğinizde silinir. Kişisel veriler KVKK çerçevesinde, asgari ölçüde işlenir. Ayrıntılar için <a href="/gizlilik/" style="color:var(--accent)">Gizlilik Politikası</a>.</p>
+
+  <p style="margin-top:26px"><a href="/kurumsal/" style="color:var(--accent)">← Kurumsal sayfasına dön</a> &nbsp;·&nbsp; <a href="/kurumsal/ornek-brifing/" style="color:var(--accent)">Örnek brifingi gör →</a></p>
+</main>
+
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>Şeffaf metodoloji · bağımsız karar destek</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/kurumsal/">Kurumsal</a><a href="/terminal/">Terminal</a><a href="/gizlilik/">Gizlilik</a><a href="/iletisim/">İletişim</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">⚠ Yatırım tavsiyesi değildir.<br>Kalibre Markets © 2026 — tüm hakları saklıdır.</div>
+</footer>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kur Riski Hesaplayıcı · Döviz Pozisyonu Duyarlılık Analizi · Kalibre Markets</title>
+<meta name="description" content="Net döviz pozisyonunuzu girin, kur şoku altında kâr-zarar etkisini anında görün. Hazine ve finans ekipleri için ücretsiz kur riski (duyarlılık) hesaplayıcı; canlı USD/TRY ile.">
+<meta name="keywords" content="kur riski hesaplama, döviz pozisyonu, kur duyarlılık analizi, hazine riski, kur şoku, USD/TRY">
+<link rel="canonical" href="https://kalibremarkets.com/kur-riski-hesaplayici/">
+<meta property="og:title" content="Kur Riski Hesaplayıcı · Kalibre Markets">
+<meta property="og:description" content="Net döviz pozisyonunuzu girin, kur şoku altında kâr-zarar etkisini anında görün.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+.mono{font-family:'Geist Mono','JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+.cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
+.brand-mark{width:24px;height:24px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:12px}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--text)}
+.brand-name .sub{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:.06em}
+.cmd-crumb{flex:1;min-width:0;padding-left:16px;font-size:11.5px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-back{margin-left:auto;padding-left:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;height:100%}
+.cmd-back:hover{color:var(--accent)}
+main{max-width:1000px;margin:24px auto;padding:0 20px 80px}
+.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
+h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
+.lead{color:var(--text-dim);font-size:15px;line-height:1.7;max-width:74ch;margin-top:12px}
+.livebadge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--bg-1);border:1px solid var(--border-2);border-left:2px solid var(--green);padding:7px 13px;font-size:12px;color:var(--text-dim);font-family:'Geist Mono',monospace}
+.livebadge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)}
+.livebadge b{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:22px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--border);padding:18px 20px}
+.panel h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-2)}
+table.pos{width:100%;border-collapse:collapse;font-size:13px}
+table.pos th{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:0 6px 7px}
+table.pos th.r{text-align:right}
+table.pos td{padding:4px 6px;vertical-align:middle}
+table.pos td.r{text-align:right}
+select,input{background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);font-family:'Geist Mono',monospace;font-size:13px;padding:7px 9px;border-radius:6px;width:100%}
+select:focus,input:focus{outline:none;border-color:var(--accent)}
+input[type=number]{text-align:right}
+.tlval{font-family:'Geist Mono',monospace;color:var(--text-dim);white-space:nowrap;font-size:12.5px}
+.delrow{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:0 2px;width:auto}
+.delrow:hover{color:var(--red)}
+.addrow{margin-top:10px;background:transparent;border:1px dashed var(--border-2);color:var(--text-dim);padding:8px 12px;border-radius:7px;cursor:pointer;font-family:inherit;font-size:12.5px;width:auto}
+.addrow:hover{border-color:var(--accent);color:var(--accent)}
+.ctrls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+.ctrl label{display:block;font-size:11px;color:var(--text-dim);margin-bottom:6px;letter-spacing:.03em}
+.ctrl .suffix{position:relative}
+.ctrl .suffix span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;pointer-events:none}
+.bigstat{margin-bottom:14px}
+.bigstat .k{font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase}
+.bigstat .v{font-size:26px;font-weight:600;font-family:'Geist Mono',monospace;color:var(--text);margin-top:3px}
+.bigstat .d{font-size:11.5px;color:var(--muted);margin-top:3px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.scen{background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:12px 14px}
+.scen.up{border-left-color:var(--green)}.scen.down{border-left-color:var(--red)}
+.scen .k{font-size:11px;color:var(--text-dim);letter-spacing:.02em}
+.scen .v{font-size:19px;font-weight:600;font-family:'Geist Mono',monospace;margin-top:4px}
+.pos-g{color:var(--green)}.neg-r{color:var(--red)}
+table.sens{width:100%;border-collapse:collapse;font-size:12.5px;font-family:'Geist Mono',monospace;margin-top:6px}
+table.sens th,table.sens td{padding:7px 10px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}
+table.sens th{color:var(--muted);font-weight:500;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase}
+table.sens td.l,table.sens th.l{text-align:left;font-family:'Inter Tight',sans-serif}
+.reading{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.28);border-left:2px solid var(--accent);padding:13px 15px;margin-top:14px;font-size:13.5px;color:var(--text-dim);line-height:1.7}
+.reading b{color:var(--text)}
+.explain{margin-top:22px;background:var(--surface);border:1px solid var(--border);padding:18px 20px}
+.explain h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+.explain p{font-size:13.5px;color:var(--text-dim);line-height:1.7;margin-bottom:10px}
+.explain b{color:var(--text)}
+.cta{margin-top:22px;background:linear-gradient(100deg,rgba(255,166,48,.1),rgba(255,122,0,.04));border:1px solid var(--border-2);border-left:2px solid var(--accent);padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.cta .t{font-size:15px;color:var(--text);font-weight:600;max-width:54ch;line-height:1.5}
+.cta .t span{display:block;font-size:12.5px;color:var(--text-dim);font-weight:400;margin-top:5px}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:13.5px;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#1a1208}.btn-primary:hover{background:var(--accent-hot)}
+footer.pf{margin-top:30px;border-top:1px solid var(--border);padding:18px 0 0;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px;flex-wrap:wrap}
+footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
+@media(max-width:680px){h1{font-size:23px}.split{grid-template-columns:1fr}.ctrls{grid-template-columns:1fr}.cmd-crumb{display:none}}
+</style>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// ARAÇ</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › Kur Riski Hesaplayıcı</div>
+  <a href="/" class="cmd-back">← Ana sayfa</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ ARAÇ · HAZİNE ve FİNANS EKİPLERİ İÇİN</div>
+  <h1>Kur Riski Hesaplayıcı</h1>
+  <p class="lead">Net döviz pozisyonunuzu girin; kur bir şok yaşarsa kâr-zarara etkisini <strong>anında</strong> görün. Bu, TFRS 7'nin de istediği <strong>duyarlılık analizinin</strong> sade bir uygulamasıdır. Hesap tamamen tarayıcınızda çalışır; girdiğiniz veriler hiçbir yere gönderilmez.</p>
+  <div class="livebadge"><span class="dot"></span><span id="liveTxt">Canlı kur yükleniyor…</span></div>
+
+  <div class="grid2">
+    <!-- GİRDİ -->
+    <div class="panel">
+      <h2>Pozisyonunuz</h2>
+      <table class="pos">
+        <thead><tr><th>Para birimi</th><th class="r">Net pozisyon (uzun +, kısa −)</th><th class="r">Güncel kur (₺)</th><th class="r">TL karşılığı</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <button class="addrow" id="addBtn">+ Para birimi ekle</button>
+
+      <div class="ctrls">
+        <div class="ctrl"><label>Hedge oranı (korunan kısım)</label><div class="suffix"><input type="number" id="hedge" value="0" min="0" max="100" step="5"><span>%</span></div></div>
+        <div class="ctrl"><label>Şok büyüklüğü</label><div class="suffix"><input type="number" id="shock" value="10" min="1" max="100" step="1"><span>%</span></div></div>
+      </div>
+    </div>
+
+    <!-- SONUÇ -->
+    <div class="panel">
+      <h2>Risk etkisi</h2>
+      <div class="bigstat"><div class="k">Net döviz pozisyonu (TL karşılığı)</div><div class="v mono" id="netTl">n/d</div><div class="d" id="netDir"></div></div>
+      <div class="split">
+        <div class="scen up"><div class="k" id="upK">TL %10 değer kaybederse</div><div class="v mono" id="upV">n/d</div></div>
+        <div class="scen down"><div class="k" id="dnK">TL %10 değer kazanırsa</div><div class="v mono" id="dnV">n/d</div></div>
+      </div>
+      <div class="reading" id="reading">Pozisyon girin, etkiyi görün.</div>
+      <table class="sens">
+        <thead><tr><th class="l">Senaryo</th><th>Kur etkisi (TL)</th></tr></thead>
+        <tbody id="sensBody"></tbody>
+      </table>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5">Korunmamış net pozisyon üzerinden hesaplanır. Tüm dövizlerin TL'ye karşı birlikte hareket ettiği varsayılır; çapraz kur etkileri (ör. EUR/USD) modellenmez.</p>
+    </div>
+  </div>
+
+  <div class="explain">
+    <h2>Bu hesap nedir?</h2>
+    <p><b>Duyarlılık analizi</b>, "kur makul ölçüde değişseydi kâr-zararım ne olurdu?" sorusunu yanıtlar. Esas olan <b>brüt değil net</b> pozisyondur: aynı para biriminden alacaklarınız eksi yükümlülükleriniz. <b>Uzun</b> (net alacaklı) iseniz TL değer kaybında kazanır, <b>kısa</b> (net borçlu) iseniz kaybedersiniz.</p>
+    <p><b>Hedge oranı</b>, pozisyonun ne kadarının korunduğunu (doğal eşleşme ya da vadeli işlemle) gösterir; etki yalnızca <b>korunmamış</b> kısım üzerinden doğar. Bu araç bir başlangıç noktasıdır; gerçek bir hazine panosu pozisyonunuzu canlı veriyle her gün izler ve eşik aşımında uyarır.</p>
+  </div>
+
+  <div class="cta">
+    <div class="t">Bunu her sabah otomatik, kendi pozisyonunuz ve canlı veriyle isteyin.<span>Kurumsal pilot fazında ücretsiz: günlük hazine brifingi, risk panosu ve eşik alarmları, ekibinize özel.</span></div>
+    <a class="btn btn-primary" href="/pilot-basvuru/">Kurumsal pilotu inceleyin →</a>
+  </div>
+
+  <footer class="pf">
+    <div><b style="color:var(--text);letter-spacing:.1em">KALİBRE · MARKETS</b> · Kur riski hesaplayıcı</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap"><a href="/ekonomi-takvimi/">Ekonomi takvimi</a><a href="/terminal/">Terminal</a><a href="/pilot-basvuru/">Kurumsal</a><a href="/metodoloji/">Metodoloji</a></div>
+    <div style="color:var(--muted);max-width:42ch;text-align:right">Bu araç girdiğiniz verilere dayanan bir tahmindir; yatırım tavsiyesi değildir.</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var DEF = { USD: 45.97, EUR: 53.50, GBP: 62.00, CHF: 57.00 };
+  var asof = "";
+  var rowsEl = document.getElementById('rows');
+  var CUR = ["USD","EUR","GBP","CHF","Diğer"];
+
+  function trNum(v, d){ if(v===null||v===undefined||isNaN(v)) return "n/d";
+    return v.toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+
+  function makeRow(cur, net, rate){
+    var tr=document.createElement('tr');
+    var opts=CUR.map(function(c){return '<option'+(c===cur?' selected':'')+'>'+c+'</option>';}).join('');
+    tr.innerHTML='<td style="width:96px"><select class="cur">'+opts+'</select></td>'+
+      '<td class="r"><input type="number" class="net" value="'+net+'" step="100000"></td>'+
+      '<td class="r" style="width:110px"><input type="number" class="rate" value="'+rate+'" step="0.01"></td>'+
+      '<td class="r tlval">n/d</td>'+
+      '<td style="width:24px"><button class="delrow" title="Sil">×</button></td>';
+    rowsEl.appendChild(tr);
+    tr.querySelector('.delrow').onclick=function(){ tr.remove(); calc(); };
+    tr.querySelectorAll('select,input').forEach(function(el){ el.addEventListener('input',calc); });
+    return tr;
+  }
+
+  function calc(){
+    var hedge = Math.min(100,Math.max(0, parseFloat(document.getElementById('hedge').value)||0))/100;
+    var shock = Math.min(100,Math.max(0, parseFloat(document.getElementById('shock').value)||0))/100;
+    var netTl=0;
+    document.querySelectorAll('#rows tr').forEach(function(tr){
+      var net=parseFloat(tr.querySelector('.net').value)||0;
+      var rate=parseFloat(tr.querySelector('.rate').value)||0;
+      var tl=net*rate; netTl+=tl;
+      tr.querySelector('.tlval').textContent=trNum(tl,0)+' ₺';
+    });
+    var unh = netTl*(1-hedge);
+    document.getElementById('netTl').textContent = trNum(netTl,0)+' ₺';
+    var dir = netTl>0 ? 'Net <b style="color:var(--green)">uzun</b> (alacaklı) · TL değer kaybında lehinize' :
+             (netTl<0 ? 'Net <b style="color:#ffb4b4">kısa</b> (borçlu) · TL değer kaybında aleyhinize' : 'Dengeli pozisyon');
+    document.getElementById('netDir').innerHTML = dir + ' · korunmamış: '+trNum(unh,0)+' ₺';
+
+    var sp = Math.round(shock*100);
+    document.getElementById('upK').textContent = 'TL %'+sp+' değer kaybederse';
+    document.getElementById('dnK').textContent = 'TL %'+sp+' değer kazanırsa';
+    var up = unh*shock, dn = -unh*shock;
+    setScen('upV', up); setScen('dnV', dn);
+
+    var read;
+    if(Math.abs(netTl)<1){ read='Pozisyon girin, etkiyi görün.'; }
+    else {
+      var word = up>=0 ? 'kâr' : 'zarar';
+      read='Korunmamış net pozisyonunuz <b>'+trNum(unh,0)+' ₺</b>. TL <b>%'+sp+'</b> değer kaybederse '+
+           'yaklaşık <b>'+trNum(Math.abs(up),0)+' ₺ '+word+'</b>; TL %'+sp+' değer kazanırsa tersi yönde aynı tutar. '+
+           (Math.round(hedge*100)>0 ? '(%'+Math.round(hedge*100)+' hedge sonrası.)' : 'Henüz hedge tanımlamadınız.');
+    }
+    document.getElementById('reading').innerHTML=read;
+
+    var body=document.getElementById('sensBody'); body.innerHTML='';
+    [[-20,'zayıflar'],[-10,'zayıflar'],[-5,'zayıflar'],[5,'güçlenir'],[10,'güçlenir'],[20,'güçlenir']].forEach(function(s){
+      // TL zayıflar (pct<0) => döviz +|pct|% => net uzun için kâr; TL güçlenir (pct>0) => tersi
+      var pct=s[0]; var e = unh*(Math.abs(pct)/100)*(pct<0?1:-1);
+      var cls = e>0?'pos-g':(e<0?'neg-r':'');
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td class="l">TL %'+Math.abs(pct)+' '+s[1]+'</td><td class="'+cls+'">'+(e>0?'+':'')+trNum(e,0)+' ₺</td>';
+      body.appendChild(tr);
+    });
+  }
+  function setScen(id,val){ var el=document.getElementById(id);
+    el.textContent=(val>0?'+':'')+trNum(val,0)+' ₺'; el.className='v mono '+(val>0?'pos-g':(val<0?'neg-r':'')); }
+
+  // başlangıç satırları
+  makeRow('USD', 1000000, DEF.USD);
+  makeRow('EUR', 0, DEF.EUR);
+  document.getElementById('addBtn').onclick=function(){ makeRow('USD',0,DEF.USD); };
+  document.getElementById('hedge').addEventListener('input',calc);
+  document.getElementById('shock').addEventListener('input',calc);
+
+  // canlı USD/TRY (markets.json)
+  fetch('/terminal/data/markets.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
+    var u=d.series&&d.series.usdtry; asof=d.report_date||'';
+    if(u&&u.last){ DEF.USD=u.last;
+      var first=document.querySelector('#rows tr .rate'); if(first) first.value=u.last.toFixed(4);
+      document.getElementById('liveTxt').innerHTML='Canlı <b>USD/TRY '+trNum(u.last,4)+'</b> · veri: '+fmtDate(asof)+' · diğer kurları düzenleyebilirsiniz';
+    }
+    calc();
+  }).catch(function(){
+    document.getElementById('liveTxt').innerHTML='Varsayılan kurlar yüklendi · güncel değerlerle düzenleyin';
+    calc();
+  });
+  function fmtDate(iso){ if(!iso) return 'n/d'; var A=['','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+    var p=iso.split('-'); return p.length===3 ? (parseInt(p[2],10)+' '+A[parseInt(p[1],10)]+' '+p[0]) : iso; }
+
+  calc();
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>

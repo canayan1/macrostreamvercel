@@ -1,0 +1,42 @@
+{
+  "generated": "2026-06-06",
+  "note": "Editöryel önemli değişimler. Her madde tarihli; banner yalnızca son 'days' gün içindekileri gösterir, eskiler otomatik düşer. Veri-temelli satırlar (hareket/eşik) ayrıca markets.json'dan istemcide üretilir.",
+  "items": [
+    {
+      "sev": "hi",
+      "kind": "Yeni veri",
+      "date": "2026-06-05",
+      "days": 7,
+      "line": "Mayıs TÜFE: aylık <b>+%1,71</b>, yıllık <b>%32,61</b> açıklandı",
+      "why": "Dezenflasyon yavaş; konut (%45,6) ve gıda yapışkan. TCMB'nin temkinli duruşunu destekliyor.",
+      "link": "/haftanin-haberleri/2026-06-06/",
+      "linkText": "Haftanın haberleri →",
+      "tag": "Enflasyon",
+      "symbols": ["usdtry"]
+    },
+    {
+      "sev": "hi",
+      "kind": "Makro",
+      "date": "2026-06-05",
+      "days": 7,
+      "line": "ABD istihdamı <b>172 bin</b> (beklenti 85 bin) — şahin okundu",
+      "why": "Faiz indirimi beklentisi geriledi; dolar güçlendi, faiz getirmeyen ve riskli varlıklar aşağı.",
+      "link": "/haftanin-grafikleri/",
+      "linkText": "Haftanın grafiği →",
+      "tag": "Küresel",
+      "symbols": ["dxy", "xauusd", "gramaltin", "xu100"]
+    },
+    {
+      "sev": "md",
+      "kind": "Eşik",
+      "date": "2026-06-05",
+      "days": 7,
+      "line": "Bitcoin <b>60.000 $ altına</b> indi · 7g <span class=\"dn\">−%17</span>",
+      "why": "Güçlü istihdam faiz indirimi umudunu sildi; 1,7 milyar dolar tasfiye.",
+      "link": "/haftanin-haberleri/2026-06-06/",
+      "linkText": "Haftanın haberleri →",
+      "tag": "Kripto",
+      "symbols": []
+    }
+  ]
+}

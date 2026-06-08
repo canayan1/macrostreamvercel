@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kurumsal — Ekibiniz için Kalibre · Kalibre Markets</title>
+
+<meta name="description" content="Hazine ve finans ekipleri için Kalibre terminalinin kurumsal versiyonu: Türkçe, şeffaf ve elit. Risk yönetimi panosu, AI asistan ve ihtiyaca özel analizlerle kurumsal çözümler. Pilot başvurusu açık.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/kurumsal/">
+<meta property="og:title" content="Kurumsal — Ekibiniz için Kalibre">
+<meta property="og:description" content="Hazine ve finans ekipleri için Türkçe, şeffaf piyasa terminali + günlük otomatik brifing + eğitim. Pilot başvurusu açık.">
+<meta property="og:url" content="https://kalibremarkets.com/kurumsal/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18;
+  --border:#26221d; --border-2:#36302a;
+  --text:#ebe3d3; --text-dim:#a89c83; --muted:#6f6553;
+  --accent:#ffa630; --accent-hot:#ff7a00; --green:#4ade80; --red:#ef4444; --blue:#60a5fa;
+  --grid:rgba(255,166,48,.025);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body {
+  background:var(--bg); color:var(--text);
+  font-family:'Inter Tight', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:-0.005em;
+}
+.mono { font-family:'JetBrains Mono','Geist Mono',ui-monospace,monospace; }
+body { background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size:48px 48px; }
+a { color:inherit; text-decoration:none; }
+
+.cmdbar { display:flex; align-items:center; gap:0; background:var(--bg-1); border-bottom:1px solid var(--border); height:46px; padding:0 18px; position:sticky; top:0; z-index:60; }
+.brand { display:flex; align-items:center; gap:10px; padding-right:18px; height:100%; border-right:1px solid var(--border); }
+.brand-mark { width:24px; height:24px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:12px; }
+.brand-name { font-weight:700; font-size:13px; letter-spacing:.12em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:.06em; }
+.cmd-crumb { flex:1; min-width:0; padding-left:16px; font-size:11.5px; color:var(--muted); letter-spacing:.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cmd-crumb a:hover { color:var(--accent); }
+.cmd-back { margin-left:auto; padding-left:16px; font-size:12px; color:var(--text-dim); white-space:nowrap; display:flex; align-items:center; height:100%; }
+.cmd-back:hover { color:var(--accent); }
+
+.disclaimer-banner { display:flex; align-items:center; gap:14px; background:linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%); border-bottom:1px solid var(--border-2); padding:10px 24px; font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
+.disclaimer-banner b { color:var(--accent); }
+
+main { padding:28px 24px 80px; max-width:1060px; margin:0 auto; }
+h1 { font-size:32px; font-weight:600; color:var(--text); line-height:1.12; letter-spacing:-.02em; }
+h2 { font-size:20px; font-weight:600; margin:40px 0 14px; color:var(--text); letter-spacing:-.01em; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+.lead { color:var(--text-dim); font-size:15.5px; line-height:1.65; max-width:70ch; margin-top:12px; }
+.lead strong { color:var(--text); }
+
+.cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+.btn { display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:13px; letter-spacing:.02em; padding:11px 20px; border-radius:10px; transition:.15s; }
+.btn-primary { background:var(--accent); color:#1a1a1a; } .btn-primary:hover { background:var(--accent-hot); }
+.btn-ghost { border:1px solid var(--border-2); color:var(--text-dim); } .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+/* WEDGE */
+.wedge { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:8px; }
+.wedge .w { background:var(--surface); border:1px solid var(--border); padding:16px 18px; }
+.wedge .w h3 { font-size:14.5px; color:var(--text); margin-bottom:6px; font-weight:600; }
+.wedge .w p { font-size:12.5px; color:var(--text-dim); line-height:1.6; }
+
+/* PILOT DECK */
+.deck { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+.dcard { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-top:2px solid var(--accent); padding:16px 18px; transition:border-color .15s, transform .15s; }
+.dcard:hover { border-color:var(--accent); transform:translateY(-2px); }
+.dcard .ic { font-size:22px; margin-bottom:8px; }
+.dcard .tag { display:inline-block; font-size:9px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--muted); border:1px solid var(--border-2); padding:2px 6px; border-radius:4px; margin-bottom:8px; align-self:flex-start; }
+.dcard .tag.ex { color:var(--accent); border-color:rgba(255,166,48,.4); }
+.dcard h3 { font-size:14.5px; color:var(--text); font-weight:600; margin-bottom:5px; }
+.dcard p { font-size:12px; color:var(--text-dim); line-height:1.55; flex:1; margin-bottom:12px; }
+.dcard .go { font-size:12px; color:var(--accent); font-weight:600; }
+.dcard:hover .go { color:var(--accent-hot); }
+
+/* TIERS */
+.tiers { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+.tier { background:var(--surface); border:1px solid var(--border); padding:20px; display:flex; flex-direction:column; }
+.tier.feat { border-color:var(--accent); box-shadow:0 0 0 1px rgba(255,166,48,.25); }
+.tier .tag { font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--accent); margin-bottom:8px; }
+.tier h3 { font-size:18px; color:var(--text); margin-bottom:4px; }
+.tier .price { font-size:13px; color:var(--text-dim); margin-bottom:14px; }
+.tier ul { list-style:none; padding:0; margin:0 0 16px; }
+.tier li { font-size:12.5px; color:var(--text-dim); line-height:1.5; padding:5px 0 5px 20px; position:relative; }
+.tier li::before { content:'✓'; position:absolute; left:0; color:var(--green); font-weight:700; }
+.tier li.soon::before { content:'◴'; color:var(--accent); }
+.tier li.soon { color:var(--muted); }
+.tier .foot { margin-top:auto; }
+
+.legend { font-size:11.5px; color:var(--muted); margin-top:12px; }
+.legend b { color:var(--green); } .legend i { color:var(--accent); font-style:normal; }
+
+/* FORM */
+.formwrap { background:var(--surface); border:1px solid var(--border); border-left:2px solid var(--accent); padding:24px; margin-top:14px; }
+.formwrap .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.field { display:flex; flex-direction:column; gap:5px; }
+.field.full { grid-column:1 / -1; }
+label { font-size:11.5px; color:var(--text-dim); letter-spacing:.04em; }
+label .req { color:var(--accent); }
+input, select, textarea {
+  background:var(--bg-1); border:1px solid var(--border-2); color:var(--text);
+  font-family:inherit; font-size:13.5px; padding:10px 12px; border-radius:8px; width:100%;
+}
+input:focus, select:focus, textarea:focus { outline:none; border-color:var(--accent); }
+textarea { resize:vertical; min-height:90px; }
+.form-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:18px; }
+.form-note { font-size:11px; color:var(--muted); line-height:1.5; }
+
+footer.pf-foot { margin-top:44px; border-top:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; color:var(--muted); font-size:11px; letter-spacing:.04em; max-width:1060px; margin-left:auto; margin-right:auto; flex-wrap:wrap; }
+footer.pf-foot a { color:var(--text-dim); } footer.pf-foot a:hover { color:var(--accent); }
+footer.pf-foot b { color:var(--text); }
+
+@media (max-width:700px){
+  main { padding:18px 14px 60px; }
+  h1 { font-size:25px; }
+  .cmd-crumb { display:none; }
+  .formwrap .grid { grid-template-columns:1fr; }
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › Kurumsal</div>
+  <a href="/terminal/" class="cmd-back">← Terminale dön</a>
+</div>
+<div class="disclaimer-banner"><b>Bilgi</b> · Kalibre Markets bir <b>karar destek ve eğitim</b> platformudur; yatırım tavsiyesi vermez. Kurumsal kullanım için aşağıdan pilot başvurusu yapabilirsiniz.</div>
+
+<main>
+
+  <div class="eyebrow">▸ KURUMSAL · HAZİNE ve FİNANS EKİPLERİ İÇİN</div>
+  <h1>Ekibiniz için Kalibre</h1>
+  <p class="lead">Hazine ve finans ekibiniz için, kullandığınız Kalibre terminalinin <strong>kurumsal versiyonu</strong>: Türkçe, şeffaf ve elit. Üstüne <strong>eğitim açıklamalı bir risk yönetimi panosu</strong>, <strong>AI asistan</strong> ve <strong>ihtiyaca özel analizler</strong>. Amacımız, kurumunuza özel <strong>kurumsal çözümler</strong> üretmek; daha ciddi, daha derin, daha kaliteli bir iş. Kaynaklar ve formüller açık; yatırım tavsiyesi değil, karar destek.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#pilot">Ücretsiz pilot başvurusu →</a>
+    <a class="btn btn-ghost" href="/kurumsal/brifing/acme/">Brifing örneğini gör</a>
+    <a class="btn btn-ghost" href="/terminal/" target="_blank" rel="noopener">Terminali canlı gör</a>
+  </div>
+
+  <h2>Pilot paneli — erişiminizdeki içerikler</h2>
+  <p class="lead" style="margin-top:2px;margin-bottom:16px">Pilot süresince <strong>elit terminale</strong>, <strong>risk yönetimi panosuna</strong> (eğitim açıklamalı), <strong>AI asistana</strong> ve <strong>ihtiyaca özel analizlere</strong> erişiminiz var. <strong>Örnek</strong> etiketli çıktılar, kuruma özel kurulacak biçimin göstergesidir — sizin pozisyonunuz, pariteleriniz ve sorularınız etrafında kurulur, AI ile otomatize edilebilir.</p>
+  <div class="deck">
+    <a class="dcard" href="/terminal/" target="_blank" rel="noopener"><span class="ic">📟</span><span class="tag">Canlı</span><h3>Piyasa Terminali</h3><p>BIST, kur, değerli metal ve makro — tek panelden, ~anlık veriyle.</p><span class="go">Terminali aç →</span></a>
+    <a class="dcard" href="/kurumsal/risk/acme/"><span class="ic">🛡️</span><span class="tag ex">Otomatik · Canlı</span><h3>Risk Panosu</h3><p>Oynaklık, 52 hafta aralığı, eşik ve alarm takibi, kur şoku senaryosu — canlı piyasa verisiyle otomatik üretilir.</p><span class="go">Panoyu gör →</span></a>
+    <a class="dcard" href="/kurumsal/brifing/acme/"><span class="ic">📈</span><span class="tag ex">Otomatik · Canlı</span><h3>Günlük Hazine Brifingi</h3><p>Terminaldeki güncel veriyle her sabah otomatik üretilir: izleme listeniz, seviyeler ve şirkete özel not.</p><span class="go">Brifingi gör →</span></a>
+    <a class="dcard" href="/kurumsal/sektor/acme-elektronik/"><span class="ic">🏭</span><span class="tag ex">Otomatik · KAP</span><h3>Spesifik Analiz ve Sektör</h3><p>Halka açık emsaller (KAP) ve makro ile sektörünüze özel, otomatik üretilen ve AI ile sentezlenen analiz.</p><span class="go">Raporu gör →</span></a>
+    <a class="dcard" href="/kurumsal/egitim/kur-riski-dogal-hedge/"><span class="ic">🎓</span><span class="tag">Uygulama</span><h3>Risk Yönetimi Eğitimi</h3><p>Kur riskini ölçme; doğal ve finansal hedge ile yönetme — uygulamalı.</p><span class="go">Başla →</span></a>
+    <a class="dcard" href="/metodoloji/"><span class="ic">🔍</span><span class="tag">Şeffaflık</span><h3>Metodoloji ve Güven</h3><p>Veri kaynakları, güncelleme sıklığı, formüller ve bağımsızlık ilkesi.</p><span class="go">İncele →</span></a>
+  </div>
+
+  <h2>Neden Kalibre?</h2>
+  <div class="wedge">
+    <div class="w"><h3>Türkçe ve sade</h3><p>Ekibinizdeki herkesin (yeni başlayanlar dahil) anlayacağı dil. İngilizce terminal jargonu yok; her gösterge açıklamalı.</p></div>
+    <div class="w"><h3>Şeffaf metodoloji</h3><p>Her sayının kaynağı ve formülü görünür. "Nereden geldi?" sorusunun cevabı her zaman ekranda.</p></div>
+    <div class="w"><h3>AI asistan ve otomasyon</h3><p>Panoları yorumlayan, uyaran ve sorularınızı yanıtlayan AI asistan; ihtiyaca özel analizler AI ile otomatikleştirilebilir.</p></div>
+    <div class="w"><h3>Tarafsız</h3><p>Ürün satmıyoruz, pozisyon önermiyoruz. Bağımsız bir karar destek katmanı.</p></div>
+  </div>
+  <p class="legend" style="margin-top:14px">Daha fazla: <a href="/kurumsal/risk/acme/" style="color:var(--accent)">Risk panosu (canlı) →</a> &nbsp;·&nbsp; <a href="/kurumsal/risk-panosu/" style="color:var(--accent)">Örnek tam biçim →</a> &nbsp;·&nbsp; <a href="/kurumsal/sektor/acme-elektronik/" style="color:var(--accent)">Spesifik analiz örneği →</a> &nbsp;·&nbsp; <a href="/metodoloji/" style="color:var(--accent)">Metodoloji ve güven →</a></p>
+
+  <h2>Paketler</h2>
+  <div class="tiers">
+    <div class="tier">
+      <div class="tag">Bireysel</div>
+      <h3>Açık Terminal</h3>
+      <div class="price">Ücretsiz · herkese açık</div>
+      <ul>
+        <li>Canlı piyasa terminali (BIST, kur, metal, makro)</li>
+        <li>Her sabah otomatik günlük bültenler</li>
+        <li>Eğitim makaleleri ve karar destek araçları</li>
+      </ul>
+      <div class="foot"><a class="btn btn-ghost" href="/terminal/" target="_blank" rel="noopener">Terminali aç</a></div>
+    </div>
+    <div class="tier feat">
+      <div class="tag">★ Ekip — Pilot</div>
+      <h3>Ekibiniz için</h3>
+      <div class="price">Şu an ücretsiz pilot</div>
+      <ul>
+        <li>Bireysel paketteki her şey</li>
+        <li class="soon">Kur riski ve hedge panosu (net pozisyon, hedge takibi)</li>
+        <li class="soon">Ekibinize özelleştirilmiş takip listesi ve günlük brifing</li>
+        <li class="soon">Takip ettiğiniz pariteler için alarm/uyarı</li>
+        <li class="soon">PDF brifing — ekibe e-posta ile dağıtım</li>
+        <li class="soon">Ekip hesapları ve koltuk yönetimi</li>
+      </ul>
+      <div class="foot"><a class="btn btn-primary" href="#pilot">Pilot başvurusu →</a></div>
+    </div>
+    <div class="tier">
+      <div class="tag">Kurumsal</div>
+      <h3>Özel ve Entegre</h3>
+      <div class="price">Görüşmeye özel</div>
+      <ul>
+        <li class="soon">Risk yönetimi panosu + eğitim modülü</li>
+        <li class="soon">AI destekli spesifik analiz ve raporlar</li>
+        <li class="soon">Çoklu kullanıcı, API ve dışa aktarım</li>
+        <li class="soon">Hizmet sürekliliği (SLA) ve öncelikli destek</li>
+      </ul>
+      <div class="foot"><a class="btn btn-ghost" href="#pilot">Görüşme talep et</a></div>
+    </div>
+  </div>
+  <p class="legend"><b>✓</b> bugün hazır &nbsp;·&nbsp; <i>◴</i> pilot geri bildirimiyle şekillenecek yol haritası. Önceliği <strong>siz</strong> belirlersiniz — pilotun amacı tam olarak budur.</p>
+
+  <h2 id="pilot">Ücretsiz pilot başvurusu</h2>
+  <p class="lead" style="margin-bottom:6px">İlk birkaç firmaya 2–3 haftalık ücretsiz pilot açıyoruz: ekibinize özelleştirilmiş erişim, karşılığında sonunda 15 dakikalık geri bildirim. Formu doldurun; e-posta uygulamanız hazır bir mesajla açılır, göndermeniz yeterli.</p>
+  <div class="formwrap">
+    <form id="pilotForm" onsubmit="return kmSubmit(event)">
+      <div class="grid">
+        <div class="field"><label>Firma <span class="req">*</span></label><input name="firma" required placeholder="Şirket adı"></div>
+        <div class="field"><label>Ad Soyad <span class="req">*</span></label><input name="isim" required placeholder="Adınız"></div>
+        <div class="field"><label>Unvan</label><input name="unvan" placeholder="ör. Hazine Müdürü / CFO"></div>
+        <div class="field"><label>Kurumsal e-posta <span class="req">*</span></label><input name="email" type="email" required placeholder="ad@firma.com"></div>
+        <div class="field"><label>Telefon</label><input name="telefon" placeholder="İsteğe bağlı"></div>
+        <div class="field"><label>Ekip büyüklüğü</label>
+          <select name="ekip">
+            <option value="">Seçiniz</option>
+            <option>1–3 kişi</option><option>4–10 kişi</option><option>11–25 kişi</option><option>25+ kişi</option>
+          </select>
+        </div>
+        <div class="field full"><label>En çok neyi takip etmek/öğrenmek istiyorsunuz?</label>
+          <textarea name="mesaj" placeholder="ör. USDTRY ve EUR/TRY günlük takibi, faiz görünümü, ekip için kur riski eğitimi..."></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">E-posta ile gönder →</button>
+        <span class="form-note">Gönder'e basınca e-posta uygulamanız <b>info@kalibrefin.com</b> adresine hazır bir mesajla açılır.<br>Verileriniz yalnızca bu başvuru için kullanılır; talep ederseniz silinir.</span>
+      </div>
+    </form>
+  </div>
+  <p class="form-note" style="margin-top:12px">Form açılmıyor mu? Doğrudan yazın: <a href="mailto:info@kalibrefin.com?subject=Kalibre%20Kurumsal%20Pilot%20Talebi" style="color:var(--accent)">info@kalibrefin.com</a></p>
+
+</main>
+
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>Kurumsal · hazine ve finans ekipleri için</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/terminal/">Terminal</a>
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="#" id="pilotLogout">Pilot çıkışı</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Karar destek ve eğitim platformu.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<script>
+function kmSubmit(e){
+  e.preventDefault();
+  var f = e.target;
+  var g = function(n){ return (f.elements[n] && f.elements[n].value || '').trim(); };
+  var L = [
+    'Firma: ' + g('firma'),
+    'Ad Soyad: ' + g('isim'),
+    'Unvan: ' + (g('unvan') || '-'),
+    'E-posta: ' + g('email'),
+    'Telefon: ' + (g('telefon') || '-'),
+    'Ekip büyüklüğü: ' + (g('ekip') || '-'),
+    '',
+    'Talep / ilgi alanı:',
+    (g('mesaj') || '-')
+  ];
+  var subject = 'Kalibre Kurumsal Pilot Talebi — ' + (g('firma') || '');
+  var body = L.join('\n');
+  var url = 'mailto:info@kalibrefin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  window.location.href = url;
+  try { gtag('event', 'pilot_basvuru', { firma: g('firma') }); } catch(_){}
+  return false;
+}
+</script>
+<script>
+(function(){
+  var lo = document.getElementById('pilotLogout');
+  if(!lo) return;
+  lo.addEventListener('click', function(e){
+    e.preventDefault();
+    fetch('/api/kurumsal-logout', { method:'POST' }).then(function(){
+      location.href = '/kurumsal/giris';
+    }).catch(function(){ location.href = '/kurumsal/giris'; });
+  });
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Acme Sanayi A.Ş. · Günlük Hazine Brifingi · Kalibre Markets</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+a{color:inherit;text-decoration:none}.pos{color:var(--green)}.neg{color:var(--red)}.muted{color:var(--muted)}
+.ctxbar{display:flex;align-items:center;gap:14px;background:var(--bg-1);border-bottom:1px solid var(--border);padding:9px 18px;font-size:11.5px;color:var(--text-dim);letter-spacing:.04em;position:sticky;top:0;z-index:60}
+.ctxbar b{color:var(--accent)}.ctxbar .sp{flex:1}.ctxbar a.back{color:var(--text-dim)}.ctxbar a.back:hover{color:var(--accent)}
+.print-btn{border:1px solid var(--border-2);color:var(--text-dim);padding:5px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-family:inherit;background:transparent}
+.print-btn:hover{border-color:var(--accent);color:var(--accent)}
+.sheet{max-width:860px;margin:22px auto;background:var(--surface);border:1px solid var(--border)}
+.sheet-inner{padding:30px 34px 36px}
+.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:2px solid var(--accent);padding-bottom:16px;flex-wrap:wrap}
+.client{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.doc-title{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.06em;margin-top:4px;text-transform:uppercase}
+.doc-date{font-size:12px;color:var(--text-dim);margin-top:6px}
+.prep{text-align:right;font-size:11px;color:var(--muted);line-height:1.7}
+.prep .k{display:inline-flex;align-items:center;gap:7px;color:var(--text-dim);font-weight:600;letter-spacing:.1em}
+.prep .mark{width:18px;height:18px;border:1.5px solid var(--accent);display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:9px}
+.ribbon{display:inline-block;margin-top:14px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#1a1a1a;background:var(--accent);padding:3px 10px;border-radius:4px}
+h2.sec{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border-2)}
+p.body{font-size:13.5px;color:var(--text-dim);line-height:1.7}p.body strong{color:var(--text)}
+table.grid{width:100%;border-collapse:collapse;font-family:'Geist Mono','JetBrains Mono',monospace;font-size:12px;margin-top:4px}
+table.grid th,table.grid td{text-align:right;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;font-variant-numeric:tabular-nums}
+table.grid th{color:var(--muted);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+table.grid td.l,table.grid th.l{text-align:left}
+table.grid td.note{text-align:left;white-space:normal;color:var(--muted);font-family:'Inter Tight',sans-serif;font-size:11.5px}
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.lvl{background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:12px 14px}
+.lvl .h{font-size:11px;color:var(--text-dim);letter-spacing:.04em;margin-bottom:4px}
+.lvl .v{font-size:15px;font-weight:600;color:var(--text)}
+.lvl .d{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.pill{font-size:10px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:20px;margin-left:8px}
+.pill.ok{color:var(--green);background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3)}
+.pill.nr{color:var(--accent);background:rgba(255,166,48,.1);border:1px solid rgba(255,166,48,.3)}
+.pill.tr{color:#ffb4b4;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3)}
+.callout{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.28);border-left:2px solid var(--accent);padding:14px 16px;margin-top:8px;font-size:13px;color:var(--text-dim);line-height:1.7}
+.callout strong{color:var(--text)}
+.doc-foot{margin-top:26px;border-top:1px solid var(--border);padding-top:14px;font-size:10.5px;color:var(--muted);line-height:1.6}.doc-foot b{color:var(--text-dim)}
+@media print{.ctxbar{display:none!important}body{background:#fff;color:#111}.sheet{border:none;margin:0;max-width:none;background:#fff}.sheet-inner{padding:0}.client,p.body strong,table.grid td,.lvl .v,.callout strong{color:#111}p.body,table.grid th,.doc-foot,.lvl .d{color:#444}}
+@media(max-width:680px){.sheet-inner{padding:20px 16px}.levels{grid-template-columns:1fr}.prep{text-align:left}table.grid td.note{display:none}}
+</style></head>
+<body>
+<div class="ctxbar"><span><b>OTOMATİK ÜRETİM</b> · 7 Haziran 2026 · terminaldeki güncel veriyle üretilmiştir. Yatırım tavsiyesi değildir.</span><span class="sp"></span><button class="print-btn" onclick="window.print()">⤓ PDF / Yazdır</button><a class="back" href="/kurumsal/">← Pilot paneli</a></div>
+<div class="sheet"><div class="sheet-inner">
+  <div class="doc-head">
+    <div><div class="client">Acme Sanayi A.Ş.</div><div class="doc-title">Günlük Hazine Brifingi</div>
+      <div class="doc-date">7 Haziran 2026 · 09:00 (TR)</div><div class="ribbon">Otomatik üretildi</div></div>
+    <div class="prep"><div class="k"><span class="mark">K</span> KALİBRE · MARKETS</div>
+      <div style="margin-top:6px">Hazırlayan: Kalibre Markets (otomatik)<br>Profil: AB ihracatçısı (EUR alacak, USD maliyet)<br>Dağıtım: Hazine ve Finans</div></div>
+  </div>
+
+  
+  <h2 class="sec">Yönetici özeti</h2>
+  <p class="body">EUR/TRY <strong>53,1108</strong> (1g −%0,75); USD/TRY <strong>46,0480</strong> (1g −%0,04); EUR/USD <strong>1,1527</strong> (1g −%0,71). USD/TRY maliyet uyarısı, EUR/USD denge riski eşiğine yaklaşıldı; izlemede tutun.</p>
+
+  <h2 class="sec">Takip edilen kurlar</h2>
+  <table class="grid"><thead><tr><th class="l">Parite</th><th>Son</th><th>Günlük</th><th>Haftalık</th><th>YBÖ</th><th class="l note">Sizin için anlamı</th></tr></thead><tbody>
+  <tr><td class="l">EUR/TRY <span class="muted">· gelir</span></td><td>53,1108</td><td class="neg">−%0,75</td><td class="neg">−%0,69</td><td class="pos">+%5,2</td><td class="note">İhracat gelirinizin TL karşılığı; yükseliş marjı destekler.</td></tr>
+<tr><td class="l">USD/TRY <span class="muted">· maliyet</span></td><td>46,0480</td><td class="neg">−%0,04</td><td class="pos">+%0,33</td><td class="pos">+%7,1</td><td class="note">USD cinsi hammadde maliyetiniz; ani sıçrama izlenmeli.</td></tr>
+<tr><td class="l">EUR/USD <span class="muted">· çapraz</span></td><td>1,1527 <span class="muted" style="font-size:9.5px;font-weight:600">· 5 Haz</span></td><td class="neg">−%0,71</td><td class="neg">−%1,08</td><td class="neg">−%1,9</td><td class="note">Gelir/maliyet para birimi dengesi; 1,15 üstü lehinize.</td></tr>
+  </tbody></table>
+  <p class="body muted" style="font-size:11px;margin-top:8px">Son veri: <b style="color:var(--text-dim)">7 Haziran 2026 Pazar</b> (en güncel veri noktası). Farklı tarihli kalemler değerinin yanında ayrıca belirtilir; piyasa verisi gecikmeli olabilir.</p>
+  
+
+  <h2 class="sec">İzlenecek seviyeler (sizin tanımınıza göre)</h2>
+  <div class="levels">
+  <div class="lvl"><div class="h">USD/TRY maliyet uyarısı<span class="pill nr">Yakın</span></div><div class="v">▲ 46,50 · güncel 46,05</div><div class="d">Hammadde maliyet baskısı; tedarik ve fiyatlama gözden geçirilir.</div></div>
+<div class="lvl"><div class="h">EUR/TRY marj fırsatı<span class="pill ok">Güvenli</span></div><div class="v">▲ 54,00 · güncel 53,11</div><div class="d">İhracat marjı genişler; vadeli satış değerlendirilebilir.</div></div>
+<div class="lvl"><div class="h">EUR/USD denge riski<span class="pill nr">Yakın</span></div><div class="v">▼ 1,15 · güncel 1,15</div><div class="d">Gelir/maliyet dengesi aleyhe döner; doğal koruma zayıflar.</div></div>
+  </div>
+
+  <h2 class="sec">Faiz ve küresel görünüm</h2>
+  <table class="grid"><thead><tr><th class="l">Gösterge</th><th>Son</th><th>Günlük</th><th class="l note">Not</th></tr></thead><tbody>
+  <tr><td class="l">Dolar Endeksi (DXY)</td><td>100,07 <span class="muted" style="font-size:9.5px;font-weight:600">· 5 Haz</span></td><td class="pos">+%0,66</td><td class="note">Zayıf dolar EUR/USD&#x27;yi ve TL&#x27;yi rahatlatır.</td></tr>
+<tr><td class="l">ABD 10Y getirisi</td><td>%0,45 <span class="muted" style="font-size:9.5px;font-weight:600">· 5 Haz</span></td><td class="pos">+%1,32</td><td class="note">Getiri gerilemesi gelişen ülke varlıklarına nefes aldırır.</td></tr>
+  </tbody></table>
+
+  <h2 class="sec">Şirkete özel not</h2>
+  <div class="callout">Acme Sanayi A.Ş.&#x27;nin son piyasa verileri incelendiğinde, EUR/TRY kurundaki %0,75&#x27;lik günlük düşüş ve haftalık %0,69&#x27;luk gerileme, şirketin AB ihracat gelirleri üzerinde baskı oluşturmaktadır. Buna karşılık, USD/TRY kurundaki %0,33&#x27;lük haftalık artış, maliyet tarafında bir miktar yükseliş riskine işaret etmektedir. EUR/USD çapraz kurundaki %1,08&#x27;lik haftalık düşüş ise, bu iki para birimi arasındaki dengeyi etkileyerek genel kur marjlarını değiştirebilmektedir. USD/TRY maliyet uyarısı eşiği olan 46,50&#x27;ye yakın seyretmesi, maliyet yönetimi açısından dikkatli olunması gerektiğini göstermektedir. <span style="color:var(--muted)">· AI destekli</span><div style="margin-top:8px;font-size:11px;color:var(--muted)">Karar destek yorumudur; yatırım/işlem tavsiyesi değildir.</div></div>
+
+  <div class="doc-foot"><b>Kalibre Markets · Kurumsal Hazine Brifingi.</b> Bu doküman Acme Sanayi A.Ş. için terminaldeki güncel veriyle <b>otomatik</b> üretilmiştir. İzleme seviyeleri kuruma özel tanımlanır. Veriler gecikmeli olabilir; revize edilebilir. Kalibre Markets bir karar destek hizmetidir; <b>yatırım tavsiyesi vermez</b>.<br>© 2026 Kalibre Markets · kalibremarkets.com · info@kalibrefin.com · veri: 2026-06-07</div>
+</div></div>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body></html>

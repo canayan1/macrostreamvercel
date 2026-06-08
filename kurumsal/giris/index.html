@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Pilot Girişi — Kurumsal · Kalibre Markets</title>
+<meta name="description" content="Kalibre Markets kurumsal pilot erişimi. Davetli firmalar için özel giriş.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root {
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18;
+  --border:#26221d; --border-2:#36302a;
+  --text:#ebe3d3; --text-dim:#a89c83; --muted:#6f6553;
+  --accent:#ffa630; --accent-hot:#ff7a00; --green:#4ade80; --red:#ef4444;
+  --grid:rgba(255,166,48,.025);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+body {
+  background:var(--bg); color:var(--text);
+  font-family:'Inter Tight', ui-sans-serif, system-ui, sans-serif; font-size:14px; line-height:1.55;
+  -webkit-font-smoothing:antialiased; letter-spacing:-0.005em;
+  background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:48px 48px;
+  display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px;
+}
+a { color:inherit; text-decoration:none; }
+.card {
+  width:100%; max-width:400px; background:var(--surface); border:1px solid var(--border);
+  border-top:2px solid var(--accent); padding:34px 32px 30px; box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.brand { display:flex; align-items:center; gap:11px; margin-bottom:22px; }
+.brand-mark { width:30px; height:30px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:14px; position:relative; }
+.brand-mark::after { content:''; position:absolute; inset:-3px; border:1px solid var(--accent); opacity:.25; }
+.brand-name { font-weight:700; font-size:14px; letter-spacing:.14em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:7px; letter-spacing:.06em; font-size:12px; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:6px; }
+h1 { font-size:21px; font-weight:600; color:var(--text); letter-spacing:-.01em; }
+.intro { font-size:12.5px; color:var(--text-dim); line-height:1.6; margin-top:8px; margin-bottom:22px; }
+label { display:block; font-size:11.5px; color:var(--text-dim); letter-spacing:.04em; margin-bottom:5px; margin-top:14px; }
+input { width:100%; background:var(--bg-1); border:1px solid var(--border-2); color:var(--text); font-family:inherit; font-size:14px; padding:11px 13px; border-radius:8px; }
+input:focus { outline:none; border-color:var(--accent); }
+.btn { width:100%; margin-top:22px; background:var(--accent); color:#1a1a1a; font-weight:700; font-size:13.5px; letter-spacing:.02em; padding:12px; border:0; border-radius:9px; cursor:pointer; transition:background .15s; }
+.btn:hover { background:var(--accent-hot); }
+.btn:disabled { opacity:.6; cursor:default; }
+.msg { margin-top:16px; font-size:12.5px; line-height:1.55; padding:10px 12px; border-radius:8px; display:none; }
+.msg.err { display:block; color:#ffb4b4; background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.35); }
+.msg.info { display:block; color:var(--accent); background:rgba(255,166,48,.08); border:1px solid rgba(255,166,48,.3); }
+.foot { margin-top:22px; padding-top:16px; border-top:1px solid var(--border); font-size:11.5px; color:var(--muted); line-height:1.6; }
+.foot a { color:var(--accent); }
+.note { font-size:10.5px; color:var(--muted); margin-top:14px; line-height:1.5; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// KURUMSAL</span></div></div>
+    <div class="eyebrow">▸ PİLOT ERİŞİMİ</div>
+    <h1>Pilot Girişi</h1>
+    <p class="intro">Bu alan davetli firmalara özeldir. Size e-posta ile iletilen <strong>kullanıcı adı ve şifre</strong> ile giriş yapın.</p>
+
+    <form id="loginForm" autocomplete="on">
+      <label for="u">Kullanıcı adı</label>
+      <input id="u" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <label for="p">Şifre</label>
+      <input id="p" name="password" type="password" autocomplete="current-password" required>
+      <button class="btn" type="submit" id="btn">Giriş yap →</button>
+    </form>
+
+    <div class="msg" id="msg"></div>
+
+    <div class="foot">
+      Erişiminiz yok mu? Kurumsal pilot için <a href="mailto:info@kalibrefin.com?subject=Kalibre%20Kurumsal%20Pilot%20Eri%C5%9Fim%20Talebi">info@kalibrefin.com</a> adresinden talep edin.
+    </div>
+    <p class="note">Kalibre Markets bir karar destek ve eğitim platformudur; yatırım tavsiyesi vermez.</p>
+  </div>
+
+<script>
+(function(){
+  var form = document.getElementById('loginForm');
+  var btn = document.getElementById('btn');
+  var msg = document.getElementById('msg');
+
+  function safeNext(){
+    try {
+      var p = new URLSearchParams(location.search).get('next') || '';
+      // Açık yönlendirme (open redirect) önlemi: yalnızca /kurumsal ile başlayan iç yollar.
+      if (p.indexOf('/kurumsal') === 0 && p.indexOf('//') !== 0) return p;
+    } catch(_){}
+    return '/kurumsal/';
+  }
+
+  function show(type, text){ msg.className = 'msg ' + type; msg.textContent = text; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.className = 'msg'; msg.textContent = '';
+    btn.disabled = true; btn.textContent = 'Kontrol ediliyor…';
+    fetch('/api/kurumsal-login', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ username: form.username.value, password: form.password.value })
+    }).then(function(r){
+      return r.json().then(function(j){ return { status:r.status, j:j }; });
+    }).then(function(res){
+      if (res.status === 200 && res.j && res.j.ok){
+        show('info', 'Giriş başarılı, yönlendiriliyorsunuz…');
+        location.href = safeNext();
+        return;
+      }
+      btn.disabled = false; btn.textContent = 'Giriş yap →';
+      if (res.status === 503){
+        show('err', 'Pilot erişimi henüz etkinleştirilmedi. Lütfen daha sonra tekrar deneyin veya bizimle iletişime geçin.');
+      } else {
+        show('err', 'Kullanıcı adı veya şifre hatalı. Lütfen e-postadaki bilgileri kontrol edin.');
+      }
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = 'Giriş yap →';
+      show('err', 'Bağlantı hatası. Lütfen tekrar deneyin.');
+    });
+  });
+})();
+</script>
+</body>
+</html>

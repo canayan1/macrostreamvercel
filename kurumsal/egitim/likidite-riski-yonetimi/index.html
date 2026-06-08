@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Likidite Riski Yönetimi: Vade Analizi, Nakit Projeksiyonu ve Likidite Tamponu · Kurumsal · Kalibre Markets</title>
+<meta name="description" content="Reel sektör için likidite riski yönetimi: TFRS 7 madde 39 vade analizi, 13 haftalık nakit akışı projeksiyonu, likidite tamponu, vade uyumu ve kovenant izleme; uygulamalı vade merdiveni örneğiyle.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://kalibremarkets.com/kurumsal/egitim/likidite-riski-yonetimi/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/kurumsal-egitim.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kurumsal/egitim/" style="color:inherit">Kurumsal Eğitim</a> › Likidite riski yönetimi</div>
+  <a href="/kurumsal/egitim/" class="cmd-back">← Seriye dön</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ KURUMSAL EĞİTİM · TFRS RİSK MODÜLÜ</div>
+  <h1>Likidite Riski Yönetimi: Kâr Eder, Yine de Nakitsiz Kalabilir</h1>
+  <p class="sub">Likidite riski, kârlılıktan ayrı bir boyuttur: kâğıt üzerinde kârlı bir firma bile vade uyumsuzluğundan nakit sıkışmasına düşebilir. TFRS 7 bu riski hem tanımlar hem de bir <strong>vade analizi</strong> ile dipnotta açıklamayı ister. Bu yazı, likidite riskini ölçme ve yönetme araçlarını reel sektör bakışıyla ele alır.</p>
+
+  <div class="card">
+    <h2>Likidite riski nedir?</h2>
+    <p>TFRS 7'nin tanımıyla likidite riski, işletmenin <strong>nakitle ya da başka bir finansal varlıkla ödenecek finansal yükümlülüklerini</strong> yerine getirmede zorlukla karşılaşma riskidir. Sorun çoğu zaman ödeme gücünün yokluğu değil, <strong>zamanlamanın</strong> tutmamasıdır: para gelecektir ama yükümlülük daha önce gelir.</p>
+
+    <h2>Vade analizi (TFRS 7 madde 39)</h2>
+    <p>Standart, likidite riski için somut bir araç ister: <strong>madde 39</strong> uyarınca işletme, finansal yükümlülükleri için sözleşmeye dayalı, <strong>iskonto edilmemiş</strong> nakit çıkışlarını vade dilimlerinde gösteren bir analiz sunar ve likidite riskini nasıl yönettiğini açıklar.</p>
+    <h3>Örnek vade merdiveni</h3>
+    <table class="grid">
+      <thead><tr><th>Vade dilimi</th><th class="r">Banka kredisi (₺)</th><th class="r">Ticari borç (₺)</th><th class="r">Toplam çıkış (₺)</th></tr></thead>
+      <tbody>
+        <tr><td>0-3 ay</td><td class="r">25.000.000</td><td class="r">30.000.000</td><td class="r">55.000.000</td></tr>
+        <tr><td>3-12 ay</td><td class="r">60.000.000</td><td class="r">10.000.000</td><td class="r">70.000.000</td></tr>
+        <tr><td>1-5 yıl</td><td class="r">180.000.000</td><td class="r">0</td><td class="r">180.000.000</td></tr>
+        <tr><td>5 yıl üzeri</td><td class="r">40.000.000</td><td class="r">0</td><td class="r">40.000.000</td></tr>
+        <tr><td><strong>Toplam</strong></td><td class="r"><strong>305.000.000</strong></td><td class="r"><strong>40.000.000</strong></td><td class="r"><strong>345.000.000</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Bu tablo riskin <strong>zaman içindeki dağılımını</strong> gösterir. Yakın vadedeki yığılma (önümüzdeki 12 ayda 125 milyon çıkış) asıl izlenmesi gereken yerdir.</p>
+
+    <h2>Likidite tamponu</h2>
+    <p>Vade analizini tek başına okumak yarım resimdir; karşısına <strong>kullanılabilir likiditeyi</strong> koymak gerekir:</p>
+    <div class="formula">Likidite tamponu = Nakit ve benzerleri + Taahhütlü kullanılmamış kredi limitleri</div>
+    <p>Yukarıdaki firmada nakit 40 milyon, taahhütlü kullanılmamış limit 60 milyon ise tampon 100 milyondur. Önümüzdeki 12 aylık 125 milyonluk çıkışı tek başına karşılamaz; aradaki farkın <strong>tahsilatlarla</strong> kapanması gerekir. Bu da likiditeyi tahsilat hızına bağımlı kılar.</p>
+    <div class="box"><strong>Dikkat:</strong> Yalnızca <strong>taahhütlü</strong> (committed) limitler tampona sayılır. Bankanın tek taraflı iptal edebileceği limitler, en çok ihtiyaç duyulan anda çekilebilir; gerçek tampon değildir.</div>
+
+    <h2>Yönetim araçları</h2>
+    <ul>
+      <li><strong>Nakit akışı projeksiyonu:</strong> kısa vadede <strong>13 haftalık</strong> dönen (rolling) projeksiyon, orta vadede aylık. Likiditeyi geriye değil ileriye bakarak yönetmenin temelidir.</li>
+      <li><strong>Likidite tamponu:</strong> nakit artı taahhütlü limitlerden oluşan, hedeflenen asgari bir yastık.</li>
+      <li><strong>Vade uyumu:</strong> kısa vadeli borçla uzun vadeli varlık finanse etmek (kısa borç/uzun varlık tuzağı) yeniden finansman riskini büyütür; varlık ve yükümlülük vadeleri eşleştirilir.</li>
+      <li><strong>Vade çeşitlendirmesi:</strong> borçların aynı döneme yığılması (vade duvarı) tek bir yeniden finansman penceresine bağımlılık yaratır; vadeler zamana yayılır.</li>
+      <li><strong>Kovenant izleme:</strong> bir kovenant ihlali kredinin muaccel olmasına yol açabilir; bu, likidite riskini bir anda tetikler.</li>
+    </ul>
+
+    <h2>Senaryo ve tersine stres</h2>
+    <p>Likidite de stres testiyle sınanır. Soruyu tersinden sorun: <strong>"Hangi olay bizi nakit açığına sokar?"</strong> Tipik şoklar:</p>
+    <ul>
+      <li>Büyük bir müşterinin ödemesinin gecikmesi ya da temerrüdü.</li>
+      <li>Bir kredi limitinin yenilenmemesi ya da daraltılması.</li>
+      <li>Kur ya da faiz şokunun bir kovenantı ihlale taşıması.</li>
+      <li>Stok ya da alacak devrinin yavaşlaması (işletme sermayesinin nakdi yutması).</li>
+    </ul>
+
+    <h2>Reel sektör için pratik</h2>
+    <ol>
+      <li>Finansal yükümlülükleri vade dilimlerinde, <strong>iskonto edilmemiş</strong> çıkışlarla diz (TFRS 7 m.39).</li>
+      <li>Karşısına <strong>taahhütlü</strong> likidite tamponunu koy; sadece güvenilir kaynakları say.</li>
+      <li>13 haftalık dönen nakit projeksiyonunu <strong>haftalık</strong> güncelle.</li>
+      <li>Vade uyumunu ve vade duvarlarını izle; yeniden finansmanı son ana bırakma.</li>
+      <li>Kovenant eşiklerine olan mesafeyi likidite riskiyle birlikte değerlendir.</li>
+      <li>Yılda en az bir kez likidite stres testi ve tersine stres testi yap.</li>
+    </ol>
+
+    <h2>Sık yapılan hatalar</h2>
+    <ul>
+      <li>Kârlılığı likiditeyle karıştırmak; kâr tahakkuktur, likidite nakittir.</li>
+      <li>Taahhütlü olmayan limitleri tampona saymak; bunlar en kritik anda çekilebilir.</li>
+      <li>Yalnızca toplam borca bakmak, <strong>vade dağılımını</strong> görmemek.</li>
+      <li>Vade duvarını fark etmemek; borçların aynı çeyreğe yığılması riski büyütür.</li>
+      <li>Kovenant ihlalinin likidite etkisini hesaba katmamak; ihlal krediyi muaccel kılabilir.</li>
+    </ul>
+
+    <div class="box"><strong>Özet:</strong> Likidite riski, yükümlülüklerin zamanında ödenememesi riskidir ve kârlılıktan bağımsızdır. TFRS 7 madde 39, finansal yükümlülüklerin iskonto edilmemiş vade analizini ister; bunun karşısına taahhütlü bir likidite tamponu konur. Yönetimin omurgası, 13 haftalık dönen nakit projeksiyonu, vade uyumu ve kovenant izlemedir. Senaryo ve tersine stres testi, kırılma noktasını önceden gösterir. Bu yazı bir eşik dayatmaz; likiditeyi ölçme ve yönetme araçlarını görünür kılar.</div>
+
+    <h2>Kaynakça</h2>
+    <ol class="kaynakca">
+      <li>KGK, <em>TFRS 7 Finansal Araçlar: Açıklamalar</em> (likidite riski; özellikle madde 39 vade analizi ve B11-B11F uygulama rehberi), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+      <li>KGK, <em>TMS 1 Finansal Tabloların Sunuluşu</em> (dönen/duran ayrımı ve likidite sunumu), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+      <li>KGK, <em>TFRS 9 Finansal Araçlar</em> (finansal yükümlülüklerin sınıflandırılması ve ölçümü), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+    </ol>
+  </div>
+
+  <div class="relwrap">
+    <div class="h">▸ SERİDE İLGİLİ</div>
+    <a href="/kurumsal/egitim/finansal-yapi-yeterliligi/">Finansal yapı yeterliliği: kaldıraç, faiz karşılama, likidite →</a>
+    <div style="margin-top:8px"><a href="/kurumsal/egitim/tfrs7-risk-aciklamalari/">TFRS 7 risk açıklamaları: kredi, likidite, piyasa →</a></div>
+    <div style="margin-top:10px"><a href="/kurumsal/egitim/" style="color:var(--accent);font-weight:400;font-size:13px">← Tüm kurumsal eğitim serisi</a></div>
+  </div>
+
+  <div class="relwrap" style="background:rgba(255,166,48,.05)">
+    <div class="h">▸ EKİBİNİZ İÇİN</div>
+    <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.7">Vade analizinizi ve nakit projeksiyonunuzu canlı bir izleme panosuna dönüştürebiliriz. Ücretsiz pilotla başlayın: <a href="/kurumsal/#pilot" style="color:var(--accent)">pilot başvurusu →</a></p>
+  </div>
+</main>
+
+<footer class="pf-foot">
+  <div><div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div><div>Kurumsal eğitim · TFRS risk modülü</div></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="/kurumsal/">Kurumsal</a><a href="/kurumsal/egitim/">Seri</a><a href="/metodoloji/">Metodoloji</a><a href="/iletisim/">İletişim</a></div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">⚠ Eğitim içeriğidir; muhasebe ya da yatırım tavsiyesi değildir.<br>Kalibre Markets © 2026.</div>
+</footer>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

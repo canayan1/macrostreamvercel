@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Altın ve Gümüş Alırken: Gram Altın Aldığınızda Aslında Dolar/TL'ye mi Oynuyorsunuz? · Kalibre Markets</title>
+
+<meta name="description" content="Gram altın iki bağımsız bahsin çarpımıdır: ons altının dolar fiyatı ve USDTRY kuru. Çoğu yatırımcı altın alırken farkında olmadan dolar/TL'nin yükselişine oynar. Ons-gram ayrıştırması, gümüşün yüksek betası ve gram-ons makası.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/egitim/altin-gumus-trade/">
+<meta name="keywords" content="gram altın, ons altın, gümüş, XAUUSD, USDTRY, değerli metal, kur riski, makro ekonomi, Türkçe, yatırım eğitimi">
+<meta property="og:title" content="Altın ve Gümüş Alırken: Gram Altın Aldığınızda Aslında Dolar/TL'ye mi Oynuyorsunuz? · Kalibre Markets">
+<meta property="og:description" content="Gram altın iki bağımsız bahsin çarpımıdır: ons altının dolar fiyatı ve USDTRY kuru. Çoğu yatırımcı altın alırken farkında olmadan dolar/TL'nin yükselişine oynar.">
+<meta property="og:url" content="https://kalibremarkets.com/egitim/altin-gumus-trade/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Altın ve Gümüş Alırken: Gram Altın Aldığınızda Aslında Dolar/TL'ye mi Oynuyorsunuz? · Kalibre Markets">
+<meta name="twitter:description" content="Gram altın iki bağımsız bahsin çarpımıdır: ons altının dolar fiyatı ve USDTRY kuru. Çoğu yatırımcı altın alırken farkında olmadan dolar/TL'nin yükselişine oynar.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── TOP BAR ──────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 46px; padding: 0 18px; position: sticky; top: 0; z-index: 60;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding-right: 18px; height: 100%; border-right: 1px solid var(--border);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 24px; height: 24px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-crumb {
+  flex: 1; min-width: 0; padding-left: 16px;
+  font-size: 11.5px; color: var(--muted); letter-spacing: .04em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cmd-crumb a { color: inherit; }
+.cmd-crumb a:hover { color: var(--accent); }
+.cmd-actions { display: flex; align-items: center; gap: 0; margin-left: auto; height: 100%; }
+.cmd-tr {
+  padding: 0 14px; font-size: 12px; color: var(--text-dim); cursor: pointer;
+  border-left: 1px solid var(--border); height: 100%; display: flex; align-items: center;
+}
+.cmd-tr:hover { color: var(--accent); }
+.cmd-back {
+  padding-left: 16px; font-size: 12px; color: var(--text-dim);
+  white-space: nowrap; text-decoration: none; display: flex; align-items: center; height: 100%;
+}
+.cmd-back:hover { color: var(--accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── CARD ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; white-space: normal; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cmdbar { padding: 0 12px; }
+  .cmd-crumb { display: none; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+}
+@media (max-width: 700px) {
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  h2 { font-size: 16px !important; }
+  .disclaimer-banner { display: block; line-height: 1.55; }
+}
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  .wrap, main { padding: 10px 10px 60px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}
+.kaynakca { padding-left: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.kaynakca li { margin-bottom: 8px; }
+.kaynakca em { color: var(--text); font-style: italic; }
+.kaynakca a { color: var(--accent); border-bottom: 1px dotted var(--accent); }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+</head>
+<body>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Altın ve Gümüş Alırken: Gram Altın Aldığınızda Aslında Dolar/TL'ye mi Oynuyorsunuz?</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div><div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<main>
+
+<div style="margin-bottom:18px">
+  <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ EĞİTİM</div>
+  <h1 style="margin:0;font-size:28px;letter-spacing:-.01em;color:var(--text);font-weight:600">Altın ve Gümüş Alırken: Gram Altın Aldığınızda Aslında Dolar/TL'ye mi Oynuyorsunuz?</h1>
+  <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.6">Türkiye'de &quot;altın aldım&quot; demek tek bir bahis değil, iki bağımsız bahsin çarpımıdır: ons altının dolar fiyatı ve dolar/TL kuru. Bu ayrıştırmayı görmeden gram altın pozisyonunu doğru yönetmek mümkün değil.</p>
+</div>
+
+<div style="background:var(--bg-1);border:1px solid var(--border);margin:18px 0;overflow:hidden"><div style="padding:14px;display:flex;justify-content:center"><svg viewBox="0 0 480 240" width="100%" style="max-width:540px;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="11">
+<rect x="0" y="0" width="480" height="240" fill="#100e0c"/>
+<text x="240" y="28" fill="#ffa630" font-size="13" text-anchor="middle" font-weight="600">Gram Altın = Ons Altın × Dolar/TL</text>
+<g transform="translate(36,55)">
+<rect x="0" y="0" width="130" height="92" fill="#1a1612" stroke="#36302a"/>
+<text x="65" y="22" fill="#ebe3d3" font-size="11" text-anchor="middle" font-weight="600">ONS ALTIN</text>
+<text x="65" y="48" fill="#ffa630" font-size="17" text-anchor="middle" font-weight="600">$ bahsi</text>
+<text x="65" y="74" fill="#a89c83" font-size="9.5" text-anchor="middle">küresel makro</text>
+</g>
+<text x="183" y="106" fill="#ffa630" font-size="20" text-anchor="middle" font-weight="700">×</text>
+<g transform="translate(200,55)">
+<rect x="0" y="0" width="130" height="92" fill="#1a1612" stroke="#36302a"/>
+<text x="65" y="22" fill="#ebe3d3" font-size="11" text-anchor="middle" font-weight="600">USDTRY</text>
+<text x="65" y="48" fill="#60a5fa" font-size="17" text-anchor="middle" font-weight="600">TL bahsi</text>
+<text x="65" y="74" fill="#a89c83" font-size="9.5" text-anchor="middle">yerel kur</text>
+</g>
+<text x="347" y="106" fill="#ffa630" font-size="18" text-anchor="middle" font-weight="700">=</text>
+<g transform="translate(360,55)">
+<rect x="0" y="0" width="104" height="92" fill="#221d18" stroke="#ffa630"/>
+<text x="52" y="22" fill="#ebe3d3" font-size="11" text-anchor="middle" font-weight="600">GRAM ALTIN</text>
+<text x="52" y="48" fill="#4ade80" font-size="15" text-anchor="middle" font-weight="600">₺ fiyatı</text>
+<text x="52" y="74" fill="#a89c83" font-size="9.5" text-anchor="middle">iki bahsin çarpımı</text>
+</g>
+<text x="240" y="195" fill="#a89c83" font-size="10.5" text-anchor="middle">Gram ₺ = (Ons $ × USDTRY) ÷ 31,1035</text>
+<text x="240" y="218" fill="#ef4444" font-size="10.5" text-anchor="middle">Ons düşse bile TL değer kaybederse gram altın yükselebilir — ya da tersi</text>
+</svg></div><div style="padding:8px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);text-align:center">Gram altın iki ayrı riskin çarpımıdır · 31,1035 = bir troy ons gramı</div></div>
+
+<div class="card" style="line-height:1.75;font-size:15px">
+<p>Türkiye'de altın, tasarrufun ve kur korkusunun ortak dili. Ama &quot;altın aldım&quot; cümlesi göründüğünden daha karmaşık bir pozisyonu anlatır. Bir Türk yatırımcı gram altın aldığında tek bir varlık değil, üst üste binmiş iki bağımsız bahis satın alır. Bu yazının ana fikri tek cümlede toplanır: <strong>gram altın almak, ons altının dolar fiyatının yükselmesine ve aynı anda dolar/TL kurunun yükselmesine birlikte oynamaktır.</strong> Çoğu kişi bunun yarısının farkında bile değildir.</p>
+
+<h2>Temel ayrıştırma: gram altın iki bahistir</h2>
+<p>Uluslararası piyasada altın, troy ons başına ABD doları olarak fiyatlanır (<span class="term" data-title="XAU/USD" data-tip="Bir troy ons (31,1035 gram) saf altının ABD doları cinsinden fiyatı. Küresel altın piyasasının referans fiyatıdır.">XAUUSD</span>). Türkiye'deki gram altın fiyatı ise bu dolar fiyatının TL'ye çevrilmiş ve grama bölünmüş halidir:</p>
+<p class="mono" style="background:var(--bg-1);padding:12px 14px;border-left:2px solid var(--accent);font-size:13px;color:var(--text)">Gram Altın (₺) = Ons Altın ($) × USDTRY ÷ 31,1035</p>
+<p>Buradaki 31,1035 sayısı sabittir; bir troy onsun gram karşılığıdır. Değişen iki şey vardır: <strong>ons altının dolar fiyatı</strong> ve <strong>USDTRY kuru</strong>. Yani gram altın pozisyonunuzun günlük hareketi iki ayrı kaynaktan beslenir. Biri küresel (ons), diğeri tamamen yerel (kur).</p>
+<p>Bu çok önemli, çünkü iki bileşen aynı anda zıt yönlere gidebilir. Ons altın dolar bazında yüzde 2 düşerken TL yüzde 3 değer kaybederse, gram altın yine de yükselir. Tersine, ons altın dolar bazında yükselirken TL güçlenirse (örneğin sıkı para politikası döneminde), gram altın yerinde sayabilir, hatta gerileyebilir. Ekranda &quot;altın düştü&quot; gördüğünüzde, ons mu yoksa kur mu hareket etti sorusunu sormadan hiçbir şey anlamış olmazsınız.</p>
+
+<h2>Gizli kur pozisyonu: aslında neye oynuyorsunuz?</h2>
+<p>Bir Türk yatırımcı gram altın aldığında, dolar/TL'nin yükselmesinden doğrudan kazanç sağlayan bir pozisyon almış olur. Çünkü formüldeki USDTRY çarpanı, TL değer kaybettikçe gram fiyatını yukarı çeker. Pratikte bu şu demektir: TL'nin zayıflamasından kâr eden bir pozisyondasınız ve bu kısım altının &quot;parlaklığıyla&quot;, küresel güvenli liman temasıyla, jeopolitikle hiç ilgili değildir. Saf bir kur bahsidir.</p>
+<p>Türkiye'de altının uzun yıllar &quot;kazandırması&quot;nın asıl sebebi de budur. Ons altın dolar bazında yatay kaldığı dönemlerde bile, TL'nin yapısal değer kaybı gram altını sürekli yukarı taşımıştır. Yani birçok kişinin &quot;altın enflasyona karşı korudu&quot; dediği getirinin büyük kısmı, aslında dolar/TL'nin yükselişine oynayan bir pozisyonun getirisidir. Aynı getiriyi düz dolar tutarak da elde edebilirlerdi — üstelik ons riskini taşımadan.</p>
+<p>Bunu test etmenin pratik yolu: bir dönemde gram altının getirisini, aynı dönemdeki USDTRY getirisinden ayırın. Geriye kalan kısım ons altının dolar getirisidir. Çoğu Türk yatırımcı için son yıllarda getirinin aslan payı kur tarafından, küçük kısmı ons tarafından gelmiştir.</p>
+
+<h2>Sayısal örnek: kim ne kadar katkı yaptı?</h2>
+<p>Diyelim ki yıl başında ons altın 2.000 dolar, USDTRY 32,00. Gram altın yaklaşık: 2.000 × 32 ÷ 31,1035 ≈ <strong>2.058 ₺</strong>.</p>
+<p>Yıl sonunda ons altın 2.200 dolara (dolar bazında +%10), USDTRY ise 40,00'a (TL -%20) gelsin. Gram altın: 2.200 × 40 ÷ 31,1035 ≈ <strong>2.829 ₺</strong>. TL bazında getiri yaklaşık <strong>+%37</strong>.</p>
+<table class="grid" style="margin:14px 0">
+<thead><tr><th class="l">Bileşen</th><th>Başlangıç</th><th>Bitiş</th><th>Katkı</th></tr></thead>
+<tbody>
+<tr><td class="l">Ons altın ($)</td><td>2.000</td><td>2.200</td><td class="pos">+%10</td></tr>
+<tr><td class="l">USDTRY (kur)</td><td>32,00</td><td>40,00</td><td class="pos">+%25</td></tr>
+<tr><td class="l">Gram altın (₺)</td><td>2.058</td><td>2.829</td><td class="pos">+%37</td></tr>
+</tbody>
+</table>
+<p>Toplam yüzde 37'lik TL getirisinin yaklaşık iki bölümünden büyük kısmı kur (USDTRY) hareketinden, kalanı ons hareketinden gelir (bileşik etki nedeniyle katkılar tam toplanmaz; +%10 ve +%25 bileşik olarak ≈ +%37,5 yapar). Eğer bu yatırımcı &quot;altın bana yüzde 37 kazandırdı&quot; derse, gerçeğin sadece küçük bir kısmını söylemiş olur. Asıl kazandıran TL'nin değer kaybıdır.</p>
+
+<h2>Ons altını ne hareket ettirir?</h2>
+<p>Pozisyonun dolar tarafını yönetmek için ons altının sürücülerini bilmek gerekir. Ons altın faiz getirmeyen bir varlıktır; bu yüzden başlıca şu değişkenlere duyarlıdır:</p>
+<ul>
+<li><strong>Reel faizler.</strong> ABD 10 yıllık enflasyona endeksli (TIPS) reel getirisi yükseldiğinde, altın tutmanın fırsat maliyeti artar ve ons altına genellikle baskı gelir. Reel faiz düştüğünde ons altın güçlenir.</li>
+<li><strong>Dolar endeksi (DXY).</strong> Altın dolarla fiyatlandığı için, doların diğer büyük para birimleri karşısında değer kazanması genelde ons altını baskılar (ters korelasyon, mükemmel değil).</li>
+<li><strong>Merkez bankası alımları.</strong> Son yıllarda gelişmekte olan ülke merkez bankalarının rezerv çeşitlendirmesi yapısal bir talep kaynağıdır.</li>
+<li><strong>Jeopolitik ve güvenli liman talebi.</strong> Kriz dönemlerinde ani ve sert yukarı hareketler görülür.</li>
+</ul>
+<p>Dikkat: bu sürücülerin hiçbiri USDTRY ile ilgili değildir. Yani ons tarafı tamamen küresel, kur tarafı tamamen yereldir. İki motoru ayrı ayrı izlemezseniz pozisyonunuzu yönetemezsiniz.</p>
+
+<h2>Gümüş: aynı yapı, daha sert oynaklık</h2>
+<p>Gümüş için tüm matematik aynıdır. Gram gümüş = ons gümüş ($) × USDTRY ÷ 31,1035. Yine iki bahis: küresel ons fiyatı ve yerel kur. Ama gümüşün iki kritik farkı vardır:</p>
+<ul>
+<li><strong>Daha yüksek oynaklık.</strong> Gümüş, altının hareketlerini abartarak takip eder. Altın yükseldiğinde gümüş genelde daha sert yükselir, altın düştüğünde daha sert düşer. &quot;Altının abartılmış hâli&quot; benzetmesi sık kullanılır.</li>
+<li><strong>Endüstriyel talep.</strong> Gümüş talebinin önemli bölümü sanayidendir (güneş paneli, elektronik, fotovoltaik). Bu yüzden gümüş, küresel büyüme ve sanayi döngüsüne altından daha duyarlıdır. Resesyon endişesi gümüşü altından daha çok vurabilir.</li>
+</ul>
+<p>Pratik bir araç <span class="term" data-title="Altın/Gümüş Oranı" data-tip="Bir ons altının kaç ons gümüşe denk geldiğini gösteren oran (XAU/XAG). Tarihsel olarak yaklaşık 50-80 bandında dalgalanır; uçlar bazı yatırımcılarca metaller arası göreli değer sinyali olarak izlenir.">altın/gümüş oranıdır</span>. Bir ons altının kaç ons gümüşe denk geldiğini gösterir. Tarihsel olarak geniş bir bantta (kabaca 50-90) dalgalanır. Oran uçlara gittiğinde bazı yatırımcılar bunu metaller arası göreli değer sinyali olarak okur — ama bu kesin bir kural değil, sadece bir bağlam göstergesidir.</p>
+
+<h2>Gram-ons makası: yerel prim ve fiziki maliyetler</h2>
+<p>Teorik formül temizdir ama gerçek hayatta gram altın fiyatı, hesaplanan &quot;makas/parite&quot; değerinden zaman zaman sapar. Bunun nedenleri:</p>
+<ul>
+<li><strong>Yerel arz-talep ve prim.</strong> İç piyasada altına talep patladığında (kur paniği, bayram, kriz beklentisi) gram fiyatı uluslararası pariteye prim yapabilir.</li>
+<li><strong>Fiziki ürün maliyetleri.</strong> Ziynet, çeyrek, gram has altın gibi ürünlerde işçilik ve satıcı marjı eklenir. &quot;Alış-satış makası&quot; özellikle küçük ürünlerde geniştir; aldığınız anda kâğıt üstünde zarardasınız.</li>
+<li><strong>Saklama ve güven.</strong> Fiziki altında saflık, sahtelik ve saklama riski; banka/aracı üzerinden alımda ise karşı taraf ve operasyonel riskler vardır.</li>
+</ul>
+<p>Bu yüzden &quot;hangi altın&quot; sorusu önemlidir: fiziki gram has, bankada gramaltın hesabı, BIST'te işlem gören altın ürünleri veya fon/ETF benzeri araçlar — hepsinin maliyet, likidite ve makas profili farklıdır.</p>
+
+<h2>Pozisyonu doğru kurmak: ne yapmak istediğinize karar verin</h2>
+<p>Ayrıştırmayı anladıktan sonra soru netleşir: <strong>hangi bahsi almak istiyorsunuz?</strong></p>
+<ul>
+<li><strong>Sadece TL değer kaybına karşı korunmak istiyorsanız</strong>, taşıdığınız asıl risk kurdur. Bu durumda ons fiyatının oynaklığını neden üstlendiğinizi sorgulayın; düz döviz veya döviz mevduatı daha yalın bir kur korumasıdır.</li>
+<li><strong>Küresel makro temasına (reel faizler, merkez bankası alımları, güvenli liman) yatırım yapmak istiyorsanız</strong>, asıl istediğiniz ons altındır. O zaman kur tarafının getiriyi maskelediğini bilin; ons performansını dolar bazında ayrı izleyin.</li>
+<li><strong>İkisini birden bilinçli istiyorsanız</strong>, gram altın doğru araçtır — ama bunu &quot;tek varlık&quot; değil &quot;iki riskin paketi&quot; olarak yönetin.</li>
+</ul>
+<p>En tehlikeli durum, hangi bahsi aldığını bilmeden almaktır. Ons altın tepe yaparken kur sabit kalırsa, &quot;altın hep kazandırır&quot; diye giren yatırımcı yatay/negatif getiriyle karşılaşır ve şaşırır. Çünkü o güne kadar getiriyi sessizce kur üretiyordu.</p>
+
+<h2>Pratik kontrol listesi</h2>
+<ol>
+<li>Gram fiyatına bakarken, ons ($) ve USDTRY'yi <strong>ayrı ayrı</strong> izleyin. Hangisi hareket etti?</li>
+<li>Geçmiş getirinizi ikiye bölün: ne kadarı kurdan, ne kadarı onstan geldi?</li>
+<li>Asıl istediğiniz bahsi netleştirin: kur koruması mı, küresel makro mu, ikisi mi?</li>
+<li>Ürünün alış-satış makasını ve işçilik/prim maliyetini öğrenin; küçük fiziki üründe makas geniştir.</li>
+<li>Gümüşte oynaklık yüksektir; aynı kur hareketinde gümüş, altından daha sert oynar.</li>
+<li>Altın/gümüş oranını bağlam için izleyin, kesin sinyal olarak değil.</li>
+</ol>
+
+<h2>Yaygın yanılgılar</h2>
+<ul>
+<li>&quot;Altın aldım, dövizle işim yok.&quot; Tam tersi — gram altın, dolar/TL'nin yükselişine doğrudan oynayan bir pozisyondur.</li>
+<li>&quot;Altın her zaman kazandırır.&quot; TL bazında çoğu zaman kazandıran kurdur; ons dolar bazında yıllarca yatay kalabilir.</li>
+<li>&quot;Ons düştü, gram altın düşmeli.&quot; Şart değil — kur aynı anda daha çok değer kaybederse gram yükselir.</li>
+<li>&quot;Gümüş altının küçük kardeşi, aynı şeydir.&quot; Gümüşün betası ve endüstriyel talep duyarlılığı çok daha yüksektir.</li>
+<li>&quot;Fiziki altın risksizdir.&quot; Saflık, saklama, sahtelik ve geniş alış-satış makası riskleri vardır.</li>
+</ul>
+
+<h2>Önemli not</h2>
+<p>Değerli metaller, özellikle Türkiye gibi yüksek kur oynaklığı olan bir ülkede, göründüğünden daha katmanlı bir pozisyondur. Gram altın ve gram gümüş; küresel ons fiyatı ile yerel kurun çarpımıdır. Bu iki riski ayrı ayrı görmeden alınan pozisyon, çoğu zaman yatırımcının sandığı şey değildir. Bu yazı bir karar mekanizması sunmaz; sadece pozisyonun gerçek yapısını görünür kılar.</p>
+
+<h2>İlgili kavramlar</h2>
+<ul>
+<li>Reel faiz, TIPS getirisi ve altının fırsat maliyeti</li>
+<li>Dolar endeksi (DXY) ve metaller</li>
+<li>USDTRY, taşıma maliyeti ve kur riski</li>
+<li>Altın/gümüş oranı ve metaller arası göreli değer</li>
+</ul>
+
+<h2>Kaynakça</h2>
+<ol class="kaynakca">
+<li>World Gold Council, <em>Gold Demand Trends</em> ve merkez bankası rezerv alımları serileri, <a href="https://www.gold.org/">gold.org</a>.</li>
+<li>LBMA (London Bullion Market Association), altın ve gümüş gün sonu fiksaj fiyatları, <a href="https://www.lbma.org.uk/">lbma.org.uk</a>.</li>
+<li>FRED St. Louis Fed, DFII10 (10 yıl ABD reel getiri / TIPS) ve dolar endeksi serileri, <a href="https://fred.stlouisfed.org/">fred.stlouisfed.org</a>.</li>
+<li>TCMB EVDS, USDTRY günlük döviz kuru serisi, <a href="https://evds2.tcmb.gov.tr/">evds2.tcmb.gov.tr</a>.</li>
+<li>The Silver Institute, <em>World Silver Survey</em>, endüstriyel talep ve arz dengesi, <a href="https://www.silverinstitute.org/">silverinstitute.org</a>.</li>
+<li>Erb, C. ve Harvey, C. (2013). The Golden Dilemma. <em>Financial Analysts Journal</em>, 69(4), 10-42.</li>
+</ol>
+</div>
+
+<div class="card" style="margin-top:24px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent)">
+  <p style="margin:0;font-size:13px;color:#f5d28a;line-height:1.6">
+    <span style="color:var(--accent)">▸</span> <strong>Not:</strong> Bu sayfa eğitim ve araştırma amaçlıdır.
+    Yatırım tavsiyesi içermez. Anlatılan kavram veya stratejilerin geçmiş performansı, gelecek için garanti vermez.
+  </p>
+</div>
+<div class="card" style="margin-top:24px;border-left:2px solid var(--accent);background:var(--bg-1)"><div style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px">▸ İLGİLİ MAKALELER</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 0;border-bottom:1px dashed var(--border)"><a href="/egitim/carry-trade/" style="color:var(--text);font-weight:600;font-size:14px;text-decoration:none">▸ Carry Trade ve Gecelik Fonlama</a><div style="color:var(--text-dim);font-size:12.5px;margin-top:3px;line-height:1.5">USDTRY pozisyonunun görünmez maliyeti.</div></li><li style="padding:10px 0;border-bottom:1px dashed var(--border)"><a href="/egitim/tcmb-faiz-politikasi/" style="color:var(--text);font-weight:600;font-size:14px;text-decoration:none">▸ TCMB Faiz Politikası</a><div style="color:var(--text-dim);font-size:12.5px;margin-top:3px;line-height:1.5">Kuru ve reel faizi belirleyen ana motor.</div></li><li style="padding:10px 0;border-bottom:1px dashed var(--border)"><a href="/egitim/makro-gostergeler-rehberi/" style="color:var(--text);font-weight:600;font-size:14px;text-decoration:none">▸ Makro Göstergeler</a><div style="color:var(--text-dim);font-size:12.5px;margin-top:3px;line-height:1.5">Ons altını süren reel faiz ve dolar endeksi.</div></li></ul></div>
+<p style="margin-top:20px"><a href="/egitim/" style="color:var(--accent)">← Tüm eğitim sayfaları</a></p>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.06 · son güncelleme 2026-06-02 08:00 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · World Gold Council · LBMA</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

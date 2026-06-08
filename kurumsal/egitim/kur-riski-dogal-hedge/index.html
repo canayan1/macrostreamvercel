@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kur Riski ve Doğal Hedge — Hazineci için Hap Bilgi · Kalibre Markets</title>
+<meta name="description" content="Özel sektör hazinecisi için kur riski: işlem, çevrim ve ekonomik risk; bilanço vs nakit akışı; doğal hedge nasıl çalışır, ne zaman yetmez. Sade örnek ve kontrol listesiyle.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/kurumsal/egitim/kur-riski-dogal-hedge/">
+<meta property="og:title" content="Kur Riski ve Doğal Hedge — Hazineci için Hap Bilgi">
+<meta property="og:description" content="İşlem, çevrim ve ekonomik kur riski; bilanço vs nakit akışı; doğal hedge nasıl çalışır, ne zaman yetmez.">
+<meta property="og:url" content="https://kalibremarkets.com/kurumsal/egitim/kur-riski-dogal-hedge/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18;
+  --border:#26221d; --border-2:#36302a;
+  --text:#ebe3d3; --text-dim:#a89c83; --muted:#6f6553;
+  --accent:#ffa630; --accent-hot:#ff7a00; --green:#4ade80; --red:#ef4444;
+  --grid:rgba(255,166,48,.025);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { background:var(--bg); color:var(--text); font-family:'Inter Tight', ui-sans-serif, system-ui, sans-serif; font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
+.mono { font-family:'JetBrains Mono','Geist Mono',ui-monospace,monospace; }
+body { background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size:48px 48px; }
+a { color:inherit; text-decoration:none; }
+.cmdbar { display:flex; align-items:center; background:var(--bg-1); border-bottom:1px solid var(--border); height:46px; padding:0 18px; position:sticky; top:0; z-index:60; }
+.brand { display:flex; align-items:center; gap:10px; padding-right:18px; height:100%; border-right:1px solid var(--border); }
+.brand-mark { width:24px; height:24px; border:1.5px solid var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:12px; }
+.brand-name { font-weight:700; font-size:13px; letter-spacing:.12em; color:var(--text); }
+.brand-name .sub { color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:.06em; }
+.cmd-crumb { flex:1; min-width:0; padding-left:16px; font-size:11.5px; color:var(--muted); letter-spacing:.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cmd-crumb a:hover { color:var(--accent); }
+.cmd-back { margin-left:auto; padding-left:16px; font-size:12px; color:var(--text-dim); display:flex; align-items:center; height:100%; }
+.cmd-back:hover { color:var(--accent); }
+.disclaimer-banner { display:flex; align-items:center; gap:14px; background:linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%); border-bottom:1px solid var(--border-2); padding:10px 24px; font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
+.disclaimer-banner b { color:var(--accent); }
+main { padding:24px 24px 80px; max-width:820px; margin:0 auto; }
+.eyebrow { font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+h1 { font-size:29px; font-weight:600; color:var(--text); line-height:1.18; letter-spacing:-.015em; }
+.sub { color:var(--text-dim); font-size:14.5px; margin-top:10px; line-height:1.6; }
+.card { background:var(--surface); border:1px solid var(--border); padding:20px 22px; margin-top:20px; line-height:1.75; }
+h2 { font-size:19px; font-weight:600; margin:26px 0 11px; color:var(--text); line-height:1.3; letter-spacing:-.01em; }
+h3 { font-size:14px; font-weight:600; color:var(--text-dim); margin:16px 0 6px; }
+p { margin-bottom:12px; line-height:1.7; font-size:14.5px; color:var(--text-dim); }
+p strong, li strong { color:var(--text); }
+ul, ol { margin:0 0 12px 20px; }
+li { font-size:14px; color:var(--text-dim); line-height:1.65; margin-bottom:7px; }
+.formula { font-family:'JetBrains Mono',monospace; background:var(--bg-1); border-left:2px solid var(--accent); padding:12px 14px; font-size:13px; color:var(--text); margin:6px 0 14px; }
+table.grid { width:100%; border-collapse:collapse; font-size:12.5px; margin:8px 0 14px; }
+table.grid th, table.grid td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+table.grid th { color:var(--muted); font-weight:500; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+table.grid td strong { color:var(--text); }
+.box { background:rgba(255,166,48,.06); border:1px solid rgba(255,166,48,.28); border-left:2px solid var(--accent); padding:14px 16px; margin:14px 0; font-size:13.5px; color:var(--text-dim); line-height:1.7; }
+.box strong { color:var(--text); }
+.kaynakca { padding-left:20px; font-size:13px; color:var(--text-dim); line-height:1.7; }
+.kaynakca li { margin-bottom:6px; }
+.relwrap { background:var(--bg-1); border:1px solid var(--border); border-left:2px solid var(--accent); padding:14px 18px; margin-top:24px; }
+.relwrap .h { font-size:10px; letter-spacing:.14em; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+.relwrap a { color:var(--text); font-weight:600; font-size:14px; }
+footer.pf-foot { margin-top:30px; border-top:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:11px; letter-spacing:.04em; max-width:820px; margin:30px auto 0; flex-wrap:wrap; }
+footer.pf-foot a { color:var(--text-dim); } footer.pf-foot a:hover { color:var(--accent); }
+footer.pf-foot b { color:var(--text); }
+@media (max-width:680px){ main { padding:16px 14px 60px; } h1 { font-size:23px; } .cmd-crumb { display:none; } }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kurumsal/egitim/" style="color:inherit">Hazineci Eğitim</a> › Kur riski ve doğal hedge</div>
+  <a href="/kurumsal/egitim/" class="cmd-back">← Seriye dön</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ HAZİNECİ İÇİN HAP BİLGİ · 01</div>
+  <h1>Kur Riski ve Doğal Hedge</h1>
+  <p class="sub">Türkiye gibi kur oynaklığı yüksek bir ekonomide, özel sektör hazinecisinin işinin yarısı kuru yönetmektir. Ama "kur riski" tek bir şey değildir — üç farklı biçimi vardır ve çoğu şirket yalnızca en görünür olanını yönetir. Bu yazı, riskin türlerini ayrıştırır ve en ucuz korunma yöntemini —<strong>doğal hedge</strong>— ne zaman işe yaradığını, ne zaman yetmediğini gösterir.</p>
+
+  <div class="card">
+    <h2>Kur riski üç biçimde gelir</h2>
+    <p>"Dövizimiz var, riskimiz yok" cümlesi çoğu zaman eksiktir. Kur riskini üçe ayırmak gerekir:</p>
+    <table class="grid">
+      <thead><tr><th>Risk türü</th><th>Nedir</th><th>Örnek</th></tr></thead>
+      <tbody>
+        <tr><td><strong>İşlem riski</strong><br>(transaction)</td><td>Sözleşmesi yapılmış, henüz tahsil/ödeme yapılmamış döviz kalemleri.</td><td>3 ay vadeli 1 mn € alacak; tahsilata kadar kur değişir.</td></tr>
+        <tr><td><strong>Çevrim riski</strong><br>(translation)</td><td>Bilançodaki döviz varlık/yükümlülüklerin TL'ye çevriminden doğan muhasebesel etki.</td><td>USD kredi; kur artınca TL bilançoda kur farkı zararı.</td></tr>
+        <tr><td><strong>Ekonomik risk</strong><br>(economic)</td><td>Kurun rekabet gücünü, fiyatlamayı ve talebi uzun vadede değiştirmesi.</td><td>TL aşırı değerlenince ihracatın pahalı kalması.</td></tr>
+      </tbody>
+    </table>
+    <p>Hazinenin günlük işi çoğunlukla <strong>işlem riski</strong>dir; ama CFO'nun gözü <strong>çevrim</strong> (bilanço/kur farkı) ve <strong>ekonomik</strong> (rekabet) riskte olmalıdır. Üçü farklı araçlarla yönetilir.</p>
+
+    <h2>Önce ölç: net döviz pozisyonu</h2>
+    <p>Korunmadan önce <strong>açık pozisyonu</strong> bilmek gerekir. En sade hâliyle:</p>
+    <div class="formula">Net Döviz Pozisyonu = Döviz Varlıklar − Döviz Yükümlülükler<br>(her para birimi için ayrı ayrı)</div>
+    <p>Burada kritik nokta: <strong>para birimi bazında</strong> ve <strong>vade bazında</strong> bakmak. 1 mn € alacağınız ile 1 mn $ borcunuz birbirini "kapatmaz" — EUR ve USD ayrı risklerdir, üstüne EUR/USD çaprazı da değişir. Aynı şekilde 3 aylık alacak ile 12 aylık borç vade olarak uyumsuzdur.</p>
+
+    <h2>Doğal hedge: en ucuz korunma</h2>
+    <p><strong>Doğal hedge</strong>, aynı para biriminde hem gelir hem gider yaratarak riski kendiliğinden azaltmaktır — türev ürün, komisyon, teminat gerektirmez. Mantığı basit: kur oynadığında gelir tarafındaki kayıp/kazanç, gider tarafındakini dengeler.</p>
+    <h3>Klasik örnek</h3>
+    <p>Bir üretici Avrupa'ya ihracat yapıyor (€ gelir) ve hammaddesini € ile ithal ediyor (€ gider). Euro/TL ne yöne giderse gitsin, gelir ve giderin net farkı (marj) korunur. Sadece <strong>net</strong> açık kadar riske maruz kalır, brüt ciro kadar değil.</p>
+    <div class="box">
+      <strong>Pratik doğal hedge yolları:</strong> gelirle aynı para biriminde tedarik/borçlanmak · döviz gelirini döviz kredisiyle eşleştirmek · döviz cinsi maliyetleri olan tedarikçilerle aynı para biriminde sözleşme · fiyat listesini gelir para biriminde tutmak.
+    </div>
+
+    <h2>Doğal hedge ne zaman yetmez?</h2>
+    <p>Doğal hedge güçlüdür ama her açığı kapatmaz. Şu durumlarda <strong>finansal hedge</strong> (forward, swap, opsiyon) devreye girer:</p>
+    <ul>
+      <li><strong>Vade uyumsuzluğu:</strong> gelir 6 ay sonra, gider bugün — zamanlama farkı risk yaratır.</li>
+      <li><strong>Tutar uyumsuzluğu:</strong> gelir 10 mn €, gider 3 mn € — kalan 7 mn € açık kalır.</li>
+      <li><strong>Para birimi uyumsuzluğu:</strong> gelir €, borç $ — araya EUR/USD riski girer.</li>
+      <li><strong>Tek seferlik büyük kalemler:</strong> makine ithalatı, temettü transferi gibi düzensiz işlemler.</li>
+    </ul>
+    <p>Yani sıra şudur: <strong>önce doğal hedge ile açığı küçült, kalan net açığı finansal araçla yönet.</strong> Tüm riski türevle kapatmaya çalışmak hem pahalıdır hem gereksizdir.</p>
+
+    <h2>Sayısal mini örnek</h2>
+    <p>Diyelim aylık 5 mn € ihracat geliriniz, 3 mn € € cinsi maliyetiniz var. Doğal hedge sayesinde brüt 5 mn € değil, yalnızca <strong>net 2 mn €</strong> açık pozisyon taşırsınız. Euro/TL %10 oynarsa, riskiniz 5 mn € üzerinden değil 2 mn € üzerinden gerçekleşir — maruziyet <strong>%60 azalmış</strong> olur, hiçbir türev ürün almadan. Kalan 2 mn €'luk net açığı, isterseniz forward ile sabitlersiniz.</p>
+
+    <h2>Hazineci kontrol listesi</h2>
+    <ol>
+      <li>Riski <strong>üçe ayır</strong>: işlem / çevrim / ekonomik. Hangisini yönetiyorsun?</li>
+      <li>Net döviz pozisyonunu <strong>para birimi ve vade bazında</strong> çıkar.</li>
+      <li>Önce <strong>doğal hedge</strong> ile brüt açığı küçült.</li>
+      <li>Kalan net açığı finansal araçla yönet — hepsini değil, <strong>net</strong> olanı.</li>
+      <li>EUR ve USD'yi <strong>ayrı</strong> izle; çapraz (EUR/USD) riskini unutma.</li>
+      <li>Vade uyumunu kontrol et: gelir ne zaman, gider ne zaman?</li>
+      <li>Senaryo çalış: kur %10/%20 oynarsa nakit akışın ne olur?</li>
+    </ol>
+
+    <h2>Sık yapılan hatalar</h2>
+    <ul>
+      <li>"Dövizimiz var, korunmamıza gerek yok." — Brüt değil <strong>net</strong> ve <strong>vade</strong> önemlidir.</li>
+      <li>EUR alacağı USD borcuyla "kapatmak" — farklı para birimi, araya çapraz risk girer.</li>
+      <li>Tüm cirot kadar türev almak — gereksiz maliyet; sadece net açığı yönet.</li>
+      <li>Sadece bugünkü kura bakmak — risk, zamanlama (vade) farkından doğar.</li>
+      <li>Çevrim (bilanço) riskini nakit akışı riskiyle karıştırmak — biri muhasebesel, diğeri nakit.</li>
+    </ul>
+
+    <div class="box">
+      <strong>Özet:</strong> Kur riski tek bir şey değildir; önce türünü ve net pozisyonunu ölç. En ucuz korunma doğal hedgedir (aynı para biriminde gelir-gider). Doğal hedge brüt açığı küçültür; kalan net açığı —vade, tutar veya para birimi uyumsuzluğu varsa— finansal araçla yönetirsin. Bu yazı bir yöntem dayatmaz; pozisyonun gerçek yapısını görünür kılar.
+    </div>
+
+    <h2>Kaynakça ve ileri okuma</h2>
+    <ol class="kaynakca">
+      <li>TCMB, döviz kurları ve reel efektif döviz kuru serileri (EVDS).</li>
+      <li>BIS (Bank for International Settlements), kurumsal döviz riski ve hedging üzerine yayınlar.</li>
+      <li>IFRS / TFRS, döviz işlemleri ve çevrim (IAS 21 / TMS 21) muhasebesi.</li>
+      <li>Kalibre Markets — <a href="/egitim/carry-trade/" style="color:var(--accent)">Carry Trade ve gecelik fonlama</a> (faiz–kur ilişkisi için).</li>
+    </ol>
+  </div>
+
+  <div class="relwrap">
+    <div class="h">▸ SERİDE SONRAKİ</div>
+    <a>02 · Vadeli koruma araçları: forward, swap, opsiyon <span style="color:var(--muted);font-weight:400;font-size:12px">— yakında</span></a>
+    <div style="margin-top:10px"><a href="/kurumsal/egitim/" style="color:var(--accent);font-weight:400;font-size:13px">← Tüm hap bilgi serisi</a></div>
+  </div>
+
+  <div class="relwrap" style="background:rgba(255,166,48,.05)">
+    <div class="h">▸ EKİBİNİZ İÇİN</div>
+    <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.7">Bu seriyi ekibinize özel bir eğitim paketine dönüştürebiliriz. Ücretsiz pilotla başlayın: <a href="/kurumsal/#pilot" style="color:var(--accent)">pilot başvurusu →</a></p>
+  </div>
+</main>
+
+<footer class="pf-foot">
+  <div><div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div><div>Hazineci için hap bilgi serisi</div></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="/kurumsal/">Kurumsal</a><a href="/kurumsal/egitim/">Seri</a><a href="/metodoloji/">Metodoloji</a><a href="/iletisim/">İletişim</a></div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">⚠ Yatırım tavsiyesi değildir.<br>Kalibre Markets © 2026.</div>
+</footer>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

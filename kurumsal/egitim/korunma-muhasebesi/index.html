@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Korunma Muhasebesi (TFRS 9): Nakit Akışı ve Gerçeğe Uygun Değer Korunması · Kurumsal · Kalibre Markets</title>
+<meta name="description" content="Reel sektör hazinesi için TFRS 9 korunma muhasebesi: muhasebe uyumsuzluğu sorunu, üç korunma türü, nitelikli korunma koşulları (madde 6.4.1), nakit akışı korunmasının finansal tablolara etkisi ve uygulamalı örnek.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://kalibremarkets.com/kurumsal/egitim/korunma-muhasebesi/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/kurumsal-egitim.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kurumsal/egitim/" style="color:inherit">Kurumsal Eğitim</a> › Korunma muhasebesi (TFRS 9)</div>
+  <a href="/kurumsal/egitim/" class="cmd-back">← Seriye dön</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ KURUMSAL EĞİTİM · TFRS RİSK MODÜLÜ</div>
+  <h1>Korunma Muhasebesi (TFRS 9): Ekonomik Korumayı Tabloya Taşımak</h1>
+  <p class="sub">Bir firma kuru ya da faizi forward ve swap ile koruduğunda, ekonomik koruma ile muhasebe çoğu zaman aynı dönemde buluşmaz: türev gerçeğe uygun değeriyle hemen kâr-zarara yansır, korunan kalem (örneğin gelecekteki ihracat geliri) ise henüz tabloda yoktur. Bu zamanlama farkı, gerçekte korunmuş bir pozisyonu raporda dalgalı gösterir. <strong>Korunma muhasebesi</strong> tam da bu farkı kapatmak için vardır.</p>
+
+  <div class="card">
+    <h2>Sorun: muhasebe uyumsuzluğu</h2>
+    <p>TFRS 9'a göre bir türev (forward, swap, opsiyon) <strong>gerçeğe uygun değeriyle ölçülür ve değer değişimi doğrudan kâr-zarara</strong> gider. Oysa korunan riskin kaynağı çoğu zaman henüz tabloda olmayan bir kalemdir: üç ay sonra tahsil edilecek ihracat geliri, gelecekte ödenecek ithalat faturası ya da değişken faizli bir kredinin gelecekteki faizi.</p>
+    <p>Sonuç bir <strong>uyumsuzluk</strong>tur: türevin değer değişimi bugün kâr-zararı oynatır, korunan kalemin etkisi ise daha sonra gelir. Firma riskini ekonomik olarak kapatmış olsa bile, finansal tablo dönem içinde dalgalı görünür. Korunma muhasebesi, türev ile korunan kalemin tabloya <strong>aynı dönemde</strong> yansımasını sağlayarak bu yapay dalgalanmayı giderir.</p>
+
+    <h2>Üç korunma türü</h2>
+    <table class="grid">
+      <thead><tr><th>Tür</th><th>Neyi korur</th><th>Etkin kısım nereye gider</th><th>Reel sektörde</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nakit akışı korunması</strong></td><td>Gelecekteki nakit akışındaki değişkenlik (öngörülen satış, değişken faiz)</td><td>Diğer kapsamlı gelir (özkaynakta korunma yedeği), sonra kâr-zarara aktarılır</td><td>En yaygın</td></tr>
+        <tr><td><strong>Gerçeğe uygun değer korunması</strong></td><td>Bilançodaki bir kalemin gerçeğe uygun değerindeki değişim (sabit faizli borç gibi)</td><td>Hem araç hem korunan kalem kâr-zarara</td><td>Daha seyrek</td></tr>
+        <tr><td><strong>Net yatırım korunması</strong></td><td>Yurtdışı işletmedeki net yatırımın kur riski</td><td>Diğer kapsamlı gelir</td><td>Yurtdışı iştiraki olanlarda</td></tr>
+      </tbody>
+    </table>
+    <p>Reel sektörde başat senaryo <strong>nakit akışı korunması</strong>dır: öngörülen döviz gelirini ya da giderini, değişken faizli bir kredinin faizini sabitlemek.</p>
+
+    <h2>Nitelikli korunma: üç koşul</h2>
+    <p>Korunma muhasebesi otomatik değildir; firma bunu <strong>seçer</strong> ve belirli koşulları sağlamak zorundadır. TFRS 9 madde 6.4.1, bir korunma ilişkisinin nitelikli sayılması için üç koşul arar:</p>
+    <ul>
+      <li><strong>Uygun araç ve kalem:</strong> hem korunma aracı (genellikle bir türev) hem de korunan kalem standardın tanımına uymalıdır.</li>
+      <li><strong>Resmi tanımlama ve belgeleme:</strong> ilişki, korunmanın <strong>başında</strong> yazılı olarak tanımlanır; risk yönetimi amacı, korunan risk, araç ve etkinliğin nasıl değerlendirileceği belgelenir. Belgeleme yoksa korunma muhasebesi de yoktur.</li>
+      <li><strong>Etkinlik koşulları:</strong> korunan kalem ile araç arasında <strong>ekonomik ilişki</strong> bulunmalı; <strong>kredi riski</strong> değer değişimine hakim olmamalı; tanımlanan <strong>korunma oranı</strong> firmanın fiilen kullandığı oranla tutarlı olmalıdır.</li>
+    </ul>
+    <div class="box"><strong>Önemli değişim:</strong> TFRS 9, eski standardın katı "%80-125 etkinlik bandı" testini kaldırdı. Etkinlik artık mekanik bir orana değil, <strong>ilkeye</strong> dayanır: araç ile kalem arasında gerçek bir ekonomik ilişki var mı? Bu, korunma muhasebesini reel sektörün gerçek risk yönetimine yaklaştırır.</div>
+
+    <h2>Nakit akışı korunması nasıl işler?</h2>
+    <p>Mekanik basittir: korunma aracının değer değişiminin <strong>etkin kısmı</strong> doğrudan kâr-zarara değil, önce <strong>diğer kapsamlı gelire</strong> (özkaynak altındaki korunma yedeğine) yazılır. Korunan kalem kâr-zararı etkilediğinde (örneğin satış muhasebeleşince), biriken tutar yedekten alınıp <strong>aynı döneme</strong> aktarılır. Etkin olmayan kısım ise anında kâr-zarara gider.</p>
+    <h3>Sayısal örnek</h3>
+    <p>Bir ihracatçı, üç ay sonra <strong>2 milyon avro</strong> gelir bekliyor ve bu geliri bugünkü forward kurundan satarak sabitliyor. Forward kuru 53,50 olsun.</p>
+    <div class="formula">Sabitlenen gelir = 2.000.000 € × 53,50 = 107,0 milyon ₺
+Korunma süresince forward değer değişimi → diğer kapsamlı gelir
+Satış muhasebeleşince → yedekten alınıp hasılata aktarılır</div>
+    <p>Üç ay boyunca EUR/TRY ne yöne giderse gitsin, forwardın değer değişimi özkaynakta bekler; kâr-zararı dönem içinde oynatmaz. Satış gerçekleştiğinde firma, oynak ara değerleri değil, <strong>sabitlediği kuru</strong> raporlar. Korunma muhasebesi olmasaydı, aynı forward üç ay boyunca kâr-zararı dalgalandıracaktı.</p>
+
+    <h2>Gerçeğe uygun değer korunması</h2>
+    <p>Burada mantık terstir: korunan kalem (örneğin sabit faizli bir borç) normalde gerçeğe uygun değer değişimini kâr-zarara yansıtmazken, korunma süresince <strong>korunan riske ilişkin değer değişimi de kâr-zarara</strong> alınır. Böylece araç ile kalem aynı tabloda karşılaşır ve birbirini dengeler. Reel sektörde nakit akışı korunmasına göre daha seyrek kullanılır.</p>
+
+    <h2>Korunmanın sonlandırılması</h2>
+    <p>Korunma ilişkisi süresiz değildir. Risk yönetimi amacı değişir, ekonomik ilişki ortadan kalkar ya da araç sona ererse korunma muhasebesi <strong>ileriye dönük</strong> olarak durdurulur. Nakit akışı korunmasında özkaynakta biriken tutarın akıbeti, korunan işlemin hâlâ gerçekleşmesinin beklenip beklenmediğine bağlıdır; beklenmiyorsa kâr-zarara alınır.</p>
+
+    <h2>Reel sektör için pratik</h2>
+    <ol>
+      <li>Önce <strong>ekonomik korumayı</strong> kur: net pozisyonu ve gelecekteki nakit akışını belirle, aracı (forward, swap) buna göre seç.</li>
+      <li>Korunma muhasebesi istiyorsan, ilişkiyi <strong>işlemin başında</strong> yazılı tanımla ve belgele; sonradan belgeleme kabul edilmez.</li>
+      <li>Korunan riski netleştir: yalnızca kur mu, yalnızca faiz mi, bir risk bileşeni mi.</li>
+      <li>Etkinliği ilke bazında değerlendir: araç ile kalem arasında gerçek ekonomik ilişki var mı, kredi riski baskın mı.</li>
+      <li>Korunma muhasebesi <strong>opsiyoneldir</strong>: belgeleme yükünü taşımak istemeyen firma, ekonomik korumayı sürdürüp kâr-zarar dalgalanmasını kabul edebilir. Bu bir politika kararıdır.</li>
+    </ol>
+
+    <h2>Sık yapılan hatalar</h2>
+    <ul>
+      <li>Korunma muhasebesini, <strong>belgelemeyi</strong> işlemin başında yapmadan uygulamaya çalışmak; eksik belgeleme korunma muhasebesini geçersiz kılar.</li>
+      <li>Ekonomik koruma ile korunma muhasebesini karıştırmak: forward riski kapatır, ama muhasebe sonucu ancak belgelemeyle düzelir.</li>
+      <li>Etkin olmayan kısmı göz ardı etmek; o kısım her dönem kâr-zarara gider.</li>
+      <li>Korunma oranını risk yönetiminden kopuk seçmek; tanımlanan oran fiilen kullanılanla tutarlı olmalıdır.</li>
+      <li>Sonlandırma kurallarını atlamak; ilişki bozulduğunda muhasebe ileriye dönük durur.</li>
+    </ul>
+
+    <div class="box"><strong>Özet:</strong> Korunma muhasebesi, ekonomik olarak korunmuş bir pozisyonun finansal tabloda da korunmuş görünmesini sağlar. TFRS 9 üç tür tanır (nakit akışı, gerçeğe uygun değer, net yatırım); nitelikli sayılmak için resmi belgeleme ve ekonomik ilişki şarttır (madde 6.4.1); nakit akışı korunmasında etkin kısım diğer kapsamlı gelirde bekler ve korunan kalemle aynı dönemde kâr-zarara aktarılır. Uygulaması opsiyoneldir ve bir belgeleme disiplini ister. Bu yazı uygulama dayatmaz; mantığı ve koşulları görünür kılar.</div>
+
+    <h2>Kaynakça</h2>
+    <ol class="kaynakca">
+      <li>KGK, <em>TFRS 9 Finansal Araçlar</em>, Bölüm 6 (Korunma Muhasebesi; özellikle madde 6.4.1 nitelikli korunma koşulları ve 6.5 nakit akışı korunması), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+      <li>KGK, <em>TFRS 7 Finansal Araçlar: Açıklamalar</em> (korunma muhasebesine ilişkin açıklamalar, madde 21A-24F), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+      <li>KGK, <em>TMS 1 Finansal Tabloların Sunuluşu</em> (diğer kapsamlı gelir ve özkaynak sunumu), <a href="https://www.kgk.gov.tr/" target="_blank" rel="noopener">kgk.gov.tr</a>.</li>
+    </ol>
+  </div>
+
+  <div class="relwrap">
+    <div class="h">▸ SERİDE İLGİLİ</div>
+    <a href="/kurumsal/egitim/kur-riski-dogal-hedge/">Kur riski ve doğal hedge →</a>
+    <div style="margin-top:8px"><a href="/kurumsal/egitim/tfrs-risk-olcutleri/">Risk ölçütleri: duyarlılık, VaR, stres testi (TFRS 7) →</a></div>
+    <div style="margin-top:10px"><a href="/kurumsal/egitim/" style="color:var(--accent);font-weight:400;font-size:13px">← Tüm kurumsal eğitim serisi</a></div>
+  </div>
+
+  <div class="relwrap" style="background:rgba(255,166,48,.05)">
+    <div class="h">▸ EKİBİNİZ İÇİN</div>
+    <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.7">Korunma politikanızı ve belgeleme disiplinini ekibinize özel bir oturuma dönüştürebiliriz. Ücretsiz pilotla başlayın: <a href="/kurumsal/#pilot" style="color:var(--accent)">pilot başvurusu →</a></p>
+  </div>
+</main>
+
+<footer class="pf-foot">
+  <div><div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div><div>Kurumsal eğitim · TFRS risk modülü</div></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="/kurumsal/">Kurumsal</a><a href="/kurumsal/egitim/">Seri</a><a href="/metodoloji/">Metodoloji</a><a href="/iletisim/">İletişim</a></div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">⚠ Eğitim içeriğidir; muhasebe ya da yatırım tavsiyesi değildir.<br>Kalibre Markets © 2026.</div>
+</footer>
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>
