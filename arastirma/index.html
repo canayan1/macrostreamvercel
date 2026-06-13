@@ -405,7 +405,8 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Araştırma</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div><div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Araştırma</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
   <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
@@ -443,7 +444,28 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     }
   } catch(e) {}
 })();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
 </script>
+
 <main>
 
 <div class="wrap">
@@ -459,7 +481,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
 
   <!-- Türkiye Raporu — büyük öne çıkma -->
-  <a href="/makro-raporu/" class="panel" style="display:block;padding:28px 32px;text-decoration:none;color:inherit;background:linear-gradient(135deg,rgba(255,166,48,.08),rgba(255,166,48,.01));border-left:4px solid var(--accent);margin-bottom:22px">
+  <a href="/makro-raporu/2026-q2/" class="panel" style="display:block;padding:28px 32px;text-decoration:none;color:inherit;background:linear-gradient(135deg,rgba(255,166,48,.08),rgba(255,166,48,.01));border-left:4px solid var(--accent);margin-bottom:22px">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
       <div style="flex:1;min-width:280px">
         <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ Bu çeyreğin ana çalışması</div>
@@ -480,19 +502,10 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       <div style="font-size:32px;margin-bottom:10px">📰</div>
       <h3 style="margin:0 0 6px;font-size:17px;font-weight:600;color:var(--text)">Periyodik Bültenler</h3>
       <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.55">
-        Günlük (hisse, döviz, nabız), haftalık (sektör rotasyon, sentiment, TR makro) ve
+        Günlük (hisse, döviz, nabız, TCMB), haftalık (sektör rotasyon, TR makro) ve
         çeyreklik (World Bank) yayınlar. Her bülten kendi takviminde otomatik güncellenir.
       </p>
-      <div style="margin-top:10px;font-size:11.5px;color:var(--accent);letter-spacing:.04em">32 bülten arşivde →</div>
-    </a>
-
-    <a href="/haftanin-haberleri/2026-06-06/" class="panel" style="display:block;padding:20px 22px;text-decoration:none;color:inherit">
-      <div style="font-size:32px;margin-bottom:10px">📰</div>
-      <h3 style="margin:0 0 6px;font-size:17px;font-weight:600;color:var(--text)">Haftanın Haberleri</h3>
-      <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.55">
-        Saygıdeğer global yayınlardan (FT, Bloomberg, Reuters, WSJ) haftalık manşet sentezi ve her başlık için piyasa etkisi yorumu.
-      </p>
-      <div style="margin-top:10px;font-size:11.5px;color:var(--accent);letter-spacing:.04em">Bu haftanın özetine git →</div>
+      <div style="margin-top:10px;font-size:11.5px;color:var(--accent);letter-spacing:.04em">127 bülten arşivde →</div>
     </a>
 
     <a href="/haftanin-grafikleri/" class="panel" style="display:block;padding:20px 22px;text-decoration:none;color:inherit">
@@ -531,8 +544,8 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-27 08:00 TR</div>
-    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP</div>
+    <div>v2026.05 · son güncelleme 2026-06-12 17:12 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
     <a href="/iletisim/">İletişim</a>
@@ -553,8 +566,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
        gap:14px;flex-wrap:wrap;justify-content:space-between">
     <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
-      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
-      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
     </div>
     <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
             padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;

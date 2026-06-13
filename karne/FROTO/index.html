@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>FROTO Hisse Karnesi · Reel Getiri ve Makro DNA — Kalibre Markets</title>
+
+<meta name="description" content="FROTO (Ford Otosan) için dört mercekli getiri analizi: nominal, enflasyondan arındırılmış reel, dolar ve gram altın bazlı. Makro duyarlılık betaları ve risk profili.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="/karne/FROTO/">
+<meta name="keywords" content="FROTO reel getiri, FROTO dolar bazlı, FROTO analiz, hisse karnesi">
+<meta property="og:title" content="FROTO Hisse Karnesi · Reel Getiri ve Makro DNA — Kalibre Markets">
+<meta property="og:description" content="FROTO (Ford Otosan) için dört mercekli getiri analizi: nominal, enflasyondan arındırılmış reel, dolar ve gram altın bazlı. Makro duyarlılık betaları ve risk profili.">
+<meta property="og:url" content="/karne/FROTO/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FROTO Hisse Karnesi · Reel Getiri ve Makro DNA — Kalibre Markets">
+<meta name="twitter:description" content="FROTO (Ford Otosan) için dört mercekli getiri analizi: nominal, enflasyondan arındırılmış reel, dolar ve gram altın bazlı. Makro duyarlılık betaları ve risk profili.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── TOP BAR (slim terminal başlığı) ──────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 46px; padding: 0 18px; position: sticky; top: 0; z-index: 60;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding-right: 18px; height: 100%; border-right: 1px solid var(--border);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 24px; height: 24px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-crumb {
+  flex: 1; min-width: 0; padding-left: 16px;
+  font-size: 11.5px; color: var(--muted); letter-spacing: .04em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cmd-crumb a { color: inherit; }
+.cmd-crumb a:hover { color: var(--accent); }
+.cmd-actions { display: flex; align-items: center; gap: 0; margin-left: auto; height: 100%; }
+.cmd-tr {
+  padding: 0 14px; font-size: 12px; color: var(--text-dim); cursor: pointer;
+  border-left: 1px solid var(--border); height: 100%; display: flex; align-items: center;
+}
+.cmd-tr:hover { color: var(--accent); }
+.cmd-back {
+  padding-left: 16px; font-size: 12px; color: var(--text-dim);
+  white-space: nowrap; text-decoration: none; display: flex; align-items: center; height: 100%;
+}
+.cmd-back:hover { color: var(--accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .cmdbar { padding: 0 12px; }
+  .cmd-crumb { display: none; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  /* Mobil: disclaimer flex → block, satır sarması doğal aksın, üst üste binme olmasın */
+  .disclaimer-banner {
+    display: block;
+    line-height: 1.55;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding-right: 12px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"></div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
+</script>
+
+<main>
+
+<div class="wrap">
+  <div style="display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:16px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">▸ HİSSE KARNESİ · KALİBRE DNA</div>
+      <h1 style="font-weight:500;font-size:30px;color:var(--text);margin-bottom:6px">FROTO <span style="color:var(--text-dim);font-size:17px;font-weight:400">Ford Otosan</span></h1>
+      <p style="color:var(--text-dim);font-size:13.5px;max-width:70ch;line-height:1.65">Son 3 yılda nominal <b class="up">+%53,9</b>, enflasyondan arındırılmış <b class="dn">−%49,2</b>. Aşağıda aynı hissenin getirisi dört mercekte, makro karakteri ve risk profili; tamamı gerçek seriden hesaplanır.</p>
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-align:right">
+      <div>Son fiyat <b class="num" style="color:var(--text)">86,55 ₺</b></div>
+      <div style="margin-top:4px">Fiyat verisi: <b style="color:var(--text-dim)">11 Haziran 2026</b></div>
+      <div>TÜFE: <b style="color:var(--text-dim)">Mayıs 2026</b></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:18px">
+    <div class="panel-h"><span class="ttl">▣ Dört Mercekli Getiri</span><span style="color:var(--muted)">aynı hisse, dört gerçeklik</span></div>
+    <div style="overflow-x:auto"><table class="grid" style="width:100%;min-width:560px">
+      <thead><tr><th class="l">Pencere</th><th>Nominal TL</th><th>Reel (TÜFE)</th><th>Dolar bazlı</th><th>Gram altın bazlı</th></tr></thead>
+      <tbody><tr><td class="l"><b>1 yıl</b></td><td class="num up">+%10,3</td><td class="num dn">−%15,7</td><td class="num dn">−%6,3</td><td class="num dn">−%23,9</td></tr><tr><td class="l"><b>3 yıl</b></td><td class="num up">+%53,9</td><td class="num dn">−%49,2</td><td class="num dn">−%21,1</td><td class="num dn">−%62,3</td></tr><tr><td class="l"><b>5 yıl</b></td><td class="num up">+%530,3</td><td class="num dn">−%15,8</td><td class="num up">+%15,1</td><td class="num dn">−%47,2</td></tr></tbody>
+    </table></div>
+    <p class="muted" style="font-size:11px;padding:10px 14px 12px;line-height:1.6">Reel getiri TÜFE endeksiyle (2025=100, kaynak TCMB EVDS) arındırılır; dolar bazı USD/TRY ile, altın bazı gram altın (ons × USD/TRY ÷ 31,1035) ile hesaplanır. Nominal kazanç reel kayıpla birlikte görülebilir; mercek farkının anlamı budur.</p>
+  </div>
+
+  <div class="panel" style="margin-bottom:18px">
+    <div class="panel-h"><span class="ttl">▣ Makro Duyarlılık DNA'sı</span><span style="color:var(--muted)">son 2 yıl, günlük veriyle basit regresyon</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;padding:14px">
+    <div style="background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:14px 16px">
+      <div style="font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase">Piyasa betası (XU100)</div>
+      <div style="font-family:'Geist Mono',monospace;font-size:22px;font-weight:600;color:var(--text);margin-top:6px">0,93</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">korelasyon 0,68 · endeksle uyumlu</div>
+      <div style="font-size:10.5px;color:var(--muted);margin-top:4px">Endeks %1 hareket edince bu hisse tipik ne yapar</div>
+    </div>
+    <div style="background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:14px 16px">
+      <div style="font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase">Kur duyarlılığı (USD/TRY)</div>
+      <div style="font-family:'Geist Mono',monospace;font-size:22px;font-weight:600;color:var(--text);margin-top:6px">0,18</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">korelasyon 0,02 · kura belirgin tepki yok (zayıf ilişki)</div>
+      <div style="font-size:10.5px;color:var(--muted);margin-top:4px">Kur %1 yükselince tipik tepki</div>
+    </div>
+    <div style="background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:14px 16px">
+      <div style="font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase">Dolar Endeksi (DXY)</div>
+      <div style="font-family:'Geist Mono',monospace;font-size:22px;font-weight:600;color:var(--text);margin-top:6px">-0,41</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">korelasyon -0,08 · güçlü dolardan olumsuz etkilenir (zayıf ilişki)</div>
+      <div style="font-size:10.5px;color:var(--muted);margin-top:4px">Küresel dolar gücüne tepki</div>
+    </div>
+    <div style="background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:14px 16px">
+      <div style="font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase">Risk iştahı (VIX)</div>
+      <div style="font-family:'Geist Mono',monospace;font-size:22px;font-weight:600;color:var(--text);margin-top:6px">-0,04</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">korelasyon -0,17 · VIX&#x27;e belirgin tepki yok</div>
+      <div style="font-size:10.5px;color:var(--muted);margin-top:4px">Küresel korku endeksi %1 artınca tepki</div>
+    </div></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:18px">
+    <div class="panel-h"><span class="ttl">▣ Risk Profili</span><span style="color:var(--muted)">son 1 yıl</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;padding:0">
+      <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:10.5px;color:var(--text-dim)">Yıllık oynaklık (20g)</div><div class="num" style="font-size:19px;color:var(--text);margin-top:5px">+%40,9</div></div>
+      <div style="padding:14px 16px;border-right:1px solid var(--border)"><div style="font-size:10.5px;color:var(--text-dim)">52 hafta aralık konumu</div><div class="num" style="font-size:19px;color:var(--text);margin-top:5px">%22</div><div style="font-size:10px;color:var(--muted)">74,12 – 129,84</div></div>
+      <div style="padding:14px 16px"><div style="font-size:10.5px;color:var(--text-dim)">Azami geri çekilme (1y)</div><div class="num dn" style="font-size:19px;margin-top:5px">−%36,6</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:2px solid var(--accent)"><h3 style="margin-top:0">Kalibre yorumu</h3><p>Ford Otosan&#x27;ın son üç yıldaki getirileri nominalde %53,9 artış gösterirken, reel olarak %49,2 düşüş kaydetmiş, dolar bazında ise %21,1 değer kaybetmiştir. Son bir yılda da benzer bir eğilimle nominal getiri %10,3 iken, reel getiri %15,7 gerilemiş, dolar bazında ise %6,3 düşüş yaşanmıştır. Şirket, Borsa İstanbul&#x27;da %0,93 beta ve %0,68 korelasyon ile piyasa hareketleriyle uyumlu bir performans sergilemiş, ancak döviz kurundaki değişimlere ve Dolar Endeksi&#x27;ndeki hareketlere karşı belirgin bir duyarlılık göstermemiştir. Yıllık oynaklığı %40,9 olan Ford Otosan, son 52 haftada %22 seviyesinde konumlanmış ve azami %36,6 geri çekilme yaşamıştır.</p><p class="muted" style="font-size:11px;margin-top:8px">AI destekli sentez; yalnızca yukarıdaki gerçek sayılara dayanır. Yatırım tavsiyesi değildir.</p></div>
+
+  <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+    <div><b style="color:var(--text)">Bu hissede 5 strateji ne yaptı?</b><div class="muted" style="font-size:12px;margin-top:3px">Strateji laboratuvarının FROTO üzerindeki 5 yıllık gerçek sonuçları</div></div>
+    <a href="/algo/hisse/FROTO/" style="color:var(--accent);font-weight:600;white-space:nowrap">Strateji sonuçları →</a>
+  </div>
+
+  <p class="muted" style="font-size:10.5px;margin-top:16px;line-height:1.6">Veriler gecikmeli olabilir. Tüm formüller şeffaftır; sayılar yeniden üretilebilir. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir. <a href="/karne/" style="color:var(--accent)">← Tüm karneler</a></p>
+</div>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-06-13 00:57 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+
+<!-- ── Lightbox (resim büyütme overlay) ──────────────────────────── -->
+<div id="km-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)">
+  <button type="button" onclick="kmCloseLightbox()" aria-label="Kapat"
+    style="position:absolute;top:14px;right:18px;width:42px;height:42px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center">×</button>
+  <img id="km-lightbox-img" src="" alt="" style="max-width:96%;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0d0c0a" />
+  <div id="km-lightbox-cap" style="position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#bbb;font-size:12px;letter-spacing:.04em;padding:0 24px"></div>
+</div>
+<script>
+window.kmShowLightbox = function(src, caption) {
+  var lb = document.getElementById('km-lightbox');
+  var im = document.getElementById('km-lightbox-img');
+  var cp = document.getElementById('km-lightbox-cap');
+  if (!lb || !im) return;
+  im.src = src;
+  im.alt = caption || '';
+  if (cp) cp.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+window.kmCloseLightbox = function() {
+  var lb = document.getElementById('km-lightbox');
+  if (!lb) return;
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') window.kmCloseLightbox();
+});
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'km-lightbox') window.kmCloseLightbox();
+});
+</script>
+
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

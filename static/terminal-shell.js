@@ -20,6 +20,7 @@
   var MODULES = [
     { key: "piyasalar", ico: "📡", label: "Piyasalar" },
     { key: "panom",     ico: "📌", label: "Panom" },
+    { key: "karne",     ico: "🧬", label: "Hisse Karnesi", href: "/karne/", star: true },
     { key: "karar",     ico: "🧠", label: "Karar Destek", star: true },
     { key: "strateji",  ico: "🔬", label: "Strateji", star: true },
     { key: "veri",      ico: "📊", label: "Günlük Veri" },
@@ -29,6 +30,7 @@
 
   // ── Aktif modülü mevcut yola göre tahmin et ────────────────────
   function activeKey(p) {
+    if (/^\/karne(\/|$)/.test(p)) return "karne";
     if (/^\/algo(\/|$)/.test(p)) return "strateji";
     if (/^\/reports\/(hisse|fx|pulse|tcmb|sektor)(\/|$)/.test(p)) return "veri";
     if (/^\/reports\/(makro|fred|wb)(\/|$)/.test(p)) return "arastirma";
@@ -102,7 +104,7 @@
     + '<div class="km-rail-label">▸ Modüller</div>';
   MODULES.forEach(function (m) {
     html += '<a class="km-rail-item' + (m.key === active ? " active" : "") + '" '
-      + 'href="/terminal/#' + m.key + '">'
+      + 'href="' + (m.href || "/terminal/#" + m.key) + '">'
       + '<span class="ico">' + m.ico + "</span> " + m.label
       + (m.star ? ' <span class="star">★</span>' : "") + "</a>";
   });

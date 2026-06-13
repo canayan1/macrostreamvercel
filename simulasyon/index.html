@@ -18,13 +18,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="https://kalibremarkets.com/simulasyon/og.png">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Borsa Simülasyonu · Küçük Bir Finansal Piyasa — Kalibre Markets">
 <meta name="twitter:description" content="Borsa işleyişini taklit eden mini finansal piyasa simülasyonu. Canlı fiyat, gerçek emir mantığı, sanal sermaye. 5 algoritmik yöntemin hisse bazlı geçmiş sonuçlarına drill-down.">
-<meta name="twitter:image" content="https://kalibremarkets.com/simulasyon/og.png">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
@@ -405,7 +405,8 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Simülasyon</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div><div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Simülasyon</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
 <!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
 <div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
   <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
@@ -443,7 +444,28 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     }
   } catch(e) {}
 })();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
 </script>
+
 <main>
 
 <div class="wrap">
@@ -502,7 +524,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         Pozisyon açmadan önce sistematik bir referans: tıkladığınız hisse için
         Momentum / Golden Cross / Düşük Vol / RSI / 52H Breakout geçmiş sonuçları
       </div>
-      <div style="font-size:11.5px;color:var(--muted);margin-top:4px">28 hisse arasından arayın veya tıklayın</div>
+      <div style="font-size:11.5px;color:var(--muted);margin-top:4px">58 hisse arasından arayın veya tıklayın</div>
     </div>
     <span class="stk-picker-arrow" style="font-family:'Geist Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:.06em;padding:8px 14px;border:1px solid var(--accent);transition:transform .2s">
       AÇ ▾
@@ -525,10 +547,10 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <span style="font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:700">▸ US 30</span>
-      <span class="muted" style="font-size:10.5px">0 hisse</span>
+      <span class="muted" style="font-size:10.5px">30 hisse</span>
     </div>
     <div id="stk-us" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">
-      
+      <a class="stk-btn" data-sym="AAPL" data-name="apple" href="/algo/hisse/AAPL/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">AAPL</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Apple</span></a><a class="stk-btn" data-sym="ABBV" data-name="abbvie" href="/algo/hisse/ABBV/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">ABBV</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">AbbVie</span></a><a class="stk-btn" data-sym="AMD" data-name="amd" href="/algo/hisse/AMD/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">AMD</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">AMD</span></a><a class="stk-btn" data-sym="AMZN" data-name="amazon" href="/algo/hisse/AMZN/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">AMZN</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Amazon</span></a><a class="stk-btn" data-sym="AVGO" data-name="broadcom" href="/algo/hisse/AVGO/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">AVGO</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Broadcom</span></a><a class="stk-btn" data-sym="BA" data-name="boeing" href="/algo/hisse/BA/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">BA</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Boeing</span></a><a class="stk-btn" data-sym="BAC" data-name="bank of america" href="/algo/hisse/BAC/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">BAC</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Bank of America</span></a><a class="stk-btn" data-sym="COST" data-name="costco" href="/algo/hisse/COST/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">COST</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Costco</span></a><a class="stk-btn" data-sym="CRM" data-name="salesforce" href="/algo/hisse/CRM/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">CRM</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Salesforce</span></a><a class="stk-btn" data-sym="CSCO" data-name="cisco" href="/algo/hisse/CSCO/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">CSCO</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Cisco</span></a><a class="stk-btn" data-sym="DIS" data-name="disney" href="/algo/hisse/DIS/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">DIS</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Disney</span></a><a class="stk-btn" data-sym="GOOGL" data-name="alphabet" href="/algo/hisse/GOOGL/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">GOOGL</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Alphabet</span></a><a class="stk-btn" data-sym="HD" data-name="home depot" href="/algo/hisse/HD/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">HD</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Home Depot</span></a><a class="stk-btn" data-sym="INTC" data-name="intel" href="/algo/hisse/INTC/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">INTC</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Intel</span></a><a class="stk-btn" data-sym="JNJ" data-name="johnson &amp; johnson" href="/algo/hisse/JNJ/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">JNJ</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Johnson &amp; Johnson</span></a><a class="stk-btn" data-sym="JPM" data-name="jpmorgan chase" href="/algo/hisse/JPM/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">JPM</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">JPMorgan Chase</span></a><a class="stk-btn" data-sym="KO" data-name="coca-cola" href="/algo/hisse/KO/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">KO</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Coca-Cola</span></a><a class="stk-btn" data-sym="LLY" data-name="eli lilly" href="/algo/hisse/LLY/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">LLY</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Eli Lilly</span></a><a class="stk-btn" data-sym="MA" data-name="mastercard" href="/algo/hisse/MA/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">MA</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Mastercard</span></a><a class="stk-btn" data-sym="META" data-name="meta platforms" href="/algo/hisse/META/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">META</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Meta Platforms</span></a><a class="stk-btn" data-sym="MSFT" data-name="microsoft" href="/algo/hisse/MSFT/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">MSFT</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Microsoft</span></a><a class="stk-btn" data-sym="NFLX" data-name="netflix" href="/algo/hisse/NFLX/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">NFLX</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Netflix</span></a><a class="stk-btn" data-sym="NVDA" data-name="nvidia" href="/algo/hisse/NVDA/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">NVDA</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NVIDIA</span></a><a class="stk-btn" data-sym="ORCL" data-name="oracle" href="/algo/hisse/ORCL/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">ORCL</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Oracle</span></a><a class="stk-btn" data-sym="PFE" data-name="pfizer" href="/algo/hisse/PFE/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">PFE</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Pfizer</span></a><a class="stk-btn" data-sym="PG" data-name="procter &amp; gamble" href="/algo/hisse/PG/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">PG</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Procter &amp; Gamble</span></a><a class="stk-btn" data-sym="TSLA" data-name="tesla" href="/algo/hisse/TSLA/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">TSLA</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Tesla</span></a><a class="stk-btn" data-sym="V" data-name="visa" href="/algo/hisse/V/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">V</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Visa</span></a><a class="stk-btn" data-sym="WMT" data-name="walmart" href="/algo/hisse/WMT/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">WMT</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Walmart</span></a><a class="stk-btn" data-sym="XOM" data-name="exxonmobil" href="/algo/hisse/XOM/" style="display:flex;flex-direction:column;padding:10px 12px;background:var(--bg-1);border:1px solid var(--border);text-decoration:none;color:inherit;transition:border-color .12s,background .12s"><span style="font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em">XOM</span><span style="font-size:10.5px;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ExxonMobil</span></a>
     </div>
   </div>
 </details>
@@ -634,8 +656,8 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <footer class="pf-foot">
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
-    <div>v2026.05 · son güncelleme 2026-05-27 08:00 TR</div>
-    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP · KAP</div>
+    <div>v2026.05 · son güncelleme 2026-06-12 17:12 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
     <a href="/iletisim/">İletişim</a>
@@ -656,8 +678,9 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
        gap:14px;flex-wrap:wrap;justify-content:space-between">
     <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
-      <span style="color:#ffa630">▸</span> Bu site şu an kişisel veri toplamıyor, çerez kullanmıyor. İlerideki değişiklikler
-      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda yayınlanır.
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
     </div>
     <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
             padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
@@ -755,6 +778,40 @@ body { top:0 !important; }
   });
 })();
 </script>
+
+<!-- ── Lightbox (resim büyütme overlay) ──────────────────────────── -->
+<div id="km-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)">
+  <button type="button" onclick="kmCloseLightbox()" aria-label="Kapat"
+    style="position:absolute;top:14px;right:18px;width:42px;height:42px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center">×</button>
+  <img id="km-lightbox-img" src="" alt="" style="max-width:96%;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0d0c0a" />
+  <div id="km-lightbox-cap" style="position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#bbb;font-size:12px;letter-spacing:.04em;padding:0 24px"></div>
+</div>
+<script>
+window.kmShowLightbox = function(src, caption) {
+  var lb = document.getElementById('km-lightbox');
+  var im = document.getElementById('km-lightbox-img');
+  var cp = document.getElementById('km-lightbox-cap');
+  if (!lb || !im) return;
+  im.src = src;
+  im.alt = caption || '';
+  if (cp) cp.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+window.kmCloseLightbox = function() {
+  var lb = document.getElementById('km-lightbox');
+  if (!lb) return;
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') window.kmCloseLightbox();
+});
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'km-lightbox') window.kmCloseLightbox();
+});
+</script>
+
 <script src="/static/asistan.js" defer></script>
 <script src="/static/terminal-shell.js" defer></script>
 </body>
