@@ -5,13 +5,24 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Fri, 12 Jun 2026 16:12:29 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 15 Jun 2026 09:04:33 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
     <title>Kalibre Markets</title>
     <link>https://kalibremarkets.com</link>
   </image>
+
+  <item>
+    <title>Koç Holding — 2026-05-27 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-27/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-27/hisse/</guid>
+    <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Koç Holding (KCHOL.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
 
   <item>
     <title>💱 Döviz Günlük Bülten — 2026-05-27 — Kalibre Markets</title>
@@ -36,11 +47,11 @@
   </item>
 
   <item>
-    <title>Koç Holding — 2026-05-27 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-27/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-27/hisse/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Koç Holding (KCHOL.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Ereğli Demir Çelik — 2026-05-20 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-20/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-20/hisse/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Ereğli Demir Çelik (EREGL.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
@@ -69,36 +80,14 @@
   </item>
 
   <item>
-    <title>Ereğli Demir Çelik — 2026-05-20 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-20/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-20/hisse/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Ereğli Demir Çelik (EREGL.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Aselsan — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/hisse/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Aselsan (ASELS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>🇹🇷 TR Makro — 2026-05-13 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-13/makro/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/makro/</guid>
-    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Türkiye Makro</category>
-    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-05-13 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-13/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fx/</guid>
-    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -110,6 +99,17 @@
     <category>ABD Makro</category>
     <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fx/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -135,34 +135,23 @@
   </item>
 
   <item>
-    <title>Aselsan — 2026-05-13 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-13/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/hisse/</guid>
+    <title>🇹🇷 TR Makro — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/makro/</guid>
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Aselsan (ASELS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
-    <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" medium="image" />
-  </item>
-
-  <item>
-    <title>🇹🇷 TR Makro — 2026-06-10 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-10/makro/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/makro/</guid>
-    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
     <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Türkiye Makro</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-10 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-10/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fx/</guid>
+    <title>Şişe Cam — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/hisse/</guid>
     <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
+    <description>📈 Hisse Bülteni — Şişe Cam (SISE.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -179,6 +168,17 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fx/</guid>
+    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>📊 Günlük Nabız — 2026-06-10 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-10/pulse/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/pulse/</guid>
@@ -190,11 +190,22 @@
   </item>
 
   <item>
-    <title>Şişe Cam — 2026-06-10 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-10/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/hisse/</guid>
+    <title>🇹🇷 TR Makro — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/makro/</guid>
     <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Şişe Cam (SISE.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Türkiye Makro</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Odaş Elektrik — 2026-06-03 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-03/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/hisse/</guid>
+    <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Odaş Elektrik (ODAS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
@@ -223,11 +234,11 @@
   </item>
 
   <item>
-    <title>Odaş Elektrik — 2026-06-03 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-03/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/hisse/</guid>
-    <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Odaş Elektrik (ODAS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>İş Bankası (C) — 2026-05-26 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-26/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-26/hisse/</guid>
+    <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — İş Bankası (C) (ISCTR.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
@@ -256,36 +267,14 @@
   </item>
 
   <item>
-    <title>İş Bankası (C) — 2026-05-26 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-26/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-26/hisse/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — İş Bankası (C) (ISCTR.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Arçelik — 2026-05-12 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-12/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/hisse/</guid>
+    <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Arçelik (ARCLK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 + US 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>🇹🇷 TR Makro — 2026-05-12 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-12/makro/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/makro/</guid>
-    <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
-    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Türkiye Makro</category>
-    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-05-12 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-12/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/fx/</guid>
-    <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -297,6 +286,17 @@
     <category>ABD Makro</category>
     <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-12/og.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/reports/fred/2026-05-12/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-05-12 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-12/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/fx/</guid>
+    <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-12/og.png" medium="image" />
   </item>
 
   <item>
@@ -322,14 +322,25 @@
   </item>
 
   <item>
-    <title>Arçelik — 2026-05-12 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-12/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/hisse/</guid>
+    <title>🇹🇷 TR Makro — 2026-05-12 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-12/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-12/makro/</guid>
     <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Arçelik (ARCLK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 + US 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Türkiye Makro</category>
+    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Sasa Polyester — 2026-06-09 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-09/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-09/hisse/</guid>
+    <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Sasa Polyester (SASA.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-12/og.png" medium="image" />
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
 
   <item>
@@ -355,25 +366,14 @@
   </item>
 
   <item>
-    <title>Sasa Polyester — 2026-06-09 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-09/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-09/hisse/</guid>
-    <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Sasa Polyester (SASA.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Migros — 2026-06-02 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-02/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-02/hisse/</guid>
+    <pubDate>Tue, 02 Jun 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Migros (MGROS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
-    <pubDate>Tue, 02 Jun 2026 12:38:32 +0000</pubDate>
-    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
-    <category>Türkiye Ekonomik Raporu</category>
-    <enclosure url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" medium="image" />
   </item>
 
   <item>
@@ -399,11 +399,11 @@
   </item>
 
   <item>
-    <title>Migros — 2026-06-02 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-02/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-02/hisse/</guid>
-    <pubDate>Tue, 02 Jun 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Migros (MGROS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Akbank — 2026-05-28 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-28/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-28/hisse/</guid>
+    <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Akbank (AKBNK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
@@ -432,11 +432,11 @@
   </item>
 
   <item>
-    <title>Akbank — 2026-05-28 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-28/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-28/hisse/</guid>
-    <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Akbank (AKBNK.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <title>Ford Otosan — 2026-05-21 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-21/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-21/hisse/</guid>
+    <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Ford Otosan (FROTO.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
     <category>Hisse Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />

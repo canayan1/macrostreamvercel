@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-12T17:12:29",
+  "generated": "2026-06-15T09:04:33",
   "reports": [
     {
       "category": "pulse",
@@ -15,15 +15,15 @@
     },
     {
       "category": "sektor",
-      "title": "Sektör Rotasyon — 2026-06-08",
-      "date": "2026-06-08",
-      "path": "/reports/sektor/2026-06-08/"
+      "title": "Sektör Rotasyon — 2026-06-15",
+      "date": "2026-06-15",
+      "path": "/reports/sektor/2026-06-15/"
     },
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-06-12",
-      "date": "2026-06-12",
-      "path": "/reports/fx/2026-06-12/"
+      "title": "Döviz Günlük — 2026-06-15",
+      "date": "2026-06-15",
+      "path": "/reports/fx/2026-06-15/"
     },
     {
       "category": "metals",
@@ -216,6 +216,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-15",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.5457323661859137,
+          "usdtry": 46.27090072631836,
+          "usdtry_30d_pct": 1.6005026401002098,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-12",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -356,20 +367,19 @@
           "usdtry_30d_pct": 1.932941001459465,
           "strongest_pair": "USD/TRY"
         }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-26",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": 0.11518481527723612,
-          "usdtry": 45.89979934692383,
-          "usdtry_30d_pct": 1.9705529780712938,
-          "strongest_pair": "USD/TRY"
-        }
       }
     ],
     "sektor": [
+      {
+        "category": "sektor",
+        "date": "2026-06-15",
+        "metrics": {
+          "regime": "Lider: Bankacılık",
+          "leader_sector": "Bankacılık",
+          "laggard_sector": "Petro-Kimya",
+          "xu100_30d": -5.461658169375894
+        }
+      },
       {
         "category": "sektor",
         "date": "2026-06-08",
