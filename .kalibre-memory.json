@@ -160,6 +160,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-16",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.44178043907183717,
+          "usdtry": 46.2952995300293,
+          "usdtry_30d_pct": 1.7650005043792882,
+          "strongest_pair": "GBP/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-15",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -298,17 +309,6 @@
           "dxy_5d_pct": 0.25022812743975553,
           "usdtry": 45.897499084472656,
           "usdtry_30d_pct": 1.85706702877233,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-27",
-        "metrics": {
-          "regime": "Dolar Geri Çekiliyor",
-          "dxy_5d_pct": -0.21450660561102008,
-          "usdtry": 45.90019989013672,
-          "usdtry_30d_pct": 1.932941001459465,
           "strongest_pair": "USD/TRY"
         }
       }
@@ -1002,6 +1002,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-06-16",
+        "metrics": {
+          "nir_usd": 38.41172980431112,
+          "swap_adj_usd": -53.87477041371344,
+          "nir_chg_week": -2.614435662265599,
+          "swap_chg_week": 2.805112487475789,
+          "usdtry": 46.29520034790039
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-06-12",
         "metrics": {
           "nir_usd": 37.6467363816655,
@@ -1141,17 +1152,6 @@
           "nir_chg_week": -2.3591897468459564,
           "swap_chg_week": 0.8545609966432579,
           "usdtry": 45.88629913330078
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-26",
-        "metrics": {
-          "nir_usd": 40.5738161712642,
-          "swap_adj_usd": -57.23895756368,
-          "nir_chg_week": -4.297854818508945,
-          "swap_chg_week": -0.7046602260194064,
-          "usdtry": 45.89979934692383
         }
       }
     ],

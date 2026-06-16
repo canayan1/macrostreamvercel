@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-15T09:04:33",
+  "generated": "2026-06-16T08:39:05",
   "reports": [
     {
       "category": "pulse",
@@ -21,9 +21,9 @@
     },
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-06-15",
-      "date": "2026-06-15",
-      "path": "/reports/fx/2026-06-15/"
+      "title": "Döviz Günlük — 2026-06-16",
+      "date": "2026-06-16",
+      "path": "/reports/fx/2026-06-16/"
     },
     {
       "category": "metals",
@@ -51,9 +51,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-06-12",
-      "date": "2026-06-12",
-      "path": "/reports/tcmb/2026-06-12/"
+      "title": "TCMB Analitik Bilanço — 2026-06-16",
+      "date": "2026-06-16",
+      "path": "/reports/tcmb/2026-06-16/"
     }
   ],
   "snapshot": {
@@ -216,6 +216,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-16",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.44178043907183717,
+          "usdtry": 46.2952995300293,
+          "usdtry_30d_pct": 1.7650005043792882,
+          "strongest_pair": "GBP/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-15",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -354,17 +365,6 @@
           "dxy_5d_pct": 0.25022812743975553,
           "usdtry": 45.897499084472656,
           "usdtry_30d_pct": 1.85706702877233,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-27",
-        "metrics": {
-          "regime": "Dolar Geri Çekiliyor",
-          "dxy_5d_pct": -0.21450660561102008,
-          "usdtry": 45.90019989013672,
-          "usdtry_30d_pct": 1.932941001459465,
           "strongest_pair": "USD/TRY"
         }
       }
