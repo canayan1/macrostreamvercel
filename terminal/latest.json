@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-16T08:39:05",
+  "generated": "2026-06-17T08:21:51",
   "reports": [
     {
       "category": "pulse",
@@ -21,9 +21,9 @@
     },
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-06-16",
-      "date": "2026-06-16",
-      "path": "/reports/fx/2026-06-16/"
+      "title": "Döviz Günlük — 2026-06-17",
+      "date": "2026-06-17",
+      "path": "/reports/fx/2026-06-17/"
     },
     {
       "category": "metals",
@@ -51,9 +51,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-06-16",
-      "date": "2026-06-16",
-      "path": "/reports/tcmb/2026-06-16/"
+      "title": "TCMB Analitik Bilanço — 2026-06-17",
+      "date": "2026-06-17",
+      "path": "/reports/tcmb/2026-06-17/"
     }
   ],
   "snapshot": {
@@ -216,6 +216,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-17",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.3681803172148945,
+          "usdtry": 46.315250396728516,
+          "usdtry_30d_pct": 1.6293743580815034,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-16",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -354,17 +365,6 @@
           "dxy_5d_pct": -0.034281893929655194,
           "usdtry": 45.88029861450195,
           "usdtry_30d_pct": 1.5814954667214387,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-28",
-        "metrics": {
-          "regime": "Dolar Yükselişte",
-          "dxy_5d_pct": 0.25022812743975553,
-          "usdtry": 45.897499084472656,
-          "usdtry_30d_pct": 1.85706702877233,
           "strongest_pair": "USD/TRY"
         }
       }
@@ -1058,6 +1058,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-06-16",
+        "metrics": {
+          "nir_usd": 38.41172980431112,
+          "swap_adj_usd": -53.87477041371344,
+          "nir_chg_week": -2.614435662265599,
+          "swap_chg_week": 2.805112487475789,
+          "usdtry": 46.29520034790039
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-06-12",
         "metrics": {
           "nir_usd": 37.6467363816655,
@@ -1197,17 +1208,6 @@
           "nir_chg_week": -2.3591897468459564,
           "swap_chg_week": 0.8545609966432579,
           "usdtry": 45.88629913330078
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-26",
-        "metrics": {
-          "nir_usd": 40.5738161712642,
-          "swap_adj_usd": -57.23895756368,
-          "nir_chg_week": -4.297854818508945,
-          "swap_chg_week": -0.7046602260194064,
-          "usdtry": 45.89979934692383
         }
       }
     ],
