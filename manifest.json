@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-17T08:21:51.732458Z",
+  "last_update": "2026-06-18T07:26:52.397859Z",
   "latest_report": {
     "category": "tcmb",
-    "date": "2026-06-17",
-    "title": "TCMB Analitik Bilanço — 2026-06-17"
+    "date": "2026-06-18",
+    "title": "TCMB Analitik Bilanço — 2026-06-18"
   },
-  "total_reports": 131,
+  "total_reports": 133,
   "by_category": {
     "pulse": 23,
     "hisse": 23,
     "sektor": 11,
-    "fx": 26,
+    "fx": 27,
     "metals": 9,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 21
+    "tcmb": 22
   }
 }
