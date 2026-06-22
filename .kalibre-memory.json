@@ -160,6 +160,72 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-22",
+        "metrics": {
+          "regime": "Güçlü Dolar",
+          "dxy_5d_pct": 1.2170394859218447,
+          "usdtry": 46.457401275634766,
+          "usdtry_30d_pct": 1.6266483571962365,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
+        "date": "2026-06-19",
+        "metrics": {
+          "regime": "Güçlü Dolar",
+          "dxy_5d_pct": 1.1398506642583017,
+          "usdtry": 46.44089889526367,
+          "usdtry_30d_pct": 1.863508855718865,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
+        "date": "2026-06-18",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.45463887201702136,
+          "usdtry": 46.440101623535156,
+          "usdtry_30d_pct": 1.877402109902615,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
+        "date": "2026-06-17",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.3681803172148945,
+          "usdtry": 46.315250396728516,
+          "usdtry_30d_pct": 1.6293743580815034,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
+        "date": "2026-06-16",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.44178043907183717,
+          "usdtry": 46.2952995300293,
+          "usdtry_30d_pct": 1.7650005043792882,
+          "strongest_pair": "GBP/TRY"
+        }
+      },
+      {
+        "category": "fx",
+        "date": "2026-06-15",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.5457323661859137,
+          "usdtry": 46.27090072631836,
+          "usdtry_30d_pct": 1.6005026401002098,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-12",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -245,75 +311,29 @@
           "usdtry_30d_pct": 1.643526478897095,
           "strongest_pair": "USD/CAD"
         }
-      },
-      {
-        "category": "fx",
-        "date": "2026-06-02",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": -0.08268703633752539,
-          "usdtry": 45.91899871826172,
-          "usdtry_30d_pct": 1.6237577622054022,
-          "strongest_pair": "USD/JPY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-06-01",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": -0.028234222493361827,
-          "usdtry": 45.92319869995117,
-          "usdtry_30d_pct": 1.6330527802530304,
-          "strongest_pair": "USD/CAD"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-29",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": -0.034281893929655194,
-          "usdtry": 45.88029861450195,
-          "usdtry_30d_pct": 1.5814954667214387,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-28",
-        "metrics": {
-          "regime": "Dolar Yükselişte",
-          "dxy_5d_pct": 0.25022812743975553,
-          "usdtry": 45.897499084472656,
-          "usdtry_30d_pct": 1.85706702877233,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-27",
-        "metrics": {
-          "regime": "Dolar Geri Çekiliyor",
-          "dxy_5d_pct": -0.21450660561102008,
-          "usdtry": 45.90019989013672,
-          "usdtry_30d_pct": 1.932941001459465,
-          "strongest_pair": "USD/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-05-26",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": 0.11518481527723612,
-          "usdtry": 45.89979934692383,
-          "usdtry_30d_pct": 1.9705529780712938,
-          "strongest_pair": "USD/TRY"
-        }
       }
     ],
     "sektor": [
+      {
+        "category": "sektor",
+        "date": "2026-06-22",
+        "metrics": {
+          "regime": "Lider: Bankacılık",
+          "leader_sector": "Bankacılık",
+          "laggard_sector": "Petro-Kimya",
+          "xu100_30d": 5.40646494885777
+        }
+      },
+      {
+        "category": "sektor",
+        "date": "2026-06-15",
+        "metrics": {
+          "regime": "Lider: Bankacılık",
+          "leader_sector": "Bankacılık",
+          "laggard_sector": "Petro-Kimya",
+          "xu100_30d": -5.461658169375894
+        }
+      },
       {
         "category": "sektor",
         "date": "2026-06-08",
@@ -992,6 +1012,61 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-06-22",
+        "metrics": {
+          "nir_usd": 48.458729002472396,
+          "swap_adj_usd": -43.629783988413635,
+          "nir_chg_week": 10.722264788677627,
+          "swap_chg_week": 11.161801650872668,
+          "usdtry": 46.45709991455078
+        }
+      },
+      {
+        "category": "tcmb",
+        "date": "2026-06-19",
+        "metrics": {
+          "nir_usd": 49.19328744926374,
+          "swap_adj_usd": -44.274875994569854,
+          "nir_chg_week": 10.334429090509651,
+          "swap_chg_week": 10.81386251022461,
+          "usdtry": 46.43830108642578
+        }
+      },
+      {
+        "category": "tcmb",
+        "date": "2026-06-18",
+        "metrics": {
+          "nir_usd": 43.244698650319684,
+          "swap_adj_usd": -51.28861522113712,
+          "nir_chg_week": 3.346721493655295,
+          "swap_chg_week": 5.655006241661788,
+          "usdtry": 46.440101623535156
+        }
+      },
+      {
+        "category": "tcmb",
+        "date": "2026-06-17",
+        "metrics": {
+          "nir_usd": 40.959417663481474,
+          "swap_adj_usd": -52.82557380309215,
+          "nir_chg_week": 2.4875481327495663,
+          "swap_chg_week": 5.66378648644649,
+          "usdtry": 46.31256866455078
+        }
+      },
+      {
+        "category": "tcmb",
+        "date": "2026-06-16",
+        "metrics": {
+          "nir_usd": 38.41172980431112,
+          "swap_adj_usd": -53.87477041371344,
+          "nir_chg_week": -2.614435662265599,
+          "swap_chg_week": 2.805112487475789,
+          "usdtry": 46.29520034790039
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-06-12",
         "metrics": {
           "nir_usd": 37.6467363816655,
@@ -1087,61 +1162,6 @@
           "nir_chg_week": -6.371314241031747,
           "swap_chg_week": -10.068145387671876,
           "usdtry": 45.92319869995117
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-06-01",
-        "metrics": {
-          "nir_usd": 39.0173281479182,
-          "swap_adj_usd": -59.267781619340965,
-          "nir_chg_week": -5.72568722110973,
-          "swap_chg_week": -3.8058834916423407,
-          "usdtry": 45.89699935913086
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-29",
-        "metrics": {
-          "nir_usd": 41.52703751069616,
-          "swap_adj_usd": -56.235545560678574,
-          "nir_chg_week": -2.2284167830431016,
-          "swap_chg_week": 0.6774694099355258,
-          "usdtry": 45.741798400878906
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-28",
-        "metrics": {
-          "nir_usd": 41.385801821184245,
-          "swap_adj_usd": -56.044285443693454,
-          "nir_chg_week": -2.3696524725550177,
-          "swap_chg_week": 0.8687295269206459,
-          "usdtry": 45.89789962768555
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-27",
-        "metrics": {
-          "nir_usd": 41.396264546893306,
-          "swap_adj_usd": -56.05845397397084,
-          "nir_chg_week": -2.3591897468459564,
-          "swap_chg_week": 0.8545609966432579,
-          "usdtry": 45.88629913330078
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-26",
-        "metrics": {
-          "nir_usd": 40.5738161712642,
-          "swap_adj_usd": -57.23895756368,
-          "nir_chg_week": -4.297854818508945,
-          "swap_chg_week": -0.7046602260194064,
-          "usdtry": 45.89979934692383
         }
       }
     ],

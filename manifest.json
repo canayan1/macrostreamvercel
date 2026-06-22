@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-12T16:12:29.918723Z",
+  "last_update": "2026-06-22T08:49:07.062649Z",
   "latest_report": {
-    "category": "hisse",
-    "date": "2026-06-12",
-    "title": "Turkcell — Günün Merceği"
+    "category": "sektor",
+    "date": "2026-06-22",
+    "title": "Sektör Rotasyon — 2026-06-22"
   },
-  "total_reports": 125,
+  "total_reports": 138,
   "by_category": {
     "pulse": 23,
     "hisse": 23,
-    "sektor": 10,
-    "fx": 23,
+    "sektor": 12,
+    "fx": 29,
     "metals": 9,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 19
+    "tcmb": 24
   }
 }
