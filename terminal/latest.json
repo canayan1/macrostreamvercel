@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-19T08:25:40",
+  "generated": "2026-06-22T08:49:07",
   "reports": [
     {
       "category": "pulse",
@@ -15,15 +15,15 @@
     },
     {
       "category": "sektor",
-      "title": "Sektör Rotasyon — 2026-06-15",
-      "date": "2026-06-15",
-      "path": "/reports/sektor/2026-06-15/"
+      "title": "Sektör Rotasyon — 2026-06-22",
+      "date": "2026-06-22",
+      "path": "/reports/sektor/2026-06-22/"
     },
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-06-19",
-      "date": "2026-06-19",
-      "path": "/reports/fx/2026-06-19/"
+      "title": "Döviz Günlük — 2026-06-22",
+      "date": "2026-06-22",
+      "path": "/reports/fx/2026-06-22/"
     },
     {
       "category": "metals",
@@ -51,9 +51,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-06-19",
-      "date": "2026-06-19",
-      "path": "/reports/tcmb/2026-06-19/"
+      "title": "TCMB Analitik Bilanço — 2026-06-22",
+      "date": "2026-06-22",
+      "path": "/reports/tcmb/2026-06-22/"
     }
   ],
   "snapshot": {
@@ -216,6 +216,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-06-22",
+        "metrics": {
+          "regime": "Güçlü Dolar",
+          "dxy_5d_pct": 1.2170394859218447,
+          "usdtry": 46.457401275634766,
+          "usdtry_30d_pct": 1.6266483571962365,
+          "strongest_pair": "USD/CAD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-06-19",
         "metrics": {
           "regime": "Güçlü Dolar",
@@ -356,20 +367,19 @@
           "usdtry_30d_pct": 1.643526478897095,
           "strongest_pair": "USD/CAD"
         }
-      },
-      {
-        "category": "fx",
-        "date": "2026-06-02",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": -0.08268703633752539,
-          "usdtry": 45.91899871826172,
-          "usdtry_30d_pct": 1.6237577622054022,
-          "strongest_pair": "USD/JPY"
-        }
       }
     ],
     "sektor": [
+      {
+        "category": "sektor",
+        "date": "2026-06-22",
+        "metrics": {
+          "regime": "Lider: Bankacılık",
+          "leader_sector": "Bankacılık",
+          "laggard_sector": "Petro-Kimya",
+          "xu100_30d": 5.40646494885777
+        }
+      },
       {
         "category": "sektor",
         "date": "2026-06-15",
@@ -1058,6 +1068,28 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-06-22",
+        "metrics": {
+          "nir_usd": 48.458729002472396,
+          "swap_adj_usd": -43.629783988413635,
+          "nir_chg_week": 10.722264788677627,
+          "swap_chg_week": 11.161801650872668,
+          "usdtry": 46.45709991455078
+        }
+      },
+      {
+        "category": "tcmb",
+        "date": "2026-06-19",
+        "metrics": {
+          "nir_usd": 49.19328744926374,
+          "swap_adj_usd": -44.274875994569854,
+          "nir_chg_week": 10.334429090509651,
+          "swap_chg_week": 10.81386251022461,
+          "usdtry": 46.43830108642578
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-06-18",
         "metrics": {
           "nir_usd": 43.244698650319684,
@@ -1186,28 +1218,6 @@
           "nir_chg_week": -6.371314241031747,
           "swap_chg_week": -10.068145387671876,
           "usdtry": 45.92319869995117
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-06-01",
-        "metrics": {
-          "nir_usd": 39.0173281479182,
-          "swap_adj_usd": -59.267781619340965,
-          "nir_chg_week": -5.72568722110973,
-          "swap_chg_week": -3.8058834916423407,
-          "usdtry": 45.89699935913086
-        }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-05-29",
-        "metrics": {
-          "nir_usd": 41.52703751069616,
-          "swap_adj_usd": -56.235545560678574,
-          "nir_chg_week": -2.2284167830431016,
-          "swap_chg_week": 0.6774694099355258,
-          "usdtry": 45.741798400878906
         }
       }
     ],
