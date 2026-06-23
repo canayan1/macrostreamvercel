@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-22T08:49:07.062649Z",
+  "last_update": "2026-06-23T06:41:44.861904Z",
   "latest_report": {
-    "category": "sektor",
-    "date": "2026-06-22",
-    "title": "Sektör Rotasyon — 2026-06-22"
+    "category": "hisse",
+    "date": "2026-06-23",
+    "title": "Arçelik — Günün Merceği"
   },
-  "total_reports": 138,
+  "total_reports": 147,
   "by_category": {
-    "pulse": 23,
-    "hisse": 23,
+    "pulse": 24,
+    "hisse": 28,
     "sektor": 12,
-    "fx": 29,
-    "metals": 9,
+    "fx": 30,
+    "metals": 10,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 24
+    "tcmb": 25
   }
 }
