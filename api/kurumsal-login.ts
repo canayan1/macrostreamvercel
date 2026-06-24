@@ -53,8 +53,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   let ok = false;
   if (stored !== null) {
-    const a = Buffer.from(stored);
-    const b = Buffer.from(p);
+    const a = new Uint8Array(Buffer.from(stored));
+    const b = new Uint8Array(Buffer.from(p));
     if (a.length === b.length) ok = crypto.timingSafeEqual(a, b);
   }
   if (!ok) return res.status(401).json({ ok: false, error: 'invalid' });
