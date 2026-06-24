@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-23T06:41:44.861904Z",
+  "last_update": "2026-06-24T06:37:13.187267Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-06-23",
-    "title": "Arçelik — Günün Merceği"
+    "date": "2026-06-24",
+    "title": "Aselsan — Günün Merceği"
   },
-  "total_reports": 147,
+  "total_reports": 152,
   "by_category": {
-    "pulse": 24,
-    "hisse": 28,
+    "pulse": 25,
+    "hisse": 29,
     "sektor": 12,
-    "fx": 30,
-    "metals": 10,
+    "fx": 31,
+    "metals": 11,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 25
+    "tcmb": 26
   }
 }
