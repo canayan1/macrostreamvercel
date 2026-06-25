@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Wed, 24 Jun 2026 06:37:13 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 25 Jun 2026 06:41:10 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -44,17 +44,6 @@
     <category>Günlük Nabız</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
-    <pubDate>Wed, 24 Jun 2026 06:35:22 +0000</pubDate>
-    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
-    <category>Türkiye Ekonomik Raporu</category>
-    <enclosure url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" medium="image" />
   </item>
 
   <item>
@@ -451,6 +440,17 @@
     <category>Türkiye Makro</category>
     <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/reports/makro/2026-05-12/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Sasa Polyester — 2026-06-09 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-09/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-09/hisse/</guid>
+    <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Sasa Polyester (SASA.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
 </channel>
 </rss>
