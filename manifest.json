@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-25T06:41:10.878436Z",
+  "last_update": "2026-06-26T01:11:01.173458Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-06-25",
-    "title": "BİM Mağazalar — Günün Merceği"
+    "date": "2026-06-26",
+    "title": "Doğan Holding — Günün Merceği"
   },
-  "total_reports": 157,
+  "total_reports": 162,
   "by_category": {
-    "pulse": 26,
-    "hisse": 30,
+    "pulse": 27,
+    "hisse": 31,
     "sektor": 12,
-    "fx": 32,
-    "metals": 12,
+    "fx": 33,
+    "metals": 13,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 27
+    "tcmb": 28
   }
 }
