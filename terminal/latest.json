@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-26T01:11:01",
+  "generated": "2026-06-26T06:45:10",
   "reports": [
     {
       "category": "pulse",
@@ -51,7 +51,7 @@
     },
     {
       "category": "tcmb",
-      "title": "tcmb — 2026-06-26",
+      "title": "TCMB Analitik Bilanço — 2026-06-26",
       "date": "2026-06-26",
       "path": "/reports/tcmb/2026-06-26/"
     }
@@ -63,9 +63,9 @@
         "date": "2026-06-26",
         "metrics": {
           "regime": "Karışık",
-          "breadth_pct": 50.0,
-          "top_gainer": "Kardemir (D)",
-          "top_loser": "Odaş Elektrik",
+          "breadth_pct": 46.42857142857143,
+          "top_gainer": "Pegasus",
+          "top_loser": "Hektaş",
           "featured_stock": "Doğan Holding"
         }
       },
@@ -218,10 +218,10 @@
         "category": "fx",
         "date": "2026-06-26",
         "metrics": {
-          "regime": "Güçlü Dolar",
-          "dxy_5d_pct": 1.3927513965245497,
-          "usdtry": 46.5625,
-          "usdtry_30d_pct": 1.4592716758258684,
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.5017395549350878,
+          "usdtry": 46.62009811401367,
+          "usdtry_30d_pct": 1.584777451884456,
           "strongest_pair": "USD/CHF"
         }
       },
@@ -759,20 +759,20 @@
         "date": "2026-06-26",
         "metrics": {
           "regime": "Karışık",
-          "xu100_last": 14331.2001953125,
-          "xu100_pct_30d": 8.867431156793181,
-          "usdtry_last": 46.59833908081055,
-          "usdtry_pct_30d": 1.5373647128528622,
-          "dxy_last": 101.48200225830078,
-          "dxy_pct_30d": 2.3313543733425757,
-          "xauusd_last": 4037.0,
-          "xauusd_pct_30d": -10.296860554601317,
-          "xagusd_last": 57.84000015258789,
-          "xagusd_pct_30d": -24.198938573800653,
-          "gramaltin_last": 6048.113391394286,
-          "gramaltin_pct_30d": -8.895526161929734,
-          "gramgumus_last": 86.65416880879722,
-          "gramgumus_pct_30d": -22.362066876724597
+          "xu100_last": 14259.7998046875,
+          "xu100_pct_30d": 3.2705175402099496,
+          "usdtry_last": 46.62049865722656,
+          "usdtry_pct_30d": 1.5856502319683274,
+          "dxy_last": 101.35600280761719,
+          "dxy_pct_30d": 2.163092171099912,
+          "xauusd_last": 4038.60009765625,
+          "xauusd_pct_30d": -9.19392697793704,
+          "xagusd_last": 57.20000076293945,
+          "xagusd_pct_30d": -23.323366919483234,
+          "gramaltin_last": 6053.38789621291,
+          "gramaltin_pct_30d": -8.816074776818327,
+          "gramgumus_last": 85.73609268288061,
+          "gramgumus_pct_30d": -23.184618565187087
         }
       },
       {
@@ -1086,11 +1086,11 @@
         "category": "tcmb",
         "date": "2026-06-26",
         "metrics": {
-          "nir_usd": 43.88947543678972,
-          "swap_adj_usd": -48.00679650003045,
-          "nir_chg_week": -5.445000718155256,
-          "swap_chg_week": -3.604848037650463,
-          "usdtry": 46.610198974609375
+          "nir_usd": 43.88015610771694,
+          "swap_adj_usd": -47.99660291421376,
+          "nir_chg_week": -5.4543200472280375,
+          "swap_chg_week": -3.594654451833776,
+          "usdtry": 46.62009811401367
         }
       },
       {
@@ -1243,10 +1243,10 @@
         "date": "2026-06-26",
         "metrics": {
           "regime": "Altın Sert Düşüş",
-          "gold_5d_pct": -7.384888608491947,
-          "gold_usd": 4037.0,
-          "gramaltin_try": 6043.461748677802,
-          "gold_silver_ratio": 69.79598875086405,
+          "gold_5d_pct": -4.351223801019932,
+          "gold_usd": 4040.300048828125,
+          "gramaltin_try": 6051.662527218775,
+          "gold_silver_ratio": 70.6346152961222,
           "strongest_metal": "Bakır"
         }
       },
