@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-26T06:45:10.300345Z",
+  "last_update": "2026-06-29T07:23:18.600641Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-06-26",
-    "title": "Doğan Holding — Günün Merceği"
+    "date": "2026-06-29",
+    "title": "Emlak Konut GYO — Günün Merceği"
   },
-  "total_reports": 162,
+  "total_reports": 168,
   "by_category": {
-    "pulse": 27,
-    "hisse": 31,
-    "sektor": 12,
-    "fx": 33,
-    "metals": 13,
+    "pulse": 28,
+    "hisse": 32,
+    "sektor": 13,
+    "fx": 34,
+    "metals": 14,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 28
+    "tcmb": 29
   }
 }
