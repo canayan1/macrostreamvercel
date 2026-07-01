@@ -7,8 +7,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Bu Grafiği Oku · Grafik Okuma Testi · Kalibre Markets</title>
-<meta name="description" content="Grafik gösteriyor, sen yorumla. Nominal-reel, ters getiri eğrisi, tek-gün trend, RSI... 4 soruluk interaktif grafik okuma testiyle piyasa okuma refleksini ölç.">
-<meta name="keywords" content="grafik okuma, teknik analiz testi, nominal reel, getiri eğrisi, RSI, yatırım eğitimi">
+<meta name="description" content="Grafik gösteriyor, sen yorumla. Nominal-reel, ters getiri eğrisi, ölü kedi sıçraması, RSI... 4 soruluk interaktif grafik okuma testiyle piyasa okuma refleksini ölç.">
+<meta name="keywords" content="grafik okuma, teknik analiz testi, mum grafik, nominal reel, getiri eğrisi, RSI, yatırım eğitimi">
 <link rel="canonical" href="https://kalibremarkets.com/grafik-oku/">
 <meta property="og:title" content="Bu Grafiği Oku · Kalibre Markets">
 <meta property="og:description" content="Grafik gösteriyor, sen yorumla. 4 soruluk interaktif grafik okuma testi.">
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#26a69a;--red:#ef5350;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
 body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
@@ -36,12 +36,15 @@ h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spac
 .lead{color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:12px;margin-bottom:8px}
 .prog{color:var(--muted);font-size:12px;font-weight:600;font-family:'Geist Mono',monospace;margin:16px 0 8px;letter-spacing:.04em}
 .panel{background:var(--surface);border:1px solid var(--border);padding:18px 20px}
-svg{width:100%;height:auto;background:var(--bg-1);border-radius:8px;border:1px solid var(--border-2);display:block}
-.q{font-size:17px;font-weight:600;margin:14px 0 12px;color:var(--text)}
+.chart-wrap{background:#0e1116;border:1px solid var(--border-2);border-radius:8px;padding:8px 4px 2px;position:relative}
+.chart-tag{position:absolute;top:9px;left:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:'Geist Mono',monospace;z-index:2}
+svg{width:100%;height:auto;display:block}
+.q{font-size:17px;font-weight:600;margin:16px 0 12px;color:var(--text)}
 .opt{display:block;width:100%;text-align:left;background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:14.5px;cursor:pointer;transition:.15s;font-family:inherit}
 .opt:hover{border-color:var(--accent)}
-.opt.correct{border-color:var(--green);background:rgba(74,222,128,.1)}
-.opt.wrong{border-color:var(--red);background:rgba(239,68,68,.1)}
+.opt.correct{border-color:var(--green);background:rgba(38,166,154,.14)}
+.opt.wrong{border-color:var(--red);background:rgba(239,83,80,.12)}
+.opt .mk{float:right;font-weight:700}
 .exp{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg-1);border-left:2px solid var(--accent);font-size:13.5px;color:var(--text-dim);line-height:1.7;display:none}
 .exp.show{display:block}.exp b{color:var(--text)}
 .next{background:var(--accent);color:#1a1208;border:0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;display:none}
@@ -62,7 +65,7 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
 <main>
   <div class="eyebrow">▸ İNTERAKTİF · GRAFİK OKUMA</div>
   <h1>Bu grafiği oku</h1>
-  <p class="lead">Grafik gösteriyor, sen yorumla. Piyasa okuma refleksini 4 soruda test et.</p>
+  <p class="lead">Grafiği göster, sen yorumla. Dört soruda piyasa okuma refleksini test et — profesyonellerin baktığı sinyaller.</p>
   <div id="app"></div>
   <footer class="pf">
     <div>© Kalibre Markets · Eğitim · yatırım tavsiyesi değildir</div>
@@ -70,31 +73,79 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
   </footer>
 </main>
 <script>
-var AX='#36302a',ACC='#ffa630',BLU='#60a5fa',RED='#ef4444',GRN='#4ade80',DIM='#a89c83';
-function line(pts,color){var w=460,h=180;var xs=pts.map(function(p,i){return 40+i*(w-60)/(pts.length-1);});
-  var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);
-  var ys=pts.map(function(v){return h-20-(v-mn)/((mx-mn)||1)*(h-40);});
-  var d=xs.map(function(x,i){return (i?'L':'M')+x.toFixed(0)+' '+ys[i].toFixed(0);}).join(' ');
-  return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="3" stroke-linecap="round"/>';}
-function svg(inner,extra){return '<svg viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="160" x2="440" y2="160" stroke="'+AX+'"/>'+inner+(extra||'')+'</svg>';}
-var g1=svg(line([100,140,210,340,560,900,1050],ACC)+line([100,104,108,112,110,113,113],BLU),'<text x="435" y="28" fill="'+ACC+'" font-size="12" text-anchor="end" font-weight="bold">turuncu</text><text x="435" y="150" fill="'+BLU+'" font-size="12" text-anchor="end" font-weight="bold">mavi</text>');
-var g2=svg(line([-1.4,-1.2,-0.9,-0.5,-0.1,0.3,0.7],ACC)+'<line x1="40" y1="95" x2="440" y2="95" stroke="'+DIM+'" stroke-dasharray="4 3"/><text x="46" y="90" fill="'+DIM+'" font-size="11">0 çizgisi</text>');
-var g3=svg(line([160,150,140,120,105,92,95],RED));
-var g4=svg(line([70,62,50,40,32,26,22],ACC)+'<text x="435" y="150" fill="'+DIM+'" font-size="11" text-anchor="end">RSI 22</text>');
+/* ---- TradingView tarzı grafik motoru (koyu, ızgaralı, sağ fiyat eksenli) ---- */
+var UP='#26a69a',DN='#ef5350',AMB='#ffa630',BLU='#60a5fa',GRIDC='rgba(255,255,255,.055)',AXT='#5c5545',ZERO='#8a8172';
+var W=470,H=205,L=12,R=430,T=16,B=172;
+function sx(i,n){return L+i*(R-L)/((n-1)||1);}
+function sy(v,mn,mx){return B-(v-mn)/((mx-mn)||1)*(B-T);}
+function grid(mn,mx,fmt,ticks){ticks=ticks||4;var s='';for(var k=0;k<ticks;k++){var v=mn+(mx-mn)*k/(ticks-1);var y=sy(v,mn,mx);
+  s+='<line x1="'+L+'" y1="'+y.toFixed(1)+'" x2="'+R+'" y2="'+y.toFixed(1)+'" stroke="'+GRIDC+'"/>';
+  s+='<text x="'+(R+7)+'" y="'+(y+3.5).toFixed(1)+'" fill="'+AXT+'" font-size="10.5" font-family="Geist Mono,monospace">'+fmt(v)+'</text>';}return s;}
+function wrap(inner){return '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+inner+'</svg>';}
+function lpath(pts,mn,mx){var n=pts.length;return pts.map(function(v,i){return (i?'L':'M')+sx(i,n).toFixed(1)+' '+sy(v,mn,mx).toFixed(1);}).join(' ');}
+function lineChart(pts,mn,mx,color,fill){var d=lpath(pts,mn,mx),n=pts.length,s='';
+  if(fill){s+='<defs><linearGradient id="'+fill+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+color+'" stop-opacity=".22"/><stop offset="1" stop-color="'+color+'" stop-opacity="0"/></linearGradient></defs>';
+    s+='<path d="'+d+' L'+sx(n-1,n).toFixed(1)+' '+B+' L'+sx(0,n).toFixed(1)+' '+B+' Z" fill="url(#'+fill+')"/>';}
+  s+='<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>';
+  var lx=sx(n-1,n),ly=sy(pts[n-1],mn,mx);
+  s+='<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="3.4" fill="'+color+'"/>';return s;}
+function candles(ohlc,mn,mx){var n=ohlc.length,bw=Math.min(20,(R-L)/n*0.62),s='';
+  ohlc.forEach(function(c,i){var x=sx(i,n),up=c[3]>=c[0],col=up?UP:DN;
+    s+='<line x1="'+x.toFixed(1)+'" y1="'+sy(c[1],mn,mx).toFixed(1)+'" x2="'+x.toFixed(1)+'" y2="'+sy(c[2],mn,mx).toFixed(1)+'" stroke="'+col+'" stroke-width="1.6"/>';
+    var yo=sy(c[0],mn,mx),yc=sy(c[3],mn,mx),top=Math.min(yo,yc),ht=Math.max(2,Math.abs(yo-yc));
+    s+='<rect x="'+(x-bw/2).toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+ht.toFixed(1)+'" fill="'+col+'" rx="1"/>';});return s;}
+
+// 1) Nominal (amber, fırlıyor) vs Reel (mavi, yatay)
+var nom=[100,138,205,330,540,860,1050],real=[100,105,109,113,111,114,113];
+var g1=wrap(grid(0,1100,function(v){return (v/100).toFixed(0)+'x';})+lineChart(nom,0,1100,AMB,'gn')+lineChart(real,0,1100,BLU,null)
+  +'<text x="'+(sx(6,7)-4)+'" y="'+(sy(1050,0,1100)-8)+'" fill="'+AMB+'" font-size="11" text-anchor="end" font-weight="700" font-family="Geist Mono,monospace">nominal</text>'
+  +'<text x="'+(sx(6,7)-4)+'" y="'+(sy(113,0,1100)+14)+'" fill="'+BLU+'" font-size="11" text-anchor="end" font-weight="700" font-family="Geist Mono,monospace">reel</text>');
+// 2) Ters eğri (negatiften pozitife), 0 çizgisi vurgulu, bölge gölgeleri
+var yc=[-1.45,-1.25,-0.95,-0.55,-0.12,0.32,0.7],ymn=-1.7,ymx=1.0,zy=sy(0,ymn,ymx);
+var g2=wrap('<rect x="'+L+'" y="'+zy.toFixed(1)+'" width="'+(R-L)+'" height="'+(B-zy).toFixed(1)+'" fill="'+DN+'" opacity=".07"/>'
+  +'<rect x="'+L+'" y="'+T+'" width="'+(R-L)+'" height="'+(zy-T).toFixed(1)+'" fill="'+UP+'" opacity=".07"/>'
+  +grid(ymn,ymx,function(v){return (v>0?'+':'')+v.toFixed(1);})
+  +'<line x1="'+L+'" y1="'+zy.toFixed(1)+'" x2="'+R+'" y2="'+zy.toFixed(1)+'" stroke="'+ZERO+'" stroke-width="1.3" stroke-dasharray="5 3"/>'
+  +'<text x="'+(L+4)+'" y="'+(zy-5).toFixed(1)+'" fill="'+ZERO+'" font-size="10" font-family="Geist Mono,monospace">0 = normal</text>'
+  +lineChart(yc,ymn,ymx,AMB,'gy'));
+// 3) Ölü kedi sıçraması — mum grafik (düşüş + son yeşil)
+var oh=[[160,163,157,158],[158,159,150,151],[151,152,144,145],[145,146,136,138],[138,139,129,130],[130,131,121,122],[122,124,116,117],[117,118,105,106],[106,107,97,99],[99,100,91,92],[92,101,90,100]];
+var g3=wrap(grid(86,166,function(v){return v.toFixed(0);})+candles(oh,86,166));
+// 4) RSI aşırı satım — 30/70 bantlı osilatör
+var rsi=[68,60,49,40,32,26,22],r70=sy(70,0,100),r30=sy(30,0,100);
+var g4=wrap('<rect x="'+L+'" y="'+r70.toFixed(1)+'" width="'+(R-L)+'" height="'+(r30-r70).toFixed(1)+'" fill="rgba(255,255,255,.03)"/>'
+  +'<rect x="'+L+'" y="'+r30.toFixed(1)+'" width="'+(R-L)+'" height="'+(B-r30).toFixed(1)+'" fill="'+UP+'" opacity=".06"/>'
+  +'<line x1="'+L+'" y1="'+r70.toFixed(1)+'" x2="'+R+'" y2="'+r70.toFixed(1)+'" stroke="'+DN+'" stroke-width="1" stroke-dasharray="4 3" opacity=".6"/>'
+  +'<line x1="'+L+'" y1="'+r30.toFixed(1)+'" x2="'+R+'" y2="'+r30.toFixed(1)+'" stroke="'+UP+'" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>'
+  +'<text x="'+(R+7)+'" y="'+(r70+3.5).toFixed(1)+'" fill="'+AXT+'" font-size="10.5" font-family="Geist Mono,monospace">70</text>'
+  +'<text x="'+(R+7)+'" y="'+(r30+3.5).toFixed(1)+'" fill="'+AXT+'" font-size="10.5" font-family="Geist Mono,monospace">30</text>'
+  +'<text x="'+(L+4)+'" y="'+(B-6)+'" fill="'+UP+'" font-size="10" font-family="Geist Mono,monospace">aşırı satım</text>'
+  +lineChart(rsi,0,100,AMB,null));
+
 var Q=[
- {g:g1,q:"Turuncu çizgi patlıyor, mavi neredeyse yatay. Bu iki çizgi ne olabilir?",opts:["Turuncu nominal getiri, mavi enflasyondan arındırılmış (reel) getiri","İki farklı hisse","Turuncu hisse, mavi faiz","Hepsi aynı şey"],a:0,exp:"<b>Doğru: nominal vs reel.</b> Turuncu (nominal) muazzam görünür ama büyük kısmı enflasyon. Mavi (reel) gerçek alım gücü kazancıdır — çok daha mütevazı. Nominal seni yanıltır."},
- {g:g2,q:"Bu çizgi uzun süre 0'ın ALTINDAydı, şimdi üstüne çıktı (getiri eğrisi farkı). Ne anlatır?",opts:["Borsa çöküyor","Ters eğri normalleşti — resesyon sinyali zayıfladı","Enflasyon fırlıyor","Hiçbir şey"],a:1,exp:"<b>Doğru: eğri normalleşti.</b> Ters eğri (kısa faiz > uzun) klasik resesyon habercisidir. 0'ın üstüne çıkması o alarmın geçtiğini / yumuşak inişi işaret eder."},
- {g:g3,q:"Gümüş SON GÜN yükseldi ama grafiğin geneli düşüşte. 'Gümüş ralliye başladı' demek doğru mu?",opts:["Evet, yükseliyor","Hayır — düşüş trendinde tek günlük sıçrama; trend hâlâ aşağı","Kesin dip burası","Grafikten anlaşılmaz"],a:1,exp:"<b>Doğru: tek gün trend değildir.</b> Sert düşüşte bir yeşil mum sıklıkla 'ölü kedi sıçraması'dır. Trendin yönü tek muma değil, bütüne bakılarak okunur."},
- {g:g4,q:"Bir hissenin RSI'ı 22'ye indi (30 altı = 'aşırı satım'). Ne yapmalı?",opts:["Hemen al, dip geldi","Aşırı satım 'al' sinyali DEĞİL; düşüşte RSI uzun süre dipte kalabilir","Hemen sat","RSI önemsizdir"],a:1,exp:"<b>Doğru: aşırı satım ≠ al.</b> RSI 22 gerginliği gösterir ama güçlü düşüşte RSI haftalarca dipte kalabilir. Tek başına giriş sinyali değildir."}];
+ {g:g1,tag:"getiri · 5 yıl",q:"Turuncu çizgi 10 katına fırlamış, mavi neredeyse yatay. Bu ikisi büyük ihtimalle ne?",
+  opts:["Turuncu = nominal getiri, mavi = enflasyondan arındırılmış (reel) getiri","İki farklı hisse senedi","Turuncu fiyat, mavi işlem hacmi","İkisi de aynı veriyi gösterir"],a:0,
+  exp:"<b>Nominal vs reel.</b> Nominal muhteşem görünür ama büyük kısmı enflasyon. Reel çizgi (mavi) gerçek alım gücü kazancıdır — çok daha mütevazı. Yüksek inflasyonda nominal rakam gözü yanıltır."},
+ {g:g2,tag:"getiri eğrisi farkı",q:"Bu çizgi 2 yıl sıfırın ALTINDAydı (kırmızı bölge), şimdi üstüne geçti. Bu neyin sinyali?",
+  opts:["Borsanın çöktüğü","Ters getiri eğrisinin normalleşmesi — resesyon alarmının zayıflaması","Enflasyonun fırladığı","Anlamlı bir şey değil"],a:1,
+  exp:"<b>Eğri normalleşti.</b> Kısa vadeli faizin uzun vadeliyi geçmesi (ters eğri) tarihsel resesyon habercisidir. Sıfırın üstüne dönmesi genelde merkez bankasının faiz indirmeye başladığını ve yumuşak iniş beklentisini gösterir."},
+ {g:g3,tag:"gümüş · günlük mum",q:"Sürekli kırmızı mumlardan sonra son mum yeşil. 'Düşüş bitti, ralli başladı' demek doğru mu?",
+  opts:["Evet, artık yükseliyor","Hayır — düşüş trendinde tek yeşil mum çoğu zaman kısa bir tepki ('ölü kedi sıçraması')","Kesinlikle dip burası","Mum grafiğinden anlaşılmaz"],a:1,
+  exp:"<b>Tek mum trend değildir.</b> Sert düşüşte bir yeşil mum sıklıkla 'ölü kedi sıçraması'dır — panik satışı sonrası kısa nefes. Trendin döndüğünü tek mum değil, daha yüksek dip + daha yüksek tepe dizisi doğrular."},
+ {g:g4,tag:"RSI · 14 gün",q:"Bir hissenin RSI'ı 30'un altına, 22'ye indi (yeşil = 'aşırı satım' bölgesi). Ne anlama gelir?",
+  opts:["Kesin al sinyali, dip geldi","'Aşırı satım' tek başına al sinyali DEĞİLDİR; güçlü düşüşte RSI haftalarca dipte kalabilir","Kesin sat sinyali","RSI yanlış, yok say"],a:1,
+  exp:"<b>Aşırı satım ≠ al.</b> RSI 22 aşırı gerginliği gösterir ama düşüş trendi güçlüyse RSI uzun süre dipte 'yapışabilir'. Tek başına giriş sinyali değildir; fiyat trendi ve dönüş teyidiyle birlikte okunur."}];
+
 var i=0,score=0,app=document.getElementById('app');
 function render(){
-  if(i>=Q.length){app.innerHTML='<div class="panel result"><div class="eyebrow">SONUÇ</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+(score===Q.length?'Kusursuz! Grafik okuma refleksin güçlü.':score>=Q.length/2?'İyi! Nominal-reel ve trend okuma sağlam.':'Başlangıç iyi — nominal vs reel ve "tek gün trend değildir" en kritik iki ders.')+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene</button></div>';return;}
+  if(i>=Q.length){app.innerHTML='<div class="panel result"><div class="eyebrow">SONUÇ</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+(score===Q.length?'Kusursuz! Grafik okuma refleksin profesyonel seviyede.':score>=Q.length/2?'İyi iş — nominal/reel ve trend okuma sağlam. Kalanı da pekiştir.':'Sağlam bir başlangıç. En kritik iki ders: nominal ≠ reel, ve tek mum trend değildir.')+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene ↺</button></div>';return;}
   var c=Q[i];
-  app.innerHTML='<div class="prog">SORU '+(i+1)+' / '+Q.length+' · SKOR '+score+'</div><div class="panel">'+c.g+'<div class="q">'+c.q+'</div><div id="opts"></div><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
+  app.innerHTML='<div class="prog">SORU '+(i+1)+' / '+Q.length+' · SKOR '+score+'</div><div class="panel"><div class="chart-wrap"><span class="chart-tag">'+c.tag+'</span>'+c.g+'</div><div class="q">'+c.q+'</div><div id="opts"></div><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
   var od=document.getElementById('opts');
-  c.opts.forEach(function(o,k){var b=document.createElement('button');b.className='opt';b.textContent=o;
+  c.opts.forEach(function(o,k){var b=document.createElement('button');b.className='opt';b.innerHTML=o;
     b.onclick=function(){var all=document.querySelectorAll('.opt');all.forEach(function(x){x.disabled=true;});
-      if(k===c.a){b.classList.add('correct');score++;}else{b.classList.add('wrong');od.children[c.a].classList.add('correct');}
+      if(k===c.a){b.classList.add('correct');b.innerHTML+='<span class="mk" style="color:var(--green)">✓</span>';score++;}
+      else{b.classList.add('wrong');b.innerHTML+='<span class="mk" style="color:var(--red)">✕</span>';od.children[c.a].classList.add('correct');}
       document.getElementById('exp').classList.add('show');document.getElementById('next').classList.add('show');};
     od.appendChild(b);});
 }
