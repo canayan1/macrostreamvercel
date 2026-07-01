@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Bu Grafiği Oku · Grafik Okuma Testi · Kalibre Markets</title>
+<meta name="description" content="Grafik gösteriyor, sen yorumla. Nominal-reel, ters getiri eğrisi, tek-gün trend, RSI... 4 soruluk interaktif grafik okuma testiyle piyasa okuma refleksini ölç.">
+<meta name="keywords" content="grafik okuma, teknik analiz testi, nominal reel, getiri eğrisi, RSI, yatırım eğitimi">
+<link rel="canonical" href="https://kalibremarkets.com/grafik-oku/">
+<meta property="og:title" content="Bu Grafiği Oku · Kalibre Markets">
+<meta property="og:description" content="Grafik gösteriyor, sen yorumla. 4 soruluk interaktif grafik okuma testi.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+a{color:inherit;text-decoration:none}
+.cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
+.brand-mark{width:24px;height:24px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:12px}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--text)}
+.brand-name .sub{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:.06em}
+.cmd-crumb{flex:1;min-width:0;padding-left:16px;font-size:11.5px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-back{margin-left:auto;padding-left:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;height:100%}
+.cmd-back:hover{color:var(--accent)}
+main{max-width:660px;margin:24px auto;padding:0 20px 80px}
+.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
+h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
+.lead{color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:12px;margin-bottom:8px}
+.prog{color:var(--muted);font-size:12px;font-weight:600;font-family:'Geist Mono',monospace;margin:16px 0 8px;letter-spacing:.04em}
+.panel{background:var(--surface);border:1px solid var(--border);padding:18px 20px}
+svg{width:100%;height:auto;background:var(--bg-1);border-radius:8px;border:1px solid var(--border-2);display:block}
+.q{font-size:17px;font-weight:600;margin:14px 0 12px;color:var(--text)}
+.opt{display:block;width:100%;text-align:left;background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:14.5px;cursor:pointer;transition:.15s;font-family:inherit}
+.opt:hover{border-color:var(--accent)}
+.opt.correct{border-color:var(--green);background:rgba(74,222,128,.1)}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,.1)}
+.exp{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg-1);border-left:2px solid var(--accent);font-size:13.5px;color:var(--text-dim);line-height:1.7;display:none}
+.exp.show{display:block}.exp b{color:var(--text)}
+.next{background:var(--accent);color:#1a1208;border:0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;display:none}
+.next.show{display:inline-block}.next:hover{background:var(--accent-hot)}
+.result{text-align:center;padding:20px}
+.result .score{font-size:52px;font-weight:700;color:var(--accent);font-family:'Geist Mono',monospace}
+footer.pf{margin-top:26px;border-top:1px solid var(--border);padding:18px 0 0;display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px;flex-wrap:wrap}
+footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
+@media(max-width:680px){h1{font-size:23px}.cmd-crumb{display:none}}
+</style>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// İNTERAKTİF</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › Bu Grafiği Oku</div>
+  <a href="/" class="cmd-back">← Ana sayfa</a>
+</div>
+<main>
+  <div class="eyebrow">▸ İNTERAKTİF · GRAFİK OKUMA</div>
+  <h1>Bu grafiği oku</h1>
+  <p class="lead">Grafik gösteriyor, sen yorumla. Piyasa okuma refleksini 4 soruda test et.</p>
+  <div id="app"></div>
+  <footer class="pf">
+    <div>© Kalibre Markets · Eğitim · yatırım tavsiyesi değildir</div>
+    <div><a href="/carry-hesaplayici/">Carry Hesaplayıcı</a> · <a href="/egitim/">Eğitim</a> · <a href="/">Ana sayfa</a></div>
+  </footer>
+</main>
+<script>
+var AX='#36302a',ACC='#ffa630',BLU='#60a5fa',RED='#ef4444',GRN='#4ade80',DIM='#a89c83';
+function line(pts,color){var w=460,h=180;var xs=pts.map(function(p,i){return 40+i*(w-60)/(pts.length-1);});
+  var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);
+  var ys=pts.map(function(v){return h-20-(v-mn)/((mx-mn)||1)*(h-40);});
+  var d=xs.map(function(x,i){return (i?'L':'M')+x.toFixed(0)+' '+ys[i].toFixed(0);}).join(' ');
+  return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="3" stroke-linecap="round"/>';}
+function svg(inner,extra){return '<svg viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="160" x2="440" y2="160" stroke="'+AX+'"/>'+inner+(extra||'')+'</svg>';}
+var g1=svg(line([100,140,210,340,560,900,1050],ACC)+line([100,104,108,112,110,113,113],BLU),'<text x="435" y="28" fill="'+ACC+'" font-size="12" text-anchor="end" font-weight="bold">turuncu</text><text x="435" y="150" fill="'+BLU+'" font-size="12" text-anchor="end" font-weight="bold">mavi</text>');
+var g2=svg(line([-1.4,-1.2,-0.9,-0.5,-0.1,0.3,0.7],ACC)+'<line x1="40" y1="95" x2="440" y2="95" stroke="'+DIM+'" stroke-dasharray="4 3"/><text x="46" y="90" fill="'+DIM+'" font-size="11">0 çizgisi</text>');
+var g3=svg(line([160,150,140,120,105,92,95],RED));
+var g4=svg(line([70,62,50,40,32,26,22],ACC)+'<text x="435" y="150" fill="'+DIM+'" font-size="11" text-anchor="end">RSI 22</text>');
+var Q=[
+ {g:g1,q:"Turuncu çizgi patlıyor, mavi neredeyse yatay. Bu iki çizgi ne olabilir?",opts:["Turuncu nominal getiri, mavi enflasyondan arındırılmış (reel) getiri","İki farklı hisse","Turuncu hisse, mavi faiz","Hepsi aynı şey"],a:0,exp:"<b>Doğru: nominal vs reel.</b> Turuncu (nominal) muazzam görünür ama büyük kısmı enflasyon. Mavi (reel) gerçek alım gücü kazancıdır — çok daha mütevazı. Nominal seni yanıltır."},
+ {g:g2,q:"Bu çizgi uzun süre 0'ın ALTINDAydı, şimdi üstüne çıktı (getiri eğrisi farkı). Ne anlatır?",opts:["Borsa çöküyor","Ters eğri normalleşti — resesyon sinyali zayıfladı","Enflasyon fırlıyor","Hiçbir şey"],a:1,exp:"<b>Doğru: eğri normalleşti.</b> Ters eğri (kısa faiz > uzun) klasik resesyon habercisidir. 0'ın üstüne çıkması o alarmın geçtiğini / yumuşak inişi işaret eder."},
+ {g:g3,q:"Gümüş SON GÜN yükseldi ama grafiğin geneli düşüşte. 'Gümüş ralliye başladı' demek doğru mu?",opts:["Evet, yükseliyor","Hayır — düşüş trendinde tek günlük sıçrama; trend hâlâ aşağı","Kesin dip burası","Grafikten anlaşılmaz"],a:1,exp:"<b>Doğru: tek gün trend değildir.</b> Sert düşüşte bir yeşil mum sıklıkla 'ölü kedi sıçraması'dır. Trendin yönü tek muma değil, bütüne bakılarak okunur."},
+ {g:g4,q:"Bir hissenin RSI'ı 22'ye indi (30 altı = 'aşırı satım'). Ne yapmalı?",opts:["Hemen al, dip geldi","Aşırı satım 'al' sinyali DEĞİL; düşüşte RSI uzun süre dipte kalabilir","Hemen sat","RSI önemsizdir"],a:1,exp:"<b>Doğru: aşırı satım ≠ al.</b> RSI 22 gerginliği gösterir ama güçlü düşüşte RSI haftalarca dipte kalabilir. Tek başına giriş sinyali değildir."}];
+var i=0,score=0,app=document.getElementById('app');
+function render(){
+  if(i>=Q.length){app.innerHTML='<div class="panel result"><div class="eyebrow">SONUÇ</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+(score===Q.length?'Kusursuz! Grafik okuma refleksin güçlü.':score>=Q.length/2?'İyi! Nominal-reel ve trend okuma sağlam.':'Başlangıç iyi — nominal vs reel ve "tek gün trend değildir" en kritik iki ders.')+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene</button></div>';return;}
+  var c=Q[i];
+  app.innerHTML='<div class="prog">SORU '+(i+1)+' / '+Q.length+' · SKOR '+score+'</div><div class="panel">'+c.g+'<div class="q">'+c.q+'</div><div id="opts"></div><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
+  var od=document.getElementById('opts');
+  c.opts.forEach(function(o,k){var b=document.createElement('button');b.className='opt';b.textContent=o;
+    b.onclick=function(){var all=document.querySelectorAll('.opt');all.forEach(function(x){x.disabled=true;});
+      if(k===c.a){b.classList.add('correct');score++;}else{b.classList.add('wrong');od.children[c.a].classList.add('correct');}
+      document.getElementById('exp').classList.add('show');document.getElementById('next').classList.add('show');};
+    od.appendChild(b);});
+}
+render();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>
