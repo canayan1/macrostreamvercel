@@ -176,6 +176,22 @@ var g10=wrap('<line x1="'+L+'" y1="96" x2="'+R+'" y2="96" stroke="'+GRIDC+'"/>'
   +'<line x1="'+sx(1,4).toFixed(1)+'" y1="'+syR(73,50,78,104,168).toFixed(1)+'" x2="'+sx(3,4).toFixed(1)+'" y2="'+syR(66,50,78,104,168).toFixed(1)+'" stroke="'+DN+'" stroke-width="1.4" stroke-dasharray="4 2"/>'
   +'<text x="'+(R+5)+'" y="30" fill="'+UP+'" font-size="9.5" font-family="Geist Mono,monospace">↑ HH</text>'
   +'<text x="'+(R+5)+'" y="120" fill="'+DN+'" font-size="9.5" font-family="Geist Mono,monospace">↓ LH</text>');
+// 11) Yükselen üçgen — yatay direnç + yükselen dipler
+var at=[98,110,103,110,107,110,119],atmn=94,atmx=124,atRes=sy(110,atmn,atmx);
+var g11=wrap(grid(atmn,atmx,function(v){return v.toFixed(0);})
+  +'<line x1="'+L+'" y1="'+atRes.toFixed(1)+'" x2="'+sx(5.4,7).toFixed(1)+'" y2="'+atRes.toFixed(1)+'" stroke="'+DN+'" stroke-width="1.1" stroke-dasharray="5 3"/>'
+  +'<line x1="'+sx(0,7).toFixed(1)+'" y1="'+sy(98,atmn,atmx).toFixed(1)+'" x2="'+sx(4.6,7).toFixed(1)+'" y2="'+sy(108,atmn,atmx).toFixed(1)+'" stroke="'+UP+'" stroke-width="1.1" stroke-dasharray="5 3"/>'
+  +lineChart(at,atmn,atmx,AMB,'gat')
+  +'<text x="'+(L+4)+'" y="'+(atRes-5).toFixed(1)+'" fill="'+DN+'" font-size="9.5" font-family="Geist Mono,monospace">yatay direnç</text>'
+  +'<text x="'+sx(2,7)+'" y="'+(sy(98,atmn,atmx)+14)+'" fill="'+UP+'" font-size="9.5" text-anchor="middle" font-family="Geist Mono,monospace">yükselen dipler</text>');
+// 12) Boğa bayrağı — sert yükseliş (direk) + küçük düşen kanal (bayrak) + devam
+var bf=[90,122,117,120,115,118,133],bfmn=86,bfmx=138;
+var g12=wrap(grid(bfmn,bfmx,function(v){return v.toFixed(0);})
+  +'<line x1="'+sx(1,7).toFixed(1)+'" y1="'+sy(123,bfmn,bfmx).toFixed(1)+'" x2="'+sx(5,7).toFixed(1)+'" y2="'+sy(117,bfmn,bfmx).toFixed(1)+'" stroke="'+ZERO+'" stroke-width="1" stroke-dasharray="4 3"/>'
+  +'<line x1="'+sx(1,7).toFixed(1)+'" y1="'+sy(116,bfmn,bfmx).toFixed(1)+'" x2="'+sx(5,7).toFixed(1)+'" y2="'+sy(112,bfmn,bfmx).toFixed(1)+'" stroke="'+ZERO+'" stroke-width="1" stroke-dasharray="4 3"/>'
+  +lineChart(bf,bfmn,bfmx,AMB,'gbf')
+  +'<text x="'+sx(0.6,7)+'" y="'+(sy(106,bfmn,bfmx))+'" fill="'+AXT+'" font-size="9.5" text-anchor="middle" font-family="Geist Mono,monospace">direk</text>'
+  +'<text x="'+sx(3,7)+'" y="'+(sy(113,bfmn,bfmx)+13)+'" fill="'+AXT+'" font-size="9.5" text-anchor="middle" font-family="Geist Mono,monospace">bayrak</text>');
 
 var Q=[
  {g:g1,tag:"getiri · 5 yıl",q:"Turuncu çizgi 10 katına fırlamış, mavi neredeyse yatay. Bu ikisi büyük ihtimalle ne?",
@@ -207,7 +223,13 @@ var Q=[
   exp:"<b>Sıkışma → patlama.</b> Bantların (ör. Bollinger) daralması düşük volatiliteyi gösterir. Volatilite döngüseldir: uzun sakinlik dönemlerini sıklıkla sert hareketler izler. Ama YÖNÜ sıkışma söylemez — kırılımın yönünü fiyat/hacim teyidiyle okumak gerekir."},
  {g:g10,tag:"ıraksama",q:"Fiyat daha yüksek tepe yaparken (üst panel ↑), RSI daha DÜŞÜK tepe yapıyor (alt panel ↓). Bu uyumsuzluk ne der?",
   opts:["Yükseliş güçleniyor, al","Negatif ıraksama (divergence) — yükselişin momentumu zayıflıyor, dikkat","Hiçbir şey, normal","Kesin düşüş başladı"],a:1,
-  exp:"<b>Negatif ıraksama.</b> Fiyat yeni zirve yaparken göstergenin (RSI) yapamaması, harekete katılımın azaldığını gösterir — yükseliş yorgun düşüyor olabilir. Bir uyarı sinyalidir, kesin dönüş garantisi değil; teyit (trend kırılımı) beklenir."}];
+  exp:"<b>Negatif ıraksama.</b> Fiyat yeni zirve yaparken göstergenin (RSI) yapamaması, harekete katılımın azaldığını gösterir — yükseliş yorgun düşüyor olabilir. Bir uyarı sinyalidir, kesin dönüş garantisi değil; teyit (trend kırılımı) beklenir."},
+ {g:g11,tag:"formasyon",q:"Tepeler aynı seviyede (yatay direnç), dipler giderek yükseliyor. Sonra fiyat yukarı kırdı. Bu ne?",
+  opts:["Yükselen üçgen — genelde yükseliş yönlü devam formasyonu","Düşen üçgen — düşüş","Baş-omuz","Çift tepe"],a:0,
+  exp:"<b>Yükselen üçgen.</b> Alıcılar her seferinde daha yüksekten alıyor (yükselen dipler) ama satıcılar aynı seviyeyi (yatay direnç) savunuyor. Bu baskı genelde direncin yukarı kırılmasıyla çözülür — yükseliş yönlü sayılır. Yine de kırılım + hacim teyidi şarttır."},
+ {g:g12,tag:"formasyon",q:"Sert bir yükseliş (direk), ardından hafif aşağı eğimli küçük bir kanal (bayrak), sonra tekrar yükseliş. Bu ne?",
+  opts:["Boğa bayrağı — yükseliş trendinde nefes alma + DEVAM formasyonu","Dönüş sinyali","Çöküş","Golden cross"],a:0,
+  exp:"<b>Boğa bayrağı.</b> Güçlü yükselişten sonra fiyatın dar bir kanalda hafif geri çekilmesi 'kâr satışı / nefes alma'dır. Trend çoğunlukla aynı yönde devam eder (bayrak, direğin devamıdır). Aşağı yönlü kırılım olursa formasyon geçersizleşir."}];
 
 var i=0,score=0,app=document.getElementById('app');
 function render(){
