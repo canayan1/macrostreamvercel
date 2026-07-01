@@ -37,14 +37,18 @@ h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spac
 .prog{color:var(--muted);font-size:12px;font-weight:600;font-family:'Geist Mono',monospace;margin:16px 0 8px;letter-spacing:.04em}
 .panel{background:var(--surface);border:1px solid var(--border);padding:18px 20px}
 .chart-wrap{background:#0e1116;border:1px solid var(--border-2);border-radius:8px;padding:8px 4px 2px;position:relative}
-.chart-tag{position:absolute;top:9px;left:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:'Geist Mono',monospace;z-index:2}
+.chart-tag{position:absolute;top:9px;left:12px;font-size:10.5px;letter-spacing:.04em;color:var(--muted);font-family:'Geist Mono',monospace;z-index:2}
 svg{width:100%;height:auto;display:block}
 .q{font-size:17px;font-weight:600;margin:16px 0 12px;color:var(--text)}
 .opt{display:block;width:100%;text-align:left;background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:14.5px;cursor:pointer;transition:.15s;font-family:inherit}
 .opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:rgba(255,166,48,.09)}
 .opt.correct{border-color:var(--green);background:rgba(38,166,154,.14)}
 .opt.wrong{border-color:var(--red);background:rgba(239,83,80,.12)}
 .opt .mk{float:right;font-weight:700}
+.submit{background:var(--accent);color:#1a1208;border:0;border-radius:8px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
+.submit:hover:not(:disabled){background:var(--accent-hot)}
+.submit:disabled{background:var(--surface-2);color:var(--muted);cursor:not-allowed}
 .exp{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg-1);border-left:2px solid var(--accent);font-size:13.5px;color:var(--text-dim);line-height:1.7;display:none}
 .exp.show{display:block}.exp b{color:var(--text)}
 .next{background:var(--accent);color:#1a1208;border:0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;display:none}
@@ -233,16 +237,24 @@ var Q=[
 
 var i=0,score=0,app=document.getElementById('app');
 function render(){
-  if(i>=Q.length){app.innerHTML='<div class="panel result"><div class="eyebrow">SONUÇ</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+(score===Q.length?'Kusursuz! Grafik okuma refleksin profesyonel seviyede.':score>=Q.length/2?'İyi iş — nominal/reel ve trend okuma sağlam. Kalanı da pekiştir.':'Sağlam bir başlangıç. En kritik iki ders: nominal ≠ reel, ve tek mum trend değildir.')+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene ↺</button></div>';return;}
-  var c=Q[i];
-  app.innerHTML='<div class="prog">SORU '+(i+1)+' / '+Q.length+' · SKOR '+score+'</div><div class="panel"><div class="chart-wrap"><span class="chart-tag">'+c.tag+'</span>'+c.g+'</div><div class="q">'+c.q+'</div><div id="opts"></div><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
+  if(i>=Q.length){
+    var msg=score===Q.length?'Kusursuz! Grafik okuma refleksin profesyonel seviyede.':score>=Q.length/2?'İyi iş — nominal/reel ve trend okuma sağlam. Kalanı da pekiştir.':'Sağlam bir başlangıç. En kritik iki ders: nominal ≠ reel, ve tek mum trend değildir.';
+    app.innerHTML='<div class="panel result"><div style="font-size:12px;letter-spacing:.05em;color:var(--accent);font-weight:700;margin-bottom:6px">Sonuç</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+msg+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene ↺</button></div>';return;}
+  var c=Q[i],sel=-1,answered=false;
+  app.innerHTML='<div class="prog">Soru '+(i+1)+' / '+Q.length+' · Skor '+score+'</div><div class="panel"><div class="chart-wrap"><span class="chart-tag">'+c.tag+'</span>'+c.g+'</div><div class="q">'+c.q+'</div><div id="opts"></div><button class="submit" id="submit" disabled onclick="check()">Cevapla</button><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
   var od=document.getElementById('opts');
   c.opts.forEach(function(o,k){var b=document.createElement('button');b.className='opt';b.innerHTML=o;
-    b.onclick=function(){var all=document.querySelectorAll('.opt');all.forEach(function(x){x.disabled=true;});
-      if(k===c.a){b.classList.add('correct');b.innerHTML+='<span class="mk" style="color:var(--green)">✓</span>';score++;}
-      else{b.classList.add('wrong');b.innerHTML+='<span class="mk" style="color:var(--red)">✕</span>';od.children[c.a].classList.add('correct');}
-      document.getElementById('exp').classList.add('show');document.getElementById('next').classList.add('show');};
+    b.onclick=function(){if(answered)return;sel=k;
+      Array.prototype.forEach.call(od.children,function(x){x.classList.remove('sel');});b.classList.add('sel');
+      document.getElementById('submit').disabled=false;};
     od.appendChild(b);});
+  window.check=function(){if(sel<0||answered)return;answered=true;
+    Array.prototype.forEach.call(od.children,function(x){x.disabled=true;});
+    var ch=od.children[sel];ch.classList.remove('sel');
+    if(sel===c.a){ch.classList.add('correct');ch.innerHTML+='<span class="mk" style="color:var(--green)">✓</span>';score++;}
+    else{ch.classList.add('wrong');ch.innerHTML+='<span class="mk" style="color:var(--red)">✕</span>';od.children[c.a].classList.add('correct');}
+    document.getElementById('submit').style.display='none';
+    document.getElementById('exp').classList.add('show');document.getElementById('next').classList.add('show');};
 }
 render();
 </script>
