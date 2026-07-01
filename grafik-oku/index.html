@@ -121,6 +121,28 @@ var g4=wrap('<rect x="'+L+'" y="'+r70.toFixed(1)+'" width="'+(R-L)+'" height="'+
   +'<text x="'+(R+7)+'" y="'+(r30+3.5).toFixed(1)+'" fill="'+AXT+'" font-size="10.5" font-family="Geist Mono,monospace">30</text>'
   +'<text x="'+(L+4)+'" y="'+(B-6)+'" fill="'+UP+'" font-size="10" font-family="Geist Mono,monospace">aşırı satım</text>'
   +lineChart(rsi,0,100,AMB,null));
+// 5) Golden cross — hızlı ortalama yavaşı yukarı keser
+var slow=[104,105,106,107,109,112,116,120],fast=[94,97,101,106,112,117,122,126],gcmn=90,gcmx=130;
+var g5=wrap(grid(gcmn,gcmx,function(v){return v.toFixed(0);})+lineChart(slow,gcmn,gcmx,BLU,null)+lineChart(fast,gcmn,gcmx,AMB,null)
+  +'<circle cx="'+sx(3.4,8).toFixed(1)+'" cy="'+sy(108,gcmn,gcmx).toFixed(1)+'" r="7" fill="none" stroke="'+UP+'" stroke-width="1.6"/>'
+  +'<text x="'+(sx(0,8))+'" y="'+(sy(94,gcmn,gcmx)+13)+'" fill="'+AMB+'" font-size="10.5" font-weight="700" font-family="Geist Mono,monospace">hızlı ort.</text>'
+  +'<text x="'+(sx(0,8))+'" y="'+(sy(104,gcmn,gcmx)-6)+'" fill="'+BLU+'" font-size="10.5" font-weight="700" font-family="Geist Mono,monospace">yavaş ort.</text>');
+// 6) Çift dip (double bottom) — W + boyun çizgisi
+var db=[128,107,92,105,91,109,124,130],dbmn=85,dbmx=134,neck=sy(107,dbmn,dbmx);
+var g6=wrap(grid(dbmn,dbmx,function(v){return v.toFixed(0);})
+  +'<line x1="'+L+'" y1="'+neck.toFixed(1)+'" x2="'+R+'" y2="'+neck.toFixed(1)+'" stroke="'+ZERO+'" stroke-width="1" stroke-dasharray="5 3"/>'
+  +'<text x="'+(R-2)+'" y="'+(neck-5).toFixed(1)+'" fill="'+ZERO+'" font-size="10" text-anchor="end" font-family="Geist Mono,monospace">boyun çizgisi</text>'
+  +lineChart(db,dbmn,dbmx,AMB,'gdb')
+  +'<text x="'+sx(2,8)+'" y="'+(sy(92,dbmn,dbmx)+14)+'" fill="'+AXT+'" font-size="10" text-anchor="middle" font-family="Geist Mono,monospace">1. dip</text>'
+  +'<text x="'+sx(4,8)+'" y="'+(sy(91,dbmn,dbmx)+14)+'" fill="'+AXT+'" font-size="10" text-anchor="middle" font-family="Geist Mono,monospace">2. dip</text>');
+// 7) Direnç kırılımı + hacim onayı
+var pr=[100,103,101,104,102,103,113],rmn=96,rmx=118,resY=sy(104.5,rmn,rmx),VB=[4,5,4,6,4,5,11],vmax=12;
+function volbars(v){var n=v.length,bw=Math.min(16,(R-L)/n*0.5),s='',base=196;return v.map(function(h,i){var x=sx(i,n),bh=h/vmax*20,col=(i===n-1)?AMB:'rgba(255,166,48,.28)';return '<rect x="'+(x-bw/2).toFixed(1)+'" y="'+(base-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>';}).join('');}
+var g7=wrap(grid(rmn,rmx,function(v){return v.toFixed(0);})
+  +'<line x1="'+L+'" y1="'+resY.toFixed(1)+'" x2="'+R+'" y2="'+resY.toFixed(1)+'" stroke="'+DN+'" stroke-width="1.2" stroke-dasharray="5 3"/>'
+  +'<text x="'+(L+4)+'" y="'+(resY-5).toFixed(1)+'" fill="'+DN+'" font-size="10" font-family="Geist Mono,monospace">direnç</text>'
+  +lineChart(pr,rmn,rmx,AMB,'gbr')+volbars(VB)
+  +'<text x="'+(R+7)+'" y="193" fill="'+AXT+'" font-size="9.5" font-family="Geist Mono,monospace">hacim</text>');
 
 var Q=[
  {g:g1,tag:"getiri · 5 yıl",q:"Turuncu çizgi 10 katına fırlamış, mavi neredeyse yatay. Bu ikisi büyük ihtimalle ne?",
@@ -134,7 +156,16 @@ var Q=[
   exp:"<b>Tek mum trend değildir.</b> Sert düşüşte bir yeşil mum sıklıkla 'ölü kedi sıçraması'dır — panik satışı sonrası kısa nefes. Trendin döndüğünü tek mum değil, daha yüksek dip + daha yüksek tepe dizisi doğrular."},
  {g:g4,tag:"RSI · 14 gün",q:"Bir hissenin RSI'ı 30'un altına, 22'ye indi (yeşil = 'aşırı satım' bölgesi). Ne anlama gelir?",
   opts:["Kesin al sinyali, dip geldi","'Aşırı satım' tek başına al sinyali DEĞİLDİR; güçlü düşüşte RSI haftalarca dipte kalabilir","Kesin sat sinyali","RSI yanlış, yok say"],a:1,
-  exp:"<b>Aşırı satım ≠ al.</b> RSI 22 aşırı gerginliği gösterir ama düşüş trendi güçlüyse RSI uzun süre dipte 'yapışabilir'. Tek başına giriş sinyali değildir; fiyat trendi ve dönüş teyidiyle birlikte okunur."}];
+  exp:"<b>Aşırı satım ≠ al.</b> RSI 22 aşırı gerginliği gösterir ama düşüş trendi güçlüyse RSI uzun süre dipte 'yapışabilir'. Tek başına giriş sinyali değildir; fiyat trendi ve dönüş teyidiyle birlikte okunur."},
+ {g:g5,tag:"hareketli ortalamalar",q:"Hızlı ortalama (turuncu), yavaş ortalamayı (mavi) aşağıdan yukarı kesti (halka). Bu formasyonun adı ve anlamı?",
+  opts:["'Ölüm kesişimi' — düşüş sinyali","'Altın kesişim' (golden cross) — yükseliş yönlü momentum sinyali","Rastgele gürültü","Grafik hatası"],a:1,
+  exp:"<b>Altın kesişim.</b> Kısa vadeli ortalamanın uzun vadeliyi yukarı kesmesi, momentumun yukarı döndüğünü gösterir ve klasik yükseliş sinyali sayılır. Tersi (aşağı kesmek) 'ölüm kesişimi'dir. Gecikmeli bir sinyaldir — teyit ister, garanti değildir."},
+ {g:g6,tag:"formasyon",q:"Fiyat aynı seviyede İKİ dip yaptı, sonra aradaki tepeyi (boyun çizgisi) yukarı kırdı. Bu ne?",
+  opts:["Çift dip (double bottom) — olası dönüş/yükseliş formasyonu","Çift tepe — düşüş","Baş-omuz","Anlamsız"],a:0,
+  exp:"<b>Çift dip.</b> Fiyatın iki kez aynı seviyeden dönmesi, orada güçlü alıcı (destek) olduğunu gösterir. Boyun çizgisinin yukarı kırılması formasyonu teyit eder ve yükseliş beklentisi doğurur. Kırılım gelmeden formasyon 'tamamlanmış' sayılmaz."},
+ {g:g7,tag:"kırılım + hacim",q:"Fiyat direnci yukarı kırdı — ve kırılım anındaki HACİM çubuğu (sağda) çok yüksek. Bu neyi güçlendirir?",
+  opts:["Kırılımı zayıflatır, sahtedir","Yüksek hacim kırılımı TEYİT eder — daha güvenilir","Hacmin önemi yoktur","Satış sinyalidir"],a:1,
+  exp:"<b>Hacim teyidi.</b> Direnç kırılımına yüksek hacim eşlik ediyorsa, harekete geniş katılım var demektir; kırılımın kalıcı olma ihtimali artar. Düşük hacimli kırılımlar sıklıkla 'sahte kırılım' (fakeout) olur ve geri döner."}];
 
 var i=0,score=0,app=document.getElementById('app');
 function render(){
