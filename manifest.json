@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-06-30T06:47:14.604204Z",
+  "last_update": "2026-07-01T07:06:35.686535Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-06-30",
-    "title": "Enka İnşaat — Günün Merceği"
+    "date": "2026-07-01",
+    "title": "Ereğli Demir Çelik — Günün Merceği"
   },
-  "total_reports": 173,
+  "total_reports": 178,
   "by_category": {
-    "pulse": 29,
-    "hisse": 33,
+    "pulse": 30,
+    "hisse": 34,
     "sektor": 13,
-    "fx": 35,
-    "metals": 15,
+    "fx": 36,
+    "metals": 16,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 30
+    "tcmb": 31
   }
 }
