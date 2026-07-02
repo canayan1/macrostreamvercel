@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-01T07:06:35.686535Z",
+  "last_update": "2026-07-02T06:31:42.318321Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-01",
-    "title": "Ereğli Demir Çelik — Günün Merceği"
+    "date": "2026-07-02",
+    "title": "Ford Otosan — Günün Merceği"
   },
-  "total_reports": 178,
+  "total_reports": 183,
   "by_category": {
-    "pulse": 30,
-    "hisse": 34,
+    "pulse": 31,
+    "hisse": 35,
     "sektor": 13,
-    "fx": 36,
-    "metals": 16,
+    "fx": 37,
+    "metals": 17,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 31
+    "tcmb": 32
   }
 }
