@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Türkiye Ekonomik Raporu · 2026 Üçüncü Çeyrek — Kalibre Markets</title>
+
+<meta name="description" content="Türkiye 2026 Üçüncü Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.">
+<meta name="author" content="Kalibre Markets">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<meta name="keywords" content="Türkiye makro, enflasyon, TÜFE, GDP, TCMB, makroekonomi raporu">
+<meta property="og:title" content="Türkiye Ekonomik Raporu · 2026 Üçüncü Çeyrek — Kalibre Markets">
+<meta property="og:description" content="Türkiye 2026 Üçüncü Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.">
+<meta property="og:url" content="https://kalibremarkets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Türkiye Ekonomik Raporu · 2026 Üçüncü Çeyrek — Kalibre Markets">
+<meta name="twitter:description" content="Türkiye 2026 Üçüncü Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.">
+<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — günlük BIST/US teknik tarama, FX, TR/ABD makro, şeffaf strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Borsa İstanbul", "BIST 30", "Makro ekonomi", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "info@kalibremarkets.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6FEDBJG6N');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #100e0c;
+  --bg-1: #14110e;
+  --surface: #1a1612;
+  --surface-2: #221d18;
+  --panel: #121110;        /* backward compat alias */
+  --panel-2: #191714;      /* backward compat alias */
+  --border: #26221d;
+  --border-2: #36302a;
+  --text: #ebe3d3;
+  --text-dim: #a89c83;
+  --muted: #6f6553;
+  --accent: #ffa630;
+  --accent-hot: #ff7a00;
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,.08);
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --yellow: #ffa630;        /* backward compat alias */
+  --grid: rgba(255,166,48,.025);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+/* Mono'yu lazım olduğu yerlerde class ile çağırırız */
+.mono, code, pre {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+a { color: inherit; text-decoration: none; }
+.num { font-variant-numeric: tabular-nums; }
+.up, .pos { color: var(--green); }
+.dn, .neg { color: var(--red); }
+.neu, .muted { color: var(--muted); }
+.warn { color: var(--accent); }
+.small { font-size: 11px; }
+
+/* ── TOP BAR (slim terminal başlığı) ──────────────── */
+.cmdbar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  height: 46px; padding: 0 18px; position: sticky; top: 0; z-index: 60;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding-right: 18px; height: 100%; border-right: 1px solid var(--border);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 24px; height: 24px; border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 800; font-size: 12px;
+}
+.brand-name { font-weight: 700; font-size: 13px; letter-spacing: .12em; color: var(--text); }
+.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 6px; letter-spacing: .06em; }
+.cmd-crumb {
+  flex: 1; min-width: 0; padding-left: 16px;
+  font-size: 11.5px; color: var(--muted); letter-spacing: .04em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cmd-crumb a { color: inherit; }
+.cmd-crumb a:hover { color: var(--accent); }
+.cmd-actions { display: flex; align-items: center; gap: 0; margin-left: auto; height: 100%; }
+.cmd-tr {
+  padding: 0 14px; font-size: 12px; color: var(--text-dim); cursor: pointer;
+  border-left: 1px solid var(--border); height: 100%; display: flex; align-items: center;
+}
+.cmd-tr:hover { color: var(--accent); }
+.cmd-back {
+  padding-left: 16px; font-size: 12px; color: var(--text-dim);
+  white-space: nowrap; text-decoration: none; display: flex; align-items: center; height: 100%;
+}
+.cmd-back:hover { color: var(--accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.amber { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.wrap { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
+
+/* ── BANNER ───────────────────────────────────────── */
+.banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
+  padding: 10px 16px; margin-bottom: 18px;
+}
+.banner .tag { color: var(--accent); font-weight: 700; letter-spacing: .14em; font-size: 10px; text-transform: uppercase; }
+.banner .msg { color: var(--text-dim); font-size: 12px; flex: 1; }
+.banner .msg b { color: var(--text); font-weight: 600; }
+.banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+.disclaimer-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  border-bottom: 1px solid var(--border-2); padding: 10px 24px;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
+}
+.disclaimer-banner b { color: var(--accent); }
+
+/* ── PAGE HEADING ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; margin: 26px 0 12px; color: var(--text); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 16px 0 8px; color: var(--text-dim); text-transform: none; }
+p { margin-bottom: 12px; line-height: 1.65; }
+
+/* ── PANEL ────────────────────────────────────────── */
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.panel-h {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .02em;
+  color: var(--muted);
+}
+.panel-h .ttl { color: var(--text-dim); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.panel-h .ttl-sub { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 6px; }
+.panel-h .meta { display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 14px 16px; flex: 1; }
+
+/* ── CARD (backward compat) ───────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.card.featured { border-left: 2px solid var(--accent); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font: inherit; font-size: 12px;
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; letter-spacing: .04em;
+  transition: all .12s; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #1a1208; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+.btn .arr { font-size: 14px; line-height: 1; }
+
+/* ── PILLS ────────────────────────────────────────── */
+.pill {
+  display: inline-flex; padding: 2px 8px; font-size: 9.5px;
+  border: 1px solid var(--border-2); color: var(--text-dim);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
+.pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
+.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+
+/* ── KV / FLAGS ───────────────────────────────────── */
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
+.kv .k { color: var(--muted); }
+.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag {
+  display: inline-block; padding: 2px 8px; font-size: 10px;
+  background: var(--surface-2); color: var(--text-dim);
+  border: 1px solid var(--border); letter-spacing: .04em;
+}
+.flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
+.flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
+.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+
+/* ── TABLES ───────────────────────────────────────── */
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid th, table.grid td {
+  text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+table.grid th { color: var(--muted); font-weight: 500; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+table.grid td.l, table.grid th.l { text-align: left; }
+table.grid tbody tr:hover { background: var(--bg-1); }
+
+/* ── COMMENTARY (LLM output box) ──────────────────── */
+.commentary {
+  background: var(--bg-1); border-left: 2px solid var(--accent);
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.65;
+  color: var(--text-dim); margin-top: 12px;
+}
+.commentary b { color: var(--text); font-weight: 600; }
+
+/* ── REPORT LIST (used in archive) ────────────────── */
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li {
+  padding: 11px 0; border-bottom: 1px dashed var(--border);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.report-list li:last-child { border-bottom: 0; }
+.report-list a { color: var(--text); font-weight: 500; }
+.report-list a:hover { color: var(--accent); }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer.pf-foot {
+  margin-top: 30px; border-top: 1px solid var(--border); padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  color: var(--muted); font-size: 11px; letter-spacing: .04em;
+  max-width: 1440px; margin-left: auto; margin-right: auto;
+}
+footer.pf-foot a { color: var(--text-dim); }
+footer.pf-foot a:hover { color: var(--accent); }
+footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
+
+/* ── ASCII ART ────────────────────────────────────── */
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+
+/* ── MOBILE ───────────────────────────────────────── */
+/* TABLET (900px ve altı) */
+@media (max-width: 900px) {
+  .cmdbar { padding: 0 12px; }
+  .cmd-crumb { display: none; }
+  .wrap, main { padding: 14px 12px 60px; }
+  footer.pf-foot { flex-direction: column; padding: 16px 14px; gap: 12px; }
+
+  /* Hero 2-sütun → 1-sütun */
+  div[style*="grid-template-columns:1.4fr 1fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 12-sütun grid'ler */
+  div[style*="grid-template-columns:repeat(12,1fr)"],
+  div[style*="grid-template-columns: repeat(12,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Strat 1.4fr 1fr 1fr → tek sütun */
+  div[style*="grid-template-columns:1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 8/4 cols → cancel span ve doğrula */
+  *[style*="grid-column:span 8"],
+  *[style*="grid-column:span 7"],
+  *[style*="grid-column:span 5"],
+  *[style*="grid-column:span 4"] {
+    grid-column: span 12 !important;
+  }
+}
+
+/* MOBIL (700px ve altı) — keskin sıkıştırma */
+@media (max-width: 700px) {
+  .cmdbar { height: 44px; }
+  .brand-name .sub { display: none; }
+
+  /* 4-kolon mini grid'ler → 2x2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 6-kolon perf grid → 2-kolon */
+  div[style*="grid-template-columns:repeat(6,1fr)"],
+  div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 1fr 1fr 2-kolon paneller (drawdown+seasonality, leaders+laggards) → 1-kolon */
+  div[style*="grid-template-columns:1fr 1fr"]:not(.kv) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hero başlığı küçült */
+  h1[style*="font-size:34px"], h1[style*="font-size:30px"] {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  h2[style*="font-size:28px"] {
+    font-size: 20px !important;
+  }
+  h2 { font-size: 16px !important; }
+  /* Hero panel padding */
+  .panel[style*="padding:28px"] {
+    padding: 18px 16px !important;
+  }
+  /* Discipline panel (pt-mini) düzeyi */
+  #pt-mini { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+  #pt-mini > div:nth-child(1) { width: 72px !important; height: 72px !important; }
+  #pt-mini > div:nth-child(1) > div:first-child { font-size: 24px !important; }
+  /* Pre-trade kontrol CTA satırı */
+  #pt-mini > div:last-child { width: 100%; flex-direction: row; }
+  #pt-mini .btn { flex: 1; }
+  /* Banner */
+  .banner, .disclaimer-banner { font-size: 11px; padding: 8px 12px; }
+  /* Mobil: disclaimer flex → block, satır sarması doğal aksın, üst üste binme olmasın */
+  .disclaimer-banner {
+    display: block;
+    line-height: 1.55;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  /* Panel başlıkları sıkış */
+  .panel-h { padding: 8px 12px; font-size: 11px; }
+  .panel-h .ttl { font-size: 12px; }
+  .panel-h .meta { font-size: 10px; }
+  /* Kv grid'leri (info çiftleri) — 12px tıkış */
+  .kv { gap: 4px 10px; font-size: 11.5px; }
+  /* Button satırları wrap edebilsin */
+  .btn { padding: 8px 12px; font-size: 11.5px; }
+}
+
+@media (max-width: 600px) {
+  table.grid th, table.grid td { padding: 6px 8px; font-size: 11px; }
+  /* Onboarding overlay küçült */
+  #onboarding-overlay > div { padding: 20px 22px !important; }
+  #onboarding-overlay h2 { font-size: 18px !important; }
+  /* Wrap padding daralt */
+  .wrap, main { padding: 10px 10px 60px; }
+  /* Hero h1 daha da küçük */
+  h1 { font-size: 22px !important; line-height: 1.2 !important; }
+  /* CTA buton tek satırda kalsın */
+  .btn { width: 100%; justify-content: center; }
+  /* Big numbers tablet boyutu */
+  *[style*="font-size:42px"] { font-size: 30px !important; }
+  *[style*="font-size:34px"] { font-size: 22px !important; }
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  /* Brand mark sıkışmasın */
+  .brand { padding-right: 12px; }
+}
+
+/* ── TIKLANABILIR TERIM ───────────────────────────── */
+.term {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  position: relative;
+  color: var(--text);
+}
+.term:hover { color: var(--accent); }
+.term-pop {
+  position: absolute; z-index: 9000;
+  max-width: 320px; background: var(--surface-2);
+  border: 1px solid var(--accent); border-left-width: 2px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.55;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
+.term-pop .ttl {
+  display: block; font-size: 10px; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 6px;
+}</style>
+</head>
+<body>
+<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Türkiye Raporu › 2026 Üçüncü Çeyrek</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
+<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
+    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
+    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
+      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
+      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
+    </div>
+    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    if (!localStorage.getItem('km-onboarded')) {
+      var el = document.getElementById('onboarding-overlay');
+      if (el) el.style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+// Veri yaşı rozeti: rapor tarihini görüntüleme anında "bugün / dün / N gün önce"e çevir.
+(function(){
+  var els = document.querySelectorAll('.data-age[data-report-date]');
+  if (!els.length) return;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  els.forEach(function(el){
+    var p = (el.getAttribute('data-report-date') || '').split('-');
+    if (p.length !== 3) return;
+    var d = Date.UTC(+p[0], +p[1]-1, +p[2]);
+    var days = Math.round((today - d) / 86400000);
+    var txt, stale = false;
+    if (days <= 0) txt = 'bugün';
+    else if (days === 1) txt = 'dün';
+    else { txt = days + ' gün önce'; stale = days >= 8; }
+    el.textContent = '· ' + txt;
+    el.style.color = stale ? 'var(--red)' : 'var(--muted)';
+    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+  });
+})();
+</script>
+
+<main>
+
+<div class="wrap">
+  <div style="margin-bottom:24px">
+    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px">
+      ▸ Türkiye Ekonomik Raporu
+    </div>
+    <h1 style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.2">
+      Türkiye Ekonomik Raporu · 2026 Üçüncü Çeyrek
+    </h1>
+    <p style="margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--text-dim)">
+      <p>Türkiye'nin güncel makro fotoğrafı. Tüm grafikler ve özetler doğrudan EVDS (TCMB) serilerinden çekilmiş gerçek veriye dayanır; her artifact'in altında veri tarihi gösterilir. Henüz EVDS'de bulunmayan veya dış kaynak gerektiren göstergeler (PMI, getiri eğrisi tenor'ları, CDS) bir sonraki revizyonda eklenecek.</p>
+    </p>
+    <p style="margin-top:6px;font-size:11.5px;color:var(--muted);letter-spacing:.04em">
+      Son güncelleme tarihi: <span style="font-family:'Geist Mono','JetBrains Mono',monospace">03.07.2026</span>
+    </p>
+  </div>
+
+  <style>
+    .macro-grid { display:grid; grid-template-columns:240px 1fr; gap:32px; }
+    .macro-grid > main img { max-width:100%; height:auto; display:block; }
+    @media (max-width: 880px) {
+      .macro-grid { grid-template-columns:1fr; gap:18px; }
+      .macro-grid > aside { display:none; }
+      .macro-grid h2 { font-size:20px !important; }
+    }
+    @media (max-width: 520px) {
+      .panel-h .ttl { font-size:12px !important; }
+      .panel-body { padding:14px 16px !important; font-size:13.5px !important; }
+    }
+  </style>
+  <div class="macro-grid">
+    <aside>
+<nav class="panel" style="position:sticky;top:80px;padding:14px 18px;max-height:80vh;overflow-y:auto">
+  <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px">
+    ▸ İçindekiler
+  </div>
+  <ul style="list-style:none;padding:0;margin:0"><li style="padding:6px 0"><a href="#01_global" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🧭</span><span>Genel Görünüm · Yorum</span></a></li><li style="padding:6px 0"><a href="#02_enflasyon" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🔥</span><span>Enflasyon</span></a></li><li style="padding:6px 0"><a href="#03_oncu" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">📈</span><span>Reel Ekonomi · Öncü Göstergeler</span></a></li><li style="padding:6px 0"><a href="#04_gdp" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🏭</span><span>GDP &amp; Büyüme</span></a></li><li style="padding:6px 0"><a href="#05_isgucu" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">👷</span><span>İşgücü</span></a></li><li style="padding:6px 0"><a href="#06_para" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🏦</span><span>Para Politikası &amp; TCMB Bilançosu</span></a></li><li style="padding:6px 0"><a href="#07_cari" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🌊</span><span>Cari Denge &amp; Kur</span></a></li><li style="padding:6px 0"><a href="#08_kamu" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">🏛️</span><span>Kamu Maliyesi</span></a></li><li style="padding:6px 0"><a href="#09_piyasalar" style="color:var(--text-dim);font-size:12.5px;display:flex;align-items:center;gap:8px;text-decoration:none"><span style="font-size:16px">📊</span><span>Finansal Piyasalar Bağlamı</span></a></li></ul>
+</nav>
+</aside>
+    <main style="min-width:0">
+      
+<section id="01_global" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🧭</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Genel Görünüm · Yorum
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Türkiye makro fotoğrafının özeti ve önümüzdeki dönemde izlenmesi gereken ana göstergeler.</p>
+    </div>
+  </div>
+  
+<article id="01_outlook" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TR Makro Görünümü · Global Bağlam · İzlenecekler<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">Editöryal sentez (raporda yayınlanan EVDS verilerine dayalı)</span>
+  </div>
+  
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <h2>Türkiye'nin makro fotoğrafı</h2>
+<p>Bu rapor TCMB EVDS sisteminden taze çekilen veri üzerine kuruludur. Her artifact altında veri tarihi ve seri kodu gösterilir; çeyreklik ve aylık serilerin yayın gecikmesi kaynağa bağlıdır.</p>
+<p><strong>Enflasyon.</strong> Yıllık TÜFE %32.6 (Mayıs 2026 EVDS okuması, TP.FE25.OKTG01). Çekirdek B %31.3, Yİ-ÜFE %28.1. Politika faizi %40, reel faiz +7.4 puan; pozitif reel faiz sıkı duruşun sürdüğünü gösteriyor. TCMB Piyasa Katılımcıları Anketi'nde cari yıl sonu TÜFE beklentisi %29.1, 12 ay sonrası %23.8 — katılımcılar dezenflasyon patikası fiyatlıyor. TCMB Konut Fiyat Endeksi (Mayıs 2026) yıllık değişim %24.5, TÜFE Y/Y'den 8.1 puan düşük — konut reel olarak değer kaybediyor.</p>
+<p><strong>Reel ekonomi · öncü göstergeler.</strong> RKGE (mevsim arındırılmış, Haziran 2026) 102.0 — 100 nötr eşiğinin üstüne çıktı; TGE 87.9, hâlâ eşiğin altında (üretici-tüketici ayrışması). Sanayi Üretim Endeksi (mevsim ve takvim arındırılmış, Nisan 2026) yıllık %+6.7, aylık %+3.7 — daralmadan pozitif büyümeye döndü; endeks 114.1 (2021=100).</p>
+<p><strong>Büyüme.</strong> GSYİH Y/Y reel büyüme 2026-Q1 itibarıyla %2.5; son dört çeyreğin ortalaması %3.6. HP filtresi (λ=1600) çıktı açığı %-0.58 — trendin hafif negatif tarafında. İmalat KKO (Haziran 2026) %74.3, uzun dönem ortalamasının (%75.7) 1.4 puan altında.</p>
+<p><strong>İşgücü.</strong> Manşet işsizlik Mayıs 2026 itibarıyla %7.4; işgücüne katılım %53.0, istihdam oranı %49.1. Katılım oranı OECD ortalamasının (yaklaşık %65-70) belirgin altında.</p>
+<p><strong>Cari &amp; kur.</strong> Cari işlemler 12 aylık kümülatif Nisan 2026 verisiyle -37.0 mlr USD açık. REER (TÜFE bazlı, Mayıs 2026) 105.5; son 24 ayın bandı 93.0-106.0.</p>
+<p><strong>Rezervler.</strong> 1 Temmuz 2026 analitik bilanço verisine göre brüt dış varlıklar 152.3 mlr USD; klasik net rezerv +42.6 mlr USD, sıkı ölçüm (bankalar swap düşülmüş) -46.6 mlr USD.</p>
+<p><strong>Kamu maliyesi.</strong> 12 aylık kümülatif (Mayıs 2026) bütçe gelirleri 14.1T TL, harcamaları 16.4T TL; manşet denge -2.33T TL açık. Faiz dışı denge +144 mlr TL fazla. Devlet iç borç stoku (tahvil) 8.61T TL; yıllık nominal değişim %+40.1.</p>
+<p><strong>Yabancı yatırımcı pozisyonu.</strong> 26 Haziran 2026 haftalık verisine göre yurt dışı yerleşik hisse stoku 41.4 mlr USD, DİBS stoku 15.6 mlr USD. Son 52 hafta kümülatif net giriş — hisse +3.0 mlr USD, DİBS +5.4 mlr USD.</p>
+<blockquote>
+<p><strong>Kapsam notu.</strong> Bu sürümde henüz yer almayan göstergeler — Türkiye İmalat PMI (S&amp;P Global / İSO, dış kaynak), getiri eğrisi tenor'ları (2Y/5Y/10Y, EVDS'de ayrı seri olarak yayınlanmıyor), TR 5Y CDS, EMBI spread ve perakende satış hacim endeksi — bir sonraki revizyonda scraper geliştirmesi sonrası eklenecek.</p>
+</blockquote>
+<hr />
+<h2>Bu aralar izlenecekler</h2>
+<h3>TÜFE patikası · ana ankraj</h3>
+<p>Aylık TÜFE açıklaması her ayın 3'ünde TÜİK'ten geliyor. Manşet TÜFE'nin yanı sıra Çekirdek B endeksi, Yİ-ÜFE ve Piyasa Katılımcıları Anketi 12 ay sonrası beklentisi birlikte takip edilir.</p>
+<h3>TCMB toplantı kararları · indirim takvimi</h3>
+<p>TCMB Para Politikası Kurulu kararları ayda bir, Perşembe 14:00'te. Faiz patikası için Karar Metni ve Enflasyon Raporu birincil kaynak.</p>
+<h3>Reel faiz · sıkılığın ölçütü</h3>
+<p>Politika faizi eksi yıllık TÜFE. Bu fark pozitif kaldığı dönemlerde TCMB'nin sıkı duruşu sürüyor; negatife döndüğü önceki dönemlerde enflasyon beklentilerinde bozulma gözlenmişti.</p>
+<h3>Güven endeksleri · 100 eşik takibi</h3>
+<p>RKGE ve TGE 100 nötr eşiğinin altında kaldığı uzun dönemlerde reel ekonomi öncü göstergeleri zayıflar; eşiğin üstüne çıkış toparlanma sinyali olarak okunur. Aylık 25'inde yayınlanır.</p>
+<h3>Yabancı portföy haftalık · cari açığın finansmanı</h3>
+<p>TCMB her Perşembe 14:30'da Menkul Kıymet İstatistikleri yayınlıyor. DİBS net hareketinin yönü ve büyüklüğü, cari açığın portföy kanalıyla finansman kalitesini doğrudan gösterir.</p>
+<h3>Bütçe gerçekleşmeleri · faiz dışı denge önceliği</h3>
+<p>HMB her ay 15'inde Aylık Bütçe Gerçekleşmeleri açıklıyor. Manşet denge faiz harcamalarını içerir; faiz dışı denge yapısal mali duruşu daha iyi yansıtır.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="02_enflasyon" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🔥</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Enflasyon
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">TÜFE / Çekirdek / Yİ-ÜFE trendi, SARIMA 6 ay tahmini, beklenti anketi, bileşen analizi, konut fiyat endeksi karşılaştırması.</p>
+    </div>
+  </div>
+  
+<article id="02a_tufe" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Manşet TÜFE · Y/Y + SARIMA Tahmini<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.FE25.OKTG01</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/02a_tufe.png" alt="Manşet TÜFE · Y/Y + SARIMA Tahmini" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Manşet TÜFE May 2026 itibarıyla yıllık %32.6. Son 12 ayın bandı %30.7-%35.0. SARIMA(1,1,1)(1,1,1,12) modelinin 6 ay sonrası merkezi tahmini %37.2, %95 güven aralığı %21.5-%54.9. Grafikteki yeşil arka plan reel faizin pozitif olduğu ayları gösterir.</p>
+  </div>
+</article>
+
+<article id="02b_components" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TÜFE · STL Ayrıştırması<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.FE25.OKTG01 · STL decomposition</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/02b_components.png" alt="TÜFE · STL Ayrıştırması" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Beş yıllık TÜFE Y/Y serisine STL ayrıştırması uygulandı (trend, mevsimsellik, kalıntı). Trendin son 12 aydaki yönü aşağı; mevsimsel bileşenin yıl içi genliği ~10.3 puan, kalıntının son 24 ay standart sapması ~7.1 puan.</p>
+  </div>
+</article>
+
+<article id="02c_expectations" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TÜFE · Gerçekleşen vs Anket Beklentileri<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TCMB Piyasa Katılımcıları Anketi (TP.BEK.S01.D.M / I.M)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/02c_expectations.png" alt="TÜFE · Gerçekleşen vs Anket Beklentileri" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>TCMB Piyasa Katılımcıları Anketi'ne göre cari yıl sonu TÜFE beklentisi %29.1, 12 ay sonrası beklenti %23.8. Gerçekleşen son TÜFE Y/Y %32.6; gerçekleşen ile cari yıl sonu beklentisi arasındaki fark +3.5 puan. 12 ay sonrası beklentinin cari yıl sonu beklentisinin altında olması, katılımcıların dezenflasyon patikası fiyatladığını gösterir.</p>
+  </div>
+</article>
+
+<article id="02d_konut" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Konut Fiyat Endeksi · TÜFE Karşılaştırma<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.KFE.TR (TCMB Hedonik Konut Fiyat Endeksi, Türkiye geneli)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/02d_konut.png" alt="Konut Fiyat Endeksi · TÜFE Karşılaştırma" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>May 2026 itibarıyla TCMB Konut Fiyat Endeksi (KFE, Türkiye geneli) yıllık değişimi %24.5; aynı dönem TÜFE Y/Y %32.6. Aradaki fark -8.1 puan, yani konut fiyatları enflasyonun altında bir tempoda artıyor — yani reel olarak değer kaybediyor. Son 12 ayda KFE Y/Y bandı 24.5-32.9, TÜFE Y/Y bandı 30.7-35.0; KFE-TÜFE makasının yönü reel konut fiyatlarının trend yönünü doğrudan gösteriyor.</p>
+  </div>
+</article>
+
+<article id="02e_core_ppi" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Enflasyon Göstergeleri · Çekirdek ve ÜFE<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.FE25.OKTG01/03 + TP.TUFE1YI.T1</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/02e_core_ppi.png" alt="Enflasyon Göstergeleri · Çekirdek ve ÜFE" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Son veride TÜFE %32.6, Çekirdek B %31.3, Yİ-ÜFE %28.1. Çekirdek B'nin manşete göre konumu (-1.3 puan) talep kaynaklı katılığı, Yİ-ÜFE ile manşet arası makas (-4.5 puan) üretici-tüketici geçişkenliğini gösterir.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="03_oncu" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">📈</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Reel Ekonomi · Öncü Göstergeler
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Reel kesim ve tüketici güven endeksleri, sanayi üretim endeksi — GDP&#x27;den önce ne olduğunu gösteren leading indicators.</p>
+    </div>
+  </div>
+  
+<article id="03b_confidence" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Güven Endeksleri · RKGE (MA) &amp; TGE<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GY1.N2.MA (RKGE, mevsim arındırılmış) + TP.TG2.Y01 (TGE)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/03b_confidence.png" alt="Güven Endeksleri · RKGE (MA) &amp; TGE" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Haz 2026 okumalarına göre Reel Kesim Güven Endeksi (mevsim arındırılmış) 102.0, Tüketici Güven Endeksi 87.9. Her iki endekste de 100 değeri iyimserlik-kötümserlik eşiğidir; güncel RKGE bu eşiğin üstünde, TGE eşiğin altında. Son 12 ayda RKGE bandı 98.6-104.1, TGE bandı 83.5-87.9 — iki seri kıyaslandığında üretici ve tüketici tarafının yıl içi senkronizasyonu (ya da ayrışması) doğrudan okunabilir.</p>
+  </div>
+</article>
+
+<article id="03c_industrial" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Sanayi Üretim Endeksi · Toplam Sanayi (SA+TA)<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.TSANAYMT2021.Y1 (mevsim ve takvim etkilerinden arındırılmış, 2021=100)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/03c_industrial.png" alt="Sanayi Üretim Endeksi · Toplam Sanayi (SA+TA)" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Nis 2026 itibarıyla mevsim ve takvim etkilerinden arındırılmış Sanayi Üretim Endeksi (toplam sanayi) 114.1, yıllık değişim %+6.7, aylık değişim %+3.7. Son altı ayda yıllık büyüme bandı -1.8 ile +6.7, aylık değişim bandı -2.8 ile +3.7. Endeks 2021 baz dönemine göre üretim seviyesinin baz dönem ortalamasının üzerinde olduğunu gösteriyor; SÜE GSYİH'nin sanayi bileşeninin öncü göstergesidir.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="04_gdp" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🏭</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        GDP &amp; Büyüme
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">GSYİH Y/Y reel büyüme, HP filtresi çıktı açığı, imalat kapasite kullanım oranı.</p>
+    </div>
+  </div>
+  
+<article id="04a_gdp" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ GSYİH Y/Y Reel Büyüme · Çeyreklik</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GSYIH26.HY.ZH (Zincirlenmiş Hacim, Harcama Yöntemi)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/04a_gdp.png" alt="GSYİH Y/Y Reel Büyüme · Çeyreklik" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>En son açıklanan 2026-Q1 döneminde GSYİH Y/Y reel büyüme %2.5. Son dört çeyreğin ortalaması %3.6; aynı dört çeyrekte bant 2.5 ile 4.7 arasında. Son sekiz çeyreğin 8 tanesi pozitif bölgede tamamlandı, geri kalanı negatif.</p>
+  </div>
+</article>
+
+<article id="04b_output_gap" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ GSYİH HP Filtresi · Trend &amp; Çıktı Açığı</span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.GSYIH26.HY.ZH + statsmodels HP filter (λ=1600)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/04b_output_gap.png" alt="GSYİH HP Filtresi · Trend &amp; Çıktı Açığı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>2026-Q1 itibarıyla çıktı açığı %-0.58; trendin negatif tarafında. Son sekiz çeyrekte açık -0.58 ile +0.38 bandında dalgalandı, ortalama %-0.02. HP filtresi (λ=1600) GSYİH zincirlenmiş hacim serisinin log dönüşümü üzerinde uygulandı; trend ve çevrim ayrıştırması model varsayımına bağlıdır.</p>
+  </div>
+</article>
+
+<article id="04c_kko" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ İmalat Sanayi Kapasite Kullanım Oranı<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.KKO.MA (Mevsimsellikten Arındırılmış)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/04c_kko.png" alt="İmalat Sanayi Kapasite Kullanım Oranı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Haz 2026 itibarıyla imalat KKO %74.3. Son altı ay bandı 74.0-74.4, ortalaması %74.1; on iki ay ortalaması %74.0. Uzun dönem ortalamasıyla (75.7%) karşılaştırıldığında güncel okuma 1.4 puan altında.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="05_isgucu" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">👷</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        İşgücü
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Manşet işsizlik, işgücüne katılım ve istihdam oranlarının ortak seyri.</p>
+    </div>
+  </div>
+  
+<article id="05a_workforce" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ İşgücü Göstergeleri · İşsizlik / Katılım / İstihdam<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.YISGUCU2.G6 (katılım) / G7 (istihdam) / G8 (işsizlik)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/05a_workforce.png" alt="İşgücü Göstergeleri · İşsizlik / Katılım / İstihdam" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>May 2026 itibarıyla manşet işsizlik %7.4, işgücüne katılım %53.0, istihdam oranı %49.1. Son on iki ayda işsizlik bandı 7.4-9.0, katılım bandı 51.2-55.0. İşgücüne katılım OECD ortalamasının (yaklaşık %65-70) belirgin altında; manşet işsizliğin yorumlanmasında bu yapısal bağlam dikkate alınmalı.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="06_para" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🏦</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Para Politikası &amp; TCMB Bilançosu
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Politika faizi, reel faiz, brüt + net rezerv durumu.</p>
+    </div>
+  </div>
+  
+<article id="06a_tcmb_rate" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TCMB Politika Faizi<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.APIFON4</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/06a_tcmb_rate.png" alt="TCMB Politika Faizi" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Politika faizi (1 hafta repo) %40. Gösterilen dönemin zirvesi %53; son 12 ayda net değişim -3 puan. Faiz patikası TCMB'nin dezenflasyon duruşunun doğrudan göstergesidir (reel faiz için 06b'ye bkz.).</p>
+  </div>
+</article>
+
+<article id="06b_real_rate" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Reel Politika Faizi<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">Hesaplanmış: TP.APIFON4 − TP.FE25.OKTG01 Y/Y</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/06b_real_rate.png" alt="Reel Politika Faizi" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Reel politika faizi (politika faizi %40 − TÜFE Y/Y %32.6) = +7.4 puan. Son 6 ay bandı +5.5 / +9.1 puan. Pozitif reel faiz dolarizasyona fren, talep tarafında baskı ve TL'ye carry tabanı sağlar; sıfırın üzerinde (sıkı duruş).</p>
+  </div>
+</article>
+
+<article id="06c_reserves" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ TCMB Brüt + Net (Klasik) + Sıkı Ölçüm Rezervler<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.AB.A02 / A10 / A14 + USDTRY (TP.DK.USD.A.YTL)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/06c_reserves.png" alt="TCMB Brüt + Net (Klasik) + Sıkı Ölçüm Rezervler" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Tem 1, 2026 tarihli analitik bilanço verisine göre brüt dış varlıklar 152.3 mlr USD; klasik net rezerv (brüt eksi döviz yükümlülükleri) +42.6 mlr USD, sıkı ölçüm (bankalar swap düşülmüş) -46.6 mlr USD. Son 90 günde sıkı ölçüm bandı -78.6 ile -18.6 mlr USD arasında dalgalandı.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="07_cari" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🌊</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Cari Denge &amp; Kur
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Cari işlemler hesabı 12 ay kümülatif, TÜFE bazlı REER seyri.</p>
+    </div>
+  </div>
+  
+<article id="07a_current_account" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Cari İşlemler Hesabı · 12 Ay Kümülatif<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.ODANA6.Q01 (TCMB Ödemeler Dengesi)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/07a_current_account.png" alt="Cari İşlemler Hesabı · 12 Ay Kümülatif" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>Nis 2026 verisi itibarıyla 12 aylık kümülatif cari açıkı 36,984 milyon USD (-36,984). Son altı ayın bandı -39,734 ile -27,655 milyon USD arasında, ortalaması -33,734. Son on iki ayda seri -39,734--21,264 aralığında dalgalandı; trendin yönü açık genişliyor.</p>
+  </div>
+</article>
+
+<article id="07b_reer" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Reel Efektif Döviz Kuru · TÜFE Bazlı<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.RK.T1.Y (TCMB REER endeksi)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/07b_reer.png" alt="Reel Efektif Döviz Kuru · TÜFE Bazlı" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>May 2026 itibarıyla TÜFE bazlı REER endeks değeri 105.5 (TCMB serisi TP.RK.T1.Y). Son altı ayın bandı 98.9-106.0, ortalaması 103.3; son 24 ay bandı 93.0-106.0. Endeksin yükselmesi TL'nin reel olarak değerlendiğine, düşmesi reel olarak değer kaybettiğine işaret eder; son 6 ay - 24 ay karşılaştırması: reel değerlenme yönünde.</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="08_kamu" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">🏛️</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Kamu Maliyesi
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Genel bütçe gelir / harcama / denge / faiz dışı denge (12 ay kümülatif), devlet iç borç stoku.</p>
+    </div>
+  </div>
+  
+<article id="08a_budget" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Genel Bütçe · Gelir · Harcama · Denge (12A Kümülatif)<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS bie_kbgen: TP.KB.GEN01 (gelir), TP.KB.GEN12 (harcama), TP.KB.GEN35 (denge), TP.KB.GEN34 (faiz dışı denge)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/08a_budget.png" alt="Genel Bütçe · Gelir · Harcama · Denge (12A Kümülatif)" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>May 2026 itibarıyla 12 aylık kümülatif genel bütçe gelirleri 14,099 mlr TL, harcamaları 16,433 mlr TL; ortaya çıkan denge açık olarak 2,334 mlr TL (-2,334). Faiz dışı denge aynı dönemde fazla olarak 144 mlr TL (+144); manşet denge ile faiz dışı denge arasındaki fark dönem için faiz harcamalarının büyüklüğüne karşılık geliyor. Harcama/gelir oranı %116.6 (son 12 ay ortalaması %117.8); bu oran 100'ün altındaysa cari yılda gelir harcamaları karşılıyor, üzerindeyse açık veriliyor.</p>
+  </div>
+</article>
+
+<article id="08b_internal_debt" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Devlet İç Borç Stoku · Tahvil<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS TP.KB.A01 (Hazine ve Maliye Bakanlığı)</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/08b_internal_debt.png" alt="Devlet İç Borç Stoku · Tahvil" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>May 2026 itibarıyla devlet iç borç stoku (tahvil) 8,609 mlr TL. Yıllık değişim %+40.1; 12 ay önce stok 6,146 mlr TL düzeyindeydi, mutlak artış +2,463 mlr TL. Seri nominal TL bazında; reel büyüklük için aynı dönemin TÜFE seyri ile beraber okunmalı (12 aylık TÜFE şu an %32.6).</p>
+  </div>
+</article>
+
+</section>
+
+
+<section id="09_piyasalar" style="margin-bottom:48px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-2)">
+    <span style="font-size:28px">📊</span>
+    <div>
+      <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--text)">
+        Finansal Piyasalar Bağlamı
+      </h2>
+      <p style="margin:4px 0 0;color:var(--text-dim);font-size:13.5px">Yabancı yatırımcı menkul kıymet stoku ve net hareketi (DİBS + hisse).</p>
+    </div>
+  </div>
+  
+<article id="09c_foreign" class="panel" style="margin-bottom:24px;overflow:hidden">
+  <div class="panel-h">
+    <span class="ttl">▣ Yabancı Yatırımcı Portföyü · Stok + Net Hareket<span style="background:rgba(239,68,68,0.15);color:var(--red);padding:2px 8px;font-size:10px;letter-spacing:.06em;margin-left:8px">YENİLENMELİ</span></span>
+    <span class="meta" style="font-size:10.5px">EVDS bie_mknethar: TP.MKNETHAR.M1 (hisse stok), .M2 (DİBS stok), .M7 (hisse net), .M8 (DİBS net) · haftalık</span>
+  </div>
+  <div style="background:#1a1612;padding:8px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;max-height:280px;overflow:hidden"><img src="/makro-raporu/2026-q3/charts/09c_foreign.png" alt="Yabancı Yatırımcı Portföyü · Stok + Net Hareket" loading="lazy" style="display:block;max-width:100%;max-height:260px;width:auto;height:auto;object-fit:contain" /></div>
+  <div class="panel-body" style="padding:18px 22px;line-height:1.75;font-size:14.5px;color:var(--text-dim)">
+    <p>2026-06-26 itibarıyla yurt dışında yerleşik yatırımcıların yurt içi piyasada hisse stoku 41,388 mn USD, DİBS stoku 15,615 mn USD. Son 52 hafta kümülatif net hareket — hisse tarafında +2,972 mn USD (giriş), DİBS tarafında +5,354 mn USD (giriş). Seri TCMB'nin haftalık "Yurt Dışı Yerleşiklerin Menkul Kıymet Portföyü" yayınından gelir (USD piyasa değeri); stok değişimi hem net işlem hem fiyat ve kur etkisini içerir, akım serisi yalnızca net alış-satışı yansıtır.</p>
+  </div>
+</article>
+
+</section>
+
+    </main>
+  </div>
+</div>
+
+</main>
+<footer class="pf-foot">
+  <div>
+    <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
+    <div>v2026.05 · son güncelleme 2026-07-03 10:14 TR</div>
+    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
+  </div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <a href="/iletisim/">İletişim</a>
+    <a href="/gizlilik/">Gizlilik</a>
+    <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+    <a href="/hakkinda.html">Hakkında</a>
+    <a href="/arsiv.html">Arşiv</a>
+  </div>
+  <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
+    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    Kalibre Markets © 2026 — tüm hakları saklıdır.
+  </div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
+     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
+     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
+      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
+      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
+      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
+    </div>
+    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
+            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
+            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
+      Anladım
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'kalibre-cookie-notice-ack';
+  if (localStorage.getItem(KEY) === '1') return;
+  var b = document.getElementById('cookie-banner');
+  if (!b) return;
+  b.style.display = 'block';
+  document.getElementById('cookie-ok-btn').onclick = function(){
+    localStorage.setItem(KEY, '1');
+    b.style.display = 'none';
+  };
+})();
+</script>
+
+
+<!-- Google Translate (on-demand: tıklanınca yükle) -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,de,fr,es,it,ru,ar,zh-CN,ja',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false,
+  }, 'google_translate_element');
+}
+function kmTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (!el) return;
+  if (el.style.display === 'none' || !el.style.display) {
+    // İlk açılışta script'i yükle
+    if (!window._kmGTLoaded) {
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+      window._kmGTLoaded = true;
+    }
+    el.style.display = 'block';
+    el.style.position = 'absolute';
+    el.style.top = '40px';
+    el.style.right = '14px';
+    el.style.background = 'var(--surface-2)';
+    el.style.padding = '8px 10px';
+    el.style.border = '1px solid var(--border-2)';
+    el.style.zIndex = '9999';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
+<style>
+/* Google Translate'in eklediği barı gizle */
+.goog-te-banner-frame { display:none !important; }
+body { top:0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display:none !important; }
+.goog-text-highlight { background:none !important; box-shadow:none !important; }
+/* Translate widget custom styling */
+#google_translate_element .goog-te-gadget { font-family:inherit !important; color:var(--text-dim) !important; font-size:11px !important; }
+#google_translate_element select { background:var(--surface) !important; color:var(--text) !important; border:1px solid var(--border-2) !important; padding:4px 8px !important; font-family:inherit !important; }
+</style>
+
+<!-- Tıklanabilir terim popover sistemi -->
+<script>
+(function(){
+  var current = null;
+  function close() {
+    if (current) { current.remove(); current = null; }
+  }
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('.term');
+    if (!t) { close(); return; }
+    e.preventDefault();
+    close();
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    var title = t.dataset.title || t.textContent;
+    var tip = t.dataset.tip || '';
+    pop.innerHTML = '<span class="ttl">' + title + '</span>' + tip;
+    document.body.appendChild(pop);
+    var r = t.getBoundingClientRect();
+    var top = r.bottom + window.scrollY + 6;
+    var left = r.left + window.scrollX;
+    if (left + 320 > window.innerWidth) left = window.innerWidth - 332;
+    if (left < 8) left = 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    current = pop;
+  });
+})();
+</script>
+
+<!-- ── Lightbox (resim büyütme overlay) ──────────────────────────── -->
+<div id="km-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)">
+  <button type="button" onclick="kmCloseLightbox()" aria-label="Kapat"
+    style="position:absolute;top:14px;right:18px;width:42px;height:42px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center">×</button>
+  <img id="km-lightbox-img" src="" alt="" style="max-width:96%;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0d0c0a" />
+  <div id="km-lightbox-cap" style="position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#bbb;font-size:12px;letter-spacing:.04em;padding:0 24px"></div>
+</div>
+<script>
+window.kmShowLightbox = function(src, caption) {
+  var lb = document.getElementById('km-lightbox');
+  var im = document.getElementById('km-lightbox-img');
+  var cp = document.getElementById('km-lightbox-cap');
+  if (!lb || !im) return;
+  im.src = src;
+  im.alt = caption || '';
+  if (cp) cp.textContent = caption || '';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+window.kmCloseLightbox = function() {
+  var lb = document.getElementById('km-lightbox');
+  if (!lb) return;
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') window.kmCloseLightbox();
+});
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'km-lightbox') window.kmCloseLightbox();
+});
+</script>
+
+<script src="/static/asistan.js" defer></script>
+<script src="/static/terminal-shell.js" defer></script>
+</body>
+</html>

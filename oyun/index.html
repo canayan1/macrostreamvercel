@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Sense Trading — Arkadaşınla Trade Yarışı · Kalibre Markets</title>
+<meta name="description" content="Gerçek fiyat, sanal para, sıfır risk. Çok oyunculu bir trade oyununda arkadaşınla yarış: piyasa brifingini oku, AL ya da SAT, kâr/zararını canlı izle. Ücretsiz, girişsiz, tarayıcıda.">
+<meta name="keywords" content="trade oyunu, borsa oyunu, kripto simülasyon, sense trading, yatırım oyunu, arkadaşla yarış">
+<link rel="canonical" href="https://kalibremarkets.com/oyun/">
+<meta property="og:title" content="Sense Trading · Arkadaşınla Trade Yarışı">
+<meta property="og:description" content="Gerçek fiyat, sanal para, sıfır risk. Çok oyunculu trade oyunu. Ücretsiz, girişsiz.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+a{color:inherit;text-decoration:none}
+.cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
+.brand-mark{width:24px;height:24px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:12px}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--text)}
+.brand-name .sub{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:.06em}
+.cmd-crumb{flex:1;min-width:0;padding-left:16px;font-size:11.5px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-back{margin-left:auto;padding-left:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;height:100%}
+.cmd-back:hover{color:var(--accent)}
+main{max-width:1000px;margin:24px auto;padding:0 20px 80px}
+.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
+h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
+.lead{color:var(--text-dim);font-size:15px;line-height:1.7;max-width:74ch;margin-top:12px}
+.wrap{display:grid;grid-template-columns:400px 1fr;gap:32px;margin-top:26px;align-items:start}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}}
+.stage{display:flex;flex-direction:column;align-items:center;gap:16px}
+.frame{width:360px;height:640px;overflow:hidden;border-radius:22px;background:#060c18;position:relative;box-shadow:0 0 0 8px #0a0e1a,0 24px 70px rgba(0,0,0,.55);flex-shrink:0}
+.replay{background:var(--bg-1);border:1px solid var(--border-2);color:var(--text-dim);font-family:'Geist Mono',monospace;font-size:12px;padding:8px 16px;border-radius:7px;cursor:pointer;letter-spacing:.03em}
+.replay:hover{border-color:var(--accent);color:var(--accent)}
+.side h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.feat{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feat .ic{width:30px;height:30px;flex-shrink:0;border:1px solid var(--border-2);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-family:'Geist Mono',monospace;font-size:15px}
+.feat .t{font-size:14px;font-weight:600;color:var(--text)}
+.feat .d{font-size:12.5px;color:var(--text-dim);margin-top:2px;line-height:1.5}
+.cta{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.cta a.play{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#1a1206;font-weight:700;font-size:16px;padding:15px;border-radius:9px;letter-spacing:.01em}
+.cta a.play:hover{background:var(--accent-hot)}
+.cta .note{font-size:11.5px;color:var(--muted);text-align:center;font-family:'Geist Mono',monospace}
+.explain{margin-top:26px;background:var(--surface);border:1px solid var(--border);padding:18px 20px}
+.explain h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+.explain p{font-size:13.5px;color:var(--text-dim);line-height:1.7;margin-bottom:10px}
+.explain b{color:var(--text)}
+.explain .dis{font-size:11.5px;color:var(--muted);margin-top:6px;font-style:italic}
+footer.pf{margin-top:30px;border-top:1px solid var(--border);padding:18px 0 0;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px;flex-wrap:wrap}
+footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
+@media(max-width:680px){h1{font-size:23px}.cmd-crumb{display:none}}
+
+/* ── Gömülü oyun ekranı (birebir arayüz) — hepsi #reel altına scope'lu ──── */
+#reel{--bg:#060c18;--bar:#0a0e1a;--border:#1e3a5f;--panel:#0b1120;--panel2:#0d1526;--blue:#6b8fc4;--blue2:#8fa8c8;--amber:#f59e0b;--amber2:#fbbf24;--grn:#22c55e;--grnl:#4ade80;--red:#ef4444;--redl:#f87171;--txt:#e2e8f0;--txt2:#b8c8dc;--dim:#6b7fa0;--line:#3b82f6;--pwhite:#f0f4ff}
+#reel{width:1080px;height:1920px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;color:var(--txt);font-family:'Courier New',monospace;transform:scale(.33333);transform-origin:top left}
+#reel .top{height:64px;background:var(--bar);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:22px;padding:0 44px;flex-shrink:0}
+#reel .badge{background:var(--amber);color:#000;font-weight:bold;font-size:22px;padding:5px 14px;letter-spacing:3px}
+#reel .room{color:var(--blue);font-size:21px;letter-spacing:1px}
+#reel .players{color:var(--blue);font-size:19px;margin-left:auto}
+#reel .phase{margin:24px 44px 0;background:var(--panel2);border:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;gap:34px}
+#reel .lab{color:var(--blue);font-size:16px;letter-spacing:2px;margin-bottom:5px}
+#reel .pval{font-size:25px;font-weight:bold;letter-spacing:1px}
+#reel .prog{flex:1;height:8px;background:#1a2035;border-radius:4px;overflow:hidden}
+#reel .prog>i{display:block;height:100%;background:var(--amber)}
+#reel .cd{font-size:31px;font-weight:bold;min-width:90px;text-align:right}
+#reel .scen{margin:22px 44px 0;background:var(--panel2);border:1px solid var(--grn);border-left:7px solid var(--grn);padding:22px 30px}
+#reel .scen .r{display:flex;justify-content:space-between;font-size:17px;letter-spacing:2px}
+#reel .scen .h{color:#fff;font-size:26px;font-weight:bold;letter-spacing:1px;margin:12px 0 8px}
+#reel .scen .b{color:var(--txt2);font-size:20px;line-height:1.5}
+#reel .chart{margin:24px 44px 0;background:var(--panel);border:1px solid var(--border);flex:1;display:flex;flex-direction:column;min-height:0}
+#reel .chd{height:70px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:20px;padding:0 30px}
+#reel .sym{background:var(--border);color:var(--amber);font-weight:bold;font-size:21px;padding:4px 14px}
+#reel .cname{color:var(--blue2);font-size:19px}
+#reel .cprice{margin-left:auto;color:var(--pwhite);font-size:36px;font-weight:bold;letter-spacing:1px}
+#reel .cchg{font-size:21px;min-width:96px;text-align:right}
+#reel .cwrap{flex:1;position:relative;min-height:0}
+#reel svg{width:100%;height:100%;display:block}
+#reel .order{margin:24px 44px 44px;background:var(--panel);border:1px solid var(--border);flex-shrink:0}
+#reel .ohd{height:66px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 30px}
+#reel .ohd .s{color:var(--amber);font-size:23px;font-weight:bold}
+#reel .ohd .f{color:var(--blue);font-size:16px;margin-left:14px}
+#reel .ohd .p{margin-left:auto;color:var(--txt);font-size:29px;font-weight:bold}
+#reel .wal{background:var(--bar);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:22px 30px}
+#reel .wl{color:var(--dim);font-size:17px;letter-spacing:2px;margin-bottom:6px}
+#reel .wv{color:var(--txt);font-size:44px;font-weight:bold;letter-spacing:1px}
+#reel .pnlv{font-size:33px;font-weight:bold;text-align:right}
+#reel .obody{padding:26px 30px}
+#reel .amtrow{display:flex;justify-content:space-between;margin-bottom:14px}
+#reel .amtrow .k{color:var(--blue2);font-size:19px;letter-spacing:1px}
+#reel .amtrow .v{color:var(--txt);font-size:25px;font-weight:bold}
+#reel .slider{height:10px;background:#1a2035;border-radius:5px;overflow:hidden;margin-bottom:6px}
+#reel .slider>i{display:block;height:100%;background:var(--amber)}
+#reel .btns{display:flex;gap:18px;margin-top:26px}
+#reel .btn{flex:1;padding:32px 8px;border:3px solid;text-align:center;font-size:27px;font-weight:bold;letter-spacing:3px}
+#reel .sat{background:#3a1416;border-color:var(--red);color:var(--redl)}
+#reel .al{background:#0f2a18;border-color:var(--grn);color:var(--grnl)}
+#reel .btn .tri{font-size:34px;display:block;margin-bottom:8px}
+#reel .posbadge{display:inline-flex;align-items:center;gap:12px;background:#0f2a18;border:1px solid var(--grn);color:var(--grnl);font-size:20px;font-weight:bold;padding:10px 18px;margin-bottom:20px}
+#reel .kapat{margin-top:8px;padding:30px;border:3px solid var(--amber);background:#3a2a0c;color:var(--amber2);text-align:center;font-size:26px;font-weight:bold;letter-spacing:2px}
+#reel .res{position:absolute;inset:0;background:rgba(6,12,24,.965);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px}
+#reel .res.on{display:flex}
+#reel .res .rt{color:var(--blue);font-size:30px;font-weight:bold;letter-spacing:2px}
+#reel .res .rank{color:var(--amber);font-size:130px;font-weight:bold;line-height:1;margin:26px 0 8px}
+#reel .res .sub{color:var(--dim);font-size:22px;letter-spacing:1px}
+#reel .res .ph{color:var(--dim);font-size:21px;margin-top:40px}
+#reel .res .pnl{font-size:96px;font-weight:bold;margin:6px 0 34px}
+#reel .lb{width:100%;max-width:760px}
+#reel .lbrow{display:flex;align-items:center;padding:20px 26px;border:1px solid var(--border);margin-bottom:12px;background:var(--panel2)}
+#reel .lbrow.me{border:2px solid var(--grn);background:#12261a}
+#reel .lbrow .n{color:var(--blue);font-size:23px;font-weight:bold;width:44px}
+#reel .lbrow .nm{font-size:23px}
+#reel .lbrow .v{margin-left:auto;font-size:25px;font-weight:bold}
+#reel .rcta{margin-top:48px}
+#reel .rcta .a{color:var(--amber);font-size:38px;font-weight:bold}
+#reel .rcta .b{color:var(--dim);font-size:22px;margin-top:12px}
+#reel .logo{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:30px;font-weight:bold;letter-spacing:1px}
+#reel .logo b{color:var(--amber)}#reel .logo span{color:var(--txt)}
+#reel .grn{color:var(--grn)}#reel .red{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// OYUN</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › Sense Trading</div>
+  <a href="/" class="cmd-back">← Ana sayfa</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ OYUN · ÇOK OYUNCULU TRADE ARENASI</div>
+  <h1>Sense Trading — arkadaşınla trade yarışı</h1>
+  <p class="lead">Gerçek fiyat mantığı, <strong>sanal para</strong>, sıfır risk. Piyasa brifingini oku, <strong>AL</strong> ya da <strong>SAT</strong>, kâr/zararını canlı izle. Kaybetsen de cebinden çıkmaz; kazandığın tek şey trader refleksin. Aşağıdaki ekran oyunun gerçek arayüzüdür.</p>
+
+  <div class="wrap">
+    <div class="stage">
+      <div class="frame"><div id="reel">
+        <div class="top">
+          <div class="badge">SENSE</div>
+          <div class="room">KRİPTO ARENA · #A3</div>
+          <div class="players">● 4 OYUNCU</div>
+        </div>
+        <div class="phase">
+          <div><div class="lab">FAZ</div><div class="pval" id="phasev">POZİSYON GİRİŞİ</div></div>
+          <div style="border-left:1px solid #1e3a5f;padding-left:34px"><div class="lab">TUR</div><div class="pval" style="color:#fff">3 / 5</div></div>
+          <div class="prog"><i id="progi" style="width:80%"></i></div>
+          <div class="cd" id="cdv">28sn</div>
+        </div>
+        <div class="scen" id="scen">
+          <div class="r"><span style="color:#6b8fc4">◉ PİYASA BRİFİNGİ</span><span style="color:#22c55e">SENARYO · LONG YANLISI</span></div>
+          <div class="h">FED AGRESİF FAİZ İNDİRİMİNE HAZIRLANIYOR</div>
+          <div class="b">Tutanaklar iki toplantıda 75 baz puan indirim sinyali veriyor. Riskli varlıklarda yükseliş bekleniyor.</div>
+        </div>
+        <div class="chart">
+          <div class="chd">
+            <div class="sym">APEX</div><div class="cname">ApexToken · Perp</div>
+            <div class="cprice" id="cprice">1000.00</div><div class="cchg" id="cchg" style="color:#8fa8c8">+0.0%</div>
+          </div>
+          <div class="cwrap"><svg id="svg" viewBox="0 0 960 520" preserveAspectRatio="none"></svg></div>
+        </div>
+        <div class="order">
+          <div class="ohd"><span class="s">APEX</span><span class="f">FİYAT</span><span class="p" id="oprice">1000.00</span></div>
+          <div class="wal">
+            <div><div class="wl">CÜZDANIN</div><div class="wv" id="wallet">$10000</div></div>
+            <div id="pnlbox" style="display:none"><div class="wl" style="text-align:right">POZİSYON K/Z</div><div class="pnlv grn" id="pnlv">+$0</div></div>
+          </div>
+          <div class="obody" id="prep">
+            <div class="amtrow"><span class="k">NE KADAR YATIRACAKSIN?</span><span class="v">$6,000</span></div>
+            <div class="slider"><i style="width:50%"></i></div>
+            <div class="btns">
+              <div class="btn sat"><span class="tri">▼</span>SAT</div>
+              <div class="btn al"><span class="tri">▲</span>AL</div>
+            </div>
+          </div>
+          <div class="obody" id="trade" style="display:none">
+            <div class="posbadge"><span class="tri" style="color:#4ade80">▲</span> LONG · $6.000</div>
+            <div class="kapat">✕&nbsp;&nbsp;POZİSYONU KAPAT</div>
+          </div>
+        </div>
+        <div class="res" id="res">
+          <div class="rt">TUR TAMAMLANDI</div>
+          <div class="rank">1.</div>
+          <div class="sub">SIRALAMANDAKİ YERİN</div>
+          <div class="ph">BU TURDAKİ KÂR/ZARARIN</div>
+          <div class="pnl grn">+$492</div>
+          <div class="lb">
+            <div class="lbrow me"><span class="n">1</span><span class="nm" style="color:#fff;font-weight:bold">SEN</span><span class="v grn">+$492</span></div>
+            <div class="lbrow"><span class="n">2</span><span class="nm">botAy2</span><span class="v grn">+$310</span></div>
+            <div class="lbrow"><span class="n">3</span><span class="nm">KurtWolf</span><span class="v red">-$120</span></div>
+            <div class="lbrow"><span class="n">4</span><span class="nm">botZen</span><span class="v red">-$260</span></div>
+          </div>
+          <div class="rcta"><div class="a">oyun.kalibremarkets.com</div><div class="b">ücretsiz · giriş yok · arkadaşınla yarış</div></div>
+        </div>
+        <div class="logo"><b>KALİBRE</b> <span>MARKETS</span></div>
+      </div></div>
+      <button class="replay" id="replay">↻ tekrar oynat</button>
+    </div>
+
+    <div class="side">
+      <h2>Nasıl çalışır</h2>
+      <div class="feat"><div class="ic">1</div><div><div class="t">Piyasa brifingi düşer</div><div class="d">Her turda bir senaryo: "Fed faiz indiriyor", "enflasyon sürprizi"… Long mu, short mu, kenarda mı durursun?</div></div></div>
+      <div class="feat"><div class="ic">2</div><div><div class="t">30 saniyede pozisyon al</div><div class="d">AL ya da SAT. Cüzdanının ne kadarını riske atacağını sen seçersin.</div></div></div>
+      <div class="feat"><div class="ic">3</div><div><div class="t">Fiyat canlı akar</div><div class="d">Brifing erken fiyat hareketini etkiler, sonra solar. Kâr/zararın gerçek zamanlı işler.</div></div></div>
+      <div class="feat"><div class="ic">4</div><div><div class="t">Sıralama belli olur</div><div class="d">Tur sonunda odadaki herkes sıralanır. Botları ve arkadaşlarını geç, 1. ol.</div></div></div>
+
+      <div class="cta">
+        <a class="play" href="https://oyun.kalibremarkets.com" target="_blank" rel="noopener">▶ Hemen oyna — oyun.kalibremarkets.com</a>
+        <div class="note">ücretsiz · giriş gerekmez · tarayıcıda açılır</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="explain">
+    <h2>Neden oyun?</h2>
+    <p>Trade etmeyi öğrenmenin en pahalı yolu, gerçek parayla deneme yanılmadır. Sense Trading aynı refleksleri <b>risksiz</b> kazandırır: haber okuma, pozisyon boyutlama, sabır ve panik anını yönetme. Skorun ELO ile tutulur, arkadaşınla aynı odada yarışırsın.</p>
+    <p class="dis">Bu bir oyundur, yatırım tavsiyesi değildir. Gerçek para kullanılmaz; amaç beceri ve eğlencedir.</p>
+  </div>
+
+  <footer class="pf">
+    <div>© Kalibre Markets · Sense Trading bir eğitim/eğlence oyunudur, yatırım tavsiyesi değildir.</div>
+    <div><a href="/">Ana sayfa</a> · <a href="/terminal/">Terminal</a> · <a href="https://oyun.kalibremarkets.com" target="_blank" rel="noopener">Oyna ↗</a></div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var ENTRY=1000, INV=6000;
+  var kf_t=[0,1.4,3.4,5.0,6.6], kf_p=[1000,990,984,1040,1082];
+  function lerp(t){ if(t<=0)return 1000; if(t>=6.6)return 1082;
+    for(var i=1;i<kf_t.length;i++){ if(t<=kf_t[i]){ var a=kf_t[i-1],b=kf_t[i],f=(t-a)/(b-a); return kf_p[i-1]+(kf_p[i]-kf_p[i-1])*f; } } return 1082; }
+  function priceAt(t){ return lerp(t)+3*Math.sin(t*7.3)+1.6*Math.sin(t*19.1); }
+  var svg=document.getElementById('svg');
+  function $(id){return document.getElementById(id);}
+  function drawChart(tEnd){
+    var W=960,H=520,y0=978,y1=1090;
+    function sx(x){return (x/6.6)*W;} function sy(p){return H-((p-y0)/(y1-y0))*H;}
+    var g='';
+    for(var p=980;p<=1080;p+=20){ var y=sy(p); g+='<line x1="0" y1="'+y+'" x2="'+W+'" y2="'+y+'" stroke="#1e2a44" stroke-width="1"/>';
+      g+='<text x="'+(W-6)+'" y="'+(y-6)+'" fill="#8fa8c8" font-size="16" text-anchor="end" font-family="Courier New">'+p+'</text>'; }
+    var ey=sy(ENTRY); g+='<line x1="0" y1="'+ey+'" x2="'+W+'" y2="'+ey+'" stroke="#f59e0b" stroke-width="2" stroke-dasharray="10 8"/>';
+    var pts=[], N=Math.max(2,Math.floor(tEnd*40));
+    for(var i=0;i<=N;i++){ var t=tEnd*i/N; pts.push([sx(t),sy(priceAt(t))]); }
+    var d=pts.map(function(pt,i){return (i?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1);}).join(' ');
+    var area=d+' L '+sx(tEnd).toFixed(1)+' '+H+' L 0 '+H+' Z';
+    g+='<path d="'+area+'" fill="#3b82f6" fill-opacity="0.16"/>';
+    g+='<path d="'+d+'" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linejoin="round"/>';
+    var last=pts[pts.length-1]; g+='<circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="8" fill="#3b82f6" stroke="#060c18" stroke-width="2"/>';
+    svg.innerHTML=g;
+  }
+  function toPrep(){ $('phasev').textContent='POZİSYON GİRİŞİ'; $('phasev').style.color='#f59e0b';
+    $('scen').style.display='block'; $('prep').style.display='block'; $('trade').style.display='none'; $('pnlbox').style.display='none';
+    $('cdv').textContent='28sn'; $('cdv').style.color='#fff'; $('progi').style.width='80%'; $('progi').style.background='#f59e0b'; $('res').classList.remove('on'); }
+  function toTrade(t){ $('phasev').textContent='CANLI TRADE'; $('phasev').style.color='#22c55e';
+    var left=Math.max(0,6.6-t), secs=Math.ceil(left);
+    $('cdv').textContent=secs+'sn'; $('cdv').style.color=secs<=10?'#ef4444':'#fff';
+    $('progi').style.width=(left/6.6*100)+'%'; $('progi').style.background=secs<=10?'#ef4444':'#22c55e';
+    $('scen').style.display='none'; $('prep').style.display='none'; $('trade').style.display='block'; $('pnlbox').style.display='block'; }
+  function render(t){
+    var p=priceAt(t), v=INV*(p/ENTRY-1), up=p>=ENTRY;
+    $('cprice').textContent=p.toFixed(2); $('cprice').style.color=up?'#22c55e':'#ef4444';
+    $('cchg').textContent=(up?'+':'')+((p/ENTRY-1)*100).toFixed(1)+'%'; $('cchg').style.color=up?'#22c55e':'#ef4444';
+    $('oprice').textContent=p.toFixed(2); $('wallet').textContent='$'+(10000+v).toFixed(0);
+    var pv=$('pnlv'); pv.textContent=(v>=0?'+':'')+'$'+v.toFixed(0); pv.className='pnlv '+(v>=0?'grn':'red');
+    drawChart(t);
+  }
+  var raf, t0;
+  function loop(now){ var t=(now-t0)/1000-2.4;
+    if(t<0){ toPrep(); }
+    else { toTrade(t); render(Math.min(t,6.6)); if(t>=7.2){$('res').classList.add('on');} }
+    if(t<9.5){ raf=requestAnimationFrame(loop); }
+  }
+  function play(){ cancelAnimationFrame(raf); toPrep(); render(0); t0=performance.now(); raf=requestAnimationFrame(loop); }
+  $('replay').addEventListener('click',play);
+  play();
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>
