@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-02T06:31:42.318321Z",
+  "last_update": "2026-07-03T06:22:56.274579Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-02",
-    "title": "Ford Otosan — Günün Merceği"
+    "date": "2026-07-03",
+    "title": "Garanti BBVA — Günün Merceği"
   },
-  "total_reports": 183,
+  "total_reports": 188,
   "by_category": {
-    "pulse": 31,
-    "hisse": 35,
+    "pulse": 32,
+    "hisse": 36,
     "sektor": 13,
-    "fx": 37,
-    "metals": 17,
+    "fx": 38,
+    "metals": 18,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 32
+    "tcmb": 33
   }
 }
