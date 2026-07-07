@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-06T07:02:52.255430Z",
+  "last_update": "2026-07-07T06:38:10.395710Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-06",
-    "title": "Hektaş — Günün Merceği"
+    "date": "2026-07-07",
+    "title": "İş Bankası (C) — Günün Merceği"
   },
-  "total_reports": 194,
+  "total_reports": 199,
   "by_category": {
-    "pulse": 33,
-    "hisse": 37,
+    "pulse": 34,
+    "hisse": 38,
     "sektor": 14,
-    "fx": 39,
-    "metals": 19,
+    "fx": 40,
+    "metals": 20,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 34
+    "tcmb": 35
   }
 }
