@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-07T06:38:10.395710Z",
+  "last_update": "2026-07-08T05:44:01.744355Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-07",
-    "title": "İş Bankası (C) — Günün Merceği"
+    "date": "2026-07-08",
+    "title": "Koç Holding — Günün Merceği"
   },
-  "total_reports": 199,
+  "total_reports": 204,
   "by_category": {
-    "pulse": 34,
-    "hisse": 38,
+    "pulse": 35,
+    "hisse": 39,
     "sektor": 14,
-    "fx": 40,
-    "metals": 20,
+    "fx": 41,
+    "metals": 21,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 35
+    "tcmb": 36
   }
 }
