@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-08T05:44:01.744355Z",
+  "last_update": "2026-07-09T06:41:11.431375Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-08",
-    "title": "Koç Holding — Günün Merceği"
+    "date": "2026-07-09",
+    "title": "Akbank — Günün Merceği"
   },
-  "total_reports": 204,
+  "total_reports": 209,
   "by_category": {
-    "pulse": 35,
-    "hisse": 39,
+    "pulse": 36,
+    "hisse": 40,
     "sektor": 14,
-    "fx": 41,
-    "metals": 21,
+    "fx": 42,
+    "metals": 22,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 36
+    "tcmb": 37
   }
 }
