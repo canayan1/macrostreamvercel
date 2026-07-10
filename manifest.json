@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-09T06:41:11.431375Z",
+  "last_update": "2026-07-10T06:34:41.817812Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-09",
+    "date": "2026-07-10",
     "title": "Akbank — Günün Merceği"
   },
-  "total_reports": 209,
+  "total_reports": 214,
   "by_category": {
-    "pulse": 36,
-    "hisse": 40,
+    "pulse": 37,
+    "hisse": 41,
     "sektor": 14,
-    "fx": 42,
-    "metals": 22,
+    "fx": 43,
+    "metals": 23,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 37
+    "tcmb": 38
   }
 }
