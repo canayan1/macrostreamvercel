@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-10T06:34:41.817812Z",
+  "last_update": "2026-07-13T06:00:03.166135Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-10",
-    "title": "Akbank — Günün Merceği"
+    "date": "2026-07-13",
+    "title": "Kardemir (D) — Günün Merceği"
   },
-  "total_reports": 214,
+  "total_reports": 220,
   "by_category": {
-    "pulse": 37,
-    "hisse": 41,
-    "sektor": 14,
-    "fx": 43,
-    "metals": 23,
+    "pulse": 38,
+    "hisse": 42,
+    "sektor": 15,
+    "fx": 44,
+    "metals": 24,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 38
+    "tcmb": 39
   }
 }
