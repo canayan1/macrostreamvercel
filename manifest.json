@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-13T06:00:03.166135Z",
+  "last_update": "2026-07-14T05:23:24.363016Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-13",
-    "title": "Kardemir (D) — Günün Merceği"
+    "date": "2026-07-14",
+    "title": "Migros — Günün Merceği"
   },
-  "total_reports": 220,
+  "total_reports": 225,
   "by_category": {
-    "pulse": 38,
-    "hisse": 42,
+    "pulse": 39,
+    "hisse": 43,
     "sektor": 15,
-    "fx": 44,
-    "metals": 24,
+    "fx": 45,
+    "metals": 25,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 39
+    "tcmb": 40
   }
 }
