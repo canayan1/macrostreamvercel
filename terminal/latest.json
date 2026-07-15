@@ -1,17 +1,17 @@
 {
-  "generated": "2026-07-14T05:23:24",
+  "generated": "2026-07-15T05:24:59",
   "reports": [
     {
       "category": "pulse",
-      "title": "Günlük Nabız — 2026-07-14",
-      "date": "2026-07-14",
-      "path": "/reports/pulse/2026-07-14/"
+      "title": "Günlük Nabız — 2026-07-15",
+      "date": "2026-07-15",
+      "path": "/reports/pulse/2026-07-15/"
     },
     {
       "category": "hisse",
-      "title": "Migros — Günün Merceği",
-      "date": "2026-07-14",
-      "path": "/reports/hisse/2026-07-14/"
+      "title": "Odaş Elektrik — Günün Merceği",
+      "date": "2026-07-15",
+      "path": "/reports/hisse/2026-07-15/"
     },
     {
       "category": "sektor",
@@ -21,15 +21,15 @@
     },
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-07-14",
-      "date": "2026-07-14",
-      "path": "/reports/fx/2026-07-14/"
+      "title": "Döviz Günlük — 2026-07-15",
+      "date": "2026-07-15",
+      "path": "/reports/fx/2026-07-15/"
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-07-14",
-      "date": "2026-07-14",
-      "path": "/reports/metals/2026-07-14/"
+      "title": "Değerli Metaller Günlük — 2026-07-15",
+      "date": "2026-07-15",
+      "path": "/reports/metals/2026-07-15/"
     },
     {
       "category": "makro",
@@ -51,13 +51,24 @@
     },
     {
       "category": "tcmb",
-      "title": "tcmb — 2026-07-14",
-      "date": "2026-07-14",
-      "path": "/reports/tcmb/2026-07-14/"
+      "title": "tcmb — 2026-07-15",
+      "date": "2026-07-15",
+      "path": "/reports/tcmb/2026-07-15/"
     }
   ],
   "snapshot": {
     "hisse": [
+      {
+        "category": "hisse",
+        "date": "2026-07-15",
+        "metrics": {
+          "regime": "Risk-Off",
+          "breadth_pct": 17.857142857142858,
+          "top_gainer": "Sasa Polyester",
+          "top_loser": "Aselsan",
+          "featured_stock": "Odaş Elektrik"
+        }
+      },
       {
         "category": "hisse",
         "date": "2026-07-14",
@@ -200,20 +211,20 @@
           "top_loser": "Hektaş",
           "featured_stock": "Doğan Holding"
         }
-      },
-      {
-        "category": "hisse",
-        "date": "2026-06-25",
-        "metrics": {
-          "regime": "Karışık",
-          "breadth_pct": 50.0,
-          "top_gainer": "Kardemir (D)",
-          "top_loser": "Odaş Elektrik",
-          "featured_stock": "BİM Mağazalar"
-        }
       }
     ],
     "fx": [
+      {
+        "category": "fx",
+        "date": "2026-07-15",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.3134282624940199,
+          "usdtry": 47.025901794433594,
+          "usdtry_30d_pct": 1.6020534768384609,
+          "strongest_pair": "USD/CHF"
+        }
+      },
       {
         "category": "fx",
         "date": "2026-07-14",
@@ -354,17 +365,6 @@
           "dxy_5d_pct": 0.5017395549350878,
           "usdtry": 46.62009811401367,
           "usdtry_30d_pct": 1.584777451884456,
-          "strongest_pair": "USD/CHF"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-06-25",
-        "metrics": {
-          "regime": "Güçlü Dolar",
-          "dxy_5d_pct": 1.457695390714342,
-          "usdtry": 46.51150131225586,
-          "usdtry_30d_pct": 1.3461579062599371,
           "strongest_pair": "USD/CHF"
         }
       }
@@ -786,6 +786,27 @@
     "pulse": [
       {
         "category": "pulse",
+        "date": "2026-07-15",
+        "metrics": {
+          "regime": "Karışık",
+          "xu100_last": 14092.0,
+          "xu100_pct_30d": 1.1012662768590697,
+          "usdtry_last": 47.025001525878906,
+          "usdtry_pct_30d": 1.600108396992117,
+          "dxy_last": 100.8239974975586,
+          "dxy_pct_30d": 0.96534836903166,
+          "xauusd_last": 4033.10009765625,
+          "xauusd_pct_30d": -4.315537422153026,
+          "xagusd_last": 58.59000015258789,
+          "xagusd_pct_30d": -13.65920636714163,
+          "gramaltin_last": 6097.594748060749,
+          "gramaltin_pct_30d": -5.386082260630609,
+          "gramgumus_last": 88.58150518676969,
+          "gramgumus_pct_30d": -14.837834736482803
+        }
+      },
+      {
+        "category": "pulse",
         "date": "2026-07-14",
         "metrics": {
           "regime": "Karışık",
@@ -1056,30 +1077,20 @@
           "gramgumus_last": 85.73609268288061,
           "gramgumus_pct_30d": -23.184618565187087
         }
-      },
-      {
-        "category": "pulse",
-        "date": "2026-06-25",
-        "metrics": {
-          "regime": "Karışık",
-          "xu100_last": 14331.2001953125,
-          "xu100_pct_30d": 8.867431156793181,
-          "usdtry_last": 46.511199951171875,
-          "usdtry_pct_30d": 1.3455012560305901,
-          "dxy_last": 101.55000305175781,
-          "dxy_pct_30d": 2.3999242984334312,
-          "xauusd_last": 3999.199951171875,
-          "xauusd_pct_30d": -11.136786997770054,
-          "xagusd_last": 57.1349983215332,
-          "xagusd_pct_30d": -25.122864696905424,
-          "gramaltin_last": 5980.278379400128,
-          "gramaltin_pct_30d": -8.869944086653913,
-          "gramgumus_last": 85.43788741275742,
-          "gramgumus_pct_30d": -22.379990080845058
-        }
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-07-15",
+        "metrics": {
+          "nir_usd": 49.7400793785369,
+          "swap_adj_usd": -43.7677078413894,
+          "nir_chg_week": 0.6061160762957414,
+          "swap_chg_week": -0.7479169712158082,
+          "usdtry": 47.02510070800781
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-07-14",
@@ -1222,20 +1233,21 @@
           "swap_chg_week": -3.594654451833776,
           "usdtry": 46.62009811401367
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-06-25",
-        "metrics": {
-          "nir_usd": 44.97607060957946,
-          "swap_adj_usd": -46.566639891514434,
-          "nir_chg_week": 1.5858968314646091,
-          "swap_chg_week": 4.894510185607324,
-          "usdtry": 46.511600494384766
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-07-15",
+        "metrics": {
+          "regime": "Altın Geri Çekiliyor",
+          "gold_5d_pct": -0.9138016670578897,
+          "gold_usd": 4033.699951171875,
+          "gramaltin_try": 6098.475439405657,
+          "gold_silver_ratio": 68.8462184786956,
+          "strongest_metal": "Paladyum"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-07-14",
@@ -1389,18 +1401,6 @@
           "gold_usd": 4040.300048828125,
           "gramaltin_try": 6051.662527218775,
           "gold_silver_ratio": 70.6346152961222,
-          "strongest_metal": "Bakır"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-06-25",
-        "metrics": {
-          "regime": "Altın Sert Düşüş",
-          "gold_5d_pct": -8.231430239877168,
-          "gold_usd": 4000.10009765625,
-          "gramaltin_try": 5981.9060308612,
-          "gold_silver_ratio": 69.96851890453794,
           "strongest_metal": "Bakır"
         }
       }

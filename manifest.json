@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-14T05:23:24.363016Z",
+  "last_update": "2026-07-15T05:24:59.811923Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-14",
-    "title": "Migros — Günün Merceği"
+    "date": "2026-07-15",
+    "title": "Odaş Elektrik — Günün Merceği"
   },
-  "total_reports": 225,
+  "total_reports": 230,
   "by_category": {
-    "pulse": 39,
-    "hisse": 43,
+    "pulse": 40,
+    "hisse": 44,
     "sektor": 15,
-    "fx": 45,
-    "metals": 25,
+    "fx": 46,
+    "metals": 26,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 40
+    "tcmb": 41
   }
 }
