@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-15T05:24:59.811923Z",
+  "last_update": "2026-07-16T05:34:04.886511Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-15",
-    "title": "Odaş Elektrik — Günün Merceği"
+    "date": "2026-07-16",
+    "title": "Petkim — Günün Merceği"
   },
-  "total_reports": 230,
+  "total_reports": 235,
   "by_category": {
-    "pulse": 40,
-    "hisse": 44,
+    "pulse": 41,
+    "hisse": 45,
     "sektor": 15,
-    "fx": 46,
-    "metals": 26,
+    "fx": 47,
+    "metals": 27,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 41
+    "tcmb": 42
   }
 }
