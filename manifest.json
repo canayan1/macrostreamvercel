@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-16T05:34:04.886511Z",
+  "last_update": "2026-07-17T05:35:26.973489Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-16",
-    "title": "Petkim — Günün Merceği"
+    "date": "2026-07-17",
+    "title": "Pegasus — Günün Merceği"
   },
-  "total_reports": 235,
+  "total_reports": 240,
   "by_category": {
-    "pulse": 41,
-    "hisse": 45,
+    "pulse": 42,
+    "hisse": 46,
     "sektor": 15,
-    "fx": 47,
-    "metals": 27,
+    "fx": 48,
+    "metals": 28,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 42
+    "tcmb": 43
   }
 }
