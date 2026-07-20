@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-17T05:35:26.973489Z",
+  "last_update": "2026-07-20T06:01:12.582347Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-17",
-    "title": "Pegasus — Günün Merceği"
+    "date": "2026-07-20",
+    "title": "Sabancı Holding — Günün Merceği"
   },
-  "total_reports": 240,
+  "total_reports": 246,
   "by_category": {
-    "pulse": 42,
-    "hisse": 46,
-    "sektor": 15,
-    "fx": 48,
-    "metals": 28,
+    "pulse": 43,
+    "hisse": 47,
+    "sektor": 16,
+    "fx": 49,
+    "metals": 29,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 43
+    "tcmb": 44
   }
 }
