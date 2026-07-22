@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Tue, 21 Jul 2026 05:42:22 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 22 Jul 2026 05:41:12 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -73,6 +73,61 @@
     <link>https://kalibremarkets.com/reports/2026-06-24/fx/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-24/fx/</guid>
     <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Türkiye Ekonomik Raporu · 2026 Üçüncü Çeyrek — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/makro-raporu/2026-q3/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q3/</guid>
+    <pubDate>Wed, 22 Jul 2026 05:38:50 +0000</pubDate>
+    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 Üçüncü Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
+    <category>Türkiye Ekonomik Raporu</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Türkiye Ekonomik Raporu · 2026 İkinci Çeyrek — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/makro-raporu/2026-q2/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/makro-raporu/2026-q2/</guid>
+    <pubDate>Wed, 22 Jul 2026 05:38:50 +0000</pubDate>
+    <description>🇹🇷 Türkiye Ekonomik Raporu — Türkiye 2026 İkinci Çeyrek kapsamlı makro analizi: enflasyon, GDP, işsizlik, TCMB bilançosu, cari denge, kamu maliyesi. Her veri için grafik + üç cümlelik vurucu özet.</description>
+    <category>Türkiye Ekonomik Raporu</category>
+    <enclosure url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/makro-raporu/2026-q2/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>📊 Günlük Nabız — 2026-07-22 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-22/pulse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/pulse/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+    <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Günlük Nabız</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>Şişe Cam — 2026-07-22 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-22/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/hisse/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Şişe Cam (SISE.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-07-22 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-22/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/fx/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
@@ -394,61 +449,6 @@
     <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
     <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>Enka İnşaat — 2026-06-30 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-30/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-30/hisse/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — Enka İnşaat (ENKAI.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
-    <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-30 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-30/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-30/fx/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>📊 Günlük Nabız — 2026-05-26 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-26/pulse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-26/pulse/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
-    <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Günlük Nabız</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>İş Bankası (C) — 2026-05-26 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-26/hisse/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-26/hisse/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
-    <description>📈 Hisse Bülteni — İş Bankası (C) (ISCTR.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
-    <category>Hisse Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-05-26 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-26/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-26/fx/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>

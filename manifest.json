@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-21T05:42:22.067921Z",
+  "last_update": "2026-07-22T05:41:12.917377Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-21",
-    "title": "Sasa Polyester — Günün Merceği"
+    "date": "2026-07-22",
+    "title": "Şişe Cam — Günün Merceği"
   },
-  "total_reports": 251,
+  "total_reports": 256,
   "by_category": {
-    "pulse": 44,
-    "hisse": 48,
+    "pulse": 45,
+    "hisse": 49,
     "sektor": 16,
-    "fx": 50,
-    "metals": 30,
+    "fx": 51,
+    "metals": 31,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 45
+    "tcmb": 46
   }
 }
