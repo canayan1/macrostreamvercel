@@ -7,7 +7,23 @@ export type NewsItem = {
   description: string;
   pubDate: string;
   image?: string;
+  source?: string; // Google News: <source> yayıncı adı
 };
+
+// Google News araması (RSS) — anahtar/hesap gerektirmez.
+// Tam metin kopyalamayız: başlık + link + kısa açıklama (telif dostu).
+export async function fetchGoogleNewsRss(query: string): Promise<NewsItem[]> {
+  const url =
+    'https://news.google.com/rss/search?q=' +
+    encodeURIComponent(`${query} when:7d`) +
+    '&hl=tr&gl=TR&ceid=TR:tr';
+  const resp = await fetch(url, {
+    headers: { 'User-Agent': 'KalibreMarkets/1.0' },
+    cache: 'no-store',
+  });
+  if (!resp.ok) throw new Error(`Google News RSS failed: ${resp.status}`);
+  return parseRss(await resp.text());
+}
 
 export async function fetchAAEconomyRss(): Promise<NewsItem[]> {
   const resp = await fetch('https://www.aa.com.tr/tr/rss/default?cat=ekonomi', {
@@ -31,8 +47,9 @@ function parseRss(xml: string): NewsItem[] {
     const description = decodeEntities(extract(block, /<description>([\s\S]*?)<\/description>/));
     const pubDate = extract(block, /<pubDate>([\s\S]*?)<\/pubDate>/);
     const image = extract(block, /<image>([\s\S]*?)<\/image>/) || undefined;
+    const source = decodeEntities(extract(block, /<source[^>]*>([\s\S]*?)<\/source>/)) || undefined;
     if (guid && title) {
-      items.push({ guid, link, title, description, pubDate, image });
+      items.push({ guid, link, title, description, pubDate, image, source });
     }
   }
   return items;

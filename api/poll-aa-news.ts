@@ -7,6 +7,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { fetchAAEconomyRss } from './_lib/rss.js';
+import { runWatchlistPoll } from './poll-watchlist-news.js';
 import { classify } from './_lib/classifier.js';
 import { runDebate } from './_lib/debate.js';
 import {
@@ -46,10 +47,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const newItems = items.filter((it) => !seen.has(it.guid));
 
     if (newItems.length === 0) {
+      // Boş turda kalan süreyi takip listesi taramasına ver (piggyback).
+      const watch = await runWatchlistPoll().catch(() => null);
       return res.status(200).json({
         ok: true,
         message: 'no new items',
         rss_total: items.length,
+        watch,
         elapsed: Date.now() - t0,
       });
     }
@@ -115,12 +119,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const merged = new Set([...seen, ...newlySeen]);
     await writeSeenNews(merged);
 
+    // Süre kaldıysa takip listesi taraması (60s Hobby limitine dikkat).
+    const watch = Date.now() - t0 < 25_000 ? await runWatchlistPoll().catch(() => null) : null;
+
     return res.status(200).json({
       ok: true,
       processed,
       rss_total: items.length,
       new_items: newItems.length,
       newly_seen: newlySeen.size,
+      watch,
       elapsed: Date.now() - t0,
     });
   } catch (e: any) {
