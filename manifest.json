@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-22T05:41:12.917377Z",
+  "last_update": "2026-07-23T05:45:55.094144Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-22",
-    "title": "Şişe Cam — Günün Merceği"
+    "date": "2026-07-23",
+    "title": "TAV Havalimanları — Günün Merceği"
   },
-  "total_reports": 256,
+  "total_reports": 261,
   "by_category": {
-    "pulse": 45,
-    "hisse": 49,
+    "pulse": 46,
+    "hisse": 50,
     "sektor": 16,
-    "fx": 51,
-    "metals": 31,
+    "fx": 52,
+    "metals": 32,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 46
+    "tcmb": 47
   }
 }
