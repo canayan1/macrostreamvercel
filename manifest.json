@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-23T05:45:55.094144Z",
+  "last_update": "2026-07-24T05:42:55.818711Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-23",
-    "title": "TAV Havalimanları — Günün Merceği"
+    "date": "2026-07-24",
+    "title": "Turkcell — Günün Merceği"
   },
-  "total_reports": 261,
+  "total_reports": 266,
   "by_category": {
-    "pulse": 46,
-    "hisse": 50,
+    "pulse": 47,
+    "hisse": 51,
     "sektor": 16,
-    "fx": 52,
-    "metals": 32,
+    "fx": 53,
+    "metals": 33,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 47
+    "tcmb": 48
   }
 }
