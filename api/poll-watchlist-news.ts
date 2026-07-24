@@ -39,6 +39,21 @@ async function summarize(title: string): Promise<{ summary?: string; sentiment?:
   }
 }
 
+// Haber olmayan sayfaları ele: canlı fiyat/grafik sayfaları, hisse yorum
+// dizinleri vb. Başlık kalıbıyla filtrelenir (haber başlığı değil, sayfa adı).
+const JUNK_RE = new RegExp(
+  [
+    'canlı grafik', 'canlı borsa', 'canlı fiyat',
+    'hisse senedi canlı', 'hisse senedi fiyat', 'hisse fiyatları',
+    'hisse senedi - ', 'hissesi ne kadar', 'kaç tl', 'yorumları',
+    'anlık takip', 'grafik ve fiyat',
+  ].join('|'),
+  'i'
+);
+function isJunk(title: string): boolean {
+  return JUNK_RE.test(title);
+}
+
 export async function runWatchlistPoll(): Promise<{ scanned: string[]; added: number }> {
   const cursor = await readWatchCursor();
   const batch = Array.from({ length: BATCH }, (_, k) => WATCHLIST[(cursor + k) % WATCHLIST.length]);
@@ -49,6 +64,10 @@ export async function runWatchlistPoll(): Promise<{ scanned: string[]; added: nu
   for (const w of batch) {
     try {
       const items = await fetchGoogleNewsRss(w.q);
+      // Çöpleri seen'e yaz ki her turda yeniden değerlendirilmesin.
+      for (const it of items) {
+        if (!seen.has(it.guid) && isJunk(it.title)) seen.add(it.guid);
+      }
       const news = items
         .filter((it) => !seen.has(it.guid))
         .slice(0, PER_SYM);
@@ -77,7 +96,8 @@ export async function runWatchlistPoll(): Promise<{ scanned: string[]; added: nu
 
   if (fresh.length > 0) {
     const all = await readWatchNews();
-    await writeWatchNews([...fresh, ...all]);
+    // Kendini onarım: depoda önceden birikmiş çöpleri de süz.
+    await writeWatchNews([...fresh, ...all.filter((it) => !isJunk(it.title))]);
   }
   await writeWatchSeen(seen);
   await writeWatchCursor((cursor + BATCH) % WATCHLIST.length);

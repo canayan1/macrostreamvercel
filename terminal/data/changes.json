@@ -1,42 +1,46 @@
 {
-  "generated": "2026-06-06",
-  "note": "Editöryel önemli değişimler. Her madde tarihli; banner yalnızca son 'days' gün içindekileri gösterir, eskiler otomatik düşer. Veri-temelli satırlar (hareket/eşik) ayrıca markets.json'dan istemcide üretilir.",
-  "items": [
-    {
-      "sev": "hi",
-      "kind": "Yeni veri",
-      "date": "2026-06-05",
-      "days": 7,
-      "line": "Mayıs TÜFE: aylık <b>+%1,71</b>, yıllık <b>%32,61</b> açıklandı",
-      "why": "Dezenflasyon yavaş; konut (%45,6) ve gıda yapışkan. TCMB'nin temkinli duruşunu destekliyor.",
-      "link": "/haftanin-haberleri/2026-06-06/",
-      "linkText": "Haftanın haberleri →",
-      "tag": "Enflasyon",
-      "symbols": ["usdtry"]
-    },
-    {
-      "sev": "hi",
-      "kind": "Makro",
-      "date": "2026-06-05",
-      "days": 7,
-      "line": "ABD istihdamı <b>172 bin</b> (beklenti 85 bin) — şahin okundu",
-      "why": "Faiz indirimi beklentisi geriledi; dolar güçlendi, faiz getirmeyen ve riskli varlıklar aşağı.",
-      "link": "/haftanin-grafikleri/",
-      "linkText": "Haftanın grafiği →",
-      "tag": "Küresel",
-      "symbols": ["dxy", "xauusd", "gramaltin", "xu100"]
-    },
-    {
-      "sev": "md",
-      "kind": "Eşik",
-      "date": "2026-06-05",
-      "days": 7,
-      "line": "Bitcoin <b>60.000 $ altına</b> indi · 7g <span class=\"dn\">−%17</span>",
-      "why": "Güçlü istihdam faiz indirimi umudunu sildi; 1,7 milyar dolar tasfiye.",
-      "link": "/haftanin-haberleri/2026-06-06/",
-      "linkText": "Haftanın haberleri →",
-      "tag": "Kripto",
-      "symbols": []
-    }
-  ]
+ "generated": "2026-07-24T10:50:52Z",
+ "note": "Editöryel önemli değişimler. Her madde tarihli; banner yalnızca son 'days' gün içindekileri gösterir, eskiler otomatik düşer. Veri-temelli satırlar (hareket/eşik) ayrıca markets.json'dan istemcide üretilir.",
+ "items": [
+  {
+   "sev": "hi",
+   "kind": "Yeni özellik",
+   "date": "2026-07-24",
+   "days": 14,
+   "line": "Hisse sayfalarında canlı <b>Son Haberler</b>: BIST 30 için haber takibi, yapay zeka özeti + duygu etiketi",
+   "why": "Google News taraması ~25 dakikada bir tüm listeyi dolaşır; karne sayfalarının altında."
+  },
+  {
+   "sev": "hi",
+   "kind": "Düzeltme",
+   "date": "2026-07-23",
+   "days": 14,
+   "line": "Türkiye Ekonomik Raporu'nda politika faizi <b>%37</b> (1 hafta repo) olarak düzeltildi",
+   "why": "Önceki sürüm gecelik borç verme oranını (%40) gösteriyordu; reel politika faizi +4,4 puana güncellendi."
+  },
+  {
+   "sev": "md",
+   "kind": "Yeni veri",
+   "date": "2026-07-23",
+   "days": 14,
+   "line": "Haziran TÜFE raporda: yıllık <b>%32,1</b> (çekirdek B %31,2, Yİ-ÜFE %28,1)",
+   "why": "Dezenflasyon sürüyor; ayrıntı 2026-Q3 Türkiye Ekonomik Raporu'nda."
+  },
+  {
+   "sev": "md",
+   "kind": "Yeni",
+   "date": "2026-07-08",
+   "days": 30,
+   "line": "<b>Sense Trading</b> oyun sayfası (/oyun) ve <b>Ajan Ligi</b> terminale eklendi",
+   "why": "7 strateji ajanı hipotetik 100.000 ₺ ile BIST 30'da yarışıyor; oyun ücretsiz ve girişsiz."
+  },
+  {
+   "sev": "md",
+   "kind": "Yeni rapor",
+   "date": "2026-07-03",
+   "days": 30,
+   "line": "<b>2026-Q3 Türkiye Ekonomik Raporu</b> yayında; Q2 dönem arşivinde",
+   "why": "9 bölüm taze EVDS verisiyle: enflasyon, büyüme, işgücü, rezervler, kamu maliyesi."
+  }
+ ]
 }
