@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-24T05:42:55.818711Z",
+  "last_update": "2026-07-27T06:19:20.961891Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-24",
-    "title": "Turkcell — Günün Merceği"
+    "date": "2026-07-27",
+    "title": "Türk Hava Yolları — Günün Merceği"
   },
-  "total_reports": 266,
+  "total_reports": 272,
   "by_category": {
-    "pulse": 47,
-    "hisse": 51,
-    "sektor": 16,
-    "fx": 53,
-    "metals": 33,
+    "pulse": 48,
+    "hisse": 52,
+    "sektor": 17,
+    "fx": 54,
+    "metals": 34,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 48
+    "tcmb": 49
   }
 }
