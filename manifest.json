@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-27T06:19:20.961891Z",
+  "last_update": "2026-07-28T05:39:35.508058Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-27",
-    "title": "Türk Hava Yolları — Günün Merceği"
+    "date": "2026-07-28",
+    "title": "Tofaş Oto — Günün Merceği"
   },
-  "total_reports": 272,
+  "total_reports": 277,
   "by_category": {
-    "pulse": 48,
-    "hisse": 52,
+    "pulse": 49,
+    "hisse": 53,
     "sektor": 17,
-    "fx": 54,
-    "metals": 34,
+    "fx": 55,
+    "metals": 35,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 49
+    "tcmb": 50
   }
 }
