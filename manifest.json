@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-29T05:44:08.087586Z",
+  "last_update": "2026-07-30T05:32:43.123192Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-29",
-    "title": "Tüpraş — Günün Merceği"
+    "date": "2026-07-30",
+    "title": "VakıfBank — Günün Merceği"
   },
-  "total_reports": 282,
+  "total_reports": 287,
   "by_category": {
-    "pulse": 50,
-    "hisse": 54,
+    "pulse": 51,
+    "hisse": 55,
     "sektor": 17,
-    "fx": 56,
-    "metals": 36,
+    "fx": 57,
+    "metals": 37,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 51
+    "tcmb": 52
   }
 }
