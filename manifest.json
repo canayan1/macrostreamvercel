@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-30T05:32:43.123192Z",
+  "last_update": "2026-07-31T05:57:57.341238Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-30",
-    "title": "VakıfBank — Günün Merceği"
+    "date": "2026-07-31",
+    "title": "Yapı Kredi — Günün Merceği"
   },
-  "total_reports": 287,
+  "total_reports": 292,
   "by_category": {
-    "pulse": 51,
-    "hisse": 55,
+    "pulse": 52,
+    "hisse": 56,
     "sektor": 17,
-    "fx": 57,
-    "metals": 37,
+    "fx": 58,
+    "metals": 38,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 52
+    "tcmb": 53
   }
 }
