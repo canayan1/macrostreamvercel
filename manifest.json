@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-07-31T05:57:57.341238Z",
+  "last_update": "2026-08-03T06:12:21.629242Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-07-31",
-    "title": "Yapı Kredi — Günün Merceği"
+    "date": "2026-08-03",
+    "title": "Akbank — Günün Merceği"
   },
-  "total_reports": 292,
+  "total_reports": 298,
   "by_category": {
-    "pulse": 52,
-    "hisse": 56,
-    "sektor": 17,
-    "fx": 58,
-    "metals": 38,
+    "pulse": 53,
+    "hisse": 57,
+    "sektor": 18,
+    "fx": 59,
+    "metals": 39,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 53
+    "tcmb": 54
   }
 }
