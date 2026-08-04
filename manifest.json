@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-03T06:12:21.629242Z",
+  "last_update": "2026-08-04T05:40:17.314192Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-08-03",
-    "title": "Akbank — Günün Merceği"
+    "date": "2026-08-04",
+    "title": "Arçelik — Günün Merceği"
   },
-  "total_reports": 298,
+  "total_reports": 303,
   "by_category": {
-    "pulse": 53,
-    "hisse": 57,
+    "pulse": 54,
+    "hisse": 58,
     "sektor": 18,
-    "fx": 59,
-    "metals": 39,
+    "fx": 60,
+    "metals": 40,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 54
+    "tcmb": 55
   }
 }
