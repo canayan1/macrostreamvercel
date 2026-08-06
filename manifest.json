@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-05T05:38:39.204490Z",
+  "last_update": "2026-08-06T05:40:25.708288Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-08-05",
-    "title": "Aselsan — Günün Merceği"
+    "date": "2026-08-06",
+    "title": "BİM Mağazalar — Günün Merceği"
   },
-  "total_reports": 308,
+  "total_reports": 313,
   "by_category": {
-    "pulse": 55,
-    "hisse": 59,
+    "pulse": 56,
+    "hisse": 60,
     "sektor": 18,
-    "fx": 61,
-    "metals": 41,
+    "fx": 62,
+    "metals": 42,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 56
+    "tcmb": 57
   }
 }
