@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-10T04:24:47.395069Z",
+  "last_update": "2026-08-11T04:13:09.392595Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-08-10",
-    "title": "Emlak Konut GYO — Günün Merceği"
+    "date": "2026-08-11",
+    "title": "Enka İnşaat — Günün Merceği"
   },
-  "total_reports": 324,
+  "total_reports": 329,
   "by_category": {
-    "pulse": 58,
-    "hisse": 62,
+    "pulse": 59,
+    "hisse": 63,
     "sektor": 19,
-    "fx": 64,
-    "metals": 44,
+    "fx": 65,
+    "metals": 45,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 59
+    "tcmb": 60
   }
 }
