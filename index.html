@@ -419,25 +419,25 @@ footer .disclaimer {
 <section class="what-is">
   <div class="container">
     <div class="section-eyebrow">▸ BU SİTE NEDİR</div>
-    <h2 class="section-title">Üç ana katmanda Türkçe finansal terminal.</h2>
+    <h2 class="section-title">Üç katman: test et, pratik yap, veriyle destekle.</h2>
 
     <div class="three-col" style="margin-top:30px">
       <div class="card">
+        <span class="icon">🔬</span>
+        <h3>Strateji Laboratuvarı & Canlı Lig</h3>
+        <p>5 algoritmik strateji (momentum, golden cross, mean reversion, breakout, düşük volatilite) 60+ BIST ve ABD hissesi üzerinde 5 yıl geriye test edildi — Sharpe, maksimum düşüş, isabet oranı şeffaf. 7 strateji ajanı hipotetik 100.000 ₺ ile canlı yarışıyor: kâğıt üstünde değil, gün gün işleyen lig.</p>
+      </div>
+      <div class="card">
+        <span class="icon">📐</span>
+        <h3>Teknik analiz pratiği</h3>
+        <p>Grafik okuma testi (mum formasyonları, RSI, destek/direnç — 12 gerçekçi soru), sıfır riskli çok oyunculu trade oyunu, yatırımcı önyargı testi ve işlem öncesi disiplin kontrolü. Refleksini parayla değil, pratikle geliştir.</p>
+      </div>
+      <div class="card">
         <span class="icon">📊</span>
-        <h3>Günlük makro & piyasa</h3>
-        <p>Her sabah otomatik üretilen raporlar: BIST nabzı, döviz, FED & TCMB politikası, TÜFE, TCMB analitik bilanço, sektör rotasyon. Veri kaynakları açık, formüller görünür.</p>
+        <h3>Veri arka planın</h3>
+        <p>Strateji kararlarının bağlamı: her sabah otomatik BIST/döviz/TCMB bültenleri, çeyreklik Türkiye Ekonomik Raporu, hisse karnesi (enflasyon/dolar/altına göre reel getiri). Kaynaklar ve formüller açık.</p>
       </div>
-      <div class="card">
-        <span class="icon">🎓</span>
-        <h3>Eğitim kütüphanesi</h3>
-        <p>24 makale: temel analiz, teknik göstergeler, risk yönetimi, yatırımcı psikolojisi, davranışsal önyargılar, TCMB faiz politikası. Sade Türkçe, akademik kaynakça.</p>
-      </div>
-      <div class="card">
-        <span class="icon">🧠</span>
-        <h3>Karar destek araçları</h3>
-        <p>Yatırımcı önyargı testi, işlem öncesi disiplin kontrolü, strateji laboratuvarı (5 algoritma backtest), sıfır risk borsa simülasyonu. Öğret → dene → analiz et üçlüsü.</p>
-      </div>
-    </div>
+    </div></div>
   </div>
 </section>
 
@@ -486,42 +486,6 @@ footer .disclaimer {
     <p class="section-lead">Mevcut canlı sitenin ekran görüntüleri — büyütmek için tıkla.</p>
 
     <div class="module-grid">
-      <a href="/reports/pulse/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/nabiz-preview.png')">
-          <img src="/static/landing/nabiz-preview.png" alt="Günlük Nabız raporu örnek ekran görüntüsü" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">📊 Günlük</span>
-          <h3>Günlük Nabız</h3>
-          <p>Her sabah BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + LLM yorum + makro bağlam.</p>
-          <span class="module-cta">Bugünün Nabzını Gör →</span>
-        </div>
-      </a>
-
-      <a href="/reports/tcmb/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/tcmb-preview.png')">
-          <img src="/static/landing/tcmb-preview.png" alt="TCMB Analitik Bilanço raporu örnek görüntü" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">🏦 Günlük</span>
-          <h3>TCMB Analitik Bilanço</h3>
-          <p>Günlük net rezerv (klasik + swap-arındırılmış), brüt rezerv, döviz yükümlülükleri. T+1 EVDS verisi.</p>
-          <span class="module-cta">Bugünkü Bilançoyu Gör →</span>
-        </div>
-      </a>
-
-      <a href="/trading/onyargi-testi/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/onyargi-preview.png')">
-          <img src="/static/landing/onyargi-preview.png" alt="Yatırımcı Önyargı Testi interaktif sayfa" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">🧠 İnteraktif</span>
-          <h3>Yatırımcı Önyargı Testi</h3>
-          <p>12 senaryo, 8 davranışsal önyargı için kişisel skor, radar chart, üst 3 önyargı için pratik öneriler.</p>
-          <span class="module-cta">Testi Başlat (3 dk) →</span>
-        </div>
-      </a>
-
       <a href="/algo/" class="module-card">
         <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/algo-preview.png')">
           <img src="/static/landing/algo-preview.png" alt="Strateji Laboratuvarı backtest sonuçları" loading="lazy">
@@ -533,7 +497,66 @@ footer .disclaimer {
           <span class="module-cta">Lab'a Gir →</span>
         </div>
       </a>
-
+      <a href="/ajanlar/" class="module-card">
+        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/algo-preview.png')">
+          <img src="/static/landing/algo-preview.png" alt="Ajan Ligi canlı strateji yarışı" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="badge">🏁 Canlı Lig</span>
+          <h3>Ajan Ligi</h3>
+          <p>7 strateji ajanı, her biri hipotetik 100.000 ₺ ile BIST 30'da gün gün yarışıyor. Portföyler, işlemler ve sıralama şeffaf.</p>
+          <span class="module-cta">Ligi İzle →</span>
+        </div>
+      </a>
+      <a href="/grafik-oku/" class="module-card">
+        <div class="body">
+          <span class="badge">📐 İnteraktif</span>
+          <h3>Grafik Okuma Testi</h3>
+          <p>Mum formasyonları, RSI, destek/direnç… 12 gerçekçi soruyla teknik analiz refleksini ölç. Tarayıcıda, ücretsiz.</p>
+          <span class="module-cta">Testi Başlat →</span>
+        </div>
+      </a>
+      <a href="/oyun/" class="module-card">
+        <div class="body">
+          <span class="badge">🎮 Çok Oyunculu</span>
+          <h3>Sense Trading</h3>
+          <p>Gerçek fiyat mantığı, sanal para, sıfır risk. Arkadaşınla aynı odada trade yarışına gir; kaldıraçlı odalar ve sıralama.</p>
+          <span class="module-cta">Oyna →</span>
+        </div>
+      </a>
+      <a href="/trading/onyargi-testi/" class="module-card">
+        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/onyargi-preview.png')">
+          <img src="/static/landing/onyargi-preview.png" alt="Yatırımcı Önyargı Testi interaktif sayfa" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="badge">🧠 İnteraktif</span>
+          <h3>Yatırımcı Önyargı Testi</h3>
+          <p>12 senaryo, 8 davranışsal önyargı için kişisel skor, radar chart, üst 3 önyargı için pratik öneriler.</p>
+          <span class="module-cta">Testi Başlat (3 dk) →</span>
+        </div>
+      </a>
+      <a href="/reports/pulse/" class="module-card">
+        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/nabiz-preview.png')">
+          <img src="/static/landing/nabiz-preview.png" alt="Günlük Nabız raporu örnek ekran görüntüsü" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="badge">📊 Günlük</span>
+          <h3>Günlük Nabız</h3>
+          <p>Her sabah BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + LLM yorum + makro bağlam.</p>
+          <span class="module-cta">Bugünün Nabzını Gör →</span>
+        </div>
+      </a>
+      <a href="/reports/tcmb/" class="module-card">
+        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/tcmb-preview.png')">
+          <img src="/static/landing/tcmb-preview.png" alt="TCMB Analitik Bilanço raporu örnek görüntü" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="badge">🏦 Günlük</span>
+          <h3>TCMB Analitik Bilanço</h3>
+          <p>Günlük net rezerv (klasik + swap-arındırılmış), brüt rezerv, döviz yükümlülükleri. T+1 EVDS verisi.</p>
+          <span class="module-cta">Bugünkü Bilançoyu Gör →</span>
+        </div>
+      </a>
       <a href="/egitim/" class="module-card">
         <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/egitim-preview.png')">
           <img src="/static/landing/egitim-preview.png" alt="Eğitim Kütüphanesi 24 makale listesi" loading="lazy">
@@ -543,42 +566,6 @@ footer .disclaimer {
           <h3>Eğitim Kütüphanesi</h3>
           <p>24 makale: PE, RSI, drawdown, portföy optimizasyonu, Kelly kriteri, NIM, carry trade, BTC dominance, likidite riski. Tümü Türkçe, kaynakçalı.</p>
           <span class="module-cta">Kütüphaneye Gir →</span>
-        </div>
-      </a>
-
-      <a href="/simulasyon/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/simulasyon-preview.png')">
-          <img src="/static/landing/simulasyon-preview.png" alt="Borsa Simülasyonu sanal portföy ekranı" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">🎮 Pratik</span>
-          <h3>Borsa Simülasyonu</h3>
-          <p>Sanal sermaye ile pratik. Gerçek BIST verisi, gerçek zamanlı emir defteri. Sıfır risk.</p>
-          <span class="module-cta">Simülasyona Başla →</span>
-        </div>
-      </a>
-
-      <a href="/banka-raporu/2025-q4/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/banka-preview.png')">
-          <img src="/static/landing/banka-preview.png" alt="Banka Bilanço Raporu Q4 2025 NIM tablosu" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">🏛 Çeyreklik</span>
-          <h3>Banka Bilanço Raporu</h3>
-          <p>6 büyük BIST bankası için KAP doğrulamalı çeyreklik NIM, ROE, CAR analizi. Çapraz karşılaştırma + tarihsel trend.</p>
-          <span class="module-cta">Q4 2025 Raporunu Aç →</span>
-        </div>
-      </a>
-
-      <a href="/haftanin-grafikleri/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/haftanin-preview.png')">
-          <img src="/static/landing/haftanin-preview.png" alt="Haftanın Grafiği derinlemesine konu" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="badge">🗓 Haftalık</span>
-          <h3>Haftanın Grafiği & Haberleri</h3>
-          <p>Her hafta bir konu derinlemesine grafik (TCMB rezerv, tahvil getirileri, vb.) ve global press (FT, Bloomberg, Reuters, WSJ) sentezi.</p>
-          <span class="module-cta">Bu Haftaya Bak →</span>
         </div>
       </a>
     </div>
