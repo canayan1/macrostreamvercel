@@ -33,6 +33,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
+  // ── ASKIDA (2026-08-16) ────────────────────────────────────────────────
+  // AA canlı akışı + watchlist taraması durduruldu: 5dk'lık Blob trafiği
+  // Hobby kotasını (Advanced Ops 2K/ay) günler içinde tüketti (Tem 25).
+  // Yeniden açmak için bu bloğu kaldır — ama önce depolamayı KV'ye taşı,
+  // yoksa kota yine dolar. 200 dönerek cron-job.org'un işi hatalı sanıp
+  // kapatmasını da engelliyoruz.
+  return res.status(200).json({ ok: true, suspended: true });
+
   try {
     const t0 = Date.now();
     const items = await fetchAAEconomyRss();
