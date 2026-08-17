@@ -390,6 +390,12 @@ footer .disclaimer {
 section{padding-top:8px;padding-bottom:8px}
 .module-card .body{padding:20px}
 .three-col .card{padding:24px}
+.hero h1 .accent{white-space:nowrap}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hero .pill-row{justify-content:center;margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--text-dim);background:var(--bg-1);white-space:nowrap}
+.pill b{color:var(--accent);font-weight:600}
+.module-card .body p{min-height:0}
 </style>
 </head>
 <body>
@@ -417,36 +423,39 @@ section{padding-top:8px;padding-bottom:8px}
   </div>
 
   <h1>Stratejini fikirle değil, <span class="accent">veriyle test&nbsp;et</span>.</h1>
-  <p class="sub">Algoritmik trading ve teknik analiz laboratuvarı: 5 strateji × 60+ hisse × 5 yıl geriye dönük test — Sharpe, maksimum düşüş, isabet oranı şeffaf. 7 strateji ajanı canlı yarışıyor. Yatırım tavsiyesi değildir.</p>
+  <p class="sub">Algoritmik trading ve teknik analiz laboratuvarı. Yatırım tavsiyesi değildir.</p>
+  <div class="pill-row"><span class="pill"><b>5</b> strateji</span><span class="pill"><b>60+</b> hisse</span><span class="pill"><b>5 yıl</b> backtest</span><span class="pill"><b>7</b> ajan canlı</span><span class="pill">Ücretsiz · Hesapsız</span></div>
 
   <div class="cta-group">
     <a href="/algo/" class="btn-primary">STRATEJİ LABORATUVARI →</a>
-    <a href="/ajanlar/" class="btn-secondary">▸ 7 strateji ajanı canlı yarışıyor — ligi izle</a>
+    <a href="/ajanlar/" class="btn-secondary">▸ Canlı Ligi İzle</a>
   </div>
 
-  <p class="small"><b>Hesap açma yok.</b> Ücretsiz. Reklamsız.</p>
 </section>
 
 <section class="what-is">
   <div class="container">
     <div class="section-eyebrow">▸ BU SİTE NEDİR</div>
-    <h2 class="section-title">Üç katman: test et, pratik yap, veriyle destekle.</h2>
+    <h2 class="section-title">Burada üç şey yapılır.</h2>
 
     <div class="three-col" style="margin-top:30px">
       <div class="card">
         <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M8 52 h48"/><rect x="27" y="20" width="10" height="32" rx="2" fill="rgba(255,166,48,.25)"/><rect x="11" y="32" width="10" height="20" rx="2" fill="rgba(255,166,48,.12)"/><rect x="43" y="26" width="10" height="26" rx="2" fill="rgba(255,166,48,.18)"/></svg></span>
-        <h3>Strateji Laboratuvarı & Canlı Lig</h3>
-        <p>5 algoritmik strateji (momentum, golden cross, mean reversion, breakout, düşük volatilite) 60+ BIST ve ABD hissesi üzerinde 5 yıl geriye test edildi — Sharpe, maksimum düşüş, isabet oranı şeffaf. 7 strateji ajanı hipotetik 100.000 ₺ ile canlı yarışıyor: kâğıt üstünde değil, gün gün işleyen lig.</p>
+        <h3>Test et</h3>
+        <p>Hazır stratejileri gerçek geçmiş veriyle dene; sonuçların tamamı şeffaf.</p>
+        <div class="pill-row"><span class="pill">5 strateji</span><span class="pill">60+ hisse</span><span class="pill">Canlı lig</span></div>
       </div>
       <div class="card">
         <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><line x1="20" y1="12" x2="20" y2="44"/><rect x="14" y="20" width="12" height="14" fill="rgba(38,166,154,.3)" stroke="#26a69a"/><circle cx="42" cy="34" r="11"/><line x1="50" y1="42" x2="56" y2="48"/></svg></span>
-        <h3>Teknik analiz pratiği</h3>
-        <p>Grafik okuma testi (mum formasyonları, RSI, destek/direnç — 12 gerçekçi soru), sıfır riskli çok oyunculu trade oyunu, yatırımcı önyargı testi ve işlem öncesi disiplin kontrolü. Refleksini parayla değil, pratikle geliştir.</p>
+        <h3>Pratik yap</h3>
+        <p>Sanal parayla dene, gerçek parayla öğrenme.</p>
+        <div class="pill-row"><span class="pill">Grafik testi</span><span class="pill">Trade oyunu</span><span class="pill">Önyargı testi</span></div>
       </div>
       <div class="card">
         <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M6 38 h10 l6 -14 7 24 7 -32 7 22 h15" /></svg></span>
-        <h3>Veri arka planın</h3>
-        <p>Strateji kararlarının bağlamı: her sabah otomatik BIST/döviz/TCMB bültenleri, çeyreklik Türkiye Ekonomik Raporu, hisse karnesi (enflasyon/dolar/altına göre reel getiri). Kaynaklar ve formüller açık.</p>
+        <h3>Takip et</h3>
+        <p>Her sabah otomatik piyasa bültenleri ve raporlar.</p>
+        <div class="pill-row"><span class="pill">Günlük özet</span><span class="pill">TCMB rezerv</span><span class="pill">Hisse karnesi</span></div>
       </div>
     </div></div>
   </div>
@@ -462,28 +471,28 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="num">01</div>
         <div>
           <h3>Yatırım tavsiyesi vermeyiz</h3>
-          <p>Diğer borsa siteleri "şu hisseyi al, şu seviyeye gelsin" der. Biz vermeyiz. Bizim işimiz veriyi açıklamak, çerçeveyi sunmak, kararı bırakmak. Bu hem felsefi hem yasal bir tercihtir.</p>
+          <p>Al-sat önerisi yok. Veriyi ve çerçeveyi sunarız; karar senin.</p>
         </div>
       </div>
       <div class="diff-item">
         <div class="num">02</div>
         <div>
           <h3>Tüm metodoloji açık</h3>
-          <p>Her grafik altında veri kaynağı (TCMB EVDS, FRED, KAP, yfinance), hesap formülü <i>(Net Interest Margin = Net Faiz Geliri / Ortalama Aktif × 4)</i> ve parametreler yazılı. Kara kutu yok.</p>
+          <p>Her grafikte veri kaynağı, formül ve parametreler yazılı. Kara kutu yok.</p>
         </div>
       </div>
       <div class="diff-item">
         <div class="num">03</div>
         <div>
           <h3>Eğitim entegre</h3>
-          <p>Her teknik metrik yanında <i>"ne anlama gelir"</i> tooltip'i ve ilgili eğitim makalesine link. F/K oranını gördün, tıkla, 8 dakikada öğren.</p>
+          <p>Her metriğin yanında "ne anlama gelir" açıklaması ve eğitim linki var.</p>
         </div>
       </div>
       <div class="diff-item">
         <div class="num">04</div>
         <div>
           <h3>Ücretsiz, reklamsız</h3>
-          <p>AdSense yok, abonelik yok, paywall yok. Mevcut tüm araçlar kalıcı olarak ücretsiz. <i>(İleride opsiyonel premium analiz talebi gelebilir; mevcut hiçbir özellik para arkasına geçmez.)</i></p>
+          <p>Reklam yok, paywall yok. Mevcut tüm araçlar ücretsiz.</p>
         </div>
       </div>
     </div>
@@ -502,7 +511,7 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="body">
           <span class="badge">Backtest</span>
           <h3>Strateji Laboratuvarı</h3>
-          <p>5 algoritmik yöntem (momentum, mean reversion, golden cross, breakout, RSI) × 60+ BIST + US hissesi. Sharpe, MaxDD, hit rate gösterilir.</p>
+          <p>5 hazır strateji, 60+ hissede geçmişe dönük test edilir.</p>
           <span class="module-cta">Lab'a Gir →</span>
         </div>
       </a>
@@ -512,8 +521,8 @@ section{padding-top:8px;padding-bottom:8px}
         </div>
         <div class="body">
           <span class="badge">Canlı Lig</span>
-          <h3>Ajan Ligi</h3>
-          <p>7 strateji ajanı, her biri hipotetik 100.000 ₺ ile BIST 30'da gün gün yarışıyor. Portföyler, işlemler ve sıralama şeffaf.</p>
+          <h3>Canlı Strateji Ligi</h3>
+          <p>7 robot yatırımcı sanal 100.000 ₺ ile her gün yarışıyor.</p>
           <span class="module-cta">Ligi İzle →</span>
         </div>
       </a>
@@ -524,7 +533,7 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="body">
           <span class="badge">İnteraktif</span>
           <h3>Grafik Okuma Testi</h3>
-          <p>Mum formasyonları, RSI, destek/direnç… 12 gerçekçi soruyla teknik analiz refleksini ölç. Tarayıcıda, ücretsiz.</p>
+          <p>12 soruyla teknik analiz refleksini ölç.</p>
           <span class="module-cta">Testi Başlat →</span>
         </div>
       </a>
@@ -534,8 +543,8 @@ section{padding-top:8px;padding-bottom:8px}
         </div>
         <div class="body">
           <span class="badge">Çok Oyunculu</span>
-          <h3>Sense Trading</h3>
-          <p>Gerçek fiyat mantığı, sanal para, sıfır risk. Arkadaşınla aynı odada trade yarışına gir; kaldıraçlı odalar ve sıralama.</p>
+          <h3>Trade Oyunu</h3>
+          <p>Arkadaşınla sanal parayla, sıfır riskle trade yarışı.</p>
           <span class="module-cta">Oyna →</span>
         </div>
       </a>
@@ -546,7 +555,7 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="body">
           <span class="badge">İnteraktif</span>
           <h3>Yatırımcı Önyargı Testi</h3>
-          <p>12 senaryo, 8 davranışsal önyargı için kişisel skor, radar chart, üst 3 önyargı için pratik öneriler.</p>
+          <p>12 senaryoyla hangi karar hatalarına yatkın olduğunu gör.</p>
           <span class="module-cta">Testi Başlat (3 dk) →</span>
         </div>
       </a>
@@ -556,8 +565,8 @@ section{padding-top:8px;padding-bottom:8px}
         </div>
         <div class="body">
           <span class="badge">Günlük</span>
-          <h3>Günlük Nabız</h3>
-          <p>Her sabah BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + LLM yorum + makro bağlam.</p>
+          <h3>Günlük Piyasa Özeti</h3>
+          <p>BIST, dolar ve küresel piyasalar her sabah tek sayfada.</p>
           <span class="module-cta">Bugünün Nabzını Gör →</span>
         </div>
       </a>
@@ -567,8 +576,8 @@ section{padding-top:8px;padding-bottom:8px}
         </div>
         <div class="body">
           <span class="badge">Günlük</span>
-          <h3>TCMB Analitik Bilanço</h3>
-          <p>Günlük net rezerv (klasik + swap-arındırılmış), brüt rezerv, döviz yükümlülükleri. T+1 EVDS verisi.</p>
+          <h3>TCMB Rezerv Takibi</h3>
+          <p>Merkez Bankası rezervleri her gün, sade grafiklerle.</p>
           <span class="module-cta">Bugünkü Bilançoyu Gör →</span>
         </div>
       </a>
@@ -579,7 +588,7 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="body">
           <span class="badge">Eğitim</span>
           <h3>Eğitim Kütüphanesi</h3>
-          <p>24 makale: PE, RSI, drawdown, portföy optimizasyonu, Kelly kriteri, NIM, carry trade, BTC dominance, likidite riski. Tümü Türkçe, kaynakçalı.</p>
+          <p>24 Türkçe makale: temel kavramlardan strateji kurmaya.</p>
           <span class="module-cta">Kütüphaneye Gir →</span>
         </div>
       </a>
@@ -595,28 +604,28 @@ section{padding-top:8px;padding-bottom:8px}
 
     <div class="flow">
       <div class="flow-step">
-        <div class="icon">📡</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 7-7"/><path d="M2 12A10 10 0 0 1 12 2"/><circle cx="7" cy="17" r="2" fill="#ffa630" stroke="none"/><path d="M9 15 20 4"/></svg></div>
         <div>
           <h4>Veri kaynakları çekilir</h4>
           <p>yfinance (BIST, US hisse, FX — 15 dk gecikmeli), TCMB EVDS (analitik bilanço, faiz, döviz), FRED (ABD makro), Dünya Bankası (uluslararası), KAP (Türk şirket finansal tablolar).</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="icon">🐍</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div>
         <div>
           <h4>Python script'leri taslak üretir</h4>
           <p>Matplotlib ile grafikler, LLM (Gemini/Llama/Mistral) ile yorum taslakları üretilir. Bu adım otomatiktir.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="icon">👤</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></div>
         <div>
           <h4>İnsan gözetiminden geçer</h4>
           <p>Çıktılar yayına çıkmadan önce gözden geçirilir: veri doğruluğu, yorum tutarlılığı, dil kontrolü. Hatalı veya yanıltıcı içerik elenir. Yapay zekaya körü körüne güvenmeyiz.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="icon">📤</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
         <div>
           <h4>Onaylananlar yayınlanır</h4>
           <p>Gözden geçirilen statik HTML çıktılar Vercel'e push edilir. Çoğu rapor gün içinde, hafta içi düzenli olarak güncellenir.</p>
@@ -638,7 +647,7 @@ section{padding-top:8px;padding-bottom:8px}
 
     <div class="persona-grid">
       <div class="persona-card">
-        <div class="avatar">👤</div>
+        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></div>
         <h3>Acemi yatırımcı</h3>
         <p class="intro">Borsa hakkında öğrenmek istiyorsun ama parayı riske atmadan başlamak istiyorsun.</p>
         <ol>
@@ -650,7 +659,7 @@ section{padding-top:8px;padding-bottom:8px}
       </div>
 
       <div class="persona-card">
-        <div class="avatar">📈</div>
+        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 14 21 6"/><polyline points="15 6 21 6 21 12"/></svg></div>
         <h3>Aktif yatırımcı</h3>
         <p class="intro">Zaten pozisyon alıyorsun. Daha sistemli karar için araç istiyorsun.</p>
         <ol>
@@ -662,7 +671,7 @@ section{padding-top:8px;padding-bottom:8px}
       </div>
 
       <div class="persona-card">
-        <div class="avatar">🔬</div>
+        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 8a3 3 0 0 0 3 4h10a3 3 0 0 0 3-4l-5-8V3"/><line x1="8" y1="3" x2="16" y2="3"/></svg></div>
         <h3>Profesyonel / araştırmacı</h3>
         <p class="intro">Veri ve metodoloji şeffaflığı istiyorsun.</p>
         <ol>
@@ -715,7 +724,7 @@ section{padding-top:8px;padding-bottom:8px}
 </section>
 
 <section class="final-cta">
-  <h2>Terminale gir, içeriği keşfet.</h2>
+  <h2>Lab'a gir, stratejini test et.</h2>
   <div class="cta-group">
     <a href="/algo/" class="btn-primary">STRATEJİ LABORATUVARI →</a>
   </div>
@@ -724,9 +733,9 @@ section{padding-top:8px;padding-bottom:8px}
     <a href="/trading/onyargi-testi/" class="btn-secondary">YATIRIMCI ÖNYARGI TESTİ</a>
   </div>
   <div class="links">
-    <a href="/iletisim/">📧 İletişim</a>
-    <a href="/rss.xml">📰 RSS</a>
-    <a href="/arsiv.html">🗂 Arşiv</a>
+    <a href="/iletisim/">İletişim</a>
+    <a href="/rss.xml">RSS</a>
+    <a href="/arsiv.html">Arşiv</a>
   </div>
 </section>
 
