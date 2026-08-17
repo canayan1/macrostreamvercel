@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-14T04:44:00.655244Z",
+  "last_update": "2026-08-17T03:42:47.020742Z",
   "latest_report": {
     "category": "hisse",
-    "date": "2026-08-14",
-    "title": "Garanti BBVA — Günün Merceği"
+    "date": "2026-08-17",
+    "title": "Hektaş — Günün Merceği"
   },
-  "total_reports": 344,
+  "total_reports": 350,
   "by_category": {
-    "pulse": 62,
-    "hisse": 66,
-    "sektor": 19,
-    "fx": 68,
-    "metals": 48,
+    "pulse": 63,
+    "hisse": 67,
+    "sektor": 20,
+    "fx": 69,
+    "metals": 49,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 63
+    "tcmb": 64
   }
 }

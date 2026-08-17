@@ -4,6 +4,17 @@
     "hisse": [
       {
         "category": "hisse",
+        "date": "2026-08-17",
+        "metrics": {
+          "regime": "Risk-Off",
+          "breadth_pct": 17.857142857142858,
+          "top_gainer": "Tüpraş",
+          "top_loser": "Sasa Polyester",
+          "featured_stock": "Hektaş"
+        }
+      },
+      {
+        "category": "hisse",
         "date": "2026-08-14",
         "metrics": {
           "regime": "Zayıflık",
@@ -144,20 +155,20 @@
           "top_loser": "Petkim",
           "featured_stock": "Tüpraş"
         }
-      },
-      {
-        "category": "hisse",
-        "date": "2026-07-28",
-        "metrics": {
-          "regime": "Zayıflık",
-          "breadth_pct": 32.142857142857146,
-          "top_gainer": "Sasa Polyester",
-          "top_loser": "Odaş Elektrik",
-          "featured_stock": "Tofaş Oto"
-        }
       }
     ],
     "fx": [
+      {
+        "category": "fx",
+        "date": "2026-08-17",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.27251332640692016,
+          "usdtry": 47.894500732421875,
+          "usdtry_30d_pct": 1.6823036634119548,
+          "strongest_pair": "EUR/TRY"
+        }
+      },
       {
         "category": "fx",
         "date": "2026-08-14",
@@ -300,20 +311,19 @@
           "usdtry_30d_pct": 1.5898067979762232,
           "strongest_pair": "GBP/TRY"
         }
-      },
-      {
-        "category": "fx",
-        "date": "2026-07-28",
-        "metrics": {
-          "regime": "Dolar Yükselişte",
-          "dxy_5d_pct": 0.568378194964847,
-          "usdtry": 47.37269973754883,
-          "usdtry_30d_pct": 1.6228269407668083,
-          "strongest_pair": "GBP/TRY"
-        }
       }
     ],
     "sektor": [
+      {
+        "category": "sektor",
+        "date": "2026-08-17",
+        "metrics": {
+          "regime": "Lider: Petro-Kimya",
+          "leader_sector": "Petro-Kimya",
+          "laggard_sector": "Gayrimenkul",
+          "xu100_30d": -0.5543354015611679
+        }
+      },
       {
         "category": "sektor",
         "date": "2026-08-10",
@@ -442,16 +452,6 @@
           "leader_sector": "Tarım & Kimya",
           "laggard_sector": "Bankacılık",
           "xu100_30d": -4.671762850026084
-        }
-      },
-      {
-        "category": "sektor",
-        "date": "2026-05-22",
-        "metrics": {
-          "regime": "Lider: Tarım & Kimya",
-          "leader_sector": "Tarım & Kimya",
-          "laggard_sector": "Havacılık & Turizm",
-          "xu100_30d": -9.761514418587202
         }
       }
     ],
@@ -730,6 +730,27 @@
     "pulse": [
       {
         "category": "pulse",
+        "date": "2026-08-17",
+        "metrics": {
+          "regime": "Karışık",
+          "xu100_last": 14172.2998046875,
+          "xu100_pct_30d": -0.5543354015611679,
+          "usdtry_last": 47.895198822021484,
+          "usdtry_pct_30d": 1.683785740843935,
+          "dxy_last": 99.53900146484375,
+          "dxy_pct_30d": -1.2019836577233267,
+          "xauusd_last": 4448.5,
+          "xauusd_pct_30d": 10.860519204802577,
+          "xagusd_last": 65.7249984741211,
+          "xagusd_pct_30d": 17.286485217009506,
+          "gramaltin_last": 6850.090567291866,
+          "gramaltin_pct_30d": 12.701222559475877,
+          "gramgumus_last": 101.2076412460041,
+          "gramgumus_pct_30d": 17.559808859948124
+        }
+      },
+      {
+        "category": "pulse",
         "date": "2026-08-14",
         "metrics": {
           "regime": "Karışık",
@@ -1000,30 +1021,20 @@
           "gramgumus_last": 88.34723869580125,
           "gramgumus_pct_30d": -0.9423304043746472
         }
-      },
-      {
-        "category": "pulse",
-        "date": "2026-07-28",
-        "metrics": {
-          "regime": "Karışık",
-          "xu100_last": 13774.7998046875,
-          "xu100_pct_30d": -3.401169768460355,
-          "usdtry_last": 47.36439895629883,
-          "usdtry_pct_30d": 1.605020295565751,
-          "dxy_last": 101.56300354003906,
-          "dxy_pct_30d": 0.13112810259598984,
-          "xauusd_last": 4042.10009765625,
-          "xauusd_pct_30d": -0.8973411614921378,
-          "xagusd_last": 57.20500183105469,
-          "xagusd_pct_30d": -3.397668330114423,
-          "gramaltin_last": 6155.308619502149,
-          "gramaltin_pct_30d": 2.1051780010111765,
-          "gramgumus_last": 87.1117568447885,
-          "gramgumus_pct_30d": -0.08911992646084554
-        }
       }
     ],
     "tcmb": [
+      {
+        "category": "tcmb",
+        "date": "2026-08-17",
+        "metrics": {
+          "nir_usd": 63.23591855418894,
+          "swap_adj_usd": -37.889771212172526,
+          "nir_chg_week": 3.9994359860678657,
+          "swap_chg_week": 3.0635294257634342,
+          "usdtry": 47.896400451660156
+        }
+      },
       {
         "category": "tcmb",
         "date": "2026-08-14",
@@ -1166,20 +1177,21 @@
           "swap_chg_week": -5.744055240340963,
           "usdtry": 47.382198333740234
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-07-28",
-        "metrics": {
-          "nir_usd": 47.06178472752341,
-          "swap_adj_usd": -49.914608346483895,
-          "nir_chg_week": 0.19564505326135873,
-          "swap_chg_week": -1.782442008259089,
-          "usdtry": 47.36830139160156
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-08-17",
+        "metrics": {
+          "regime": "Altın Yükselişte",
+          "gold_5d_pct": 1.9877160620559886,
+          "gold_usd": 4448.5,
+          "gramaltin_try": 6850.048011466917,
+          "gold_silver_ratio": 67.68353143061047,
+          "strongest_metal": "Gram Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-08-14",
@@ -1333,18 +1345,6 @@
           "gold_usd": 4028.300048828125,
           "gramaltin_try": 6137.273043285068,
           "gold_silver_ratio": 69.53137055909758,
-          "strongest_metal": "Paladyum"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-07-28",
-        "metrics": {
-          "regime": "Altın Geri Çekiliyor",
-          "gold_5d_pct": -0.7123381716085841,
-          "gold_usd": 4042.10009765625,
-          "gramaltin_try": 6154.906074990752,
-          "gold_silver_ratio": 70.65990679615587,
           "strongest_metal": "Paladyum"
         }
       }

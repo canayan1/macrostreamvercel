@@ -1,25 +1,25 @@
 {
-  "generated": "2026-08-14T04:43:33",
+  "generated": "2026-08-17T03:42:08",
   "universe": "BIST30",
   "macro": {
     "tufe": "32.6",
-    "usdtry": "47.84",
+    "usdtry": "47.90",
     "fed": "3.63",
-    "oil": "87"
+    "oil": "89"
   },
-  "xu100_daily": 0.16,
+  "xu100_daily": 0.28,
   "stocks": {
     "AKBNK": {
       "name": "Akbank",
-      "last": NaN,
-      "chg": NaN,
+      "last": 68.8,
+      "chg": -0.36,
       "ozet": {
         "sector": "Bankacılık"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.66,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -27,12 +27,11 @@
         "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.6; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 2.1,
+        "chg_22d": -0.4
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -283,10 +282,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          65.113,
           64.435,
           63.805,
           65.113,
@@ -537,34 +536,40 @@
           66.8,
           66.15,
           68.8,
-          NaN
+          69.05,
+          68.8
         ]
       }
     },
     "ARCLK": {
       "name": "Arçelik",
-      "last": NaN,
-      "chg": NaN,
+      "last": 95.35,
+      "chg": 0.74,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
-      "flags": [],
+      "flags": [
+        {
+          "sev": "med",
+          "label": "52-hafta dibine yakın",
+          "score": 60
+        }
+      ],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.68,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -2.6,
+        "chg_22d": -2.7
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -815,10 +820,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          140.0,
           145.3,
           143.7,
           145.1,
@@ -1069,34 +1074,34 @@
           97.45,
           97.0,
           97.15,
-          NaN
+          94.65,
+          95.35
         ]
       }
     },
     "ASELS": {
       "name": "Aselsan",
-      "last": NaN,
-      "chg": NaN,
+      "last": 387.5,
+      "chg": -2.08,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
       "flags": [],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.28,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 9.5,
+        "chg_22d": 11.2
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -1347,10 +1352,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          170.183,
           171.482,
           172.181,
           181.269,
@@ -1601,34 +1606,34 @@
           356.25,
           356.25,
           381.0,
-          NaN
+          395.75,
+          387.5
         ]
       }
     },
     "BIMAS": {
       "name": "BİM",
-      "last": NaN,
-      "chg": NaN,
+      "last": 374.75,
+      "chg": -0.46,
       "ozet": {
         "sector": "Perakende/Tüketim"
       },
       "flags": [],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.62,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "Perakende/Tüketim",
         "line": "İç talep ve enflasyon belirleyici. TÜFE %32.6; yüksek enflasyon ciroyu nominal şişirir ama reel marj ve hacim baskı altında olabilir."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -2.9,
+        "chg_22d": -2.5
       },
       "series": {
         "dates": [
-          "2025-08-19",
           "2025-08-20",
           "2025-08-21",
           "2025-08-22",
@@ -1879,10 +1884,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          249.035,
           250.992,
           258.82,
           256.129,
@@ -2133,21 +2138,22 @@
           384.25,
           377.25,
           384.0,
-          NaN
+          376.5,
+          374.75
         ]
       }
     },
     "EKGYO": {
       "name": "Emlak Konut",
-      "last": NaN,
-      "chg": NaN,
+      "last": 18.3,
+      "chg": -0.54,
       "ozet": {
         "sector": "İnşaat/GYO"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.18,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -2155,12 +2161,11 @@
         "line": "GYO/inşaat faiz ve iç talebe duyarlı. TÜFE %32.6; faiz patikası konut talebini ve değerlemeyi belirler."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 2.0,
+        "chg_22d": -12.9
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -2411,10 +2416,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          18.617,
           18.587,
           19.56,
           19.56,
@@ -2665,34 +2670,34 @@
           17.82,
           17.95,
           18.51,
-          NaN
+          18.4,
+          18.3
         ]
       }
     },
     "ENKAI": {
       "name": "Enka İnşaat",
-      "last": NaN,
-      "chg": NaN,
+      "last": 87.65,
+      "chg": 2.1,
       "ozet": {
         "sector": "Holding"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.66,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Holding",
-        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.84, Fed %3.63."
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.90, Fed %3.63."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 1.5,
+        "chg_22d": -2.3
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -2943,10 +2948,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          70.061,
           70.156,
           68.531,
           69.917,
@@ -3197,40 +3202,40 @@
           86.2,
           85.9,
           86.65,
-          NaN
+          85.85,
+          87.65
         ]
       }
     },
     "EREGL": {
       "name": "Ereğli Demir Çelik",
-      "last": NaN,
-      "chg": NaN,
+      "last": 37.38,
+      "chg": -2.25,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
       "flags": [
         {
           "sev": "med",
-          "label": "RSI 19 · aşırı satım",
-          "score": 21.471096658466053
+          "label": "RSI 26 · aşırı satım",
+          "score": 7.503999749372582
         }
       ],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.11,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -3.4,
+        "chg_22d": -10.7
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -3481,10 +3486,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          27.289,
           28.394,
           28.966,
           28.907,
@@ -3735,34 +3740,34 @@
           36.88,
           36.86,
           37.18,
-          NaN
+          38.24,
+          37.38
         ]
       }
     },
     "FROTO": {
       "name": "Ford Otosan",
-      "last": NaN,
-      "chg": NaN,
+      "last": 79.1,
+      "chg": -0.75,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.53,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 1.3,
+        "chg_22d": -2.4
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -4013,10 +4018,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          95.443,
           97.076,
           100.705,
           103.427,
@@ -4267,21 +4272,22 @@
           77.4,
           78.85,
           79.75,
-          NaN
+          79.7,
+          79.1
         ]
       }
     },
     "GARAN": {
       "name": "Garanti BBVA",
-      "last": NaN,
-      "chg": NaN,
+      "last": 131.0,
+      "chg": 1.08,
       "ozet": {
         "sector": "Bankacılık"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.9,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -4289,12 +4295,11 @@
         "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.6; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 3.1,
+        "chg_22d": 1.6
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -4545,10 +4550,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          137.35,
           135.523,
           137.446,
           140.233,
@@ -4799,34 +4804,34 @@
           126.6,
           126.5,
           131.0,
-          NaN
+          129.6,
+          131.0
         ]
       }
     },
     "GUBRF": {
       "name": "Gübre Fabrikaları",
-      "last": NaN,
-      "chg": NaN,
+      "last": 419.25,
+      "chg": 0.18,
       "ozet": {
         "sector": "Kimya/Tarım"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 1.8,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Kimya/Tarım",
-        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.84; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -6.1,
+        "chg_22d": 1.5
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -5077,10 +5082,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          274.0,
           277.0,
           270.25,
           272.25,
@@ -5331,40 +5336,40 @@
           441.75,
           422.75,
           427.0,
-          NaN
+          418.5,
+          419.25
         ]
       }
     },
     "HEKTS": {
       "name": "Hektaş",
-      "last": NaN,
-      "chg": NaN,
+      "last": 2.8,
+      "chg": -1.06,
       "ozet": {
         "sector": "Kimya/Tarım"
       },
       "flags": [
         {
           "sev": "med",
-          "label": "RSI 29 · aşırı satım",
-          "score": 1.9354739471995117
+          "label": "52-hafta dibine yakın",
+          "score": 60
         }
       ],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.7,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Kimya/Tarım",
-        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.84; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -4.4,
+        "chg_22d": -8.8
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -5615,10 +5620,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          4.97,
           4.99,
           4.78,
           4.61,
@@ -5869,21 +5874,22 @@
           2.85,
           2.82,
           2.85,
-          NaN
+          2.83,
+          2.8
         ]
       }
     },
     "ISCTR": {
       "name": "İş Bankası",
-      "last": NaN,
-      "chg": NaN,
+      "last": 12.53,
+      "chg": 0.16,
       "ozet": {
         "sector": "Bankacılık"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.13,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -5891,12 +5897,11 @@
         "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.6; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 1.4,
+        "chg_22d": -9.8
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -6147,10 +6152,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          13.925,
           13.829,
           13.848,
           14.059,
@@ -6401,34 +6406,34 @@
           12.11,
           12.02,
           12.56,
-          NaN
+          12.51,
+          12.53
         ]
       }
     },
     "KCHOL": {
       "name": "Koç Holding",
-      "last": NaN,
-      "chg": NaN,
+      "last": 207.2,
+      "chg": 2.37,
       "ozet": {
         "sector": "Holding"
       },
       "flags": [],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": -0.27,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "Holding",
-        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.84, Fed %3.63."
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.90, Fed %3.63."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 4.4,
+        "chg_22d": 8.4
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -6679,10 +6684,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          171.681,
           173.03,
           172.838,
           176.308,
@@ -6933,34 +6938,34 @@
           203.9,
           199.9,
           205.8,
-          NaN
+          202.4,
+          207.2
         ]
       }
     },
     "KRDMD": {
       "name": "Kardemir",
-      "last": NaN,
-      "chg": NaN,
+      "last": 41.48,
+      "chg": -0.67,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
       "flags": [],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.48,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 4.8,
+        "chg_22d": 1.6
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -7211,10 +7216,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          27.38,
           28.4,
           28.54,
           29.44,
@@ -7465,40 +7470,40 @@
           40.12,
           40.46,
           40.94,
-          NaN
+          41.76,
+          41.48
         ]
       }
     },
     "ODAS": {
       "name": "Odaş Elektrik",
-      "last": NaN,
-      "chg": NaN,
+      "last": 7.49,
+      "chg": -0.13,
       "ozet": {
         "sector": "Enerji/Çimento"
       },
       "flags": [
         {
           "sev": "med",
-          "label": "RSI 18 · aşırı satım",
-          "score": 24.664337746352572
+          "label": "RSI 29 · aşırı satım",
+          "score": 2.7386204091065167
         }
       ],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 1.38,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "Enerji/Çimento",
-        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.6, USD/TRY 47.84; inşaat döngüsü ve enerji fiyatları etkili."
+        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.6, USD/TRY 47.90; inşaat döngüsü ve enerji fiyatları etkili."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -0.7,
+        "chg_22d": -12.2
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -7749,10 +7754,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          5.86,
           6.12,
           6.1,
           6.12,
@@ -8003,34 +8008,34 @@
           7.3,
           7.31,
           7.31,
-          NaN
+          7.5,
+          7.49
         ]
       }
     },
     "OYAKC": {
       "name": "Oyak Çimento",
-      "last": NaN,
-      "chg": NaN,
+      "last": 21.82,
+      "chg": 1.39,
       "ozet": {
         "sector": "Enerji/Çimento"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "sharpe": -0.06,
+        "state": "50 günlük ortalamanın üstünde"
       },
       "macro": {
         "sector": "Enerji/Çimento",
-        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.6, USD/TRY 47.84; inşaat döngüsü ve enerji fiyatları etkili."
+        "line": "Enerji/çimento iç talep ve maliyet odaklı. TÜFE %32.6, USD/TRY 47.90; inşaat döngüsü ve enerji fiyatları etkili."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 5.6,
+        "chg_22d": 9.9
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -8281,10 +8286,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          22.918,
           23.452,
           23.281,
           24.407,
@@ -8535,40 +8540,34 @@
           20.7,
           20.84,
           21.52,
-          NaN
+          21.52,
+          21.82
         ]
       }
     },
     "PETKM": {
       "name": "Petkim",
-      "last": NaN,
-      "chg": NaN,
+      "last": 19.16,
+      "chg": 1.86,
       "ozet": {
         "sector": "Rafineri/Petrokimya"
       },
-      "flags": [
-        {
-          "sev": "med",
-          "label": "RSI 23 · aşırı satım",
-          "score": 13.162849358702033
-        }
-      ],
+      "flags": [],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 0.2,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "Rafineri/Petrokimya",
-        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~87 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 47.84 ek kaldıraç."
+        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~89 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 47.90 ek kaldıraç."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 3.5,
+        "chg_22d": -2.2
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -8819,10 +8818,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          18.29,
           18.55,
           18.59,
           19.72,
@@ -9073,34 +9072,40 @@
           18.77,
           18.45,
           18.61,
-          NaN
+          18.81,
+          19.16
         ]
       }
     },
     "PGSUS": {
       "name": "Pegasus",
-      "last": NaN,
-      "chg": NaN,
+      "last": 151.7,
+      "chg": -0.33,
       "ozet": {
         "sector": "Havayolu"
       },
-      "flags": [],
+      "flags": [
+        {
+          "sev": "med",
+          "label": "52-hafta dibine yakın",
+          "score": 60
+        }
+      ],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -1.52,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Havayolu",
-        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~87 USD, USD/TRY 47.84; yakıt ve leasing döviz, bilet geliri karma."
+        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~89 USD, USD/TRY 47.90; yakıt ve leasing döviz, bilet geliri karma."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -1.2,
+        "chg_22d": -8.6
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -9351,10 +9356,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          257.75,
           256.5,
           256.75,
           258.75,
@@ -9605,34 +9610,34 @@
           151.3,
           149.7,
           151.9,
-          NaN
+          152.2,
+          151.7
         ]
       }
     },
     "SAHOL": {
       "name": "Sabancı Holding",
-      "last": NaN,
-      "chg": NaN,
+      "last": 89.4,
+      "chg": 0.68,
       "ozet": {
         "sector": "Holding"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.52,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Holding",
-        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.84, Fed %3.63."
+        "line": "Çeşitlendirilmiş yapı; genel BIST ve makro rejime bağlı. TÜFE %32.6, USD/TRY 47.90, Fed %3.63."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 1.5,
+        "chg_22d": -0.1
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -9883,10 +9888,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          93.498,
           92.464,
           92.415,
           93.99,
@@ -10137,40 +10142,34 @@
           88.5,
           87.6,
           88.25,
-          NaN
+          88.8,
+          89.4
         ]
       }
     },
     "SASA": {
       "name": "Sasa Polyester",
-      "last": NaN,
-      "chg": NaN,
+      "last": 2.39,
+      "chg": -2.45,
       "ozet": {
         "sector": "Kimya/Tarım"
       },
-      "flags": [
-        {
-          "sev": "high",
-          "label": "Hacim patlaması 13.1x",
-          "score": 100
-        }
-      ],
+      "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.87,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Kimya/Tarım",
-        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.84; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
+        "line": "Emtia fiyatı ve kur belirleyici. USD/TRY 47.90; girdi maliyeti ve ürün fiyatı küresel emtia döngüsüne bağlı."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -7.4,
+        "chg_22d": -5.2
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -10421,10 +10420,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          3.9,
           4.29,
           4.27,
           3.96,
@@ -10675,40 +10674,34 @@
           2.33,
           2.36,
           2.49,
-          NaN
+          2.45,
+          2.39
         ]
       }
     },
     "SISE": {
       "name": "Şişecam",
-      "last": NaN,
-      "chg": NaN,
+      "last": 41.4,
+      "chg": -0.58,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
-      "flags": [
-        {
-          "sev": "med",
-          "label": "RSI 25 · aşırı satım",
-          "score": 10.000070123178375
-        }
-      ],
+      "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.08,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 0.1,
+        "chg_22d": -5.0
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -10959,10 +10952,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          39.467,
           41.955,
           40.948,
           41.382,
@@ -11213,34 +11206,34 @@
           41.48,
           40.84,
           40.96,
-          NaN
+          41.64,
+          41.4
         ]
       }
     },
     "TCELL": {
       "name": "Turkcell",
-      "last": NaN,
-      "chg": NaN,
+      "last": 104.1,
+      "chg": 0.97,
       "ozet": {
         "sector": "Telekom"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.38,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Telekom",
-        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.6, USD/TRY 47.84; tarife artışı vs yatırım maliyeti dengesi."
+        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.6, USD/TRY 47.90; tarife artışı vs yatırım maliyeti dengesi."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -1.0,
+        "chg_22d": -5.5
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -11491,10 +11484,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          93.004,
           92.366,
           93.445,
           95.85,
@@ -11745,34 +11738,34 @@
           105.3,
           103.1,
           104.1,
-          NaN
+          103.1,
+          104.1
         ]
       }
     },
     "THYAO": {
       "name": "Türk Hava Yolları",
-      "last": NaN,
-      "chg": NaN,
+      "last": 305.25,
+      "chg": -0.89,
       "ozet": {
         "sector": "Havayolu"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.31,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Havayolu",
-        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~87 USD, USD/TRY 47.84; yakıt ve leasing döviz, bilet geliri karma."
+        "line": "Maliyet petrol+kur, gelir turizm talebi. Brent ~89 USD, USD/TRY 47.90; yakıt ve leasing döviz, bilet geliri karma."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": -0.3,
+        "chg_22d": -6.4
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -12023,10 +12016,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          327.624,
           330.594,
           335.048,
           335.295,
@@ -12277,34 +12270,34 @@
           303.0,
           301.0,
           308.75,
-          NaN
+          308.0,
+          305.25
         ]
       }
     },
     "TOASO": {
       "name": "Tofaş",
-      "last": NaN,
-      "chg": NaN,
+      "last": 268.5,
+      "chg": -0.46,
       "ozet": {
         "sector": "İhracatçı sanayi"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.6,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "İhracatçı sanayi",
-        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.84; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
+        "line": "İhracat geliri kur seviyesine duyarlı. USD/TRY 47.90; kur yükselişi ihracatçı marjını destekler, küresel talep zayıflığı ana risk."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 2.1,
+        "chg_22d": -9.0
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -12555,10 +12548,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          220.319,
           222.19,
           220.319,
           226.4,
@@ -12809,34 +12802,34 @@
           264.25,
           267.0,
           268.25,
-          NaN
+          269.75,
+          268.5
         ]
       }
     },
     "TTKOM": {
       "name": "Türk Telekom",
-      "last": NaN,
-      "chg": NaN,
+      "last": 54.5,
+      "chg": -0.82,
       "ozet": {
         "sector": "Telekom"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.39,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Telekom",
-        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.6, USD/TRY 47.84; tarife artışı vs yatırım maliyeti dengesi."
+        "line": "Gelir enflasyona endeksli (regülasyon), capex döviz bazlı. TÜFE %32.6, USD/TRY 47.90; tarife artışı vs yatırım maliyeti dengesi."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 0.0,
+        "chg_22d": -5.2
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -13087,10 +13080,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          55.9,
           55.3,
           55.9,
           56.7,
@@ -13341,34 +13334,50 @@
           56.0,
           55.45,
           56.35,
-          NaN
+          54.95,
+          54.5
         ]
       }
     },
     "TUPRS": {
       "name": "Tüpraş",
-      "last": NaN,
-      "chg": NaN,
+      "last": 361.75,
+      "chg": 4.55,
       "ozet": {
         "sector": "Rafineri/Petrokimya"
       },
-      "flags": [],
+      "flags": [
+        {
+          "sev": "med",
+          "label": "52-hafta zirvesine yakın",
+          "score": 60
+        },
+        {
+          "sev": "med",
+          "label": "Endeksten pozitif ayrıştı (+4.3p)",
+          "score": 51.21932064985381
+        },
+        {
+          "sev": "med",
+          "label": "RSI 74 · aşırı alım",
+          "score": 8.319327731092443
+        }
+      ],
       "strategy": {
-        "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
-        "state": "50 günlük ortalamanın altında"
+        "strategy": "Momentum (6 ay)",
+        "sharpe": 2.98,
+        "state": "son 6 ayda pozitif"
       },
       "macro": {
         "sector": "Rafineri/Petrokimya",
-        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~87 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 47.84 ek kaldıraç."
+        "line": "Rafineri marjı (crack spread) petrol fiyatına bağlı. Brent ~89 USD; ürün-ham petrol farkı kârın anahtarı, USD/TRY 47.90 ek kaldıraç."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 11.8,
+        "chg_22d": 33.6
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -13619,10 +13628,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          150.29,
           148.812,
           147.981,
           151.491,
@@ -13873,21 +13882,22 @@
           340.0,
           336.5,
           351.25,
-          NaN
+          346.0,
+          361.75
         ]
       }
     },
     "VAKBN": {
       "name": "VakıfBank",
-      "last": NaN,
-      "chg": NaN,
+      "last": 30.76,
+      "chg": -0.9,
       "ozet": {
         "sector": "Bankacılık"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": 0.71,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -13895,12 +13905,11 @@
         "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.6; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 0.1,
+        "chg_22d": -2.7
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -14151,10 +14160,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          27.26,
           27.12,
           27.66,
           28.24,
@@ -14405,21 +14414,22 @@
           29.44,
           29.08,
           30.92,
-          NaN
+          31.04,
+          30.76
         ]
       }
     },
     "YKBNK": {
       "name": "Yapı Kredi",
-      "last": NaN,
-      "chg": NaN,
+      "last": 35.42,
+      "chg": -0.34,
       "ozet": {
         "sector": "Bankacılık"
       },
       "flags": [],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -0.35,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
@@ -14427,12 +14437,11 @@
         "line": "Bankacılık kârlılığı TCMB faiz patikasına bağlı. Güncel TÜFE %32.6; faiz indikçe NIM (faiz marjı) baskı altına girer, kredi büyümesi öne çıkar."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 4.1,
+        "chg_22d": 4.3
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -14683,10 +14692,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          32.64,
           32.36,
           32.38,
           33.08,
@@ -14937,40 +14946,45 @@
           34.0,
           34.06,
           35.7,
-          NaN
+          35.54,
+          35.42
         ]
       }
     },
     "KONTR": {
       "name": "Kontrolmatik",
-      "last": NaN,
-      "chg": NaN,
+      "last": 4.21,
+      "chg": 9.64,
       "ozet": {
         "sector": "Teknoloji"
       },
       "flags": [
         {
           "sev": "med",
-          "label": "RSI 27 · aşırı satım",
-          "score": 5.514971744610307
+          "label": "Endeksten pozitif ayrıştı (+9.4p)",
+          "score": 100
+        },
+        {
+          "sev": "med",
+          "label": "Açılış boşluğu +3.4%",
+          "score": 33.85419722568939
         }
       ],
       "strategy": {
         "strategy": "Trend takip (50-GO)",
-        "sharpe": NaN,
+        "sharpe": -1.15,
         "state": "50 günlük ortalamanın altında"
       },
       "macro": {
         "sector": "Teknoloji",
-        "line": "Proje bazlı büyüme; genel makro ve kur. USD/TRY 47.84, TÜFE %32.6."
+        "line": "Proje bazlı büyüme; genel makro ve kur. USD/TRY 47.90, TÜFE %32.6."
       },
       "pretrade": {
-        "chg_5d": NaN,
-        "chg_22d": NaN
+        "chg_5d": 3.7,
+        "chg_22d": -35.7
       },
       "series": {
         "dates": [
-          "2025-08-15",
           "2025-08-18",
           "2025-08-19",
           "2025-08-20",
@@ -15221,10 +15235,10 @@
           "2026-08-10",
           "2026-08-11",
           "2026-08-12",
-          "2026-08-13"
+          "2026-08-13",
+          "2026-08-14"
         ],
         "values": [
-          25.1,
           27.6,
           27.24,
           26.88,
@@ -15475,7 +15489,8 @@
           4.01,
           3.94,
           3.83,
-          NaN
+          3.84,
+          4.21
         ]
       }
     }
