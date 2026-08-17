@@ -1,13 +1,9 @@
 {
-<<<<<<< Updated upstream
-  "last_update": "2026-08-17T03:42:47.020742Z",
-=======
-  "last_update": "2026-08-16T13:38:54.524052Z",
->>>>>>> Stashed changes
+  "last_update": "2026-08-17T07:33:07.430198Z",
   "latest_report": {
-    "category": "hisse",
+    "category": "metals",
     "date": "2026-08-17",
-    "title": "Hektaş — Günün Merceği"
+    "title": "metals — 2026-08-17"
   },
   "total_reports": 350,
   "by_category": {

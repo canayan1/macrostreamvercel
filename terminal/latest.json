@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "generated": "2026-08-17T03:42:46",
-=======
-  "generated": "2026-08-16T14:38:54",
->>>>>>> Stashed changes
+  "generated": "2026-08-17T08:33:07",
   "reports": [
     {
       "category": "pulse",
@@ -31,7 +27,7 @@
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-08-17",
+      "title": "metals — 2026-08-17",
       "date": "2026-08-17",
       "path": "/reports/metals/2026-08-17/"
     },
