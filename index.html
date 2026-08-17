@@ -379,6 +379,17 @@ footer .disclaimer {
   .hero .chip-row { gap: 10px; padding: 8px 12px; font-size: 11px; }
   .chip-row .sep { display: none; }
 }
+
+/* UX düzeltmeleri (2026-08-16) */
+@media(max-width:520px){
+  .topnav{flex-wrap:nowrap;gap:8px}
+  .topnav .brand-name,.topnav-brand{white-space:nowrap;font-size:12px}
+  .topnav-cta{padding:8px 12px;font-size:11px;white-space:nowrap}
+  .topnav a:not(.topnav-cta):not(:first-child){display:none}
+}
+section{padding-top:8px;padding-bottom:8px}
+.module-card .body{padding:20px}
+.three-col .card{padding:24px}
 </style>
 </head>
 <body>
@@ -391,7 +402,7 @@ footer .disclaimer {
   <div class="topnav-spacer"></div>
   <a href="/hakkinda.html" class="topnav-link">Hakkında</a>
   <a href="#faq" class="topnav-link">SSS</a>
-  <a href="/terminal/" class="topnav-cta" target="_blank" rel="noopener">TERMİNALİ AÇ →</a>
+  <a href="/algo/" class="topnav-cta">LAB'I AÇ →</a>
 </header>
 
 <section class="hero">
@@ -405,7 +416,7 @@ footer .disclaimer {
     <span><span class="dot"></span><span class="label">Fed Funds</span> <span class="val mono" id="chip-fed">—</span></span>
   </div>
 
-  <h1>Stratejini fikirle değil, <span class="accent">veriyle test et</span>.</h1>
+  <h1>Stratejini fikirle değil, <span class="accent">veriyle test&nbsp;et</span>.</h1>
   <p class="sub">Algoritmik trading ve teknik analiz laboratuvarı: 5 strateji × 60+ hisse × 5 yıl geriye dönük test — Sharpe, maksimum düşüş, isabet oranı şeffaf. 7 strateji ajanı canlı yarışıyor. Yatırım tavsiyesi değildir.</p>
 
   <div class="cta-group">
@@ -423,17 +434,17 @@ footer .disclaimer {
 
     <div class="three-col" style="margin-top:30px">
       <div class="card">
-        <span class="icon">🔬</span>
+        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M8 52 h48"/><rect x="27" y="20" width="10" height="32" rx="2" fill="rgba(255,166,48,.25)"/><rect x="11" y="32" width="10" height="20" rx="2" fill="rgba(255,166,48,.12)"/><rect x="43" y="26" width="10" height="26" rx="2" fill="rgba(255,166,48,.18)"/></svg></span>
         <h3>Strateji Laboratuvarı & Canlı Lig</h3>
         <p>5 algoritmik strateji (momentum, golden cross, mean reversion, breakout, düşük volatilite) 60+ BIST ve ABD hissesi üzerinde 5 yıl geriye test edildi — Sharpe, maksimum düşüş, isabet oranı şeffaf. 7 strateji ajanı hipotetik 100.000 ₺ ile canlı yarışıyor: kâğıt üstünde değil, gün gün işleyen lig.</p>
       </div>
       <div class="card">
-        <span class="icon">📐</span>
+        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><line x1="20" y1="12" x2="20" y2="44"/><rect x="14" y="20" width="12" height="14" fill="rgba(38,166,154,.3)" stroke="#26a69a"/><circle cx="42" cy="34" r="11"/><line x1="50" y1="42" x2="56" y2="48"/></svg></span>
         <h3>Teknik analiz pratiği</h3>
         <p>Grafik okuma testi (mum formasyonları, RSI, destek/direnç — 12 gerçekçi soru), sıfır riskli çok oyunculu trade oyunu, yatırımcı önyargı testi ve işlem öncesi disiplin kontrolü. Refleksini parayla değil, pratikle geliştir.</p>
       </div>
       <div class="card">
-        <span class="icon">📊</span>
+        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M6 38 h10 l6 -14 7 24 7 -32 7 22 h15" /></svg></span>
         <h3>Veri arka planın</h3>
         <p>Strateji kararlarının bağlamı: her sabah otomatik BIST/döviz/TCMB bültenleri, çeyreklik Türkiye Ekonomik Raporu, hisse karnesi (enflasyon/dolar/altına göre reel getiri). Kaynaklar ve formüller açık.</p>
       </div>
@@ -482,87 +493,91 @@ footer .disclaimer {
 <section class="modules">
   <div class="container">
     <div class="section-eyebrow">▸ BİZDE NE VAR</div>
-    <h2 class="section-title">8 modül, hepsi ücretsiz.</h2>
-    <p class="section-lead">Mevcut canlı sitenin ekran görüntüleri — büyütmek için tıkla.</p>
-
+    <h2 class="section-title">Ne yapmak istiyorsun?</h2>
     <div class="module-grid">
       <a href="/algo/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/algo-preview.png')">
-          <img src="/static/landing/algo-preview.png" alt="Strateji Laboratuvarı backtest sonuçları" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 52 h48"/><rect x="12" y="34" width="9" height="18" rx="1.5" fill="rgba(255,166,48,.12)"/><rect x="27" y="24" width="9" height="28" rx="1.5" fill="rgba(255,166,48,.2)"/><rect x="42" y="14" width="9" height="38" rx="1.5" fill="rgba(255,166,48,.3)"/><path d="M12 20 L28 12 L44 6" stroke="#4ade80"/></svg>
         </div>
         <div class="body">
-          <span class="badge">🔬 Backtest</span>
+          <span class="badge">Backtest</span>
           <h3>Strateji Laboratuvarı</h3>
           <p>5 algoritmik yöntem (momentum, mean reversion, golden cross, breakout, RSI) × 60+ BIST + US hissesi. Sharpe, MaxDD, hit rate gösterilir.</p>
           <span class="module-cta">Lab'a Gir →</span>
         </div>
       </a>
       <a href="/ajanlar/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/algo-preview.png')">
-          <img src="/static/landing/algo-preview.png" alt="Ajan Ligi canlı strateji yarışı" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 52 h48"/><rect x="26" y="16" width="12" height="36" rx="1.5" fill="rgba(255,166,48,.3)"/><rect x="10" y="28" width="12" height="24" rx="1.5" fill="rgba(255,166,48,.15)"/><rect x="42" y="34" width="12" height="18" rx="1.5" fill="rgba(255,166,48,.15)"/><circle cx="32" cy="10" r="3" fill="#ffa630" stroke="none"/></svg>
         </div>
         <div class="body">
-          <span class="badge">🏁 Canlı Lig</span>
+          <span class="badge">Canlı Lig</span>
           <h3>Ajan Ligi</h3>
           <p>7 strateji ajanı, her biri hipotetik 100.000 ₺ ile BIST 30'da gün gün yarışıyor. Portföyler, işlemler ve sıralama şeffaf.</p>
           <span class="module-cta">Ligi İzle →</span>
         </div>
       </a>
       <a href="/grafik-oku/" class="module-card">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="14" x2="16" y2="42"/><rect x="12" y="20" width="8" height="12" fill="rgba(38,166,154,.25)" stroke="#26a69a"/><line x1="30" y1="20" x2="30" y2="48"/><rect x="26" y="28" width="8" height="12" fill="rgba(239,83,80,.22)" stroke="#ef5350"/><circle cx="44" cy="32" r="10"/><line x1="51" y1="39" x2="57" y2="45"/></svg>
+        </div>
         <div class="body">
-          <span class="badge">📐 İnteraktif</span>
+          <span class="badge">İnteraktif</span>
           <h3>Grafik Okuma Testi</h3>
           <p>Mum formasyonları, RSI, destek/direnç… 12 gerçekçi soruyla teknik analiz refleksini ölç. Tarayıcıda, ücretsiz.</p>
           <span class="module-cta">Testi Başlat →</span>
         </div>
       </a>
       <a href="/oyun/" class="module-card">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,44 20,34 28,38 42,22 56,14" stroke="#5b9dff"/><circle cx="32" cy="32" r="13" fill="rgba(255,166,48,.1)"/><path d="M28 26 L40 32 L28 38 Z" fill="#ffa630" stroke="none"/></svg>
+        </div>
         <div class="body">
-          <span class="badge">🎮 Çok Oyunculu</span>
+          <span class="badge">Çok Oyunculu</span>
           <h3>Sense Trading</h3>
           <p>Gerçek fiyat mantığı, sanal para, sıfır risk. Arkadaşınla aynı odada trade yarışına gir; kaldıraçlı odalar ve sıralama.</p>
           <span class="module-cta">Oyna →</span>
         </div>
       </a>
       <a href="/trading/onyargi-testi/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/onyargi-preview.png')">
-          <img src="/static/landing/onyargi-preview.png" alt="Yatırımcı Önyargı Testi interaktif sayfa" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="32,8 54,22 46,48 18,48 10,22" fill="rgba(255,166,48,.08)"/><polygon points="32,18 45,26 41,42 23,42 19,26" fill="rgba(255,166,48,.2)"/><circle cx="32" cy="32" r="2.5" fill="#ffa630" stroke="none"/></svg>
         </div>
         <div class="body">
-          <span class="badge">🧠 İnteraktif</span>
+          <span class="badge">İnteraktif</span>
           <h3>Yatırımcı Önyargı Testi</h3>
           <p>12 senaryo, 8 davranışsal önyargı için kişisel skor, radar chart, üst 3 önyargı için pratik öneriler.</p>
           <span class="module-cta">Testi Başlat (3 dk) →</span>
         </div>
       </a>
       <a href="/reports/pulse/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/nabiz-preview.png')">
-          <img src="/static/landing/nabiz-preview.png" alt="Günlük Nabız raporu örnek ekran görüntüsü" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 36 h10 l5 -12 6 22 6 -30 6 20 5 -8 h14" stroke="#ffa630"/><path d="M8 52 h48" stroke-opacity=".4"/></svg>
         </div>
         <div class="body">
-          <span class="badge">📊 Günlük</span>
+          <span class="badge">Günlük</span>
           <h3>Günlük Nabız</h3>
           <p>Her sabah BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + LLM yorum + makro bağlam.</p>
           <span class="module-cta">Bugünün Nabzını Gör →</span>
         </div>
       </a>
       <a href="/reports/tcmb/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/tcmb-preview.png')">
-          <img src="/static/landing/tcmb-preview.png" alt="TCMB Analitik Bilanço raporu örnek görüntü" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24 L32 10 L54 24 Z" fill="rgba(255,166,48,.1)"/><line x1="16" y1="28" x2="16" y2="46"/><line x1="27" y1="28" x2="27" y2="46"/><line x1="38" y1="28" x2="38" y2="46"/><line x1="49" y1="28" x2="49" y2="46"/><path d="M10 50 h44"/></svg>
         </div>
         <div class="body">
-          <span class="badge">🏦 Günlük</span>
+          <span class="badge">Günlük</span>
           <h3>TCMB Analitik Bilanço</h3>
           <p>Günlük net rezerv (klasik + swap-arındırılmış), brüt rezerv, döviz yükümlülükleri. T+1 EVDS verisi.</p>
           <span class="module-cta">Bugünkü Bilançoyu Gör →</span>
         </div>
       </a>
       <a href="/egitim/" class="module-card">
-        <div class="img-wrap" onclick="event.preventDefault();showLightbox('/static/landing/egitim-preview.png')">
-          <img src="/static/landing/egitim-preview.png" alt="Eğitim Kütüphanesi 24 makale listesi" loading="lazy">
+        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 14 C24 8 12 8 8 12 V48 C12 44 24 44 32 50 C40 44 52 44 56 48 V12 C52 8 40 8 32 14 Z" fill="rgba(255,166,48,.08)"/><line x1="32" y1="14" x2="32" y2="50"/></svg>
         </div>
         <div class="body">
-          <span class="badge">🎓 Eğitim</span>
+          <span class="badge">Eğitim</span>
           <h3>Eğitim Kütüphanesi</h3>
           <p>24 makale: PE, RSI, drawdown, portföy optimizasyonu, Kelly kriteri, NIM, carry trade, BTC dominance, likidite riski. Tümü Türkçe, kaynakçalı.</p>
           <span class="module-cta">Kütüphaneye Gir →</span>

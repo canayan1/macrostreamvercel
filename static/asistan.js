@@ -12,7 +12,7 @@
 
   // ── Stil (scoped: kchat-*) ──
   var css =
-    '.kchat-fab{position:fixed;right:18px;bottom:18px;z-index:99998;width:54px;height:54px;border-radius:50%;' +
+    '.kchat-fab{transition:opacity .25s;position:fixed;right:18px;bottom:18px;z-index:99998;width:44px;height:44px;border-radius:50%;' +
     'background:#ffa630;color:#1a1208;border:none;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.4);' +
     'font-size:24px;display:flex;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s}' +
     '.kchat-fab:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,.5)}' +
@@ -230,3 +230,4 @@
   load();
   renderHistory();
 })();
+window.addEventListener('scroll',function(){var f=document.querySelector('.kchat-fab');if(!f)return;clearTimeout(f._t);f.style.opacity='0';f.style.pointerEvents='none';f._t=setTimeout(function(){f.style.opacity='1';f.style.pointerEvents='auto';},700);},{passive:true});

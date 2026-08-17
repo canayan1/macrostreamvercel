@@ -1,0 +1,85 @@
+<!doctype html><html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Aşırı özgüven · Kripto Önyargı Kütüphanesi · Kalibre Markets</title>
+<meta name="description" content="Tahminlerinizin ne kadar isabetli olduğunu sistematik olarak abartırsınız.">
+<link rel="canonical" href="https://kalibremarkets.com/kripto/onyargilar/asiri-ozguven/">
+<meta property="og:title" content="Aşırı özgüven · Kripto önyargısı"><meta property="og:description" content="Tahminlerinizin ne kadar isabetli olduğunu sistematik olarak abartırsınız."><meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--purple:#a78bfa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+a{color:inherit;text-decoration:none}
+.cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
+.brand-mark{width:24px;height:24px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:12px}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--text)}
+.brand-name .sub{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:.06em}
+.cmd-crumb{flex:1;min-width:0;padding-left:16px;font-size:11.5px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-back{margin-left:auto;padding-left:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;height:100%}
+.cmd-back:hover{color:var(--accent)}
+main{max-width:820px;margin:24px auto;padding:0 20px 80px}
+.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
+h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
+.summary{color:var(--text-dim);font-size:16px;line-height:1.6;max-width:70ch;margin-top:12px;font-weight:500}
+.intro{color:var(--text-dim);font-size:14.5px;line-height:1.75;max-width:72ch;margin-top:16px}
+.sec-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:30px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--border-2)}
+.lst{list-style:none;display:flex;flex-direction:column;gap:10px}
+.lst li{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--border-2);padding:12px 15px;font-size:13.5px;color:var(--text-dim);line-height:1.65}
+.lst.cm li{border-left-color:var(--accent)}
+.worth{margin-top:14px;background:linear-gradient(100deg,rgba(255,166,48,.10),rgba(255,122,0,.03));border:1px solid var(--border-2);border-left:2px solid var(--accent);padding:15px 17px;font-size:14px;color:var(--text);line-height:1.7}
+.src{margin-top:14px;font-family:'Geist Mono',monospace;font-size:11.5px;color:var(--muted);line-height:1.6;background:var(--bg-1);border:1px solid var(--border);padding:11px 14px}
+.rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:12px}
+.rel a{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);padding:12px 14px;display:block}
+.rel a .t{font-size:14px;color:var(--text);font-weight:600}
+.rel a .s{font-size:11.5px;color:var(--text-dim);line-height:1.5;margin-top:4px}
+.cta{margin-top:26px;background:var(--bg-1);border:1px solid var(--border-2);border-left:2px solid var(--accent);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cta .t{font-size:14.5px;color:var(--text);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-hot));color:#1a1208;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:7px;white-space:nowrap}
+.btn:hover{filter:brightness(1.07)}
+.disc{margin-top:22px;font-size:10.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:18px}
+.bcard{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);padding:16px 18px;display:block}
+.bcard .n{font-family:'Geist Mono',monospace;font-size:11px;color:var(--accent);font-weight:600}
+.bcard .t{font-size:16px;color:var(--text);font-weight:600;margin-top:6px}
+.bcard .s{font-size:12.5px;color:var(--text-dim);line-height:1.55;margin-top:6px}
+.lead{color:var(--text-dim);font-size:15px;line-height:1.7;max-width:74ch;margin-top:12px}
+</style></head><body>
+<div class="cmdbar">
+  <a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// KRİPTO</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › <a href="/kripto/" style="color:inherit">Kripto</a> › <a href="/kripto/onyargilar/" style="color:inherit">Önyargılar</a> › Aşırı özgüven</div>
+  <a href="/kripto/" class="cmd-back">← Kripto</a>
+</div>
+<main>
+  <div class="eyebrow">▸ ÖNYARGI 03 · KRİPTO KÜTÜPHANESİ</div>
+  <h1>Aşırı özgüven</h1>
+  <p class="summary">Tahminlerinizin ne kadar isabetli olduğunu sistematik olarak abartırsınız.</p>
+  <p class="intro">Barber ve Odean (2001) 35.000 bireysel aracı kurum hesabını inceledi ve aşırı özgüvenli yatırımcıların pasif bir endeksin yılda kabaca altı puan altında kaldığını gösterdi. Farkın çoğu aşırı işlem yapmaktan geliyordu. Kendi isabetine duyulan inanç, getiriyi yok eden eylemi üretir.</p>
+
+  <div class="sec-h">Kriptoda nasıl görünür</div>
+  <ul class="lst"><li>Hızlı bir yön tahmini yapar ve onu apaçıkmış gibi ele alırsınız. &#x27;Belli ki sıçrayacak.&#x27; Bu ses seviyesindeki netlik genelde bir sinyal değil, bir uyarıdır.</li><li>Bir kazanç serisinden sonra pozisyon büyüklüğünü artırırsınız. Seri beceri gibi hissettirir. İstatistiksel olarak üst üste üç kazanç, yazı-tura bir strateji için nadir değildir.</li><li>Düşüş yönlü görüşleri &#x27;FUD&#x27;, yükseliş yönlü olanları onay sayarsınız. Karşı kanıt sekip gider; destekleyen gürültü içinize işler.</li><li>Bir karar günlüğü tutsaydınız, isabet oranınızın özgüveninizin ima ettiğinin epey altında olduğunu görürdünüz.</li></ul>
+
+  <div class="sec-h">Karşı hamleler</div>
+  <ul class="lst cm"><li>Bir karar günlüğü tutun. Tarih, tez, hedef, zaman ufku, güven düzeyi (yüksek / orta / düşük). Üç ay sonra gözden geçirin.</li><li>Kendinizden emin hissettiğinizde, görüşünüze karşı en güçlü argümanı yazın. Yazamıyorsanız düşünmeyi bırakmışsınızdır.</li><li>Kazanç serileri boyunca pozisyon büyüklüğünü sabit tutun. Seri, sizin hakkınızda değil rastlantı hakkında bilgidir.</li><li>Yılda bir, gerçek kâr-zararınızı al-tut bir referansla karşılaştırın. Karşılaştırmanın dürüstlüğü panzehirdir.</li></ul>
+
+  <div class="sec-h">Bilmeye değer</div>
+  <div class="worth">Aşırı özgüven, kısa vadede en çok ödüllendirilen, uzun vadede en çok cezalandırılan önyargıdır. Piyasa bunu komisyon ve kötü zamanlamayla geri alır. Ayakta kalanlar daha az özgüvenli değildir; durup kesinliklerini kayıtla denetledikleri belirli anlar kurmuşlardır.</div>
+
+  <div class="sec-h">Akademik kaynak</div>
+  <div class="src">Barber &amp; Odean (2001). Boys Will Be Boys: Gender, Overconfidence, and Common Stock Investment. QJE, 116(1), 261–292.</div>
+
+  <div class="sec-h">İlgili önyargılar</div>
+  <div class="rel"><a href="/kripto/onyargilar/dogrulama-onyargisi/"><div class="t">Doğrulama önyargısı</div><div class="s">Pozisyonunuzu destekleyen kanıtı arar, çelişen kanıtı küçümsersiniz.</div></a><a href="/kripto/onyargilar/yakinlik-onyargisi/"><div class="t">Yakınlık önyargısı</div><div class="s">Son olayları, istatistiksel önemlerinin gerektirdiğinden çok daha fazla ağırlıklandırırsınız.</div></a></div>
+
+  <div class="cta">
+    <div class="t">Bu sekizden hangisi senin kararlarını yönetiyor?</div>
+    <a class="btn" href="https://kripto.kalibremarkets.com/test" target="_blank" rel="noopener">Önyargı testini çöz ↗</a>
+  </div>
+  <p class="disc">İçerik eğitim ve bilgilendirme amaçlıdır; yatırım tavsiyesi niteliği taşımaz. Sinyal ya da al-sat önerisi vermez. Kripto varlıklar yüksek risklidir. <a href="/kripto/onyargilar/" style="color:var(--accent)">← Tüm önyargılar</a></p>
+
+<script src="/static/terminal-shell.js" defer></script>
+<script src="/static/asistan.js" defer></script>
+</body></html>

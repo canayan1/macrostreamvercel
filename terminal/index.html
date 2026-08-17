@@ -430,13 +430,13 @@ a { color: inherit; text-decoration: none; }
   <!-- ── PANEL ─────────────────────────────────────── -->
   <nav class="panel">
     <div class="panel-section-label">▸ Modüller</div>
-    <div class="panel-item active" data-module="strateji"><span class="ico">🔬</span> Strateji <span class="star">★</span></div>
-    <div class="panel-item" data-module="karar"><span class="ico">🧠</span> Karar Destek <span class="star">★</span></div>
-    <div class="panel-item" data-module="piyasalar"><span class="ico">📡</span> Piyasalar</div>
-    <div class="panel-item" data-module="panom"><span class="ico">📌</span> Panom</div>
-    <div class="panel-item" data-module="veri"><span class="ico">📊</span> Günlük Veri</div>
-    <div class="panel-item" data-module="arastirma"><span class="ico">🔍</span> Araştırma</div>
-    <div class="panel-item" data-module="egitim"><span class="ico">🎓</span> Eğitim</div>
+    <div class="panel-item active" data-module="strateji"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M10 52h44"/><rect x="14" y="32" width="9" height="20" rx="2"/><rect x="28" y="20" width="9" height="32" rx="2"/><rect x="42" y="10" width="9" height="42" rx="2"/></svg></span> Strateji <span class="star">★</span></div>
+    <div class="panel-item" data-module="karar"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="8"/><line x1="32" y1="4" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="60"/></svg></span> Karar Destek <span class="star">★</span></div>
+    <div class="panel-item" data-module="piyasalar"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M6 40 l12 -12 8 8 14 -18 12 10"/><path d="M8 56 h48"/></svg></span> Piyasalar</div>
+    <div class="panel-item" data-module="panom"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="12" y="8" width="40" height="48" rx="4"/><line x1="20" y1="22" x2="44" y2="22"/><line x1="20" y1="32" x2="44" y2="32"/><line x1="20" y1="42" x2="36" y2="42"/></svg></span> Panom</div>
+    <div class="panel-item" data-module="veri"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><ellipse cx="32" cy="14" rx="20" ry="7"/><path d="M12 14 v24 c0 4 9 7 20 7 s20 -3 20 -7 V14"/><path d="M12 26 c0 4 9 7 20 7 s20 -3 20 -7"/></svg></span> Günlük Veri</div>
+    <div class="panel-item" data-module="arastirma"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><circle cx="28" cy="28" r="16"/><line x1="40" y1="40" x2="54" y2="54"/></svg></span> Araştırma</div>
+    <div class="panel-item" data-module="egitim"><span class="ico"><svg width="15" height="15" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M32 12 L58 24 L32 36 L6 24 Z"/><path d="M16 30 v14 c0 4 7 8 16 8 s16 -4 16 -8 V30"/></svg></span> Eğitim</div>
 
     <div class="panel-foot">
       <span class="live-dot"></span><span id="foot-status">Yükleniyor…</span><br>
@@ -668,19 +668,12 @@ a { color: inherit; text-decoration: none; }
     <section class="module active" id="mod-strateji">
       <div class="module-header">
         <div class="eyebrow">★ ÖNE ÇIKAN · STRATEJİ</div>
-        <h1>Strateji Laboratuvarı</h1>
+        <h1>Strateji</h1>
         <p>5 algoritmik yöntem, 60+ BIST ve ABD hissesi üzerinde geçmiş veriyle test edilmiş sonuçlar. Şeffaf metrikler: Sharpe, Max Drawdown, hit rate.</p>
       </div>
       <div class="card-grid">
         <a href="/ajanlar/" class="tool-card">
-          <div class="shot" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:188px">
-            <svg width="92" height="92" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="10" y="34" width="12" height="18" rx="1.5" fill="rgba(255,166,48,.10)"/>
-              <rect x="26" y="23" width="12" height="29" rx="1.5" fill="rgba(255,166,48,.20)"/>
-              <rect x="42" y="14" width="12" height="38" rx="1.5" fill="rgba(255,166,48,.30)"/>
-              <path d="M6 56 h52"/>
-            </svg>
-          </div>
+          <div class="shot" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);height:188px;padding:14px 18px;display:flex;flex-direction:column;justify-content:center" id="lig-mini"><div style="font-size:10px;letter-spacing:.14em;color:#a89c83;margin-bottom:8px">CANLI SIRALAMA</div><div style="color:#6f6553;font-size:12px">yükleniyor…</div></div>
           <div class="body">
             <span class="badge">Strateji Ligi</span>
             <h3>Ajan Ligi</h3>
@@ -1693,5 +1686,19 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
 </script>
 <script src="/static/asistan.js" defer></script>
 <script src="/static/terminal-shell.js" defer></script>
+
+<script>
+(function(){var el=document.getElementById('lig-mini');if(!el)return;
+fetch('/terminal/data/agents-ledger.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  var rows=Object.keys(d.agents).map(function(k){var a=d.agents[k];var h=a.history[a.history.length-1];
+    return {n:k.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()}),e:h.e,r:h.r};});
+  rows.sort(function(a,b){return b.r-a.r});
+  var html='<div style="font-size:10px;letter-spacing:.14em;color:#a89c83;margin-bottom:10px">CANLI SIRALAMA · '+(d.last_date||'')+'</div>';
+  rows.slice(0,3).forEach(function(x,i){var c=x.r>=0?'#4ade80':'#ef4444';
+    html+='<div style="display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px dashed #2a241d;font-family:\'Geist Mono\',monospace;font-size:12.5px">'
+      +'<span style="color:#ebe3d3">'+(i+1)+'. '+x.n+'</span>'
+      +'<span style="color:'+c+';font-weight:600">'+(x.r>=0?'+':'')+x.r.toFixed(1).replace('.',',')+'%</span></div>';});
+  el.innerHTML=html;}).catch(function(){});})();
+</script>
 </body>
 </html>

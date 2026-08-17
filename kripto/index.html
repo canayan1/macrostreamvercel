@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kalibre Kripto: Davranışsal Koç · Kalibre Markets</title>
+<meta name="description" content="Kripto ile ilgilenenler için davranışsal koç: daha az veri, daha iyi kararlar. Önyargı testi, işlem öncesi check-in ve davranış takibi. Sinyal satmaz, soru sorar. Yatırım tavsiyesi değildir.">
+<meta name="keywords" content="kalibre kripto, kripto davranışsal koç, kripto önyargı testi, kripto disiplin, FOMO, kayıptan kaçınma, kripto psikolojisi">
+<link rel="canonical" href="https://kalibremarkets.com/kripto/">
+<meta property="og:title" content="Kalibre Kripto: Davranışsal Koç">
+<meta property="og:description" content="Daha az veri, daha iyi kararlar. Sinyal satmaz, soru sorar. Önyargılarını işlem anından önce önüne koyar.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--purple:#a78bfa;--grid:rgba(255,166,48,.025)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+.mono{font-family:'Geist Mono','JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+.cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
+.brand-mark{width:24px;height:24px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:12px}
+.brand-name{font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--text)}
+.brand-name .sub{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:.06em}
+.cmd-crumb{flex:1;min-width:0;padding-left:16px;font-size:11.5px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-back{margin-left:auto;padding-left:16px;font-size:12px;color:var(--text-dim);display:flex;align-items:center;height:100%}
+.cmd-back:hover{color:var(--accent)}
+main{max-width:880px;margin:24px auto;padding:0 20px 80px}
+.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
+h1{font-size:32px;font-weight:600;color:var(--text);line-height:1.14;letter-spacing:-.015em}
+h1 em{font-style:normal;color:var(--accent);font-weight:600}
+.lead{color:var(--text-dim);font-size:15px;line-height:1.7;max-width:72ch;margin-top:14px}
+.cta{margin-top:22px;background:linear-gradient(100deg,rgba(255,166,48,.14),rgba(255,122,0,.04));border:1px solid var(--border-2);border-left:2px solid var(--accent);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.cta .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.cta .t{font-size:16px;color:var(--text);font-weight:600;margin-top:4px}
+.cta .d{font-size:12.5px;color:var(--text-dim);margin-top:4px;max-width:46ch}
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-hot));color:#1a1208;font-weight:700;font-size:14px;padding:12px 20px;border-radius:7px;white-space:nowrap;transition:filter .12s}
+.btn:hover{filter:brightness(1.07)}
+.btn .ar{font-size:15px}
+.sec{margin-top:34px}
+.sec-h{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--border-2)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);padding:15px 17px}
+.pcard .n{font-family:'Geist Mono',monospace;font-size:12px;color:var(--accent);font-weight:600}
+.pcard .ti{font-size:15px;color:var(--text);font-weight:600;margin-top:6px}
+.pcard .bd{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-top:6px}
+.layer{display:grid;grid-template-columns:40px 1fr;gap:14px;background:var(--surface);border:1px solid var(--border);padding:14px 16px;margin-bottom:10px}
+.layer .lc{font-size:18px;text-align:center;color:var(--accent)}
+.layer .lt{font-size:14.5px;color:var(--text);font-weight:600}
+.layer .lb{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-top:3px}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.path{background:var(--bg-1);border:1px solid var(--border);padding:15px 17px}
+.path .h{font-size:14px;color:var(--text);font-weight:600}
+.path .b{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-top:5px}
+.note{margin-top:30px;background:var(--bg-1);border:1px solid var(--border-2);border-left:2px solid var(--muted);padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.65}
+.note b{color:var(--text-dim)}
+.disc{margin-top:14px;font-size:10.5px;color:var(--muted);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="cmdbar">
+  <a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// KRİPTO</span></div></a>
+  <div class="cmd-crumb"><a href="/" style="color:inherit">Ana sayfa</a> › Kripto</div>
+  <a href="/" class="cmd-back">← Ana sayfa</a>
+</div>
+
+<main>
+  <div class="eyebrow">▸ KRİPTO · DAVRANIŞSAL KOÇ</div>
+  <h1>Daha az veri, <em>daha iyi kararlar</em></h1>
+  <p class="lead">Kripto piyasasında çoğu kayıp eksik bilgiden değil, davranıştan gelir: FOMO, kayıptan kaçınma, kazananı erken satıp kaybedeni tutma. <strong>Kalibre Kripto</strong>, kripto ile ilgilenenler için kurduğumuz davranışsal koç. Sana ne alıp satacağını söylemez; işlem yapmadan önce kendi tuzaklarını önüne koyar ve düşünceni sorgulatır. Daha fazla araç değil, daha az hata.</p>
+
+  <div class="cta">
+    <div>
+      <div class="k">▸ Terminali aç</div>
+      <div class="t">Kalibre Kripto · davranışsal koç</div>
+      <div class="d">Önyargı testi ve izleme listesi ücretsiz. Kripto terminali şu an İngilizce yayında; Türkçe sürüm yolda.</div>
+    </div>
+    <a class="btn" href="https://kripto.kalibremarkets.com/" target="_blank" rel="noopener">Kripto terminalini aç <span class="ar">↗</span></a>
+  </div>
+
+  <div class="cta" style="border-left-color:var(--green)">
+    <div>
+      <div class="k" style="color:var(--green)">▸ Türkçe içerik · yeni</div>
+      <div class="t">Önyargı Kütüphanesi · 8 tuzak</div>
+      <div class="d">Kripto işlem kayıplarını yönlendiren sekiz davranışsal tuzak, tamamı Türkçe. Her biri kriptoda nasıl göründüğü, karşı hamleleri ve akademik kaynağıyla.</div>
+    </div>
+    <a class="btn" href="/kripto/onyargilar/" style="background:linear-gradient(135deg,var(--green),#22c55e);color:#06210f">Önyargı kütüphanesini oku →</a>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Aşmadığımız 4 çizgi</div>
+    <div class="grid4">
+      <div class="pcard"><div class="n">01</div><div class="ti">Soru sorar, talimat vermez</div><div class="bd">Diğer araçlar sinyal satar ("şunu al, şunu sat"). Biz asla ne yapacağını söylemeziz. Yapay zekâ; sorgulatmak, yansıtmak ve hatırlatmak üzere kuruldu. Bu hem felsefi hem hukuki bir tercih: yatırım tavsiyesi çizgisinin doğru tarafında durur, karar sende kalır.</div></div>
+      <div class="pcard"><div class="n">02</div><div class="ti">Metodoloji açık, kara kutu yok</div><div class="bd">Her davranış skoru, her koruma katmanı kodda ve dokümantasyonda görünür. Yapay zekânın çıktısını üç filtre katmanı denetler. "Bize güvenin" yok; sana ulaşan içeriği belirleyen mantık açıkça yayımlanır.</div></div>
+      <div class="pcard"><div class="n">03</div><div class="ti">Davranışsal finans entegre</div><div class="bd">Perakende kayıplarının çoğu eksik bilgiden değil davranıştan gelir. Kayıptan kaçınma, FOMO, kazananı erken satma gibi tuzakları işlem anından önce önüne koyarız. Akademik temel: Kahneman 1979, Shefrin-Statman 1985, Barber-Odean 2001.</div></div>
+      <div class="pcard"><div class="n">04</div><div class="ti">Öğreten kısım ücretsiz</div><div class="bd">Önyargı testi, önyargı kütüphanesi ve izleme listesi her zaman ücretsiz. Ücretli katman yalnızca koçu ve davranış takibini ekler. Öğreten yerlerde ödeme duvarı yok, hiçbir yerde reklam yok.</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">İçeride üç katman</div>
+    <div class="layer"><div class="lc">◊</div><div><div class="lt">1 · Tuzaklarını tanı</div><div class="lb">Önce sekiz önyargı tuzağını <a href="/kripto/onyargilar/" style="color:var(--accent)">Türkçe kütüphanede</a> oku; sonra <a href="/kripto/test/" style="color:var(--accent)">12 soruluk testle</a> en baskın üçünü isimleriyle gör.</div></div></div>
+    <div class="layer"><div class="lc">?</div><div><div class="lt">2 · Harekete geçmeden dur</div><div class="lb">Üç adımlık işlem öncesi kontrol: tez, bağlam, çıkış planı. Tavsiye değil, zihniyet. "Bu bir tez mi, yoksa tepki mi?"</div></div></div>
+    <div class="layer"><div class="lc">↻</div><div><div class="lt">3 · Kendini sayılarda gör</div><div class="lb">İşlemlerin iddia olmaktan çıkıp kanıta dönüşür. Kazançta ortalama tutma süresi ile kayıpta tutma süresini yan yana koyar.</div></div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Kimler için</div>
+    <div class="paths">
+      <div class="path"><div class="h">◐ Kripto'da yeniysen</div><div class="b">Meraklısın, birkaç işlem yaptın ya da hiç yapmadın. Birikimini kaybederek öğrenmek istemiyorsun. Önce tuzakları oku, testi çöz, gözlemle.</div></div>
+      <div class="path"><div class="h">◑ Aktif trader'san</div><div class="b">İşlem yapıyorsun ama disiplin arıyorsun. Her pozisyon öncesi check-in, plan dışına çıktığın anı fark ettirir.</div></div>
+      <div class="path"><div class="h">◓ Disiplin istiyorsan</div><div class="b">Sinyal değil, süreç arıyorsun. Kararı sende bırakan, ama körlüklerini hatırlatan bir ayna.</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Nasıl çalışır · yarı otomatik, insan denetimli</div>
+    <div class="grid4">
+      <div class="pcard"><div class="ti">Otomatik · veri + sinyal + koç</div><div class="bd">Fiyat verisi halka açık borsa akışlarından 60 saniyede bir çekilir. Davranış skorlaması, test cevaplarından deterministik üretilir. Koç yanıtları, üç koruma katmanının (girdi filtresi, sistem komutu, çıktı denetimi) arkasındaki bir dil modelinden gelir. Kritik sinyal akışı programatik olarak filtrelenir ve etiketlenir.</div></div>
+      <div class="pcard"><div class="ti">İnsan denetimli · editöryal + güvenlik</div><div class="bd">Editöryal yazılar insanlar tarafından yazılır ve imzalanır; yapay zekâ hayalet yazarlığı yoktur. Koç korumaları kod incelemesiyle değişir; desen değişiklikleri birer uyum olayıdır. Saldırgan girdiler, dağıtım öncesi bir kırmızı-takım test setiyle denetlenir. Dürüst kör nokta: yapay zekâ yine de yanılabilir.</div></div>
+    </div>
+    <p class="muted" style="font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.6">Tam otomatik olduğumuzu iddia etmiyoruz. Yapay zekâ ölçeği, insan muhakemeyi üstlenir.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Öğretende ücretsiz, takip ettende ücretli</div>
+    <div class="grid4">
+      <div class="pcard" style="border-left-color:var(--green)"><div class="n" style="color:var(--green)">ÜCRETSİZ · SÜRESİZ</div><div class="ti">Test + kütüphane + izleme</div><div class="bd">12 soruluk önyargı testi, 8 makalelik önyargı kütüphanesi ve 5 coinlik izleme listesi her zaman ücretsiz. Öğreten kısımlarda ödeme duvarı yok, hiçbir yerde reklam yok.</div></div>
+      <div class="pcard"><div class="n">PREMIUM · TEST MODUNDA</div><div class="ti">Koç + davranış takibi</div><div class="bd">Premium, işlem öncesi koçu ve davranış takibini açar. Şu an MVP test modunda; henüz gerçek ödeme alınmıyor. Davranışı önemseyen ilk kullanıcıları arıyoruz, sonra düğmeye basacağız.</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Dürüst sorular · SSS</div>
+    <details class="pcard" style="margin-bottom:8px"><summary style="cursor:pointer;color:var(--text);font-weight:600;font-size:14px">Yatırım danışmanı ya da yatırım hizmeti misiniz?</summary><div class="bd" style="margin-top:8px">Hayır. Al, sat ya da tut önermeyiz; hedef fiyat ya da yön tahmini vermeyiz. Yapay zekâ bunları yapısal olarak reddetmek üzere kuruludur. Bu hem bir ürün tercihi hem bir düzenleyici duruştur.</div></details>
+    <details class="pcard" style="margin-bottom:8px"><summary style="cursor:pointer;color:var(--text);font-weight:600;font-size:14px">Verim nereye gidiyor?</summary><div class="bd" style="margin-top:8px">Davranış profilin ve işlem kaydın senin hesabına bağlıdır. Veri satmıyoruz, reklam göstermiyoruz. Sana ulaşan mantığı belirleyen kod ve metodoloji yayımlanmıştır.</div></details>
+    <details class="pcard"><summary style="cursor:pointer;color:var(--text);font-weight:600;font-size:14px">Yapay zekâ çağrıları para tutuyorsa koç neden ücretsiz?</summary><div class="bd" style="margin-top:8px">MVP için ücretsiz katman modeller kullanıyoruz; kullanıcı başına maliyet ihmal edilebilir. Trafik büyüdüğünde Premium aboneler daha ağır model kullanımını sübvanse edecek; ücretsiz katman testi, kütüphaneyi ve izleme listesini koruyacak.</div></details>
+  </div>
+
+  <div class="note">
+    <b>Kalibre Kripto nedir?</b> Kalibre Markets'ın kripto odaklı davranışsal karar-destek bölümü. Daha fazlası için <a href="/kripto/hakkinda/" style="color:var(--accent)">Hakkında</a> sayfasına bak. İnteraktif kripto terminalinin kendisi <a href="https://kripto.kalibremarkets.com/" target="_blank" rel="noopener" style="color:var(--accent)">kripto.kalibremarkets.com</a> adresinde açılır ve şu an İngilizcedir, Türkçe sürümü hazırlanıyor.
+  </div>
+  <p class="disc">Sinyal ya da al-sat tavsiyesi vermez; amacı kararı bilinçlendirmektir. İçerik bilgilendirme amaçlıdır ve yatırım tavsiyesi niteliği taşımaz. Kripto varlıklar yüksek risklidir.</p>
+</main>
+
+<script src="/static/terminal-shell.js" defer></script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>

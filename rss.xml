@@ -5,7 +5,11 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
+<<<<<<< Updated upstream
   <lastBuildDate>Mon, 17 Aug 2026 03:42:47 +0000</lastBuildDate>
+=======
+  <lastBuildDate>Sun, 16 Aug 2026 13:38:54 +0000</lastBuildDate>
+>>>>>>> Stashed changes
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -223,6 +227,7 @@
   </item>
 
   <item>
+<<<<<<< Updated upstream
     <title>💱 Döviz Günlük Bülten — 2026-07-15 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-15/fx/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-15/fx/</guid>
@@ -270,11 +275,16 @@
     <title>🇺🇸 ABD Makro — 2026-05-13 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-05-13/fred/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fred/</guid>
+=======
+    <title>🇹🇷 TR Makro — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/makro/</guid>
+>>>>>>> Stashed changes
     <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <description>🇺🇸 ABD Makro — Makro (ABD) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>ABD Makro</category>
-    <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" medium="image" />
+    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Türkiye Makro</category>
+    <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -289,6 +299,31 @@
   </item>
 
   <item>
+<<<<<<< Updated upstream
+=======
+    <title>🇺🇸 ABD Makro — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/fred/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fred/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>🇺🇸 ABD Makro — Makro (ABD) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>ABD Makro</category>
+    <enclosure url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fred/2026-05-13/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>📊 Günlük Nabız — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/pulse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/pulse/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>📊 Günlük Nabız — Günlük Nabız günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Günlük Nabız</category>
+    <enclosure url="https://kalibremarkets.com/reports/pulse/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/pulse/2026-05-13/og.png" medium="image" />
+  </item>
+
+  <item>
+>>>>>>> Stashed changes
     <title>🔄 BIST Sektör Rotasyon — 2026-05-13 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-05-13/sektor/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/sektor/</guid>
@@ -300,6 +335,31 @@
   </item>
 
   <item>
+<<<<<<< Updated upstream
+=======
+    <title>Aselsan — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/hisse/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/hisse/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>📈 Hisse Bülteni — Aselsan (ASELS.IS) günlük teknik analiz: RSI, MA50/200, 52-hafta seviyeler, hacim. BIST 30 günün taraması, yorumla birlikte. Yatırım tavsiyesi değildir.</description>
+    <category>Hisse Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/hisse/2026-05-13/og.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-08-12 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-08-12/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/fx/</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+>>>>>>> Stashed changes
     <title>📊 Günlük Nabız — 2026-08-12 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-12/pulse/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/pulse/</guid>
@@ -322,10 +382,28 @@
   </item>
 
   <item>
+<<<<<<< Updated upstream
     <title>💱 Döviz Günlük Bülten — 2026-08-12 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-12/fx/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/fx/</guid>
     <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
+=======
+    <title>🇹🇷 TR Makro — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/makro/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/makro/</guid>
+    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Türkiye Makro</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fx/</guid>
+    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+>>>>>>> Stashed changes
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
@@ -333,12 +411,21 @@
   </item>
 
   <item>
+<<<<<<< Updated upstream
     <title>🇹🇷 TR Makro — 2026-06-10 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-10/makro/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/makro/</guid>
     <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
     <description>🇹🇷 Türkiye Makro — Makro (TR) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Türkiye Makro</category>
+=======
+    <title>🇺🇸 ABD Makro — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/fred/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fred/</guid>
+    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    <description>🇺🇸 ABD Makro — Makro (ABD) günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>ABD Makro</category>
+>>>>>>> Stashed changes
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>

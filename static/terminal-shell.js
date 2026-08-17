@@ -18,14 +18,14 @@
 
   // ── Modüller (terminale deep-link) ─────────────────────────────
   var MODULES = [
-    { key: "piyasalar", ico: "📡", label: "Piyasalar" },
-    { key: "panom",     ico: "📌", label: "Panom" },
-    { key: "karne",     ico: "🧬", label: "Hisse Karnesi", href: "/karne/", star: true },
-    { key: "karar",     ico: "🧠", label: "Karar Destek", star: true },
-    { key: "strateji",  ico: "🔬", label: "Strateji", star: true },
-    { key: "veri",      ico: "📊", label: "Günlük Veri" },
-    { key: "arastirma", ico: "🔍", label: "Araştırma" },
-    { key: "egitim",    ico: "🎓", label: "Eğitim" }
+    { key: "piyasalar", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M6 40 l12 -12 8 8 14 -18 12 10\"/><path d=\"M8 56 h48\"/></svg>", label: "Piyasalar" },
+    { key: "panom",     ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><rect x=\"12\" y=\"8\" width=\"40\" height=\"48\" rx=\"4\"/><line x1=\"20\" y1=\"22\" x2=\"44\" y2=\"22\"/><line x1=\"20\" y1=\"32\" x2=\"44\" y2=\"32\"/></svg>", label: "Panom" },
+    { key: "karne",     ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M20 6 c0 14 24 14 24 26 s-24 12 -24 26\"/><path d=\"M44 6 c0 14 -24 14 -24 26 s24 12 24 26\"/></svg>", label: "Hisse Karnesi", href: "/karne/", star: true },
+    { key: "karar",     ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"32\" cy=\"32\" r=\"20\"/><circle cx=\"32\" cy=\"32\" r=\"8\"/></svg>", label: "Karar Destek", star: true },
+    { key: "strateji",  ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M10 52h44\"/><rect x=\"14\" y=\"32\" width=\"9\" height=\"20\" rx=\"2\"/><rect x=\"28\" y=\"20\" width=\"9\" height=\"32\" rx=\"2\"/><rect x=\"42\" y=\"10\" width=\"9\" height=\"42\" rx=\"2\"/></svg>", label: "Strateji", star: true },
+    { key: "veri",      ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><ellipse cx=\"32\" cy=\"14\" rx=\"20\" ry=\"7\"/><path d=\"M12 14 v24 c0 4 9 7 20 7 s20 -3 20 -7 V14\"/></svg>", label: "Günlük Veri" },
+    { key: "arastirma", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"28\" cy=\"28\" r=\"16\"/><line x1=\"40\" y1=\"40\" x2=\"54\" y2=\"54\"/></svg>", label: "Araştırma" },
+    { key: "egitim",    ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M32 12 L58 24 L32 36 L6 24 Z\"/><path d=\"M16 30 v14 c0 4 7 8 16 8 s16 -4 16 -8 V30\"/></svg>", label: "Eğitim" }
   ];
 
   // ── Aktif modülü mevcut yola göre tahmin et ────────────────────
@@ -48,7 +48,7 @@
     + "padding:14px 0 8px;overflow-y:auto;display:flex;flex-direction:column;"
     + "font-family:inherit;-webkit-font-smoothing:antialiased;transition:transform .22s ease}"
     + "#km-rail a{text-decoration:none;color:inherit}"
-    + ".km-rail-brand{display:flex;align-items:center;gap:10px;padding:4px 18px 14px;"
+    + ".cmdbar{display:none!important}.km-rail-brand{display:flex;align-items:center;gap:10px;padding:4px 18px 14px;"
     + "margin-bottom:6px;border-bottom:1px solid var(--border,#26221d)}"
     + ".km-rail-mark{width:30px;height:30px;border-radius:7px;flex:0 0 auto;display:flex;"
     + "align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#100e0c;"
@@ -159,7 +159,7 @@
     function render() {
       var on = pinned();
       btn.className = "km-pin-cta" + (on ? " on" : "");
-      btn.innerHTML = '<span class="ico">' + (on ? "✓" : "📌") + "</span> " +
+      btn.innerHTML = '<span class="ico">' + (on ? "✓" : "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><rect x=\"12\" y=\"8\" width=\"40\" height=\"48\" rx=\"4\"/><line x1=\"20\" y1=\"22\" x2=\"44\" y2=\"22\"/><line x1=\"20\" y1=\"32\" x2=\"44\" y2=\"32\"/></svg>") + "</span> " +
         (on ? "Panonda · kaldır" : "Bu sayfayı panona ekle");
     }
     function toast(msg) {

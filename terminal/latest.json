@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "generated": "2026-08-17T03:42:46",
+=======
+  "generated": "2026-08-16T14:38:54",
+>>>>>>> Stashed changes
   "reports": [
     {
       "category": "pulse",
@@ -73,10 +77,10 @@
         "category": "hisse",
         "date": "2026-08-14",
         "metrics": {
-          "regime": "Zayıflık",
-          "breadth_pct": 25.0,
-          "top_gainer": "Aselsan",
-          "top_loser": "Migros",
+          "regime": "Risk-Off",
+          "breadth_pct": 17.857142857142858,
+          "top_gainer": "Tüpraş",
+          "top_loser": "Sasa Polyester",
           "featured_stock": "Garanti BBVA"
         }
       },

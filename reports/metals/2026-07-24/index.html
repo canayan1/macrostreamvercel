@@ -401,35 +401,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 </head>
 <body>
 <div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Değerli Metaller › 2026-07-24</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
-<div class="disclaimer-banner"><b>Önemli</b> · Burası bir <b>eğitim ve veri sitesi</b>dir, yatırım tavsiyesi vermiyoruz. Kararlarınız için lisanslı bir uzmana danışın.</div>
-<!-- ── ONBOARDING (ilk ziyaret) ─────────────────────── -->
-<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.85);backdrop-filter:blur(4px);z-index:9000;align-items:center;justify-content:center;padding:20px">
-  <div style="max-width:520px;background:var(--surface);border:1px solid var(--border-2);border-left:3px solid var(--accent);padding:28px 32px">
-    <div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">Hoş geldiniz</div>
-    <h2 style="font-size:22px;color:var(--text);margin-bottom:14px;font-weight:500;letter-spacing:-.01em">İlk ziyaret? Hızlı tanıtım</h2>
-    <p style="color:var(--text-dim);font-size:13px;line-height:1.7;margin-bottom:16px">
-      Burası borsa, döviz ve ekonomi verisini her gün özetleyen <b style="color:var(--text)">yapay zeka destekli</b> bir araştırma ve eğitim platformu.
-    </p>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
-      <div style="display:flex;gap:12px;align-items:flex-start">
-        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">1</span>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">Üst menüden</b> bülteni, eğitimi veya stratejileri açabilirsiniz</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start">
-        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">2</span>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"İşlem Kontrolü"</b> — pozisyon açmadan önce 3 dakikalık disiplin kontrolü</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start">
-        <span style="color:var(--accent);font-weight:700;font-size:14px;flex:0 0 22px">3</span>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.55"><b style="color:var(--text)">"Eğitim"</b> — borsa terimleri ve temel kavramlar</div>
-      </div>
-    </div>
-    <div style="padding:10px 14px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);font-size:12px;color:#f5d28a;margin-bottom:18px;line-height:1.55">
-      <b>Önemli:</b> Burada yatırım tavsiyesi yok. Veriyi anlamayı kolaylaştırıyoruz — kararlar size ait.
-    </div>
-    <button onclick="localStorage.setItem('km-onboarded','1');document.getElementById('onboarding-overlay').style.display='none'" style="background:var(--accent);color:#1a1208;border:0;padding:11px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%">Anladım, gezineyim →</button>
-  </div>
-</div>
 <script>
 (function(){
   try {
@@ -578,9 +549,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   </div>
 </footer>
 
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#121110;
-     border-top:1px solid #26221d;padding:14px 20px;display:none;z-index:9999;
-     box-shadow:0 -4px 20px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace">
+<div id="cookie-banner" style="position:fixed;bottom:14px;right:14px;max-width:360px;background:#14110e;border:1px solid #2a241d;border-radius:12px;padding:12px 14px;display:none;z-index:9999;box-shadow:0 8px 28px rgba(0,0,0,.45)">
   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;
        gap:14px;flex-wrap:wrap;justify-content:space-between">
     <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
