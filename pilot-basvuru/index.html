@@ -177,11 +177,11 @@ footer.pf-foot b { color:var(--text); }
       </div>
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Talebi gönder →</button>
-        <span class="form-note">Gönder'e basınca e-posta uygulamanız <b>info@kalibrefin.com</b> adresine hazır bir mesajla açılır.<br>Bilgileriniz yalnızca bu talep için kullanılır; talep ederseniz silinir.</span>
+        <span class="form-note">Gönder'e basınca e-posta uygulamanız <b>markets@kalibrefin.com</b> adresine hazır bir mesajla açılır.<br>Bilgileriniz yalnızca bu talep için kullanılır; talep ederseniz silinir.</span>
       </div>
     </form>
   </div>
-  <p class="form-note" style="margin-top:12px">Form açılmıyor mu? Doğrudan yazın: <a href="mailto:info@kalibrefin.com?subject=Kalibre%20Kurumsal%20Pilot%20Eri%C5%9Fim%20Talebi" style="color:var(--accent)">info@kalibrefin.com</a></p>
+  <p class="form-note" style="margin-top:12px">Form açılmıyor mu? Doğrudan yazın: <a href="mailto:markets@kalibrefin.com?subject=Kalibre%20Kurumsal%20Pilot%20Eri%C5%9Fim%20Talebi" style="color:var(--accent)">markets@kalibrefin.com</a></p>
 </main>
 
 <footer class="pf-foot">
@@ -207,7 +207,7 @@ function kmSubmit(e){
     (g('mesaj') || '-')
   ];
   var subject = 'Kalibre Kurumsal Pilot Erişim Talebi — ' + (g('firma') || '');
-  var url = 'mailto:info@kalibrefin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(L.join('\n'));
+  var url = 'mailto:markets@kalibrefin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(L.join('\n'));
   window.location.href = url;
   try { gtag('event', 'pilot_talep', { firma: g('firma') }); } catch(_){}
   return false;

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portföy Lab — BIST 30'dan portföy kur, backtestini gör | Kalibre Markets</title>
+<meta name="description" content="BIST 30 hisselerinden kendi portföyünü kur, son 1 yılın gerçek verisiyle anında backtest gör: getiri, maksimum düşüş, volatilite. Ücretsiz, hesapsız, tarayıcında çalışır.">
+<link rel="canonical" href="https://kalibremarkets.com/portfoy-lab/">
+<meta property="og:title" content="Portföy Lab — portföyünü kur, backtestini gör">
+<meta property="og:description" content="BIST 30'dan seç, ağırlık ver, son 1 yılın gerçek verisiyle sonucu anında gör. Ücretsiz.">
+<meta property="og:url" content="https://kalibremarkets.com/portfoy-lab/">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+<style>
+:root{--bg:#0e0c09;--bg-1:#14110e;--surface:#1a1612;--border:#2a241d;--text:#e8e2d8;--text-dim:#b8ae9e;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef5350}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+.topnav{display:flex;align-items:center;gap:14px;padding:0 28px;height:60px;border-bottom:1px solid var(--border);background:var(--bg-1);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text)}
+.brand-mark{width:28px;height:28px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:14px}
+.brand-name{letter-spacing:.14em;font-weight:600;font-size:13px}
+.brand-name .sub{color:var(--muted);font-weight:400}
+.spacer{flex:1}
+.back{font-size:13px;color:var(--text-dim)}
+.wrap{max-width:960px;margin:0 auto;padding:44px 20px 90px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+h1 .a{color:var(--accent)}
+.lead{color:var(--text-dim);font-size:15.5px;max-width:62ch;margin-bottom:28px}
+.panel{background:var(--bg-1);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.panel h2{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.panel h2 .n{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:7px 13px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text-dim);cursor:pointer;user-select:none;transition:all .12s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:rgba(255,166,48,.14);border-color:var(--accent);color:var(--accent);font-weight:600}
+.wrow{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.wrow .sym{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);width:70px;font-weight:600}
+.wrow input[type=range]{flex:1;min-width:120px;accent-color:var(--accent)}
+.wrow .pct{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);width:52px;text-align:right}
+.wrow .rm{color:var(--muted);cursor:pointer;font-size:16px;padding:0 4px}
+.wrow .rm:hover{color:var(--red)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{background:var(--accent);color:#1a1a1a;border:0;border-radius:10px;padding:11px 20px;font-weight:700;font-size:13.5px;letter-spacing:.03em;cursor:pointer;font-family:inherit}
+button:hover{background:var(--accent-hot)}
+button.ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border)}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}
+.stat .s{font-size:11px;color:var(--muted);margin-top:2px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+#chart{width:100%;height:300px;display:block}
+.legend{display:flex;gap:18px;font-size:12px;color:var(--text-dim);margin-top:8px;flex-wrap:wrap}
+.legend .sw{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.empty{color:var(--muted);font-size:14px;padding:20px;text-align:center}
+.fine{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:26px;max-width:74ch}
+.share-ok{display:none;color:var(--green);font-size:12.5px;align-self:center}
+.probar{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(90deg,rgba(255,166,48,.08),transparent);border:1px solid rgba(255,166,48,.3);border-radius:12px;padding:14px 18px;font-size:13.5px}
+@media(max-width:600px){.topnav{padding:0 16px}.wrap{padding:28px 14px 70px}}
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
+  <div class="spacer"></div>
+  <a href="/algo/" class="back">Strateji Lab</a>
+  <a href="/" class="back">← Ana sayfa</a>
+</header>
+
+<div class="wrap">
+  <div class="eyebrow">▸ Portföy Lab · Beta</div>
+  <h1>Portföyünü kur, <span class="a">backtestini gör</span>.</h1>
+  <p class="lead">BIST 30 hisselerinden seç, ağırlık ver; son 1 yılın gerçek kapanış verisiyle sonucu anında gör. Tarayıcında çalışır: hesap yok, veri gönderimi yok. Sonucu bağlantıyla paylaşabilirsin.</p>
+
+  <div class="panel">
+    <h2><span class="n">1</span> Hisseleri seç <span style="color:var(--muted);font-weight:400;font-size:12px" id="sel-count"></span></h2>
+    <div class="chips" id="chips"><div class="empty">Veri yükleniyor…</div></div>
+  </div>
+
+  <div class="panel">
+    <h2><span class="n">2</span> Ağırlıkları ayarla</h2>
+    <div id="weights"><div class="empty">Önce yukarıdan hisse seç.</div></div>
+    <div class="toolbar">
+      <button class="ghost" id="btn-eq">Eşit ağırlıkla</button>
+      <span class="mono" style="align-self:center;font-size:12.5px;color:var(--muted)">Toplam: <span id="wsum" style="color:var(--accent)">0%</span></span>
+    </div>
+  </div>
+
+  <div class="panel" id="results" style="display:none">
+    <h2><span class="n">3</span> Sonuç — <span class="mono" style="font-size:12.5px;color:var(--muted)" id="period"></span></h2>
+    <div class="stats" id="stats"></div>
+    <canvas id="chart"></canvas>
+    <div class="legend">
+      <span><span class="sw" style="background:#ffa630"></span>Senin portföyün</span>
+      <span><span class="sw" style="background:#6f6553"></span>BIST 30 eşit ağırlık sepeti</span>
+    </div>
+    <div class="toolbar">
+      <button id="btn-share">Bağlantıyı kopyala</button>
+      <button class="ghost" id="btn-tw">X'te paylaş</button>
+      <span class="share-ok" id="share-ok">✓ Kopyalandı</span>
+    </div>
+  </div>
+
+  <div class="probar" id="probar" style="display:none">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--accent);border:1px solid rgba(255,166,48,.4);border-radius:999px;padding:3px 10px">PRO · YAKINDA</span>
+    <span style="flex:1;min-width:200px">Bu portföye <b>strateji kuralı ve alarm</b> bağlamak ister misin? <a href="/pro/">Bekleme listesine yazıl →</a></span>
+  </div>
+
+  <p class="fine">Veri: Yahoo Finance günlük kapanışlar (son ~252 işlem günü), her sabah otomatik güncellenir. Hesap yöntemi: başlangıçta 100.000 ₺'nin seçtiğin ağırlıklarla dağıtılıp tutulması (al-tut, ara dengeleme yok); temettü ve işlem maliyeti dahil değildir. Volatilite ve Sharpe yıllıklandırılmıştır (Sharpe basitleştirilmiş, risksiz faiz 0 varsayımı). Geçmiş performans geleceğin göstergesi değildir. Bu araç eğitim ve analiz amaçlıdır; yatırım tavsiyesi değildir. Kalibre Markets SPK lisanslı kurum değildir. Sorular: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
+</div>
+
+<script>
+(function(){
+var DATA=null, sel={}, order=[];
+var fmt=function(x,d){return x.toLocaleString('tr-TR',{minimumFractionDigits:d==null?1:d,maximumFractionDigits:d==null?1:d})};
+
+fetch('/terminal/data/bist30-dossier.json').then(r=>r.json()).then(function(d){
+  DATA={}; var chips=document.getElementById('chips'); chips.innerHTML='';
+  Object.keys(d.stocks).sort().forEach(function(sym){
+    var s=d.stocks[sym]; if(!s.series||!s.series.dates||s.series.dates.length<60) return;
+    DATA[sym]={dates:s.series.dates, values:s.series.values, name:s.name||sym};
+    var c=document.createElement('span'); c.className='chip'; c.textContent=sym; c.onclick=function(){toggle(sym)}; c.id='chip-'+sym;
+    chips.appendChild(c);
+  });
+  fromHash(); render();
+}).catch(function(){document.getElementById('chips').innerHTML='<div class="empty">Veri yüklenemedi — daha sonra tekrar dene.</div>'});
+
+function toggle(sym){
+  if(sel[sym]!=null){delete sel[sym]; order=order.filter(s=>s!==sym)}
+  else{if(order.length>=15){alert('En fazla 15 hisse seçebilirsin.');return} sel[sym]=0; order.push(sym); equalize()}
+  render()
+}
+function equalize(){var w=order.length?Math.round(1000/order.length)/10:0; order.forEach(s=>sel[s]=w)}
+document.getElementById('btn-eq').onclick=function(){equalize();render()};
+
+function render(){
+  Object.keys(DATA||{}).forEach(function(sym){var c=document.getElementById('chip-'+sym); if(c) c.classList.toggle('on', sel[sym]!=null)});
+  document.getElementById('sel-count').textContent=order.length?('· '+order.length+' hisse'):'';
+  var w=document.getElementById('weights');
+  if(!order.length){w.innerHTML='<div class="empty">Önce yukarıdan hisse seç.</div>'}
+  else{
+    w.innerHTML='';
+    order.forEach(function(sym){
+      var row=document.createElement('div'); row.className='wrow';
+      row.innerHTML='<span class="sym">'+sym+'</span><input type="range" min="0" max="100" step="0.5" value="'+sel[sym]+'"><span class="pct">'+fmt(sel[sym])+'%</span><span class="rm" title="Çıkar">✕</span>';
+      row.querySelector('input').oninput=function(e){sel[sym]=parseFloat(e.target.value); row.querySelector('.pct').textContent=fmt(sel[sym])+'%'; upd()};
+      row.querySelector('.rm').onclick=function(){toggle(sym)};
+      w.appendChild(row);
+    });
+  }
+  upd();
+}
+
+function upd(){
+  var sum=order.reduce((a,s)=>a+(sel[s]||0),0);
+  document.getElementById('wsum').textContent=fmt(sum)+'%';
+  document.getElementById('wsum').style.color=Math.abs(sum-100)<1?'var(--green)':'var(--accent)';
+  if(order.length&&sum>1) run(sum); else {document.getElementById('results').style.display='none';document.getElementById('probar').style.display='none'}
+}
+
+function seriesFor(sym){var d=DATA[sym]; var m={}; d.dates.forEach((dt,i)=>m[dt]=d.values[i]); return m}
+
+function run(sum){
+  // ortak tarih ekseni
+  var common=null;
+  order.forEach(function(sym){var set=new Set(DATA[sym].dates); common=common?common.filter(d=>set.has(d)):DATA[sym].dates.slice()});
+  var allSyms=Object.keys(DATA);
+  allSyms.forEach(function(sym){var set=new Set(DATA[sym].dates); common=common.filter(d=>set.has(d))});
+  if(!common||common.length<40) return;
+  var maps={}; allSyms.forEach(sym=>maps[sym]=seriesFor(sym));
+  // portföy: al-tut
+  var port=common.map(function(dt){
+    var v=0; order.forEach(function(sym){var w=(sel[sym]||0)/sum; v+=w*(maps[sym][dt]/maps[sym][common[0]])});
+    return v*100000;
+  });
+  // benchmark: BIST30 eşit ağırlık al-tut
+  var bench=common.map(function(dt){
+    var v=0; allSyms.forEach(function(sym){v+=(1/allSyms.length)*(maps[sym][dt]/maps[sym][common[0]])});
+    return v*100000;
+  });
+  var ret=(port[port.length-1]/port[0]-1)*100, bret=(bench[bench.length-1]/bench[0]-1)*100;
+  var rets=[]; for(var i=1;i<port.length;i++)rets.push(port[i]/port[i-1]-1);
+  var mean=rets.reduce((a,b)=>a+b,0)/rets.length;
+  var sd=Math.sqrt(rets.reduce((a,b)=>a+(b-mean)*(b-mean),0)/rets.length);
+  var vol=sd*Math.sqrt(252)*100, sharpe=sd?(mean*252)/(sd*Math.sqrt(252)):0;
+  var peak=port[0],mdd=0; port.forEach(function(v){if(v>peak)peak=v; var dd=(v/peak-1)*100; if(dd<mdd)mdd=dd});
+  var st=document.getElementById('stats');
+  function cls(x){return x>=0?'pos':'neg'}
+  st.innerHTML=
+    '<div class="stat"><div class="l">Toplam Getiri</div><div class="v '+cls(ret)+'">'+(ret>=0?'+':'')+fmt(ret)+'%</div><div class="s">100.000 ₺ → '+fmt(port[port.length-1],0)+' ₺</div></div>'+
+    '<div class="stat"><div class="l">BIST30 Sepeti</div><div class="v '+cls(bret)+'">'+(bret>=0?'+':'')+fmt(bret)+'%</div><div class="s">fark: '+(ret-bret>=0?'+':'')+fmt(ret-bret)+' puan</div></div>'+
+    '<div class="stat"><div class="l">Maks. Düşüş</div><div class="v neg">'+fmt(mdd)+'%</div><div class="s">zirveden dibe</div></div>'+
+    '<div class="stat"><div class="l">Yıllık Volatilite</div><div class="v">'+fmt(vol)+'%</div><div class="s">Sharpe '+fmt(sharpe,2)+'</div></div>';
+  document.getElementById('period').textContent=common[0]+' → '+common[common.length-1];
+  document.getElementById('results').style.display='block';
+  document.getElementById('probar').style.display='flex';
+  draw(common,port,bench);
+  toHash();
+  try{gtag('event','portfolio_backtest',{stocks:order.length})}catch(e){}
+}
+
+function draw(dates,port,bench){
+  var cv=document.getElementById('chart'), dpr=window.devicePixelRatio||1;
+  var W=cv.clientWidth,H=300; cv.width=W*dpr; cv.height=H*dpr;
+  var ctx=cv.getContext('2d'); ctx.scale(dpr,dpr); ctx.clearRect(0,0,W,H);
+  var all=port.concat(bench), mn=Math.min.apply(null,all), mx=Math.max.apply(null,all), pad=(mx-mn)*0.08||1;
+  mn-=pad; mx+=pad;
+  var X=function(i){return 44+(W-54)*i/(dates.length-1)}, Y=function(v){return 10+(H-40)*(1-(v-mn)/(mx-mn))};
+  ctx.strokeStyle='#26221d'; ctx.fillStyle='#6f6553'; ctx.font='10px JetBrains Mono,monospace'; ctx.lineWidth=1;
+  for(var g=0;g<=4;g++){var v=mn+(mx-mn)*g/4, y=Y(v); ctx.beginPath();ctx.moveTo(44,y);ctx.lineTo(W-10,y);ctx.stroke(); ctx.fillText(Math.round(v/1000)+'k',4,y+3)}
+  [[bench,'#6f6553',1.5],[port,'#ffa630',2.2]].forEach(function(cfg){
+    ctx.strokeStyle=cfg[1]; ctx.lineWidth=cfg[2]; ctx.beginPath();
+    cfg[0].forEach(function(v,i){var x=X(i),y=Y(v); i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
+    ctx.stroke();
+  });
+  ctx.fillStyle='#ffa630'; var lx=X(port.length-1),ly=Y(port[port.length-1]);
+  ctx.beginPath();ctx.arc(lx,ly,3.5,0,7);ctx.fill();
+  ctx.fillStyle='#6f6553'; ctx.fillText(dates[0],44,H-8); var t2=dates[dates.length-1]; ctx.fillText(t2,W-10-ctx.measureText(t2).width,H-8);
+}
+
+function toHash(){
+  var p=order.map(s=>s+':'+sel[s]).join(',');
+  history.replaceState(null,'','#p='+p);
+}
+function fromHash(){
+  var m=location.hash.match(/p=([^&]+)/); if(!m) {try{var saved=localStorage.getItem('kalibre-portfoy'); if(saved){m=[null,saved]}}catch(e){}}
+  if(!m) return;
+  m[1].split(',').forEach(function(pair){
+    var kv=pair.split(':'), sym=kv[0].toUpperCase(), w=parseFloat(kv[1]);
+    if(DATA[sym]&&w>0&&order.length<15){sel[sym]=w; order.push(sym)}
+  });
+}
+window.addEventListener('beforeunload',function(){try{if(order.length)localStorage.setItem('kalibre-portfoy',order.map(s=>s+':'+sel[s]).join(','))}catch(e){}});
+
+document.getElementById('btn-share').onclick=function(){
+  toHash();
+  navigator.clipboard.writeText(location.href).then(function(){
+    var ok=document.getElementById('share-ok'); ok.style.display='inline'; setTimeout(()=>ok.style.display='none',2000);
+    try{gtag('event','portfolio_share')}catch(e){}
+  });
+};
+document.getElementById('btn-tw').onclick=function(){
+  toHash();
+  var ret=document.querySelector('#stats .v'); var txt='BIST 30 portföyümün 1 yıllık backtest sonucu: '+(ret?ret.textContent:'')+' — sen de dene:';
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(location.href),'_blank');
+};
+window.addEventListener('resize',function(){if(document.getElementById('results').style.display!=='none')upd()});
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>
