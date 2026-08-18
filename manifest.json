@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-17T07:33:07.430198Z",
+  "last_update": "2026-08-18T03:37:33.147710Z",
   "latest_report": {
-    "category": "metals",
-    "date": "2026-08-17",
-    "title": "metals — 2026-08-17"
+    "category": "hisse",
+    "date": "2026-08-18",
+    "title": "İş Bankası (C) — Günün Merceği"
   },
-  "total_reports": 350,
+  "total_reports": 355,
   "by_category": {
-    "pulse": 63,
-    "hisse": 67,
+    "pulse": 64,
+    "hisse": 68,
     "sektor": 20,
-    "fx": 69,
-    "metals": 49,
+    "fx": 70,
+    "metals": 50,
     "makro": 7,
     "fred": 7,
     "wb": 4,
-    "tcmb": 64
+    "tcmb": 65
   }
 }
