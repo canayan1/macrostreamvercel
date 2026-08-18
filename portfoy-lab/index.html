@@ -90,6 +90,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
   <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
   <div class="spacer"></div>
   <a href="/algo/" class="back">Strateji Lab</a>
+  <span data-kalibre-auth></span>
   <a href="/" class="back">← Ana sayfa</a>
 </header>
 
@@ -135,7 +136,8 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
       <span><span class="sw" style="background:#6f6553"></span>BIST 30 eşit ağırlık (al-tut)</span>
     </div>
     <div class="toolbar">
-      <button id="btn-share">Bağlantıyı kopyala</button>
+      <button id="btn-save">Portföyü kaydet</button>
+      <button class="ghost" id="btn-share">Bağlantıyı kopyala</button>
       <button class="ghost" id="btn-img">Sonuç kartını indir</button>
       <button class="ghost" id="btn-tw">X'te paylaş</button>
       <span class="share-ok" id="share-ok">✓ Kopyalandı</span>
@@ -158,7 +160,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
 'use strict';
 var D=null;              // {dates, closes, meta}
 var sel={}, order=[];    // seçili hisseler ve ağırlıkları
-var strat='al-tut', years=5;
+var strat='al-tut', years=5, last=null;
 var MAXSEL=15, CAPITAL=100000;
 
 var STRATS=[
@@ -372,6 +374,7 @@ function run(sum){
     '<div class="stat"><div class="l">Maks. Düşüş</div><div class="v neg">'+fmt(m.mdd)+'%</div><div class="s">sepet: '+fmt(bm.mdd)+'%</div></div>'+
     '<div class="stat"><div class="l">Yıllık Volatilite</div><div class="v">'+fmt(m.vol)+'%</div><div class="s">Sharpe '+fmt(m.sharpe,2)+'</div></div>'+
     '<div class="stat"><div class="l">İşlem / Piyasada</div><div class="v">'+port.trades+'</div><div class="s">zamanın %'+fmt(port.exposure*100,0)+"'inde pozisyonda</div></div>";
+  last={ret:m.ret,strat:stratName,years:years};
   $('period').textContent='— '+stratName+' · '+D.dates[startIdx]+' → '+D.dates[endIdx];
   $('lg-port').textContent='Senin portföyün ('+stratName+')';
   $('results').style.display='block';
@@ -440,6 +443,27 @@ function fromHash(){
   }
 }
 
+$('btn-save').onclick=function(){
+  if(!order.length||!last) return;
+  var varsayilan=order.slice(0,3).join('+')+(order.length>3?' +'+(order.length-3):'');
+  var ad=prompt('Portföye bir ad ver:',varsayilan);
+  if(ad===null) return;
+  var btn=$('btn-save'), eski=btn.textContent;
+  btn.disabled=true; btn.textContent='Kaydediliyor…';
+  KalibreStore.save('portfoy',(ad||varsayilan).slice(0,80),{
+    kod:encode(),
+    hisseler:order.map(function(s){return {sym:s,agirlik:sel[s]}}),
+    strateji:last.strat, yil:last.years, getiri:Math.round(last.ret*10)/10
+  }).then(function(){
+    btn.disabled=false;
+    btn.textContent=(KalibreAuth.user()?'✓ Hesabına kaydedildi':'✓ Bu tarayıcıya kaydedildi');
+    setTimeout(function(){btn.textContent=eski},2600);
+    try{gtag('event','portfolio_save',{signed_in:!!KalibreAuth.user()})}catch(e){}
+  }).catch(function(){
+    btn.disabled=false; btn.textContent=eski;
+    alert('Kaydedilemedi. Birazdan tekrar dener misin?');
+  });
+};
 $('btn-share').onclick=function(){
   toHash();
   navigator.clipboard.writeText(location.href).then(function(){
@@ -499,6 +523,8 @@ window.addEventListener('resize',function(){
 });
 })();
 </script>
+<script src="/static/kalibre-config.js"></script>
+<script src="/static/kalibre-auth.js"></script>
 <script src="/static/asistan.js" defer></script>
 </body>
 </html>

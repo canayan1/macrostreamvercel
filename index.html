@@ -408,6 +408,7 @@ section{padding-top:8px;padding-bottom:8px}
   <div class="topnav-spacer"></div>
   <a href="/hakkinda.html" class="topnav-link">Hakkında</a>
   <a href="#faq" class="topnav-link">SSS</a>
+  <span data-kalibre-auth style="margin-left:22px"></span>
   <a href="/algo/" class="topnav-cta">LAB'I AÇ →</a>
 </header>
 
@@ -424,7 +425,7 @@ section{padding-top:8px;padding-bottom:8px}
 
   <h1>Stratejini fikirle değil, <span class="accent">veriyle test&nbsp;et</span>.</h1>
   <p class="sub">Algoritmik trading ve teknik analiz laboratuvarı. Yatırım tavsiyesi değildir.</p>
-  <div class="pill-row"><span class="pill"><b>5</b> strateji</span><span class="pill"><b>60+</b> hisse</span><span class="pill"><b>5 yıl</b> backtest</span><span class="pill"><b>7</b> ajan canlı</span><span class="pill">Ücretsiz · Hesapsız</span></div>
+  <div class="pill-row"><span class="pill"><b>5</b> strateji</span><span class="pill"><b>60+</b> hisse</span><span class="pill"><b>5 yıl</b> backtest</span><span class="pill"><b>7</b> ajan canlı</span><span class="pill">Ücretsiz · Hesap isteğe bağlı</span></div>
 
   <div class="cta-group">
     <a href="/algo/" class="btn-primary">STRATEJİ LABORATUVARI →</a>
@@ -692,7 +693,7 @@ section{padding-top:8px;padding-bottom:8px}
       </details>
       <details>
         <summary>Hesap açmam gerekiyor mu?</summary>
-        <div class="answer">Hayır. Tüm araçlar hesapsız erişilebilir. Sadece önyargı testi sonuçlarını saklamak için tarayıcıda yerel depolama (localStorage) kullanılır; bu hiçbir yere gönderilmez.</div>
+        <div class="answer">Hayır. Tüm araçlar hesapsız çalışır; kurduğun portföyler ve test sonuçların tarayıcının yerel depolamasında (localStorage) saklanır ve hiçbir yere gönderilmez. İstersen ücretsiz bir hesap açabilirsin: o zaman kayıtların telefonunda ve bilgisayarında aynı anda görünür. Hesap açmak hiçbir aracın kilidini açmaz, sadece kayıtlarını taşır.</div>
       </details>
       <details>
         <summary>Mobil çalışıyor mu?</summary>
@@ -785,6 +786,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') hideLightbox
 })();
 </script>
 
+<script src="/static/kalibre-config.js"></script>
+<script src="/static/kalibre-auth.js"></script>
 <script src="/static/asistan.js" defer></script>
 <script src="/static/terminal-shell.js" defer></script>
 </body>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panom — kayıtlı portföylerin ve izleme listen | Kalibre Markets</title>
+<meta name="description" content="Kalibre hesabın: kaydettiğin portföyler, izleme listen ve çalışma serilerin tek yerde. Hesap isteğe bağlıdır.">
+<link rel="canonical" href="https://kalibremarkets.com/hesap/">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+<style>
+:root{--bg:#0e0c09;--bg-1:#14110e;--surface:#1a1612;--border:#2a241d;--text:#e8e2d8;--text-dim:#b8ae9e;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef5350}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+.topnav{display:flex;align-items:center;gap:14px;padding:0 28px;height:60px;border-bottom:1px solid var(--border);background:var(--bg-1);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text)}
+.brand-mark{width:28px;height:28px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:14px}
+.brand-name{letter-spacing:.14em;font-weight:600;font-size:13px}
+.brand-name .sub{color:var(--muted);font-weight:400}
+.spacer{flex:1}
+.back{font-size:13px;color:var(--text-dim)}
+.wrap{max-width:900px;margin:0 auto;padding:44px 20px 90px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.14;letter-spacing:-.02em;margin-bottom:10px}
+.lead{color:var(--text-dim);font-size:15.5px;max-width:64ch;margin-bottom:28px}
+.panel{background:var(--bg-1);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.panel h2{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.panel .hint{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.row{display:flex;align-items:center;gap:14px;padding:13px 15px;border:1px solid var(--border);border-radius:11px;background:var(--surface);margin-bottom:9px;flex-wrap:wrap}
+.row .nm{font-weight:600;font-size:14px}
+.row .meta{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted)}
+.row .grow{flex:1;min-width:160px}
+.row .ret{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700}
+.pos{color:var(--green)}.neg{color:var(--red)}
+button{background:var(--accent);color:#1a1a1a;border:0;border-radius:10px;padding:10px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit}
+button:hover{background:var(--accent-hot)}
+button.ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);font-weight:600}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+button.mini{padding:7px 12px;font-size:12px}
+.empty{color:var(--muted);font-size:14px;padding:22px;text-align:center;border:1px dashed var(--border);border-radius:11px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text-dim);display:inline-flex;align-items:center;gap:8px}
+.chip b{color:var(--text);font-weight:600}
+.chip .x{cursor:pointer;color:var(--muted);font-size:14px}
+.chip .x:hover{color:var(--red)}
+.note{border-left:2px solid var(--accent);background:var(--surface);padding:13px 16px;border-radius:0 10px 10px 0;font-size:13.5px;color:var(--text-dim);margin-bottom:18px}
+.note b{color:var(--accent)}
+.local{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.28);border-radius:12px;padding:15px 18px;font-size:13.5px;color:var(--text-dim);margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.local .grow{flex:1;min-width:220px}
+.fine{font-size:11.5px;color:var(--muted);line-height:1.65;margin-top:26px;max-width:74ch}
+@media(max-width:600px){.topnav{padding:0 16px}.wrap{padding:28px 14px 70px}.panel{padding:16px}}
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
+  <div class="spacer"></div>
+  <a href="/portfoy-lab/" class="back">Portföy Lab</a>
+  <span data-kalibre-auth></span>
+  <a href="/" class="back">← Ana sayfa</a>
+</header>
+
+<div class="wrap">
+  <div class="eyebrow">▸ Panom</div>
+  <h1 id="hd">Panom</h1>
+  <p class="lead" id="lead">Kaydettiğin portföyler ve izleme listen burada toplanır.</p>
+
+  <div id="state"></div>
+
+  <div class="panel">
+    <h2>Kayıtlı portföylerim</h2>
+    <div class="hint">Portföy Lab'da kurduğun portföyleri buradan tek tıkla geri açarsın.</div>
+    <div id="portfoylar"><div class="empty">Yükleniyor…</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>İzleme listem</h2>
+    <div class="hint">Takip ettiğin hisseler; karne ve lab sayfalarında kısayol olur.</div>
+    <div id="izleme"><div class="empty">Yükleniyor…</div></div>
+  </div>
+
+  <p class="fine">
+    Hesap isteğe bağlıdır. Giriş yapmadan da her araç tam çalışır; kayıtların yalnızca bu tarayıcıda saklanır.
+    Giriş yaptığında kayıtların hesabına taşınır ve diğer cihazlarında da görünür. Sakladığımız tek kişisel veri
+    e-posta adresindir; üçüncü tarafla paylaşılmaz. Hesabını ve tüm kayıtlarını silmek istersen
+    <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yaz, sileriz.
+    <a href="/gizlilik/">Gizlilik politikası</a>
+  </p>
+</div>
+
+<script src="/static/kalibre-config.js"></script>
+<script src="/static/kalibre-auth.js"></script>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(x){return Number(x).toLocaleString('tr-TR',{minimumFractionDigits:1,maximumFractionDigits:1})}
+
+function renderState(){
+  var box=$('state');
+  if(!KalibreAuth.enabled){
+    box.innerHTML='<div class="note"><b>Bulut senkronu henüz açılmadı.</b> Kayıtların şu an yalnızca bu tarayıcıda saklanıyor ve burada listeleniyor. Hesap sistemi devreye girdiğinde bu kayıtlar otomatik olarak hesabına taşınacak.</div>';
+    return;
+  }
+  var u=KalibreAuth.user();
+  if(u){
+    $('hd').textContent='Panom';
+    $('lead').textContent='Kayıtların hesabına bağlı; girdiğin her cihazda aynı listeyi görürsün.';
+    box.innerHTML='';
+  }else{
+    $('lead').textContent='Kayıtların şu an yalnızca bu tarayıcıda. Giriş yaparsan hesabına taşınır ve telefonunda da açılır.';
+    box.innerHTML='<div class="local"><span class="grow">Bu tarayıcıdaki kayıtları hesabına taşımak ister misin? Giriş yaptığında otomatik aktarılır.</span><button id="btn-login">Giriş yap</button></div>';
+    $('btn-login').onclick=function(){KalibreAuth.openLogin()};
+  }
+}
+
+function renderPortfoy(rows){
+  var box=$('portfoylar');
+  if(!rows.length){
+    box.innerHTML='<div class="empty">Henüz kayıtlı portföyün yok. <a href="/portfoy-lab/">Portföy Lab\'da</a> bir portföy kur ve "Portföyü kaydet" de.</div>';
+    return;
+  }
+  box.innerHTML='';
+  rows.forEach(function(r){
+    var p=r.payload||{};
+    var syms=(p.hisseler||[]).map(function(h){return h.sym}).join(' · ');
+    var el=document.createElement('div'); el.className='row';
+    var retHtml=(p.getiri==null)?'':'<span class="ret '+(p.getiri>=0?'pos':'neg')+'">'+(p.getiri>=0?'+':'')+fmt(p.getiri)+'%</span>';
+    el.innerHTML=
+      '<div class="grow"><div class="nm">'+esc(r.name||'Adsız portföy')+'</div>'+
+      '<div class="meta">'+esc(syms||'—')+'</div>'+
+      '<div class="meta">'+esc(p.strateji||'al-tut')+' · '+esc(String(p.yil||5))+' yıl · '+esc((r.updated_at||'').slice(0,10))+'</div></div>'+
+      retHtml+
+      '<button class="mini" data-open>Aç</button>'+
+      '<button class="ghost mini" data-del>Sil</button>';
+    el.querySelector('[data-open]').onclick=function(){
+      location.href='/portfoy-lab/#p='+encodeURIComponent(p.kod||'');
+    };
+    el.querySelector('[data-del]').onclick=function(){
+      if(!confirm('"'+(r.name||'Adsız portföy')+'" silinsin mi?'))return;
+      KalibreStore.remove('portfoy',r.id).then(load);
+    };
+    box.appendChild(el);
+  });
+}
+
+function renderIzleme(rows){
+  var box=$('izleme');
+  var row=rows[0];
+  var syms=(row&&row.payload&&row.payload.semboller)||[];
+  if(!syms.length){
+    box.innerHTML='<div class="empty">İzleme listen boş. <a href="/karne/">Hisse karnesinden</a> veya <a href="/portfoy-lab/">Portföy Lab\'dan</a> hisse ekleyebilirsin.</div>';
+    return;
+  }
+  box.innerHTML='<div class="chips"></div>';
+  var c=box.querySelector('.chips');
+  syms.forEach(function(s){
+    var el=document.createElement('span'); el.className='chip';
+    el.innerHTML='<b>'+esc(s)+'</b><span class="x" title="Çıkar">✕</span>';
+    el.querySelector('.x').onclick=function(){
+      var next=syms.filter(function(x){return x!==s});
+      KalibreStore.save('izleme','İzleme listem',{semboller:next},row.id).then(load);
+    };
+    c.appendChild(el);
+  });
+}
+
+function load(){
+  renderState();
+  KalibreStore.list('portfoy').then(renderPortfoy).catch(function(){
+    $('portfoylar').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
+  });
+  KalibreStore.list('izleme').then(renderIzleme).catch(function(){
+    $('izleme').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
+  });
+}
+
+KalibreAuth.ready().then(load);
+KalibreAuth.onChange(load);
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>
