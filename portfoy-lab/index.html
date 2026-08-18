@@ -368,7 +368,7 @@ function run(sum){
   $('stats').innerHTML=
     '<div class="stat"><div class="l">Toplam Getiri</div><div class="v '+cls(m.ret)+'">'+(m.ret>=0?'+':'')+fmt(m.ret)+'%</div><div class="s">100.000 ₺ → '+fmt(m.last,0)+' ₺</div></div>'+
     '<div class="stat"><div class="l">Yıllık Bileşik</div><div class="v '+cls(m.cagr)+'">'+(m.cagr>=0?'+':'')+fmt(m.cagr)+'%</div><div class="s">CAGR</div></div>'+
-    '<div class="stat"><div class="l">BIST30 Sepeti</div><div class="v '+cls(bm.ret)+'">'+(bm.ret>=0?'+':'')+fmt(bm.ret)+'%</div><div class="s">fark: '+(m.ret-bm.ret>=0?'+':'')+fmt(m.ret-bm.ret)+' puan</div></div>'+
+    '<div class="stat"><div class="l">BIST30\'a Karşı</div><div class="v '+cls(m.ret-bm.ret)+'">'+(m.ret-bm.ret>=0?'+':'')+fmt(m.ret-bm.ret)+' puan</div><div class="s">'+(m.ret-bm.ret>=0?'sepeti geçtin':'sepetin altında')+' · sepet '+(bm.ret>=0?'+':'')+fmt(bm.ret)+'%</div></div>'+
     '<div class="stat"><div class="l">Maks. Düşüş</div><div class="v neg">'+fmt(m.mdd)+'%</div><div class="s">sepet: '+fmt(bm.mdd)+'%</div></div>'+
     '<div class="stat"><div class="l">Yıllık Volatilite</div><div class="v">'+fmt(m.vol)+'%</div><div class="s">Sharpe '+fmt(m.sharpe,2)+'</div></div>'+
     '<div class="stat"><div class="l">İşlem / Piyasada</div><div class="v">'+port.trades+'</div><div class="s">zamanın %'+fmt(port.exposure*100,0)+"'inde pozisyonda</div></div>";
