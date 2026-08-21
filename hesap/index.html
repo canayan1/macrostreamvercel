@@ -339,7 +339,7 @@ var TUR=[
   {sec:'header .topnav a[href="/portfoyum/"]', baslik:'Portföyüm ve Defterim',
    metin:'Gerçek işlemlerini Portföyüm\'e gir, kararlarının gerekçesini Defterim\'e yaz. İkisi de üst menüde.', konum:'alt'}
 ];
-KalibreTur.kur('panom-v1',TUR);
+KalibreTur.kur('panom-v1',TUR,{otomatik:false});
 $('btn-tur').onclick=function(){KalibreTur.sifirla();KalibreTur.baslat()};
 
 KalibreAuth.ready().then(load);

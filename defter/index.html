@@ -91,6 +91,7 @@ button.mini{padding:6px 11px;font-size:11.5px}
   <div class="eyebrow">▸ Defterim</div>
   <h1>Neden aldın? <span class="a">Aylar sonra haklı mıydın?</span></h1>
   <p class="lead">Kararının gerekçesini ve o anki ruh halini yaz. Kalibre o günün fiyatını kaydeder ve sonra sana ne olduğunu gösterir. Tarayıcında çalışır, hesap zorunlu değil.</p>
+  <p style="font-size:12.5px;color:var(--muted);margin:-14px 0 24px"><button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Bu sayfayı bana tanıt</button> — 3 kısa adım, istediğin an durdurabilirsin.</p>
 
   <div class="stats" id="stats"></div>
 
@@ -199,16 +200,17 @@ fetch('/terminal/data/portfoy-lab.json').then(function(r){return r.json()}).then
 }).catch(function(){ /* fiyat yoksa defter yine çalışır */ render(); });
 
 // Tarihe en yakın (o tarih veya öncesi) kapanış
+// Kullanıcının ekstresinde gördüğü ham fiyat; düzeltilmiş seri backtest içindir.
+function seri(sym){return (PX&&PX.closes_raw&&PX.closes_raw[sym])||(PX&&PX.closes&&PX.closes[sym])||null}
 function fiyatAt(sym,tarih){
-  if(!PX||!PX.closes[sym]) return null;
+  var s=seri(sym); if(!s) return null;
   var ds=PX.dates, i=ds.length-1;
   while(i>=0&&ds[i]>tarih) i--;
-  return i<0?null:{fiyat:PX.closes[sym][i],tarih:ds[i]};
+  return i<0?null:{fiyat:s[i],tarih:ds[i]};
 }
 function sonFiyat(sym){
-  if(!PX||!PX.closes[sym]) return null;
-  var a=PX.closes[sym];
-  return {fiyat:a[a.length-1],tarih:PX.dates[PX.dates.length-1]};
+  var s=seri(sym); if(!s) return null;
+  return {fiyat:s[s.length-1],tarih:PX.dates[PX.dates.length-1]};
 }
 
 $('btn-save').onclick=function(){
@@ -324,7 +326,8 @@ KalibreTur.kur('defter-v1',[
    metin:'Zamanla hangi önyargının sende tekrar ettiğini görürsün. Üstteki sayaç en sık işaretlediğin etiketi gösterir.'},
   {sec:'#liste', baslik:'Geri dönüş',
    metin:'Hisse seçtiğin notlarda, o günden bugüne fiyatın ne yaptığını gösteririz. Haklı mıydın, kendin görürsün.', konum:'ust'}
-]);
+],{otomatik:false});
+$('btn-tur').onclick=function(){KalibreTur.sifirla();KalibreTur.baslat()};
 KalibreAuth.ready().then(render);
 KalibreAuth.onChange(render);
 })();
