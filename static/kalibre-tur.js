@@ -100,6 +100,10 @@
     var W = window.innerWidth, H = window.innerHeight, bosluk = 14, sol, ust;
     if (!r) {                                   // hedefsiz adım: ortala
       sol = (W - kw) / 2; ust = (H - kh) / 2;
+    } else if (r.height > H * 0.55) {            // hedef ekrandan uzunsa yanına koy
+      ust = Math.max(bosluk, r.top + 10);
+      sol = (r.left > kw + 2 * bosluk) ? r.left - kw - bosluk : r.right + bosluk;
+      if (sol + kw + bosluk > W) { sol = r.left + 10; ust = Math.max(bosluk, r.top + 10); }
     } else if (konum === 'ust' || (konum !== 'alt' && r.bottom + kh + bosluk > H)) {
       ust = r.top - kh - bosluk;
       sol = r.left + r.width / 2 - kw / 2;
@@ -143,14 +147,20 @@
     ileri.onclick = function () {
       var s = sonrakiGecerli(i + 1, 1);
       if (s < 0) { bitir(); return; }
-      i = s; ciz();
+      git(s);
     };
     var geri = kutu.querySelector('[data-geri]');
     if (geri) geri.onclick = function () {
       var s = sonrakiGecerli(i - 1, -1);
-      if (s >= 0) { i = s; ciz(); }
+      if (s >= 0) git(s);
     };
     ileri.focus();
+  }
+
+  /** Adıma geçer: hedefi görünür alana kaydırır, sonra çizer. */
+  function git(k) {
+    i = k;
+    gorunureKaydir(adimlar[i], ciz);
   }
 
   function gorunureKaydir(a, tamam) {
@@ -158,17 +168,18 @@
     if (!el) return tamam();
     var r = el.getBoundingClientRect();
     if (r.top >= 60 && r.bottom <= window.innerHeight - 60) return tamam();
+    kaydirmaKilit = true;
     try {
       el.scrollIntoView({ block: 'center', behavior: azHareket ? 'auto' : 'smooth' });
     } catch (e) { el.scrollIntoView(); }
-    setTimeout(tamam, azHareket ? 0 : 320);
+    setTimeout(function () { kaydirmaKilit = false; tamam(); }, azHareket ? 0 : 340);
   }
 
   function tusla(e) {
     if (!acik) return;
     if (e.key === 'Escape') { e.preventDefault(); kapat(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); var s = sonrakiGecerli(i + 1, 1); if (s < 0) bitir(); else { i = s; ciz(); } }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); var g = sonrakiGecerli(i - 1, -1); if (g >= 0) { i = g; ciz(); } }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); var s = sonrakiGecerli(i + 1, 1); if (s < 0) bitir(); else git(s); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); var g = sonrakiGecerli(i - 1, -1); if (g >= 0) git(g); }
     else if (e.key === 'Tab') {                       // odağı kutuda tut
       var od = kutu.querySelectorAll('button');
       if (!od.length) return;
@@ -178,7 +189,8 @@
     }
   }
 
-  var yenidenCiz = function () { if (acik) ciz(); };
+  var kaydirmaKilit = false;
+  var yenidenCiz = function () { if (acik && !kaydirmaKilit) ciz(); };
 
   function ac() {
     stilEkle();
