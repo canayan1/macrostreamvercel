@@ -10,6 +10,10 @@
 // VIX ve ABD 10Y Stooq'ta yok → onlar günlük snapshot değerinde kalır.
 //
 // NOT: Veri gecikmeli olabilir (özellikle BIST). Yatırım tavsiyesi değildir.
+//
+// 2026-08-21 DURUM: Stooq'un /q/l/ hafif kotasyon ucu kaldırıldı (404) ve /q/d/l/
+// bot korumasına geçti. Bu endpoint şu an veri döndüremiyor; "degraded" işaretiyle
+// boş yanıt verir ve istemci günlük snapshot'ta kalır. Yeni kaynak seçilmeli.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
@@ -78,7 +82,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       return res.status(200).json({ ts: Date.now(), ok, bySym, quotes });
     }
-    if (ok === 0) return res.status(502).json({ error: 'no quotes', ts: Date.now() });
+    // Yukarı akış (Stooq) tüm sembollerde başarısızsa: istemci zaten günlük
+    // snapshot'a düşüyor, bu yüzden 502 yerine "degraded" işaretiyle 200 döneriz.
+    // Böylece her sayfa açılışında konsola hata basılmaz; bozukluk gizlenmez,
+    // yanıtta açıkça görünür. Kalıcı çözüm yeni bir kotasyon kaynağı gerektirir.
+    if (ok === 0) {
+      res.setHeader('Cache-Control', 's-maxage=60');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      return res.status(200).json({
+        ts: Date.now(), count: 0, degraded: true,
+        reason: 'upstream_unavailable', quotes: {},
+      });
+    }
 
     res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=120');
     res.setHeader('Access-Control-Allow-Origin', '*');
