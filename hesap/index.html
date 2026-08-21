@@ -76,6 +76,9 @@ button.mini{padding:7px 12px;font-size:12px}
 .guide-x{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;padding:4px;font-family:inherit}
 .guide-x:hover{color:var(--text-dim)}
 .reopen{font-size:12.5px;color:var(--muted);margin-bottom:16px;display:none}
+.addrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.addrow select{flex:1;min-width:190px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--text);font-size:13.5px;font-family:inherit;outline:none}
+.addrow select:focus{border-color:var(--accent)}
 .reopen button{background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline}
 @media(max-width:600px){.topnav{padding:0 16px}.wrap{padding:28px 14px 70px}.panel{padding:16px}}
 </style>
@@ -105,9 +108,10 @@ button.mini{padding:7px 12px;font-size:12px}
     <div id="portfoylar"><div class="empty">Yükleniyor…</div></div>
   </div>
 
-  <div class="panel">
+  <div class="panel" id="izleme-panel">
     <h2>İzleme listem</h2>
     <div class="hint">Takip ettiğin hisseler; karne ve lab sayfalarında kısayol olur.</div>
+    <div class="addrow"><select id="add-sym"><option value="">Hisse seç…</option></select><button class="ghost" type="button" id="btn-add">Listeye ekle</button></div>
     <div id="izleme"><div class="empty">Yükleniyor…</div></div>
   </div>
 
@@ -180,6 +184,7 @@ function renderPortfoy(rows){
 function renderIzleme(rows){
   var box=$('izleme');
   var row=rows[0];
+  IZLEME_ROW=row||null;
   var syms=(row&&row.payload&&row.payload.semboller)||[];
   if(!syms.length){
     box.innerHTML='<div class="empty">İzleme listen boş. <a href="/karne/">Hisse karnesinden</a> veya <a href="/portfoy-lab/">Portföy Lab\'dan</a> hisse ekleyebilirsin.</div>';
@@ -206,7 +211,7 @@ var STEPS=[
    cta:'Portföy Lab', href:'/portfoy-lab/'},
   {id:'izleme', t:'İzleme listeni oluştur',
    d:'Takip ettiğin hisseleri işaretle; ileride alarm kuracağın liste bu olacak.',
-   cta:'Hisse ekle', href:'/karne/'},
+   cta:'Hisse ekle', href:'#izleme-panel'},
   {id:'defter', t:'İlk defter notunu yaz',
    d:'Bir kararının gerekçesini yaz. Aylar sonra haklı mıydın, geri dönüp göreceksin.',
    cta:'Deftere yaz', href:'/defter/'},
@@ -292,6 +297,32 @@ function load(){
     renderGuide({portfoy:portfoy||[], izleme:izleme||[], defter:r[2]||[]});
   });
 }
+
+// İzleme listesine hisse ekleme
+var IZLEME_ROW=null;
+fetch('/terminal/data/portfoy-lab.json').then(function(r){return r.json()}).then(function(d){
+  var sel=$('add-sym');
+  Object.keys(d.closes).sort().forEach(function(s){
+    var o=document.createElement('option'); o.value=s;
+    o.textContent=s+((d.meta[s]&&d.meta[s].name)?' — '+d.meta[s].name:'');
+    sel.appendChild(o);
+  });
+}).catch(function(){});
+
+$('btn-add').onclick=function(){
+  var sym=$('add-sym').value; if(!sym) return;
+  var mevcut=(IZLEME_ROW&&IZLEME_ROW.payload&&IZLEME_ROW.payload.semboller)||[];
+  if(mevcut.indexOf(sym)>=0){alert(sym+' zaten listende.');return}
+  var btn=this, eski=btn.textContent;
+  btn.disabled=true; btn.textContent='Ekleniyor…';
+  KalibreStore.save('izleme','İzleme listem',{semboller:mevcut.concat([sym])},IZLEME_ROW?IZLEME_ROW.id:null)
+    .then(function(){
+      btn.disabled=false; btn.textContent=eski; $('add-sym').value='';
+      try{gtag('event','watchlist_add',{symbol:sym})}catch(e){}
+      load();
+    })
+    .catch(function(){btn.disabled=false; btn.textContent=eski; alert('Eklenemedi, tekrar dener misin?')});
+};
 
 KalibreAuth.ready().then(load);
 KalibreAuth.onChange(load);
