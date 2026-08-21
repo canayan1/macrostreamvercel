@@ -54,6 +54,29 @@ button.mini{padding:7px 12px;font-size:12px}
 .local{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.28);border-radius:12px;padding:15px 18px;font-size:13.5px;color:var(--text-dim);margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .local .grow{flex:1;min-width:220px}
 .fine{font-size:11.5px;color:var(--muted);line-height:1.65;margin-top:26px;max-width:74ch}
+.guide{background:linear-gradient(180deg,rgba(255,166,48,.07),rgba(255,166,48,.02));border:1px solid rgba(255,166,48,.32);border-radius:14px;padding:20px;margin-bottom:18px}
+.guide-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.guide-head h2{font-size:16px;margin:0}
+.guide-head .cnt{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-left:auto}
+.guide .sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.bar{height:5px;background:var(--surface);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .4s ease}
+.step{display:flex;gap:13px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--border)}
+.step:first-of-type{border-top:0}
+.step .mark{flex:none;width:23px;height:23px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:1px}
+.step.done .mark{background:var(--green);border-color:var(--green);color:#0e0c09;font-weight:700}
+.step .body{flex:1;min-width:150px}
+.step h3{font-size:14px;margin:0 0 2px;font-weight:600}
+.step.done h3{color:var(--muted);text-decoration:line-through}
+.step p{font-size:12.5px;color:var(--muted);margin:0}
+.step .go{flex:none;align-self:center}
+.step.done .go{display:none}
+.guide-done{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.guide-done .big{font-size:15px;font-weight:600;color:var(--green)}
+.guide-x{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;padding:4px;font-family:inherit}
+.guide-x:hover{color:var(--text-dim)}
+.reopen{font-size:12.5px;color:var(--muted);margin-bottom:16px;display:none}
+.reopen button{background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline}
 @media(max-width:600px){.topnav{padding:0 16px}.wrap{padding:28px 14px 70px}.panel{padding:16px}}
 </style>
 </head>
@@ -73,6 +96,8 @@ button.mini{padding:7px 12px;font-size:12px}
   <p class="lead" id="lead">Kaydettiğin portföyler ve izleme listen burada toplanır.</p>
 
   <div id="state"></div>
+  <div id="guide"></div>
+  <p class="reopen" id="reopen">Başlangıç rehberini <button type="button" id="btn-reopen">yeniden aç</button></p>
 
   <div class="panel">
     <h2>Kayıtlı portföylerim</h2>
@@ -173,13 +198,98 @@ function renderIzleme(rows){
   });
 }
 
+// ── Başlangıç rehberi ────────────────────────────────────────────────
+var ORNEK='THYAO:25,GARAN:25,EREGL:25,BIMAS:25|al-tut|5';
+var STEPS=[
+  {id:'portfoy', t:'Bir portföy kur ve geçmişte test et',
+   d:'BIST 30\'dan birkaç hisse seç, 5 yıllık sonucunu gör. Sitenin çekirdeği burası.',
+   cta:'Portföy Lab', href:'/portfoy-lab/'},
+  {id:'izleme', t:'İzleme listeni oluştur',
+   d:'Takip ettiğin hisseleri işaretle; ileride alarm kuracağın liste bu olacak.',
+   cta:'Hisse ekle', href:'/karne/'},
+  {id:'defter', t:'İlk defter notunu yaz',
+   d:'Bir kararının gerekçesini yaz. Aylar sonra haklı mıydın, geri dönüp göreceksin.',
+   cta:'Deftere yaz', href:'/defter/'},
+  {id:'onyargi', t:'Kendi karar zaaflarını öğren',
+   d:'12 senaryo, 3 dakika. Hangi önyargılara yatkın olduğunu gösterir.',
+   cta:'Testi yap', href:'/trading/onyargi-testi/'}
+];
+
+function stepDone(id,data){
+  if(id==='portfoy') return (data.portfoy||[]).length>0;
+  if(id==='defter')  return (data.defter||[]).length>0;
+  if(id==='izleme'){
+    var r=(data.izleme||[])[0];
+    return !!(r&&r.payload&&(r.payload.semboller||[]).length);
+  }
+  if(id==='onyargi'){ try{return !!localStorage.getItem('km-onyargi-skor')}catch(e){return false} }
+  return false;
+}
+function guideHidden(){ try{return localStorage.getItem('kalibre-rehber-kapali')==='1'}catch(e){return false} }
+
+function renderGuide(data){
+  var box=$('guide'), reopen=$('reopen');
+  var done=STEPS.filter(function(s){return stepDone(s.id,data)});
+  var n=done.length, total=STEPS.length;
+
+  if(guideHidden()&&n<total){
+    box.innerHTML=''; reopen.style.display='block'; return;
+  }
+  reopen.style.display='none';
+
+  if(n===total){
+    box.innerHTML='<div class="guide"><div class="guide-done">'+
+      '<span class="big">✓ Kurulum tamam</span>'+
+      '<span style="flex:1;min-width:180px;font-size:13.5px;color:var(--text-dim)">Dördünü de yaptın. Buradan sonrası alışkanlık: haftada bir defterini doldur, portföyünü gözden geçir.</span>'+
+      '<button class="guide-x" type="button" id="guide-close">Gizle</button></div></div>';
+    $('guide-close').onclick=function(){
+      try{localStorage.setItem('kalibre-rehber-kapali','1')}catch(e){}
+      box.innerHTML=''; reopen.style.display='block';
+    };
+    return;
+  }
+
+  var html='<div class="guide"><div class="guide-head"><h2>Başlangıç rehberi</h2>'+
+    '<span class="cnt">'+n+'/'+total+'</span></div>'+
+    '<div class="sub">Beş dakikada siteyi kendine göre kur. Sırayla gitmek zorunda değilsin.</div>'+
+    '<div class="bar"><i style="width:'+Math.round(n/total*100)+'%"></i></div>';
+  STEPS.forEach(function(s,i){
+    var ok=stepDone(s.id,data);
+    html+='<div class="step'+(ok?' done':'')+'">'+
+      '<span class="mark">'+(ok?'✓':(i+1))+'</span>'+
+      '<span class="body"><h3>'+esc(s.t)+'</h3><p>'+esc(s.d)+'</p></span>'+
+      '<span class="go"><a href="'+s.href+'"><button class="ghost mini" type="button">'+esc(s.cta)+'</button></a></span>'+
+      '</div>';
+  });
+  html+='<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid var(--border)">'+
+    '<span style="font-size:12.5px;color:var(--muted);flex:1;min-width:170px">Önce nasıl göründüğüne bakmak ister misin?</span>'+
+    '<a href="/portfoy-lab/#p='+encodeURIComponent(ORNEK)+'"><button class="ghost mini" type="button">Örnek portföyü aç</button></a>'+
+    '<button class="guide-x" type="button" id="guide-close">Gizle</button></div></div>';
+  box.innerHTML=html;
+  $('guide-close').onclick=function(){
+    try{localStorage.setItem('kalibre-rehber-kapali','1')}catch(e){}
+    renderGuide(data);
+  };
+}
+
+$('btn-reopen').onclick=function(){
+  try{localStorage.removeItem('kalibre-rehber-kapali')}catch(e){}
+  load();
+};
+
 function load(){
   renderState();
-  KalibreStore.list('portfoy').then(renderPortfoy).catch(function(){
-    $('portfoylar').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
-  });
-  KalibreStore.list('izleme').then(renderIzleme).catch(function(){
-    $('izleme').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
+  Promise.all([
+    KalibreStore.list('portfoy').catch(function(){return null}),
+    KalibreStore.list('izleme').catch(function(){return null}),
+    KalibreStore.list('defter').catch(function(){return []})
+  ]).then(function(r){
+    var portfoy=r[0], izleme=r[1];
+    if(portfoy) renderPortfoy(portfoy);
+    else $('portfoylar').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
+    if(izleme) renderIzleme(izleme);
+    else $('izleme').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>';
+    renderGuide({portfoy:portfoy||[], izleme:izleme||[], defter:r[2]||[]});
   });
 }
 
