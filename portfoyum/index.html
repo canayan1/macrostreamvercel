@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portföyüm — gerçek maliyetli portföy takibi ve reel getiri | Kalibre Markets</title>
+<meta name="description" content="İşlemlerini gir, FIFO maliyetle gerçek kâr-zararını gör. Getirini enflasyona, dolara ve gram altına göre karşılaştır. Ücretsiz, hesapsız, tarayıcında çalışır.">
+<link rel="canonical" href="https://kalibremarkets.com/portfoyum/">
+<meta property="og:title" content="Portföyüm — gerçek maliyetli portföy takibi ve reel getiri">
+<meta property="og:description" content="Nominal getiri yanıltır. Portföyünü enflasyona, dolara ve altına göre gör. Ücretsiz.">
+<meta property="og:url" content="https://kalibremarkets.com/portfoyum/">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+<style>
+:root{--bg:#0e0c09;--bg-1:#14110e;--surface:#1a1612;--border:#2a241d;--text:#e8e2d8;--text-dim:#b8ae9e;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef5350}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+.topnav{display:flex;align-items:center;gap:14px;padding:0 28px;height:60px;border-bottom:1px solid var(--border);background:var(--bg-1);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text)}
+.brand-mark{width:28px;height:28px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;font-size:14px}
+.brand-name{letter-spacing:.14em;font-weight:600;font-size:13px}
+.brand-name .sub{color:var(--muted);font-weight:400}
+.spacer{flex:1}.back{font-size:13px;color:var(--text-dim)}
+.wrap{max-width:960px;margin:0 auto;padding:44px 20px 90px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+h1 .a{color:var(--accent)}
+.lead{color:var(--text-dim);font-size:15.5px;max-width:64ch;margin-bottom:26px}
+.panel{background:var(--bg-1);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.panel h2{font-size:15px;margin-bottom:4px}
+.panel .hint{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+input,select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-size:14px;font-family:inherit;outline:none}
+input:focus,select:focus{border-color:var(--accent)}
+.frm{display:grid;grid-template-columns:1.4fr .9fr .8fr .9fr 1fr;gap:10px;margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}
+.stat .s{font-size:11px;color:var(--muted);margin-top:2px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.lens{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.lens .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 16px}
+.lens .card .t{font-size:12.5px;color:var(--text-dim);margin-bottom:6px}
+.lens .card .v{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700}
+.lens .card .s{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.tblwrap{overflow-x:auto;border:1px solid var(--border);border-radius:11px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface)}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.sym{font-weight:700;color:var(--text)}
+button{background:var(--accent);color:#1a1a1a;border:0;border-radius:10px;padding:10px 18px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit}
+button:hover{background:var(--accent-hot)}
+button.ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);font-weight:600}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+button.mini{padding:5px 10px;font-size:11.5px}
+.empty{color:var(--muted);font-size:14px;padding:24px;text-align:center;border:1px dashed var(--border);border-radius:12px}
+.warn{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.25);border-radius:10px;padding:11px 15px;font-size:12.5px;color:var(--text-dim);margin-bottom:14px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ok-msg{color:var(--green);font-size:13px;display:none}
+.fine{font-size:11.5px;color:var(--muted);line-height:1.65;margin-top:26px;max-width:78ch}
+@media(max-width:760px){.frm{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.topnav{padding:0 16px}.wrap{padding:28px 14px 70px}.panel{padding:16px}.frm{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
+  <div class="spacer"></div>
+  <a href="/defter/" class="back">Defterim</a>
+  <a href="/hesap/" class="back">Panom</a>
+  <span data-kalibre-auth></span>
+</header>
+
+<div class="wrap">
+  <div class="eyebrow">▸ Portföyüm · Beta</div>
+  <h1>Nominal getiri yanıltır. <span class="a">Gerçekte ne kazandın?</span></h1>
+  <p class="lead">İşlemlerini gir; FIFO maliyetle gerçek kâr-zararını hesaplarız ve getirini enflasyona, dolara ve gram altına göre yeniden gösteririz. Tarayıcında çalışır, hesap zorunlu değil.</p>
+
+  <div class="panel">
+    <h2>İşlem ekle</h2>
+    <div class="hint">Alış ve satışlarını gir. Aynı hisseden birden çok alım yaptıysan hepsini ayrı ayrı ekle; maliyeti FIFO (ilk giren ilk çıkar) yöntemiyle biz hesaplarız.</div>
+    <div class="frm">
+      <div><label for="i-sym">Hisse</label><select id="i-sym"><option value="">Seç…</option></select></div>
+      <div><label for="i-tip">İşlem</label><select id="i-tip"><option value="alis">Alış</option><option value="satis">Satış</option></select></div>
+      <div><label for="i-adet">Adet</label><input id="i-adet" type="number" min="0" step="any" placeholder="100"></div>
+      <div><label for="i-fiyat">Fiyat (₺)</label><input id="i-fiyat" type="number" min="0" step="any" placeholder="0,00"></div>
+      <div><label for="i-tarih">Tarih</label><input id="i-tarih" type="date"></div>
+    </div>
+    <div class="toolbar">
+      <button id="btn-ekle" type="button">İşlemi ekle</button>
+      <button class="ghost" id="btn-fiyat" type="button">O günün fiyatını getir</button>
+      <span class="ok-msg" id="ok-msg">✓ Eklendi</span>
+    </div>
+  </div>
+
+  <div id="ozet"></div>
+
+  <div class="panel">
+    <h2>Pozisyonlarım</h2>
+    <div class="hint">Elindeki hisseler, FIFO maliyetin ve güncel değerin.</div>
+    <div id="pozisyonlar"><div class="empty">Yükleniyor…</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>İşlem geçmişim</h2>
+    <div id="islemler"><div class="empty">Henüz işlem yok.</div></div>
+  </div>
+
+  <p class="fine">
+    <b style="color:var(--text-dim)">Yöntem.</b> Maliyet FIFO (ilk giren ilk çıkar) yöntemiyle hesaplanır: sattığında en eski alımların maliyeti düşülür. Gerçekleşmiş kâr-zarar satışlardan, gerçekleşmemiş kâr-zarar elindeki pozisyonların güncel fiyatından gelir.
+    <b style="color:var(--text-dim)">Mercekler</b> şunu sorar: aynı parayı o gün enflasyona (TÜFE), dolara ya da gram altına yatırsaydın bugün ne olurdu? Karşılaştırma her alımın kendi tarihinden yapılır, tek bir başlangıç tarihinden değil.
+    Fiyatlar Yahoo Finance günlük kapanışlarıdır (bölünme ve temettü düzeltilmiş) ve her sabah güncellenir; gün içi işlem yaptıysan küçük farklar olur. Temettü, bedelsiz, bedelli ve işlem komisyonu <b style="color:var(--text-dim)">bu sürümde hesaba katılmaz</b>. TÜFE aylık yayımlanır; son yayımlanan aydan sonrası sabit varsayılır, bu yüzden çok yeni tarihlerde reel getiri bir miktar iyimser görünebilir.
+    Bu araç eğitim ve öz-takip amaçlıdır; yatırım tavsiyesi değildir. Sorular: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>
+  </p>
+</div>
+
+<script src="/static/kalibre-config.js"></script>
+<script src="/static/kalibre-auth.js"></script>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)};
+var D=null, islemler=[], ROW=null;
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function n(x,d){d=d==null?2:d;return Number(x).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function pct(x){return (x>=0?'+':'')+n(x,1)+'%'}
+function cls(x){return x>=0?'pos':'neg'}
+function bugun(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+$('i-tarih').value=bugun();
+$('i-tarih').max=bugun();
+
+fetch('/terminal/data/portfoy-lab.json').then(function(r){return r.json()}).then(function(d){
+  D=d; var sel=$('i-sym');
+  Object.keys(d.closes).sort().forEach(function(s){
+    var o=document.createElement('option'); o.value=s;
+    o.textContent=s+((d.meta[s]&&d.meta[s].name)?' — '+d.meta[s].name:'');
+    sel.appendChild(o);
+  });
+  yukle();
+}).catch(function(){
+  $('pozisyonlar').innerHTML='<div class="empty">Fiyat verisi yüklenemedi.</div>';
+});
+
+// Tarihe en yakın (o tarih veya öncesi) değer
+function at(arr,tarih){
+  if(!D) return null;
+  var ds=D.dates,i=ds.length-1;
+  while(i>=0&&ds[i]>tarih)i--;
+  return i<0?null:arr[i];
+}
+function fiyatAt(sym,tarih){return D&&D.closes[sym]?at(D.closes[sym],tarih):null}
+function sonFiyat(sym){var a=D&&D.closes[sym];return a?a[a.length-1]:null}
+function lensAt(k,tarih){var L=D&&D.lenses&&D.lenses[k];return L?at(L.values,tarih):null}
+function lensSon(k){var L=D&&D.lenses&&D.lenses[k];return L?L.values[L.values.length-1]:null}
+
+$('btn-fiyat').onclick=function(){
+  var sym=$('i-sym').value,t=$('i-tarih').value;
+  if(!sym||!t){alert('Önce hisse ve tarih seç.');return}
+  var f=fiyatAt(sym,t);
+  if(f==null){alert('O tarih için fiyat bulunamadı.');return}
+  $('i-fiyat').value=f;
+};
+
+$('btn-ekle').onclick=function(){
+  var sym=$('i-sym').value, tip=$('i-tip').value;
+  var adet=parseFloat($('i-adet').value), fiyat=parseFloat($('i-fiyat').value), tarih=$('i-tarih').value;
+  if(!sym){alert('Hisse seç.');return}
+  if(!(adet>0)){alert('Adet sıfırdan büyük olmalı.');return}
+  if(!(fiyat>0)){alert('Fiyat sıfırdan büyük olmalı.');return}
+  if(!tarih){alert('Tarih gir.');return}
+  if(tarih>bugun()){alert('Gelecek tarihli işlem eklenemez.');return}
+
+  var yeni=islemler.concat([{sym:sym,tip:tip,adet:adet,fiyat:fiyat,tarih:tarih}]);
+  // satış elde olandan fazla olamaz
+  var kontrol=hesapla(yeni);
+  if(kontrol.hata){alert(kontrol.hata);return}
+
+  var btn=this,eski=btn.textContent; btn.disabled=true; btn.textContent='Ekleniyor…';
+  KalibreStore.save('portfoyum','İşlemlerim',{islemler:yeni},ROW?ROW.id:null).then(function(){
+    btn.disabled=false; btn.textContent=eski;
+    $('i-adet').value=''; $('i-fiyat').value='';
+    var ok=$('ok-msg'); ok.style.display='inline'; setTimeout(function(){ok.style.display='none'},2200);
+    try{gtag('event','portfolio_tx',{type:tip})}catch(e){}
+    yukle();
+  }).catch(function(){btn.disabled=false;btn.textContent=eski;alert('Kaydedilemedi, tekrar dener misin?')});
+};
+
+// ── FIFO çekirdeği ──────────────────────────────────────────────────────
+function hesapla(list){
+  var sirali=list.slice().sort(function(a,b){return a.tarih<b.tarih?-1:a.tarih>b.tarih?1:0});
+  var lot={}, gerceklesen=0, maliyetToplam=0;
+  var alimlar=[];                       // mercek karşılaştırması için (tutar + tarih)
+  for(var i=0;i<sirali.length;i++){
+    var t=sirali[i];
+    if(!lot[t.sym]) lot[t.sym]=[];
+    if(t.tip==='alis'){
+      lot[t.sym].push({adet:t.adet,fiyat:t.fiyat,tarih:t.tarih});
+      alimlar.push({tutar:t.adet*t.fiyat,tarih:t.tarih});
+    }else{
+      var kalan=t.adet, elde=lot[t.sym].reduce(function(a,l){return a+l.adet},0);
+      if(kalan>elde+1e-9) return {hata:t.sym+' için elinde '+n(elde,0)+' adet var, '+n(t.adet,0)+' adet satamazsın. ('+t.tarih+')'};
+      while(kalan>1e-9){
+        var l=lot[t.sym][0];
+        var al=Math.min(l.adet,kalan);
+        gerceklesen+=al*(t.fiyat-l.fiyat);
+        l.adet-=al; kalan-=al;
+        if(l.adet<=1e-9) lot[t.sym].shift();
+      }
+    }
+  }
+  var poz=[];
+  Object.keys(lot).forEach(function(s){
+    var adet=lot[s].reduce(function(a,l){return a+l.adet},0);
+    if(adet<=1e-9) return;
+    var mal=lot[s].reduce(function(a,l){return a+l.adet*l.fiyat},0);
+    var sf=sonFiyat(s);
+    poz.push({sym:s,adet:adet,maliyet:mal,ortalama:mal/adet,fiyat:sf,deger:sf!=null?adet*sf:null,lotlar:lot[s].slice()});
+    maliyetToplam+=mal;
+  });
+  poz.sort(function(a,b){return (b.deger||0)-(a.deger||0)});
+  return {poz:poz,gerceklesen:gerceklesen,maliyet:maliyetToplam,alimlar:alimlar,sirali:sirali};
+}
+
+// Açık pozisyonların lotlarını mercekle karşılaştır: aynı parayı o gün
+// TÜFE'ye / dolara / altına koysaydın bugün ne olurdu?
+function mercek(poz,k){
+  var son=lensSon(k); if(son==null) return null;
+  var yatirilan=0, karsilik=0;
+  poz.forEach(function(p){
+    p.lotlar.forEach(function(l){
+      var baz=lensAt(k,l.tarih); if(baz==null||baz<=0) return;
+      var tutar=l.adet*l.fiyat;
+      yatirilan+=tutar;
+      karsilik+=tutar*(son/baz);
+    });
+  });
+  if(yatirilan<=0) return null;
+  return {yatirilan:yatirilan,karsilik:karsilik};
+}
+
+function yukle(){
+  KalibreStore.list('portfoyum').then(function(rows){
+    ROW=(rows||[])[0]||null;
+    islemler=(ROW&&ROW.payload&&ROW.payload.islemler)||[];
+    ciz();
+  }).catch(function(){$('pozisyonlar').innerHTML='<div class="empty">Kayıtlar yüklenemedi.</div>'});
+}
+
+function ciz(){
+  if(!islemler.length){
+    $('ozet').innerHTML='';
+    $('pozisyonlar').innerHTML='<div class="empty">Henüz pozisyonun yok. Yukarıdan ilk işlemini ekle.</div>';
+    $('islemler').innerHTML='<div class="empty">Henüz işlem yok.</div>';
+    return;
+  }
+  var h=hesapla(islemler);
+  if(h.hata){$('pozisyonlar').innerHTML='<div class="empty">'+esc(h.hata)+'</div>';return}
+
+  var deger=h.poz.reduce(function(a,p){return a+(p.deger||0)},0);
+  var gerceklesmemis=deger-h.maliyet;
+  var toplam=gerceklesmemis+h.gerceklesen;
+  var yuzde=h.maliyet>0?(gerceklesmemis/h.maliyet)*100:0;
+
+  // Özet + mercekler
+  var lensHtml='';
+  [['tufe','Enflasyona göre'],['usdtry','Dolara göre'],['gramaltin','Altına göre']].forEach(function(x){
+    var m=mercek(h.poz,x[0]); if(!m) return;
+    var fark=deger-m.karsilik;
+    var farkPct=m.karsilik>0?(deger/m.karsilik-1)*100:0;
+    var L=D.lenses[x[0]];
+    var not=(x[0]==='tufe'&&L.last_actual)?('TÜFE '+L.last_actual+' ayına kadar açıklandı'):
+            ('aynı parayı '+(x[0]==='usdtry'?'dolara':'gram altına')+' koysaydın '+n(m.karsilik,0)+' ₺');
+    lensHtml+='<div class="card"><div class="t">'+x[1]+'</div>'+
+      '<div class="v '+cls(fark)+'">'+pct(farkPct)+'</div>'+
+      '<div class="s">'+esc(not)+'</div></div>';
+  });
+
+  $('ozet').innerHTML='<div class="panel"><h2>Özet</h2>'+
+    '<div class="hint">Açık pozisyonların bugünkü durumu.</div>'+
+    '<div class="stats">'+
+      '<div class="stat"><div class="l">Portföy Değeri</div><div class="v">'+n(deger,0)+' ₺</div><div class="s">maliyet '+n(h.maliyet,0)+' ₺</div></div>'+
+      '<div class="stat"><div class="l">Açık K/Z</div><div class="v '+cls(gerceklesmemis)+'">'+(gerceklesmemis>=0?'+':'')+n(gerceklesmemis,0)+' ₺</div><div class="s">'+pct(yuzde)+'</div></div>'+
+      '<div class="stat"><div class="l">Gerçekleşmiş K/Z</div><div class="v '+cls(h.gerceklesen)+'">'+(h.gerceklesen>=0?'+':'')+n(h.gerceklesen,0)+' ₺</div><div class="s">satışlardan</div></div>'+
+      '<div class="stat"><div class="l">Toplam</div><div class="v '+cls(toplam)+'">'+(toplam>=0?'+':'')+n(toplam,0)+' ₺</div><div class="s">açık + gerçekleşmiş</div></div>'+
+    '</div>'+
+    (lensHtml?'<div class="warn">Aşağıdaki üç kutu şunu sorar: <b>aynı parayı, aynı gün</b> bu araçlara koysaydın bugün ne olurdu? Pozitif değer, portföyünün o ölçütü geçtiğini gösterir.</div><div class="lens">'+lensHtml+'</div>':'')+
+    '</div>';
+
+  // Pozisyon tablosu
+  var t='<div class="tblwrap"><table><tr><th>Hisse</th><th>Adet</th><th>Ort. Maliyet</th><th>Güncel</th><th>Değer</th><th>K/Z</th><th>%</th></tr>';
+  h.poz.forEach(function(p){
+    var kz=p.deger!=null?p.deger-p.maliyet:null;
+    var y=p.maliyet>0&&kz!=null?(kz/p.maliyet)*100:null;
+    t+='<tr><td class="sym">'+esc(p.sym)+'</td><td>'+n(p.adet,0)+'</td><td>'+n(p.ortalama)+'</td>'+
+       '<td>'+(p.fiyat!=null?n(p.fiyat):'—')+'</td><td>'+(p.deger!=null?n(p.deger,0):'—')+'</td>'+
+       '<td class="'+(kz!=null?cls(kz):'')+'">'+(kz!=null?(kz>=0?'+':'')+n(kz,0):'—')+'</td>'+
+       '<td class="'+(y!=null?cls(y):'')+'">'+(y!=null?pct(y):'—')+'</td></tr>';
+  });
+  t+='</table></div>';
+  $('pozisyonlar').innerHTML=h.poz.length?t:'<div class="empty">Açık pozisyonun yok (hepsini satmışsın).</div>';
+
+  // İşlem geçmişi
+  var g='<div class="tblwrap"><table><tr><th>Tarih</th><th>Hisse</th><th>İşlem</th><th>Adet</th><th>Fiyat</th><th>Tutar</th><th></th></tr>';
+  h.sirali.slice().reverse().forEach(function(x){
+    var idx=islemler.indexOf(x);
+    g+='<tr><td style="text-align:left">'+esc(x.tarih)+'</td><td class="sym">'+esc(x.sym)+'</td>'+
+       '<td class="'+(x.tip==='alis'?'pos':'neg')+'">'+(x.tip==='alis'?'Alış':'Satış')+'</td>'+
+       '<td>'+n(x.adet,0)+'</td><td>'+n(x.fiyat)+'</td><td>'+n(x.adet*x.fiyat,0)+'</td>'+
+       '<td><button class="ghost mini" type="button" data-sil="'+idx+'">Sil</button></td></tr>';
+  });
+  g+='</table></div>';
+  $('islemler').innerHTML=g;
+  [].forEach.call($('islemler').querySelectorAll('[data-sil]'),function(b){
+    b.onclick=function(){
+      var i=parseInt(b.getAttribute('data-sil'),10);
+      if(i<0||!confirm('Bu işlem silinsin mi? Sonraki hesaplar değişir.'))return;
+      var yeni=islemler.slice(); yeni.splice(i,1);
+      KalibreStore.save('portfoyum','İşlemlerim',{islemler:yeni},ROW?ROW.id:null).then(yukle);
+    };
+  });
+}
+
+KalibreAuth.ready().then(function(){ if(D) yukle(); });
+KalibreAuth.onChange(function(){ if(D) yukle(); });
+})();
+</script>
+<script src="/static/asistan.js" defer></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 create table if not exists public.kalibre_items (
   id          uuid primary key default gen_random_uuid(),
   user_id     uuid not null references auth.users(id) on delete cascade,
-  kind        text not null check (kind in ('portfoy','izleme','defter','seri')),
+  kind        text not null check (kind in ('portfoy','portfoyum','izleme','defter','seri')),
   name        text not null default '',
   payload     jsonb not null default '{}'::jsonb,
   created_at  timestamptz not null default now(),
