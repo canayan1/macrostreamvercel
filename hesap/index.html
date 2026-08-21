@@ -103,6 +103,7 @@ button.mini{padding:7px 12px;font-size:12px}
   <div id="state"></div>
   <div id="guide"></div>
   <p class="reopen" id="reopen">Başlangıç rehberini <button type="button" id="btn-reopen">yeniden aç</button></p>
+  <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px">Burada ne olduğunu anlamadın mı? <button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Sayfayı bana tanıt</button></p>
 
   <div class="panel">
     <h2>Kayıtlı portföylerim</h2>
@@ -128,6 +129,7 @@ button.mini{padding:7px 12px;font-size:12px}
 
 <script src="/static/kalibre-config.js"></script>
 <script src="/static/kalibre-auth.js"></script>
+<script src="/static/kalibre-tur.js"></script>
 <script>
 (function(){
 'use strict';
@@ -325,6 +327,20 @@ $('btn-add').onclick=function(){
     })
     .catch(function(){btn.disabled=false; btn.textContent=eski; alert('Eklenemedi, tekrar dener misin?')});
 };
+
+// ── Sayfa tanıtım turu ───────────────────────────────────────────────
+var TUR=[
+  {sec:'#guide', baslik:'Buradan başla',
+   metin:'Dört adımlık kısa bir kurulum listesi. Her adımı tamamladığında kendiliğinden işaretlenir; sırayla gitmek zorunda değilsin.'},
+  {sec:'#portfoylar', baslik:'Kayıtlı portföylerin',
+   metin:'Portföy Lab\'da kurduğun senaryolar burada durur. "Aç" dediğinde aynı portföy ve strateji geri yüklenir.'},
+  {sec:'#izleme-panel', baslik:'İzleme listen',
+   metin:'Takip ettiğin hisseleri buradan ekle. İleride kuracağımız alarmlar bu listenin üstüne gelecek.'},
+  {sec:'header .topnav a[href="/portfoyum/"]', baslik:'Portföyüm ve Defterim',
+   metin:'Gerçek işlemlerini Portföyüm\'e gir, kararlarının gerekçesini Defterim\'e yaz. İkisi de üst menüde.', konum:'alt'}
+];
+KalibreTur.kur('panom-v1',TUR);
+$('btn-tur').onclick=function(){KalibreTur.sifirla();KalibreTur.baslat()};
 
 KalibreAuth.ready().then(load);
 KalibreAuth.onChange(load);

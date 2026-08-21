@@ -147,6 +147,7 @@ button.mini{padding:6px 11px;font-size:11.5px}
 
 <script src="/static/kalibre-config.js"></script>
 <script src="/static/kalibre-auth.js"></script>
+<script src="/static/kalibre-tur.js"></script>
 <script>
 (function(){
 'use strict';
@@ -316,6 +317,14 @@ function ciz(){
   });
 }
 
+KalibreTur.kur('defter-v1',[
+  {sec:'#f-metin', baslik:'Gerekçeni yaz',
+   metin:'Neden bu kararı verdin, ne bekliyorsun, yanılırsan ne yapacaksın? Karar anında yazmak sonradan hatırlamaya çalışmaktan çok daha değerli.'},
+  {sec:'#f-tags', baslik:'Ruh halini işaretle',
+   metin:'Zamanla hangi önyargının sende tekrar ettiğini görürsün. Üstteki sayaç en sık işaretlediğin etiketi gösterir.'},
+  {sec:'#liste', baslik:'Geri dönüş',
+   metin:'Hisse seçtiğin notlarda, o günden bugüne fiyatın ne yaptığını gösteririz. Haklı mıydın, kendin görürsün.', konum:'ust'}
+]);
 KalibreAuth.ready().then(render);
 KalibreAuth.onChange(render);
 })();
