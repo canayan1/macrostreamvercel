@@ -54,6 +54,11 @@
     'color:#6f6553!important;font-size:12px!important;font-weight:500!important;padding:3px!important;cursor:pointer}' +
     '.ktur-atla:hover{color:#e8e2d8!important}';
 
+  // Bazı gömülü/otomasyon ortamlarında window.innerHeight 0 dönebiliyor;
+  // o durumda belge ölçüsüne düşeriz, aksi halde perde ve konum hesabı bozulur.
+  function vw() { return window.innerWidth || document.documentElement.clientWidth || 1024; }
+  function vh() { return window.innerHeight || document.documentElement.clientHeight || 768; }
+
   function stilEkle() {
     if (document.getElementById('ktur-css')) return;
     var s = document.createElement('style');
@@ -78,7 +83,7 @@
   }
 
   function perdeleriCiz(r) {
-    var W = window.innerWidth, H = window.innerHeight, p = 6;
+    var W = vw(), H = vh(), p = 6;
     var kutular = r
       ? [[0, 0, W, Math.max(0, r.top - p)],
          [0, Math.min(H, r.bottom + p), W, Math.max(0, H - r.bottom - p)],
@@ -97,7 +102,7 @@
 
   function yerlestir(r, konum) {
     var kw = kutu.offsetWidth, kh = kutu.offsetHeight;
-    var W = window.innerWidth, H = window.innerHeight, bosluk = 14, sol, ust;
+    var W = vw(), H = vh(), bosluk = 14, sol, ust;
     if (!r) {                                   // hedefsiz adım: ortala
       sol = (W - kw) / 2; ust = (H - kh) / 2;
     } else if (r.height > H * 0.55) {            // hedef ekrandan uzunsa yanına koy
@@ -167,7 +172,7 @@
     var el = hedef(a);
     if (!el) return tamam();
     var r = el.getBoundingClientRect();
-    if (r.top >= 60 && r.bottom <= window.innerHeight - 60) return tamam();
+    if (r.top >= 60 && r.bottom <= vh() - 60) return tamam();
     kaydirmaKilit = true;
     try {
       el.scrollIntoView({ block: 'center', behavior: azHareket ? 'auto' : 'smooth' });
