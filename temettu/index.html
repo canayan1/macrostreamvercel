@@ -52,6 +52,8 @@ h1 .a{color:var(--accent)}
 .hs .tl{font-family:'JetBrains Mono',monospace;color:var(--green)}
 .hs .g{width:6px;height:6px;border-radius:50%;flex:none}
 .g-yuksek{background:var(--green)}.g-orta{background:var(--accent)}.g-dusuk{background:var(--muted)}
+.hs.aci{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.07)}
+.rozet{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:var(--green);border:1px solid rgba(74,222,128,.45);border-radius:999px;padding:1px 6px}
 .tblwrap{overflow-x:auto;border:1px solid var(--border);border-radius:11px}
 table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface)}
 th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
@@ -84,7 +86,7 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
   <p style="font-size:12.5px;color:var(--muted);margin:-14px 0 24px"><button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Bu sayfayı bana tanıt</button> — 3 kısa adım, istediğin an durdurabilirsin.</p>
 
   <div class="warn">
-    <b>Önce şunu bil:</b> Buradaki gelecek ödemeler <b>açıklanmış temettü değildir</b>. Şirketin geçmiş yıllarda hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Şirket tutarı değiştirebilir, tarihi kaydırabilir ya da hiç ödemeyebilir. Kesin bilgi için KAP açıklamalarına bak. Tutarlar <b>brüttür</b>; stopaj kesildikten sonra elinize geçen daha azdır.
+    <b>Önce şunu bil:</b> Takvimdeki tarihlerin bir kısmı şirketin duyurduğu kesin ex-temettü tarihidir ve <span class="rozet">AÇIKLANDI</span> ile işaretlenir. <b>İşaretsiz olanlar tahmindir</b>, açıklanmış temettü değildir. Şirketin geçmiş yıllarda hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Şirket tutarı değiştirebilir, tarihi kaydırabilir ya da hiç ödemeyebilir. Kesin bilgi için KAP açıklamalarına bak. Tutarlar <b>brüttür</b>; stopaj kesildikten sonra elinize geçen daha azdır.
   </div>
 
   <div class="panel" id="gelir-panel" style="display:none">
@@ -140,13 +142,21 @@ fetch('/terminal/data/temettu.json').then(function(r){return r.json()}).then(fun
 // ── Beklenen ödemeler takvimi ────────────────────────────────────────
 function takvim(){
   var bugun=new Date().toISOString().slice(0,10);
-  var aylar={};
+  var aylar={}, aciSayi=0;
   Object.keys(T.stocks).forEach(function(sym){
-    var s=T.stocks[sym];
+    var s=T.stocks[sym], aci=s.aciklanmis_ex;
+    // Açıklanmış ex-tarih varsa o tarihi kullan; tahminlerden aynı aya düşeni ele.
+    if(aci&&aci>=bugun){
+      aciSayi++;
+      var yakin=(s.tahminler||[]).filter(function(x){return x.tarih.slice(0,7)===aci.slice(0,7)})[0];
+      (aylar[aci.slice(0,7)]=aylar[aci.slice(0,7)]||[]).push({
+        sym:sym,tarih:aci,tutar:yakin?yakin.tutar:null,guven:'yuksek',verim:s.verim,aciklanmis:true});
+    }
     (s.tahminler||[]).forEach(function(x){
       if(x.tarih<bugun) return;
+      if(aci&&aci>=bugun&&x.tarih.slice(0,7)===aci.slice(0,7)) return;   // yinelemeyi önle
       var k=x.tarih.slice(0,7);
-      (aylar[k]=aylar[k]||[]).push({sym:sym,tarih:x.tarih,tutar:x.tutar,guven:x.guven,verim:s.verim});
+      (aylar[k]=aylar[k]||[]).push({sym:sym,tarih:x.tarih,tutar:x.tutar,guven:x.guven,verim:s.verim,aciklanmis:false});
     });
   });
   var sirali=Object.keys(aylar).sort().slice(0,12);
@@ -161,13 +171,19 @@ function takvim(){
     html+='<div class="ay"><div class="ay-bas"><h3>'+AYLAR[m-1]+' '+y+'</h3>'+
       '<span style="font-size:12px;color:var(--muted)">'+liste.length+' ödeme</span></div><div class="hisseler">';
     liste.forEach(function(x){
-      html+='<span class="hs" title="'+esc(x.tarih)+' · geçen yıl aynı tarihte ödendi">'+
-        '<span class="g g-'+esc(x.guven)+'"></span>'+
-        '<b>'+esc(x.sym)+'</b><span class="tl">'+n(x.tutar)+' ₺</span>'+
+      var baslik=x.aciklanmis?(esc(x.tarih)+' · şirketin açıkladığı ex-temettü tarihi')
+                             :(esc(x.tarih)+' · geçen yıl aynı tarihte ödendi (tahmin)');
+      html+='<span class="hs'+(x.aciklanmis?' aci':'')+'" title="'+baslik+'">'+
+        (x.aciklanmis?'<span class="rozet">AÇIKLANDI</span>':'<span class="g g-'+esc(x.guven)+'"></span>')+
+        '<b>'+esc(x.sym)+'</b>'+
+        (x.tutar!=null?'<span class="tl">'+n(x.tutar)+' ₺'+(x.aciklanmis?'*':'')+'</span>':'')+
         '<span style="color:var(--muted);font-family:\'JetBrains Mono\',monospace">'+esc(x.tarih.slice(8))+'</span></span>';
     });
     html+='</div></div>';
   });
+  if(aciSayi) html+='<p style="font-size:11.5px;color:var(--muted);margin-top:4px">'+
+    '<span class="rozet">AÇIKLANDI</span> işaretli tarihler şirketin duyurduğu ex-temettü tarihleridir. '+
+    'Yanındaki <b>*</b> tutar hâlâ tahmindir (geçen yılın aynı ödemesi) — tarih kesin, tutar değil.</p>';
   $('takvim').innerHTML=html;
 }
 
