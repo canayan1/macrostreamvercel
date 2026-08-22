@@ -53,6 +53,8 @@ h1 .a{color:var(--accent)}
 .hs .g{width:6px;height:6px;border-radius:50%;flex:none}
 .g-yuksek{background:var(--green)}.g-orta{background:var(--accent)}.g-dusuk{background:var(--muted)}
 .hs.aci{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.07)}
+.elden{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:0 12px 12px 0;padding:13px 17px;margin-bottom:16px;font-size:13px;color:var(--text-dim)}
+.elden .tar{font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600;white-space:nowrap}
 .rozet{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:var(--green);border:1px solid rgba(74,222,128,.45);border-radius:999px;padding:1px 6px}
 .tblwrap{overflow-x:auto;border:1px solid var(--border);border-radius:11px}
 table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface)}
@@ -82,8 +84,10 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
 <div class="wrap">
   <div class="eyebrow">▸ Temettü Takvimi · Beta</div>
   <h1>Hangi hisse ne zaman, <span class="a">ne kadar ödedi?</span></h1>
-  <p class="lead">BIST 30'un geçmiş temettü ödemeleri, güncel verimi ve geçmiş düzene göre beklenen sıradaki ödemeler. <a href="/portfoyum/">Portföyünü girdiysen</a> yıllık temettü gelirini de hesaplarız.</p>
+  <p class="lead">BIST 30'un temettü geçmişini hisse hisse elden geçirip tuttuğumuz defter. Hangi şirket geçen yıl ne zaman ne ödemiş, bu yıl ne bekleniyor. <a href="/portfoyum/">Portföyünü girdiysen</a> yıllık temettü gelirini de hesaplarız.</p>
   <p style="font-size:12.5px;color:var(--muted);margin:-14px 0 24px"><button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Bu sayfayı bana tanıt</button> — 3 kısa adım, istediğin an durdurabilirsin.</p>
+
+  <div class="elden" id="elden"></div>
 
   <div class="warn">
     <b>Önce şunu bil:</b> Takvimdeki tarihlerin bir kısmı şirketin duyurduğu kesin ex-temettü tarihidir ve <span class="rozet">AÇIKLANDI</span> ile işaretlenir. <b>İşaretsiz olanlar tahmindir</b>, açıklanmış temettü değildir. Şirketin geçmiş yıllarda hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Şirket tutarı değiştirebilir, tarihi kaydırabilir ya da hiç ödemeyebilir. Kesin bilgi için KAP açıklamalarına bak. Tutarlar <b>brüttür</b>; stopaj kesildikten sonra elinize geçen daha azdır.
@@ -115,7 +119,7 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
 
   <p class="fine">
     <b style="color:var(--text-dim)">Yöntem.</b> Ödeme kayıtları Yahoo Finance'ten alınır; tarih <b>ex-temettü</b> tarihidir (o gün ve sonrasında alan temettüyü alamaz), tutar hisse başına <b>brüt</b> tutardır ve geçmiş bölünmelere göre bugünkü hisse adedine denk gelecek şekilde düzeltilmiştir. Verim = son 12 ayın toplamı ÷ güncel ham kapanış. Beklenen ödeme, şirketin <b>en az iki ayrı yılda</b> aynı ayda ödeme yapmış olması koşuluyla üretilir; tutar olarak o ayın son ödemesi kullanılır. Nokta sayısı arttıkça güven artar ama bu bir tahmindir, taahhüt değildir.
-    <br><br>Temettü verimi tek başına bir kalite ölçüsü değildir: fiyat düştüğü için yükselmiş olabilir, ya da tek seferlik bir ödemeden kaynaklanabilir. Şirketin ödemeyi sürdürebilirliğine bakmadan yorumlama. Veriler her sabah otomatik güncellenir. Bu araç eğitim ve takip amaçlıdır; <b style="color:var(--text-dim)">yatırım tavsiyesi değildir</b>. Hata bildirimi: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>
+    <br><br>Temettü verimi tek başına bir kalite ölçüsü değildir: fiyat düştüğü için yükselmiş olabilir, ya da tek seferlik bir ödemeden kaynaklanabilir. Şirketin ödemeyi sürdürebilirliğine bakmadan yorumlama. Bu sayfa otomatik üretilmez: defter birkaç haftada bir elden geçirilir, yeni ödemeler ve açıklanan tarihler tek tek kontrol edilip işlenir. Fiyatlar her sabah tazelenir, bu yüzden verim oranı defter güncellenmese de günceldir. Bu araç eğitim ve takip amaçlıdır; <b style="color:var(--text-dim)">yatırım tavsiyesi değildir</b>. Hata bildirimi: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>
   </p>
 </div>
 
@@ -133,11 +137,24 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function n(x,d){d=d==null?2:d;return Number(x).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d})}
 
 fetch('/terminal/data/temettu.json').then(function(r){return r.json()}).then(function(d){
-  T=d; takvim(); tablo(); gelir();
+  T=d; elden(); takvim(); tablo(); gelir();
 }).catch(function(){
   $('takvim').innerHTML='<div class="empty">Temettü verisi yüklenemedi.</div>';
   $('tablo').innerHTML='';
 });
+
+// ── Elden geçirme şeridi ─────────────────────────────────────────────
+function elden(){
+  var el=$('elden');
+  if(!T.son_kontrol){el.style.display='none';return}
+  var kayit=0;
+  Object.keys(T.stocks).forEach(function(s){kayit+=(T.stocks[s].odemeler||[]).length});
+  var gun=Math.round((Date.now()-new Date(T.son_kontrol).getTime())/86400000);
+  var tazelik=gun<=21?'':' <span style="color:var(--muted)">(yenilenme zamanı geldi)</span>';
+  el.innerHTML='<span class="tar">'+esc(T.son_kontrol)+'</span>'+
+    '<span style="flex:1;min-width:220px">Defter en son bu tarihte elden geçirildi. '+
+    Object.keys(T.stocks).length+' hissenin <b>'+kayit+' ödeme kaydı</b> tek tek kontrol edildi.'+tazelik+'</span>';
+}
 
 // ── Beklenen ödemeler takvimi ────────────────────────────────────────
 function takvim(){
