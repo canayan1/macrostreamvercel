@@ -1,18 +1,18 @@
 {
-  "last_update": "2026-08-21T03:44:43.708095Z",
+  "last_update": "2026-08-23T11:16:21.474920Z",
   "latest_report": {
-    "category": "hisse",
-    "date": "2026-08-21",
-    "title": "Akbank — Günün Merceği"
+    "category": "makro",
+    "date": "2026-08-23",
+    "title": "TR Makro — 2026-08-23"
   },
-  "total_reports": 370,
+  "total_reports": 371,
   "by_category": {
     "pulse": 67,
     "hisse": 71,
     "sektor": 20,
     "fx": 73,
     "metals": 53,
-    "makro": 7,
+    "makro": 8,
     "fred": 7,
     "wb": 4,
     "tcmb": 68

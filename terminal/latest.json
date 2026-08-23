@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-21T03:44:43",
+  "generated": "2026-08-23T12:16:21",
   "reports": [
     {
       "category": "pulse",
@@ -33,9 +33,9 @@
     },
     {
       "category": "makro",
-      "title": "TR Makro — 2026-06-10",
-      "date": "2026-06-10",
-      "path": "/reports/makro/2026-06-10/"
+      "title": "TR Makro — 2026-08-23",
+      "date": "2026-08-23",
+      "path": "/reports/makro/2026-08-23/"
     },
     {
       "category": "fred",
@@ -584,6 +584,32 @@
       }
     ],
     "makro": [
+      {
+        "category": "makro",
+        "date": "2026-08-23",
+        "metrics": {
+          "regime": "Yüksek Enflasyon",
+          "tufe_yoy": 31.754096528223297,
+          "core_yoy": 30.97620211225358,
+          "ufe_yoy": 27.83413043428964,
+          "unemployment": 7.6,
+          "usdtry": 47.8642,
+          "_indicator_dates": {
+            "TP.FE25.OKTG01": "2026-07-01",
+            "TP.FE25.OKTG03": "2026-07-01",
+            "TP.TUFE1YI.T1": "2026-07-01",
+            "LRHUTTTTTRM156S": "2026-06-01",
+            "TP.DK.USD.A.YTL": "2026-08-21"
+          },
+          "_indicator_values": {
+            "TP.FE25.OKTG01": 31.754096528223297,
+            "TP.FE25.OKTG03": 30.97620211225358,
+            "TP.TUFE1YI.T1": 27.83413043428964,
+            "LRHUTTTTTRM156S": 7.6,
+            "TP.DK.USD.A.YTL": 47.8642
+          }
+        }
+      },
       {
         "category": "makro",
         "date": "2026-06-10",
