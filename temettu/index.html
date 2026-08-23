@@ -55,6 +55,10 @@ h1 .a{color:var(--accent)}
 .hs.aci{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.07)}
 .elden{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:0 12px 12px 0;padding:13px 17px;margin-bottom:16px;font-size:13px;color:var(--text-dim)}
 .elden .tar{font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600;white-space:nowrap}
+.isabet{background:rgba(239,83,80,.06);border:1px solid rgba(239,83,80,.3);border-radius:12px;padding:14px 17px;margin-bottom:16px;font-size:13px;color:var(--text-dim);line-height:1.65}
+.isabet b{color:var(--red)}
+.isabet .say{font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700}
+.hs .gecen{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11.5px}
 .rozet{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:var(--green);border:1px solid rgba(74,222,128,.45);border-radius:999px;padding:1px 6px}
 .tblwrap{overflow-x:auto;border:1px solid var(--border);border-radius:11px}
 table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface)}
@@ -88,9 +92,10 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
   <p style="font-size:12.5px;color:var(--muted);margin:-14px 0 24px"><button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Bu sayfayı bana tanıt</button> — 3 kısa adım, istediğin an durdurabilirsin.</p>
 
   <div class="elden" id="elden"></div>
+  <div class="isabet" id="isabet"></div>
 
   <div class="warn">
-    <b>Önce şunu bil:</b> Takvimdeki tarihlerin bir kısmı şirketin duyurduğu kesin ex-temettü tarihidir ve <span class="rozet">AÇIKLANDI</span> ile işaretlenir. <b>İşaretsiz olanlar tahmindir</b>, açıklanmış temettü değildir; tahmin edilen tutar gerçekleşenden belirgin biçimde farklı çıkabilir. Şirketin geçmiş yıllarda hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Şirket tutarı değiştirebilir, tarihi kaydırabilir ya da hiç ödemeyebilir. Kesin bilgi için KAP açıklamalarına bak. Tutarlar <b>brüttür</b>; stopaj kesildikten sonra elinize geçen daha azdır.
+    <b>Önce şunu bil:</b> Takvimdeki tarihlerin bir kısmı şirketin duyurduğu kesin ex-temettü tarihidir ve <span class="rozet">AÇIKLANDI</span> ile işaretlenir. <b>İşaretsiz olanlar beklentidir</b>, açıklanmış temettü değildir. Aşağıda bu beklentilerin geçmişte ne kadar tuttuğunu ölçüp yazdık. Şirketin geçmiş yıllarda hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Şirket tutarı değiştirebilir, tarihi kaydırabilir ya da hiç ödemeyebilir. Kesin bilgi için KAP açıklamalarına bak. Tutarlar <b>brüttür</b>; stopaj kesildikten sonra elinize geçen daha azdır.
   </div>
 
   <div class="panel" id="gelir-panel" style="display:none">
@@ -137,7 +142,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function n(x,d){d=d==null?2:d;return Number(x).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d})}
 
 fetch('/terminal/data/temettu.json').then(function(r){return r.json()}).then(function(d){
-  T=d; elden(); takvim(); tablo(); gelir();
+  T=d; elden(); isabet(); takvim(); tablo(); gelir();
 }).catch(function(){
   $('takvim').innerHTML='<div class="empty">Temettü verisi yüklenemedi.</div>';
   $('tablo').innerHTML='';
@@ -154,6 +159,21 @@ function elden(){
   el.innerHTML='<span class="tar">'+esc(T.son_kontrol)+'</span>'+
     '<span style="flex:1;min-width:220px">Defter en son bu tarihte elden geçirildi. '+
     Object.keys(T.stocks).length+' hissenin <b>'+kayit+' ödeme kaydı</b> tek tek kontrol edildi.'+tazelik+'</span>';
+}
+
+// ── Yöntemin kendi isabeti ───────────────────────────────────────────
+function isabet(){
+  var el=$('isabet'), i=T.isabet;
+  if(!i||!i.medyan_sapma){el.style.display='none';return}
+  el.innerHTML='<b>Tahminlerimiz ne kadar tutuyor? Ölçtük ve iyi değil.</b><br>'+
+    'Aynı yöntemi geçmiş '+i.vaka+' hisse-yıla uyguladık. Tahmin edilen tutar ile gerçekleşen arasındaki '+
+    'sapmanın <span class="say">medyanı %'+n(i.medyan_sapma,0)+'</span>; vakaların '+
+    '<span class="say">%'+i.yuzde100_ustu+'</span>\'inde sapma %100\'ü aştı. '+
+    'Sapma tek yönlü: %'+i.az_tahmin_orani+' oranında <b>az</b> tahmin ediyoruz, çünkü enflasyonla nominal temettüler büyüyor. '+
+    'Ayrıca '+i.temettu_kesen+' vakada şirket temettüyü tamamen kesti.<br><br>'+
+    '<b>Tarih tutarlardan iyi ama kusursuz değil:</b> şirketler ertesi yıl aynı ayda ödemeyi %'+i.ayni_ay_orani+
+    ' oranında sürdürdü; sürdürdüğünde gün sapması medyan '+i.ay_tutunca_medyan_gun+' gün. '+
+    'Bu yüzden işaretsiz satırlarda tahmini tutar yerine <b>geçen yıl aynı dönemde ne ödendiğini</b> gösteriyoruz.';
 }
 
 // ── Beklenen ödemeler takvimi ────────────────────────────────────────
@@ -197,15 +217,17 @@ function takvim(){
       html+='<span class="hs'+(x.aciklanmis?' aci':'')+'" title="'+baslik+'">'+
         (x.aciklanmis?'<span class="rozet">AÇIKLANDI</span>':'<span class="g g-'+esc(x.guven)+'"></span>')+
         '<b>'+esc(x.sym)+'</b>'+
-        (x.tutar!=null?'<span class="tl">'+n(x.tutar)+' ₺</span>'
-                      :'<span style="color:var(--muted);font-size:11.5px">tutar belli değil</span>')+
+        (x.aciklanmis
+           ? (x.tutar!=null?'<span class="tl">'+n(x.tutar)+' ₺</span>'
+                           :'<span style="color:var(--muted);font-size:11.5px">tutar belli değil</span>')
+           : (x.tutar!=null?'<span class="gecen">geçen yıl '+n(x.tutar)+' ₺</span>':''))+
         '<span style="color:var(--muted);font-family:\'JetBrains Mono\',monospace">'+esc(x.tarih.slice(8))+'</span></span>';
     });
     html+='</div></div>';
   });
   if(aciSayi) html+='<p style="font-size:11.5px;color:var(--muted);margin-top:4px">'+
     '<span class="rozet">AÇIKLANDI</span> işaretli satırlarda hem tarih hem tutar şirketin duyurduğu rakamdır. '+
-    'İşaretsizler tahmindir: geçen yılın aynı ödemesi bir yıl ileri taşınmıştır.</p>';
+    'İşaretsizlerde tarih beklentidir ve yanındaki rakam <b>geçen yıl aynı dönemde ödenen</b> tutardır — bu yılki tutar değil.</p>';
   $('takvim').innerHTML=html;
 }
 
