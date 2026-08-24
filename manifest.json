@@ -1,15 +1,15 @@
 {
-  "last_update": "2026-08-24T03:46:35.025659Z",
+  "last_update": "2026-08-24T14:04:45.737265Z",
   "latest_report": {
-    "category": "hisse",
+    "category": "tcmb",
     "date": "2026-08-24",
-    "title": "Kardemir (D) — Günün Merceği"
+    "title": "TCMB Analitik Bilanço"
   },
-  "total_reports": 377,
+  "total_reports": 216,
   "by_category": {
-    "pulse": 68,
-    "hisse": 72,
-    "sektor": 21,
+    "pulse": 0,
+    "hisse": 0,
+    "sektor": 0,
     "fx": 74,
     "metals": 54,
     "makro": 8,

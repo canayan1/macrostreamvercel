@@ -522,15 +522,7 @@ a { color: inherit; text-decoration: none; }
         </div>
       </div>
 
-      <div class="mkt-divider"><span>Kendi Takip Panelin</span></div>
-
-      <div class="lp-controls">
-        <select class="lp-select" id="lp-add"><option value="">+ Hisse ekle (BIST30)…</option></select>
-        <span class="lp-count" id="lp-count">0 / 12 seçili</span>
-        <button class="lp-reset" id="lp-reset">sıfırla</button>
-      </div>
-      <div class="lp-grid" id="lp-grid"></div>
-      <div class="lp-meta" id="lp-meta"></div>
+      
         </div><!-- /pz-main -->
         <aside class="pz-aside"><div class="dz-panel" id="dz-banner"></div></aside>
       </div><!-- /pz-grid -->
@@ -598,7 +590,7 @@ a { color: inherit; text-decoration: none; }
           <div class="body">
             <span class="badge">Pratik</span>
             <h3>Borsa Simülasyonu</h3>
-            <p>Sanal sermaye ile pratik. Gerçek BIST verisi, gerçek zamanlı emir defteri. Sıfır risk.</p>
+            <p>Sanal sermaye ile pratik. Emir defteri mantığı, sıfır risk. Eğitim amaçlı simülasyondur.</p>
             <span class="open">Simülasyona Başla →</span>
           </div>
         </a>
@@ -669,38 +661,36 @@ a { color: inherit; text-decoration: none; }
       <div class="module-header">
         <div class="eyebrow">★ ÖNE ÇIKAN · STRATEJİ</div>
         <h1>Strateji</h1>
-        <p>5 algoritmik yöntem, 60+ BIST ve ABD hissesi üzerinde geçmiş veriyle test edilmiş sonuçlar. Şeffaf metrikler: Sharpe, Max Drawdown, hit rate.</p>
+        <p>Kalibre Kripto 30 üzerinde kendi portföyünü kur, strateji kuralı uygula, sonucu gerçek kapanış verisiyle gör. Şeffaf metrikler: Sharpe, maksimum düşüş, volatilite.</p>
       </div>
       <div class="card-grid">
-        <a href="/ajanlar/" class="tool-card">
-          <div class="shot" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);height:188px;padding:14px 18px;display:flex;flex-direction:column;justify-content:center" id="lig-mini"><div style="font-size:10px;letter-spacing:.14em;color:#a89c83;margin-bottom:8px">CANLI SIRALAMA</div><div style="color:#6f6553;font-size:12px">yükleniyor…</div></div>
-          <div class="body">
-            <span class="badge">Strateji Ligi</span>
-            <h3>Ajan Ligi</h3>
-            <p>7 algoritmik strateji ajanı, her biri hipotetik 100.000 ₺ ile BIST 30'da yarışıyor. Portföyler, işlemler ve sıralama şeffaf.</p>
-            <span class="open">Ligi Gör →</span>
-          </div>
-        </a>
-        <a href="/algo/" class="tool-card">
+        <a href="/portfoy-lab/" class="tool-card">
           <div class="shot">
-            <img src="/static/landing/algo-preview.png" alt="Strateji Laboratuvarı" loading="lazy">
+            <img src="/static/landing/algo-preview.png" alt="Portföy Lab" loading="lazy">
           </div>
           <div class="body">
             <span class="badge">Backtest</span>
-            <h3>Strateji Laboratuvarı</h3>
-            <p>Momentum, mean reversion, golden cross, breakout, RSI. 5 yöntem × 60+ hisse, karşılaştırmalı performans.</p>
+            <h3>Portföy Lab</h3>
+            <p>Kripto 30'dan portföy kur, strateji kuralı seç (al-tut, aylık dengeleme, trend filtresi, golden cross), 3 yıllık sonucu anında gör.</p>
             <span class="open">Lab'a Gir →</span>
           </div>
         </a>
-        <a href="/algo/hisse/AKBNK/" class="tool-card">
-          <div class="shot">
-            <img src="/static/landing/strateji-detay-preview.png" alt="Hisse Bazlı Backtest" loading="lazy">
-          </div>
+        <a href="/portfoyum/" class="tool-card">
+          <div class="shot" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);height:188px;padding:14px 18px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:10px;letter-spacing:.14em;color:#a89c83;margin-bottom:8px">FIFO MALİYET</div><div style="color:#6f6553;font-size:12px">enflasyon · dolar · gram altın</div></div>
           <div class="body">
-            <span class="badge">Drill-down</span>
-            <h3>Hisse Bazlı Backtest</h3>
-            <p>Her hisse için 5 stratejinin detaylı sonucu: fiyat grafiği, sinyal noktaları, getiri eğrisi, risk metrikleri.</p>
-            <span class="open">Örnek: AKBNK →</span>
+            <span class="badge">Takip</span>
+            <h3>Portföyüm</h3>
+            <p>İşlemlerini gir, FIFO maliyetle gerçek kâr-zararını gör. Getirini enflasyona, dolara ve gram altına göre yeniden okur.</p>
+            <span class="open">Portföyü Aç →</span>
+          </div>
+        </a>
+        <a href="/defter/" class="tool-card">
+          <div class="shot" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);height:188px;padding:14px 18px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:10px;letter-spacing:.14em;color:#a89c83;margin-bottom:8px">KARAR DEFTERİ</div><div style="color:#6f6553;font-size:12px">gerekçe · önyargı etiketi · sonuç</div></div>
+          <div class="body">
+            <span class="badge">Disiplin</span>
+            <h3>Defterim</h3>
+            <p>Kararının gerekçesini yaz, fiyatı o an kaydedelim. Sonra haklı mıydın, hangi önyargıya düştün, geri dönüp gör.</p>
+            <span class="open">Defteri Aç →</span>
           </div>
         </a>
       </div>
@@ -714,28 +704,6 @@ a { color: inherit; text-decoration: none; }
         <p>Her sabah otomatik üretilen makro ve piyasa raporları. Veri kaynakları açık, formüller görünür.</p>
       </div>
       <div class="card-grid">
-        <a class="tool-card" data-cat="pulse" href="/reports/pulse/">
-          <div class="shot">
-            <img src="/static/landing/nabiz-preview.png" alt="Günlük Nabız" loading="lazy">
-          </div>
-          <div class="body">
-            <span class="badge">Günlük <span class="date" data-date></span></span>
-            <h3>Günlük Nabız</h3>
-            <p>BIST, USD/TRY, VIX, DXY, ABD 10Y için tek sayfa özet. 5 grafik + yorum + makro bağlam.</p>
-            <span class="open">Bugünün Nabzı →</span>
-          </div>
-        </a>
-        <a class="tool-card" data-cat="hisse" href="/reports/hisse/">
-          <div class="shot">
-            <img src="/static/landing/hisse-preview.png" alt="Günün Merceği" loading="lazy">
-          </div>
-          <div class="body">
-            <span class="badge">Günlük <span class="date" data-date></span></span>
-            <h3>Günün Merceği</h3>
-            <p>Her gün bir BIST hissesi mercek altında: fiyat & 50-DMA, RSI, drawdown, mevsimsellik, hikâye grafiği.</p>
-            <span class="open">Bugünün Merceği →</span>
-          </div>
-        </a>
         <a class="tool-card" data-cat="fx" href="/reports/fx/">
           <div class="shot">
             <img src="/static/landing/fx-preview.png" alt="Döviz Günlük" loading="lazy">
@@ -758,17 +726,6 @@ a { color: inherit; text-decoration: none; }
             <span class="open">Bilanço Raporu →</span>
           </div>
         </a>
-        <a class="tool-card" data-cat="sektor" href="/reports/sektor/">
-          <div class="shot">
-            <img src="/static/landing/sektor-preview.png" alt="Sektör Rotasyon" loading="lazy">
-          </div>
-          <div class="body">
-            <span class="badge">Haftalık <span class="date" data-date></span></span>
-            <h3>Sektör Rotasyon</h3>
-            <p>10 BIST sektörü + XU100 karşılaştırması. Hangi sektör öne çıkıyor, momentum nereye dönüyor.</p>
-            <span class="open">Sektör Raporu →</span>
-          </div>
-        </a>
       </div>
     </section>
 
@@ -787,7 +744,7 @@ a { color: inherit; text-decoration: none; }
           <div class="body">
             <span class="badge">Çeyreklik</span>
             <h3>Banka Bilanço Raporu</h3>
-            <p>6 büyük BIST bankası için KAP doğrulamalı NIM, ROE, CAR analizi. Çapraz karşılaştırma + tarihsel trend.</p>
+            <p>6 büyük Türk bankası için KAP finansal tablolarından NIM, ROE, CAR analizi. Çapraz karşılaştırma + tarihsel trend.</p>
             <span class="open">Q4 2025 Raporu →</span>
           </div>
         </a>
@@ -956,8 +913,8 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
   const ctx     = canvas.getContext('2d');
   let MK = null, cur = null, curView = null, curSpec = null, geom = null;
 
-  const NAME = { xu100:'BIST 100', usdtry:'USD/TRY', dxy:'DXY', us10y:'ABD 10Y', vix:'VIX', xauusd:'Ons Altın', xagusd:'Ons Gümüş', gramaltin:'Gram Altın', gramgumus:'Gram Gümüş' };
-  const DISP_DIG = { xu100:0, usdtry:2, dxy:2, us10y:2, vix:1, xauusd:2, xagusd:2, gramaltin:2, gramgumus:2 };
+  const NAME = { usdtry:'USD/TRY', dxy:'DXY', us10y:'ABD 10Y', vix:'VIX', xauusd:'Ons Altın', xagusd:'Ons Gümüş', gramaltin:'Gram Altın', gramgumus:'Gram Gümüş' };
+  const DISP_DIG = { usdtry:2, dxy:2, us10y:2, vix:1, xauusd:2, xagusd:2, gramaltin:2, gramgumus:2 };
 
   function dig(key){ return DISP_DIG[key] != null ? DISP_DIG[key] : 2; }
   function fmtVal(key, v){
@@ -972,9 +929,8 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
   function regime(){
     const s = MK.series;
     const vix = s.vix && s.vix.last;
-    const bist30 = s.xu100 && s.xu100.pct_30d;
     if (vix!=null && vix>25) return {cls:'red', txt:'Yüksek Stres', sub:'VIX '+vix.toFixed(1)+' · risk algısı yüksek'};
-    if (vix!=null && vix<15 && (bist30||0)>0) return {cls:'green', txt:'Sakin & Olumlu', sub:'VIX '+vix.toFixed(1)+' · BIST 30g '+pctStr(bist30)};
+    if (vix!=null && vix<15) return {cls:'green', txt:'Sakin & Olumlu', sub:'VIX '+vix.toFixed(1)+' · düşük risk algısı'};
     if (vix!=null && vix<18) return {cls:'yellow', txt:'Sakin', sub:'VIX '+vix.toFixed(1)+' · düşük volatilite'};
     return {cls:'yellow', txt:'Karışık', sub:'çelişkili sinyaller'};
   }
@@ -1008,18 +964,9 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
     }
     return out;
   }
-  function usdSeries(){
-    const a=MK.series.xu100, b=MK.series.usdtry; if(!a||!b) return null;
-    const map={}; for(let i=0;i<b.dates.length;i++) map[b.dates[i]]=b.values[i];
-    const values=[], dates=[];
-    for(let i=0;i<a.dates.length;i++){ const q=map[a.dates[i]]; if(q){ values.push(a.values[i]/q); dates.push(a.dates[i]); } }
-    return values.length ? {values,dates} : null;
-  }
-
   // ── Görünüm (view) tanımları: her enstrüman için 3 bakış açısı ──
-  const VIEW_LABEL = { ma:'Trend · MA', usd:'USD bazlı', rsi:'RSI (14)', roc:'Momentum', z:'Z-Skor', level:'Seviye' };
+  const VIEW_LABEL = { ma:'Trend · MA', rsi:'RSI (14)', roc:'Momentum', z:'Z-Skor', level:'Seviye' };
   const VIEWS = {
-    xu100: ['ma','usd','rsi'],
     usdtry:['ma','roc','z'],
     dxy:   ['ma','rsi','z'],
     us10y: ['ma','roc','z'],
@@ -1037,14 +984,6 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
                 {values:sma(vals,200),color:GREY,width:1.1} ],
         bands:[], domain:'auto', hoverFmt:i=>fmtVal(key,vals[i]),
         caption:'Fiyat + 50 ve 200 günlük hareketli ortalama (turuncu / gri). Fiyatın ortalamaların üstünde olması yukarı eğilime; MA50’nin MA200’ü yukarı kesmesi trend dönüşüne işaret eder.' };
-    }
-    if(view==='usd'){
-      const u=usdSeries(); if(!u) return buildView(key,'ma');
-      return { dates:u.dates, primary:0,
-        lines:[ {values:u.values,color:BLUE,width:1.7,fill:true} ],
-        bands:[], domain:'auto',
-        hoverFmt:i=>'$'+u.values[i].toLocaleString('tr-TR',{maximumFractionDigits:4}),
-        caption:'BIST 100’ün dolar cinsinden değeri (endeks ÷ USD/TRY). Yabancı yatırımcının gördüğü reel performansı yansıtır; TL’deki değer kaybını ayıklayarak gerçek getiriyi gösterir.' };
     }
     if(view==='rsi'){
       const r=rsiCalc(vals,14);
@@ -1279,175 +1218,6 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
     });
 })();
 
-// ── PİYASALAR launchpad ──
-(function(){
-  const LS_KEY = 'km-launchpad-v1';
-  const MAX = 12;
-  const grid = document.getElementById('lp-grid');
-  const sel = document.getElementById('lp-add');
-  const countEl = document.getElementById('lp-count');
-  const resetBtn = document.getElementById('lp-reset');
-  const metaEl = document.getElementById('lp-meta');
-  if (!grid) return;
-
-  let DATA = null;
-  let picks = [];
-  try { picks = JSON.parse(localStorage.getItem(LS_KEY) || '[]').slice(0, MAX); } catch(e){ picks = []; }
-
-  function save(){ try { localStorage.setItem(LS_KEY, JSON.stringify(picks)); } catch(e){} }
-  function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-  function fillSelect(){
-    if (!DATA) return;
-    const syms = Object.keys(DATA.stocks).sort();
-    sel.innerHTML = '<option value="">+ Hisse ekle (BIST30)…</option>' +
-      syms.filter(s => !picks.includes(s)).map(s =>
-        `<option value="${s}">${s} · ${esc(DATA.stocks[s].name)}</option>`).join('');
-    sel.disabled = picks.length >= MAX;
-    if (picks.length >= MAX) sel.options[0].textContent = 'En fazla ' + MAX + ' hisse';
-  }
-
-  function chgClass(v){ return v == null ? 'flat' : (v > 0.05 ? 'up' : (v < -0.05 ? 'dn' : 'flat')); }
-  function chgStr(v){ return v == null ? '—' : (v>0?'▲ ':v<0?'▼ ':'─ ') + v.toFixed(2) + '%'; }
-
-  // ── Gösterge hesaplayıcıları (tarayıcıda, hisse serisinden) ──
-  function sma(v,n){ const o=new Array(v.length).fill(null); let s=0; for(let i=0;i<v.length;i++){ s+=v[i]; if(i>=n)s-=v[i-n]; if(i>=n-1)o[i]=s/n; } return o; }
-  function rsiCalc(v,n){ const o=new Array(v.length).fill(null); let g=0,l=0; for(let i=1;i<v.length;i++){ const ch=v[i]-v[i-1],up=Math.max(ch,0),dn=Math.max(-ch,0); if(i<=n){ g+=up; l+=dn; if(i===n){ g/=n; l/=n; o[i]=100-100/(1+(l===0?100:g/l)); } } else { g=(g*(n-1)+up)/n; l=(l*(n-1)+dn)/n; o[i]=100-100/(1+(l===0?100:g/l)); } } return o; }
-  function rocCalc(v,n){ const o=new Array(v.length).fill(null); for(let i=n;i<v.length;i++){ if(v[i-n])o[i]=(v[i]/v[i-n]-1)*100; } return o; }
-  function zCalc(v,w){ const o=new Array(v.length).fill(null); for(let i=w-1;i<v.length;i++){ let m=0; for(let j=i-w+1;j<=i;j++)m+=v[j]; m/=w; let s=0; for(let j=i-w+1;j<=i;j++)s+=(v[j]-m)*(v[j]-m); s=Math.sqrt(s/w); o[i]=s?(v[i]-m)/s:0; } return o; }
-
-  const VLABEL = { ma:'Trend · MA', rsi:'RSI (14)', roc:'Momentum', z:'Z-Skor' };
-  const STOCK_VIEWS = ['ma','rsi','roc','z'];
-  const GREEN='#4ade80', RED='#ef4444', ACC='#ffa630', BLUE='#7cc4ff', VIOLET='#c9a0ff', GREY='#8a8a8a';
-  function fmtPx(v){ return v==null||isNaN(v) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-
-  function buildSpec(ser, view){
-    const vals=ser.values, dates=ser.dates;
-    const col=(vals[vals.length-1]>=vals[0])?GREEN:RED;
-    if(view==='rsi'){ const r=rsiCalc(vals,14);
-      return {dates, primary:0, lines:[{values:r,color:VIOLET,width:1.4}],
-        bands:[{v:70,color:RED},{v:50,color:'#555'},{v:30,color:GREEN}], domain:[0,100],
-        hoverFmt:i=>r[i]==null?'—':r[i].toFixed(1),
-        caption:'14 günlük RSI · 70 üzeri aşırı alım, 30 altı aşırı satım bölgesi.'}; }
-    if(view==='roc'){ const r=rocCalc(vals,20);
-      return {dates, primary:0, lines:[{values:r,color:ACC,width:1.4}],
-        bands:[{v:0,color:'#555'}], domain:'auto',
-        hoverFmt:i=>r[i]==null?'—':(r[i]>0?'+':'')+r[i].toFixed(1)+'%',
-        caption:'20 günlük momentum · sıfır üstü hızlanma, altı ivme kaybı.'}; }
-    if(view==='z'){ const z=zCalc(vals,60);
-      return {dates, primary:0, lines:[{values:z,color:BLUE,width:1.4}],
-        bands:[{v:2,color:RED},{v:0,color:'#555'},{v:-2,color:GREEN}], domain:[-3,3],
-        hoverFmt:i=>z[i]==null?'—':(z[i]>0?'+':'')+z[i].toFixed(2)+'σ',
-        caption:'60 günlük ortalamaya uzaklık · ±2σ dışı istatistiksel şok bölgesi.'}; }
-    return {dates, primary:0,
-      lines:[{values:vals,color:col,width:1.5,fill:true},{values:sma(vals,50),color:ACC,width:1.0},{values:sma(vals,200),color:GREY,width:1.0}],
-      bands:[], domain:'auto', hoverFmt:i=>fmtPx(vals[i]),
-      caption:'Fiyat + 50/200 günlük ortalama (turuncu/gri) · trend yönü.'};
-  }
-
-  function drawChart(cc){
-    const sp=cc.spec; if(!sp) return;
-    const cv=cc.canvas, ctx=cc.ctx, N=sp.dates.length;
-    const W=cv.clientWidth||cv.parentElement.clientWidth, H=150, dpr=window.devicePixelRatio||1;
-    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    const x0=6,x1=W-6,y0=10,y1=H-8;
-    let mn,mx;
-    if(Array.isArray(sp.domain)){ mn=sp.domain[0]; mx=sp.domain[1]; }
-    else { mn=Infinity;mx=-Infinity; sp.lines.forEach(L=>L.values.forEach(v=>{if(v!=null&&!isNaN(v)){if(v<mn)mn=v;if(v>mx)mx=v;}})); sp.bands.forEach(b=>{if(b.v<mn)mn=b.v;if(b.v>mx)mx=b.v;}); if(!isFinite(mn)){mn=0;mx=1;} if(mn===mx){mn-=1;mx+=1;} const pad=(mx-mn)*0.08; mn-=pad; mx+=pad; }
-    const X=i=> x0+(N<2?0:(i/(N-1))*(x1-x0));
-    const Y=val=> y1-((val-mn)/(mx-mn))*(y1-y0);
-    sp.bands.forEach(b=>{ const y=Y(b.v); if(y<y0-1||y>y1+1)return; ctx.save(); ctx.strokeStyle=b.color+'66'; ctx.lineWidth=1; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x1,y); ctx.stroke(); ctx.restore(); });
-    sp.lines.forEach(L=>{
-      if(L.fill){ const g=ctx.createLinearGradient(0,y0,0,y1); g.addColorStop(0,L.color+'2e'); g.addColorStop(1,L.color+'00'); ctx.beginPath(); let st=false,fi=0,pl=0; for(let i=0;i<N;i++){ const v=L.values[i]; if(v==null||isNaN(v))continue; if(!st){ctx.moveTo(X(i),Y(v));st=true;fi=i;}else ctx.lineTo(X(i),Y(v)); pl=i; } if(st){ctx.lineTo(X(pl),y1);ctx.lineTo(X(fi),y1);ctx.closePath();ctx.fillStyle=g;ctx.fill();} }
-      ctx.beginPath(); let st=false; for(let i=0;i<N;i++){ const v=L.values[i]; if(v==null||isNaN(v)){st=false;continue;} if(!st){ctx.moveTo(X(i),Y(v));st=true;}else ctx.lineTo(X(i),Y(v)); } ctx.strokeStyle=L.color; ctx.lineWidth=L.width||1.3; ctx.lineJoin='round'; ctx.stroke();
-    });
-    const P=sp.lines[sp.primary||0]; let pi=N-1; while(pi>=0&&(P.values[pi]==null||isNaN(P.values[pi])))pi--; if(pi>=0){ ctx.beginPath(); ctx.arc(X(pi),Y(P.values[pi]),2.5,0,Math.PI*2); ctx.fillStyle=P.color; ctx.fill(); }
-    cc.geom={X,Y,x0,x1,y0,y1,N};
-  }
-  function crossChart(cc,i){
-    const sp=cc.spec, g=cc.geom; if(!sp||!g)return;
-    const P=sp.lines[sp.primary||0], v=P.values[i], ctx=cc.ctx, x=g.X(i);
-    ctx.save(); ctx.strokeStyle='rgba(255,255,255,.16)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x,g.y0); ctx.lineTo(x,g.y1); ctx.stroke(); ctx.restore();
-    if(v==null||isNaN(v)){ cc.tip.style.opacity='0'; return; }
-    const y=g.Y(v); ctx.save(); ctx.beginPath(); ctx.arc(x,y,3.5,0,Math.PI*2); ctx.fillStyle=P.color; ctx.fill(); ctx.lineWidth=1.4; ctx.strokeStyle='#100e0c'; ctx.stroke(); ctx.restore();
-    cc.tip.style.opacity='1'; cc.tip.style.left=x+'px'; cc.tip.style.top=y+'px';
-    cc.tip.innerHTML='<div class="d">'+sp.dates[i]+'</div><div class="vv">'+sp.hoverFmt(i)+'</div>';
-  }
-  function setCardView(cc, view){
-    cc.view=view; cc.spec=buildSpec(cc.ser, view);
-    cc.root.querySelectorAll('.lp-view').forEach(el=>el.classList.toggle('active', el.dataset.v===view));
-    cc.cap.textContent=cc.spec.caption; drawChart(cc);
-  }
-
-  let charts = [];
-  function render(){
-    countEl.textContent = picks.length + ' / ' + MAX + ' seçili';
-    charts = [];
-    if (!DATA) { grid.innerHTML = '<div class="lp-empty"><span class="ico">◷</span><p>Veri yükleniyor…</p></div>'; return; }
-    if (picks.length === 0) {
-      grid.innerHTML = '<div class="lp-empty"><span class="ico">📡</span><p>Henüz hisse seçmedin.<br>Yukarıdan BIST30 hissesi ekle — her biri için çok görünümlü grafik (trend, RSI, momentum, z-skor) açılır.<br>Kendi terminal panelini kur.</p></div>';
-      return;
-    }
-    grid.innerHTML = picks.map(sym => {
-      const s = DATA.stocks[sym]; if (!s) return '';
-      const views = STOCK_VIEWS.map((vw,idx) => '<button class="mkt-view lp-view'+(idx===0?' active':'')+'" data-v="'+vw+'">'+VLABEL[vw]+'</button>').join('');
-      return '<div class="lp-card" data-card="'+esc(sym)+'">'
-        + '<div class="lp-card-h">'
-        +   '<div><div class="sym">'+esc(sym)+'</div><div class="nm">'+esc(s.name)+' · '+esc((s.ozet&&s.ozet.sector)||'')+'</div></div>'
-        +   '<div class="px"><div class="last">'+fmtPx(s.last)+'</div><div class="chg '+chgClass(s.chg)+'">'+chgStr(s.chg)+'</div></div>'
-        +   '<button class="rm" data-rm="'+esc(sym)+'" title="Kaldır">×</button>'
-        + '</div>'
-        + '<div class="lp-chart">'
-        +   '<div class="mkt-views lp-views">'+views+'</div>'
-        +   '<div class="lp-canvas-wrap"><canvas class="lp-canvas"></canvas><div class="lp-tip"></div></div>'
-        +   '<div class="lp-cap"></div>'
-        + '</div></div>';
-    }).join('');
-
-    grid.querySelectorAll('.lp-card').forEach(card => {
-      const sym = card.dataset.card; const s = DATA.stocks[sym];
-      const canvas = card.querySelector('.lp-canvas');
-      if (s && s.series && s.series.values && s.series.values.length) {
-        const cc = { sym, root:card, ser:s.series, canvas, ctx:canvas.getContext('2d'),
-                     tip:card.querySelector('.lp-tip'), cap:card.querySelector('.lp-cap'), view:null, spec:null, geom:null };
-        charts.push(cc);
-        card.querySelectorAll('.lp-view').forEach(el => el.addEventListener('click', () => setCardView(cc, el.dataset.v)));
-        canvas.addEventListener('mousemove', e => { if(!cc.geom)return; const rect=canvas.getBoundingClientRect(); let f=(e.clientX-rect.left-cc.geom.x0)/(cc.geom.x1-cc.geom.x0); f=Math.max(0,Math.min(1,f)); const i=Math.round(f*(cc.geom.N-1)); drawChart(cc); crossChart(cc,i); });
-        canvas.addEventListener('mouseleave', () => { drawChart(cc); cc.tip.style.opacity='0'; });
-        setCardView(cc, STOCK_VIEWS[0]);
-      } else {
-        card.querySelector('.lp-cap').textContent = 'Bu hisse için geçmiş seri bulunamadı.';
-      }
-    });
-    grid.querySelectorAll('[data-rm]').forEach(b => b.addEventListener('click', (e) => {
-      e.stopPropagation();
-      picks = picks.filter(p => p !== b.dataset.rm); save(); fillSelect(); render();
-    }));
-  }
-  let lpRz; window.addEventListener('resize', () => { clearTimeout(lpRz); lpRz=setTimeout(()=>charts.forEach(drawChart), 140); });
-
-  sel.addEventListener('change', () => {
-    const v = sel.value;
-    if (v && !picks.includes(v) && picks.length < MAX) { picks.push(v); save(); fillSelect(); render(); }
-    sel.value = '';
-  });
-  resetBtn.addEventListener('click', () => { picks = []; save(); fillSelect(); render(); });
-
-  fetch('/terminal/data/bist30-dossier.json', {cache:'no-store'})
-    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-    .then(d => {
-      DATA = d;
-      picks = picks.filter(p => d.stocks[p]); save();
-      fillSelect(); render();
-      if (metaEl && d.generated) {
-        const dt = new Date(d.generated);
-        metaEl.textContent = 'Veri: ' + dt.toLocaleDateString('tr-TR') + ' ' +
-          dt.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}) +
-          ' · yfinance 15 dk gecikmeli · ~1y günlük kapanış · eğitim amaçlıdır, yatırım tavsiyesi değildir';
-      }
-    })
-    .catch(e => { console.warn('dossier yüklenemedi', e); grid.innerHTML = '<div class="lp-empty"><span class="ico">⚠</span><p>İzleme verisi şu an yüklenemedi.</p></div>'; });
-})();
 
 // ── KARŞILAMA / "sen yokken" motoru — cihaz-içi, gizlilik-saf (hiçbir veri gönderilmez) ──
 (function(){
@@ -1482,15 +1252,14 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
   function refLabel(d){ if(!d) return ''; try{ return ' ('+new Date(d+'T00:00:00').toLocaleDateString('tr-TR',{day:'numeric',month:'short'})+')'; }catch(e){return '';} }
 
   let picks = []; try { picks = JSON.parse(localStorage.getItem('km-launchpad-v1') || '[]'); } catch(e){}
-  const wantBist = !firstVisit && gapDays >= 1 && picks.length > 0;
 
   Promise.all([
     (!firstVisit && gapDays >= 1) ? fetch('/terminal/data/markets.json',{cache:'force-cache'}).then(r=>r.ok?r.json():null).catch(()=>null) : Promise.resolve(null),
-    wantBist ? fetch('/terminal/data/bist30-dossier.json',{cache:'force-cache'}).then(r=>r.ok?r.json():null).catch(()=>null) : Promise.resolve(null)
+    Promise.resolve(null)
   ]).then(([mk, bist]) => {
     const rows = [];
     if (!firstVisit && gapDays >= 1) {
-      const MK = { xu100:'BIST 100', usdtry:'USD/TRY', dxy:'DXY', us10y:'ABD 10Y', vix:'VIX' };
+      const MK = { usdtry:'USD/TRY', dxy:'DXY', us10y:'ABD 10Y', vix:'VIX' };
       if (mk && mk.series) Object.keys(MK).forEach(k => {
         const s = mk.series[k]; if (!s || !s.dates || !s.values || !s.values.length) return;
         const ri = idxAtOrBefore(s.dates, prevLast), li = s.values.length-1;
@@ -1576,7 +1345,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeZoom(); })
 
   Promise.all([
     fetch('/api/pulse-ping?mode=rising&limit=8', {cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('/terminal/data/bist30-dossier.json', {cache:'force-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+    Promise.resolve(null)
   ]).then(([pulse, bist]) => {
     if (!pulse || !pulse.enabled || !pulse.matured || !pulse.rows || !pulse.rows.length) return; // sessizce gizli kal
     const stocks = (bist && bist.stocks) || {};

@@ -1,0 +1,11 @@
+# Deploy dışı bırakılanlar.
+#
+# .claude altında git worktree'leri yaşıyor ve bunlar sitenin tam bir
+# kopyasını içeriyor. 24.08.2026'da fark edildi ki yayından kaldırılan BIST
+# sayfaları bu yol üzerinden hâlâ erişilebiliyordu
+# (/.claude/worktrees/<ad>/algo/hisse/GARAN/ → 200). Deploy çalışma dizinini
+# yüklediği için bu klasörün dışarıda tutulması şart.
+.claude
+.git
+.github
+node_modules

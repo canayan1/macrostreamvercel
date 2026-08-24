@@ -415,7 +415,7 @@ section{padding-top:8px;padding-bottom:8px}
   <div class="chip-row" id="hero-chips">
     <span><span class="dot"></span><span class="label">USD/TRY</span> <span class="val mono" id="chip-usdtry">—</span></span>
     <span class="sep">·</span>
-    <span><span class="dot"></span><span class="label">BIST 100</span> <span class="val mono" id="chip-bist">—</span></span>
+    <span><span class="dot"></span><span class="label">BTC/USD</span> <span class="val mono" id="chip-btc">—</span></span>
     <span class="sep">·</span>
     <span><span class="dot"></span><span class="label">TÜFE</span> <span class="val mono" id="chip-tufe">—</span></span>
     <span class="sep">·</span>
@@ -461,15 +461,7 @@ section{padding-top:8px;padding-bottom:8px}
   </div>
 </section>
 
-<section style="padding:26px 28px">
-  <div class="container">
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;padding:20px 24px">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:10px">▸ Duyuru · 24 Ağustos 2026</div>
-      <p style="color:var(--text);font-size:15px;margin-bottom:10px">Borsa İstanbul verilerine dayanan bölümler yayından kaldırıldı.</p>
-      <p style="color:var(--text-dim);font-size:14px;line-height:1.6;margin:0">Borsa İstanbul, BIST verilerinin yayınlanmasının veri dağıtım sözleşmesine tabi olduğunu bildirdi. Gerekli yetkiye sahip olmadığımız için strateji laboratuvarı, hisse karnesi, ajan ligi, portföy araçları ve hisse/sektör bültenlerini yayından kaldırdık. TCMB, döviz, altın ve makro bültenleri ile eğitim içerikleri çalışmaya devam ediyor.</p>
-    </div>
-  </div>
-</section>
+
 
 <section class="modules">
   <div class="container">
@@ -556,7 +548,7 @@ section{padding-top:8px;padding-bottom:8px}
         <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 7-7"/><path d="M2 12A10 10 0 0 1 12 2"/><circle cx="7" cy="17" r="2" fill="#ffa630" stroke="none"/><path d="M9 15 20 4"/></svg></div>
         <div>
           <h4>Veri kaynakları çekilir</h4>
-          <p>yfinance (BIST, US hisse, FX — 15 dk gecikmeli), TCMB EVDS (analitik bilanço, faiz, döviz), FRED (ABD makro), Dünya Bankası (uluslararası), KAP (Türk şirket finansal tablolar).</p>
+          <p>Coinbase Exchange (kripto günlük kapanış), yfinance (döviz ve emtia), TCMB EVDS (analitik bilanço, faiz, döviz), FRED (ABD makro), Dünya Bankası (uluslararası), KAP (Türk şirket finansal tablolar).</p>
         </div>
       </div>
       <div class="flow-step">
@@ -654,7 +646,7 @@ section{padding-top:8px;padding-bottom:8px}
       </details>
       <details>
         <summary>Veriler ne kadar günceldir?</summary>
-        <div class="answer">Günlük raporlar genelde hafta içi sabah/gün içinde, insan gözetiminde üretilip yayınlanır (tam otomatik değil — taslakları script üretir, yayın öncesi gözden geçirilir). Veri kaynakları: yfinance (BIST 15 dk gecikmeli), TCMB EVDS (T+1 resmi), FRED (resmi), Dünya Bankası (çeyreklik), KAP (resmi finansal raporlar). Haftalık ve çeyreklik raporlar kendi ritminde yayınlanır. Her raporun kendi tarihi üstünde yazılıdır.</div>
+        <div class="answer">Günlük raporlar genelde hafta içi sabah/gün içinde, insan gözetiminde üretilip yayınlanır (tam otomatik değil — taslakları script üretir, yayın öncesi gözden geçirilir). Veri kaynakları: Coinbase Exchange (kripto), yfinance (döviz ve emtia), TCMB EVDS (T+1 resmi), FRED (resmi), Dünya Bankası (çeyreklik), KAP (resmi finansal raporlar). Haftalık ve çeyreklik raporlar kendi ritminde yayınlanır. Her raporun kendi tarihi üstünde yazılıdır.</div>
       </details>
       <details>
         <summary>Hesap açmam gerekiyor mu?</summary>
@@ -736,7 +728,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') hideLightbox
       var pulse = pick(s.pulse), makro = pick(s.makro), fred = pick(s.fred), fx = pick(s.fx);
       var usdtry = (pulse && pulse.usdtry_last) || (fx && fx.usdtry);
       set('chip-usdtry', nf(usdtry, 2));
-      set('chip-bist', pulse ? nf(pulse.xu100_last, 0) : null);
+      // BTC ayrı bir özet dosyasından gelir (latest.json snapshot'ında kripto yok).
+      fetch('/terminal/data/kripto-ozet.json', {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(k){
+          var b = k && k.varliklar && k.varliklar.BTC;
+          set('chip-btc', b ? nf(b.usd, 0) : null);
+        })
+        .catch(function(){ set('chip-btc', null); });
       set('chip-tufe', makro ? (nf(makro.tufe_yoy, 1) + '%') : null);
       set('chip-fed', fred ? (nf(fred.fed_funds, 2) + '%') : null);
       // Footer "son güncelleme" — latest.json üretim zamanından

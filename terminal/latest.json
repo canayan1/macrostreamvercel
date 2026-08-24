@@ -1,24 +1,6 @@
 {
-  "generated": "2026-08-24T03:46:34",
+  "generated": "2026-08-24T15:04:45",
   "reports": [
-    {
-      "category": "pulse",
-      "title": "pulse — 2026-08-24",
-      "date": "2026-08-24",
-      "path": "/reports/pulse/2026-08-24/"
-    },
-    {
-      "category": "hisse",
-      "title": "Kardemir (D) — Günün Merceği",
-      "date": "2026-08-24",
-      "path": "/reports/hisse/2026-08-24/"
-    },
-    {
-      "category": "sektor",
-      "title": "Sektör Rotasyon — 2026-08-24",
-      "date": "2026-08-24",
-      "path": "/reports/sektor/2026-08-24/"
-    },
     {
       "category": "fx",
       "title": "Döviz Günlük — 2026-08-24",
@@ -51,7 +33,7 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-08-24",
+      "title": "TCMB Analitik Bilanço",
       "date": "2026-08-24",
       "path": "/reports/tcmb/2026-08-24/"
     }

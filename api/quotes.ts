@@ -6,10 +6,13 @@
 // GET /api/quotes → { ts, quotes: { <key>: { last } } }
 //   pct hesapları istemcide snapshot geçmişinden yapılır; burada yalnız son fiyat döner.
 //
-// Kapsam: xu100, usdtry, dxy, xauusd, xagusd + türetilmiş gramaltin/gramgumus.
+// Kapsam: usdtry, dxy, xauusd, xagusd + türetilmiş gramaltin/gramgumus.
 // VIX ve ABD 10Y Stooq'ta yok → onlar günlük snapshot değerinde kalır.
 //
-// NOT: Veri gecikmeli olabilir (özellikle BIST). Yatırım tavsiyesi değildir.
+// 2026-08-24: Borsa İstanbul'un veri dağıtım bildirimi üzerine xu100 (BIST 100)
+// kapsamdan çıkarıldı. Yetki alınmadan yeniden eklenmemelidir.
+//
+// NOT: Veri gecikmeli olabilir. Yatırım tavsiyesi değildir.
 //
 // 2026-08-21 DURUM: Stooq'un /q/l/ hafif kotasyon ucu kaldırıldı (404) ve /q/d/l/
 // bot korumasına geçti. Bu endpoint şu an veri döndüremiyor; "degraded" işaretiyle
@@ -23,7 +26,6 @@ const GRAM_PER_TROY_OUNCE = 31.1035;
 
 // markets.json anahtarı → Stooq sembolü (türetilenler hariç)
 const STOOQ: Record<string, string> = {
-  xu100: '^xu100',
   usdtry: 'usdtry',
   dxy: 'dx.f',
   xauusd: 'xauusd',

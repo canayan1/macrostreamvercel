@@ -3,3 +3,6 @@
 .vercel
 node_modules/
 *.tsbuildinfo
+
+# Claude Code worktree kopyalari deploy edilmemeli (bkz. .vercelignore)
+.claude/

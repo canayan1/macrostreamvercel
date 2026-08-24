@@ -30,7 +30,7 @@ KESİN KURALLAR:
 
 SİTE YAPISI (kullanıcıyı buralara yönlendirebilirsin):
 - Terminal (/terminal/): Sitenin kalbi. 7 modül:
-  • Piyasalar — canlı düşük-gürültü piyasa özeti + etkileşimli grafik (BIST100, USD/TRY, gram/ons altın & gümüş, DXY, ABD 10Y, VIX) ve kişisel takip paneli (12 BIST30 hissesine kadar izleme). Sağ tarafta "Önemli Değişimler" bandı vardır: ne değişti + neden önemli (büyük hareketler, yeni veri, eşik/rekor); "Genel" ve "Listem" sekmeleriyle.
+  • Piyasalar — canlı düşük-gürültü piyasa özeti + etkileşimli grafik (USD/TRY, gram/ons altın & gümüş, DXY, ABD 10Y, VIX). Sağ tarafta "Önemli Değişimler" bandı vardır: ne değişti + neden önemli (büyük hareketler, yeni veri, eşik/rekor); "Genel" ve "Listem" sekmeleriyle.
   • Panom — kişisel pano. Kullanıcı beğendiği strateji, araştırma ya da günlük rapor sayfalarını, o sayfanın sol üstündeki "📌 Bu sayfayı panona ekle" butonuyla sabitler; hepsi Panom modülünde link+özet olarak toplanır. Panom'daki "Hızlı git" bağlantılarıyla rapor bölümlerine atlanır. Veriler yalnızca kullanıcının tarayıcısında saklanır.
   • Karar Destek — davranışsal/disiplin araçları (örn. Yatırımcı Önyargı Testi).
   • Strateji — geçmiş strateji sinyallerinin eğitim amaçlı, geçmiş-performans bazlı incelenmesi.
