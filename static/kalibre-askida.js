@@ -36,8 +36,8 @@
       'cihazında duruyor. Araç geri açıldığında yerlerinde olacaklar.</p>' +
       '<p>Bu arada BIST verisi gerektirmeyen bölümler çalışmaya devam ediyor:</p>' +
       '<ul>' +
-        '<li><a href="/reports/tcmb/">TCMB analitik bilanço</a> ve <a href="/reports/fx/">döviz bültenleri</a></li>' +
-        '<li><a href="/reports/metals/">altın ve gümüş</a>, <a href="/reports/makro/">TR makro</a></li>' +
+        '<li><a href="/reports/tcmb/2026-08-24/">TCMB analitik bilanço</a> ve <a href="/reports/fx/2026-08-24/">döviz bültenleri</a></li>' +
+        '<li><a href="/reports/metals/2026-08-24/">altın ve gümüş</a>, <a href="/reports/makro/2026-08-23/">TR makro</a></li>' +
         '<li><a href="/egitim/">eğitim kütüphanesi</a> ve <a href="/trading/onyargi-testi/">yatırımcı önyargı testi</a></li>' +
       '</ul>' +
       '<p style="font-size:13px;color:#6f6553">Soru ve öneri: ' +
