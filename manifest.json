@@ -1,20 +1,20 @@
 {
-  "last_update": "2026-08-23T11:16:21.474920Z",
+  "last_update": "2026-08-24T03:46:35.025659Z",
   "latest_report": {
-    "category": "makro",
-    "date": "2026-08-23",
-    "title": "TR Makro — 2026-08-23"
+    "category": "hisse",
+    "date": "2026-08-24",
+    "title": "Kardemir (D) — Günün Merceği"
   },
-  "total_reports": 371,
+  "total_reports": 377,
   "by_category": {
-    "pulse": 67,
-    "hisse": 71,
-    "sektor": 20,
-    "fx": 73,
-    "metals": 53,
+    "pulse": 68,
+    "hisse": 72,
+    "sektor": 21,
+    "fx": 74,
+    "metals": 54,
     "makro": 8,
     "fred": 7,
     "wb": 4,
-    "tcmb": 68
+    "tcmb": 69
   }
 }
