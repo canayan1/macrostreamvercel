@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portföy Lab — Portföy kur, strateji seç, 5 yıllık backtestini gör | Kalibre Markets</title>
-<meta name="robots" content="noindex, follow">
-<meta name="description" content="BIST 30 hisselerinden kendi portföyünü kur, strateji kuralı seç (al-tut, aylık dengeleme, trend filtresi, golden cross) ve 5 yıllık gerçek veriyle backtestini anında gör. Ücretsiz, hesapsız.">
+<title>Portföy Lab — Portföy kur, strateji seç, 3 yıllık backtestini gör | Kalibre Markets</title>
+<meta name="description" content="Kalibre Kripto 30'dan kendi portföyünü kur, strateji kuralı seç (al-tut, aylık dengeleme, trend filtresi, golden cross) ve 3 yıllık gerçek veriyle backtestini anında gör. Ücretsiz, hesapsız.">
 <link rel="canonical" href="https://kalibremarkets.com/portfoy-lab/">
 <meta property="og:title" content="Portföy Lab — portföyünü kur, stratejini seç, backtestini gör">
-<meta property="og:description" content="BIST 30'dan seç, strateji uygula, 5 yıllık gerçek veriyle sonucu gör. Ücretsiz, hesapsız.">
+<meta property="og:description" content="Kripto 30'dan seç, strateji uygula, 3 yıllık gerçek veriyle sonucu gör. Ücretsiz, hesapsız.">
 <meta property="og:url" content="https://kalibremarkets.com/portfoy-lab/">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
 <style>
 :root{--bg:#0e0c09;--bg-1:#14110e;--surface:#1a1612;--border:#2a241d;--text:#e8e2d8;--text-dim:#b8ae9e;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef5350}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -89,6 +89,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
 <header class="topnav">
   <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
   <div class="spacer"></div>
+  <a href="/portfoyum/" class="back">Portföyüm</a>
   <span data-kalibre-auth></span>
   <a href="/" class="back">← Ana sayfa</a>
 </header>
@@ -96,7 +97,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
 <div class="wrap">
   <div class="eyebrow">▸ Portföy Lab · Beta</div>
   <h1>Portföyünü kur, stratejini seç, <span class="a">backtestini gör</span>.</h1>
-  <p class="lead">BIST 30 hisselerinden portföy oluştur, üstüne bir strateji kuralı uygula ve 5 yıla kadar gerçek kapanış verisiyle sonucu anında gör. Tarayıcında çalışır: hesap yok, veri gönderimi yok. Kurduğun portföyü bağlantıyla paylaşabilirsin.</p>
+  <p class="lead">Kalibre Kripto 30'dan portföy oluştur, üstüne bir strateji kuralı uygula ve 3 yıla kadar gerçek kapanış verisiyle sonucu anında gör. Tarayıcında çalışır: hesap yok, veri gönderimi yok. Kurduğun portföyü bağlantıyla paylaşabilirsin.</p>
 
   <div class="panel">
     <h2><span class="n">1</span> Hisseleri seç <span style="color:var(--muted);font-weight:400;font-size:12px" id="sel-count"></span></h2>
@@ -120,7 +121,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
     <div class="opts" id="strats"></div>
     <div class="toolbar" style="margin-top:14px">
       <span style="font-size:12.5px;color:var(--muted)">Dönem:</span>
-      <div class="seg" id="period-seg"><span data-y="1">1 yıl</span><span data-y="3">3 yıl</span><span data-y="5" class="on">5 yıl</span></div>
+      <div class="seg" id="period-seg"><span data-y="1">1 yıl</span><span data-y="2">2 yıl</span><span data-y="3" class="on">3 yıl</span></div>
     </div>
   </div>
 
@@ -128,11 +129,11 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
     <h2><span class="n">4</span> Sonuç <span class="mono" style="font-size:12.5px;color:var(--muted);font-weight:400" id="period"></span></h2>
     <div id="warn-box"></div>
     <div class="stats" id="stats"></div>
-    <div class="warn" style="background:rgba(255,166,48,.06);border-color:rgba(255,166,48,.25);margin:-4px 0 14px">Bu rakamlar <b style="color:var(--text-dim)">nominal TL</b> getirisidir. Bu dönemde enflasyon yüksek seyretti, dolayısıyla satın alma gücü cinsinden reel getiri belirgin biçimde daha düşüktür. Enflasyona ve dolara göre düzeltilmiş karşılaştırma için <a href="/karne/">hisse karnesine</a> bak.</div>
+    <div class="warn" style="background:rgba(255,166,48,.06);border-color:rgba(255,166,48,.25);margin:-4px 0 14px">Bu rakamlar <b style="color:var(--text-dim)">nominal TL</b> getirisidir. Bu dönemde enflasyon yüksek seyretti, dolayısıyla satın alma gücü cinsinden reel getiri belirgin biçimde daha düşüktür. Enflasyon, dolar ve gram altın karşılaştırmasını aşağıdaki mercek seçeneklerinden açabilirsin.</div>
     <canvas id="chart"></canvas>
     <div class="legend">
       <span><span class="sw" style="background:#ffa630"></span><span id="lg-port">Senin portföyün</span></span>
-      <span><span class="sw" style="background:#6f6553"></span>BIST 30 eşit ağırlık (al-tut)</span>
+      <span><span class="sw" style="background:#6f6553"></span>Kripto 30 eşit ağırlık (al-tut)</span>
     </div>
     <div class="toolbar">
       <button id="btn-save">Portföyü kaydet</button>
@@ -149,11 +150,384 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent);background:tra
   </div>
 
   <p class="fine">
-    <b style="color:var(--text-dim)">Yöntem.</b> Veri: Yahoo Finance günlük kapanışları, bölünme ve temettü düzeltilmiş; her sabah otomatik güncellenir. Başlangıç sermayesi 100.000 ₺ olarak seçtiğin ağırlıklarla dağıtılır. <b style="color:var(--text-dim)">Al-tut</b> hiç işlem yapmaz. <b style="color:var(--text-dim)">Aylık dengeleme</b> her ayın ilk işlem gününde ağırlıkları hedefe döndürür. <b style="color:var(--text-dim)">Trend filtresi</b> bir hisseyi yalnızca kapanışı 200 günlük ortalamasının üzerindeyken tutar; <b style="color:var(--text-dim)">golden cross</b> ise 50 günlük ortalama 200 günlüğün üzerindeyken tutar. Sinyal yokken o dilim nakitte bekler ve <b style="color:var(--text-dim)">nakit getirisi sıfır sayılır</b> (gerçekte mevduat faizi kazanırdın, yani bu varsayım filtreli stratejilerin aleyhinedir). İşlem komisyonu, vergi ve kayma (slippage) hesaba katılmaz; gerçek sonuç daha düşük olur. Volatilite ve Sharpe yıllıklandırılmıştır, Sharpe risksiz faiz sıfır varsayımıyla hesaplanır (Türkiye koşullarında gerçek Sharpe belirgin biçimde daha düşüktür). Hisse evreni bugünün BIST 30'u olduğundan geçmişe dönük sonuçlar <b style="color:var(--text-dim)">hayatta kalma yanlılığı</b> taşır. Geçmiş performans geleceğin göstergesi değildir.
+    <b style="color:var(--text-dim)">Yöntem.</b> Veri: Coinbase Exchange günlük kapanışları (USD), USD/TRY ile TL'ye çevrilmiştir; her sabah otomatik güncellenir. Kriptoda bölünme ve temettü olmadığı için düzeltme gerekmez. Başlangıç sermayesi 100.000 ₺ olarak seçtiğin ağırlıklarla dağıtılır. <b style="color:var(--text-dim)">Al-tut</b> hiç işlem yapmaz. <b style="color:var(--text-dim)">Aylık dengeleme</b> her ayın ilk işlem gününde ağırlıkları hedefe döndürür. <b style="color:var(--text-dim)">Trend filtresi</b> bir hisseyi yalnızca kapanışı 200 günlük ortalamasının üzerindeyken tutar; <b style="color:var(--text-dim)">golden cross</b> ise 50 günlük ortalama 200 günlüğün üzerindeyken tutar. Sinyal yokken o dilim nakitte bekler ve <b style="color:var(--text-dim)">nakit getirisi sıfır sayılır</b> (gerçekte mevduat faizi kazanırdın, yani bu varsayım filtreli stratejilerin aleyhinedir). İşlem komisyonu, vergi ve kayma (slippage) hesaba katılmaz; gerçek sonuç daha düşük olur. Volatilite ve Sharpe yıllıklandırılmıştır, Sharpe risksiz faiz sıfır varsayımıyla hesaplanır (Türkiye koşullarında gerçek Sharpe belirgin biçimde daha düşüktür). Evren bugünün Kalibre Kripto 30'u olduğundan geçmişe dönük sonuçlar <b style="color:var(--text-dim)">hayatta kalma yanlılığı</b> taşır: bu dönemde değer kaybedip listeden düşenler evrende yok. Ayrıca fiyatlar TL'ye çevrildiği için getiri, varlığın kendi hareketi kadar kurdaki değişimi de içerir. Geçmiş performans geleceğin göstergesi değildir.
     <br><br>Bu araç eğitim ve analiz amaçlıdır; yatırım tavsiyesi değildir. Kalibre Markets SPK lisanslı bir kurum değildir, yatırım danışmanlığı vermez. Sorular ve hata bildirimi: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>
   </p>
 </div>
 
-<script src="/static/kalibre-askida.js"></script>
+<script>
+(function(){
+'use strict';
+var D=null;              // {dates, closes, meta}
+var sel={}, order=[];    // seçili hisseler ve ağırlıkları
+var strat='al-tut', years=3, last=null;
+var MAXSEL=15, CAPITAL=100000;
+
+var STRATS=[
+  {id:'al-tut',  t:'Al-tut',            d:'Baştan al, sonuna kadar tut. Hiç işlem yok.'},
+  {id:'aylik',   t:'Aylık dengeleme',   d:'Her ay başında ağırlıkları hedefe döndür.'},
+  {id:'trend',   t:'Trend filtresi',    d:'Hisseyi yalnızca 200 günlük ortalamasının üstündeyken tut.'},
+  {id:'golden',  t:'Golden cross',      d:'50 günlük ortalama 200 günlüğün üstündeyken tut.'}
+];
+var BASKETS=[
+  {t:'Büyükler', syms:['BTC','ETH','XRP','SOL','ADA']},
+  {t:'Platformlar', syms:['ETH','SOL','AVAX','DOT','NEAR','SUI']},
+  {t:'DeFi', syms:['UNI','AAVE','CRV','LDO','INJ']},
+  {t:'Eski nesil', syms:['BTC','LTC','BCH','XLM','ETC']},
+  {t:'Rastgele 5', syms:null}
+];
+
+var fmt=function(x,d){d=d==null?1:d;return x.toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d})};
+var $=function(id){return document.getElementById(id)};
+
+fetch('/terminal/data/portfoy-lab.json').then(function(r){
+  if(!r.ok) throw new Error('http '+r.status); return r.json();
+}).then(function(d){
+  D=d; buildChips(); buildStrats(); buildQuick(); fromHash(); render();
+}).catch(function(){
+  $('chips').innerHTML='<div class="empty">Veri şu an yüklenemedi. Birazdan tekrar dener misin?</div>';
+});
+
+function buildChips(){
+  var c=$('chips'); c.innerHTML='';
+  Object.keys(D.closes).sort().forEach(function(sym){
+    var el=document.createElement('span');
+    el.className='chip'; el.id='chip-'+sym; el.textContent=sym;
+    el.title=(D.meta[sym]&&D.meta[sym].name)||sym;
+    el.onclick=function(){toggle(sym)};
+    c.appendChild(el);
+  });
+}
+function buildStrats(){
+  var w=$('strats'); w.innerHTML='';
+  STRATS.forEach(function(s){
+    var el=document.createElement('div');
+    el.className='opt'+(s.id===strat?' on':''); el.id='opt-'+s.id;
+    el.innerHTML='<div class="t">'+s.t+'</div><div class="d">'+s.d+'</div>';
+    el.onclick=function(){
+      strat=s.id;
+      STRATS.forEach(function(o){$('opt-'+o.id).classList.toggle('on',o.id===strat)});
+      upd();
+    };
+    w.appendChild(el);
+  });
+}
+function buildQuick(){
+  var q=$('quick'); q.innerHTML='';
+  BASKETS.forEach(function(b){
+    var btn=document.createElement('button');
+    btn.textContent=b.t;
+    btn.onclick=function(){
+      var syms=b.syms;
+      if(!syms){
+        var all=Object.keys(D.closes).slice();
+        syms=[]; while(syms.length<5&&all.length) syms.push(all.splice(Math.floor(Math.random()*all.length),1)[0]);
+      }
+      sel={}; order=[];
+      syms.forEach(function(s){if(D.closes[s]){sel[s]=0;order.push(s)}});
+      equalize(); render();
+    };
+    q.appendChild(btn);
+  });
+}
+$('period-seg').onclick=function(e){
+  var y=e.target.getAttribute('data-y'); if(!y) return;
+  years=parseInt(y,10);
+  [].forEach.call(this.children,function(c){c.classList.toggle('on',c===e.target)});
+  upd();
+};
+
+function toggle(sym){
+  if(sel[sym]!=null){delete sel[sym]; order=order.filter(function(s){return s!==sym})}
+  else{
+    if(order.length>=MAXSEL){alert('En fazla '+MAXSEL+' hisse seçebilirsin.');return}
+    sel[sym]=0; order.push(sym); equalize();
+  }
+  render();
+}
+function equalize(){var w=order.length?Math.round(1000/order.length)/10:0; order.forEach(function(s){sel[s]=w})}
+$('btn-eq').onclick=function(){equalize();render()};
+
+function render(){
+  Object.keys((D&&D.closes)||{}).forEach(function(sym){
+    var c=$('chip-'+sym); if(c) c.classList.toggle('on', sel[sym]!=null);
+  });
+  $('sel-count').textContent=order.length?('· '+order.length+' hisse'):'';
+  var w=$('weights');
+  if(!order.length){w.innerHTML='<div class="empty">Önce yukarıdan hisse seç.</div>'}
+  else{
+    w.innerHTML='';
+    order.forEach(function(sym){
+      var row=document.createElement('div'); row.className='wrow';
+      var nm=(D.meta[sym]&&D.meta[sym].name)||sym;
+      row.innerHTML='<span class="sym" title="'+nm+'">'+sym+'</span>'+
+        '<input type="range" min="0" max="100" step="0.5" value="'+sel[sym]+'" aria-label="'+nm+' ağırlığı">'+
+        '<span class="pct">'+fmt(sel[sym])+'%</span><span class="rm" title="Çıkar">✕</span>';
+      row.querySelector('input').oninput=function(e){
+        sel[sym]=parseFloat(e.target.value);
+        row.querySelector('.pct').textContent=fmt(sel[sym])+'%';
+        upd();
+      };
+      row.querySelector('.rm').onclick=function(){toggle(sym)};
+      w.appendChild(row);
+    });
+  }
+  upd();
+}
+
+function upd(){
+  var sum=order.reduce(function(a,s){return a+(sel[s]||0)},0);
+  $('wsum').textContent=fmt(sum)+'%';
+  $('wsum').style.color=Math.abs(sum-100)<1?'var(--green)':'var(--accent)';
+  if(order.length&&sum>0.5){run(sum)}
+  else{$('results').style.display='none'; $('probar').style.display='none'}
+}
+
+// ── backtest çekirdeği ────────────────────────────────────────────────────
+function sma(arr,n,i){ // i dahil son n değerin ortalaması; yetersizse null
+  if(i+1<n) return null;
+  var s=0; for(var k=i-n+1;k<=i;k++) s+=arr[k];
+  return s/n;
+}
+function signals(px,kind){
+  // signals[i] = i. günün KAPANIŞINDA üretilen sinyal (i+1'de uygulanır)
+  var out=new Array(px.length);
+  for(var i=0;i<px.length;i++){
+    if(kind==='trend'){var m=sma(px,200,i); out[i]=(m==null)?null:(px[i]>m)}
+    else{var f=sma(px,50,i),s=sma(px,200,i); out[i]=(f==null||s==null)?null:(f>s)}
+  }
+  return out;
+}
+function backtest(syms,weights,startIdx,endIdx,kind){
+  var n=endIdx-startIdx+1;
+  var sleeves=syms.map(function(s,j){return weights[j]*CAPITAL});
+  var series=new Array(n), trades=0, daysIn=0, dayTotal=0;
+  var sig={};
+  if(kind==='trend'||kind==='golden') syms.forEach(function(s){sig[s]=signals(D.closes[s],kind)});
+  var monthOf=function(i){return D.dates[i].slice(0,7)};
+  var prevHeld=syms.map(function(){return true});
+
+  series[0]=sleeves.reduce(function(a,b){return a+b},0);
+  for(var i=startIdx+1;i<=endIdx;i++){
+    var t=i-startIdx;
+    for(var j=0;j<syms.length;j++){
+      var s=syms[j], px=D.closes[s];
+      var held=true;
+      if(kind==='trend'||kind==='golden'){
+        var sg=sig[s][i-1];            // dünkü kapanışın sinyali
+        held=(sg==null)?false:sg;      // ısınma dönemi: nakitte bekle
+      }
+      if(held) sleeves[j]*=px[i]/px[i-1];
+      if(held!==prevHeld[j]){trades++; prevHeld[j]=held}
+      if(held) daysIn++; dayTotal++;
+    }
+    var tot=sleeves.reduce(function(a,b){return a+b},0);
+    if(kind==='aylik'&&monthOf(i)!==monthOf(i-1)){
+      sleeves=weights.map(function(w){return w*tot});
+      trades+=syms.length;
+    }
+    series[t]=tot;
+  }
+  return {series:series, trades:trades, exposure:dayTotal?daysIn/dayTotal:1};
+}
+function metrics(series){
+  var ret=(series[series.length-1]/series[0]-1)*100;
+  var rets=[]; for(var i=1;i<series.length;i++) rets.push(series[i]/series[i-1]-1);
+  var mean=rets.reduce(function(a,b){return a+b},0)/rets.length;
+  var sd=Math.sqrt(rets.reduce(function(a,b){return a+(b-mean)*(b-mean)},0)/rets.length);
+  // Kripto 7 gün işlem görür: yıllıklandırma sabiti 252 işlem günü değil 365 gündür.
+  var vol=sd*Math.sqrt(365)*100;
+  var yrs=series.length/365;
+  var cagr=(Math.pow(series[series.length-1]/series[0],1/yrs)-1)*100;
+  var sharpe=sd?(mean*365)/(sd*Math.sqrt(365)):0;
+  var peak=series[0],mdd=0;
+  series.forEach(function(v){if(v>peak)peak=v; var dd=(v/peak-1)*100; if(dd<mdd)mdd=dd});
+  return {ret:ret,cagr:cagr,vol:vol,sharpe:sharpe,mdd:mdd,last:series[series.length-1]};
+}
+
+function run(sum){
+  var total=D.dates.length;
+  // Gün sayısı yıldan doğrudan türetilir; kayıtlı bağlantılardan gelen eski
+  // dönem değerleri (ör. 5) haritada bulunamayıp diziyi bozmasın diye harita yok.
+  var want=Math.round(years*365);
+  var startIdx=Math.max(0,total-want);
+  var needsMA=(strat==='trend'||strat==='golden');
+  var warned='';
+  if(needsMA&&startIdx<200){
+    startIdx=200;
+    warned='Trend ve golden cross kuralları 200 günlük ortalama gerektirir; bu yüzden test '+D.dates[startIdx]+' tarihinden başlıyor.';
+  }
+  var endIdx=total-1;
+  if(endIdx-startIdx<60){$('results').style.display='none';return}
+
+  var syms=order.slice(), weights=syms.map(function(s){return (sel[s]||0)/sum});
+  var port=backtest(syms,weights,startIdx,endIdx,strat);
+  var allSyms=Object.keys(D.closes);
+  var bench=backtest(allSyms,allSyms.map(function(){return 1/allSyms.length}),startIdx,endIdx,'al-tut');
+
+  var m=metrics(port.series), bm=metrics(bench.series);
+  var cls=function(x){return x>=0?'pos':'neg'};
+  var stratName=STRATS.filter(function(s){return s.id===strat})[0].t;
+
+  $('warn-box').innerHTML=warned?('<div class="warn">'+warned+'</div>'):'';
+  $('stats').innerHTML=
+    '<div class="stat"><div class="l">Toplam Getiri</div><div class="v '+cls(m.ret)+'">'+(m.ret>=0?'+':'')+fmt(m.ret)+'%</div><div class="s">100.000 ₺ → '+fmt(m.last,0)+' ₺</div></div>'+
+    '<div class="stat"><div class="l">Yıllık Bileşik</div><div class="v '+cls(m.cagr)+'">'+(m.cagr>=0?'+':'')+fmt(m.cagr)+'%</div><div class="s">CAGR</div></div>'+
+    '<div class="stat"><div class="l">Kripto 30\'a Karşı</div><div class="v '+cls(m.ret-bm.ret)+'">'+(m.ret-bm.ret>=0?'+':'')+fmt(m.ret-bm.ret)+' puan</div><div class="s">'+(m.ret-bm.ret>=0?'sepeti geçtin':'sepetin altında')+' · sepet '+(bm.ret>=0?'+':'')+fmt(bm.ret)+'%</div></div>'+
+    '<div class="stat"><div class="l">Maks. Düşüş</div><div class="v neg">'+fmt(m.mdd)+'%</div><div class="s">sepet: '+fmt(bm.mdd)+'%</div></div>'+
+    '<div class="stat"><div class="l">Yıllık Volatilite</div><div class="v">'+fmt(m.vol)+'%</div><div class="s">Sharpe '+fmt(m.sharpe,2)+'</div></div>'+
+    '<div class="stat"><div class="l">İşlem / Piyasada</div><div class="v">'+port.trades+'</div><div class="s">zamanın %'+fmt(port.exposure*100,0)+"'inde pozisyonda</div></div>";
+  last={ret:m.ret,strat:stratName,years:years};
+  $('period').textContent='— '+stratName+' · '+D.dates[startIdx]+' → '+D.dates[endIdx];
+  $('lg-port').textContent='Senin portföyün ('+stratName+')';
+  $('results').style.display='block';
+  $('probar').style.display='flex';
+  draw(D.dates.slice(startIdx,endIdx+1),port.series,bench.series);
+  toHash();
+  try{gtag('event','portfolio_backtest',{stocks:order.length,strategy:strat,years:years})}catch(e){}
+}
+
+function draw(dates,port,bench){
+  var cv=$('chart'), dpr=window.devicePixelRatio||1;
+  var W=cv.clientWidth||600,H=300;
+  cv.width=W*dpr; cv.height=H*dpr;
+  var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  var all=port.concat(bench);
+  var mn=Math.min.apply(null,all), mx=Math.max.apply(null,all), pad=(mx-mn)*0.08||1;
+  mn-=pad; mx+=pad;
+  var X=function(i){return 46+(W-56)*i/(dates.length-1)};
+  var Y=function(v){return 12+(H-42)*(1-(v-mn)/(mx-mn))};
+  ctx.font='10px JetBrains Mono,monospace'; ctx.lineWidth=1;
+  for(var g=0;g<=4;g++){
+    var v=mn+(mx-mn)*g/4, y=Y(v);
+    ctx.strokeStyle='#26221d'; ctx.beginPath(); ctx.moveTo(46,y); ctx.lineTo(W-10,y); ctx.stroke();
+    ctx.fillStyle='#6f6553'; ctx.fillText(Math.round(v/1000)+'k',4,y+3);
+  }
+  [[bench,'#6f6553',1.5],[port,'#ffa630',2.2]].forEach(function(cfg){
+    ctx.strokeStyle=cfg[1]; ctx.lineWidth=cfg[2]; ctx.beginPath();
+    cfg[0].forEach(function(v,i){var x=X(i),y=Y(v); i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
+    ctx.stroke();
+  });
+  ctx.fillStyle='#ffa630';
+  ctx.beginPath(); ctx.arc(X(port.length-1),Y(port[port.length-1]),3.5,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#6f6553';
+  ctx.fillText(dates[0],46,H-8);
+  var t2=dates[dates.length-1];
+  ctx.fillText(t2,W-10-ctx.measureText(t2).width,H-8);
+}
+
+// ── paylaşım ve kalıcılık ─────────────────────────────────────────────────
+function encode(){return order.map(function(s){return s+':'+sel[s]}).join(',')+'|'+strat+'|'+years}
+function toHash(){
+  try{
+    history.replaceState(null,'','#p='+encode());
+    localStorage.setItem('kalibre-portfoy',encode());
+  }catch(e){}
+}
+function fromHash(){
+  var raw=null;
+  var m=location.hash.match(/p=([^&]+)/);
+  if(m) raw=decodeURIComponent(m[1]);
+  else{try{raw=localStorage.getItem('kalibre-portfoy')}catch(e){}}
+  if(!raw) return;
+  var parts=raw.split('|');
+  parts[0].split(',').forEach(function(pair){
+    var kv=pair.split(':'), sym=(kv[0]||'').toUpperCase(), w=parseFloat(kv[1]);
+    if(D.closes[sym]&&w>0&&order.length<MAXSEL&&sel[sym]==null){sel[sym]=w; order.push(sym)}
+  });
+  if(parts[1]&&STRATS.some(function(s){return s.id===parts[1]})){
+    strat=parts[1];
+    STRATS.forEach(function(o){var el=$('opt-'+o.id); if(el) el.classList.toggle('on',o.id===strat)});
+  }
+  var y=parseInt(parts[2],10);
+  if([1,3,5].indexOf(y)>=0){
+    years=y;
+    [].forEach.call($('period-seg').children,function(c){c.classList.toggle('on',parseInt(c.getAttribute('data-y'),10)===y)});
+  }
+}
+
+$('btn-save').onclick=function(){
+  if(!order.length||!last) return;
+  var varsayilan=order.slice(0,3).join('+')+(order.length>3?' +'+(order.length-3):'');
+  var ad=prompt('Portföye bir ad ver:',varsayilan);
+  if(ad===null) return;
+  var btn=$('btn-save'), eski=btn.textContent;
+  btn.disabled=true; btn.textContent='Kaydediliyor…';
+  KalibreStore.save('portfoy',(ad||varsayilan).slice(0,80),{
+    kod:encode(),
+    hisseler:order.map(function(s){return {sym:s,agirlik:sel[s]}}),
+    strateji:last.strat, yil:last.years, getiri:Math.round(last.ret*10)/10
+  }).then(function(){
+    btn.disabled=false;
+    btn.textContent=(KalibreAuth.user()?'✓ Hesabına kaydedildi':'✓ Bu tarayıcıya kaydedildi');
+    setTimeout(function(){btn.textContent=eski},2600);
+    try{gtag('event','portfolio_save',{signed_in:!!KalibreAuth.user()})}catch(e){}
+  }).catch(function(){
+    btn.disabled=false; btn.textContent=eski;
+    alert('Kaydedilemedi. Birazdan tekrar dener misin?');
+  });
+};
+$('btn-share').onclick=function(){
+  toHash();
+  navigator.clipboard.writeText(location.href).then(function(){
+    var ok=$('share-ok'); ok.style.display='inline'; setTimeout(function(){ok.style.display='none'},2200);
+    try{gtag('event','portfolio_share',{how:'link'})}catch(e){}
+  }).catch(function(){prompt('Bağlantıyı kopyala:',location.href)});
+};
+$('btn-tw').onclick=function(){
+  toHash();
+  var v=document.querySelector('#stats .v');
+  var txt='Kripto portföyümü Kalibre Portföy Lab\'da test ettim — '+years+' yıllık sonuç: '+(v?v.textContent:'')+'. Sen de dene:';
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(location.href),'_blank','noopener');
+  try{gtag('event','portfolio_share',{how:'x'})}catch(e){}
+};
+$('btn-img').onclick=function(){
+  var W=1080,H=1080,c=document.createElement('canvas');
+  c.width=W;c.height=H;var x=c.getContext('2d');
+  x.fillStyle='#0e0c09';x.fillRect(0,0,W,H);
+  x.strokeStyle='rgba(255,166,48,.05)';x.lineWidth=1;
+  for(var g=0;g<W;g+=72){x.beginPath();x.moveTo(g,0);x.lineTo(g,H);x.stroke();x.beginPath();x.moveTo(0,g);x.lineTo(W,g);x.stroke()}
+  x.fillStyle='#ffa630';x.font='700 26px JetBrains Mono,monospace';
+  x.fillText('KALİBRE // MARKETS',72,96);
+  x.fillStyle='#6f6553';x.font='400 22px JetBrains Mono,monospace';
+  x.fillText($('period').textContent.replace(/^—\s*/,''),72,136);
+  x.fillStyle='#e8e2d8';x.font='700 60px Inter,sans-serif';
+  x.fillText('Portföy backtest',72,232);
+  var sts=[].slice.call(document.querySelectorAll('#stats .stat')).slice(0,4);
+  sts.forEach(function(st,i){
+    var col=i%2, row=(i/2)|0, px=72+col*480, py=320+row*200;
+    x.fillStyle='#1a1612';x.fillRect(px,py,440,160);
+    x.strokeStyle='#2a241d';x.strokeRect(px,py,440,160);
+    x.fillStyle='#6f6553';x.font='400 20px JetBrains Mono,monospace';
+    x.fillText(st.querySelector('.l').textContent,px+26,py+46);
+    var vEl=st.querySelector('.v');
+    x.fillStyle=vEl.classList.contains('pos')?'#4ade80':(vEl.classList.contains('neg')?'#ef5350':'#e8e2d8');
+    x.font='700 52px JetBrains Mono,monospace';
+    x.fillText(vEl.textContent,px+26,py+108);
+    x.fillStyle='#6f6553';x.font='400 18px Inter,sans-serif';
+    x.fillText(st.querySelector('.s').textContent,px+26,py+142);
+  });
+  x.fillStyle='#b8ae9e';x.font='500 26px Inter,sans-serif';
+  x.fillText(order.join(' · ').slice(0,60),72,772);
+  x.fillStyle='#ffa630';x.font='600 30px Inter,sans-serif';
+  x.fillText('kalibremarkets.com/portfoy-lab',72,900);
+  x.fillStyle='#6f6553';x.font='400 20px Inter,sans-serif';
+  x.fillText('Geçmiş performans geleceğin göstergesi değildir. Yatırım tavsiyesi değildir.',72,952);
+  var a=document.createElement('a');
+  a.download='kalibre-portfoy-'+order.join('-').toLowerCase()+'.png';
+  a.href=c.toDataURL('image/png'); a.click();
+  try{gtag('event','portfolio_share',{how:'image'})}catch(e){}
+};
+
+var rt;
+window.addEventListener('resize',function(){
+  clearTimeout(rt);
+  rt=setTimeout(function(){if($('results').style.display!=='none') upd()},180);
+});
+})();
+</script>
+<script src="/static/kalibre-config.js"></script>
+<script src="/static/kalibre-auth.js"></script>
+<script src="/static/asistan.js" defer></script>
 </body>
 </html>

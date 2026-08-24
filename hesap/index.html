@@ -110,7 +110,7 @@ button.mini{padding:7px 12px;font-size:12px}
 
   <div class="panel" id="izleme-panel">
     <h2>İzleme listem</h2>
-    <div class="hint">Takip ettiğin hisseler; karne ve lab sayfalarında kısayol olur.</div>
+    <div class="hint">Takip ettiğin varlıklar; lab sayfalarında kısayol olur.</div>
     <div class="addrow"><select id="add-sym"><option value="">Hisse seç…</option></select><button class="ghost" type="button" id="btn-add">Listeye ekle</button></div>
     <div id="izleme"><div class="empty">Yükleniyor…</div></div>
   </div>
@@ -188,7 +188,7 @@ function renderIzleme(rows){
   IZLEME_ROW=row||null;
   var syms=(row&&row.payload&&row.payload.semboller)||[];
   if(!syms.length){
-    box.innerHTML='<div class="empty">İzleme listen boş. <a href="/karne/">Hisse karnesinden</a> veya <a href="/portfoy-lab/">Portföy Lab\'dan</a> hisse ekleyebilirsin.</div>';
+    box.innerHTML='<div class="empty">İzleme listen boş. <a href="/portfoy-lab/">Portföy Lab\'dan</a> ekleyebilirsin.</div>';
     return;
   }
   box.innerHTML='<div class="chips"></div>';
