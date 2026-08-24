@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Temettü Takvimi — BIST 30 temettü verimi ve beklenen ödemeler | Kalibre Markets</title>
+<meta name="robots" content="noindex, follow">
 <meta name="description" content="BIST 30 hisselerinin geçmiş temettü ödemeleri, güncel temettü verimi ve geçmiş düzene göre beklenen sıradaki ödemeler. Portföyünü girdiysen yıllık temettü gelirini de hesaplar. Ücretsiz.">
 <link rel="canonical" href="https://kalibremarkets.com/temettu/">
 <meta property="og:title" content="Temettü Takvimi — BIST 30 temettü verimi ve beklenen ödemeler">
@@ -14,7 +15,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
 <style>
 :root{--bg:#0e0c09;--bg-1:#14110e;--surface:#1a1612;--border:#2a241d;--text:#e8e2d8;--text-dim:#b8ae9e;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef5350}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -80,7 +80,6 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
 <header class="topnav">
   <a href="/" class="brand"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a>
   <div class="spacer"></div>
-  <a href="/portfoyum/" class="back">Portföyüm</a>
   <a href="/hesap/" class="back">Panom</a>
   <span data-kalibre-auth></span>
 </header>
@@ -128,202 +127,6 @@ td.ad{font-family:Inter,sans-serif;color:var(--muted);font-size:12.5px;text-alig
   </p>
 </div>
 
-<script src="/static/kalibre-config.js"></script>
-<script src="/static/kalibre-auth.js"></script>
-<script src="/static/kalibre-tur.js"></script>
-<script>
-(function(){
-'use strict';
-var $=function(id){return document.getElementById(id)};
-var T=null, siraAlan='verim', siraYon=-1;
-var AYLAR=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-
-function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function n(x,d){d=d==null?2:d;return Number(x).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d})}
-
-fetch('/terminal/data/temettu.json').then(function(r){return r.json()}).then(function(d){
-  T=d; elden(); isabet(); takvim(); tablo(); gelir();
-}).catch(function(){
-  $('takvim').innerHTML='<div class="empty">Temettü verisi yüklenemedi.</div>';
-  $('tablo').innerHTML='';
-});
-
-// ── Elden geçirme şeridi ─────────────────────────────────────────────
-function elden(){
-  var el=$('elden');
-  if(!T.son_kontrol){el.style.display='none';return}
-  var kayit=0;
-  Object.keys(T.stocks).forEach(function(s){kayit+=(T.stocks[s].odemeler||[]).length});
-  var gun=Math.round((Date.now()-new Date(T.son_kontrol).getTime())/86400000);
-  var tazelik=gun<=21?'':' <span style="color:var(--muted)">(yenilenme zamanı geldi)</span>';
-  el.innerHTML='<span class="tar">'+esc(T.son_kontrol)+'</span>'+
-    '<span style="flex:1;min-width:220px">Defter en son bu tarihte elden geçirildi. '+
-    Object.keys(T.stocks).length+' hissenin <b>'+kayit+' ödeme kaydı</b> tek tek kontrol edildi.'+tazelik+'</span>';
-}
-
-// ── Yöntemin kendi isabeti ───────────────────────────────────────────
-function isabet(){
-  var el=$('isabet'), i=T.isabet;
-  if(!i||!i.medyan_sapma){el.style.display='none';return}
-  el.innerHTML='<b>Tahminlerimiz ne kadar tutuyor? Ölçtük ve iyi değil.</b><br>'+
-    'Aynı yöntemi geçmiş '+i.vaka+' hisse-yıla uyguladık. Tahmin edilen tutar ile gerçekleşen arasındaki '+
-    'sapmanın <span class="say">medyanı %'+n(i.medyan_sapma,0)+'</span>; vakaların '+
-    '<span class="say">%'+i.yuzde100_ustu+'</span>\'inde sapma %100\'ü aştı. '+
-    'Sapma tek yönlü: %'+i.az_tahmin_orani+' oranında <b>az</b> tahmin ediyoruz, çünkü enflasyonla nominal temettüler büyüyor. '+
-    'Ayrıca '+i.temettu_kesen+' vakada şirket temettüyü tamamen kesti.<br><br>'+
-    '<b>Tarih tutarlardan iyi ama kusursuz değil:</b> şirketler ertesi yıl aynı ayda ödemeyi %'+i.ayni_ay_orani+
-    ' oranında sürdürdü; sürdürdüğünde gün sapması medyan '+i.ay_tutunca_medyan_gun+' gün. '+
-    'Bu yüzden işaretsiz satırlarda tahmini tutar yerine <b>geçen yıl aynı dönemde ne ödendiğini</b> gösteriyoruz.';
-}
-
-// ── Beklenen ödemeler takvimi ────────────────────────────────────────
-function takvim(){
-  var bugun=new Date().toISOString().slice(0,10);
-  var aylar={}, aciSayi=0;
-  Object.keys(T.stocks).forEach(function(sym){
-    var s=T.stocks[sym], aci=s.aciklanmis_ex;
-    // Açıklanmış ex-tarih varsa o tarihi kullan; tahminlerden aynı aya düşeni ele.
-    if(aci&&aci>=bugun){
-      aciSayi++;
-      // Şirket tutarı da duyurduysa onu kullan; yoksa tutarı boş bırak.
-      // Tahmini burada göstermek yanıltıcı olur: tarih kesinken tutarın
-      // tahmin olduğu ayırt edilemez.
-      (aylar[aci.slice(0,7)]=aylar[aci.slice(0,7)]||[]).push({
-        sym:sym,tarih:aci,tutar:(s.aciklanmis_tutar!=null?s.aciklanmis_tutar:null),
-        guven:'yuksek',verim:s.verim,aciklanmis:true});
-    }
-    (s.tahminler||[]).forEach(function(x){
-      if(x.tarih<bugun) return;
-      if(aci&&aci>=bugun&&x.tarih.slice(0,7)===aci.slice(0,7)) return;   // yinelemeyi önle
-      if(aci&&aci>=bugun&&s.aciklanmis_tutar!=null&&x.tarih>aci) return;  // duyuru sonrası tahmini gösterme
-      var k=x.tarih.slice(0,7);
-      (aylar[k]=aylar[k]||[]).push({sym:sym,tarih:x.tarih,tutar:x.tutar,guven:x.guven,verim:s.verim,aciklanmis:false});
-    });
-  });
-  var sirali=Object.keys(aylar).sort().slice(0,12);
-  if(!sirali.length){
-    $('takvim').innerHTML='<div class="empty">Beklenen ödeme bulunamadı. Son 12 ayda temettü ödeyen hisse yoksa takvim boş kalır.</div>';
-    return;
-  }
-  var html='';
-  sirali.forEach(function(k){
-    var y=+k.slice(0,4), m=+k.slice(5);
-    var liste=aylar[k].slice().sort(function(a,b){return a.tarih<b.tarih?-1:1});
-    html+='<div class="ay"><div class="ay-bas"><h3>'+AYLAR[m-1]+' '+y+'</h3>'+
-      '<span style="font-size:12px;color:var(--muted)">'+liste.length+' ödeme</span></div><div class="hisseler">';
-    liste.forEach(function(x){
-      var baslik=x.aciklanmis?(esc(x.tarih)+' · şirketin açıkladığı ex-temettü tarihi')
-                             :(esc(x.tarih)+' · geçen yıl aynı tarihte ödendi (tahmin)');
-      html+='<span class="hs'+(x.aciklanmis?' aci':'')+'" title="'+baslik+'">'+
-        (x.aciklanmis?'<span class="rozet">AÇIKLANDI</span>':'<span class="g g-'+esc(x.guven)+'"></span>')+
-        '<b>'+esc(x.sym)+'</b>'+
-        (x.aciklanmis
-           ? (x.tutar!=null?'<span class="tl">'+n(x.tutar)+' ₺</span>'
-                           :'<span style="color:var(--muted);font-size:11.5px">tutar belli değil</span>')
-           : (x.tutar!=null?'<span class="gecen">geçen yıl '+n(x.tutar)+' ₺</span>':''))+
-        '<span style="color:var(--muted);font-family:\'JetBrains Mono\',monospace">'+esc(x.tarih.slice(8))+'</span></span>';
-    });
-    html+='</div></div>';
-  });
-  if(aciSayi) html+='<p style="font-size:11.5px;color:var(--muted);margin-top:4px">'+
-    '<span class="rozet">AÇIKLANDI</span> işaretli satırlarda hem tarih hem tutar şirketin duyurduğu rakamdır. '+
-    'İşaretsizlerde tarih beklentidir ve yanındaki rakam <b>geçen yıl aynı dönemde ödenen</b> tutardır — bu yılki tutar değil.</p>';
-  $('takvim').innerHTML=html;
-}
-
-// ── Verim tablosu ────────────────────────────────────────────────────
-function tablo(){
-  var satirlar=Object.keys(T.stocks).map(function(sym){
-    var s=T.stocks[sym];
-    var son=s.odemeler.length?s.odemeler[s.odemeler.length-1]:null;
-    return {sym:sym, ad:s.name, verim:s.verim, son12:s.son12ay, fiyat:s.fiyat,
-            sonTarih:son?son.tarih:null, sonTutar:son?son.tutar:null, adet:s.odemeler.length};
-  }).filter(function(r){return r.adet>0});
-
-  satirlar.sort(function(a,b){
-    var x=a[siraAlan], y=b[siraAlan];
-    if(x==null) return 1; if(y==null) return -1;
-    if(typeof x==='string') return siraYon*x.localeCompare(y,'tr');
-    return siraYon*(x-y);
-  });
-
-  var t='<div class="tblwrap"><table><tr>'+
-    '<th data-s="sym">Hisse</th><th data-s="ad" style="text-align:left">Şirket</th>'+
-    '<th data-s="verim">Verim</th><th data-s="son12">Son 12 Ay</th>'+
-    '<th data-s="fiyat">Fiyat</th><th data-s="sonTarih">Son Ödeme</th><th data-s="adet">Kayıt</th></tr>';
-  satirlar.forEach(function(r){
-    t+='<tr><td class="sym">'+esc(r.sym)+'</td><td class="ad">'+esc(r.ad)+'</td>'+
-       '<td style="color:'+(r.verim>=4?'var(--green)':'var(--text-dim)')+'">'+(r.verim!=null?n(r.verim)+'%':'—')+'</td>'+
-       '<td>'+(r.son12?n(r.son12):'—')+'</td><td>'+(r.fiyat?n(r.fiyat):'—')+'</td>'+
-       '<td>'+(r.sonTarih?esc(r.sonTarih)+' · '+n(r.sonTutar):'—')+'</td><td>'+r.adet+'</td></tr>';
-  });
-  t+='</table></div>';
-  $('tablo').innerHTML=t;
-  [].forEach.call($('tablo').querySelectorAll('th[data-s]'),function(th){
-    th.onclick=function(){
-      var a=th.getAttribute('data-s');
-      if(a===siraAlan) siraYon=-siraYon; else {siraAlan=a; siraYon=(a==='sym'||a==='ad'||a==='sonTarih')?1:-1;}
-      tablo();
-    };
-  });
-}
-
-// ── Portföy temettü geliri ───────────────────────────────────────────
-function gelir(){
-  KalibreStore.list('portfoyum').then(function(rows){
-    var row=(rows||[])[0];
-    var islemler=(row&&row.payload&&row.payload.islemler)||[];
-    if(!islemler.length) return;
-
-    // FIFO'ya gerek yok: net adet yeterli
-    var adet={};
-    islemler.slice().sort(function(a,b){return a.tarih<b.tarih?-1:1}).forEach(function(x){
-      adet[x.sym]=(adet[x.sym]||0)+(x.tip==='alis'?x.adet:-x.adet);
-    });
-
-    var toplam=0, maliyet=0, satir=[];
-    Object.keys(adet).forEach(function(sym){
-      if(adet[sym]<=1e-9) return;
-      var s=T.stocks[sym]; if(!s||!s.son12ay) return;
-      var yillik=adet[sym]*s.son12ay;
-      toplam+=yillik;
-      if(s.fiyat) maliyet+=adet[sym]*s.fiyat;
-      satir.push({sym:sym,adet:adet[sym],yillik:yillik,verim:s.verim});
-    });
-    if(!toplam) return;
-
-    satir.sort(function(a,b){return b.yillik-a.yillik});
-    $('gelir').innerHTML=
-      '<div class="k"><div class="l">Yıllık Beklenen</div><div class="v">'+n(toplam,0)+' ₺</div><div class="s">brüt, stopaj öncesi</div></div>'+
-      '<div class="k"><div class="l">Aylık Ortalama</div><div class="v">'+n(toplam/12,0)+' ₺</div><div class="s">yıla yayılmış</div></div>'+
-      (maliyet?'<div class="k"><div class="l">Portföy Verimi</div><div class="v">'+n(toplam/maliyet*100)+'%</div><div class="s">güncel değere göre</div></div>':'');
-
-    var d='<div class="tblwrap"><table><tr><th>Hisse</th><th>Adet</th><th>Verim</th><th>Yıllık Brüt</th></tr>';
-    satir.forEach(function(r){
-      d+='<tr><td class="sym">'+esc(r.sym)+'</td><td>'+n(r.adet,0)+'</td>'+
-         '<td>'+(r.verim!=null?n(r.verim)+'%':'—')+'</td>'+
-         '<td style="color:var(--green)">'+n(r.yillik,0)+' ₺</td></tr>';
-    });
-    d+='</table></div>';
-    $('gelir-detay').innerHTML=d;
-    $('gelir-panel').style.display='block';
-    try{gtag('event','dividend_income_view',{stocks:satir.length})}catch(e){}
-  }).catch(function(){});
-}
-
-KalibreTur.kur('temettu-v1',[
-  {sec:'#takvim', baslik:'Beklenen ödemeler',
-   metin:'Şirketin geçmişte hangi ay ödeme yaptığına bakıp aynı düzenin süreceğini varsayıyoruz. Yanındaki nokta düzenin ne kadar güçlü olduğunu gösterir.'},
-  {sec:'#tablo', baslik:'Verim tablosu',
-   metin:'Son 12 ayda ödenen brüt temettünün güncel fiyata oranı. Başlığa tıklayarak sıralayabilirsin.', konum:'ust'},
-  {sec:'#gelir-panel', baslik:'Kendi gelirin',
-   metin:'Portföyüm sayfasına işlemlerini girdiysen, aynı ödeme düzeyi sürerse yıllık ne kadar temettü alacağını burada gösteririz.'}
-],{otomatik:false});
-$('btn-tur').onclick=function(){KalibreTur.sifirla();KalibreTur.baslat()};
-
-KalibreAuth.onChange(function(){ if(T) gelir(); });
-})();
-</script>
-<script src="/static/asistan.js" defer></script>
+<script src="/static/kalibre-askida.js"></script>
 </body>
 </html>
