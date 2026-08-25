@@ -5,7 +5,7 @@
   <link>https://kalibremarkets.com</link>
   <description>Yapay zeka destekli veri, araştırma ve eğitim platformu. Günlük bültenler, çeyreklik Türkiye Ekonomik Raporu, strateji laboratuvarı, sentiment bülteni ve eğitim.</description>
   <language>tr-TR</language>
-  <lastBuildDate>Mon, 24 Aug 2026 14:04:45 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 25 Aug 2026 03:39:39 +0000</lastBuildDate>
   <atom:link href="https://kalibremarkets.com/rss.xml" rel="self" type="application/rss+xml" />
   <image>
     <url>https://kalibremarkets.com/og-default.png</url>
@@ -25,17 +25,6 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-07-29 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-07-29/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-29/fx/</guid>
-    <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>TCMB Analitik Bilanço · 2026-07-29 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-29/tcmb/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-29/tcmb/</guid>
@@ -47,10 +36,10 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-05-27 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-27/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-27/fx/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+    <title>💱 Döviz Günlük Bülten — 2026-07-29 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-29/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-29/fx/</guid>
+    <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
@@ -69,23 +58,23 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-05-27 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-27/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-27/fx/</guid>
+    <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-06-24 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-24/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-24/metals/</guid>
     <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
     <description>🥇 Değerli Metaller — Değerli Metaller günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Değerli Metaller</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-24 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-24/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-24/fx/</guid>
-    <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -102,6 +91,17 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-24 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-24/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-24/fx/</guid>
+    <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-07-22 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-22/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/metals/</guid>
@@ -113,23 +113,23 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-07-22 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-07-22/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/fx/</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>TCMB Analitik Bilanço · 2026-07-22 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-22/tcmb/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/tcmb/</guid>
     <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
     <description>🏛 TCMB Analitik Bilanço — TCMB günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>TCMB Analitik Bilanço</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-07-22 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-22/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-22/fx/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -157,17 +157,6 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-08-19 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-08-19/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-19/fx/</guid>
-    <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>TCMB Analitik Bilanço · 2026-08-19 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-19/tcmb/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-19/tcmb/</guid>
@@ -179,10 +168,10 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-17 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-17/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-17/fx/</guid>
-    <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+    <title>💱 Döviz Günlük Bülten — 2026-08-19 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-08-19/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-19/fx/</guid>
+    <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
     <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
@@ -201,23 +190,23 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-17 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-17/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-17/fx/</guid>
+    <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-07-15 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-15/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-15/metals/</guid>
     <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
     <description>🥇 Değerli Metaller — Değerli Metaller günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Değerli Metaller</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-07-15 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-07-15/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-15/fx/</guid>
-    <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -234,6 +223,17 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-07-15 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-15/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-15/fx/</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🇹🇷 TR Makro — 2026-05-13 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-05-13/makro/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/makro/</guid>
@@ -242,17 +242,6 @@
     <category>Türkiye Makro</category>
     <enclosure url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/reports/makro/2026-05-13/og.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-05-13 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-05-13/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fx/</guid>
-    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" medium="image" />
   </item>
 
   <item>
@@ -267,6 +256,17 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-05-13 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-05-13/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-05-13/fx/</guid>
+    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/reports/fx/2026-05-13/og.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-08-12 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-12/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/metals/</guid>
@@ -278,23 +278,23 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-08-12 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-08-12/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/fx/</guid>
-    <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>TCMB Analitik Bilanço · 2026-08-12 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-12/tcmb/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/tcmb/</guid>
     <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
     <description>🏛 TCMB Analitik Bilanço — TCMB günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>TCMB Analitik Bilanço</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-08-12 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-08-12/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-12/fx/</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -322,17 +322,6 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-10 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-10/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fx/</guid>
-    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>🇺🇸 ABD Makro — 2026-06-10 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-10/fred/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fred/</guid>
@@ -355,23 +344,23 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-10 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-10/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-10/fx/</guid>
+    <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-07-08 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-07-08/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-08/metals/</guid>
     <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
     <description>🥇 Değerli Metaller — Değerli Metaller günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Değerli Metaller</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-07-08 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-07-08/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-08/fx/</guid>
-    <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -388,23 +377,23 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-07-08 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-07-08/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-07-08/fx/</guid>
+    <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-08-05 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-08-05/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-05/metals/</guid>
     <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
     <description>🥇 Değerli Metaller — Değerli Metaller günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>Değerli Metaller</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
-    <title>💱 Döviz Günlük Bülten — 2026-08-05 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-08-05/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-05/fx/</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
@@ -421,6 +410,17 @@
   </item>
 
   <item>
+    <title>💱 Döviz Günlük Bülten — 2026-08-05 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-08-05/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-08-05/fx/</guid>
+    <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
     <title>🪙 Değerli Metaller Günlük Bülten — 2026-06-03 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-03/metals/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/metals/</guid>
@@ -432,23 +432,23 @@
   </item>
 
   <item>
-    <title>💱 Döviz Günlük Bülten — 2026-06-03 — Kalibre Markets</title>
-    <link>https://kalibremarkets.com/reports/2026-06-03/fx/</link>
-    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/fx/</guid>
-    <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
-    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
-    <category>Döviz Bülteni</category>
-    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
-    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
-  </item>
-
-  <item>
     <title>TCMB Analitik Bilanço · 2026-06-03 — Kalibre Markets</title>
     <link>https://kalibremarkets.com/reports/2026-06-03/tcmb/</link>
     <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/tcmb/</guid>
     <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
     <description>🏛 TCMB Analitik Bilanço — TCMB günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
     <category>TCMB Analitik Bilanço</category>
+    <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
+    <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
+  </item>
+
+  <item>
+    <title>💱 Döviz Günlük Bülten — 2026-06-03 — Kalibre Markets</title>
+    <link>https://kalibremarkets.com/reports/2026-06-03/fx/</link>
+    <guid isPermaLink="true">https://kalibremarkets.com/reports/2026-06-03/fx/</guid>
+    <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    <description>💱 Döviz Bülteni — Döviz / FX günlük bülten: temel göstergeler, dönemsel değişim, forecast bandı, Türkçe analist yorumu. Yatırım tavsiyesi değildir.</description>
+    <category>Döviz Bülteni</category>
     <enclosure url="https://kalibremarkets.com/og-default.png" type="image/png" />
     <media:content url="https://kalibremarkets.com/og-default.png" medium="image" />
   </item>
