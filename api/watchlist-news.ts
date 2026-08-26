@@ -5,7 +5,21 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { readWatchNews } from './_lib/watchnews.js';
 
+// BIST-ASKI 2026-08-24: Borsa Istanbul'un veri dagitim bildirimi uzerine BIST
+// icerigi yayindan kaldirildi. Bu uc BIST 30 sirketleri icin haber tariyordu ve
+// bunu tuketen sayfalar da kaldirildigi icin yetim kalmisti. Kod korunuyor;
+// asagidaki erken donus kaldirilirsa uc yeniden calisir.
+const ASKIDA = true;
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (ASKIDA) {
+    res.setHeader('Cache-Control', 'no-store');
+    return res.status(410).json({
+      error: 'gone',
+      reason: 'BIST icerigi yayindan kaldirildi (24.08.2026)',
+      items: [],
+    });
+  }
   try {
     const sym = String(req.query.sym || '').toUpperCase().replace(/[^A-Z]/g, '');
     const limit = Math.min(parseInt(String(req.query.limit || ''), 10) || (sym ? 10 : 50), 50);
