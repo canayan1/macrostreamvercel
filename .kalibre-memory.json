@@ -160,6 +160,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-08-27",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.2790707505603729,
+          "usdtry": 48.13130187988281,
+          "usdtry_30d_pct": 1.5784049204614625,
+          "strongest_pair": "EUR/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-08-26",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -298,17 +309,6 @@
           "dxy_5d_pct": -0.23209509846505716,
           "usdtry": 47.71269989013672,
           "usdtry_30d_pct": 1.6294714788863462,
-          "strongest_pair": "EUR/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-08-07",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": 0.15230503266343565,
-          "usdtry": 47.694000244140625,
-          "usdtry_30d_pct": 1.7621816232549214,
           "strongest_pair": "EUR/TRY"
         }
       }
@@ -1052,6 +1052,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-08-27",
+        "metrics": {
+          "nir_usd": 64.35209038702959,
+          "swap_adj_usd": -43.44108222793209,
+          "nir_chg_week": 1.0692712024864477,
+          "swap_chg_week": -2.8371623779539306,
+          "usdtry": 48.11840057373047
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-08-26",
         "metrics": {
           "nir_usd": 62.00929028530278,
@@ -1192,20 +1203,21 @@
           "swap_chg_week": 3.5848567014363724,
           "usdtry": 47.712501525878906
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-08-07",
-        "metrics": {
-          "nir_usd": 55.4477074015872,
-          "swap_adj_usd": -43.688980809446015,
-          "nir_chg_week": 2.9266612562414025,
-          "swap_chg_week": -0.04903887623432723,
-          "usdtry": 47.66239929199219
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-08-27",
+        "metrics": {
+          "regime": "Altın Güçlü Ralli",
+          "gold_5d_pct": 2.758897837714991,
+          "gold_usd": 4640.89990234375,
+          "gramaltin_try": 7181.4393280440345,
+          "gold_silver_ratio": 67.30819590648387,
+          "strongest_metal": "Gram Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-08-26",
@@ -1360,18 +1372,6 @@
           "gramaltin_try": 6735.390512602774,
           "gold_silver_ratio": 68.69905091837425,
           "strongest_metal": "Platin"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-08-07",
-        "metrics": {
-          "regime": "Altın Güçlü Ralli",
-          "gold_5d_pct": 6.845958369656069,
-          "gold_usd": 4326.2998046875,
-          "gramaltin_try": 6627.7990161756725,
-          "gold_silver_ratio": 69.1820550930494,
-          "strongest_metal": "Paladyum"
         }
       }
     ]
