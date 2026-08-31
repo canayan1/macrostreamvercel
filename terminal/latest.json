@@ -1,17 +1,17 @@
 {
-  "generated": "2026-08-28T14:41:49",
+  "generated": "2026-08-31T09:02:03",
   "reports": [
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-08-28",
-      "date": "2026-08-28",
-      "path": "/reports/fx/2026-08-28/"
+      "title": "Döviz Günlük — 2026-08-31",
+      "date": "2026-08-31",
+      "path": "/reports/fx/2026-08-31/"
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-08-28",
-      "date": "2026-08-28",
-      "path": "/reports/metals/2026-08-28/"
+      "title": "Değerli Metaller Günlük — 2026-08-31",
+      "date": "2026-08-31",
+      "path": "/reports/metals/2026-08-31/"
     },
     {
       "category": "makro",
@@ -33,9 +33,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-08-28",
-      "date": "2026-08-28",
-      "path": "/reports/tcmb/2026-08-28/"
+      "title": "TCMB Analitik Bilanço — 2026-08-31",
+      "date": "2026-08-31",
+      "path": "/reports/tcmb/2026-08-31/"
     }
   ],
   "snapshot": {
@@ -198,6 +198,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-08-31",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.5616159150094724,
+          "usdtry": 48.258018493652344,
+          "usdtry_30d_pct": 1.5928341056328454,
+          "strongest_pair": "EUR/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-08-28",
         "metrics": {
           "regime": "Dolar Yükselişte",
@@ -336,17 +347,6 @@
           "dxy_5d_pct": 0.2016214204066502,
           "usdtry": 47.750999450683594,
           "usdtry_30d_pct": 1.5490449505836557,
-          "strongest_pair": "EUR/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-08-11",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": -0.09810749159345766,
-          "usdtry": 47.73310089111328,
-          "usdtry_30d_pct": 1.5888786773660346,
           "strongest_pair": "EUR/TRY"
         }
       }
@@ -1090,6 +1090,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-08-28",
+        "metrics": {
+          "nir_usd": 64.19191253096668,
+          "swap_adj_usd": -42.66151744099442,
+          "nir_chg_week": -0.9323224473336182,
+          "swap_chg_week": -2.6487684002069543,
+          "usdtry": 48.24039840698242
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-08-27",
         "metrics": {
           "nir_usd": 64.35209038702959,
@@ -1230,20 +1241,21 @@
           "swap_chg_week": 3.85008712867495,
           "usdtry": 47.7218017578125
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-08-10",
-        "metrics": {
-          "nir_usd": 59.03548893725947,
-          "swap_adj_usd": -40.81434315372816,
-          "nir_chg_week": 7.158841643029575,
-          "swap_chg_week": 3.5848567014363724,
-          "usdtry": 47.712501525878906
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-08-31",
+        "metrics": {
+          "regime": "Altın Sert Düşüş",
+          "gold_5d_pct": -3.348558629630749,
+          "gold_usd": 4485.39990234375,
+          "gramaltin_try": 6959.187592135401,
+          "gold_silver_ratio": 66.3569764234275,
+          "strongest_metal": "Gram Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-08-28",
@@ -1397,18 +1409,6 @@
           "gold_usd": 4458.0,
           "gramaltin_try": 6844.1089000527445,
           "gold_silver_ratio": 68.16513602428527,
-          "strongest_metal": "Gram Gümüş"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-08-11",
-        "metrics": {
-          "regime": "Altın Güçlü Ralli",
-          "gold_5d_pct": 9.332426733071198,
-          "gold_usd": 4477.60009765625,
-          "gramaltin_try": 6870.687388558033,
-          "gold_silver_ratio": 67.83214592866464,
           "strongest_metal": "Gram Gümüş"
         }
       }
