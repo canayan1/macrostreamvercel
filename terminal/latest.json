@@ -1,17 +1,17 @@
 {
-  "generated": "2026-09-01T08:05:22",
+  "generated": "2026-09-02T07:24:59",
   "reports": [
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-09-01",
-      "date": "2026-09-01",
-      "path": "/reports/fx/2026-09-01/"
+      "title": "Döviz Günlük — 2026-09-02",
+      "date": "2026-09-02",
+      "path": "/reports/fx/2026-09-02/"
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-09-01",
-      "date": "2026-09-01",
-      "path": "/reports/metals/2026-09-01/"
+      "title": "Değerli Metaller Günlük — 2026-09-02",
+      "date": "2026-09-02",
+      "path": "/reports/metals/2026-09-02/"
     },
     {
       "category": "makro",
@@ -33,9 +33,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-09-01",
-      "date": "2026-09-01",
-      "path": "/reports/tcmb/2026-09-01/"
+      "title": "TCMB Analitik Bilanço — 2026-09-02",
+      "date": "2026-09-02",
+      "path": "/reports/tcmb/2026-09-02/"
     }
   ],
   "snapshot": {
@@ -198,6 +198,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-09-02",
+        "metrics": {
+          "regime": "Dolar Yükselişte",
+          "dxy_5d_pct": 0.5999810746083467,
+          "usdtry": 48.292198181152344,
+          "usdtry_30d_pct": 1.582240747032304,
+          "strongest_pair": "EUR/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-09-01",
         "metrics": {
           "regime": "Dolar Yükselişte",
@@ -336,17 +347,6 @@
           "dxy_5d_pct": 0.28815518862796985,
           "usdtry": 47.87369918823242,
           "usdtry_30d_pct": 1.7796801099594584,
-          "strongest_pair": "EUR/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-08-13",
-        "metrics": {
-          "regime": "Dolar Yatay",
-          "dxy_5d_pct": 0.040012918914578144,
-          "usdtry": 47.768798828125,
-          "usdtry_30d_pct": 1.5799838588927528,
           "strongest_pair": "EUR/TRY"
         }
       }
@@ -1090,6 +1090,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-09-01",
+        "metrics": {
+          "nir_usd": 62.79966152344881,
+          "swap_adj_usd": -43.63896018950099,
+          "nir_chg_week": 0.004232360496921217,
+          "swap_chg_week": 0.05359582819462361,
+          "usdtry": 48.27259826660156
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-08-31",
         "metrics": {
           "nir_usd": 64.165842161215,
@@ -1230,20 +1241,21 @@
           "swap_chg_week": 7.779289987410891,
           "usdtry": 47.76689910888672
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-08-12",
-        "metrics": {
-          "nir_usd": 60.09189811338525,
-          "swap_adj_usd": -41.41458121610715,
-          "nir_chg_week": 12.22360665190022,
-          "swap_chg_week": 8.010768181801282,
-          "usdtry": 47.74570083618164
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-09-02",
+        "metrics": {
+          "regime": "Altın Sert Düşüş",
+          "gold_5d_pct": -4.875825013905533,
+          "gold_usd": 4374.0,
+          "gramaltin_try": 6791.239235787371,
+          "gold_silver_ratio": 67.66184897728105,
+          "strongest_metal": "Gram Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-09-01",
@@ -1397,18 +1409,6 @@
           "gold_usd": 4379.5,
           "gramaltin_try": 6733.997586949828,
           "gold_silver_ratio": 68.31227512565117,
-          "strongest_metal": "Gram Gümüş"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-08-13",
-        "metrics": {
-          "regime": "Altın Güçlü Ralli",
-          "gold_5d_pct": 5.0636446178099925,
-          "gold_usd": 4456.7998046875,
-          "gramaltin_try": 6844.874164295656,
-          "gold_silver_ratio": 68.0375542562892,
           "strongest_metal": "Gram Gümüş"
         }
       }
