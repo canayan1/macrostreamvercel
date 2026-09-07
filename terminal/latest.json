@@ -1,17 +1,17 @@
 {
-  "generated": "2026-09-04T07:31:12",
+  "generated": "2026-09-07T07:39:29",
   "reports": [
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-09-04",
-      "date": "2026-09-04",
-      "path": "/reports/fx/2026-09-04/"
+      "title": "Döviz Günlük — 2026-09-07",
+      "date": "2026-09-07",
+      "path": "/reports/fx/2026-09-07/"
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-09-04",
-      "date": "2026-09-04",
-      "path": "/reports/metals/2026-09-04/"
+      "title": "Değerli Metaller Günlük — 2026-09-07",
+      "date": "2026-09-07",
+      "path": "/reports/metals/2026-09-07/"
     },
     {
       "category": "makro",
@@ -33,9 +33,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-09-04",
-      "date": "2026-09-04",
-      "path": "/reports/tcmb/2026-09-04/"
+      "title": "TCMB Analitik Bilanço — 2026-09-07",
+      "date": "2026-09-07",
+      "path": "/reports/tcmb/2026-09-07/"
     }
   ],
   "snapshot": {
@@ -198,6 +198,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-09-07",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.3349091643200297,
+          "usdtry": 48.42879867553711,
+          "usdtry_30d_pct": 1.6135132091446458,
+          "strongest_pair": "AUD/USD"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-09-04",
         "metrics": {
           "regime": "Dolar Yatay",
@@ -336,17 +347,6 @@
           "dxy_5d_pct": -0.2554570769360498,
           "usdtry": 47.9184684753418,
           "usdtry_30d_pct": 1.5639251620558792,
-          "strongest_pair": "EUR/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-08-18",
-        "metrics": {
-          "regime": "Dolar Geri Çekiliyor",
-          "dxy_5d_pct": -0.20338173054638142,
-          "usdtry": 47.915401458740234,
-          "usdtry_30d_pct": 1.6424326498468478,
           "strongest_pair": "EUR/TRY"
         }
       }
@@ -1090,6 +1090,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-09-04",
+        "metrics": {
+          "nir_usd": 59.339053490926524,
+          "swap_adj_usd": -43.977511212841215,
+          "nir_chg_week": -5.023338797571718,
+          "swap_chg_week": -0.5294746537271493,
+          "usdtry": 48.24290084838867
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-09-03",
         "metrics": {
           "nir_usd": 59.55084696643497,
@@ -1230,20 +1241,21 @@
           "swap_chg_week": 2.876261800024153,
           "usdtry": 47.907100677490234
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-08-17",
-        "metrics": {
-          "nir_usd": 63.23591855418894,
-          "swap_adj_usd": -37.889771212172526,
-          "nir_chg_week": 3.9994359860678657,
-          "swap_chg_week": 3.0635294257634342,
-          "usdtry": 47.896400451660156
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-09-07",
+        "metrics": {
+          "regime": "Altın Yükselişte",
+          "gold_5d_pct": 1.0268330436513207,
+          "gold_usd": 4476.60009765625,
+          "gramaltin_try": 6970.39037945659,
+          "gold_silver_ratio": 67.06717840196032,
+          "strongest_metal": "Gram Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-09-04",
@@ -1398,18 +1410,6 @@
           "gramaltin_try": 6795.787345227257,
           "gold_silver_ratio": 69.86930693069307,
           "strongest_metal": "Ons Gümüş"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-08-18",
-        "metrics": {
-          "regime": "Altın Güçlü Ralli",
-          "gold_5d_pct": 2.0587898800913385,
-          "gold_usd": 4451.60009765625,
-          "gramaltin_try": 6854.442266905064,
-          "gold_silver_ratio": 68.1454313910387,
-          "strongest_metal": "Gram Gümüş"
         }
       }
     ]
