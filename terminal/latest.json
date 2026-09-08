@@ -1,17 +1,17 @@
 {
-  "generated": "2026-09-07T07:39:29",
+  "generated": "2026-09-08T07:32:07",
   "reports": [
     {
       "category": "fx",
-      "title": "Döviz Günlük — 2026-09-07",
-      "date": "2026-09-07",
-      "path": "/reports/fx/2026-09-07/"
+      "title": "Döviz Günlük — 2026-09-08",
+      "date": "2026-09-08",
+      "path": "/reports/fx/2026-09-08/"
     },
     {
       "category": "metals",
-      "title": "Değerli Metaller Günlük — 2026-09-07",
-      "date": "2026-09-07",
-      "path": "/reports/metals/2026-09-07/"
+      "title": "Değerli Metaller Günlük — 2026-09-08",
+      "date": "2026-09-08",
+      "path": "/reports/metals/2026-09-08/"
     },
     {
       "category": "makro",
@@ -33,9 +33,9 @@
     },
     {
       "category": "tcmb",
-      "title": "TCMB Analitik Bilanço — 2026-09-07",
-      "date": "2026-09-07",
-      "path": "/reports/tcmb/2026-09-07/"
+      "title": "TCMB Analitik Bilanço — 2026-09-08",
+      "date": "2026-09-08",
+      "path": "/reports/tcmb/2026-09-08/"
     }
   ],
   "snapshot": {
@@ -198,6 +198,17 @@
     "fx": [
       {
         "category": "fx",
+        "date": "2026-09-08",
+        "metrics": {
+          "regime": "Dolar Geri Çekiliyor",
+          "dxy_5d_pct": -0.5310267286624981,
+          "usdtry": 48.456600189208984,
+          "usdtry_30d_pct": 1.6042660554384636,
+          "strongest_pair": "EUR/TRY"
+        }
+      },
+      {
+        "category": "fx",
         "date": "2026-09-07",
         "metrics": {
           "regime": "Dolar Geri Çekiliyor",
@@ -336,17 +347,6 @@
           "dxy_5d_pct": -1.1918821290991755,
           "usdtry": 47.94309997558594,
           "usdtry_30d_pct": 1.5793131173624575,
-          "strongest_pair": "EUR/TRY"
-        }
-      },
-      {
-        "category": "fx",
-        "date": "2026-08-19",
-        "metrics": {
-          "regime": "Dolar Geri Çekiliyor",
-          "dxy_5d_pct": -0.2554570769360498,
-          "usdtry": 47.9184684753418,
-          "usdtry_30d_pct": 1.5639251620558792,
           "strongest_pair": "EUR/TRY"
         }
       }
@@ -1090,6 +1090,17 @@
     "tcmb": [
       {
         "category": "tcmb",
+        "date": "2026-09-07",
+        "metrics": {
+          "nir_usd": 60.62859500077328,
+          "swap_adj_usd": -43.34479073272905,
+          "nir_chg_week": -3.707349228379279,
+          "swap_chg_week": -0.587550784615857,
+          "usdtry": 48.4286994934082
+        }
+      },
+      {
+        "category": "tcmb",
         "date": "2026-09-04",
         "metrics": {
           "nir_usd": 59.339053490926524,
@@ -1230,20 +1241,21 @@
           "swap_chg_week": 1.6376574650988118,
           "usdtry": 47.92559814453125
         }
-      },
-      {
-        "category": "tcmb",
-        "date": "2026-08-18",
-        "metrics": {
-          "nir_usd": 62.09263601705896,
-          "swap_adj_usd": -39.41969737875054,
-          "nir_chg_week": 3.675024500483808,
-          "swap_chg_week": 2.876261800024153,
-          "usdtry": 47.907100677490234
-        }
       }
     ],
     "metals": [
+      {
+        "category": "metals",
+        "date": "2026-09-08",
+        "metrics": {
+          "regime": "Altın Yatay",
+          "gold_5d_pct": 0.39267680621688505,
+          "gold_usd": 4448.5,
+          "gramaltin_try": 6930.140256371969,
+          "gold_silver_ratio": 66.40543576440237,
+          "strongest_metal": "Ons Gümüş"
+        }
+      },
       {
         "category": "metals",
         "date": "2026-09-07",
@@ -1397,18 +1409,6 @@
           "gold_usd": 4551.7001953125,
           "gramaltin_try": 7016.161098353335,
           "gold_silver_ratio": 67.70340574202979,
-          "strongest_metal": "Ons Gümüş"
-        }
-      },
-      {
-        "category": "metals",
-        "date": "2026-08-19",
-        "metrics": {
-          "regime": "Altın Yükselişte",
-          "gold_5d_pct": 0.6274241387177693,
-          "gold_usd": 4410.5,
-          "gramaltin_try": 6795.787345227257,
-          "gold_silver_ratio": 69.86930693069307,
           "strongest_metal": "Ons Gümüş"
         }
       }
