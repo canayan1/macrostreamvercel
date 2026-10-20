@@ -6,3 +6,9 @@ node_modules/
 
 # Claude Code worktree kopyalari deploy edilmemeli (bkz. .vercelignore)
 .claude/
+
+# Yayıncının koşular arası hafıza dosyaları: BIST'ten türetilmiş günlük
+# piyasa verisi (breadth, en çok yükselen/düşen, öne çıkan hisse) içeriyordu
+# ve herkese açık depoda + canlı sitede 200 dönüyordu. Bir daha eklenmesin.
+.kalibre-memory.json
+.pusula-memory.json
