@@ -12,11 +12,13 @@ Sitede **hiçbir dış piyasa ya da makro veri** olmayacak. API ile çekilen, el
 ya da bir veriden türetilen sayısal değer de buna dahil. Resmi kaynaklar da (EVDS, TÜİK,
 FRED) ticari dağıtım lisansı olmadığı için kapsam dışı.
 
-Sitede yalnız üç tür sayı bulunur:
+Sitede yalnız iki tür sayı bulunur:
 
-1. **Kullanıcının girdiği sayı:** hesaplayıcılar, defter, portföy.
-2. **Sentetik sayı:** tohumlanmış (seed) piyasa üreticisi. Her ekranda "sentetik" etiketi taşır.
-3. **Sabit örnek sayı:** eğitim metnindeki "faiz %40, kur 35 olsun" gibi açıkça uydurma örnekler.
+1. **Kullanıcının girdiği sayı:** hesaplayıcılar, plan, defter, portföy, MetaTrader'dan kullanıcının kendi aktardığı işlem geçmişi.
+2. **Sentetik sayı:** tohumlanmış (seed) piyasa üreticisi. Her ekranda "SENTETİK · tohum N" rozeti taşır.
+
+Elle yazılmış sabit örnek sayı (metin içinde bile) **yok**. Bir kavramın sayıyla
+anlatılması gerekiyorsa ya kullanıcıya girdirilir ya da rozetli sentetik üreticiden gelir.
 
 ## 1. Acil: repoda hâlâ duran veri
 
@@ -40,7 +42,7 @@ konuşulur.
 ## 2. Konumlandırma
 
 **Eski:** "Türkçe makro & teknik analiz bülteni / terminal". Değeri veriydi.
-**Yeni:** **"Karar laboratuvarı."** Değer veri değil, karar verme becerisi.
+**Yeni:** **"Trading laboratuvarı."** Değer veri değil, karar verme becerisi.
 
 > Piyasayı izlemek için yüz yer var. Piyasada nasıl karar verdiğini görmek için bir yer.
 
@@ -55,7 +57,7 @@ Dört ana kapı. Her biri tek fiil:
 |---|---|---|
 | **Öğren** | Kavramı anla | `/egitim/*` (23 makale), `/metodoloji`, `/arastirma` (sadece evergreen çerçeveler) |
 | **Hesapla** | Kendi sayınla dene | `/carry-hesaplayici`, `/kur-riski-hesaplayici`, **yeni:** pozisyon büyüklüğü, risk/ödül, reel getiri |
-| **Pratik yap** | Sentetik piyasada dene | `/simulasyon`, `/oyun`, `/portfoy-lab` (sentetik rejimler), `/grafik-oku` (sentetik grafik) |
+| **Plan yap** | İşlemi önceden kur, provasını yap | **yeni:** işlem planı oluşturucu (setup, giriş, stop, hedef, R, lot), senaryo ağacı, işlem öncesi kontrol listesi; prova için `/simulasyon`, `/oyun`, `/portfoy-lab` (sentetik rejimler), `/grafik-oku` |
 | **Kendini tanı** | Kararını kaydet, ölç | `/defter`, `/islem-kontrolu`, `/portfoyum` (elle giriş), **yeni:** önyargı testi |
 
 Yan kapılar: `/kurumsal` (ekip eğitimi ve simülasyon, B2B satılacak ürün budur), `/pro`, `/tradermind`.
@@ -76,8 +78,7 @@ Yan kapılar: `/kurumsal` (ekip eğitimi ve simülasyon, B2B satılacak ürün b
 ## 4. Sayfa bazında dönüşüm
 
 **Hesaplayıcılar** (`carry`, `kur-riski`): `markets.json` fetch'i kalkar. Alanlar boş
-gelir, yanında "Örnek değerlerle doldur" düğmesi olur. Örnek değerler açıkça uydurma ve
-yuvarlak sayılar.
+gelir. Ön doldurulmuş değer yok; kullanıcı kendi sayısını girer.
 
 **Portföy Lab:** 850 KB'lık tarihsel seri yerine tarayıcıda çalışan **sentetik rejim
 üreticisi** gelir. Rejimler: Boğa, Ayı, Yatay, Kriz şoku, Yüksek enflasyon. Varlık
@@ -92,16 +93,17 @@ kalkar. Yerine "son girdiğin fiyat" ve tarihi gelir. Veri `localStorage` + hesa
 **Grafik Oku:** Gerçek grafik yerine sentetik grafik. Quiz mantığı aynen kalır.
 
 **Eğitim makaleleri:** Tarama gerekiyor. Gerçek fiyat grafiği, tablo ya da KAP'tan alınmış
-rakam içerenler sentetik/örnek sayılarla yeniden yazılır. TODO'daki
-`temel-analiz-bilanco-okuma` (ASELS, BIMAS, AKBNK örnekleri) **kurgusal şirketle**
-yazılmalı.
+rakam içerenler yeniden yazılır: sayılar ya gömülü bir mini araçla kullanıcıya girdirilir ya
+da rozetli sentetik üreticiden gelir. Metinde elle yazılmış rakam kalmaz. TODO'daki
+`temel-analiz-bilanco-okuma` (ASELS, BIMAS, AKBNK örnekleri) **sentetik bilanço
+üreticisiyle** (rozetli) yazılmalı.
 
 **Araştırma:** Sadece veri içermeyen çerçeve yazıları kalır. Tarihli piyasa yorumları
 arşivden kaldırılır.
 
 ## 5. Ortak sentetik piyasa motoru
 
-Tek dosya: `static/sentetik.js`. Bütün pratik sayfaları bunu kullanır.
+Tek dosya: `static/sentetik.js`. Bütün plan provası ve eğitim sayfaları bunu kullanır.
 
 - Tohumlanmış rastgele sayı üreteci. Aynı tohum aynı piyasayı verir, paylaşılabilir: `?tohum=4821`.
 - Rejim değiştiren GBM ve sıçrama (jump) bileşeni. Volatilite kümelenmesi için basit GARCH.
@@ -111,6 +113,27 @@ Tek dosya: `static/sentetik.js`. Bütün pratik sayfaları bunu kullanır.
 Bu motor aynı zamanda ürünün kendisi: indikatör kütüphanesinde RSI, MACD ve Bollinger
 sentetik seri üzerinde canlı gösterilir. Kullanıcı rejimi değiştirip indikatörün nerede
 yanıldığını görür.
+
+## 5b. Trading laboratuvarı ve MetaTrader
+
+Sitenin içi bir **trading laboratuvarı**: plan → prova → uygulama → kayıt → inceleme
+döngüsü. Uygulama kullanıcının kendi platformunda olur. Kalibre emir iletmez.
+
+MetaTrader entegrasyon yolları (öncelik sırasıyla):
+
+| # | Yöntem | Ne taşır | Artı | Eksi |
+|---|---|---|---|---|
+| 1 | **Rapor içe aktarma**: MT4/MT5 "Detaylı rapor" HTML/XLSX dosyası yüklenir, tarayıcıda ayrıştırılır | Kapanmış işlemler, bakiye | Sunucu yok, lisans yok, mobil kullanıcı da yapabilir | Elle, anlık değil |
+| 2 | **Kalibre Köprü EA** (MQL5/MQL4): kullanıcının terminalinde çalışır, `WebRequest()` ile API'mize yazar ve plandan okur | İşlemler, açık pozisyon, bakiye/equity; ters yönde plan seviyeleri | Otomatik senkron; planı grafiğe çizgi/uyarı olarak çizer, planla işlemi eşleştirir | Masaüstü terminal ya da VPS gerekir; kullanıcı URL'yi izin listesine ekler; EA dağıtımı ve güncellemesi |
+| 3 | **Bulut köprü** (ör. MetaApi): hesap no + **yatırımcı (salt okunur) şifresi** ile | Aynı veriler | Terminal açık olmasa da çalışır, sadece mobil kullananlar için | Ücretli, kimlik bilgisi saklamak güvenlik ve KVKK yükü |
+| 4 | `MetaTrader5` Python paketi | Aynı | Kolay | Sadece Windows ve yerel terminal; web için uygun değil |
+| 5 | Manager/Server API | Tüm hesaplar | — | Yalnız aracı kurumlara; ancak kurumsal ortaklıkta |
+
+Kurallar:
+- Köprü **piyasa kotasyonu göndermez**. Yalnız kullanıcının kendi işlem kayıtları ve hesap durumu.
+- Kullanıcının verisi yalnız kendisine görünür. Herkese açık sıralama, kopyala-al vb. yok.
+- İlk sürümde otomatik emir yok. EA planı çizer ve uyarır, emri kullanıcı verir. Otomatik
+  emir SPK açısından ayrıca değerlendirilmeli.
 
 ## 6. Tasarım dili
 
