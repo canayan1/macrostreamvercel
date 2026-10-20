@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kalibre Mağaza</title>
+<meta name="robots" content="noindex">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Yerleşim: üstte vitrin + profil sihirbazı yan yana; altında mağaza (profil sekmeleri + paket paneli),
+   planlar, adımlar, kütüphane ızgarası. Koyu öncelikli marka; açık tema aynası. */
+:root{
+  --bg:#100e0c; --bg-1:#14110e; --surface:#1a1612; --surface-2:#221d18; --line:#2a241e; --line-2:#3a332b;
+  --fg:#ebe3d3; --dim:#ab9f87; --muted:#776c59;
+  --accent:#ffa630; --accent-ink:#1a1206; --accent-soft:rgba(255,166,48,.12);
+  --ok:#5bd68d; --ok-bg:rgba(91,214,141,.12); --mid:#e8c44d; --mid-bg:rgba(232,196,77,.12);
+  --weak:#f08a5d; --weak-bg:rgba(240,138,93,.12); --gone:#b3a3ec; --gone-bg:rgba(179,163,236,.14);
+  --sans:'Inter Tight',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#faf7f2; --bg-1:#f5f0e8; --surface:#ffffff; --surface-2:#f1ebe1; --line:#e6ddcf; --line-2:#d4c8b5;
+  --fg:#1d1813; --dim:#5f5446; --muted:#8a7d69;
+  --accent:#b8600a; --accent-ink:#ffffff; --accent-soft:rgba(184,96,10,.10);
+  --ok:#1f7a45; --ok-bg:#e1f3e8; --mid:#8a6a00; --mid-bg:#fbf0c8; --weak:#a3461c; --weak-bg:#fbe3d6; --gone:#6b5c99; --gone-bg:#ebe6f7;
+  color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#faf7f2; --bg-1:#f5f0e8; --surface:#ffffff; --surface-2:#f1ebe1; --line:#e6ddcf; --line-2:#d4c8b5;
+  --fg:#1d1813; --dim:#5f5446; --muted:#8a7d69;
+  --accent:#b8600a; --accent-ink:#ffffff; --accent-soft:rgba(184,96,10,.10);
+  --ok:#1f7a45; --ok-bg:#e1f3e8; --mid:#8a6a00; --mid-bg:#fbf0c8; --weak:#a3461c; --weak-bg:#fbe3d6; --gone:#6b5c99; --gone-bg:#ebe6f7;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+.cerceve{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--mono)}
+.etiket{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+/* üst çubuk */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .cerceve{display:flex;align-items:center;gap:28px;height:60px}
+.logo{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo i{width:10px;height:10px;border-radius:2px;background:var(--accent)}
+.baglantilar{display:flex;gap:22px;font-size:14px;color:var(--dim)}
+.baglantilar a{text-decoration:none}
+.baglantilar a:hover{color:var(--fg)}
+.nav-sag{margin-left:auto;display:flex;gap:10px}
+@media (max-width:820px){.baglantilar{display:none}}
+
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid var(--line-2);background:transparent;text-decoration:none;transition:border-color .15s,background .15s}
+.dugme:hover{border-color:var(--dim)}
+.dugme.ana{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.dugme.ana:hover{filter:brightness(1.07)}
+.dugme.kucuk{padding:8px 13px;font-size:13.5px;border-radius:8px}
+
+/* vitrin */
+.vitrin{display:grid;grid-template-columns:1fr minmax(0,470px);gap:48px;align-items:start;padding-block:64px 56px}
+@media (max-width:960px){.vitrin{grid-template-columns:1fr;gap:32px;padding-top:40px}}
+.vitrin-metin{display:flex;flex-direction:column;gap:20px;padding-top:12px}
+h1{font-size:clamp(38px,5.4vw,62px);font-weight:700}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:19px;color:var(--dim);max-width:54ch}
+.akis{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:500 13px var(--mono);color:var(--dim)}
+.akis span{padding:6px 10px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface)}
+.akis b{color:var(--muted);font-weight:400}
+@media (max-width:960px){.akis{display:none}.lede{font-size:17px}}
+
+/* sihirbaz */
+.sihirbaz{background:var(--surface);border:1px solid var(--line-2);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:18px;box-shadow:0 20px 60px -30px rgba(0,0,0,.5)}
+.sihirbaz-bas{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ilerleme{display:flex;gap:4px;flex:1;max-width:180px}
+.ilerleme i{flex:1;height:4px;border-radius:2px;background:var(--line-2)}
+.ilerleme i.dolu{background:var(--accent)}
+.soru{font-size:21px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.soru-not{font-size:14px;color:var(--muted);margin-top:6px}
+.secenekler{display:flex;flex-direction:column;gap:8px}
+.secenek{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:13px 14px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg-1);transition:border-color .15s,background .15s}
+.secenek:hover{border-color:var(--accent)}
+.secenek[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.secenek b{display:block;font-weight:600;font-size:15px}
+.secenek small{display:block;color:var(--dim);font-size:13px;margin-top:2px}
+.secenek .harf{flex:none;width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font:500 12px var(--mono);border:1px solid var(--line-2);color:var(--muted)}
+.sihirbaz-alt{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.geri{background:none;border:0;color:var(--dim);font-size:14px;padding:6px 0}
+.geri[hidden]{display:none}
+.sonuc{display:flex;flex-direction:column;gap:14px}
+.sonuc-profil{display:flex;flex-direction:column;gap:6px}
+.sonuc-profil h2{font-size:30px}
+.cipler{display:flex;flex-wrap:wrap;gap:6px}
+.cip{font:500 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--dim)}
+.cip.vurgu{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:var(--accent-soft)}
+.sonuc dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.sonuc dt{color:var(--muted)}
+.sonuc dd{margin:0}
+.not{font-size:13.5px;color:var(--weak);background:var(--weak-bg);border-radius:10px;padding:10px 12px}
+.not.bilgi{color:var(--dim);background:var(--surface-2)}
+
+/* dürüstlük şeridi */
+.serit{border-block:1px solid var(--line);background:var(--bg-1)}
+.serit .cerceve{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding-block:28px}
+@media (max-width:720px){.serit .cerceve{grid-template-columns:1fr;gap:12px}}
+.serit b{font:600 44px var(--mono);color:var(--accent);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.serit p{color:var(--dim);max-width:72ch}
+.serit p strong{color:var(--fg)}
+.serit cite{font-style:normal;color:var(--muted);font-size:13px}
+
+section.blok{padding-block:72px;display:flex;flex-direction:column;gap:28px}
+.blok-bas{display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.blok-bas h2{font-size:clamp(28px,3.4vw,40px)}
+.blok-bas p{color:var(--dim);font-size:17px}
+
+/* mağaza */
+.sekmeler{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.sekme{flex:none;padding:10px 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);font-weight:600;font-size:14.5px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:150px;text-align:left}
+.sekme small{font:500 11.5px var(--mono);color:var(--muted)}
+.sekme[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.sekme .senin{font:500 10.5px var(--mono);color:var(--accent);letter-spacing:.06em}
+.filtre{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--dim)}
+.filtre button{padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);background:transparent;font-size:13px}
+.filtre button[aria-pressed="true"]{border-color:var(--fg);color:var(--fg)}
+.paket{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px}
+@media (max-width:900px){.paket{grid-template-columns:1fr}}
+.paket-ozet{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;align-self:start}
+.paket-ozet h3{font-size:26px}
+.paket-ozet p{color:var(--dim)}
+.paket-ozet ul{margin:0;padding-left:18px;color:var(--dim);font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+.sablonlar{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;align-content:start}
+.sablon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.sablon.yakinda{background:transparent;border-style:dashed}
+.sablon h4{margin:0;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.sablon p{font-size:13.5px;color:var(--dim)}
+.sablon .alt{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.hap{font:500 11px var(--mono);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.hap.guclu{color:var(--ok);background:var(--ok-bg)}
+.hap.orta{color:var(--mid);background:var(--mid-bg)}
+.hap.zayif,.hap.uygulayici{color:var(--weak);background:var(--weak-bg)}
+.hap.bozuldu{color:var(--gone);background:var(--gone-bg)}
+.hap.durum{color:var(--dim);background:var(--surface-2)}
+.hap.hazir{color:var(--accent);background:var(--accent-soft)}
+.bos-durum{color:var(--muted);font-size:14px;padding:18px;border:1px dashed var(--line-2);border-radius:12px}
+
+/* planlar */
+.planlar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:1000px){.planlar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.planlar{grid-template-columns:1fr}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.plan.one{border-color:var(--accent)}
+.plan h3{font-size:19px}
+.plan .fiyat{font:600 26px var(--mono);letter-spacing:-.02em}
+.plan .fiyat small{font:400 13px var(--sans);color:var(--muted)}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:14px;color:var(--dim)}
+.plan li{display:flex;gap:8px}
+.plan li::before{content:"✓";color:var(--accent);font-weight:700}
+.plan .dugme{margin-top:auto}
+.dipnot{font-size:13px;color:var(--muted)}
+
+/* adımlar */
+.adimlar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:adim}
+@media (max-width:900px){.adimlar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.adimlar{grid-template-columns:1fr}}
+.adim{border-top:2px solid var(--line-2);padding-top:14px;display:flex;flex-direction:column;gap:8px}
+.adim::before{counter-increment:adim;content:"0" counter(adim);font:500 13px var(--mono);color:var(--accent)}
+.adim h3{font-size:18px}
+.adim p{font-size:14.5px;color:var(--dim)}
+.adim .yer{font:500 11.5px var(--mono);color:var(--muted)}
+
+/* kütüphane */
+.dalga{display:flex;flex-direction:column;gap:12px}
+.dalga-bas{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.dalga-bas h3{font-size:19px}
+.dalga-bas span{color:var(--muted);font-size:14px}
+.liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:8px}
+.satir{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.satir span{font-size:14.5px;min-width:0}
+.satir small{display:block;color:var(--muted);font-size:12px}
+
+/* güven + sss */
+.guven{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.guven{grid-template-columns:1fr}}
+.guven div{padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.guven h3{font-size:17px}
+.guven p{font-size:14.5px;color:var(--dim)}
+details{border-bottom:1px solid var(--line);padding-block:14px}
+summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--muted);font-family:var(--mono)}
+details[open] summary::after{content:"−"}
+details p{color:var(--dim);margin-top:8px;max-width:70ch;font-size:15px}
+footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--muted);font-size:13px}
+footer .cerceve{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+
+</head>
+<body>
+<nav><div class="cerceve">
+  <a class="logo" href="#ust"><i></i>Kalibre</a>
+  <div class="baglantilar">
+    <a href="#magaza">Paketler</a><a href="#planlar">Planlar</a><a href="#nasil">Nasıl çalışır</a><a href="#kutuphane">Kütüphane</a><a href="#sss">SSS</a>
+  </div>
+  <div class="nav-sag"><a class="dugme kucuk" href="#planlar">Ücretsiz başla</a></div>
+</div></nav>
+
+<header class="cerceve vitrin" id="ust">
+  <div class="vitrin-metin">
+    <span class="etiket">MetaTrader 5 için trading laboratuvarı</span>
+    <h1>Fiyat senin hesabından.<br><em>Kurallar ve laboratuvar</em> bizden.</h1>
+    <p class="lede">Kalibre, MT5'ine eklenen bir paket. Stratejini kodsuz kurarsın, kendi aracı kurum verinle test edersin, Motor senin kurallarını yürütür. Önce nasıl bir trader olduğunu bulalım, sana göre paketi açalım.</p>
+    <div class="akis" aria-label="Kalibre akışı"><span>Profil</span><b>→</b><span>Plan</span><b>→</b><span>Test</span><b>→</b><span>Yürüt</span><b>→</b><span>İncele</span></div>
+  </div>
+
+  <div class="sihirbaz" id="sihirbaz" aria-live="polite"></div>
+</header>
+
+<div class="serit"><div class="cerceve">
+  <b>%97</b>
+  <p>Tayvan'da 15 yıllık veride gün içi işlemcilerin <strong>%97'sinin</strong> gelecekte para kaybetmesi bekleniyor; Brezilya'da 300 günden uzun deneyenlerin %97'si zarar etmiş. Kalibre bunu değiştireceğini vaat etmiyor. Riskini sınırlamanı, şansla kuralı ayırmanı ve kendi kayıtlarından öğrenmeni sağlıyor.
+  <br><cite>Barber ve diğ. 2020 · Chague ve diğ. 2019</cite></p>
+</div></div>
+
+<main class="cerceve">
+
+<section class="blok" id="magaza">
+  <div class="blok-bas">
+    <span class="etiket">Paketler</span>
+    <h2>Her trader tipine kendi kütüphanesi</h2>
+    <p>Beş profil, gün içi ve swing ufku. Her paket Motor'a bir yön kısıtı, bir şablon seti, laboratuvarlar ve sıkı risk varsayılanları getirir. Her şablonun kanıt gücü etiketli.</p>
+  </div>
+  <div class="sekmeler" role="tablist" id="sekmeler" aria-label="Profiller"></div>
+  <div class="filtre" id="ufuk-filtre" aria-label="Ufuk">
+    <span>Ufuk:</span>
+    <button type="button" data-ufuk="hepsi" aria-pressed="true">Hepsi</button>
+    <button type="button" data-ufuk="gun_ici" aria-pressed="false">Gün içi</button>
+    <button type="button" data-ufuk="swing" aria-pressed="false">Swing</button>
+  </div>
+  <div class="paket" id="paket" role="tabpanel"></div>
+</section>
+
+<section class="blok" id="planlar">
+  <div class="blok-bas">
+    <span class="etiket">Planlar</span>
+    <h2>Laboratuvar ücretsiz, canlı hesap abonelikle</h2>
+    <p>Backtest her planda serbest. Kendi kurallarını MT5 Strategy Tester'da istediğin kadar dene; canlı hesapta Motor'u çalıştırmak için abone ol.</p>
+  </div>
+  <div class="planlar">
+    <article class="plan"><h3>Başlangıç</h3><div class="fiyat">₺0 <small>süresiz</small></div>
+      <ul><li>Strateji kurucu ve sentetik prova</li><li>3 temel şablon</li><li>Motor, yalnız Strategy Tester'da</li><li>Eğitim kütüphanesi</li></ul>
+      <a class="dugme" href="#ust">Profilini bul</a></article>
+    <article class="plan one"><h3>Profil Paketi</h3><div class="fiyat">₺— <small>/ ay</small></div>
+      <ul><li>Bir profilin tüm koleksiyonu</li><li>Motor canlı hesapta, 1 MT5 hesabı</li><li>Profilin laboratuvarları</li><li>Her ay yeni şablon ve vaka</li></ul>
+      <a class="dugme ana" href="#magaza">Paketini seç</a></article>
+    <article class="plan"><h3>Tam Erişim</h3><div class="fiyat">₺— <small>/ ay</small></div>
+      <ul><li>Beş profilin hepsi</li><li>Makro karar ağacı ve tüm vakalar</li><li>Yeni yeteneklere ilk erişim</li><li>2 MT5 hesabı</li></ul>
+      <a class="dugme" href="#magaza">Tümünü gör</a></article>
+    <article class="plan"><h3>Kurumsal</h3><div class="fiyat">Teklif</div>
+      <ul><li>Ekip paneli ve ortak kütüphane</li><li>Kurum içi eğitim programı</li><li>Daha fazla hesap</li></ul>
+      <a class="dugme" href="#sss">Pilot başvurusu</a></article>
+  </div>
+  <p class="dipnot">Fiyatlar belirlenecek. Abonelik kalibremarkets.com'dan; tek tek göstergeler MQL5 Market'te de kiralanabilir.</p>
+</section>
+
+<section class="blok" id="nasil">
+  <div class="blok-bas">
+    <span class="etiket">Nasıl çalışır</span>
+    <h2>Dört adım, veri hep senin bilgisayarında</h2>
+  </div>
+  <div class="adimlar">
+    <div class="adim"><h3>Planla</h3><p>Profiline uygun şablondan başla ya da sıfırdan kur. Kurallar düz Türkçe özetlenir, sentetik piyasada anında prova edilir.</p><span class="yer">Kalibre Lab</span></div>
+    <div class="adim"><h3>Test et</h3><p>Kural dosyasını Motor'la MT5 Strategy Tester'da, kendi aracı kurumunun geçmiş verisiyle çalıştır. Ücretsiz.</p><span class="yer">MT5 Strategy Tester</span></div>
+    <div class="adim"><h3>Yürüt</h3><p>Motor kurallarını canlı hesapta uygular. Stop zorunlu, lot riskinden hesaplanır, günlük kayıp sınırı ve haber filtresi hazır.</p><span class="yer">MT5 · Kalibre Motor</span></div>
+    <div class="adim"><h3>İncele</h3><p>İşlemlerin deftere düşer. Plana uydun mu, sonuç kuraldan mı şanstan mı, Lab'da görürsün.</p><span class="yer">Kalibre Lab · Defter</span></div>
+  </div>
+</section>
+
+<section class="blok" id="kutuphane">
+  <div class="blok-bas">
+    <span class="etiket">Kütüphane</span>
+    <h2>Akademik kanıta göre etiketli şablonlar</h2>
+    <p>Her şablonun kanıt gücü açık: hakemli ve tekrarlanmış mı, tek çalışma mı, yoksa yalnız uygulayıcı deneyimi mi. Yayımlandıktan sonra kaybolan anomaliler strateji olarak değil, vaka olarak anlatılır.</p>
+  </div>
+  <div id="kutuphane-liste" class="dalga" style="gap:28px"></div>
+</section>
+
+<section class="blok">
+  <div class="blok-bas">
+    <span class="etiket">Güven</span>
+    <h2>Neyi yapmıyoruz</h2>
+  </div>
+  <div class="guven">
+    <div><h3>Piyasa verisi dağıtmıyoruz</h3><p>Fiyat, takvim ve swap senin MT5 terminalinden gelir ve bilgisayarından çıkmaz. Sunucumuza yalnız lisans bilgin gelir.</p></div>
+    <div><h3>Getiri vaat etmiyoruz</h3><p>Hiçbir sayfada geçmiş getiri reklamı yok. Sentetik prova kuralın davranışını gösterir, gelecekteki kazancı değil.</p></div>
+    <div><h3>Yerine karar vermiyoruz</h3><p>Şablonlar kişiselleştirilmemiş eğitim kurallarıdır. Seçim, parametre ve emir senindir. Yatırım tavsiyesi değildir.</p></div>
+  </div>
+</section>
+
+<section class="blok" id="sss">
+  <div class="blok-bas"><span class="etiket">SSS</span><h2>Sık sorulanlar</h2></div>
+  <div>
+    <details><summary>MT5 mobil uygulamasında çalışır mı?</summary><p>Motor ve göstergeler yalnız MT5 masaüstünde ya da bir VPS'te çalışır; MT5 mobil eklenti çalıştırmaz. Mobilde Lab'ı ve eğitimi kullanabilirsin.</p></details>
+    <details><summary>Hangi aracı kurumlarla çalışır?</summary><p>MT5 sunan her aracı kurumla. Türkiye'de SPK'ya bağlı kurumlarda kaldıraç en çok 10:1, başlangıç teminatı 50.000 TL'dir; Motor'un risk ayarları bu sınırların içinde kalır.</p></details>
+    <details><summary>Profili yanlış seçersem?</summary><p>İstediğin zaman testi yeniden çöz ya da paketini değiştir. Profil bir uygunluk testi değil; senin beyanınla seçilen bir ürün paketi.</p></details>
+    <details><summary>Backtest gerçekten ücretsiz mi?</summary><p>Evet. Motor Strategy Tester'da lisans istemez. Canlı hesapta çalıştırmak için abonelik gerekir.</p></details>
+    <details><summary>Abonelik bitince açık pozisyonlarım ne olur?</summary><p>Motor yeni işlem açmayı bırakır; açık pozisyonların stop, hedef ve çıkışlarını yönetmeye devam eder.</p></details>
+  </div>
+</section>
+</main>
+
+<footer><div class="cerceve">
+  <span>© 2026 Kalibre Markets · Eğitim amaçlıdır, yatırım tavsiyesi değildir.</span>
+  <span>Metodoloji · Gizlilik · Kullanım şartları · İletişim</span>
+</div></footer>
+
+<script>
+const VERI = {"lablar":{"rejim-filtresi":"Rejim filtresi: uzun vadeli ortalama düşüşü nasıl keser","saglamlik":"Sağlamlık: aynı kural 50 sentetik piyasada","pozisyon-buyuklugu":"Pozisyon büyüklüğü ve risk yüzdesi","swap-maliyeti":"Swap ve açığa satış maliyeti","iflas-riski":"İflas riski: kaldıraç ve kayıp serileri","kaldirac-simulatoru":"Kaldıraç simülatörü","makro-karar-agaci":"Makro karar ağacı","senaryo":"Senaryo: rejim değişince stratejin ne yapar","olay-takvimi":"Olay takvimi (MT5 takviminden)","kayma-simulatoru":"Olay anında spread ve kayma"},"profiller":[{"id":"sadece_long","ad":"Alıcı","etiket":"Sadece long","kim":"Yalnız alım yönünde işlem yapan, açığa satmayan ya da yapamayan yatırımcı.","yon":"sadece_long","sablonlar":["savunmaci-long","altin-kesisim","trend-ici-geri-cekilme","ema-trend","rsi-bollinger-donus","coklu-zaman-trend"],"vakalar":["asiri-uyum-vakasi"],"laboratuvarlar":["rejim-filtresi","saglamlik","pozisyon-buyuklugu"],"egitim":["Rejim filtresi neden düşüşü azaltır","Geri çekilmede alım ile düşen bıçak farkı","Backtest tuzakları"],"risk":{"islem_basi_yuzde":1,"gunluk_max_kayip_yuzde":3},"uyarilar":["Ayı piyasasında long-only stratejiler uzun süre işlem bulamaz ya da kaybeder; rejim filtresini kapatmayın."]},{"id":"sadece_short","ad":"Açığa Satıcı","etiket":"Sadece short","kim":"Düşüşten kazanmayı ya da mevcut portföyünü taktik olarak korumayı hedefleyen yatırımcı.","yon":"sadece_short","sablonlar":["koruma-short","ayi-rejimi-tepki-satisi","asagi-kirilim","ema-trend","coklu-zaman-trend"],"vakalar":["asiri-uyum-vakasi"],"laboratuvarlar":["rejim-filtresi","saglamlik","swap-maliyeti"],"egitim":["Short tarafı neden yapısal olarak zordur","Short squeeze ve boşluk riski","Swap ve ödünç maliyeti"],"risk":{"islem_basi_yuzde":0.75,"gunluk_max_kayip_yuzde":2},"uyarilar":["Hisse piyasalarının uzun vadeli eğilimi yukarıdır; sürekli short pozisyon bu eğilime karşı ödenir. Short-only stratejiler taktik ve süre sınırlı kurulmalı."]},{"id":"kaldiracli_ls","ad":"Çift Yönlü","etiket":"Kaldıraçlı long/short","kim":"Kaldıraçlı hesapta iki yönde işlem yapan forex/CFD yatırımcısı.","yon":"iki_yon","sablonlar":["ema-trend","kaldiracli-trend-ls","macd-trend-onayi","adx-trend-devami","bant-disi-momentum","rsi-bollinger-donus","gun-ici-momentum","acilis-araligi-kirilimi","gurultu-bandi-kirilimi","londra-kirilimi","donchian-kanal","vol-hedefli-trend","coklu-zaman-trend"],"vakalar":["orb-maliyet-vakasi","asiri-uyum-vakasi","carry-cokus-vakasi"],"laboratuvarlar":["iflas-riski","kaldirac-simulatoru","saglamlik","pozisyon-buyuklugu"],"egitim":["Kaldıraç ve iflas riski","Günlük kayıp sınırı neden zorunlu","Volatiliteye göre pozisyon küçültme"],"risk":{"islem_basi_yuzde":0.5,"gunluk_max_kayip_yuzde":2},"uyarilar":["AB düzenleyicilerinin incelemesinde perakende CFD hesaplarının %74-89'u para kaybetmiş.","Türkiye'de SPK'ya bağlı kurumlarda azami kaldıraç 10:1, başlangıç teminatı 50.000 TL."]},{"id":"makro","ad":"Makrocu","etiket":"Makro odaklı","kim":"Kararını faiz, enflasyon, büyüme ve risk iştahı görüşüne göre veren yatırımcı.","yon":"agactan","sablonlar":["savunmaci-long","trend-ici-geri-cekilme","koruma-short","ayi-rejimi-tepki-satisi","asagi-kirilim","ema-trend","kaldiracli-trend-ls","veri-surprizi-momentum","carry-cokus-filtreli","donchian-kanal","vol-hedefli-trend"],"vakalar":["pre-fomc","asiri-uyum-vakasi","carry-cokus-vakasi"],"laboratuvarlar":["makro-karar-agaci","senaryo","saglamlik"],"egitim":["Rejimler ve stratejiler","Carry ve çöküş riski","Enflasyon şoklarında trend takibi"],"risk":{"islem_basi_yuzde":0.75,"gunluk_max_kayip_yuzde":2},"uyarilar":["Karar ağacı kullanıcının kendi makro görüşünü kurallara çevirir; görüş yanlışsa kurallar da yanlış yönde çalışır."]},{"id":"olay","ad":"Olaycı","etiket":"Olay odaklı","kim":"Veri açıklamaları, merkez bankası kararları ve bilanço gibi takvimli olaylar çevresinde işlem yapan yatırımcı.","yon":"iki_yon","sablonlar":["gun-ici-momentum","acilis-araligi-kirilimi","londra-kirilimi","veri-surprizi-momentum","haber-sonrasi-sakinlesme"],"vakalar":["pre-fomc","orb-maliyet-vakasi","asiri-uyum-vakasi"],"laboratuvarlar":["olay-takvimi","kayma-simulatoru","saglamlik"],"egitim":["Veri sürprizi nedir","Yayımlanan anomaliler neden kaybolur: FOMC öncesi vakası","Olay anında spread ve kayma"],"risk":{"islem_basi_yuzde":0.5,"gunluk_max_kayip_yuzde":2},"uyarilar":["Olay anında spread açılır ve emirler kayar; sentetik prova bunu göstermez. Gerçek maliyeti MT5 Strategy Tester'da gerçek tik verisiyle ölçün."]}],"sablonlar":[{"id":"savunmaci-long","ad":"Savunmacı Long","kisa":"200 günlük ortalamanın üstünde long, altında nakit. Uzun düşüşlerden kaçmak için.","durum":"v1","dalga":1,"kanit":"orta","ufuk":"swing","profiller":["sadece_long","makro"]},{"id":"altin-kesisim","ad":"Altın Kesişim","kisa":"SMA50/SMA200 kesişimi. Az işlem, geç giriş, büyük trendler.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"swing","profiller":["sadece_long"]},{"id":"trend-ici-geri-cekilme","ad":"Trend İçi Geri Çekilme","kisa":"Yükselen piyasada kısa vadeli aşırı satımı al.","durum":"v1","dalga":1,"kanit":"orta","ufuk":"swing","profiller":["sadece_long","makro"]},{"id":"koruma-short","ad":"Koruma Short","kisa":"200 günlük ortalamanın altında short. Long portföy için düşüş koruması.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"swing","profiller":["sadece_short","makro"]},{"id":"ayi-rejimi-tepki-satisi","ad":"Ayı Rejiminde Tepki Satışı","kisa":"Düşen piyasada kısa vadeli aşırı alımı sat.","durum":"v1","dalga":1,"kanit":"orta","ufuk":"swing","profiller":["sadece_short","makro"]},{"id":"asagi-kirilim","ad":"Aşağı Kırılım","kisa":"Güçlü düşüş trendinde SMA50 kırılımı.","durum":"v1","dalga":1,"kanit":"orta","ufuk":"swing","profiller":["sadece_short","makro"]},{"id":"ema-trend","ad":"EMA Trend Takibi","kisa":"EMA20/50 kesişimi + ADX filtresi. Kütüphanenin başlangıç şablonu.","durum":"v1","dalga":1,"kanit":"guclu","ufuk":"gun_ici","profiller":["kaldiracli_ls","sadece_long","sadece_short","makro"]},{"id":"kaldiracli-trend-ls","ad":"Kaldıraçlı Trend","kisa":"SMA100 kesişimi iki yönde, iz süren stop, sıkı risk.","durum":"v1","dalga":1,"kanit":"guclu","ufuk":"gun_ici","profiller":["kaldiracli_ls","makro"]},{"id":"macd-trend-onayi","ad":"MACD Trend Onayı","kisa":"MACD kesişimi, SMA200 rejim filtresiyle.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"swing","profiller":["kaldiracli_ls"]},{"id":"adx-trend-devami","ad":"ADX Trend Devamı","kisa":"Güçlü trendde geri çekilmeye giriş.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls"]},{"id":"bant-disi-momentum","ad":"Bant Dışı Momentum","kisa":"Bollinger bandı dışına kapanışı momentum olarak oku.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls"]},{"id":"rsi-bollinger-donus","ad":"Bant İçi Dönüş","kisa":"Zayıf trendde Bollinger bandı uçlarından dönüş.","durum":"v1","dalga":1,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls","sadece_long"]},{"id":"gun-ici-momentum","ad":"İlk Yarım Saat → Son Yarım Saat","kisa":"Seansın ilk yarım saatinin yönünde son yarım saatte işlem.","durum":"v2","dalga":2,"kanit":"orta","ufuk":"gun_ici","profiller":["olay","kaldiracli_ls"]},{"id":"acilis-araligi-kirilimi","ad":"Açılış Aralığı Kırılımı","kisa":"İlk 5 dakikanın aralığı kırılınca o yönde, gün sonunda çık.","durum":"v2","dalga":2,"kanit":"zayif","ufuk":"gun_ici","profiller":["olay","kaldiracli_ls"]},{"id":"gurultu-bandi-kirilimi","ad":"Gürültü Bandı Kırılımı","kisa":"Açılıştan ortalama hareket bandı dışına çıkışta trend.","durum":"v2","dalga":2,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls"]},{"id":"londra-kirilimi","ad":"Londra Açılışı Kırılımı","kisa":"Asya seansı aralığının Londra açılışında kırılımı (FX).","durum":"plan","dalga":2,"kanit":"uygulayici","ufuk":"gun_ici","profiller":["kaldiracli_ls","olay"]},{"id":"veri-surprizi-momentum","ad":"Veri Sürprizi Yönünde","kisa":"Gerçekleşen beklentiden saparsa sürprizin yönünde.","durum":"v2","dalga":2,"kanit":"orta","ufuk":"gun_ici","profiller":["olay","makro"]},{"id":"haber-sonrasi-sakinlesme","ad":"Haber Sonrası Sakinleşme","kisa":"Veri anındaki aşırı hareketin spread normale dönünce kısmi geri dönüşü.","durum":"plan","dalga":2,"kanit":"uygulayici","ufuk":"gun_ici","profiller":["olay"]},{"id":"carry-cokus-filtreli","ad":"Taşıma + Çöküş Filtresi","kisa":"Pozitif swap yönünde, oynaklık sıçrayınca kapat.","durum":"v2","dalga":3,"kanit":"orta","ufuk":"swing","profiller":["makro"]},{"id":"donchian-kanal","ad":"Kanal Kırılımı (20/55)","kisa":"N günlük en yüksek/en düşük kırılımında trend takibi.","durum":"plan","dalga":3,"kanit":"guclu","ufuk":"swing","profiller":["kaldiracli_ls","makro"]},{"id":"vol-hedefli-trend","ad":"Volatilite Hedefli Trend","kisa":"Trend sinyali + oynaklığa göre ölçeklenen lot.","durum":"plan","dalga":3,"kanit":"orta","ufuk":"swing","profiller":["kaldiracli_ls","makro"]},{"id":"coklu-zaman-trend","ad":"Çoklu Zaman Dilimi Trend","kisa":"Günlük trend yönünde saatlik giriş.","durum":"plan","dalga":3,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls","sadece_long","sadece_short"]},{"id":"pre-fomc","ad":"FOMC Öncesi Yükseliş","kisa":"Yayımlandıktan sonra kaybolan anomali.","durum":"vaka","dalga":1,"kanit":"bozuldu","ufuk":"gun_ici","profiller":["olay","makro"]},{"id":"orb-maliyet-vakasi","ad":"Kırılım ve Maliyet","kisa":"Brüt kârlı bir kuralın spread ve kaymayla sıfırlanması.","durum":"vaka","dalga":2,"kanit":"zayif","ufuk":"gun_ici","profiller":["kaldiracli_ls","olay"]},{"id":"asiri-uyum-vakasi","ad":"En İyi Backtest Tuzağı","kisa":"Yüz parametreyi deneyip en iyisini seçmenin bedeli.","durum":"vaka","dalga":1,"kanit":"guclu","ufuk":"swing","profiller":["sadece_long","sadece_short","kaldiracli_ls","makro","olay"]},{"id":"carry-cokus-vakasi","ad":"Carry Çöküşü","kisa":"Yavaş kazanıp tek seferde kaybetmek.","durum":"vaka","dalga":3,"kanit":"orta","ufuk":"swing","profiller":["makro","kaldiracli_ls"]}]};
+
+const PROFIL = Object.fromEntries(VERI.profiller.map(p => [p.id, p]));
+const SABLON = Object.fromEntries(VERI.sablonlar.map(s => [s.id, s]));
+const KANIT = { guclu: 'Güçlü kanıt', orta: 'Orta kanıt', zayif: 'Zayıf kanıt', uygulayici: 'Uygulayıcı', bozuldu: 'Bozuldu' };
+const DURUM = { v1: 'Hazır', v2: 'Yakında', plan: 'Yol haritası', vaka: 'Eğitim vakası' };
+const UFUK = { gun_ici: 'Gün içi', swing: 'Swing' };
+const YON = { sadece_long: 'sadece long', sadece_short: 'sadece short', iki_yon: 'iki yön', agactan: 'yön karar ağacından' };
+const kacis = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const $ = s => document.querySelector(s);
+
+// ------------------------------------------------------------------ sihirbaz
+const SORULAR = [
+  { id: 'yon', soru: 'Hangi yönde işlem yapıyorsun?', secenekler: [
+    { d: 'long', b: 'Yalnız alım', s: 'Açığa satış yapmıyorum ya da yapamıyorum' },
+    { d: 'short', b: 'Ağırlıkla açığa satış', s: 'Düşüşten kazanmak ya da portföyümü korumak için' },
+    { d: 'iki', b: 'İki yönde de', s: 'Yükselişte alır, düşüşte satarım' } ] },
+  { id: 'kaldirac', soru: 'Hesabında kaldıraç kullanıyor musun?', not: 'Forex, CFD ya da vadeli işlem hesapları kaldıraçlıdır.', secenekler: [
+    { d: 'hayir', b: 'Hayır', s: 'Yalnız kendi sermayemle' },
+    { d: 'evet', b: 'Evet', s: 'Forex, CFD ya da VİOP' } ] },
+  { id: 'surucu', soru: 'Kararını en çok ne belirliyor?', secenekler: [
+    { d: 'teknik', b: 'Grafik ve fiyat hareketi', s: 'Trend, destek-direnç, göstergeler' },
+    { d: 'makro', b: 'Faiz, enflasyon ve büyüme görüşüm', s: 'Merkez bankaları, döngü, risk iştahı' },
+    { d: 'olay', b: 'Takvimdeki olaylar', s: 'Veri açıklamaları, faiz kararları, bilançolar' } ] },
+  { id: 'ufuk', soru: 'Pozisyonların gece açık kalır mı?', secenekler: [
+    { d: 'gun_ici', b: 'Hayır, gün içinde kapatırım', s: 'Gün içi işlem' },
+    { d: 'swing', b: 'Evet, günler ya da haftalar', s: 'Swing işlem' } ] },
+  { id: 'kayip', soru: 'Kötü bir günde hesabının en çok ne kadarını kaybetmeye razısın?', not: 'Bu yanıt paketin risk ayarlarını yalnız sıkılaştırır, hiçbir zaman gevşetmez.', secenekler: [
+    { d: 1, b: '%1', s: 'Çok temkinli' },
+    { d: 2, b: '%2', s: 'Temkinli' },
+    { d: 3, b: '%3', s: 'Daha toleranslı' } ] },
+  { id: 'platform', soru: 'MT5\'i nerede kullanıyorsun?', secenekler: [
+    { d: 'masaustu', b: 'Masaüstünde ya da VPS\'te', s: 'Windows, Mac ya da sanal sunucu' },
+    { d: 'mobil', b: 'Yalnız telefonda', s: 'MT5 mobil uygulaması' },
+    { d: 'yok', b: 'Henüz kullanmıyorum', s: 'Başka platformdayım ya da yeni başlıyorum' } ] },
+];
+
+let adim = 0;
+const yanit = {};
+
+function profilBelirle(y) {
+  let ana, yakin;
+  if (y.surucu === 'makro') { ana = 'makro'; yakin = y.kaldirac === 'evet' ? 'kaldiracli_ls' : (y.yon === 'short' ? 'sadece_short' : 'sadece_long'); }
+  else if (y.surucu === 'olay') { ana = 'olay'; yakin = y.kaldirac === 'evet' ? 'kaldiracli_ls' : 'makro'; }
+  else if (y.yon === 'long') { ana = 'sadece_long'; yakin = 'makro'; }
+  else if (y.yon === 'short') { ana = 'sadece_short'; yakin = 'makro'; }
+  else { ana = 'kaldiracli_ls'; yakin = 'makro'; }
+  if (yakin === ana) yakin = 'makro' === ana ? 'kaldiracli_ls' : 'makro';
+  const p = PROFIL[ana];
+  return {
+    ana, yakin, ufuk: y.ufuk,
+    risk: Math.min(p.risk.islem_basi_yuzde, y.kayip / 2),
+    gunluk: Math.min(p.risk.gunluk_max_kayip_yuzde, y.kayip),
+    platform: y.platform,
+    yonCatisma: y.surucu === 'teknik' && y.yon === 'iki' && y.kaldirac === 'hayir',
+  };
+}
+
+function sihirbazCiz() {
+  const k = $('#sihirbaz');
+  if (adim >= SORULAR.length) return sonucCiz();
+  const s = SORULAR[adim];
+  const ilerleme = SORULAR.map((_, i) => `<i class="${i <= adim ? 'dolu' : ''}"></i>`).join('');
+  k.innerHTML = `
+    <div class="sihirbaz-bas"><span class="etiket">Profilini bul · ${adim + 1}/${SORULAR.length}</span><div class="ilerleme" aria-hidden="true">${ilerleme}</div></div>
+    <div><div class="soru" id="soru-${s.id}">${kacis(s.soru)}</div>${s.not ? `<p class="soru-not">${kacis(s.not)}</p>` : ''}</div>
+    <div class="secenekler" role="group" aria-labelledby="soru-${s.id}">
+      ${s.secenekler.map((o, i) => `<button type="button" class="secenek" data-i="${i}" aria-pressed="${yanit[s.id] === o.d}">
+        <span class="harf">${'ABC'[i]}</span><span><b>${kacis(o.b)}</b><small>${kacis(o.s)}</small></span></button>`).join('')}
+    </div>
+    <div class="sihirbaz-alt"><button type="button" class="geri" ${adim ? '' : 'hidden'}>← Geri</button><span class="soru-not">Yaklaşık 1 dakika</span></div>`;
+  k.querySelectorAll('.secenek').forEach(b => b.addEventListener('click', () => {
+    yanit[s.id] = s.secenekler[Number(b.dataset.i)].d;
+    adim++;
+    sihirbazCiz();
+  }));
+  k.querySelector('.geri').addEventListener('click', () => { adim = Math.max(0, adim - 1); sihirbazCiz(); });
+}
+
+function sonucCiz() {
+  const r = profilBelirle(yanit);
+  const p = PROFIL[r.ana];
+  const hazir = p.sablonlar.map(id => SABLON[id]).filter(s => s.durum === 'v1' && s.ufuk === r.ufuk);
+  const hazirToplam = p.sablonlar.filter(id => SABLON[id].durum === 'v1').length;
+  const ornek = (hazir.length ? hazir : p.sablonlar.map(id => SABLON[id]).filter(s => s.durum === 'v1')).slice(0, 3);
+  let notlar = '';
+  if (r.platform === 'mobil') notlar += '<p class="not">Motor MT5 mobilde çalışmaz. Başlangıç planıyla Lab ve eğitimi kullanabilir, Motor için bir VPS ya da masaüstü kurabilirsin.</p>';
+  if (r.platform === 'yok') notlar += '<p class="not bilgi">MT5 hesabın yoksa Başlangıç planıyla Lab\'da sentetik piyasada başla. Hesabın olunca paketini açarsın.</p>';
+  if (r.yonCatisma) notlar += '<p class="not bilgi">Kaldıraçsız iki yönlü işlem için de Çift Yönlü paketi uygun; risk ayarları kaldıraçlı hesaba göre zaten sıkı.</p>';
+  $('#sihirbaz').innerHTML = `
+    <div class="sihirbaz-bas"><span class="etiket">Profilin</span><button type="button" class="geri" id="bastan">↺ Baştan</button></div>
+    <div class="sonuc">
+      <div class="sonuc-profil">
+        <h2>${kacis(p.ad)}</h2>
+        <div class="cipler"><span class="cip vurgu">${kacis(p.etiket)}</span><span class="cip">${UFUK[r.ufuk]}</span><span class="cip">${YON[p.yon]}</span></div>
+      </div>
+      <p style="color:var(--dim)">${kacis(p.kim)}</p>
+      <dl>
+        <dt>Başlangıç şablonları</dt><dd>${ornek.map(s => kacis(s.ad)).join(', ')}</dd>
+        <dt>Pakette</dt><dd>${hazirToplam} hazır, ${p.sablonlar.length - hazirToplam} yakında şablon · ${p.vakalar.length} vaka · ${p.laboratuvarlar.length} laboratuvar</dd>
+        <dt>Risk ayarın</dt><dd class="mono">işlem başı %${String(r.risk).replace('.', ',')} · günlük %${r.gunluk}</dd>
+        <dt>Yakın profil</dt><dd>${kacis(PROFIL[r.yakin].ad)}</dd>
+      </dl>
+      ${notlar}
+      <a class="dugme ana" href="#magaza" id="pakete-git">${kacis(p.ad)} paketini gör</a>
+    </div>`;
+  $('#bastan').addEventListener('click', () => { adim = 0; for (const k in yanit) delete yanit[k]; kaydet(null); sihirbazCiz(); });
+  $('#pakete-git').addEventListener('click', () => { secili = r.ana; ufuk = r.ufuk; magazaCiz(); });
+  kaydet({ yanit, r });
+  senin = r.ana; secili = r.ana; ufuk = r.ufuk;
+  magazaCiz();
+}
+
+function kaydet(v) {
+  try { v ? localStorage.setItem('kalibre-profil', JSON.stringify(v)) : localStorage.removeItem('kalibre-profil'); } catch {}
+}
+
+// ------------------------------------------------------------------ mağaza
+let secili = 'sadece_long', ufuk = 'hepsi', senin = null;
+
+function sablonKarti(s) {
+  return `<article class="sablon${s.durum === 'v1' ? '' : ' yakinda'}">
+    <h4>${kacis(s.ad)}</h4><p>${kacis(s.kisa)}</p>
+    <div class="alt"><span class="hap ${s.durum === 'v1' ? 'hazir' : 'durum'}">${DURUM[s.durum]}</span><span class="hap ${s.kanit}">${KANIT[s.kanit]}</span><span class="hap durum">${UFUK[s.ufuk]}</span></div>
+  </article>`;
+}
+
+function magazaCiz() {
+  $('#sekmeler').innerHTML = VERI.profiller.map(p => `<button type="button" class="sekme" role="tab" data-p="${p.id}" aria-selected="${p.id === secili}">
+    ${p.id === senin ? '<span class="senin">SENİN PROFİLİN</span>' : ''}${kacis(p.ad)}<small>${kacis(p.etiket)}</small></button>`).join('');
+  document.querySelectorAll('#ufuk-filtre button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ufuk === ufuk)));
+  const p = PROFIL[secili];
+  const liste = [...p.sablonlar, ...p.vakalar].map(id => SABLON[id]).filter(s => ufuk === 'hepsi' || s.ufuk === ufuk)
+    .sort((a, b) => (a.durum === 'v1' ? 0 : a.durum === 'vaka' ? 2 : 1) - (b.durum === 'v1' ? 0 : b.durum === 'vaka' ? 2 : 1));
+  const hazirSayi = p.sablonlar.filter(id => SABLON[id].durum === 'v1').length;
+  $('#paket').innerHTML = `
+    <div class="paket-ozet">
+      <span class="etiket">${kacis(p.etiket)} · ${YON[p.yon]}</span>
+      <h3>${kacis(p.ad)} paketi</h3>
+      <p>${kacis(p.kim)}</p>
+      <div class="cipler"><span class="cip vurgu">${hazirSayi} hazır şablon</span><span class="cip">${p.sablonlar.length - hazirSayi} yakında</span><span class="cip">${p.vakalar.length} vaka</span></div>
+      <div><b style="font-size:14px">Laboratuvarlar</b><ul>${p.laboratuvarlar.map(l => `<li>${kacis(VERI.lablar[l] ?? l)}</li>`).join('')}</ul></div>
+      <div><b style="font-size:14px">Dersler</b><ul>${p.egitim.map(e => `<li>${kacis(e)}</li>`).join('')}</ul></div>
+      <p class="mono" style="font-size:13px">Risk varsayılanı: işlem başı %${String(p.risk.islem_basi_yuzde).replace('.', ',')} · günlük %${p.risk.gunluk_max_kayip_yuzde}</p>
+      ${p.uyarilar.map(u => `<p class="not">${kacis(u)}</p>`).join('')}
+      <a class="dugme ana" href="#planlar">Profil Paketi ile başla</a>
+    </div>
+    <div class="sablonlar">${liste.length ? liste.map(sablonKarti).join('') : '<p class="bos-durum">Bu ufukta bu profil için şablon yok. Ufku "Hepsi" yap.</p>'}</div>`;
+  document.querySelectorAll('.sekme').forEach(b => b.addEventListener('click', () => { secili = b.dataset.p; magazaCiz(); }));
+}
+document.querySelectorAll('#ufuk-filtre button').forEach(b => b.addEventListener('click', () => { ufuk = b.dataset.ufuk; magazaCiz(); }));
+
+// ------------------------------------------------------------------ kütüphane
+function kutuphaneCiz() {
+  const gruplar = [
+    { bas: 'Şimdi', alt: 'Motor bugün yürütür', f: s => s.durum === 'v1' },
+    { bas: 'Yakında: seans ve takvim', alt: 'Gün içi ve olay şablonları', f: s => (s.durum === 'v2' || s.durum === 'plan') && s.dalga === 2 },
+    { bas: 'Yol haritası', alt: 'Swap, kanal, volatilite hedefi, çoklu zaman dilimi', f: s => (s.durum === 'v2' || s.durum === 'plan') && s.dalga === 3 },
+    { bas: 'Eğitim vakaları', alt: 'Satılmaz; Lab\'da anlatılır', f: s => s.durum === 'vaka' },
+  ];
+  $('#kutuphane-liste').innerHTML = gruplar.map(g => {
+    const l = VERI.sablonlar.filter(g.f);
+    return `<div class="dalga"><div class="dalga-bas"><h3>${g.bas} · ${l.length}</h3><span>${g.alt}</span></div>
+      <div class="liste">${l.map(s => `<div class="satir"><span>${kacis(s.ad)}<small>${UFUK[s.ufuk]} · ${s.profiller.map(p => PROFIL[p].ad).join(', ')}</small></span><span class="hap ${s.kanit}">${KANIT[s.kanit]}</span></div>`).join('')}</div></div>`;
+  }).join('');
+}
+
+// ------------------------------------------------------------------ açılış
+try {
+  const k = JSON.parse(localStorage.getItem('kalibre-profil') || 'null');
+  if (k && k.yanit) { Object.assign(yanit, k.yanit); adim = SORULAR.length; }
+} catch {}
+kutuphaneCiz();
+if (adim >= SORULAR.length) sonucCiz(); else { sihirbazCiz(); magazaCiz(); }
+</script>
+</body>
+</html>
