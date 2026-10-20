@@ -88,6 +88,11 @@
       "statusCode": 301
     },
     {
+      "source": "/arsiv",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
       "source": "/rss.xml",
       "destination": "/",
       "statusCode": 301
