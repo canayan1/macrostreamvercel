@@ -203,7 +203,7 @@
       menu.innerHTML =
         '<div class="em">' + esc(u.email) + '</div>' +
         '<a href="/hesap/">Panom</a>' +
-        '<a href="/portfoy-lab/">Portföy Lab</a>' +
+        '<a href="/defter/">Defterim</a>' +
         '<button type="button" data-signout>Çıkış yap</button>';
       menu.querySelector('[data-signout]').onclick = function () { signOut(); };
       btn.onclick = function (e) { e.stopPropagation(); menu.classList.toggle('on'); };

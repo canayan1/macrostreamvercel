@@ -1,7 +1,101 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/canli/t/:id", "destination": "/api/canli/page?id=:id" }
+  "redirects": [
+    {
+      "source": "/reports/fred/:path*",
+      "destination": "/egitim/makro-gostergeler-rehberi",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/makro/:path*",
+      "destination": "/egitim/makro-gostergeler-rehberi",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/wb/:path*",
+      "destination": "/egitim/makro-gostergeler-rehberi",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/tcmb/:path*",
+      "destination": "/egitim/tcmb-faiz-politikasi",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/fx/:path*",
+      "destination": "/kur-riski-hesaplayici",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/metals/:path*",
+      "destination": "/egitim/altin-gumus-trade",
+      "statusCode": 301
+    },
+    {
+      "source": "/reports/:path*",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
+      "source": "/makro-raporu/:path*",
+      "destination": "/egitim/makro-gostergeler-rehberi",
+      "statusCode": 301
+    },
+    {
+      "source": "/banka-raporu/:path*",
+      "destination": "/egitim/nim-bankacilik",
+      "statusCode": 301
+    },
+    {
+      "source": "/terminal/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/canli/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/haftanin-haberleri/:path*",
+      "destination": "/arastirma",
+      "statusCode": 301
+    },
+    {
+      "source": "/haftanin-grafikleri/:path*",
+      "destination": "/arastirma",
+      "statusCode": 301
+    },
+    {
+      "source": "/community_pulse/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfoy-lab/:path*",
+      "destination": "/simulasyon",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfoyum/:path*",
+      "destination": "/defter",
+      "statusCode": 301
+    },
+    {
+      "source": "/arsiv.html",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/static/weekly/:path*",
+      "destination": "/arastirma",
+      "statusCode": 301
+    }
   ]
 }

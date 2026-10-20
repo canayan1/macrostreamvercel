@@ -100,7 +100,7 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
   <div class="eyebrow">▸ ARAÇ · HAZİNE ve FİNANS EKİPLERİ İÇİN</div>
   <h1>Kur Riski Hesaplayıcı</h1>
   <p class="lead">Net döviz pozisyonunuzu girin; kur bir şok yaşarsa kâr-zarara etkisini <strong>anında</strong> görün. Bu, TFRS 7'nin de istediği <strong>duyarlılık analizinin</strong> sade bir uygulamasıdır. Hesap tamamen tarayıcınızda çalışır; girdiğiniz veriler hiçbir yere gönderilmez.</p>
-  <div class="livebadge"><span class="dot"></span><span id="liveTxt">Canlı kur yükleniyor…</span></div>
+  <div class="livebadge"><span class="dot" style="background:var(--muted);box-shadow:none"></span><span id="liveTxt">Örnek kurlar yüklü · güncel kurlarınızı girin</span></div>
 
   <div class="grid2">
     <!-- GİRDİ -->
@@ -148,15 +148,15 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
 
   <footer class="pf">
     <div><b style="color:var(--text);letter-spacing:.1em">KALİBRE · MARKETS</b> · Kur riski hesaplayıcı</div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap"><a href="/ekonomi-takvimi/">Ekonomi takvimi</a><a href="/terminal/">Terminal</a><a href="/pilot-basvuru/">Kurumsal</a><a href="/metodoloji/">Metodoloji</a></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap"><a href="/ekonomi-takvimi/">Ekonomi takvimi</a><a href="/egitim/">Eğitim</a><a href="/pilot-basvuru/">Kurumsal</a><a href="/metodoloji/">Metodoloji</a></div>
     <div style="color:var(--muted);max-width:42ch;text-align:right">Bu araç girdiğiniz verilere dayanan bir tahmindir; yatırım tavsiyesi değildir.</div>
   </footer>
 </main>
 
 <script>
 (function(){
+  // Örnek başlangıç değerleri; güncel kur değildir. Kullanıcı kendi kurunu girer.
   var DEF = { USD: 45.97, EUR: 53.50, GBP: 62.00, CHF: 57.00 };
-  var asof = "";
   var rowsEl = document.getElementById('rows');
   var CUR = ["USD","EUR","GBP","CHF","Diğer"];
 
@@ -228,21 +228,6 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
   document.getElementById('addBtn').onclick=function(){ makeRow('USD',0,DEF.USD); };
   document.getElementById('hedge').addEventListener('input',calc);
   document.getElementById('shock').addEventListener('input',calc);
-
-  // canlı USD/TRY (markets.json)
-  fetch('/terminal/data/markets.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
-    var u=d.series&&d.series.usdtry; asof=d.report_date||'';
-    if(u&&u.last){ DEF.USD=u.last;
-      var first=document.querySelector('#rows tr .rate'); if(first) first.value=u.last.toFixed(4);
-      document.getElementById('liveTxt').innerHTML='Canlı <b>USD/TRY '+trNum(u.last,4)+'</b> · veri: '+fmtDate(asof)+' · diğer kurları düzenleyebilirsiniz';
-    }
-    calc();
-  }).catch(function(){
-    document.getElementById('liveTxt').innerHTML='Varsayılan kurlar yüklendi · güncel değerlerle düzenleyin';
-    calc();
-  });
-  function fmtDate(iso){ if(!iso) return 'n/d'; var A=['','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-    var p=iso.split('-'); return p.length===3 ? (parseInt(p[2],10)+' '+A[parseInt(p[1],10)]+' '+p[0]) : iso; }
 
   calc();
 })();
