@@ -395,6 +395,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   color: var(--accent); text-transform: uppercase; font-weight: 700;
   margin-bottom: 6px;
 }</style>
+<script src="/static/kalibre-cerez.js"></script>
 </head>
 <body>
 <div class="cmdbar"><a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Eğitim › Backtest Tuzakları — Geçmiş Performansa Neden Güvenmemeli?</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/" class="cmd-back">← Ana sayfa</a></div></div>
@@ -606,38 +607,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     <a href="/hakkinda.html">Hakkında</a>
   </div>
   <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
-    ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>
+    ⚠ Yatırım tavsiyesi değildir.<br>
     Kalibre Markets © 2026 — tüm hakları saklıdır.
   </div>
 </footer>
 
-<div id="cookie-banner" style="position:fixed;bottom:14px;right:14px;max-width:360px;background:#14110e;border:1px solid #2a241d;border-radius:12px;padding:12px 14px;display:none;z-index:9999;box-shadow:0 8px 28px rgba(0,0,0,.45);font-family:'JetBrains Mono',monospace">
-  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between">
-    <div style="font-size:12px;line-height:1.5;color:#a8a098;flex:1;min-width:240px;letter-spacing:.01em">
-      <span style="color:#ffa630">▸</span> Bu site ziyaret istatistikleri için Google Analytics kullanır (anonim
-      kullanım verisi). Kullanıcı hesabı veya doğrudan kişisel veri toplamayız. Ayrıntılar
-      <a href="/gizlilik/" style="color:#ffa630;text-decoration:none;border-bottom:1px solid rgba(255,166,48,.4)">Gizlilik Politikası</a>'nda.
-    </div>
-    <button id="cookie-ok-btn" style="background:#ffa630;color:#0a0a0a;border:0;
-            padding:8px 18px;font-weight:700;font-size:11px;cursor:pointer;
-            font-family:inherit;letter-spacing:.08em;text-transform:uppercase">
-      Anladım
-    </button>
-  </div>
-</div>
-<script>
-(function(){
-  var KEY = 'kalibre-cookie-notice-ack';
-  if (localStorage.getItem(KEY) === '1') return;
-  var b = document.getElementById('cookie-banner');
-  if (!b) return;
-  b.style.display = 'block';
-  document.getElementById('cookie-ok-btn').onclick = function(){
-    localStorage.setItem(KEY, '1');
-    b.style.display = 'none';
-  };
-})();
-</script>
+
 
 
 <!-- Google Translate (on-demand: tıklanınca yükle) -->

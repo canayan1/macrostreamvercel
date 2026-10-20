@@ -95,8 +95,7 @@ footer.pf-foot b { color:var(--text); }
 
 @media (max-width:700px){ main { padding:18px 14px 60px; } h1 { font-size:25px; } .cmd-crumb { display:none; } .formwrap .grid { grid-template-columns:1fr; } }
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6FEDBJG6N"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P6FEDBJG6N');</script>
+<script src="/static/kalibre-cerez.js"></script>
 </head>
 <body>
 <div class="cmdbar">
@@ -208,7 +207,7 @@ function kmSubmit(e){
   var subject = 'Kalibre Kurumsal Pilot Erişim Talebi — ' + (g('firma') || '');
   var url = 'mailto:markets@kalibrefin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(L.join('\n'));
   window.location.href = url;
-  try { gtag('event', 'pilot_talep', { firma: g('firma') }); } catch(_){}
+  try { gtag('event', 'pilot_talep'); } catch(_){}
   return false;
 }
 </script>
