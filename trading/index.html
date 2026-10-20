@@ -26,8 +26,8 @@
 <meta name="twitter:description" content="Pozisyon öncesi 3 dakikalık disiplin kontrolü, geçmiş veriyle test edilmiş 5 algoritmik strateji, 58 hisse için tek tek backtest sonuçları.">
 <meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe makro ve piyasa bülteni — TCMB analitik bilanço, döviz ve kıymetli maden bültenleri, TR/ABD makro, kripto strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "inLanguage": "tr", "potentialAction": {"@type": "SearchAction", "target": "https://kalibremarkets.com/arsiv.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe makro ve piyasa bülteni — TCMB analitik bilanço, döviz ve kıymetli maden bültenleri, TR/ABD makro, kripto strateji laboratuvarı ve finansal eğitim. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Makro ekonomi", "Döviz ve kıymetli madenler", "Kripto varlıklar", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "markets@kalibrefin.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "description": "Türkçe finansal okuryazarlık — teknik analiz eğitimi, davranışsal finans testleri, hesaplayıcılar ve simülasyon. Yatırım tavsiyesi değildir.", "inLanguage": "tr"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kalibre Markets", "url": "https://kalibremarkets.com", "logo": "https://kalibremarkets.com/og-default.png", "description": "Türkçe finansal okuryazarlık — teknik analiz eğitimi, davranışsal finans testleri, hesaplayıcılar ve simülasyon. Yatırım tavsiyesi değildir.", "sameAs": ["https://kalibremarkets.com", "https://oyun.kalibremarkets.com"], "areaServed": {"@type": "Country", "name": "Turkey"}, "knowsAbout": ["Makro ekonomi", "Döviz ve kıymetli madenler", "Kripto varlıklar", "Teknik analiz", "Yatırım eğitimi", "Finansal piyasa analizi"], "contactPoint": {"@type": "ContactPoint", "email": "markets@kalibrefin.com", "contactType": "Customer Support", "availableLanguage": ["Turkish"]}}</script>
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -397,7 +397,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 }</style>
 </head>
 <body>
-<div class="cmdbar"><a href="/terminal/" class="brand" title="Terminale dön"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// TERMINAL</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Trading</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/terminal/" class="cmd-back">← Terminale dön</a></div></div>
+<div class="cmdbar"><a href="/" class="brand" title="Ana sayfa"><div class="brand-mark">K</div><div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div></a><div class="cmd-crumb"><a href='/' style='color:inherit'>Ana sayfa</a> › Trading</div><div class="cmd-actions"><span class="cmd-tr" title="Sayfayı çevir" onclick="kmTranslate()">🌐 TR</span><div id="google_translate_element" style="display:none"></div><a href="/" class="cmd-back">← Ana sayfa</a></div></div>
 <script>
 (function(){
   try {
@@ -424,7 +424,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     else { txt = days + ' gün önce'; stale = days >= 8; }
     el.textContent = '· ' + txt;
     el.style.color = stale ? 'var(--red)' : 'var(--muted)';
-    if (stale) el.title = 'Bu rapor güncel olmayabilir; daha yeni bülten için terminale bakın.';
+    if (stale) el.title = 'Bu sayfa güncel olmayabilir.';
   });
 })();
 </script>
@@ -438,7 +438,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       Karar öncesi hazırlık · sonrası analiz
     </h1>
     <p style="margin-top:10px;font-size:15px;line-height:1.65;color:var(--text-dim);max-width:72ch">
-      Pozisyon açmadan önce kendinize sormak istediğiniz soruların listesi, geçmiş veriyle test edilmiş yatırım yöntemleri ve her hisse için bu yöntemlerin tarihsel sonuçları.
+      Pozisyon açmadan önce kendinize sormak istediğiniz soruların listesi, davranışsal testler ve kararlarınızı kaydedeceğiniz bir defter.
     </p>
   </div>
 
@@ -455,38 +455,6 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         </p>
       </div>
       <span style="font-size:28px;color:var(--accent)">→</span>
-    </div>
-  </a>
-
-  <!-- Portföy Lab (portföy seviyesi) -->
-  <a href="/portfoy-lab/" class="panel" style="display:block;padding:22px 24px;margin-bottom:14px;text-decoration:none;color:inherit;border-left:3px solid #a78bfa">
-    <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
-      <div style="font-size:32px;flex:0 0 auto">🧠</div>
-      <div style="flex:1;min-width:240px">
-        <div style="font-size:10px;letter-spacing:.14em;color:#a78bfa;text-transform:uppercase;font-weight:700;margin-bottom:4px">▸ PORTFÖY SEVİYESİ</div>
-        <h3 style="margin:0 0 6px;font-size:18px;font-weight:600;color:var(--text)">Strateji Laboratuvarı</h3>
-        <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.6">
-          Soru: "5 yatırım yöntemi <b style="color:var(--text)">tüm bir kripto portföyü</b> üzerinde çalıştığında ne yapıyor?"
-          Cevap: yıllık bileşik getiri, max drawdown, Sharpe, Calmar, sepet kompozisyonu, equity curve.
-        </p>
-        <div style="margin-top:10px;font-size:11.5px;color:#a78bfa;letter-spacing:.04em">4 strateji kuralı · Kripto 30 · portföy metrikleri →</div>
-      </div>
-    </div>
-  </a>
-
-  <!-- Portföy takibi -->
-  <a href="/portfoyum/" class="panel" style="display:block;padding:22px 24px;margin-bottom:22px;text-decoration:none;color:inherit;border-left:3px solid #4ade80">
-    <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
-      <div style="font-size:32px;flex:0 0 auto">📊</div>
-      <div style="flex:1;min-width:240px">
-        <div style="font-size:10px;letter-spacing:.14em;color:#4ade80;text-transform:uppercase;font-weight:700;margin-bottom:4px">▸ TEK İSİM SEVİYESİ</div>
-        <h3 style="margin:0 0 6px;font-size:18px;font-weight:600;color:var(--text)">Hisse Bazlı Backtest</h3>
-        <p style="margin:0;font-size:13px;color:var(--text-dim);line-height:1.6">
-          Soru: "<b style="color:var(--text)">THYAO için</b> hangi yöntem ne kadar getirdi? Al &amp; Tut'tan iyi mi?"
-          Cevap: 58 hisse tablo, her satırda en iyi strateji + getirisi + Al &amp; Tut farkı. Tıklayınca o hissenin detay sayfası.
-        </p>
-        <div style="margin-top:10px;font-size:11.5px;color:#4ade80;letter-spacing:.04em">58 hisse tablosu · drill-down →</div>
-      </div>
     </div>
   </a>
 
@@ -512,14 +480,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   <div>
     <div style="color:var(--text);font-weight:600;margin-bottom:4px;letter-spacing:.1em">KALİBRE · MARKETS</div>
     <div>v2026.05 · son güncelleme 2026-08-24 03:45 TR</div>
-    <div style="margin-top:6px;color:var(--muted)">Veriler: Yahoo Finance (gecikmeli) · TCMB EVDS · FRED · Dünya Bankası</div>
   </div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
     <a href="/iletisim/">İletişim</a>
     <a href="/gizlilik/">Gizlilik</a>
     <a href="/kullanim-sartlari/">Kullanım Şartları</a>
     <a href="/hakkinda.html">Hakkında</a>
-    <a href="/arsiv.html">Arşiv</a>
   </div>
   <div style="text-align:right;color:var(--muted);max-width:36ch;font-size:10.5px;line-height:1.6">
     ⚠ Yatırım tavsiyesi değildir. Verilerde gecikme veya hata olabilir.<br>

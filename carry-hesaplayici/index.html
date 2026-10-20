@@ -79,7 +79,7 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
   <div class="eyebrow">▸ ARAÇ · DÖVİZ vs FAİZ</div>
   <h1>Carry Hesaplayıcı — Dolar mı, TL mevduat mı?</h1>
   <p class="lead">Paranı bir süre <strong>dolarda</strong> mı yoksa <strong>TL mevduatta</strong> mı tutsan daha çok kazanırsın? "Carry" mantığını canlı hesapla. Hesap tamamen tarayıcında çalışır; girdiğin veriler hiçbir yere gönderilmez.</p>
-  <div class="livebadge"><span class="dot"></span><span id="liveTxt">Canlı kur yükleniyor…</span></div>
+  <div class="livebadge"><span class="dot" style="background:var(--muted);box-shadow:none"></span><span id="liveTxt">Değerleri kendiniz girin · varsayılanlar örnektir</span></div>
 
   <div class="grid2">
     <div class="panel">
@@ -136,14 +136,6 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
     $('reading').innerHTML='<b>Başabaş kur:</b> Dolar bu vadede yıllık ~%'+dep+' yükselirse ikisi berabere. Şu an senaryon: %'+fx+'. '+(fx<dep?'Beklenti faizin <b>altında</b> → TL mevduat avantajlı.':(fx>dep?'Beklenti faizin <b>üstünde</b> → dolar avantajlı.':'Tam başabaş.'));
   }
   ['amt','months','dep','fx'].forEach(function(id){$(id).addEventListener('input',calc);});
-  // canlı USD/TRY (bilgi amaçlı rozet)
-  fetch('/terminal/data/markets.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
-    var u=d.series&&d.series.usdtry, asof=d.report_date||'';
-    var A=['','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-    function fd(iso){var p=(iso||'').split('-');return p.length===3?(parseInt(p[2],10)+' '+A[parseInt(p[1],10)]+' '+p[0]):iso;}
-    if(u&&u.last){$('liveTxt').innerHTML='Canlı <b>USD/TRY '+u.last.toFixed(2)+'</b> · veri: '+fd(asof)+' · bilgi amaçlı';}
-    else{$('liveTxt').innerHTML='Varsayılan parametrelerle hesaplayın';}
-  }).catch(function(){$('liveTxt').innerHTML='Varsayılan parametrelerle hesaplayın';});
   calc();
 })();
 </script>

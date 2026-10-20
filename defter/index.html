@@ -90,7 +90,7 @@ button.mini{padding:6px 11px;font-size:11.5px}
 <div class="wrap">
   <div class="eyebrow">▸ Defterim</div>
   <h1>Neden aldın? <span class="a">Aylar sonra haklı mıydın?</span></h1>
-  <p class="lead">Kararının gerekçesini ve o anki ruh halini yaz. Kalibre o günün fiyatını kaydeder ve sonra sana ne olduğunu gösterir. Tarayıcında çalışır, hesap zorunlu değil.</p>
+  <p class="lead">Kararının gerekçesini ve o anki ruh halini yaz. İşlem fiyatını kendin yaz; sonra bugünkü fiyatı girip ne olduğunu gör. Tarayıcında çalışır, hesap zorunlu değil.</p>
   <p style="font-size:12.5px;color:var(--muted);margin:-14px 0 24px"><button type="button" id="btn-tur" style="background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;font-family:inherit;padding:0;text-decoration:underline">Bu sayfayı bana tanıt</button> — 3 kısa adım, istediğin an durdurabilirsin.</p>
 
   <div class="stats" id="stats"></div>
@@ -100,8 +100,12 @@ button.mini{padding:6px 11px;font-size:11.5px}
     <div class="hint">Karar anında yazmak en değerlisi. Sonradan hatırlamaya çalışmak işe yaramaz.</div>
     <div class="grid2">
       <div>
-        <label for="f-sym">Hisse (isteğe bağlı)</label>
-        <select id="f-sym"><option value="">— seçme —</option></select>
+        <label for="f-sym">Sembol (isteğe bağlı)</label>
+        <input id="f-sym" type="text" maxlength="20" autocomplete="off" placeholder="ör. THYAO">
+      </div>
+      <div>
+        <label for="f-fiyat">İşlem fiyatı (isteğe bağlı)</label>
+        <input id="f-fiyat" type="number" step="any" min="0" inputmode="decimal" placeholder="Kendi ekstrenizden">
       </div>
       <div>
         <label for="f-tip">Karar</label>
@@ -130,7 +134,7 @@ button.mini{padding:6px 11px;font-size:11.5px}
 
   <div class="panel">
     <h2>Geçmiş notların</h2>
-    <div class="hint">En yeniden eskiye. Hisse seçtiğin notlarda o günden bugüne fiyat değişimini gösteririz.</div>
+    <div class="hint">En yeniden eskiye. Fiyat girdiğin notlarda bugünkü fiyatı yazarsan değişimi hesaplarız.</div>
     <div class="filter">
       <label style="margin:0">Filtre</label>
       <select id="f-filter"><option value="">Tümü</option></select>
@@ -153,7 +157,6 @@ button.mini{padding:6px 11px;font-size:11.5px}
 (function(){
 'use strict';
 var $=function(id){return document.getElementById(id)};
-var PX=null;                 // {dates, closes, meta}
 var notlar=[];
 var secili={};
 
@@ -188,36 +191,13 @@ function bugun(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()
 })();
 
 // Fiyat verisi (hisse listesi + geriye dönük karşılaştırma için)
-fetch('/terminal/data/portfoy-lab.json').then(function(r){return r.json()}).then(function(d){
-  PX=d;
-  var sel=$('f-sym');
-  Object.keys(d.closes).sort().forEach(function(s){
-    var o=document.createElement('option'); o.value=s;
-    o.textContent=s+((d.meta[s]&&d.meta[s].name)?' — '+d.meta[s].name:'');
-    sel.appendChild(o);
-  });
-  render();
-}).catch(function(){ /* fiyat yoksa defter yine çalışır */ render(); });
-
-// Tarihe en yakın (o tarih veya öncesi) kapanış
-// Kullanıcının ekstresinde gördüğü ham fiyat; düzeltilmiş seri backtest içindir.
-function seri(sym){return (PX&&PX.closes_raw&&PX.closes_raw[sym])||(PX&&PX.closes&&PX.closes[sym])||null}
-function fiyatAt(sym,tarih){
-  var s=seri(sym); if(!s) return null;
-  var ds=PX.dates, i=ds.length-1;
-  while(i>=0&&ds[i]>tarih) i--;
-  return i<0?null:{fiyat:s[i],tarih:ds[i]};
-}
-function sonFiyat(sym){
-  var s=seri(sym); if(!s) return null;
-  return {fiyat:s[s.length-1],tarih:PX.dates[PX.dates.length-1]};
-}
+render();
 
 $('btn-save').onclick=function(){
   var metin=$('f-metin').value.trim();
   if(!metin){alert('Gerekçe alanı boş — kararının nedenini yazmak bu aracın tamamı.');$('f-metin').focus();return}
-  var sym=$('f-sym').value, tip=$('f-tip').value, tarih=bugun();
-  var snap=sym?fiyatAt(sym,tarih):null;
+  var sym=$('f-sym').value.trim().toUpperCase(), tip=$('f-tip').value, tarih=bugun();
+  var fy=parseFloat($('f-fiyat').value), snap=(sym&&fy>0)?{fiyat:fy,tarih:tarih}:null;
   var etiketler=TAGS.filter(function(t){return secili[t.id]}).map(function(t){return t.id});
   var ad=(sym?sym+' · ':'')+(TIPLER[tip]||'Not')+' · '+tarih;
 
@@ -228,7 +208,7 @@ $('btn-save').onclick=function(){
     tarih:tarih, fiyat:snap?snap.fiyat:null, fiyatTarih:snap?snap.tarih:null
   }).then(function(){
     btn.disabled=false; btn.textContent=eski;
-    $('f-metin').value=''; $('f-sym').value=''; secili={};
+    $('f-metin').value=''; $('f-sym').value=''; $('f-fiyat').value=''; secili={};
     [].forEach.call(document.querySelectorAll('#f-tags .tag'),function(e){e.classList.remove('on')});
     var ok=$('ok-msg'); ok.style.display='inline'; setTimeout(function(){ok.style.display='none'},2400);
     try{gtag('event','journal_entry',{has_symbol:!!sym,type:tip})}catch(e){}
@@ -290,16 +270,12 @@ function ciz(){
 
     var hind='';
     if(p.sym&&p.fiyat){
-      var son=sonFiyat(p.sym);
-      if(son&&son.tarih!==p.fiyatTarih){
-        var d=(son.fiyat/p.fiyat-1)*100;
-        hind='<div class="hindsight"><span>O günden bugüne '+esc(p.sym)+':</span>'+
-          '<b class="'+(d>=0?'pos':'neg')+'">'+(d>=0?'+':'')+fmt(d)+'%</b>'+
-          '<span class="mono" style="font-size:11.5px">'+fmt(p.fiyat)+' → '+fmt(son.fiyat)+' ₺</span>'+
-          '<span class="note-actions"><button class="ghost mini" type="button" data-del>Sil</button></span></div>';
-      }
+      hind='<div class="hindsight"><span>'+esc(p.sym)+' · '+fmt(p.fiyat)+' ₺ →</span>'+
+        '<input type="number" step="any" min="0" inputmode="decimal" data-son placeholder="Bugünkü fiyat" aria-label="'+esc(p.sym)+' bugünkü fiyatı" style="width:110px">'+
+        '<b data-fark></b>'+
+        '<span class="note-actions"><button class="ghost mini" type="button" data-del>Sil</button></span></div>';
     }
-    if(!hind) hind='<div class="hindsight"><span>'+(p.sym?'Karşılaştırma için yeterli süre geçmedi.':'Hisse seçilmemiş.')+'</span>'+
+    if(!hind) hind='<div class="hindsight"><span>'+(p.sym?'İşlem fiyatı girilmemiş.':'Sembol girilmemiş.')+'</span>'+
       '<span class="note-actions"><button class="ghost mini" type="button" data-del>Sil</button></span></div>';
 
     el.innerHTML=
@@ -311,6 +287,13 @@ function ciz(){
       '<div class="note-body">'+esc(p.metin||'')+'</div>'+
       (etiketAdlari.length?'<div class="note-tags">'+etiketAdlari.map(function(a){return '<span>'+esc(a)+'</span>'}).join('')+'</div>':'')+
       hind;
+    var sonIn=el.querySelector('[data-son]');
+    if(sonIn) sonIn.oninput=function(){
+      var v=parseFloat(sonIn.value), out=el.querySelector('[data-fark]');
+      if(!(v>0)){out.textContent='';out.className='';return}
+      var d=(v/p.fiyat-1)*100;
+      out.className=d>=0?'pos':'neg'; out.textContent=(d>=0?'+':'')+fmt(d)+'%';
+    };
     el.querySelector('[data-del]').onclick=function(){
       if(!confirm('Bu not silinsin mi?'))return;
       KalibreStore.remove('defter',n.id).then(render);
@@ -325,7 +308,7 @@ KalibreTur.kur('defter-v1',[
   {sec:'#f-tags', baslik:'Ruh halini işaretle',
    metin:'Zamanla hangi önyargının sende tekrar ettiğini görürsün. Üstteki sayaç en sık işaretlediğin etiketi gösterir.'},
   {sec:'#liste', baslik:'Geri dönüş',
-   metin:'Hisse seçtiğin notlarda, o günden bugüne fiyatın ne yaptığını gösteririz. Haklı mıydın, kendin görürsün.', konum:'ust'}
+   metin:'Fiyat girdiğin notlarda bugünkü fiyatı yaz, değişimi hesaplayalım. Haklı mıydın, kendin görürsün.', konum:'ust'}
 ],{otomatik:false});
 $('btn-tur').onclick=function(){KalibreTur.sifirla();KalibreTur.baslat()};
 KalibreAuth.ready().then(render);
