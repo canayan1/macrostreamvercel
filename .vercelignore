@@ -9,3 +9,7 @@
 .git
 .github
 node_modules
+
+# Yerel geliştirme ve testler canlıya gitmez
+yerel
+test
