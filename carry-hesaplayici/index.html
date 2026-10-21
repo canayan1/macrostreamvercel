@@ -15,13 +15,13 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#4ade80;--red:#ef4444;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+:root{--bg:#0e1724;--bg-1:#132033;--surface:#17263b;--surface-2:#1d2e46;--border:#24344c;--border-2:#33465f;--text:#e7ecf2;--text-dim:#a3b0c2;--muted:#8d9cb0;--accent:#5fb89a;--accent-hot:#74c8ab;--green:#5fb89a;--red:#e07a6e;--blue:#8fc7ff;--grid:rgba(95,184,154,.025)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+html,body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
 body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
-.mono{font-family:'Geist Mono','JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.mono{font-family:'IBM Plex Mono','IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
 a{color:inherit;text-decoration:none}
 .cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
 .brand{display:flex;align-items:center;gap:10px;padding-right:18px;height:100%;border-right:1px solid var(--border)}
@@ -35,7 +35,7 @@ main{max-width:1000px;margin:24px auto;padding:0 20px 80px}
 .eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
 h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
 .lead{color:var(--text-dim);font-size:15px;line-height:1.7;max-width:74ch;margin-top:12px}
-.livebadge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--bg-1);border:1px solid var(--border-2);border-left:2px solid var(--green);padding:7px 13px;font-size:12px;color:var(--text-dim);font-family:'Geist Mono',monospace}
+.livebadge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--bg-1);border:1px solid var(--border-2);border-left:2px solid var(--green);padding:7px 13px;font-size:12px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace}
 .livebadge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)}
 .livebadge b{color:var(--text)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
@@ -44,20 +44,20 @@ h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spac
 .panel h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-2)}
 .ctrl{margin-bottom:15px}
 .ctrl label{display:block;font-size:11.5px;color:var(--text-dim);margin-bottom:6px;letter-spacing:.03em}
-.ctrl label .rv{float:right;color:var(--accent);font-family:'Geist Mono',monospace;font-weight:600}
-input[type=number]{background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);font-family:'Geist Mono',monospace;font-size:16px;padding:9px 11px;border-radius:6px;width:100%;text-align:right}
+.ctrl label .rv{float:right;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-weight:600}
+input[type=number]{background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:16px;padding:9px 11px;border-radius:6px;width:100%;text-align:right}
 input[type=range]{width:100%;accent-color:var(--accent)}
 input:focus{outline:none;border-color:var(--accent)}
 .res{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .scen{background:var(--bg-1);border:1px solid var(--border);border-left:2px solid var(--accent);padding:14px 15px}
 .scen.tl{border-left-color:var(--green)}.scen.us{border-left-color:var(--blue)}
 .scen .k{font-size:10.5px;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase}
-.scen .v{font-size:23px;font-weight:600;font-family:'Geist Mono',monospace;margin-top:4px}
-.scen .d{font-size:11.5px;color:var(--muted);margin-top:3px;font-family:'Geist Mono',monospace}
+.scen .v{font-size:23px;font-weight:600;font-family:'IBM Plex Mono',monospace;margin-top:4px}
+.scen .d{font-size:11.5px;color:var(--muted);margin-top:3px;font-family:'IBM Plex Mono',monospace}
 .tlc{color:var(--green)}.usc{color:var(--blue)}
 .bar{height:12px;border-radius:6px;overflow:hidden;margin:14px 0 4px;display:flex;background:var(--bg-1)}
 .verdict{margin-top:12px;padding:14px 16px;border-radius:8px;font-weight:600;font-size:15.5px;text-align:center;border:1px solid var(--border-2)}
-.reading{background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.28);border-left:2px solid var(--accent);padding:13px 15px;margin-top:14px;font-size:13.5px;color:var(--text-dim);line-height:1.7}
+.reading{background:rgba(95,184,154,.06);border:1px solid rgba(95,184,154,.28);border-left:2px solid var(--accent);padding:13px 15px;margin-top:14px;font-size:13.5px;color:var(--text-dim);line-height:1.7}
 .reading b{color:var(--text)}
 .explain{margin-top:22px;background:var(--surface);border:1px solid var(--border);padding:18px 20px}
 .explain h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
@@ -141,5 +141,6 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
 })();
 </script>
 <script src="/static/asistan.js" defer></script>
+<script src="/static/kabuk.js" defer></script>
 </body>
 </html>

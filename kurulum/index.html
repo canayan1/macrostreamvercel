@@ -48,7 +48,7 @@
 <ul>
   <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
   <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
-  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>). Eklenti abonelikler açıldığında bu sayfadan indirilebilecek.</li>
+  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap/">Lisansım</a> sayfasındadır.</li>
 </ul>
 
 <h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
@@ -69,7 +69,8 @@
 <ol>
   <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
   <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
-  <li><b>Eşleştirme kodu</b> satırına kodu yapıştır.</li>
+  <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/hesap/">Lisansım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
   <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan yalnız eklendiği grafiğin sembolü gönderilir.</li>
   <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
 </ol>
@@ -86,7 +87,7 @@
 </ol>
 
 <h2 id="dogrula">5. Bağlantıyı doğrula</h2>
-<p>Grafiğin sol üst köşesinde <b>Kalibre Köprü</b> satırı görünür. Durum <b>bağlı</b> olduğunda gönderilen belge sayısı artmaya başlar. Laboratuvarda da bağlantı durumu, aracı kurumunun adı ve son sinyalin kaç saniye önce geldiği görünür.</p>
+<p>Grafiğin sol üst köşesinde <b>Kalibre Köprü</b> satırı görünür. Eklenti önce lisansı denetler (birkaç saniye), sonra veri göndermeye başlar. Durum <b>bağlı</b> olduğunda gönderilen belge sayısı artmaya başlar. Laboratuvarda da bağlantı durumu, aracı kurumunun adı ve son sinyalin kaç saniye önce geldiği görünür.</p>
 <p>Seriler yeni bir mum kapandığında güncellenir. H1 seçtiysen saatte bir, D1 seçtiysen günde bir.</p>
 
 <h2 id="sorunlar">Sık karşılaşılan durumlar</h2>
@@ -96,6 +97,7 @@
     <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
     <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
     <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap/">Lisansım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
     <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
     <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Köprü, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
   </tbody>

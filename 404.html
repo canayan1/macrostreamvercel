@@ -34,34 +34,34 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>:root {
-  --bg: #100e0c;
-  --bg-1: #14110e;
-  --surface: #1a1612;
-  --surface-2: #221d18;
+  --bg: #0e1724;
+  --bg-1: #132033;
+  --surface: #17263b;
+  --surface-2: #1d2e46;
   --panel: #121110;        /* backward compat alias */
   --panel-2: #191714;      /* backward compat alias */
-  --border: #26221d;
-  --border-2: #36302a;
-  --text: #ebe3d3;
-  --text-dim: #a89c83;
-  --muted: #6f6553;
-  --accent: #ffa630;
-  --accent-hot: #ff7a00;
-  --green: #4ade80;
+  --border: #24344c;
+  --border-2: #33465f;
+  --text: #e7ecf2;
+  --text-dim: #a3b0c2;
+  --muted: #8d9cb0;
+  --accent: #5fb89a;
+  --accent-hot: #74c8ab;
+  --green: #5fb89a;
   --green-bg: rgba(74,222,128,.08);
-  --red: #ef4444;
+  --red: #e07a6e;
   --red-bg: rgba(239,68,68,.08);
-  --blue: #60a5fa;
+  --blue: #8fc7ff;
   --violet: #a78bfa;
-  --yellow: #ffa630;        /* backward compat alias */
-  --grid: rgba(255,166,48,.025);
+  --yellow: #5fb89a;        /* backward compat alias */
+  --grid: rgba(95,184,154,.025);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   background: var(--bg); color: var(--text);
-  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px; line-height: 1.55;
   font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
@@ -69,7 +69,7 @@ html, body {
 }
 /* Mono'yu lazım olduğu yerlerde class ile çağırırız */
 .mono, code, pre {
-  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-family: 'IBM Plex Mono', 'IBM Plex Mono', ui-monospace, monospace;
   font-feature-settings: 'tnum';
 }
 body {
@@ -132,7 +132,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 /* ── BANNER ───────────────────────────────────────── */
 .banner {
   display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  background: linear-gradient(90deg, rgba(95,184,154,.08), rgba(95,184,154,.02) 60%);
   border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
   padding: 10px 16px; margin-bottom: 18px;
 }
@@ -142,7 +142,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 .banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
 .disclaimer-banner {
   display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  background: linear-gradient(90deg, rgba(95,184,154,.08), rgba(95,184,154,.02) 60%);
   border-bottom: 1px solid var(--border-2); padding: 10px 24px;
   font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
 }
@@ -150,7 +150,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 
 /* ── PAGE HEADING ─────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.015em;
 }
 h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
@@ -205,12 +205,12 @@ p { margin-bottom: 12px; line-height: 1.65; }
 }
 .pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
 .pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
-.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+.pill.am { border-color: rgba(95,184,154,.5); color: var(--accent); background: rgba(95,184,154,.06); }
 
 /* ── KV / FLAGS ───────────────────────────────────── */
 .kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
 .kv .k { color: var(--muted); }
-.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.kv .v { text-align: right; color: var(--text); font-family: 'IBM Plex Mono', 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
 .flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .flag {
   display: inline-block; padding: 2px 8px; font-size: 10px;
@@ -219,10 +219,10 @@ p { margin-bottom: 12px; line-height: 1.65; }
 }
 .flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
 .flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
-.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+.flag.yellow { color: var(--accent); border-color: rgba(95,184,154,.4); background: rgba(95,184,154,.06); }
 
 /* ── TABLES ───────────────────────────────────────── */
-table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'IBM Plex Mono', 'IBM Plex Mono', monospace; }
 table.grid th, table.grid td {
   text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
   white-space: nowrap; font-variant-numeric: tabular-nums;
@@ -248,7 +248,7 @@ table.grid tbody tr:hover { background: var(--bg-1); }
 .report-list li:last-child { border-bottom: 0; }
 .report-list a { color: var(--text); font-weight: 500; }
 .report-list a:hover { color: var(--accent); }
-.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'IBM Plex Mono', monospace; }
 
 /* ── FOOTER ───────────────────────────────────────── */
 footer.pf-foot {
@@ -262,7 +262,7 @@ footer.pf-foot a:hover { color: var(--accent); }
 footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
 
 /* ── ASCII ART ────────────────────────────────────── */
-.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'IBM Plex Mono', monospace; }
 
 /* ── MOBILE ───────────────────────────────────────── */
 /* TABLET (900px ve altı) */
@@ -388,7 +388,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   font-size: 12px; line-height: 1.55;
   color: var(--text-dim); font-weight: 400;
   letter-spacing: 0; text-transform: none;
-  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
   box-shadow: 0 8px 24px rgba(0,0,0,.4);
 }
 .term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
@@ -412,7 +412,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 <main>
 
 <div style="max-width:720px;margin:80px auto;padding:0 24px;text-align:center">
-  <div style="font-family:'Geist Mono','JetBrains Mono',monospace;font-size:120px;color:var(--accent);line-height:1;letter-spacing:-.02em;font-weight:700">404</div>
+  <div style="font-family:'IBM Plex Mono','IBM Plex Mono',monospace;font-size:120px;color:var(--accent);line-height:1;letter-spacing:-.02em;font-weight:700">404</div>
   <p style="font-size:12px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;font-weight:600">Bu sayfayı bulamadık</p>
 
   <h1 style="margin:24px 0 12px;font-size:28px;letter-spacing:-.01em;color:var(--text);font-weight:600">Aradığınız sayfa burada değil</h1>
@@ -548,6 +548,6 @@ body { top:0 !important; }
 })();
 </script>
 <script src="/static/asistan.js" defer></script>
-<script src="/static/terminal-shell.js" defer></script>
+<script src="/static/kabuk.js" defer></script>
 </body>
 </html>

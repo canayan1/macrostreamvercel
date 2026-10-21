@@ -12,7 +12,7 @@ import { createHmac, randomBytes } from 'node:crypto';
 import type { Depo } from './depo.ts';
 import type { StripeIstek } from './stripe.ts';
 
-export const URUNLER = ['motor'];
+export const URUNLER = ['motor', 'kopru']; // tek abonelik ikisini de kapsar
 export const HESAP_SINIRI = Number(process.env.LISANS_HESAP_SINIRI ?? 2);
 export const GECIKME_TOLERANSI_SN = 3 * 86400; // ödeme gecikirse (past_due) Stripe yeniden denerken 3 gün daha
 const OTURUM_TTL_SN = 7 * 86400;

@@ -15,11 +15,11 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#100e0c;--bg-1:#14110e;--surface:#1a1612;--surface-2:#221d18;--border:#26221d;--border-2:#36302a;--text:#ebe3d3;--text-dim:#a89c83;--muted:#6f6553;--accent:#ffa630;--accent-hot:#ff7a00;--green:#26a69a;--red:#ef5350;--blue:#60a5fa;--grid:rgba(255,166,48,.025)}
+:root{--bg:#0e1724;--bg-1:#132033;--surface:#17263b;--surface-2:#1d2e46;--border:#24344c;--border-2:#33465f;--text:#e7ecf2;--text-dim:#a3b0c2;--muted:#8d9cb0;--accent:#5fb89a;--accent-hot:#74c8ab;--green:#26a69a;--red:#ef5350;--blue:#8fc7ff;--grid:rgba(95,184,154,.025)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--text);font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
+html,body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-0.005em}
 body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
 a{color:inherit;text-decoration:none}
 .cmdbar{display:flex;align-items:center;background:var(--bg-1);border-bottom:1px solid var(--border);height:46px;padding:0 18px;position:sticky;top:0;z-index:60}
@@ -34,15 +34,15 @@ main{max-width:660px;margin:24px auto;padding:0 20px 80px}
 .eyebrow{font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:8px}
 h1{font-size:30px;font-weight:600;color:var(--text);line-height:1.16;letter-spacing:-.015em}
 .lead{color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:12px;margin-bottom:8px}
-.prog{color:var(--muted);font-size:12px;font-weight:600;font-family:'Geist Mono',monospace;margin:16px 0 8px;letter-spacing:.04em}
+.prog{color:var(--muted);font-size:12px;font-weight:600;font-family:'IBM Plex Mono',monospace;margin:16px 0 8px;letter-spacing:.04em}
 .panel{background:var(--surface);border:1px solid var(--border);padding:18px 20px}
 .chart-wrap{background:#0e1116;border:1px solid var(--border-2);border-radius:8px;padding:8px 4px 2px;position:relative}
-.chart-tag{position:absolute;top:9px;left:12px;font-size:10.5px;letter-spacing:.04em;color:var(--muted);font-family:'Geist Mono',monospace;z-index:2}
+.chart-tag{position:absolute;top:9px;left:12px;font-size:10.5px;letter-spacing:.04em;color:var(--muted);font-family:'IBM Plex Mono',monospace;z-index:2}
 svg{width:100%;height:auto;display:block}
 .q{font-size:17px;font-weight:600;margin:16px 0 12px;color:var(--text)}
 .opt{display:block;width:100%;text-align:left;background:var(--bg-1);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:14.5px;cursor:pointer;transition:.15s;font-family:inherit}
 .opt:hover{border-color:var(--accent)}
-.opt.sel{border-color:var(--accent);background:rgba(255,166,48,.09)}
+.opt.sel{border-color:var(--accent);background:rgba(95,184,154,.09)}
 .opt.correct{border-color:var(--green);background:rgba(38,166,154,.14)}
 .opt.wrong{border-color:var(--red);background:rgba(239,83,80,.12)}
 .opt .mk{float:right;font-weight:700}
@@ -54,7 +54,7 @@ svg{width:100%;height:auto;display:block}
 .next{background:var(--accent);color:#1a1208;border:0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;display:none}
 .next.show{display:inline-block}.next:hover{background:var(--accent-hot)}
 .result{text-align:center;padding:20px}
-.result .score{font-size:52px;font-weight:700;color:var(--accent);font-family:'Geist Mono',monospace}
+.result .score{font-size:52px;font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace}
 footer.pf{margin-top:26px;border-top:1px solid var(--border);padding:18px 0 0;display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px;flex-wrap:wrap}
 footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
 @media(max-width:680px){h1{font-size:23px}.cmd-crumb{display:none}}
@@ -79,7 +79,7 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
 </main>
 <script>
 /* ---- TradingView tarzı grafik motoru (koyu, ızgaralı, sağ fiyat eksenli) ---- */
-var UP='#26a69a',DN='#ef5350',AMB='#ffa630',BLU='#60a5fa',GRIDC='rgba(255,255,255,.055)',AXT='#5c5545',ZERO='#8a8172';
+var UP='#26a69a',DN='#ef5350',AMB='#5fb89a',BLU='#8fc7ff',GRIDC='rgba(255,255,255,.055)',AXT='#5c5545',ZERO='#8a8172';
 var W=470,H=205,L=12,R=430,T=16,B=172;
 function sx(i,n){return L+i*(R-L)/((n-1)||1);}
 function sy(v,mn,mx){return B-(v-mn)/((mx-mn)||1)*(B-T);}
@@ -142,7 +142,7 @@ var g6=wrap(grid(dbmn,dbmx,function(v){return v.toFixed(0);})
   +'<text x="'+sx(4,8)+'" y="'+(sy(91,dbmn,dbmx)+14)+'" fill="'+AXT+'" font-size="10" text-anchor="middle" font-family="Geist Mono,monospace">2. dip</text>');
 // 7) Direnç kırılımı + hacim onayı
 var pr=[100,103,101,104,102,103,113],rmn=96,rmx=118,resY=sy(104.5,rmn,rmx),VB=[4,5,4,6,4,5,11],vmax=12;
-function volbars(v){var n=v.length,bw=Math.min(16,(R-L)/n*0.5),s='',base=196;return v.map(function(h,i){var x=sx(i,n),bh=h/vmax*20,col=(i===n-1)?AMB:'rgba(255,166,48,.28)';return '<rect x="'+(x-bw/2).toFixed(1)+'" y="'+(base-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>';}).join('');}
+function volbars(v){var n=v.length,bw=Math.min(16,(R-L)/n*0.5),s='',base=196;return v.map(function(h,i){var x=sx(i,n),bh=h/vmax*20,col=(i===n-1)?AMB:'rgba(95,184,154,.28)';return '<rect x="'+(x-bw/2).toFixed(1)+'" y="'+(base-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>';}).join('');}
 var g7=wrap(grid(rmn,rmx,function(v){return v.toFixed(0);})
   +'<line x1="'+L+'" y1="'+resY.toFixed(1)+'" x2="'+R+'" y2="'+resY.toFixed(1)+'" stroke="'+DN+'" stroke-width="1.2" stroke-dasharray="5 3"/>'
   +'<text x="'+(L+4)+'" y="'+(resY-5).toFixed(1)+'" fill="'+DN+'" font-size="10" font-family="Geist Mono,monospace">direnç</text>'
@@ -240,7 +240,7 @@ var i=0,score=0,app=document.getElementById('app');
 function render(){
   if(i>=Q.length){
     var msg=score===Q.length?'Kusursuz! Grafik okuma refleksin profesyonel seviyede.':score>=Q.length/2?'İyi iş — nominal/reel ve trend okuma sağlam. Kalanı da pekiştir.':'Sağlam bir başlangıç. En kritik iki ders: nominal ≠ reel, ve tek mum trend değildir.';
-    app.innerHTML='<div class="panel result"><div style="font-size:12px;letter-spacing:.05em;color:var(--accent);font-weight:700;margin-bottom:6px">Sonuç</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+msg+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene ↺</button><div style="margin-top:18px;padding:14px 16px;background:rgba(255,166,48,.06);border:1px solid rgba(255,166,48,.3);border-left:3px solid var(--accent);text-align:left"><div style="font-weight:600;color:var(--text);margin-bottom:4px">Refleksin iyi mi? Şimdi risksiz dene.</div><div style="font-size:12.5px;color:var(--text-dim);line-height:1.6">Sanal sermayeyle pratik yap, kararlarının gerekçesini deftere yaz. <a href="/simulasyon/" style="color:var(--accent);font-weight:600">Simülasyon →</a> · <a href="/defter/" style="color:var(--accent)">Karar Defteri</a></div></div></div>';return;}
+    app.innerHTML='<div class="panel result"><div style="font-size:12px;letter-spacing:.05em;color:var(--accent);font-weight:700;margin-bottom:6px">Sonuç</div><div class="score">'+score+'/'+Q.length+'</div><div style="color:var(--text-dim);margin-top:8px">'+msg+'</div><button class="next show" onclick="i=0;score=0;render()">Tekrar dene ↺</button><div style="margin-top:18px;padding:14px 16px;background:rgba(95,184,154,.06);border:1px solid rgba(95,184,154,.3);border-left:3px solid var(--accent);text-align:left"><div style="font-weight:600;color:var(--text);margin-bottom:4px">Refleksin iyi mi? Şimdi risksiz dene.</div><div style="font-size:12.5px;color:var(--text-dim);line-height:1.6">Sanal sermayeyle pratik yap, kararlarının gerekçesini deftere yaz. <a href="/simulasyon/" style="color:var(--accent);font-weight:600">Simülasyon →</a> · <a href="/defter/" style="color:var(--accent)">Karar Defteri</a></div></div></div>';return;}
   var c=Q[i],sel=-1,answered=false;
   app.innerHTML='<div class="prog">Soru '+(i+1)+' / '+Q.length+' · Skor '+score+'</div><div class="panel"><div class="chart-wrap"><span class="chart-tag">'+c.tag+'</span>'+c.g+'</div><div class="q">'+c.q+'</div><div id="opts"></div><button class="submit" id="submit" disabled onclick="check()">Cevapla</button><div class="exp" id="exp">'+c.exp+'</div><button class="next" id="next" onclick="i++;render()">Sonraki →</button></div>';
   var od=document.getElementById('opts');
@@ -260,5 +260,6 @@ function render(){
 render();
 </script>
 <script src="/static/asistan.js" defer></script>
+<script src="/static/kabuk.js" defer></script>
 </body>
 </html>

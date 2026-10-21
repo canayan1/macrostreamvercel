@@ -29,34 +29,34 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>:root {
-  --bg: #100e0c;
-  --bg-1: #14110e;
-  --surface: #1a1612;
-  --surface-2: #221d18;
+  --bg: #0e1724;
+  --bg-1: #132033;
+  --surface: #17263b;
+  --surface-2: #1d2e46;
   --panel: #121110;        /* backward compat alias */
   --panel-2: #191714;      /* backward compat alias */
-  --border: #26221d;
-  --border-2: #36302a;
-  --text: #ebe3d3;
-  --text-dim: #a89c83;
-  --muted: #6f6553;
-  --accent: #ffa630;
-  --accent-hot: #ff7a00;
-  --green: #4ade80;
+  --border: #24344c;
+  --border-2: #33465f;
+  --text: #e7ecf2;
+  --text-dim: #a3b0c2;
+  --muted: #8d9cb0;
+  --accent: #5fb89a;
+  --accent-hot: #74c8ab;
+  --green: #5fb89a;
   --green-bg: rgba(74,222,128,.08);
-  --red: #ef4444;
+  --red: #e07a6e;
   --red-bg: rgba(239,68,68,.08);
-  --blue: #60a5fa;
+  --blue: #8fc7ff;
   --violet: #a78bfa;
-  --yellow: #ffa630;        /* backward compat alias */
-  --grid: rgba(255,166,48,.025);
+  --yellow: #5fb89a;        /* backward compat alias */
+  --grid: rgba(95,184,154,.025);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   background: var(--bg); color: var(--text);
-  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px; line-height: 1.55;
   font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
@@ -64,7 +64,7 @@ html, body {
 }
 /* Mono'yu lazım olduğu yerlerde class ile çağırırız */
 .mono, code, pre {
-  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+  font-family: 'IBM Plex Mono', 'IBM Plex Mono', ui-monospace, monospace;
   font-feature-settings: 'tnum';
 }
 body {
@@ -127,7 +127,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 /* ── BANNER ───────────────────────────────────────── */
 .banner {
   display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  background: linear-gradient(90deg, rgba(95,184,154,.08), rgba(95,184,154,.02) 60%);
   border: 1px solid var(--border-2); border-left: 2px solid var(--accent);
   padding: 10px 16px; margin-bottom: 18px;
 }
@@ -137,7 +137,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 .banner .date { color: var(--muted); font-size: 11px; letter-spacing: .06em; }
 .disclaimer-banner {
   display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(90deg, rgba(255,166,48,.08), rgba(255,166,48,.02) 60%);
+  background: linear-gradient(90deg, rgba(95,184,154,.08), rgba(95,184,154,.02) 60%);
   border-bottom: 1px solid var(--border-2); padding: 10px 24px;
   font-size: 11px; color: var(--text-dim); letter-spacing: .04em;
 }
@@ -145,7 +145,7 @@ main { padding: 18px 24px 80px; max-width: 1440px; margin: 0 auto; }
 
 /* ── PAGE HEADING ─────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.015em;
 }
 h1 { font-size: 28px; font-weight: 600; margin-bottom: 14px; color: var(--text); line-height: 1.2; }
@@ -200,12 +200,12 @@ p { margin-bottom: 12px; line-height: 1.65; }
 }
 .pill.on { border-color: rgba(74,222,128,.5); color: var(--green); background: var(--green-bg); }
 .pill.off { border-color: rgba(239,68,68,.5); color: var(--red); background: var(--red-bg); }
-.pill.am { border-color: rgba(255,166,48,.5); color: var(--accent); background: rgba(255,166,48,.06); }
+.pill.am { border-color: rgba(95,184,154,.5); color: var(--accent); background: rgba(95,184,154,.06); }
 
 /* ── KV / FLAGS ───────────────────────────────────── */
 .kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: 12px; }
 .kv .k { color: var(--muted); }
-.kv .v { text-align: right; color: var(--text); font-family: 'Geist Mono', 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.kv .v { text-align: right; color: var(--text); font-family: 'IBM Plex Mono', 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
 .flags { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .flag {
   display: inline-block; padding: 2px 8px; font-size: 10px;
@@ -214,10 +214,10 @@ p { margin-bottom: 12px; line-height: 1.65; }
 }
 .flag.green { color: var(--green); border-color: rgba(74,222,128,.4); background: var(--green-bg); }
 .flag.red { color: var(--red); border-color: rgba(239,68,68,.4); background: var(--red-bg); }
-.flag.yellow { color: var(--accent); border-color: rgba(255,166,48,.4); background: rgba(255,166,48,.06); }
+.flag.yellow { color: var(--accent); border-color: rgba(95,184,154,.4); background: rgba(95,184,154,.06); }
 
 /* ── TABLES ───────────────────────────────────────── */
-table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'IBM Plex Mono', 'IBM Plex Mono', monospace; }
 table.grid th, table.grid td {
   text-align: right; padding: 8px 12px; border-bottom: 1px dashed var(--border);
   white-space: nowrap; font-variant-numeric: tabular-nums;
@@ -243,7 +243,7 @@ table.grid tbody tr:hover { background: var(--bg-1); }
 .report-list li:last-child { border-bottom: 0; }
 .report-list a { color: var(--text); font-weight: 500; }
 .report-list a:hover { color: var(--accent); }
-.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'Geist Mono', monospace; }
+.report-list .date { color: var(--muted); font-size: 11px; flex: 0 0 auto; font-family: 'IBM Plex Mono', monospace; }
 
 /* ── FOOTER ───────────────────────────────────────── */
 footer.pf-foot {
@@ -257,7 +257,7 @@ footer.pf-foot a:hover { color: var(--accent); }
 footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; }
 
 /* ── ASCII ART ────────────────────────────────────── */
-.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'JetBrains Mono', monospace; }
+.ascii { color: var(--border-2); font-size: 11px; letter-spacing: 0; white-space: pre; user-select: none; font-family: 'IBM Plex Mono', monospace; }
 
 /* ── MOBILE ───────────────────────────────────────── */
 /* TABLET (900px ve altı) */
@@ -383,7 +383,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
   font-size: 12px; line-height: 1.55;
   color: var(--text-dim); font-weight: 400;
   letter-spacing: 0; text-transform: none;
-  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
   box-shadow: 0 8px 24px rgba(0,0,0,.4);
 }
 .term-pop b, .term-pop strong { color: var(--text); font-weight: 600; }
@@ -434,14 +434,14 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 .ot-radar svg { max-width: 100%; height: auto; }
 .ot-bias-list { display: flex; flex-direction: column; gap: 14px; }
 .ot-bias-item { padding: 14px 16px; background: var(--bg-1); border-left: 2px solid var(--border-2); }
-.ot-bias-item.top { border-left-color: var(--accent); background: rgba(255,166,48,.05); }
+.ot-bias-item.top { border-left-color: var(--accent); background: rgba(95,184,154,.05); }
 .ot-bias-item .name { font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
-.ot-bias-item .score { font-size: 11px; color: var(--muted); font-family: 'Geist Mono', monospace; }
+.ot-bias-item .score { font-size: 11px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
 .ot-bias-item .desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; margin-top: 6px; }
 .ot-share { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
 .ot-share button, .ot-share a { background: transparent; color: var(--text-dim); border: 1px solid var(--border-2); padding: 9px 14px; font-family: inherit; font-size: 12px; cursor: pointer; text-decoration: none; letter-spacing: .04em; }
 .ot-share button:hover, .ot-share a:hover { border-color: var(--accent); color: var(--accent); }
-.ot-summary-num { font-size: 36px; color: var(--accent); font-family: 'Geist Mono', monospace; font-weight: 600; line-height: 1; }
+.ot-summary-num { font-size: 36px; color: var(--accent); font-family: 'IBM Plex Mono', monospace; font-weight: 600; line-height: 1; }
 .ot-summary-num .total { color: var(--muted); font-size: 18px; }
 </style>
 
@@ -756,7 +756,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
     const angle = (i) => -Math.PI/2 + (i * 2 * Math.PI / N);
     const point = (i, r) => [cx + r * Math.cos(angle(i)), cy + r * Math.sin(angle(i))];
 
-    let svg = '<svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" font-family="Inter Tight, sans-serif">';
+    let svg = '<svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">';
     // Concentric rings
     for (let lvl = 1; lvl <= 5; lvl++) {
       const r = (R * lvl) / 5;
@@ -765,12 +765,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         const p = point(i, r);
         pts.push(p[0] + ',' + p[1]);
       }
-      svg += '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#36302a" stroke-width="0.5" opacity="' + (0.3 + lvl * 0.1) + '"/>';
+      svg += '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#33465f" stroke-width="0.5" opacity="' + (0.3 + lvl * 0.1) + '"/>';
     }
     // Axes
     for (let i = 0; i < N; i++) {
       const p = point(i, R);
-      svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + p[0] + '" y2="' + p[1] + '" stroke="#36302a" stroke-width="0.5"/>';
+      svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + p[0] + '" y2="' + p[1] + '" stroke="#33465f" stroke-width="0.5"/>';
     }
     // Data polygon
     let dataPts = [];
@@ -779,12 +779,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       const p = point(i, r);
       dataPts.push(p[0] + ',' + p[1]);
     });
-    svg += '<polygon points="' + dataPts.join(' ') + '" fill="#ffa630" fill-opacity="0.18" stroke="#ffa630" stroke-width="1.5"/>';
+    svg += '<polygon points="' + dataPts.join(' ') + '" fill="#5fb89a" fill-opacity="0.18" stroke="#5fb89a" stroke-width="1.5"/>';
     // Data points
     biasKeys.forEach((b, i) => {
       const r = (R * state.scores[b]) / (MAX_SCORE[b] || 1);
       const p = point(i, r);
-      svg += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3" fill="#ffa630"/>';
+      svg += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3" fill="#5fb89a"/>';
     });
     // Labels
     biasKeys.forEach((b, i) => {
@@ -793,7 +793,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
       let anchor = 'middle';
       if (p[0] < cx - 10) anchor = 'end';
       else if (p[0] > cx + 10) anchor = 'start';
-      svg += '<text x="' + p[0] + '" y="' + p[1] + '" fill="#a89c83" font-size="10" text-anchor="' + anchor + '" dominant-baseline="middle">' + txt + '</text>';
+      svg += '<text x="' + p[0] + '" y="' + p[1] + '" fill="#a3b0c2" font-size="10" text-anchor="' + anchor + '" dominant-baseline="middle">' + txt + '</text>';
     });
     svg += '</svg>';
 
@@ -819,12 +819,12 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
         (isTop ?
           '<div class="desc"><b style="color:var(--text)">Nedir?</b> ' + bias.desc + '</div>' +
           '<div class="desc" style="margin-top:8px"><b style="color:var(--text)">Senin profilinde nasıl görünür?</b> ' + bias.pattern + '</div>' +
-          '<div class="desc" style="color:var(--text);margin-top:8px;padding:10px 12px;background:rgba(255,166,48,.06);border-left:2px solid var(--accent)"><b>Pratik öneri:</b> ' + bias.advice + '</div>'
+          '<div class="desc" style="color:var(--text);margin-top:8px;padding:10px 12px;background:rgba(95,184,154,.06);border-left:2px solid var(--accent)"><b>Pratik öneri:</b> ' + bias.advice + '</div>'
         :
           '<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--accent);font-size:12px;letter-spacing:.04em">▸ Bu önyargı nedir? Açıklamayı oku</summary>' +
           '<div class="desc" style="margin-top:8px"><b style="color:var(--text)">Nedir?</b> ' + bias.desc + '</div>' +
           '<div class="desc" style="margin-top:8px"><b style="color:var(--text)">Nasıl görünür?</b> ' + bias.pattern + '</div>' +
-          '<div class="desc" style="color:var(--text);margin-top:8px;padding:10px 12px;background:rgba(255,166,48,.04);border-left:2px solid var(--border-2)"><b>Pratik öneri:</b> ' + bias.advice + '</div>' +
+          '<div class="desc" style="color:var(--text);margin-top:8px;padding:10px 12px;background:rgba(95,184,154,.04);border-left:2px solid var(--border-2)"><b>Pratik öneri:</b> ' + bias.advice + '</div>' +
           '</details>'
         ) +
         '</div>';
@@ -850,7 +850,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 
     // Shared view banner (when someone views another user's result)
     const sharedBanner = state.isSharedView ?
-      '<div style="background:linear-gradient(135deg,rgba(255,166,48,.12),rgba(255,166,48,.02));border:1px solid var(--accent);padding:14px 18px;margin-bottom:18px">' +
+      '<div style="background:linear-gradient(135deg,rgba(95,184,154,.12),rgba(95,184,154,.02));border:1px solid var(--accent);padding:14px 18px;margin-bottom:18px">' +
         '<div style="font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:6px">▸ Paylaşılan Sonuç</div>' +
         '<p style="margin:0 0 10px;font-size:13.5px;line-height:1.55;color:var(--text)">Bu, bir arkadaşının önyargı testi sonucudur. Aşağıda detaylarını görebilirsin. Kendi profilini ölçmek için aşağıdaki butona tıkla.</p>' +
         '<button onclick="window.__otReset()" style="background:var(--accent);color:#1a1208;border:0;padding:10px 22px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Sen de test et →</button>' +
@@ -956,7 +956,7 @@ footer.pf-foot b, footer.pf-foot strong { color: var(--text); font-weight: 600; 
 })();
 </script>
 
-<div class="card" style="margin-top:28px;background:rgba(255,166,48,.05);border-left:2px solid var(--accent);max-width:760px;margin-left:auto;margin-right:auto">
+<div class="card" style="margin-top:28px;background:rgba(95,184,154,.05);border-left:2px solid var(--accent);max-width:760px;margin-left:auto;margin-right:auto">
   <p style="margin:0;font-size:13px;color:#f5d28a;line-height:1.6">
     <span style="color:var(--accent)">▸</span> <strong>Not:</strong> Bu test bilimsel bir teşhis aracı değildir. Davranışsal finans literatüründeki sekiz tipik önyargıyı kendin için tarama amaçlı bir eğitim aracıdır. Cevapların sadece senin tarayıcında saklanır, hiçbir yere gönderilmez.
   </p>
@@ -1063,6 +1063,6 @@ body { top:0 !important; }
 })();
 </script>
 <script src="/static/asistan.js" defer></script>
-<script src="/static/terminal-shell.js" defer></script>
+<script src="/static/kabuk.js" defer></script>
 </body>
 </html>

@@ -31,28 +31,28 @@
   var css =
     '.ktur-kat{position:fixed;inset:0;z-index:100000;pointer-events:auto}' +
     '.ktur-perde{position:fixed;background:rgba(6,5,4,.72);pointer-events:auto}' +
-    '.ktur-halka{position:fixed;border:2px solid #ffa630;border-radius:12px;' +
-    'box-shadow:0 0 0 4px rgba(255,166,48,.18);pointer-events:none;z-index:100001;' +
+    '.ktur-halka{position:fixed;border:2px solid #5fb89a;border-radius:12px;' +
+    'box-shadow:0 0 0 4px rgba(95,184,154,.18);pointer-events:none;z-index:100001;' +
     (azHareket ? '' : 'transition:all .25s cubic-bezier(.4,0,.2,1)') + '}' +
     '.ktur-kutu{position:fixed;z-index:100002;width:320px;max-width:calc(100vw - 28px);' +
-    'background:#14110e;border:1px solid #2a241d;border-radius:14px;padding:17px 18px 15px;' +
-    'box-shadow:0 20px 50px rgba(0,0,0,.6);color:#e8e2d8;' +
-    "font-family:'Inter Tight',Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;" +
+    'background:#132033;border:1px solid #24344c;border-radius:14px;padding:17px 18px 15px;' +
+    'box-shadow:0 20px 50px rgba(0,0,0,.6);color:#e7ecf2;' +
+    "font-family:'IBM Plex Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;" +
     (azHareket ? '' : 'transition:top .25s cubic-bezier(.4,0,.2,1),left .25s cubic-bezier(.4,0,.2,1)') + '}' +
-    '.ktur-kutu h4{margin:0 0 6px;font-size:15.5px;font-weight:600;letter-spacing:-.01em;color:#e8e2d8}' +
+    '.ktur-kutu h4{margin:0 0 6px;font-size:15.5px;font-weight:600;letter-spacing:-.01em;color:#e7ecf2}' +
     '.ktur-kutu p{margin:0 0 14px;font-size:13.5px;line-height:1.58;color:#b8ae9e}' +
     '.ktur-alt{display:flex;align-items:center;gap:10px}' +
-    ".ktur-say{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#6f6553}" +
+    ".ktur-say{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8d9cb0}" +
     '.ktur-alt .bosluk{flex:1}' +
     '.ktur-kutu button{border:0;border-radius:9px;padding:8px 15px;font-size:12.5px;font-weight:700;' +
-    'cursor:pointer;font-family:inherit;background:#ffa630;color:#1a1a1a}' +
+    'cursor:pointer;font-family:inherit;background:#5fb89a;color:#08130f}' +
     '.ktur-kutu button:hover{background:#ff7a00}' +
-    '.ktur-kutu button.ikincil{background:transparent;color:#b8ae9e;border:1px solid #2a241d;font-weight:600}' +
-    '.ktur-kutu button.ikincil:hover{border-color:#ffa630;color:#ffa630}' +
-    '.ktur-kutu button:focus-visible,.ktur-kutu button.ikincil:focus-visible{outline:2px solid #ffa630;outline-offset:2px}' +
+    '.ktur-kutu button.ikincil{background:transparent;color:#b8ae9e;border:1px solid #24344c;font-weight:600}' +
+    '.ktur-kutu button.ikincil:hover{border-color:#5fb89a;color:#5fb89a}' +
+    '.ktur-kutu button:focus-visible,.ktur-kutu button.ikincil:focus-visible{outline:2px solid #5fb89a;outline-offset:2px}' +
     '.ktur-atla{position:absolute;top:12px;right:13px;background:none!important;border:0!important;' +
-    'color:#6f6553!important;font-size:12px!important;font-weight:500!important;padding:3px!important;cursor:pointer}' +
-    '.ktur-atla:hover{color:#e8e2d8!important}';
+    'color:#8d9cb0!important;font-size:12px!important;font-weight:500!important;padding:3px!important;cursor:pointer}' +
+    '.ktur-atla:hover{color:#e7ecf2!important}';
 
   // Bazı gömülü/otomasyon ortamlarında window.innerHeight 0 dönebiliyor;
   // o durumda belge ölçüsüne düşeriz, aksi halde perde ve konum hesabı bozulur.
