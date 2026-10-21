@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strateji Kurucu · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa"><i></i>Kalibre Lab <span>Strateji Kurucu</span></a>
+  <div class="ust-eylem">
+    <label class="secici">Şablon
+      <select id="sablon">
+        <option value="">Seçin…</option>
+        <option value="bos">Boş strateji</option>
+      </select>
+    </label>
+    <a class="dugme ikincil" href="oynaklik.html">Oynaklık Lab</a>
+    <label class="dugme ikincil">İçe aktar<input type="file" id="ice-aktar" accept=".json,application/json" hidden></label>
+    <button class="dugme" id="indir">JSON indir</button>
+  </div>
+</header>
+
+<main class="izgara">
+  <form id="form" class="form" autocomplete="off" onsubmit="return false"></form>
+
+  <aside class="panel">
+    <section class="kart" id="durum"></section>
+
+    <section class="kart">
+      <h2>Kurduğun strateji</h2>
+      <dl id="ozet" class="ozet"></dl>
+    </section>
+
+    <section class="kart" id="prova-kart">
+      <div class="kart-bas">
+        <h2>Hızlı prova</h2>
+        <span class="rozet" id="rozet">SENTETİK</span>
+      </div>
+      <div class="prova-ayar">
+        <label>Veri
+          <select id="prova-kaynak"><option value="sentetik">Sentetik piyasa</option><option value="dosya">Kendi dosyam</option><option value="mt5">MetaTrader'ım (canlı)</option></select>
+        </label>
+        <label id="prova-dosya-alan" hidden>Dosya
+          <input type="file" id="prova-dosya" accept=".json,.csv,.txt,application/json,text/csv">
+        </label>
+        <label id="rejim-alan">Piyasa
+          <select id="rejim"></select>
+        </label>
+        <label id="tohum-alan">Tohum
+          <span class="satir"><input type="number" id="tohum" min="1" max="999999" step="1"><button type="button" class="kucuk" id="zar" title="Yeni tohum">↻</button></span>
+        </label>
+        <label id="adet-alan">Mum
+          <select id="adet"><option>1000</option><option selected>2000</option><option>5000</option></select>
+        </label>
+      </div>
+      <div id="mt5-alan" class="mt5" hidden>
+        <div class="mt5-durum" id="mt5-durum" data-sinif="bekleniyor">
+          <i></i><div><b id="mt5-baslik">Eklenti bekleniyor</b> <span class="rozet ikincil" id="mt5-hesap" hidden></span>
+          <p id="mt5-ayrinti">Henüz MT5'ten kalp atışı gelmedi.</p></div>
+        </div>
+        <label id="mt5-seri-alan" hidden>Seri
+          <select id="mt5-seri"></select>
+        </label>
+        <details class="mt5-kurulum" id="mt5-kurulum" open>
+          <summary>MetaTrader'ı bağla</summary>
+          <ol>
+            <li>MT5'te <b>KalibreKopru</b> eklentisini bir grafiğe sürükle.</li>
+            <li>Açılan pencerede <b>Eşleştirme kodu</b> alanına aşağıdaki kodu yapıştır.</li>
+            <li><b>Araçlar → Seçenekler → Uzman Danışmanlar</b> (Tools → Options → Expert Advisors): "Allow WebRequest for listed URL" kutusunu işaretle, listeye <code id="mt5-izin">https://kalibremarkets.com</code> adresini ekle ve <b>OK</b>'e bas. OK'e basmadan izin uygulanmaz.</li>
+          </ol>
+          <div class="mt5-kod">
+            <input type="text" id="mt5-kod" readonly spellcheck="false" aria-label="Eşleştirme kodu">
+            <button type="button" class="kucuk" id="mt5-kopyala">Kopyala</button>
+            <button type="button" class="kucuk sil" id="mt5-yeni">Yeni kod</button>
+          </div>
+          <p class="dipnot">Veri senin bilgisayarında şifrelenir. Anahtar bu koddur ve yalnız bu tarayıcıda durur;
+            Kalibre sunucusu içeriği okuyamaz, hangi sembolün taşındığını da bilmez. Şifreli paketler 2 saat içinde kendiliğinden silinir.
+            Eklenti işlem açmaz.</p>
+          <details class="mt5-gelismis">
+            <summary>Gelişmiş</summary>
+            <label>Röle adresi
+              <input type="url" id="mt5-role" placeholder="/api/kopru" spellcheck="false">
+            </label>
+          </details>
+        </details>
+        <div id="mt5-pozisyon" hidden></div>
+      </div>
+      <p class="dipnot" id="prova-ipucu" hidden>MT5'te <b>KalibreDisaAktar</b> betiğini grafiğe sürükle; oluşan
+        <code>seri-…json</code> dosyasını buraya bırak ya da yukarıdan seç. CSV de olur. Dosya tarayıcında okunur, hiçbir yere gönderilmez.</p>
+      <canvas id="grafik" height="220"></canvas>
+      <canvas id="egri" height="90"></canvas>
+      <div id="istatistik" class="istatistik"></div>
+      <div id="saglamlik" class="saglamlik"></div>
+      <ul id="uyarilar" class="uyarilar"></ul>
+      <p class="dipnot" id="prova-dipnot">Gerçek bir piyasa değildir. Sentetik prova kuralların nasıl davrandığını görmek içindir;
+        gerçek backtest, kendi aracı kurum verinle MT5 Strategy Tester'da Kalibre Motor ile yapılır.</p>
+    </section>
+
+    <section class="kart">
+      <div class="kart-bas">
+        <h2>Kural dosyası</h2>
+        <button type="button" class="kucuk" id="kopyala">Kopyala</button>
+      </div>
+      <pre id="json" class="json" tabindex="0" aria-label="Kural dosyası (JSON)"></pre>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="src/uygulama.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Kur Riski Hesaplayıcı · Döviz Pozisyonu Duyarlılık Analizi · Kalibre Markets</title>
-<meta name="description" content="Net döviz pozisyonunuzu girin, kur şoku altında kâr-zarar etkisini anında görün. Hazine ve finans ekipleri için ücretsiz kur riski (duyarlılık) hesaplayıcı; canlı USD/TRY ile.">
+<meta name="description" content="Net döviz pozisyonunuzu girin, kur şoku altında kâr-zarar etkisini anında görün. Hazine ve finans ekipleri için ücretsiz kur riski (duyarlılık) hesaplayıcı; kurları sen girersin.">
 <meta name="keywords" content="kur riski hesaplama, döviz pozisyonu, kur duyarlılık analizi, hazine riski, kur şoku, USD/TRY">
 <link rel="canonical" href="https://kalibremarkets.com/kur-riski-hesaplayici/">
 <meta property="og:title" content="Kur Riski Hesaplayıcı · Kalibre Markets">
@@ -143,21 +143,21 @@ footer.pf a{color:var(--text-dim)}footer.pf a:hover{color:var(--accent)}
   </div>
 
   <div class="cta">
-    <div class="t">Bunu her sabah otomatik, kendi pozisyonunuz ve canlı veriyle isteyin.<span>Kurumsal pilot fazında ücretsiz: günlük hazine brifingi, risk panosu ve eşik alarmları, ekibinize özel.</span></div>
-    <a class="btn btn-primary" href="/pilot-basvuru/">Kurumsal pilotu inceleyin →</a>
+    <div class="t">Kur şokuna dayanıklı bir strateji kurmak ister misin?<span>Kalibre Lab'de kuralını kendi MetaTrader 5 verinle sına; pozisyon büyüklüğünü risk bütçesi ve oynaklıkla belirle.</span></div>
+    <a class="btn btn-primary" href="/lab/">Laboratuvarı aç</a>
   </div>
 
   <footer class="pf">
     <div><b style="color:var(--text);letter-spacing:.1em">KALİBRE · MARKETS</b> · Kur riski hesaplayıcı</div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap"><a href="/ekonomi-takvimi/">Ekonomi takvimi</a><a href="/egitim/">Eğitim</a><a href="/pilot-basvuru/">Kurumsal</a><a href="/metodoloji/">Metodoloji</a></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap"><a href="/ekonomi-takvimi/">Ekonomi takvimi</a><a href="/egitim/">Eğitim</a><a href="/lab/">Laboratuvar</a><a href="/metodoloji/">Metodoloji</a></div>
     <div style="color:var(--muted);max-width:42ch;text-align:right">Bu araç girdiğiniz verilere dayanan bir tahmindir; yatırım tavsiyesi değildir.</div>
   </footer>
 </main>
 
 <script>
 (function(){
-  // Örnek başlangıç değerleri; güncel kur değildir. Kullanıcı kendi kurunu girer.
-  var DEF = { USD: 45.97, EUR: 53.50, GBP: 62.00, CHF: 57.00 };
+  // Yuvarlak örnek değerler; güncel kur DEĞİLDİR ve bir kaynaktan alınmamıştır. Kullanıcı kendi kurunu girer.
+  var DEF = { USD: 40, EUR: 45, GBP: 50, CHF: 45 };
   var rowsEl = document.getElementById('rows');
   var CUR = ["USD","EUR","GBP","CHF","Diğer"];
 

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Güvenlik: verin senin, anahtar da</title>
+<meta name="description" content="Kalibre Lab'in MetaTrader 5 köprüsü nasıl şifreler, sunucu neyi görür ve neyi göremez, korumanın sınırları nelerdir.">
+<link rel="canonical" href="https://kalibremarkets.com/guvenlik/">
+<meta property="og:title" content="Güvenlik: verin senin, anahtar da">
+<meta property="og:description" content="Kalibre Lab'in MetaTrader 5 köprüsü nasıl şifreler, sunucu neyi görür ve neyi göremez, korumanın sınırları nelerdir.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab/">Laboratuvar</a>
+      <a href="/kurulum/">Kurulum</a>
+      <a href="/guvenlik/" aria-current="page">Güvenlik</a>
+      <a href="/egitim/">Eğitim</a>
+      <a href="/pro/">Abonelik</a>
+    </nav>
+    <a class="dugme kucuk" href="/lab/">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Güvenlik</h1>
+<p class="giris">Fiyat geçmişin ve pozisyonların senin bilgisayarında şifrelenir ve yalnız senin tarayıcında açılır. Aradaki sunucu, yani biz, içeriği okuyamayız. Bu sayfa bunun nasıl sağlandığını ve nerede bittiğini anlatır.</p>
+
+<h2 id="kisaca">Kısaca</h2>
+<ul>
+  <li>Anahtar, laboratuvarın tarayıcında ürettiği eşleştirme kodudur. Bizde bir kopyası yoktur.</li>
+  <li>Eklenti her paketi göndermeden önce şifreler ve mühürler. Mührü tutmayan paket açılmaz.</li>
+  <li>Sunucu yalnız şifreli paketi kısa süre saklar ve en geç iki saat sonra siler.</li>
+  <li>Eklenti işlem açmaz, hesap numaranı ve şifreni okumaz.</li>
+</ul>
+
+<h2 id="kod">Eşleştirme kodu</h2>
+<p>Kod, tarayıcının güvenli rastgele sayı üreteciyle oluşturulan 32 baytlık bir sırdır ve <code>KLB1</code> ile başlar. Kod iki yerde durur: bu tarayıcının yerel deposunda ve MT5'te eklentinin ayarında. Hiçbir zaman sunucuya gönderilmez.</p>
+<p>Koddan üç ayrı anahtar türetilir (HMAC-SHA256 ile): paketleri bulmaya yarayan bir <b>kanal numarası</b>, içeriği şifreleyen bir <b>şifreleme anahtarı</b> ve paketi mühürleyen bir <b>mühür anahtarı</b>. Sunucu yalnız kanal numarasını görür; kanal numarasından kod ya da diğer anahtarlar geri hesaplanamaz.</p>
+
+<h2 id="sifreleme">Şifreleme ve mühür</h2>
+<ul>
+  <li>İçerik AES-256 ile şifrelenir (CTR kipi). Her paket, bir daha kullanılmayan bir başlangıç değeri alır.</li>
+  <li>Her paket HMAC-SHA256 ile mühürlenir. Mühür, kanal numarasını, paketin hangi yuvaya ait olduğunu ve şifreli içeriği birlikte kapsar.</li>
+  <li>Tarayıcı önce mührü doğrular, sonra açar. İçeriği değiştirilmiş, başka bir yuvaya taşınmış ya da başka bir kodla mühürlenmiş paket reddedilir.</li>
+  <li>Sembol adları da şifrelidir. Sunucu, hangi sembolü izlediğini paketin adından çıkaramaz.</li>
+</ul>
+<p>Aynı protokol üç ayrı uygulamada yazıldı: MetaTrader 5 eklentisi, laboratuvar ve bağımsız bir referans uygulaması. Aynı girdiyle üçü bayt bayt aynı şifreli paketi üretiyor; bu karşılaştırma her sürümde otomatik testle tekrarlanır.</p>
+
+<h2 id="sunucu">Sunucu ne yapar?</h2>
+<table class="tablo">
+  <thead><tr><th>Sunucunun gördüğü</th><th>Sunucunun göremediği</th></tr></thead>
+  <tbody>
+    <tr><td>Şifreli paketler</td><td>Semboller, fiyatlar, mumlar</td></tr>
+    <tr><td>Paketlerin boyutu ve geliş zamanı</td><td>Pozisyonlar, bakiye, kâr ve zarar</td></tr>
+    <tr><td>Kanal numarası</td><td>Aracı kurumun ve sunucu adın</td></tr>
+    <tr><td>Bağlantının IP adresi (iletim sırasında)</td><td>Eşleştirme kodu</td></tr>
+  </tbody>
+</table>
+<p>Sunucu, paketin biçimini denetler ve kısa ömürlü bir depoda saklar. Her paket en geç iki saat sonra kendiliğinden silinir; yerine yenisi gelirse eskisi hemen silinir. Paketlerin içeriği günlüklere yazılmaz. Kanal başına dakikada yazılabilecek paket sayısı sınırlıdır.</p>
+
+<h2 id="eklenti">Eklenti neyi okur?</h2>
+<p>Kalibre Köprü yalnız okur; emir göndermez, pozisyon kapatmaz, ayar değiştirmez. Okuduğu ve şifreleyip gönderdiği bilgiler:</p>
+<ul>
+  <li>Seçtiğin sembollerin kapanmış mumları: zaman, açılış, en yüksek, en düşük, kapanış, tik hacmi.</li>
+  <li>Açık pozisyonlar: sembol, yön, lot, açılış zamanı ve fiyatı, güncel fiyat, stop, hedef, kâr ve pozisyonun eklenti numarası.</li>
+  <li>Hesabın para birimi, bakiyesi ve varlığı.</li>
+  <li>Aracı kurumun adı, sunucu adı ve hesabın demo mu gerçek mi olduğu.</li>
+</ul>
+<p>Okumadıkları: hesap numaran, şifren, kişisel bilgilerin, geçmiş işlem kayıtların.</p>
+
+<h2 id="sinirlar">Korumanın sınırları</h2>
+<p>Hiçbir sistem her şeye karşı korumaz. Bu sistemin dayandığı varsayımlar şunlar:</p>
+<ul>
+  <li><b>Kodu ele geçiren, verini okuyabilir.</b> Kodu kimseyle paylaşma. Şüphelenirsen laboratuvarda yeni kod üret ve eklentiye yenisini yapıştır; eski kod o andan sonra işe yaramaz.</li>
+  <li><b>Cihazının güvenliği sana aittir.</b> Bilgisayarına ya da tarayıcına erişen biri, açılmış veriyi de görebilir.</li>
+  <li><b>Trafiğin varlığı gizli değildir.</b> Sunucu, bir kanalın ne sıklıkla ve ne büyüklükte paket gönderdiğini görür. Bu, içeriği değil yalnız kullanım biçimini gösterir.</li>
+</ul>
+<p>Bir güvenlik açığı bulduğunu düşünüyorsan lütfen <a href="/iletisim/">bize yaz</a>.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#kisaca">Kısaca</a><a href="#kod">Eşleştirme kodu</a><a href="#sifreleme">Şifreleme ve mühür</a><a href="#sunucu">Sunucu ne yapar?</a><a href="#eklenti">Eklenti neyi okur?</a><a href="#sinirlar">Korumanın sınırları</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>MetaTrader 5 için strateji laboratuvarı.</p>
+    </div>
+    <div>
+      <h4>Ürün</h4>
+      <a href="/lab/">Laboratuvar</a>
+      <a href="/kurulum/">Kurulum</a>
+      <a href="/guvenlik/">Güvenlik</a>
+      <a href="/pro/">Abonelik</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim/">Eğitim</a>
+      <a href="/metodoloji/">Metodoloji</a>
+      <a href="/grafik-oku/">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi/">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/hakkinda">Hakkında</a>
+      <a href="/iletisim/">İletişim</a>
+      <a href="/kullanim-sartlari/">Kullanım şartları</a>
+      <a href="/gizlilik/">Gizlilik</a>
+    </div>
+    <p class="yasal">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
+  </div>
+</footer>
+
+</body>
+</html>

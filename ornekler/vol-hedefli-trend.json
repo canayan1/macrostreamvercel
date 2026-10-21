@@ -1,0 +1,30 @@
+{
+  "kalibre": 2,
+  "ad": "Volatilite Hedefli Trend",
+  "aciklama": "SMA100 kesişimiyle iki yönlü trend takibi. Lot GARCH oynaklığıyla ters orantılı ölçeklenir; oynaklık olağanın 2 katını aşınca yeni giriş yapılmaz. Stop, GARCH öngörüsünün 3 katı.",
+  "zaman_dilimi": "H1",
+  "gostergeler": {
+    "sma100": { "tip": "SMA", "periyot": 100 },
+    "garch": { "tip": "GARCH_VOL", "model": "gjr", "dagilim": "t", "pencere": 1000, "yenile": 24 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "yukari_keser", "sag": "sma100" },
+      { "sol": "garch.oran", "op": "<", "sag": 2 }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "asagi_keser", "sag": "sma100" },
+      { "sol": "garch.oran", "op": "<", "sag": 2 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "oynaklik", "gosterge": "garch", "carpan": 3 },
+    "iz_suren_stop": { "tip": "oynaklik", "gosterge": "garch", "carpan": 4 }
+  },
+  "risk": {
+    "islem_basi_yuzde": 0.5,
+    "max_acik_pozisyon": 1,
+    "gunluk_max_kayip_yuzde": 2,
+    "volatilite_hedefi": { "gosterge": "garch", "alt_carpan": 0.25, "ust_carpan": 1.5 }
+  }
+}

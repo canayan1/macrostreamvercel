@@ -1,0 +1,33 @@
+{
+  "kalibre": 1,
+  "ad": "ADX Trend Devamı",
+  "aciklama": "Güçlü trendde (ADX > 25) trend yönündeki kısa geri çekilmeye giriş: +DI > −DI ve RSI14 < 40 ise long; tersi short. RSI karşı uca gelince ya da hedefte çık.",
+  "zaman_dilimi": "H1",
+  "gostergeler": {
+    "adx": { "tip": "ADX", "periyot": 14 },
+    "rsi": { "tip": "RSI", "periyot": 14 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "adx", "op": ">", "sag": 25 },
+      { "sol": "adx.arti", "op": ">", "sag": "adx.eksi" },
+      { "sol": "rsi", "op": "<", "sag": 40 }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "adx", "op": ">", "sag": 25 },
+      { "sol": "adx.eksi", "op": ">", "sag": "adx.arti" },
+      { "sol": "rsi", "op": ">", "sag": 60 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 1.5 },
+    "hedef": { "tip": "r", "deger": 2 },
+    "kosul": {
+      "long": { "hepsi": [ { "sol": "rsi", "op": ">", "sag": 65 } ] },
+      "short": { "hepsi": [ { "sol": "rsi", "op": "<", "sag": 35 } ] }
+    }
+  },
+  "risk": { "islem_basi_yuzde": 0.5, "max_acik_pozisyon": 1, "gunluk_max_kayip_yuzde": 2 },
+  "filtre": { "haber": { "once_dk": 30, "sonra_dk": 30, "onem": "yuksek" } }
+}

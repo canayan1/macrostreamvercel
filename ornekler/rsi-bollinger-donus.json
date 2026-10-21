@@ -1,0 +1,33 @@
+{
+  "kalibre": 1,
+  "ad": "RSI + Bollinger Ortalamaya Dönüş",
+  "aciklama": "Zayıf trendde (ADX < 20) fiyat alt bandın altında kapanır ve RSI 30'un altındaysa long; tersi short. Orta banda dönünce ya da 24 mum sonra çıkış.",
+  "zaman_dilimi": "M15",
+  "gostergeler": {
+    "bb": { "tip": "BB", "periyot": 20, "sapma": 2 },
+    "rsi": { "tip": "RSI", "periyot": 14 },
+    "adx": { "tip": "ADX", "periyot": 14 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "<", "sag": "bb.alt" },
+      { "sol": "rsi", "op": "<", "sag": 30 },
+      { "sol": "adx.ana", "op": "<", "sag": 20 }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": ">", "sag": "bb.ust" },
+      { "sol": "rsi", "op": ">", "sag": 70 },
+      { "sol": "adx.ana", "op": "<", "sag": 20 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 1.5 },
+    "max_bar": 24,
+    "kosul": {
+      "long": { "herhangi": [ { "sol": "fiyat.kapanis", "op": ">=", "sag": "bb.orta" } ] },
+      "short": { "herhangi": [ { "sol": "fiyat.kapanis", "op": "<=", "sag": "bb.orta" } ] }
+    }
+  },
+  "risk": { "islem_basi_yuzde": 0.5, "max_acik_pozisyon": 1, "max_spread_puan": 20 }
+}

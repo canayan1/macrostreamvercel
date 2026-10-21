@@ -1,0 +1,25 @@
+{
+  "kalibre": 1,
+  "ad": "Trend İçi Geri Çekilme (Long)",
+  "aciklama": "Uzun vadeli ortalamanın üstündeki piyasada kısa vadeli aşırı satımı alır. Kısa vadeli ortalamaya dönünce, 10 mum dolunca ya da 2,5 ATR stopta çıkar. Dayanak: kısa vadeli geri dönüş (Lehmann 1990) + uzun vadeli rejim filtresi (Faber 2007).",
+  "zaman_dilimi": "D1",
+  "yon": "sadece_long",
+  "gostergeler": {
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "sma5": { "tip": "SMA", "periyot": 5 },
+    "rsi2": { "tip": "RSI", "periyot": 2 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": ">", "sag": "sma200" },
+      { "sol": "rsi2", "op": "<", "sag": 10 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2.5 },
+    "max_bar": 10,
+    "kosul": { "long": { "hepsi": [ { "sol": "fiyat.kapanis", "op": ">", "sag": "sma5" } ] } }
+  },
+  "risk": { "islem_basi_yuzde": 1, "max_acik_pozisyon": 1 }
+}

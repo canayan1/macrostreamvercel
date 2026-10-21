@@ -1,0 +1,27 @@
+{
+  "kalibre": 1,
+  "ad": "Aşağı Kırılım (Short)",
+  "aciklama": "Ayı rejiminde (fiyat SMA200 altında) fiyat SMA50'yi aşağı kırarken düşüş yönlü trend gücü varsa short. Hedef 2R, 3 ATR iz süren stop.",
+  "zaman_dilimi": "H4",
+  "yon": "sadece_short",
+  "gostergeler": {
+    "sma50": { "tip": "SMA", "periyot": 50 },
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "adx": { "tip": "ADX", "periyot": 14 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "asagi_keser", "sag": "sma50" },
+      { "sol": "fiyat.kapanis", "op": "<", "sag": "sma200" },
+      { "sol": "adx", "op": ">", "sag": 25 },
+      { "sol": "adx.eksi", "op": ">", "sag": "adx.arti" }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2 },
+    "hedef": { "tip": "r", "deger": 2 },
+    "iz_suren_stop": { "tip": "atr", "gosterge": "atr", "carpan": 3 }
+  },
+  "risk": { "islem_basi_yuzde": 0.75, "max_acik_pozisyon": 1, "gunluk_max_kayip_yuzde": 2 }
+}

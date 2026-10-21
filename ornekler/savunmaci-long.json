@@ -1,0 +1,17 @@
+{
+  "kalibre": 1,
+  "ad": "Savunmacı Long (Rejim Filtresi)",
+  "aciklama": "Fiyat 200 günlük ortalamanın üstüne çıkınca long, altına inince çık. Az işlem yapan, uzun düşüşlerden kaçmayı amaçlayan temel long şablonu. Dayanak: Faber 2007.",
+  "zaman_dilimi": "D1",
+  "yon": "sadece_long",
+  "gostergeler": {
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "atr": { "tip": "ATR", "periyot": 20 }
+  },
+  "giris": { "long": { "hepsi": [ { "sol": "fiyat.kapanis", "op": "yukari_keser", "sag": "sma200" } ] } },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 3 },
+    "kosul": { "long": { "hepsi": [ { "sol": "fiyat.kapanis", "op": "<", "sag": "sma200" } ] } }
+  },
+  "risk": { "islem_basi_yuzde": 1, "max_acik_pozisyon": 1 }
+}

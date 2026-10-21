@@ -1,0 +1,28 @@
+{
+  "kalibre": 1,
+  "ad": "Kaldıraçlı Trend (Long/Short)",
+  "aciklama": "Zaman serisi momentumunun basit hali: fiyat SMA100'ü yukarı keserse long, aşağı keserse short; ADX > 20 filtresi. Hedef yok, kâr iz süren stopla korunur. Kaldıraçlı hesap için işlem başı risk %0,5 ve günlük %2 kayıp sınırı.",
+  "zaman_dilimi": "H1",
+  "yon": "iki_yon",
+  "gostergeler": {
+    "sma100": { "tip": "SMA", "periyot": 100 },
+    "adx": { "tip": "ADX", "periyot": 14 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "yukari_keser", "sag": "sma100" },
+      { "sol": "adx", "op": ">", "sag": 20 }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "asagi_keser", "sag": "sma100" },
+      { "sol": "adx", "op": ">", "sag": 20 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2 },
+    "iz_suren_stop": { "tip": "atr", "gosterge": "atr", "carpan": 3 }
+  },
+  "risk": { "islem_basi_yuzde": 0.5, "max_acik_pozisyon": 1, "max_spread_puan": 30, "gunluk_max_kayip_yuzde": 2 },
+  "filtre": { "haber": { "once_dk": 30, "sonra_dk": 30, "onem": "yuksek" } }
+}

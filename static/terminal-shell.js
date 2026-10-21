@@ -17,21 +17,19 @@
 
   // ── Modüller ───────────────────────────────────────────────────
   var MODULES = [
+    { key: "lab", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M10 52h44\"/><rect x=\"14\" y=\"32\" width=\"9\" height=\"20\" rx=\"2\"/><rect x=\"28\" y=\"20\" width=\"9\" height=\"32\" rx=\"2\"/><rect x=\"42\" y=\"10\" width=\"9\" height=\"42\" rx=\"2\"/></svg>", label: "Laboratuvar", href: "/lab/" },
     { key: "egitim", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M32 12 L58 24 L32 36 L6 24 Z\"/><path d=\"M16 30 v14 c0 4 7 8 16 8 s16 -4 16 -8 V30\"/></svg>", label: "Eğitim", href: "/egitim/" },
-    { key: "karar", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"32\" cy=\"32\" r=\"20\"/><circle cx=\"32\" cy=\"32\" r=\"8\"/></svg>", label: "Pratik ve testler", href: "/trading/" },
-    { key: "simulasyon", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M10 52h44\"/><rect x=\"14\" y=\"32\" width=\"9\" height=\"20\" rx=\"2\"/><rect x=\"28\" y=\"20\" width=\"9\" height=\"32\" rx=\"2\"/><rect x=\"42\" y=\"10\" width=\"9\" height=\"42\" rx=\"2\"/></svg>", label: "Simülasyon", href: "/simulasyon/" },
+    { key: "karar", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"32\" cy=\"32\" r=\"20\"/><circle cx=\"32\" cy=\"32\" r=\"8\"/></svg>", label: "Testler", href: "/trading/onyargi-testi/" },
     { key: "hesap", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><rect x=\"12\" y=\"8\" width=\"40\" height=\"48\" rx=\"4\"/><line x1=\"20\" y1=\"22\" x2=\"44\" y2=\"22\"/><line x1=\"20\" y1=\"32\" x2=\"44\" y2=\"32\"/></svg>", label: "Hesaplayıcılar", href: "/carry-hesaplayici/" },
-    { key: "kripto", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><path d=\"M20 6 c0 14 24 14 24 26 s-24 12 -24 26\"/><path d=\"M44 6 c0 14 -24 14 -24 26 s24 12 24 26\"/></svg>", label: "Kripto koçu", href: "/kripto/" },
-    { key: "arastirma", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"28\" cy=\"28\" r=\"16\"/><line x1=\"40\" y1=\"40\" x2=\"54\" y2=\"54\"/></svg>", label: "Araştırma", href: "/arastirma/" }
+    { key: "metodoloji", ico: "<svg width=\"14\" height=\"14\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-2px\"><circle cx=\"28\" cy=\"28\" r=\"16\"/><line x1=\"40\" y1=\"40\" x2=\"54\" y2=\"54\"/></svg>", label: "Metodoloji", href: "/metodoloji/" }
   ];
 
   // ── Aktif modülü mevcut yola göre tahmin et ────────────────────
   function activeKey(p) {
-    if (/^\/(trading|islem-kontrolu|oyun|grafik-oku)(\/|$)/.test(p)) return "karar";
-    if (/^\/simulasyon(\/|$)/.test(p)) return "simulasyon";
-    if (/^\/(carry-hesaplayici|kur-riski-hesaplayici)(\/|$)/.test(p)) return "hesap";
-    if (/^\/kripto(\/|$)/.test(p)) return "kripto";
-    if (/^\/(arastirma|editor|metodoloji)(\/|$)/.test(p)) return "arastirma";
+    if (/^\/lab(\/|$)/.test(p)) return "lab";
+    if (/^\/(trading|islem-kontrolu|oyun|grafik-oku|defter)(\/|$)/.test(p)) return "karar";
+    if (/^\/(carry-hesaplayici|kur-riski-hesaplayici|ekonomi-takvimi)(\/|$)/.test(p)) return "hesap";
+    if (/^\/metodoloji(\/|$)/.test(p)) return "metodoloji";
     if (/^\/egitim(\/|$)/.test(p)) return "egitim";
     return null;
   }

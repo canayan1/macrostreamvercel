@@ -1,0 +1,26 @@
+{
+  "kalibre": 1,
+  "ad": "MACD Trend Onayı",
+  "aciklama": "MACD ana hattı sinyal hattını yukarı keserken fiyat SMA200 üstündeyse long; aşağı keserken altındaysa short. Stop 2 ATR, hedef 2R.",
+  "zaman_dilimi": "H4",
+  "gostergeler": {
+    "macd": { "tip": "MACD", "hizli": 12, "yavas": 26, "sinyal": 9 },
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "macd", "op": "yukari_keser", "sag": "macd.sinyal" },
+      { "sol": "fiyat.kapanis", "op": ">", "sag": "sma200" }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "macd", "op": "asagi_keser", "sag": "macd.sinyal" },
+      { "sol": "fiyat.kapanis", "op": "<", "sag": "sma200" }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2 },
+    "hedef": { "tip": "r", "deger": 2 }
+  },
+  "risk": { "islem_basi_yuzde": 0.75, "max_acik_pozisyon": 1 }
+}

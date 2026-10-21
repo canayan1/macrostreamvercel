@@ -1,0 +1,17 @@
+{
+  "kalibre": 1,
+  "ad": "Koruma Short (Rejim Filtresi)",
+  "aciklama": "Fiyat 200 günlük ortalamanın altına inince short, üstüne çıkınca kapat. Long ağırlıklı bir portföyü düşüş rejiminde kısmen korumak için. Savunmacı Long'un aynası.",
+  "zaman_dilimi": "D1",
+  "yon": "sadece_short",
+  "gostergeler": {
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "atr": { "tip": "ATR", "periyot": 20 }
+  },
+  "giris": { "short": { "hepsi": [ { "sol": "fiyat.kapanis", "op": "asagi_keser", "sag": "sma200" } ] } },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 3 },
+    "kosul": { "short": { "hepsi": [ { "sol": "fiyat.kapanis", "op": ">", "sag": "sma200" } ] } }
+  },
+  "risk": { "islem_basi_yuzde": 0.75, "max_acik_pozisyon": 1 }
+}

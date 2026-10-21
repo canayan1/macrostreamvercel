@@ -3,6 +3,91 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/kurumsal/egitim/:path*",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
+      "source": "/kurumsal/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kurumsal",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilot-basvuru/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kripto/:path*",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
+      "source": "/kripto",
+      "destination": "/egitim",
+      "statusCode": 301
+    },
+    {
+      "source": "/simulasyon/:path*",
+      "destination": "/oyun",
+      "statusCode": 301
+    },
+    {
+      "source": "/simulasyon",
+      "destination": "/oyun",
+      "statusCode": 301
+    },
+    {
+      "source": "/arastirma/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/arastirma",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/editor/:path*",
+      "destination": "/metodoloji",
+      "statusCode": 301
+    },
+    {
+      "source": "/editor",
+      "destination": "/metodoloji",
+      "statusCode": 301
+    },
+    {
+      "source": "/talep/:path*",
+      "destination": "/iletisim",
+      "statusCode": 301
+    },
+    {
+      "source": "/talep",
+      "destination": "/iletisim",
+      "statusCode": 301
+    },
+    {
+      "source": "/tradermind/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tradermind",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/trading",
+      "destination": "/lab",
+      "statusCode": 301
+    },
+    {
       "source": "/reports/fred/:path*",
       "destination": "/egitim/makro-gostergeler-rehberi",
       "statusCode": 301
@@ -59,12 +144,12 @@
     },
     {
       "source": "/haftanin-haberleri/:path*",
-      "destination": "/arastirma",
+      "destination": "/",
       "statusCode": 301
     },
     {
       "source": "/haftanin-grafikleri/:path*",
-      "destination": "/arastirma",
+      "destination": "/",
       "statusCode": 301
     },
     {
@@ -74,7 +159,7 @@
     },
     {
       "source": "/portfoy-lab/:path*",
-      "destination": "/simulasyon",
+      "destination": "/oyun",
       "statusCode": 301
     },
     {
@@ -99,7 +184,7 @@
     },
     {
       "source": "/static/weekly/:path*",
-      "destination": "/arastirma",
+      "destination": "/",
       "statusCode": 301
     }
   ]

@@ -1,0 +1,25 @@
+{
+  "kalibre": 1,
+  "ad": "Ayı Rejiminde Tepki Satışı (Short)",
+  "aciklama": "Uzun vadeli ortalamanın altındaki piyasada kısa vadeli aşırı alımı satar. Trend İçi Geri Çekilme'nin aynası. Short tarafı yapısal olarak zordur; risk daha küçük tutulur.",
+  "zaman_dilimi": "D1",
+  "yon": "sadece_short",
+  "gostergeler": {
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "sma5": { "tip": "SMA", "periyot": 5 },
+    "rsi2": { "tip": "RSI", "periyot": 2 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "<", "sag": "sma200" },
+      { "sol": "rsi2", "op": ">", "sag": 90 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2.5 },
+    "max_bar": 10,
+    "kosul": { "short": { "hepsi": [ { "sol": "fiyat.kapanis", "op": "<", "sag": "sma5" } ] } }
+  },
+  "risk": { "islem_basi_yuzde": 0.75, "max_acik_pozisyon": 1 }
+}

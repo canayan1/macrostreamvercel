@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oynaklık Laboratuvarı · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+<style>
+[hidden]{display:none!important}
+.tek-sutun{max-width:1180px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.veri-satiri{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.veri-satiri label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text-dim)}
+.meta{font:12px var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px}
+.iki{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+.iki>*{min-width:0}
+@media(max-width:980px){.iki{grid-template-columns:minmax(0,1fr)}.tek-sutun{padding:16px}}
+.lejant{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-dim);margin-top:8px}
+.lejant i{display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--border);font-family:var(--mono);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left;font-family:var(--sans)}
+th{font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+tr.secili td{color:var(--accent)}
+.tablo-kutu{overflow-x:auto}
+.sira{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.sira label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text-dim)}
+.sira input{width:58px}
+.bekle{color:var(--muted);font-size:13px}
+.uyari-kutu{font-size:12.5px;color:var(--text-dim);background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-top:10px}
+</style>
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa"><i></i>Kalibre Lab <span>Oynaklık Laboratuvarı</span></a>
+  <div class="ust-eylem"><a class="dugme ikincil" href="./">Strateji Kurucu</a></div>
+</header>
+
+<main class="tek-sutun">
+  <section class="kart">
+    <div class="kart-bas"><h2>Veri</h2><span class="rozet" id="rozet">SENTETİK</span></div>
+    <div class="veri-satiri">
+      <label>Kaynak
+        <select id="kaynak"><option value="sentetik">Sentetik piyasa</option><option value="csv">Kendi dosyam (MT5 JSON ya da CSV)</option></select>
+      </label>
+      <label id="csv-alan" hidden>Dosya<input type="file" id="csv" accept=".json,.csv,.txt,application/json,text/csv"></label>
+      <label id="tohum-alan">Tohum<input type="number" id="tohum" value="4821" min="1" step="1"></label>
+      <label id="rejim-alan">Rejim<select id="rejim"></select></label>
+      <label>Takvim
+        <select id="takvim"><option value="yedi24">7/24 (kripto)</option><option value="bes24">5/24 (forex, CFD)</option><option value="borsa">Borsa seansı</option></select>
+      </label>
+      <label>Pencere (mum)<select id="pencere"><option>20</option><option selected>30</option><option>60</option><option>120</option></select></label>
+    </div>
+    <div class="meta" id="meta"></div>
+    <p class="ipucu">CSV: MT5'te Sembol listesi → Mumlar → Dışa aktar; ya da borsanın kline CSV'si. Dosya tarayıcında okunur, hiçbir yere gönderilmez.</p>
+  </section>
+
+  <div class="iki">
+    <section class="kart">
+      <div class="kart-bas"><h2>Gerçekleşen oynaklık (yıllık)</h2></div>
+      <canvas id="g-gercek" height="230"></canvas>
+      <div class="lejant" id="l-gercek"></div>
+    </section>
+    <section class="kart">
+      <div class="kart-bas"><h2>Son değerler</h2></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Son oynaklık değerleri"><table id="t-gercek"></table></div>
+      <p class="uyari-kutu">Aralık tahmincileri (Parkinson, Garman-Klass, Rogers-Satchell) kapanış-kapanıştan daha verimlidir; Yang-Zhang gece boşluğunu da sayar. 7/24 piyasada boşluk yoktur.</p>
+    </section>
+  </div>
+
+  <div class="iki">
+    <section class="kart">
+      <div class="kart-bas"><h2>Koşullu oynaklık · GARCH ailesi</h2><span class="bekle" id="garch-durum"></span></div>
+      <canvas id="g-garch" height="230"></canvas>
+      <div class="lejant" id="l-garch"></div>
+    </section>
+    <section class="kart">
+      <div class="kart-bas"><h2>Model karşılaştırması</h2></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Model karşılaştırması"><table id="t-garch"></table></div>
+      <p class="uyari-kutu">Getiriler yüzde olarak modellenir; tablo dönemlik parametreleri gösterir. En düşük BIC vurgulanır. GJR ve EGARCH'ta γ düşüşlerin oynaklığı yükselişlerden farklı etkileyip etkilemediğini, ν (t dağılımı) kuyrukların ne kadar kalın olduğunu gösterir: ν küçüldükçe uç hareketler daha sık. EGARCH'ın çok adımlı öngörüsü simülasyonla hesaplanır. Kalıcılık 1'e yaklaştıkça şoklar daha yavaş söner; yarı ömür mum cinsindendir. Kalıcılık 1'e çok yakınsa (IGARCH benzeri) uzun dönem oynaklık tanımsızdır; bu genellikle seride rejim değişimi olduğunu gösterir.</p>
+      <div class="tablo-kutu" style="margin-top:10px" tabindex="0" role="region" aria-label="Oynaklık öngörüsü"><table id="t-ongoru"></table></div>
+    </section>
+  </div>
+
+  <section class="kart">
+    <div class="kart-bas"><h2>Zaman serisi · SARIMA</h2><span class="bekle" id="sarima-durum"></span></div>
+    <div class="sira">
+      <label>Seri<select id="s-seri">
+        <option value="mutlak">Mutlak getiri (oynaklık vekili)</option>
+        <option value="aralik">Log yüksek/düşük aralığı</option>
+        <option value="getiri">Getiri</option>
+        <option value="hacim">Hacim</option>
+      </select></label>
+      <label>p<input type="number" id="s-p" value="1" min="0" max="3"></label>
+      <label>d<input type="number" id="s-d" value="0" min="0" max="2"></label>
+      <label>q<input type="number" id="s-q" value="1" min="0" max="3"></label>
+      <label>P<input type="number" id="s-P" value="1" min="0" max="2"></label>
+      <label>D<input type="number" id="s-D" value="0" min="0" max="1"></label>
+      <label>Q<input type="number" id="s-Q" value="0" min="0" max="2"></label>
+      <label>s<input type="number" id="s-s" value="24" min="0" max="400"></label>
+      <button type="button" class="dugme" id="s-kestir">Kestir</button>
+    </div>
+    <div class="iki" style="margin-top:12px">
+      <div><canvas id="g-sarima" height="200"></canvas><div class="lejant" id="l-sarima"></div></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="SARIMA sonuçları"><table id="t-sarima"></table></div>
+    </div>
+    <p class="uyari-kutu">Fiyat getirisinin yönünü öngörmek zordur; getiri serisinde SARIMA katsayılarının küçük çıkması beklenir. Mevsimsel yapı daha çok oynaklıkta, hacimde ve aralıkta görülür: saatlik veride s = 24 (gün), günlük veride s = 7 (hafta, 7/24 piyasada) deneyin.</p>
+  </section>
+</main>
+
+<script type="module" src="src/oynaklik-lab.js"></script>
+</body>
+</html>

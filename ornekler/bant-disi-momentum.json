@@ -1,0 +1,30 @@
+{
+  "kalibre": 1,
+  "ad": "Bant Dışı Momentum",
+  "aciklama": "Fiyat üst Bollinger bandının üstünde kapanır ve ADX > 20 ise long; alt bandın altında kapanırsa short. Orta banda dönüşte çık. Bant içi dönüş şablonunun tersi: aynı sinyali momentum olarak okur.",
+  "zaman_dilimi": "H1",
+  "gostergeler": {
+    "bb": { "tip": "BB", "periyot": 20, "sapma": 2 },
+    "adx": { "tip": "ADX", "periyot": 14 },
+    "atr": { "tip": "ATR", "periyot": 14 }
+  },
+  "giris": {
+    "long": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": ">", "sag": "bb.ust" },
+      { "sol": "adx", "op": ">", "sag": 20 }
+    ] },
+    "short": { "hepsi": [
+      { "sol": "fiyat.kapanis", "op": "<", "sag": "bb.alt" },
+      { "sol": "adx", "op": ">", "sag": 20 }
+    ] }
+  },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 2 },
+    "kosul": {
+      "long": { "hepsi": [ { "sol": "fiyat.kapanis", "op": "<", "sag": "bb.orta" } ] },
+      "short": { "hepsi": [ { "sol": "fiyat.kapanis", "op": ">", "sag": "bb.orta" } ] }
+    }
+  },
+  "risk": { "islem_basi_yuzde": 0.5, "max_acik_pozisyon": 1, "max_spread_puan": 30 },
+  "filtre": { "saat": { "bas": 8, "bit": 20 } }
+}

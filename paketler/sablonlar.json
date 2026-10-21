@@ -1,0 +1,493 @@
+{
+  "aciklama": "Strateji kütüphanesi kataloğu. durum: v1 = Motor bugün yürütür (ornekler/ altında); v2 = şema v2 yeteneklerini bekliyor, kuralları tasarlandı; plan = yol haritasında; vaka = satılmaz, Lab'da eğitim vakası. dalga: yayın dalgası (docs/kutuphane-stratejisi.md).",
+  "sablonlar": [
+    {
+      "id": "savunmaci-long",
+      "ad": "Savunmacı Long",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_long",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "orta",
+      "dayanak": [
+        "faber2007"
+      ],
+      "kisa": "200 günlük ortalamanın üstünde long, altında nakit. Uzun düşüşlerden kaçmak için."
+    },
+    {
+      "id": "altin-kesisim",
+      "ad": "Altın Kesişim",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_long"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "bajgrowicz2012"
+      ],
+      "kisa": "SMA50/SMA200 kesişimi. Az işlem, geç giriş, büyük trendler."
+    },
+    {
+      "id": "trend-ici-geri-cekilme",
+      "ad": "Trend İçi Geri Çekilme",
+      "aile": "ortalamaya_donus",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_long",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "orta",
+      "dayanak": [
+        "lehmann1990",
+        "faber2007"
+      ],
+      "kisa": "Yükselen piyasada kısa vadeli aşırı satımı al."
+    },
+    {
+      "id": "koruma-short",
+      "ad": "Koruma Short",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_short",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "faber2007",
+        "stambaugh2012"
+      ],
+      "kisa": "200 günlük ortalamanın altında short. Long portföy için düşüş koruması."
+    },
+    {
+      "id": "ayi-rejimi-tepki-satisi",
+      "ad": "Ayı Rejiminde Tepki Satışı",
+      "aile": "ortalamaya_donus",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_short",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "orta",
+      "dayanak": [
+        "lehmann1990",
+        "stambaugh2012"
+      ],
+      "kisa": "Düşen piyasada kısa vadeli aşırı alımı sat."
+    },
+    {
+      "id": "asagi-kirilim",
+      "ad": "Aşağı Kırılım",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_short",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "orta",
+      "dayanak": [
+        "moskowitz2012",
+        "stambaugh2012"
+      ],
+      "kisa": "Güçlü düşüş trendinde SMA50 kırılımı."
+    },
+    {
+      "id": "ema-trend",
+      "ad": "EMA Trend Takibi",
+      "aile": "trend",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "sadece_long",
+        "sadece_short",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "guclu",
+      "dayanak": [
+        "moskowitz2012",
+        "hurst2017",
+        "bajgrowicz2012"
+      ],
+      "kisa": "EMA20/50 kesişimi + ADX filtresi. Kütüphanenin başlangıç şablonu."
+    },
+    {
+      "id": "kaldiracli-trend-ls",
+      "ad": "Kaldıraçlı Trend",
+      "aile": "trend",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "guclu",
+      "dayanak": [
+        "moskowitz2012",
+        "hurst2017",
+        "moreira2017"
+      ],
+      "kisa": "SMA100 kesişimi iki yönde, iz süren stop, sıkı risk."
+    },
+    {
+      "id": "macd-trend-onayi",
+      "ad": "MACD Trend Onayı",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "kaldiracli_ls"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "bajgrowicz2012"
+      ],
+      "kisa": "MACD kesişimi, SMA200 rejim filtresiyle."
+    },
+    {
+      "id": "adx-trend-devami",
+      "ad": "ADX Trend Devamı",
+      "aile": "trend",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "moskowitz2012",
+        "bajgrowicz2012"
+      ],
+      "kisa": "Güçlü trendde geri çekilmeye giriş."
+    },
+    {
+      "id": "bant-disi-momentum",
+      "ad": "Bant Dışı Momentum",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "bajgrowicz2012"
+      ],
+      "kisa": "Bollinger bandı dışına kapanışı momentum olarak oku."
+    },
+    {
+      "id": "rsi-bollinger-donus",
+      "ad": "Bant İçi Dönüş",
+      "aile": "ortalamaya_donus",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "sadece_long"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "zayif",
+      "dayanak": [
+        "lehmann1990",
+        "bajgrowicz2012"
+      ],
+      "kisa": "Zayıf trendde Bollinger bandı uçlarından dönüş."
+    },
+    {
+      "id": "gun-ici-momentum",
+      "ad": "İlk Yarım Saat → Son Yarım Saat",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "olay",
+        "kaldiracli_ls"
+      ],
+      "durum": "v2",
+      "dalga": 2,
+      "kanit": "orta",
+      "dayanak": [
+        "gao2018"
+      ],
+      "kisa": "Seansın ilk yarım saatinin yönünde son yarım saatte işlem.",
+      "gerekli": [
+        "seans",
+        "gun_sonu_kapat"
+      ]
+    },
+    {
+      "id": "acilis-araligi-kirilimi",
+      "ad": "Açılış Aralığı Kırılımı",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "olay",
+        "kaldiracli_ls"
+      ],
+      "durum": "v2",
+      "dalga": 2,
+      "kanit": "zayif",
+      "dayanak": [
+        "zarattini2023"
+      ],
+      "kisa": "İlk 5 dakikanın aralığı kırılınca o yönde, gün sonunda çık.",
+      "gerekli": [
+        "seans",
+        "gun_sonu_kapat"
+      ]
+    },
+    {
+      "id": "gurultu-bandi-kirilimi",
+      "ad": "Gürültü Bandı Kırılımı",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls"
+      ],
+      "durum": "v2",
+      "dalga": 2,
+      "kanit": "zayif",
+      "dayanak": [
+        "zarattini2024"
+      ],
+      "kisa": "Açılıştan ortalama hareket bandı dışına çıkışta trend.",
+      "gerekli": [
+        "seans",
+        "gun_sonu_kapat"
+      ]
+    },
+    {
+      "id": "londra-kirilimi",
+      "ad": "Londra Açılışı Kırılımı",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "olay"
+      ],
+      "durum": "plan",
+      "dalga": 2,
+      "kanit": "uygulayici",
+      "dayanak": [],
+      "kisa": "Asya seansı aralığının Londra açılışında kırılımı (FX).",
+      "gerekli": [
+        "seans",
+        "gun_sonu_kapat"
+      ]
+    },
+    {
+      "id": "veri-surprizi-momentum",
+      "ad": "Veri Sürprizi Yönünde",
+      "aile": "olay",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "olay",
+        "makro"
+      ],
+      "durum": "v2",
+      "dalga": 2,
+      "kanit": "orta",
+      "dayanak": [
+        "andersen2003",
+        "savor2013"
+      ],
+      "kisa": "Gerçekleşen beklentiden saparsa sürprizin yönünde.",
+      "gerekli": [
+        "takvim_olayi"
+      ]
+    },
+    {
+      "id": "haber-sonrasi-sakinlesme",
+      "ad": "Haber Sonrası Sakinleşme",
+      "aile": "olay",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "olay"
+      ],
+      "durum": "plan",
+      "dalga": 2,
+      "kanit": "uygulayici",
+      "dayanak": [],
+      "kisa": "Veri anındaki aşırı hareketin spread normale dönünce kısmi geri dönüşü.",
+      "gerekli": [
+        "takvim_olayi",
+        "seans"
+      ]
+    },
+    {
+      "id": "carry-cokus-filtreli",
+      "ad": "Taşıma + Çöküş Filtresi",
+      "aile": "carry",
+      "ufuk": "swing",
+      "profiller": [
+        "makro"
+      ],
+      "durum": "v2",
+      "dalga": 3,
+      "kanit": "orta",
+      "dayanak": [
+        "lustig2011",
+        "brunnermeier2008",
+        "moreira2017"
+      ],
+      "kisa": "Pozitif swap yönünde, oynaklık sıçrayınca kapat.",
+      "gerekli": [
+        "swap",
+        "volatilite_hedefi"
+      ]
+    },
+    {
+      "id": "donchian-kanal",
+      "ad": "Kanal Kırılımı (20/55)",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "kaldiracli_ls",
+        "makro"
+      ],
+      "durum": "plan",
+      "dalga": 3,
+      "kanit": "guclu",
+      "dayanak": [
+        "moskowitz2012",
+        "hurst2017"
+      ],
+      "kisa": "N günlük en yüksek/en düşük kırılımında trend takibi.",
+      "gerekli": [
+        "en_yuksek"
+      ]
+    },
+    {
+      "id": "vol-hedefli-trend",
+      "ad": "Volatilite Hedefli Trend",
+      "aile": "trend",
+      "ufuk": "swing",
+      "profiller": [
+        "kaldiracli_ls",
+        "makro"
+      ],
+      "durum": "v1",
+      "dalga": 1,
+      "kanit": "orta",
+      "dayanak": [
+        "moreira2017",
+        "hurst2017"
+      ],
+      "kisa": "Trend sinyali, GARCH oynaklığına göre ölçeklenen lot ve oynaklık tabanlı stop."
+    },
+    {
+      "id": "coklu-zaman-trend",
+      "ad": "Çoklu Zaman Dilimi Trend",
+      "aile": "trend",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "sadece_long",
+        "sadece_short"
+      ],
+      "durum": "plan",
+      "dalga": 3,
+      "kanit": "zayif",
+      "dayanak": [
+        "moskowitz2012"
+      ],
+      "kisa": "Günlük trend yönünde saatlik giriş.",
+      "gerekli": [
+        "coklu_zaman_dilimi"
+      ]
+    },
+    {
+      "id": "pre-fomc",
+      "ad": "FOMC Öncesi Yükseliş",
+      "aile": "olay",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "olay",
+        "makro"
+      ],
+      "durum": "vaka",
+      "dalga": 1,
+      "kanit": "bozuldu",
+      "dayanak": [
+        "lucca2015",
+        "kurov2021"
+      ],
+      "kisa": "Yayımlandıktan sonra kaybolan anomali."
+    },
+    {
+      "id": "orb-maliyet-vakasi",
+      "ad": "Kırılım ve Maliyet",
+      "aile": "gun_ici_momentum",
+      "ufuk": "gun_ici",
+      "profiller": [
+        "kaldiracli_ls",
+        "olay"
+      ],
+      "durum": "vaka",
+      "dalga": 2,
+      "kanit": "zayif",
+      "dayanak": [
+        "zarattini2023",
+        "bajgrowicz2012"
+      ],
+      "kisa": "Brüt kârlı bir kuralın spread ve kaymayla sıfırlanması."
+    },
+    {
+      "id": "asiri-uyum-vakasi",
+      "ad": "En İyi Backtest Tuzağı",
+      "aile": "risk",
+      "ufuk": "swing",
+      "profiller": [
+        "sadece_long",
+        "sadece_short",
+        "kaldiracli_ls",
+        "makro",
+        "olay"
+      ],
+      "durum": "vaka",
+      "dalga": 1,
+      "kanit": "guclu",
+      "dayanak": [
+        "bailey2017",
+        "harvey2016"
+      ],
+      "kisa": "Yüz parametreyi deneyip en iyisini seçmenin bedeli."
+    },
+    {
+      "id": "carry-cokus-vakasi",
+      "ad": "Carry Çöküşü",
+      "aile": "carry",
+      "ufuk": "swing",
+      "profiller": [
+        "makro",
+        "kaldiracli_ls"
+      ],
+      "durum": "vaka",
+      "dalga": 3,
+      "kanit": "orta",
+      "dayanak": [
+        "brunnermeier2008"
+      ],
+      "kisa": "Yavaş kazanıp tek seferde kaybetmek."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "kalibre": 1,
+  "ad": "Altın Kesişim (Long)",
+  "aciklama": "SMA50 SMA200'ü yukarı kesince long, aşağı kesince çık. Çok az işlem yapan, geç giren ama büyük trendleri kaçırmayan klasik kural.",
+  "zaman_dilimi": "D1",
+  "yon": "sadece_long",
+  "gostergeler": {
+    "sma50": { "tip": "SMA", "periyot": 50 },
+    "sma200": { "tip": "SMA", "periyot": 200 },
+    "atr": { "tip": "ATR", "periyot": 20 }
+  },
+  "giris": { "long": { "hepsi": [ { "sol": "sma50", "op": "yukari_keser", "sag": "sma200" } ] } },
+  "cikis": {
+    "stop": { "tip": "atr", "gosterge": "atr", "carpan": 3 },
+    "iz_suren_stop": { "tip": "atr", "gosterge": "atr", "carpan": 4 },
+    "kosul": { "long": { "hepsi": [ { "sol": "sma50", "op": "<", "sag": "sma200" } ] } }
+  },
+  "risk": { "islem_basi_yuzde": 1, "max_acik_pozisyon": 1 }
+}

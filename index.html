@@ -6,690 +6,332 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Kalibre Markets — Algoritmik Strateji ve Teknik Analiz Laboratuvarı</title>
-
-<meta name="description" content="Türkçe finansal okuryazarlık: teknik analiz eğitimi, grafik okuma testi, yatırımcı önyargı testi ve finansal hesaplayıcılar. Ücretsiz, açık metodoloji. Yatırım tavsiyesi değildir.">
-<meta name="author" content="Kalibre Markets">
+<title>Kalibre Lab: stratejini kendi MetaTrader 5 verinle sına</title>
+<meta name="description" content="Kalibre Lab, MetaTrader 5 için bir strateji laboratuvarı. Fiyat geçmişin bilgisayarında şifrelenir, stratejin tarayıcında sınanır, son sınav MT5 Strategy Tester'da yapılır. İşlem açmaz, yatırım tavsiyesi değildir.">
 <link rel="canonical" href="https://kalibremarkets.com/">
-<meta name="keywords" content="TCMB, FRED, makro ekonomi, teknik analiz, Türkçe yatırım eğitimi, davranışsal finans, yatırımcı psikolojisi">
-<meta property="og:title" content="Kalibre Markets — Türkçe finansal verinin terminal hissi">
-<meta property="og:description" content="Ücretsiz, reklamsız, açık metodolojili veri terminali. Yatırım tavsiyesi değildir; veriyi anlamlı kılar, eğitir, kararı sana bırakır.">
+<meta property="og:title" content="Kalibre Lab: stratejini kendi MetaTrader 5 verinle sına">
+<meta property="og:description" content="Varsayımı yaz, kendi verinle sına, riski ölç. Veri senin bilgisayarında şifrelenir; anahtar yalnız sende kalır.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kalibre Markets — Türkçe finansal verinin terminal hissi">
-<meta name="twitter:description" content="Ücretsiz, reklamsız, açık metodolojili veri terminali. Yatırım tavsiyesi değildir.">
-<meta name="twitter:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalibre Markets","url":"https://kalibremarkets.com","logo":"https://kalibremarkets.com/og-default.png","description":"Türkçe yatırımcı için ücretsiz, açık metodolojili veri terminali ve eğitim platformu.","sameAs":["https://kalibremarkets.com"],"areaServed":{"@type":"Country","name":"Turkey"}}</script>
-
-
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kalibre Lab","applicationCategory":"FinanceApplication","operatingSystem":"Windows, macOS (MetaTrader 5)","url":"https://kalibremarkets.com","description":"MetaTrader 5 için strateji laboratuvarı: kullanıcının kendi fiyat verisiyle, uçtan uca şifreli."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg: #100e0c; --bg-1: #14110e; --surface: #1a1612; --surface-2: #221d18;
-  --border: #26221d; --border-2: #36302a; --text: #ebe3d3; --text-dim: #a89c83;
-  --muted: #6f6553; --accent: #ffa630; --accent-hot: #ff7a00;
-  --green: #4ade80; --red: #ef4444; --blue: #60a5fa; --violet: #a78bfa;
-  --grid: rgba(255,166,48,.025);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 15px; line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.005em;
-}
-body {
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-                    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-a { color: inherit; text-decoration: none; }
-.mono { font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
-
-.topnav {
-  display: flex; align-items: center; height: 56px;
-  padding: 0 28px; border-bottom: 1px solid var(--border);
-  background: rgba(20,17,14,.85); backdrop-filter: blur(10px);
-  position: sticky; top: 0; z-index: 100;
-}
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand-mark {
-  width: 28px; height: 28px; border: 1.5px solid var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-weight: 800; font-size: 14px; position: relative;
-}
-.brand-mark::after {
-  content: ''; position: absolute; inset: -3px;
-  border: 1px solid var(--accent); opacity: .25;
-}
-.brand-name { font-weight: 700; font-size: 15px; letter-spacing: .14em; color: var(--text); }
-.brand-name .sub { color: var(--muted); font-weight: 400; margin-left: 8px; letter-spacing: .06em; }
-.topnav-spacer { flex: 1; }
-.topnav-link {
-  font-size: 13px; color: var(--text-dim); margin-left: 22px;
-  letter-spacing: .02em; transition: color .15s;
-}
-.topnav-link:hover { color: var(--accent); }
-.topnav-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 16px; margin-left: 22px;
-  background: var(--accent); color: #1a1a1a !important;
-  font-weight: 700; font-size: 13px; letter-spacing: .04em;
-  transition: background .15s;
-}
-.topnav-cta:hover { background: var(--accent-hot); }
-
-.hero {
-  padding: 80px 28px 70px; max-width: 1100px; margin: 0 auto;
-  text-align: center;
-}
-.hero .chip-row {
-  display: inline-flex; align-items: center; gap: 18px;
-  margin-bottom: 36px; padding: 10px 18px;
-  background: var(--surface); border: 1px solid var(--border);
-  font-family: 'Geist Mono', monospace; font-size: 12.5px;
-  font-variant-numeric: tabular-nums; letter-spacing: .02em;
-  flex-wrap: wrap; justify-content: center;
-}
-.chip-row .dot {
-  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 8px var(--green);
-  margin-right: 6px; animation: pulse 2.4s infinite ease-in-out;
-}
-@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
-.chip-row .sep { color: var(--border-2); }
-.chip-row .label { color: var(--muted); }
-.chip-row .val { color: var(--text); font-weight: 500; }
-
-.hero h1 {
-  font-size: clamp(38px, 6vw, 64px); font-weight: 600;
-  line-height: 1.08; letter-spacing: -.02em; color: var(--text);
-  margin-bottom: 22px; max-width: 900px; margin-left: auto; margin-right: auto;
-}
-.hero h1 .accent { color: var(--accent); }
-.hero p.sub {
-  font-size: clamp(17px, 1.6vw, 21px); color: var(--text-dim);
-  max-width: 680px; margin: 0 auto 40px;
-  line-height: 1.55; font-weight: 400;
-}
-
-.cta-group {
-  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 28px; background: var(--accent); color: #1a1a1a !important;
-  font-weight: 700; font-size: 15px; letter-spacing: .02em;
-  transition: background .15s, transform .15s;
-  border: none;
-}
-.btn-primary:hover { background: var(--accent-hot); transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 24px; background: transparent; color: var(--text);
-  font-weight: 600; font-size: 15px; letter-spacing: .02em;
-  border: 1px solid var(--border-2); transition: border-color .15s, color .15s;
-}
-.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-.hero .small {
-  font-size: 13px; color: var(--muted); letter-spacing: .04em;
-}
-.hero .small b { color: var(--text-dim); font-weight: 600; }
-
-section { padding: 70px 28px; }
-.container { max-width: 1100px; margin: 0 auto; }
-.section-eyebrow {
-  font-size: 11px; letter-spacing: .2em; color: var(--accent);
-  font-weight: 700; text-transform: uppercase; margin-bottom: 12px;
-}
-.section-title {
-  font-size: clamp(26px, 3.4vw, 38px); font-weight: 600;
-  line-height: 1.2; letter-spacing: -.015em; color: var(--text);
-  margin-bottom: 16px;
-}
-.section-lead {
-  font-size: 17px; color: var(--text-dim); line-height: 1.65;
-  max-width: 680px; margin-bottom: 40px;
-}
-
-.what-is { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.three-col {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
-}
-.three-col .card {
-  padding: 28px 24px; background: var(--surface); border: 1px solid var(--border);
-}
-.three-col .card .icon { font-size: 28px; margin-bottom: 14px; display: block; }
-.three-col .card h3 {
-  font-size: 17px; font-weight: 600; color: var(--text);
-  margin-bottom: 10px; letter-spacing: -.005em;
-}
-.three-col .card p {
-  font-size: 14.5px; color: var(--text-dim); line-height: 1.65;
-}
-
-.diff-list {
-  display: flex; flex-direction: column; gap: 22px; margin-top: 12px;
-}
-.diff-item {
-  display: grid; grid-template-columns: 80px 1fr; gap: 22px;
-  padding: 22px 24px; background: var(--surface);
-  border-left: 2px solid var(--accent);
-}
-.diff-item .num {
-  font-family: 'Geist Mono', monospace; font-size: 36px; font-weight: 600;
-  color: var(--accent); letter-spacing: -.02em; line-height: 1;
-}
-.diff-item h3 {
-  font-size: 19px; font-weight: 600; color: var(--text);
-  margin-bottom: 8px; letter-spacing: -.005em;
-}
-.diff-item p { font-size: 15px; color: var(--text-dim); line-height: 1.65; }
-.diff-item p i { color: var(--muted); font-style: normal; }
-
-.modules { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.module-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
-}
-.module-card {
-  display: flex; flex-direction: column;
-  background: var(--surface); border: 1px solid var(--border);
-  overflow: hidden; transition: border-color .2s, transform .2s;
-}
-.module-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.module-card .img-wrap {
-  background: var(--bg); padding: 0; border-bottom: 1px solid var(--border);
-  position: relative; overflow: hidden; cursor: zoom-in;
-}
-.module-card .img-wrap img {
-  display: block; width: 100%; height: 280px; object-fit: cover; object-position: top;
-  transition: opacity .15s;
-}
-.module-card .img-wrap:hover img { opacity: .92; }
-.module-card .body { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; }
-.module-card .badge {
-  display: inline-block; font-size: 10px; letter-spacing: .14em;
-  color: var(--accent); font-weight: 700; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.module-card h3 {
-  font-size: 17px; font-weight: 600; color: var(--text);
-  margin-bottom: 8px; line-height: 1.3; letter-spacing: -.005em;
-}
-.module-card p {
-  font-size: 14px; color: var(--text-dim); line-height: 1.6;
-  margin-bottom: 16px; flex: 1;
-}
-.module-card .module-cta {
-  color: var(--accent); font-size: 13px; font-weight: 600;
-  letter-spacing: .04em;
-}
-.module-card:hover .module-cta { color: var(--accent-hot); }
-
-.transparency .flow {
-  display: flex; flex-direction: column; gap: 18px;
-  max-width: 720px; margin: 0 auto;
-}
-.flow-step {
-  display: grid; grid-template-columns: 48px 1fr; gap: 18px;
-  padding: 18px 22px; background: var(--surface);
-  border-left: 2px solid var(--border-2);
-}
-.flow-step:not(:last-child)::after {
-  content: '↓'; display: block; text-align: center; color: var(--muted);
-  font-size: 22px; margin: -8px 0 -16px 24px;
-}
-.flow-step .icon { font-size: 22px; color: var(--accent); }
-.flow-step h4 {
-  font-size: 14px; color: var(--text); font-weight: 600;
-  margin-bottom: 4px; letter-spacing: -.005em;
-}
-.flow-step p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
-.transparency-note {
-  margin-top: 26px; padding: 16px 20px; background: rgba(255,166,48,.05);
-  border-left: 2px solid var(--accent); max-width: 720px; margin-left: auto; margin-right: auto;
-  font-size: 14px; color: var(--text-dim); line-height: 1.6;
-}
-.transparency-note b { color: var(--text); }
-
-.personas { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.persona-card {
-  padding: 24px; background: var(--surface); border: 1px solid var(--border);
-  border-top: 2px solid var(--accent);
-}
-.persona-card .avatar { font-size: 32px; margin-bottom: 12px; }
-.persona-card h3 {
-  font-size: 16px; font-weight: 600; color: var(--text);
-  margin-bottom: 10px; letter-spacing: -.005em;
-}
-.persona-card .intro {
-  font-size: 13.5px; color: var(--text-dim); line-height: 1.55;
-  margin-bottom: 14px; font-style: italic;
-}
-.persona-card ol {
-  list-style: none; counter-reset: pstep; padding: 0; font-size: 13px; color: var(--text);
-}
-.persona-card ol li {
-  counter-increment: pstep; padding: 6px 0 6px 28px; position: relative;
-  border-bottom: 1px dashed var(--border); line-height: 1.5;
-}
-.persona-card ol li::before {
-  content: counter(pstep); position: absolute; left: 0; top: 6px;
-  width: 20px; height: 20px; background: var(--bg-1); border: 1px solid var(--accent);
-  color: var(--accent); font-size: 11px; font-weight: 600;
-  display: flex; align-items: center; justify-content: center;
-}
-.persona-card ol li:last-child { border-bottom: 0; }
-.persona-card ol li b { color: var(--accent); }
-
-.faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
-.faq-list details {
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 14px 20px; cursor: pointer;
-}
-.faq-list details[open] { border-color: var(--accent); }
-.faq-list summary {
-  font-size: 15px; font-weight: 600; color: var(--text);
-  list-style: none; display: flex; align-items: center; justify-content: space-between;
-  letter-spacing: -.005em;
-}
-.faq-list summary::-webkit-details-marker { display: none; }
-.faq-list summary::after {
-  content: '+'; color: var(--accent); font-size: 22px; font-weight: 400;
-  transition: transform .2s; line-height: 1;
-}
-.faq-list details[open] summary::after { content: '−'; }
-.faq-list .answer {
-  margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
-  font-size: 14.5px; color: var(--text-dim); line-height: 1.7;
-}
-
-.final-cta {
-  text-align: center; padding: 90px 28px;
-  background: linear-gradient(180deg, var(--bg-1), var(--bg));
-  border-top: 1px solid var(--border);
-}
-.final-cta h2 {
-  font-size: clamp(26px, 3.6vw, 40px); font-weight: 600;
-  line-height: 1.15; letter-spacing: -.015em; color: var(--text);
-  margin-bottom: 30px;
-}
-.final-cta .small { font-size: 14px; color: var(--muted); margin-top: 32px; }
-.final-cta .links { margin-top: 18px; font-size: 13px; color: var(--text-dim); letter-spacing: .04em; }
-.final-cta .links a { margin: 0 12px; color: var(--text-dim); }
-.final-cta .links a:hover { color: var(--accent); }
-
-footer {
-  padding: 36px 28px; border-top: 1px solid var(--border);
-  background: var(--bg-1); font-size: 13px; color: var(--muted);
-}
-footer .container { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: start; }
-footer .brand-block { color: var(--text); letter-spacing: .14em; font-weight: 600; margin-bottom: 8px; }
-footer .source-line { margin-top: 8px; color: var(--muted); }
-footer .links-block { text-align: right; }
-footer .links-block a { margin-left: 18px; color: var(--text-dim); }
-footer .links-block a:hover { color: var(--accent); }
-footer .disclaimer {
-  grid-column: span 2; margin-top: 22px; padding-top: 22px;
-  border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); line-height: 1.6;
-}
-
-#lightbox {
-  position: fixed; inset: 0; background: rgba(0,0,0,.93); backdrop-filter: blur(6px);
-  display: none; align-items: center; justify-content: center; z-index: 9999;
-  padding: 40px; cursor: zoom-out;
-}
-#lightbox img { max-width: 100%; max-height: 100%; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
-
-@media (max-width: 900px) {
-  .three-col, .module-grid, .persona-grid { grid-template-columns: 1fr; }
-  .diff-item { grid-template-columns: 50px 1fr; gap: 14px; padding: 18px 18px; }
-  .diff-item .num { font-size: 28px; }
-  footer .container { grid-template-columns: 1fr; }
-  footer .links-block { text-align: left; }
-  footer .links-block a { margin-left: 0; margin-right: 16px; }
-  .topnav-link { display: none; }
-  .topnav { padding: 0 16px; height: 52px; }
-  section { padding: 50px 18px; }
-  .hero { padding: 50px 18px 50px; }
-  .module-card .img-wrap img { height: 200px; }
-}
-@media (max-width: 600px) {
-  .hero .chip-row { gap: 10px; padding: 8px 12px; font-size: 11px; }
-  .chip-row .sep { display: none; }
-}
-
-/* UX düzeltmeleri (2026-08-16) */
-@media(max-width:520px){
-  .topnav{flex-wrap:nowrap;gap:8px}
-  .topnav .brand-name,.topnav-brand{white-space:nowrap;font-size:12px}
-  .topnav-cta{padding:8px 12px;font-size:11px;white-space:nowrap}
-  .topnav a:not(.topnav-cta):not(:first-child){display:none}
-}
-section{padding-top:8px;padding-bottom:8px}
-.module-card .body{padding:20px}
-.three-col .card{padding:24px}
-.hero h1 .accent{white-space:nowrap}
-.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.hero .pill-row{justify-content:center;margin-top:18px}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--text-dim);background:var(--bg-1);white-space:nowrap}
-.pill b{color:var(--accent);font-weight:600}
-.module-card .body p{min-height:0}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
+<style>
+  .acilis { padding: clamp(48px, 8vw, 96px) 0 clamp(64px, 9vw, 112px); }
+  .acilis .kap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 56px; align-items: start; }
+  .acilis h1 { margin-bottom: 24px; max-width: 14ch; }
+  .acilis .giris { margin-bottom: 32px; }
+  .eylem { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  @media (max-width: 960px) { .acilis .kap { grid-template-columns: 1fr; } }
+
+  /* Karar notu: sayfanın tek gösterişli öğesi. Bir hazine notu gibi: başlık, varsayım, veri, sonuç. */
+  .notu { background: #f4f6f8; color: #18222f; border-radius: 6px; padding: 26px 28px 22px; box-shadow: 0 24px 60px -30px rgba(0,0,0,.7); }
+  .notu-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid #18222f; padding-bottom: 10px; margin-bottom: 16px; }
+  .notu-bas h2 { font-size: 22px; }
+  .notu-bas span { font-size: 13px; color: #5a6878; }
+  .notu dl { display: grid; grid-template-columns: 92px 1fr; gap: 8px 16px; margin: 0 0 14px; font-size: 15px; }
+  .notu dt { color: #5a6878; }
+  .notu dd { margin: 0; }
+  .sentetik { display: inline-block; font-size: 12px; font-weight: 600; color: #8a5a00; background: #f6e7c4; border-radius: 3px; padding: 1px 7px; margin-right: 6px; }
+  .seri-dugme { margin-top: 8px; font: 500 14px var(--sans); color: #1f5f8a; background: none; border: 1px solid #b9c6d4; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  .seri-dugme:hover { border-color: #1f5f8a; }
+  .ayar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin: 4px 0 14px; }
+  .ayar label { display: block; font-size: 14px; color: #3c4a5a; }
+  .ayar output { font-family: var(--mono); color: #18222f; float: right; }
+  .ayar input { width: 100%; accent-color: #1f7a5c; margin-top: 6px; }
+  .notu svg { width: 100%; height: auto; background: #fff; border: 1px solid #d9dfe6; border-radius: 4px; }
+  .lejant { display: flex; gap: 18px; font-size: 13px; color: #5a6878; margin: 8px 0 14px; flex-wrap: wrap; }
+  .lejant i { display: inline-block; width: 16px; height: 2px; vertical-align: middle; margin-right: 6px; }
+  .notu table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .notu th, .notu td { padding: 7px 0; border-bottom: 1px solid #dfe4ea; text-align: right; }
+  .notu th:first-child, .notu td:first-child { text-align: left; color: #5a6878; font-weight: 400; }
+  .notu thead th { color: #5a6878; font-weight: 500; font-size: 13px; }
+  .notu .arti { color: #1f7a5c; } .notu .eksi { color: #b23b2e; }
+  .notu .cumle { font-family: var(--serif); font-size: 17px; line-height: 1.45; margin: 14px 0 0; }
+  .notu .dipnot { font-size: 12.5px; color: #5a6878; margin: 10px 0 0; }
+
+  .ilkeler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--cizgi-2); }
+  .ilkeler > div { padding: 28px 28px 8px 0; }
+  .ilkeler > div + div { padding-left: 28px; border-left: 1px solid var(--cizgi); }
+  .ilkeler h3 { margin-bottom: 10px; }
+  .ilkeler p { color: var(--soluk); }
+  @media (max-width: 860px) { .ilkeler { grid-template-columns: 1fr; } .ilkeler > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--cizgi); } }
+
+  .adimlar { list-style: none; padding: 0; margin: 0; counter-reset: adim; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .adimlar li { counter-increment: adim; }
+  .adimlar li::before { content: counter(adim); display: block; font: 600 44px/1 var(--serif); color: var(--yesil); margin-bottom: 14px; }
+  .adimlar h3 { margin-bottom: 8px; }
+  .adimlar p { color: var(--soluk); margin: 0; }
+  @media (max-width: 860px) { .adimlar { grid-template-columns: 1fr; } }
+
+  .araclar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; }
+  .araclar > div { padding: 22px 0; border-bottom: 1px solid var(--cizgi); }
+  .araclar h3 { font-size: 19px; margin-bottom: 6px; }
+  .araclar p { color: var(--soluk); margin: 0; font-size: 16px; }
+  @media (max-width: 860px) { .araclar { grid-template-columns: 1fr; } }
+
+  .gorur { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .gorur > div { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 24px 26px; }
+  .gorur h3 { font-size: 19px; margin-bottom: 12px; }
+  .gorur ul { margin: 0; padding-left: 1.1em; color: var(--soluk); }
+  .gorur li { margin-bottom: 6px; }
+  .gorur .evet h3 { color: var(--kehribar); }
+  .gorur .hayir h3 { color: var(--yesil); }
+  @media (max-width: 760px) { .gorur { grid-template-columns: 1fr; } }
+
+  .degil { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; }
+  .degil ul { list-style: none; padding: 0; margin: 0; }
+  .degil li { padding: 14px 0; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+  .degil li b { color: var(--metin); font-weight: 600; }
+  @media (max-width: 860px) { .degil { grid-template-columns: 1fr; } }
+
+  .son { text-align: left; }
+  .son .kap { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .son h2 { max-width: 20ch; }
+</style>
 </head>
 <body>
 
-<header class="topnav">
-  <a href="/" class="brand">
-    <div class="brand-mark">K</div>
-    <div class="brand-name">KALIBRE <span class="sub">// MARKETS</span></div>
-  </a>
-  <div class="topnav-spacer"></div>
-  <a href="/hakkinda.html" class="topnav-link">Hakkında</a>
-  <a href="#faq" class="topnav-link">SSS</a>
-  <span data-kalibre-auth style="margin-left:22px"></span>
-  </header>
-
-<section class="hero">
-
-  <h1>Piyasayı anlamak için <span class="accent">önce doğru soruyu&nbsp;sor</span>.</h1>
-  <p class="sub">Teknik analiz eğitimi, davranışsal finans testleri, hesaplayıcılar ve simülasyon. Yatırım tavsiyesi değildir.</p>
-  <div class="pill-row"><span class="pill"><b>22</b> eğitim makalesi</span><span class="pill">Hesaplayıcılar ve simülasyon</span><span class="pill">Davranışsal testler</span><span class="pill">Ücretsiz · Hesap isteğe bağlı</span></div>
-
-  <div class="cta-group">
-    <a href="/egitim/" class="btn-primary">EĞİTİM KÜTÜPHANESİ →</a>
-    <a href="/grafik-oku/" class="btn-secondary">▸ Grafik Okuma Testi</a>
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab/">Laboratuvar</a>
+      <a href="/kurulum/">Kurulum</a>
+      <a href="/guvenlik/">Güvenlik</a>
+      <a href="/egitim/">Eğitim</a>
+      <a href="/pro/">Abonelik</a>
+    </nav>
+    <a class="dugme kucuk" href="/lab/">Laboratuvarı aç</a>
   </div>
+</header>
 
-</section>
-
-<section class="what-is">
-  <div class="container">
-    <div class="section-eyebrow">▸ BU SİTE NEDİR</div>
-    <h2 class="section-title">Burada üç şey yapılır.</h2>
-
-    <div class="three-col" style="margin-top:30px">
-      <div class="card">
-        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M8 52 h48"/><rect x="27" y="20" width="10" height="32" rx="2" fill="rgba(255,166,48,.25)"/><rect x="11" y="32" width="10" height="20" rx="2" fill="rgba(255,166,48,.12)"/><rect x="43" y="26" width="10" height="26" rx="2" fill="rgba(255,166,48,.18)"/></svg></span>
-        <h3>Test et</h3>
-        <p>Hazır stratejileri gerçek geçmiş veriyle dene; sonuçların tamamı şeffaf.</p>
-        <div class="pill-row"><span class="pill">5 strateji</span><span class="pill">60+ hisse</span><span class="pill">Canlı lig</span></div>
-      </div>
-      <div class="card">
-        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><line x1="20" y1="12" x2="20" y2="44"/><rect x="14" y="20" width="12" height="14" fill="rgba(38,166,154,.3)" stroke="#26a69a"/><circle cx="42" cy="34" r="11"/><line x1="50" y1="42" x2="56" y2="48"/></svg></span>
-        <h3>Pratik yap</h3>
-        <p>Sanal parayla dene, gerçek parayla öğrenme.</p>
-        <div class="pill-row"><span class="pill">Grafik testi</span><span class="pill">Trade oyunu</span><span class="pill">Önyargı testi</span></div>
-      </div>
-      <div class="card">
-        <span class="icon" style="display:inline-flex"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="3"><path d="M6 38 h10 l6 -14 7 24 7 -32 7 22 h15" /></svg></span>
-        <h3>Hesapla</h3>
-        <p>Rakamları siz girin, araç hesaplasın.</p>
-        <div class="pill-row"><span class="pill">Carry</span><span class="pill">Kur riski</span><span class="pill">Pozisyon</span></div>
-      </div>
-    </div></div>
-  </div>
-</section>
-
-
-
-<section class="modules">
-  <div class="container">
-    <div class="section-eyebrow">▸ BİZDE NE VAR</div>
-    <h2 class="section-title">Ne yapmak istiyorsun?</h2>
-    <div class="module-grid">
-      <a href="/grafik-oku/" class="module-card">
-        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
-          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="14" x2="16" y2="42"/><rect x="12" y="20" width="8" height="12" fill="rgba(38,166,154,.25)" stroke="#26a69a"/><line x1="30" y1="20" x2="30" y2="48"/><rect x="26" y="28" width="8" height="12" fill="rgba(239,83,80,.22)" stroke="#ef5350"/><circle cx="44" cy="32" r="10"/><line x1="51" y1="39" x2="57" y2="45"/></svg>
-        </div>
-        <div class="body">
-          <span class="badge">İnteraktif</span>
-          <h3>Grafik Okuma Testi</h3>
-          <p>12 soruyla teknik analiz refleksini ölç.</p>
-          <span class="module-cta">Testi Başlat →</span>
-        </div>
-      </a>
-      <a href="/oyun/" class="module-card">
-        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
-          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,44 20,34 28,38 42,22 56,14" stroke="#5b9dff"/><circle cx="32" cy="32" r="13" fill="rgba(255,166,48,.1)"/><path d="M28 26 L40 32 L28 38 Z" fill="#ffa630" stroke="none"/></svg>
-        </div>
-        <div class="body">
-          <span class="badge">Çok Oyunculu</span>
-          <h3>Trade Oyunu</h3>
-          <p>Arkadaşınla sanal parayla, sıfır riskle trade yarışı.</p>
-          <span class="module-cta">Oyna →</span>
-        </div>
-      </a>
-      <a href="/trading/onyargi-testi/" class="module-card">
-        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
-          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="32,8 54,22 46,48 18,48 10,22" fill="rgba(255,166,48,.08)"/><polygon points="32,18 45,26 41,42 23,42 19,26" fill="rgba(255,166,48,.2)"/><circle cx="32" cy="32" r="2.5" fill="#ffa630" stroke="none"/></svg>
-        </div>
-        <div class="body">
-          <span class="badge">İnteraktif</span>
-          <h3>Yatırımcı Önyargı Testi</h3>
-          <p>12 senaryoyla hangi karar hatalarına yatkın olduğunu gör.</p>
-          <span class="module-cta">Testi Başlat (3 dk) →</span>
-        </div>
-      </a>
-      <a href="/egitim/" class="module-card">
-        <div class="img-wrap" style="background:radial-gradient(120% 120% at 50% 20%,#241d12,#120f0c);display:flex;align-items:center;justify-content:center;height:150px;cursor:default">
-          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#ffa630" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 14 C24 8 12 8 8 12 V48 C12 44 24 44 32 50 C40 44 52 44 56 48 V12 C52 8 40 8 32 14 Z" fill="rgba(255,166,48,.08)"/><line x1="32" y1="14" x2="32" y2="50"/></svg>
-        </div>
-        <div class="body">
-          <span class="badge">Eğitim</span>
-          <h3>Eğitim Kütüphanesi</h3>
-          <p>24 Türkçe makale: temel kavramlardan strateji kurmaya.</p>
-          <span class="module-cta">Kütüphaneye Gir →</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section style="padding:26px 28px">
-  <div class="container">
-    <a href="/pro/" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(90deg,rgba(255,166,48,.08),rgba(255,166,48,.02));border:1px solid rgba(255,166,48,.35);border-radius:14px;padding:18px 22px">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--accent);border:1px solid rgba(255,166,48,.4);border-radius:999px;padding:4px 12px;white-space:nowrap">PRO · YAKINDA</span>
-      <span style="flex:1;min-width:220px;color:var(--text);font-size:14.5px">Kendi backtest'ini kur, kendi strateji alarmını çal. <span style="color:var(--text-dim)">Erken kayıt indirimi bekleme listesine özel.</span></span>
-      <span style="color:var(--accent);font-weight:600;font-size:13px;white-space:nowrap">Bekleme listesine yazıl →</span>
-    </a>
-  </div>
-</section>
-
-<section class="transparency">
-  <div class="container">
-    <div class="section-eyebrow">▸ NASIL ÇALIŞIYOR</div>
-    <h2 class="section-title">Yarı-otomatik, insan gözetimli üretim.</h2>
-    <p class="section-lead">Dürüst olalım: site tam otomatik değil. Veriyi script'ler çeker ve taslakları üretir, ama yayına çıkmadan önce insan gözünden geçer. Süreç şöyle:</p>
-
-    <div class="flow">
-      <div class="flow-step">
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 7-7"/><path d="M2 12A10 10 0 0 1 12 2"/><circle cx="7" cy="17" r="2" fill="#ffa630" stroke="none"/><path d="M9 15 20 4"/></svg></div>
-        <div>
-          <h4>Veri kaynakları çekilir</h4>
-          <p>Coinbase Exchange (kripto günlük kapanış), yfinance (döviz ve emtia), TCMB EVDS (analitik bilanço, faiz, döviz), FRED (ABD makro), Dünya Bankası (uluslararası), KAP (Türk şirket finansal tablolar).</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div>
-        <div>
-          <h4>Python script'leri taslak üretir</h4>
-          <p>Matplotlib ile grafikler, LLM (Gemini/Llama/Mistral) ile yorum taslakları üretilir. Bu adım otomatiktir.</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></div>
-        <div>
-          <h4>İnsan gözetiminden geçer</h4>
-          <p>Çıktılar yayına çıkmadan önce gözden geçirilir: veri doğruluğu, yorum tutarlılığı, dil kontrolü. Hatalı veya yanıltıcı içerik elenir. Yapay zekaya körü körüne güvenmeyiz.</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
-        <div>
-          <h4>Onaylananlar yayınlanır</h4>
-          <p>Gözden geçirilen statik HTML çıktılar Vercel'e push edilir. Çoğu rapor gün içinde, hafta içi düzenli olarak güncellenir.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="transparency-note">
-      <b>Şeffaflık vaadi:</b> Tam otomasyon hedefimiz, ama henüz orada değiliz; şu an üretimin önemli kısmı elle ve gözetim altında yapılıyor. Kaynak kodu kapalı tutuyoruz, metodoloji açık: her sayfada formül, veri kaynağı, hesap parametresi belirtilir. İçerikler büyük ölçüde yapay zeka destekli üretilir, hata olabilir; kararlar size aittir.
-    </div>
-  </div>
-</section>
-
-<section class="personas">
-  <div class="container">
-    <div class="section-eyebrow">▸ ÖRNEK KULLANIM</div>
-    <h2 class="section-title">Sen hangi kullanıcısın?</h2>
-    <p class="section-lead">3 farklı yatırımcı profili için önerilen yollar:</p>
-
-    <div class="persona-grid">
-      <div class="persona-card">
-        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></div>
-        <h3>Acemi yatırımcı</h3>
-        <p class="intro">Borsa hakkında öğrenmek istiyorsun ama parayı riske atmadan başlamak istiyorsun.</p>
-        <ol>
-          <li><b>Eğitim Kütüphanesi</b>'nden başla — PE, F/K, drawdown gibi temel kavramlar</li>
-          <li><b>Önyargı Testi</b>'ni yap — kendi karar zaaflarını anla</li>
-          <li><b>Simülasyon</b>'da pratik yap — sanal sermayeyle deneyim</li>
-          <li>Eğer hala merak ediyorsan, gerçek hesaba geç (başka platformlardan)</li>
-        </ol>
-      </div>
-
-      <div class="persona-card">
-        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 14 21 6"/><polyline points="15 6 21 6 21 12"/></svg></div>
-        <h3>Aktif yatırımcı</h3>
-        <p class="intro">Zaten pozisyon alıyorsun. Daha sistemli karar için araç istiyorsun.</p>
-        <ol>
-          <li>Her sabah <b>Günlük Nabız</b> + <b>Döviz Günlük</b> + <b>TCMB Analitik Bilanço</b></li>
-          <li>Hafta sonu <b>Sektör Rotasyon</b> + <b>Haftanın Grafiği</b></li>
-          <li>Yeni pozisyon öncesi <b>İşlem Öncesi Disiplin Kontrolü</b></li>
-          <li>Backtest için <b>Strateji Laboratuvarı</b></li>
-        </ol>
-      </div>
-
-      <div class="persona-card">
-        <div class="avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffa630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 8a3 3 0 0 0 3 4h10a3 3 0 0 0 3-4l-5-8V3"/><line x1="8" y1="3" x2="16" y2="3"/></svg></div>
-        <h3>Profesyonel / araştırmacı</h3>
-        <p class="intro">Veri ve metodoloji şeffaflığı istiyorsun.</p>
-        <ol>
-          <li><b>Banka Bilanço Raporu</b> — KAP doğrulamalı çeyreklik analiz</li>
-          <li><b>TR Makro</b> + <b>ABD Makro</b> + <b>Dünya Bankası</b> raporları</li>
-          <li><b>Haftanın Grafiği</b> uzun-form analiz</li>
-          <li><a href="/talep/" style="color:var(--accent)"><b>Özel Analiz Talebi</b></a> ile spesifik konu için derinleştirme</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="container">
-    <div class="section-eyebrow">▸ SIK SORULAN SORULAR</div>
-    <h2 class="section-title">SSS.</h2>
-
-    <div class="faq-list" style="margin-top:30px">
-      <details>
-        <summary>Bu site para mı kazandırır?</summary>
-        <div class="answer">Hayır. Bu site para kazandırma garantisi vermez ve veremez. Yatırımcı eğitimine ve karar destek araçlarına odaklanır. Verdiğin yatırım kararlarının sonuçları sana aittir.</div>
-      </details>
-      <details>
-        <summary>Yatırım danışmanlığı şirketi misiniz?</summary>
-        <div class="answer">Hayır. SPK lisanslı bir kurum değiliz, lisansa tabi yatırım danışmanlığı vermeyiz. Veri sağlarız, eğitim sunarız, davranışsal araçlar geliştiririz. "Şu hisseyi al" demeyiz, dememeliyiz.</div>
-      </details>
-      <details>
-        <summary>Ücretsiz olması garip değil mi, nasıl sürdürülebilir?</summary>
-        <div class="answer">Şu anda site reklamsız ve ücretsiz. Yakında opsiyonel <a href="/pro/" style="color:var(--accent)">Kalibre Lab Pro</a> (parametreli backtest, strateji alarmı) gelir modeli olacak. Ancak mevcut tüm araçlar kalıcı olarak ücretsiz kalacak.</div>
-      </details>
-      <details>
-        <summary>Veriler ne kadar günceldir?</summary>
-        <div class="answer">Günlük raporlar genelde hafta içi sabah/gün içinde, insan gözetiminde üretilip yayınlanır (tam otomatik değil — taslakları script üretir, yayın öncesi gözden geçirilir). Veri kaynakları: Coinbase Exchange (kripto), yfinance (döviz ve emtia), TCMB EVDS (T+1 resmi), FRED (resmi), Dünya Bankası (çeyreklik), KAP (resmi finansal raporlar). Haftalık ve çeyreklik raporlar kendi ritminde yayınlanır. Her raporun kendi tarihi üstünde yazılıdır.</div>
-      </details>
-      <details>
-        <summary>Hesap açmam gerekiyor mu?</summary>
-        <div class="answer">Hayır. Tüm araçlar hesapsız çalışır; kurduğun portföyler ve test sonuçların tarayıcının yerel depolamasında (localStorage) saklanır ve hiçbir yere gönderilmez. İstersen ücretsiz bir hesap açabilirsin: o zaman kayıtların telefonunda ve bilgisayarında aynı anda görünür. Hesap açmak hiçbir aracın kilidini açmaz, sadece kayıtlarını taşır.</div>
-      </details>
-      <details>
-        <summary>Mobil çalışıyor mu?</summary>
-        <div class="answer">Evet. Tüm sayfalar mobil-uyumlu. Ancak terminal arayüzü yoğun veri içerdiğinden masaüstü deneyimi daha rahattır.</div>
-      </details>
-      <details>
-        <summary>Kim kullanıyor, kaç kişi?</summary>
-        <div class="answer">Site yeni başladı, henüz büyük bir kullanıcı kitlesi yok. Şu an erken kullanıcı + finans öğrencisi + amatör yatırımcı küçük bir grup. Tanıdık çevren varsa paylaşabilirsin.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="final-cta">
-  <h2>Lab'a gir, stratejini test et.</h2>
-  <div class="cta-group">
-    <a href="/egitim/" class="btn-primary">EĞİTİM KÜTÜPHANESİ →</a>
-  </div>
-  <p class="small">Veya 3 dakikada kendini tanı:</p>
-  <div class="cta-group" style="margin-top:14px">
-    <a href="/trading/onyargi-testi/" class="btn-secondary">YATIRIMCI ÖNYARGI TESTİ</a>
-  </div>
-  <div class="links">
-    <a href="/iletisim/">İletişim</a>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
+<main>
+<section class="acilis">
+  <div class="kap">
     <div>
-      <div class="brand-block">KALIBRE · MARKETS</div>
-      <div>v2026.10</div>
+      <h1>Stratejine para bağlamadan önce onu kendi verinle sına.</h1>
+      <p class="giris">Kalibre Lab, MetaTrader 5 için bir strateji laboratuvarıdır. Fiyat geçmişin kendi bilgisayarında şifrelenir, stratejin tarayıcında sınanır. Varsayımı yazarsın, veriyle sınarsın, riski ölçersin. Karar yine senindir.</p>
+      <div class="eylem">
+        <a class="dugme" href="/lab/">Laboratuvarı aç</a>
+        <a class="dugme ikincil" href="/kurulum/">Kurulumu oku</a>
+      </div>
+      <p class="not">MetaTrader 5 eklentisi. İşlem açmaz, para çekmez, sinyal satmaz. Yatırım tavsiyesi değildir.</p>
     </div>
-    <div class="links-block">
-      <a href="/hakkinda.html">Hakkında</a>
+
+    <article class="notu" id="karar-notu" aria-label="Örnek karar notu">
+      <div class="notu-bas">
+        <h2>Karar notu</h2>
+        <span>Bu sayfada hesaplanır</span>
+      </div>
+      <dl>
+        <dt>Varsayım</dt>
+        <dd>Hızlı ortalama yavaşın üstündeyken al, altındayken sat.</dd>
+        <dt>Veri</dt>
+        <dd><span class="sentetik">SENTETİK</span>3.000 saatlik örnek seri, no. <span data-s="serino" class="sayi">1</span>. Gerçek bir piyasayı göstermez.<br><button type="button" class="seri-dugme" data-eylem="yeni-seri">Başka bir örnek seri üret</button></dd>
+      </dl>
+      <div class="ayar">
+        <label>Hızlı ortalama <output data-deger="hizli">20</output>
+          <input type="range" name="hizli" min="5" max="60" step="1" value="20"></label>
+        <label>Yavaş ortalama <output data-deger="yavas">100</output>
+          <input type="range" name="yavas" min="30" max="250" step="5" value="100"></label>
+      </div>
+      <svg viewBox="0 0 560 180" role="img" aria-label="Maliyetsiz ve maliyetli sermaye eğrileri">
+        <line data-cizgi="taban" x1="0" x2="560" y1="90" y2="90" stroke="#c4ccd6" stroke-dasharray="3 4"/>
+        <path data-cizgi="maliyetsiz" fill="none" stroke="#7d8a99" stroke-width="1.6"/>
+        <path data-cizgi="maliyetli" fill="none" stroke="#1f7a5c" stroke-width="2"/>
+      </svg>
+      <div class="lejant">
+        <span><i style="background:#7d8a99"></i>Maliyetsiz</span>
+        <span><i style="background:#1f7a5c"></i>İşlem başına 1 pip maliyetle</span>
+        <span><i style="background:#c4ccd6"></i>Başlangıç sermayesi</span>
+      </div>
+      <table>
+        <thead><tr><th></th><th>Maliyetsiz</th><th>1 pip maliyetle</th></tr></thead>
+        <tbody>
+          <tr><td>Toplam getiri</td><td data-s="getiri0" class="sayi"></td><td data-s="getiri1" class="sayi"></td></tr>
+          <tr><td>En büyük düşüş</td><td data-s="dusus0" class="sayi"></td><td data-s="dusus1" class="sayi"></td></tr>
+          <tr><td>İşlem sayısı</td><td data-s="islem" class="sayi" colspan="2"></td></tr>
+        </tbody>
+      </table>
+      <p class="cumle" data-s="cumle"></p>
+      <p class="dipnot">Kaldıraçsız, tam pozisyon. Laboratuvardaki hızlı prova da maliyetsizdir; son sınav MT5 Strategy Tester'da kendi aracı kurumunun spread ve komisyonuyla yapılır.</p>
+    </article>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Getiriden önce risk sorulur.</h2>
+      <p>Bir bankanın hazine masasında pozisyon, kazandırabileceği paraya göre değil, en kötü gününde ne kaybettirebileceğine göre değerlendirilir. Bir ekonomist de tek bir dönemin sonucuna değil, o sonucun hangi koşullarda tekrar edeceğine bakar. Kalibre Lab bu iki soruyu her testin başına koyar.</p>
+    </div>
+    <div class="ilkeler">
+      <div>
+        <h3>Önce en kötü dönem</h3>
+        <p>En büyük düşüş getiriyle aynı satırda durur. Bir stratejiyi, en kötü döneminde taşıyabileceğin kadar büyüklükle düşünürsün.</p>
+      </div>
+      <div>
+        <h3>Risk bütçesiyle büyüklük</h3>
+        <p>Pozisyon büyüklüğü bir histen değil, bakiyenin yüzde kaçını riske attığından, stop mesafesinden ve piyasanın o anki oynaklığından hesaplanır.</p>
+      </div>
+      <div>
+        <h3>Rejim değişir</h3>
+        <p>Sakin dönemde işleyen kural, oynaklık sıçradığında çalışmayabilir. Oynaklık modelleri, stratejinin hangi koşulda test edildiğini görünür kılar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Kurulum üç adımdır.</h2>
+      <p>Verin MetaTrader 5'ten çıkar, laboratuvara şifreli gelir. Kurulumun ayrıntısı ekran ekran <a href="/kurulum/">kurulum sayfasında</a>.</p>
+    </div>
+    <ol class="adimlar">
+      <li>
+        <h3>Eklentiyi kur</h3>
+        <p>Kalibre Köprü eklentisini MetaTrader 5'e ekle. Eklenti işlem açmaz; yalnız fiyat geçmişini ve açık pozisyonlarını okur.</p>
+      </li>
+      <li>
+        <h3>Kodu yapıştır, izni ver</h3>
+        <p>Laboratuvarın ürettiği eşleştirme kodunu eklentiye yapıştır. MT5 ayarlarında Kalibre adresine bir kez izin ver.</p>
+      </li>
+      <li>
+        <h3>Stratejini sına</h3>
+        <p>Kendi aracı kurumunun mumları laboratuvara düşer. Kuralını kur, hızlı provayı çalıştır, beğendiğini MT5'te test et.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Laboratuvarda ne var?</h2>
+      <p>Strateji bir kural dosyasıdır. Laboratuvarda kurulur, tarayıcıda prova edilir, MetaTrader 5'te aynı dosyayla çalıştırılır. Arada yeniden yazılan bir şey yoktur.</p>
+    </div>
+    <div class="araclar">
+      <div>
+        <h3>Kural dosyası</h3>
+        <p>SMA, EMA, RSI, ATR, ADX, Bollinger, MACD ve oynaklık göstergeleriyle giriş, çıkış, stop ve hedef kuralları. Kurduğun kural düz Türkçe cümle olarak da yazılır.</p>
+      </div>
+      <div>
+        <h3>Hızlı prova</h3>
+        <p>Kuralı saniyeler içinde kendi mumlarında dener. Tarayıcıda çalışır, maliyetleri içermez; fikri elemek için vardır, onaylamak için değil.</p>
+      </div>
+      <div>
+        <h3>Oynaklık laboratuvarı</h3>
+        <p>EWMA, Yang-Zhang ve GARCH modelleri. Oynaklığın ne zaman kümelendiğini ve stratejinin hangi rejimde test edildiğini gösterir.</p>
+      </div>
+      <div>
+        <h3>MetaTrader 5'te son sınav</h3>
+        <p>Aynı kural dosyası MT5 Strategy Tester'da, aracı kurumunun spread, komisyon ve işlem saatleri ayarlarıyla sınanır.</p>
+      </div>
+      <div>
+        <h3>Canlı bağlantı</h3>
+        <p>Eklenti açıkken yeni kapanan her mum ve açık pozisyonların laboratuvara şifreli olarak gelir. Bağlantının ne kadar taze olduğu her an görünür.</p>
+      </div>
+      <div>
+        <h3>Kendi dosyan</h3>
+        <p>Eklentiyi kurmadan da çalışabilirsin: MT5'ten dışa aktardığın bir CSV ya da JSON dosyasını sürükleyip bırakman yeter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Verin senin. Anahtar da.</h2>
+      <p>Fiyatların bilgisayarından şifrelenmiş olarak çıkar ve yalnız senin tarayıcında açılır. Anahtar eşleştirme kodudur; bizde bir kopyası yoktur. Ayrıntılar <a href="/guvenlik/">güvenlik sayfasında</a>.</p>
+    </div>
+    <div class="gorur">
+      <div class="evet">
+        <h3>Sunucumuzun gördüğü</h3>
+        <ul>
+          <li>Okunamayan, şifreli paketler</li>
+          <li>Paketlerin boyutu ve geliş zamanı</li>
+          <li>Rastgele görünen bir kanal numarası</li>
+        </ul>
+      </div>
+      <div class="hayir">
+        <h3>Sunucumuzun göremediği</h3>
+        <ul>
+          <li>Hangi sembolü izlediğin ve fiyatlar</li>
+          <li>Pozisyonların, bakiyen, kâr ve zararın</li>
+          <li>Hesap numaran ve şifren</li>
+          <li>Eşleştirme kodun, yani anahtar</li>
+        </ul>
+      </div>
+    </div>
+    <p class="not" style="margin-top:20px">Paketler en geç iki saat sonra kendiliğinden silinir.</p>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap degil">
+    <h2>Kalibre Lab ne değildir?</h2>
+    <ul>
+      <li><b>Yatırım tavsiyesi değildir.</b> Hangi kuralı kuracağına, hangi sembolde ne zaman işlem yapacağına sen karar verirsin.</li>
+      <li><b>İşlem açmaz.</b> Köprü eklentisi yalnız okur. Emir veren her şey senin MetaTrader 5'inde, senin onayınla çalışır.</li>
+      <li><b>Piyasa verisi satmaz.</b> Fiyatlar senin aracı kurumundan, senin hesabından gelir. Biz hiçbir fiyat yayınlamayız.</li>
+      <li><b>Getiri vaat etmez.</b> Geçmişte işleyen bir kural gelecekte işlemeyebilir. Laboratuvar bunu görmeni kolaylaştırmak için vardır.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="bolum son">
+  <div class="kap">
+    <h2>Abonelikler yakında açılıyor.</h2>
+    <div class="eylem" style="margin:0">
+      <a class="dugme" href="/pro/">Bekleme listesine yazıl</a>
+      <a class="dugme ikincil" href="/lab/">Örnek veriyle dene</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>MetaTrader 5 için strateji laboratuvarı.</p>
+    </div>
+    <div>
+      <h4>Ürün</h4>
+      <a href="/lab/">Laboratuvar</a>
+      <a href="/kurulum/">Kurulum</a>
+      <a href="/guvenlik/">Güvenlik</a>
+      <a href="/pro/">Abonelik</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim/">Eğitim</a>
+      <a href="/metodoloji/">Metodoloji</a>
+      <a href="/grafik-oku/">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi/">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/hakkinda">Hakkında</a>
       <a href="/iletisim/">İletişim</a>
-      <a href="/kullanim-sartlari/">Kullanım Şartları</a>
+      <a href="/kullanim-sartlari/">Kullanım şartları</a>
       <a href="/gizlilik/">Gizlilik</a>
     </div>
-    <p class="disclaimer">© 2026 Kalibre Markets · <b>Yatırım tavsiyesi değildir.</b> Site içerikleri büyük ölçüde yapay zeka destekli üretilir; hata olabilir. Piyasa verisi yayınlamayız; kararlar size aittir.</p>
+    <p class="yasal">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
   </div>
 </footer>
 
-<div id="lightbox" onclick="hideLightbox()">
-  <img id="lightbox-img" src="" alt="">
-</div>
-
-<script>
-function showLightbox(src) {
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = src; lb.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function hideLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') hideLightbox(); });
-
-</script>
-
-<script src="/static/kalibre-config.js"></script>
-<script src="/static/kalibre-auth.js"></script>
-<script src="/static/asistan.js" defer></script>
-<script src="/static/terminal-shell.js" defer></script>
+<script src="/static/karar-notu.js" defer></script>
 </body>
 </html>
