@@ -27,7 +27,7 @@
 - [ ] **Eklentileri yükle**: lisans sırrıyla derlenmiş `.ex5`'ler, Upstash bilgileri ortamdayken
       `node yerel/eklenti-yukle.mjs kopru <yol> 1.00` ve `... motor <yol> 0.20`.
 - [ ] Kurulum sayfasına ekran görüntüleri (hesap numarası ve ad görünmeyecek şekilde).
-- [ ] OG görseli (`og-default.png`) yeni tasarıma göre.
+- [x] OG görseli yeni tasarımda (`yerel/og-uret.py`).
 - [ ] Test kartıyla gerçek Stripe test modunda uçtan uca deneme (önizleme adresinde).
 
 ## Bilinen notlar
