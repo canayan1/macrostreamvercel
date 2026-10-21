@@ -14,7 +14,7 @@ process.env.KOPRU_BELLEK = '1';
 const KOK = fileURLToPath(new URL('..', import.meta.url));
 const port = Number(process.argv[2] ?? 8788);
 const TUR = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
-const UCLAR = ['kopru', 'lisans', 'odeme/baslat', 'odeme/webhook', 'odeme/oturum', 'odeme/portal'];
+const UCLAR = ['kopru', 'lisans', 'indir', 'odeme/baslat', 'odeme/webhook', 'odeme/oturum', 'odeme/portal'];
 
 async function dosyaBul(yol) {
   const p = normalize(join(KOK, decodeURIComponent(yol)));
@@ -23,6 +23,19 @@ async function dosyaBul(yol) {
     try { if ((await stat(aday)).isFile()) return aday; } catch {}
   }
   return null;
+}
+
+// Yerel denemede eklenti indirme: YEREL_EKLENTILER klasöründeki .ex5 dosyaları bellek deposuna yüklenir.
+if (process.env.YEREL_EKLENTILER) {
+  const { depoSec } = await import('../api/_lib/depo.ts');
+  const { EKLENTILER } = await import('../api/_lib/lisans.ts');
+  for (const [ad, dosya] of Object.entries(EKLENTILER)) {
+    try {
+      const b = await readFile(join(process.env.YEREL_EKLENTILER, dosya));
+      await depoSec().yaz(`eklenti:${ad}`, JSON.stringify({ dosya, surum: 'yerel', sha256: '', b64: b.toString('base64') }));
+      console.log(`eklenti yüklendi: ${dosya} (${b.length} bayt)`);
+    } catch { console.log(`eklenti yok: ${dosya}`); }
+  }
 }
 
 http.createServer(async (req, res) => {

@@ -22,10 +22,10 @@
 
 ## Geliştirme tarafında kalanlar
 
-- [ ] **Eklenti indirme**: `/hesap` (Lisansım) sayfasında, geçerli lisansı olana KalibreKopru.ex5 ve
-      KalibreMotor.ex5 indirme bağlantısı. `.ex5` dosyaları lisans sırrıyla derlendiği için
-      herkese açık klasöre konmaz; özel bir depodan (ör. Vercel Blob, private) lisans
-      denetimiyle verilmeli. `/kurulum` bu sayfayı adres olarak gösteriyor.
+- [x] **Eklenti indirme**: `/hesap` sayfasında geçerli lisansa `/api/indir` ile (POST, anahtar URL'de
+      görünmez). Dosyalar depoda `eklenti:kopru|motor` anahtarında.
+- [ ] **Eklentileri yükle**: lisans sırrıyla derlenmiş `.ex5`'ler, Upstash bilgileri ortamdayken
+      `node yerel/eklenti-yukle.mjs kopru <yol> 1.00` ve `... motor <yol> 0.20`.
 - [ ] Kurulum sayfasına ekran görüntüleri (hesap numarası ve ad görünmeyecek şekilde).
 - [ ] OG görseli (`og-default.png`) yeni tasarıma göre.
 - [ ] Test kartıyla gerçek Stripe test modunda uçtan uca deneme (önizleme adresinde).

@@ -177,3 +177,24 @@ export async function lisansIsle(d: Depo, sir: string, anahtar: string, hesapMet
   // Süresi dolmuş abonelik de 200 ve geçmiş bir bitişle döner; EA "süresi doldu" der.
   return { durum: 200, govde: belirtecImzala(sir, urun, hesap, k.bitis) };
 }
+
+// ------------------------------------------------------------------ eklenti indirme
+// .ex5 dosyaları lisans sırrıyla derlendiği için herkese açık klasöre konmaz; depoda
+// `eklenti:<ad>` anahtarında { dosya, surum, sha256, b64 } olarak durur (yerel/eklenti-yukle.mjs).
+export const EKLENTILER: Record<string, string> = { kopru: 'KalibreKopru.ex5', motor: 'KalibreMotor.ex5' };
+
+export type IndirSonuc = { durum: number; hata?: string; dosya?: string; surum?: string; sha256?: string; veri?: Buffer };
+
+export async function eklentiIndir(d: Depo, anahtarMetni: string, ad: string, simdi = Date.now()): Promise<IndirSonuc> {
+  if (!(ad in EKLENTILER)) return { durum: 400, hata: 'Bilinmeyen eklenti.' };
+  const a = anahtarMetni.trim().toUpperCase();
+  if (!ANAHTAR_RE.test(a)) return { durum: 400, hata: 'Lisans anahtarı hatalı.' };
+  if ((await d.say(`indir-sinir:${a}:${Math.floor(simdi / 60000)}`, 120)) > 10) return { durum: 429, hata: 'Çok sık deneme. Bir dakika sonra yeniden dene.' };
+  const k = await oku(d, a);
+  if (!k) return { durum: 404, hata: 'Lisans anahtarı bulunamadı.' };
+  if (k.bitis * 1000 <= simdi) return { durum: 403, hata: 'Aboneliğin sona ermiş. Eklentileri indirmek için aboneliğini yenile.' };
+  const v = await d.oku(`eklenti:${ad}`);
+  if (!v) return { durum: 503, hata: 'Eklenti dosyası henüz yüklenmedi. Biraz sonra yeniden dene ya da bize yaz.' };
+  const e = JSON.parse(v);
+  return { durum: 200, dosya: EKLENTILER[ad], surum: e.surum, sha256: e.sha256, veri: Buffer.from(e.b64, 'base64') };
+}

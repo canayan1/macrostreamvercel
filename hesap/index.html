@@ -26,7 +26,7 @@
 .lisans input { flex: 1 1 300px; min-height: 46px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 500 17px var(--mono); letter-spacing: .04em; }
 .eylem-satir { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 #lisans-durum b.iyi { color: var(--yesil); } #lisans-durum b.kotu { color: var(--kehribar); }
-#portal-durum:empty, #gir-durum:empty { display: none; }
+#portal-durum:empty, #gir-durum:empty, #indir-durum:empty { display: none; }
 </style>
 </head>
 <body>
@@ -65,6 +65,16 @@
     <button type="button" class="dugme ikincil" id="unut">Bu tarayıcıdan kaldır</button>
   </div>
   <p class="not" id="portal-durum" role="status"></p>
+</div>
+
+<div class="lisans" id="indirmeler" hidden>
+  <h2 style="font-size:22px;margin:0 0 6px">Eklentileri indir</h2>
+  <p class="not">İkisi de aynı lisans anahtarıyla çalışır. Kurulum adımları <a href="/kurulum/">kurulum sayfasında</a>.</p>
+  <div class="eylem-satir">
+    <button type="button" class="dugme" data-eklenti="kopru">Kalibre Köprü</button>
+    <button type="button" class="dugme" data-eklenti="motor">Kalibre Motor</button>
+  </div>
+  <p class="not" id="indir-durum" role="status"></p>
 </div>
 
 <div id="anahtar-yok">
@@ -137,7 +147,7 @@
   var DURUM = { active: 'etkin', trialing: 'deneme süresinde', past_due: 'ödeme bekleniyor', canceled: 'iptal edildi', unpaid: 'ödenmedi' };
 
   function goster(anahtar, bilgi) {
-    $('lisans').hidden = false; $('anahtar-yok').hidden = true;
+    $('lisans').hidden = false; $('indirmeler').hidden = false; $('anahtar-yok').hidden = true;
     $('anahtar-alan').value = anahtar;
     if (bilgi) {
       var iyi = bilgi.durum === 'active' || bilgi.durum === 'trialing';
@@ -182,7 +192,26 @@
   });
   $('unut').addEventListener('click', function () {
     if (!confirm('Anahtar yalnız bu tarayıcıdan kaldırılır; aboneliğin ve MT5 eklentin etkilenmez. Devam edilsin mi?')) return;
-    yaz(null); $('lisans').hidden = true; $('anahtar-yok').hidden = false;
+    yaz(null); $('lisans').hidden = true; $('indirmeler').hidden = true; $('anahtar-yok').hidden = false;
+  });
+  document.querySelectorAll('[data-eklenti]').forEach(function (b) {
+    b.addEventListener('click', async function () {
+      var durum = $('indir-durum'); durum.textContent = ''; b.disabled = true;
+      try {
+        var r = await fetch('/api/indir', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ anahtar: $('anahtar-alan').value, eklenti: b.dataset.eklenti }) });
+        if (!r.ok) { var j = await r.json().catch(function () { return {}; }); durum.textContent = j.hata || 'İndirilemedi.'; }
+        else {
+          var ad = (r.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/);
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(await r.blob());
+          a.download = ad ? ad[1] : 'Kalibre.ex5';
+          a.click();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+          durum.textContent = a.download + ' indirildi' + (r.headers.get('X-Kalibre-Surum') ? ' (sürüm ' + r.headers.get('X-Kalibre-Surum') + ')' : '') + '. Dosyayı MT5 veri klasöründe MQL5\Experts altına kopyala.';
+        }
+      } catch (e) { durum.textContent = 'Bağlantı kurulamadı.'; }
+      b.disabled = false;
+    });
   });
   $('portal').addEventListener('click', async function () {
     var b = this; b.disabled = true; $('portal-durum').textContent = '';

@@ -145,3 +145,20 @@ test('MT5 lisans ucu: hesap başına dakikada 20 denemeden sonra 429', async () 
   for (let i = 0; i < 21; i++) son = await lisansIsle(d, SIR, 'KLM-00000-00000-00000-00000', '555', 'motor', simdi);
   assert.equal(son.durum, 429);
 });
+
+test('eklenti indirme: geçerli abonelik indirir; süresi dolmuş, bilinmeyen ve yüklenmemiş reddedilir', async () => {
+  const { eklentiIndir } = await import('../api/_lib/lisans.ts');
+  const d = bellekDepo();
+  const k = await aboneligiKaydet(d, sub(), 'a@b.c', null);
+  const simdi = T0 * 1000;
+  assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', simdi)).durum, 503, 'henüz yüklenmedi');
+  const ex5 = Buffer.from([0x45, 0x58, 0x35, 0x00, 0xff]);
+  await d.yaz('eklenti:kopru', JSON.stringify({ dosya: 'KalibreKopru.ex5', surum: '1.00', sha256: 'x', b64: ex5.toString('base64') }));
+  const r = await eklentiIndir(d, k.anahtar.toLowerCase(), 'kopru', simdi);
+  assert.equal(r.durum, 200);
+  assert.deepEqual(r.veri, ex5);
+  assert.equal(r.dosya, 'KalibreKopru.ex5');
+  assert.equal((await eklentiIndir(d, k.anahtar, 'baska', simdi)).durum, 400);
+  assert.equal((await eklentiIndir(d, 'KLM-00000-00000-00000-00000', 'kopru', simdi)).durum, 404);
+  assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', (T0 + 31 * 86400) * 1000)).durum, 403, 'süresi dolmuş');
+});
