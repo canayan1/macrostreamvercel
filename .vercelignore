@@ -13,3 +13,10 @@ node_modules
 # Yerel geliştirme ve testler canlıya gitmez
 yerel
 test
+
+# İç notlar ve planlar yayına gitmez
+docs
+*.md
+*.txt
+!robots.txt
+!ads.txt
