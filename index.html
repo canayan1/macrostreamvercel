@@ -58,6 +58,13 @@
   .notu .cumle { font-family: var(--serif); font-size: 17px; line-height: 1.45; margin: 14px 0 0; }
   .notu .dipnot { font-size: 12.5px; color: #5a6878; margin: 10px 0 0; }
 
+  .kimin { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .kimin a { display: block; text-decoration: none; background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 26px 28px; }
+  .kimin a:hover { border-color: var(--cizgi-2); }
+  .kimin h3 { margin-bottom: 10px; }
+  .kimin p { color: var(--soluk); margin-bottom: 14px; }
+  .kimin span { color: var(--yesil); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) { .kimin { grid-template-columns: 1fr; } }
   .ilkeler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--cizgi-2); }
   .ilkeler > div { padding: 28px 28px 8px 0; }
   .ilkeler > div + div { padding-left: 28px; border-left: 1px solid var(--cizgi); }
@@ -105,6 +112,7 @@
     <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
     <nav aria-label="Ana menü">
       <a href="/lab/">Laboratuvar</a>
+      <a href="/prop/">Prop kalkanı</a>
       <a href="/kurulum/">Kurulum</a>
       <a href="/guvenlik/">Güvenlik</a>
       <a href="/egitim/">Eğitim</a>
@@ -165,6 +173,23 @@
       <p class="cumle" data-s="cumle"></p>
       <p class="dipnot">Kaldıraçsız, tam pozisyon. Laboratuvardaki hızlı prova da maliyetsizdir; son sınav MT5 Strategy Tester'da kendi aracı kurumunun spread ve komisyonuyla yapılır.</p>
     </article>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="kimin">
+      <a href="/prop/">
+        <h3>Prop firması sınavındaysan</h3>
+        <p>Hesapların çoğu tek bir kötü günden kaybedilir. Kalkan günlük ve toplam kayıp sınırlarını her tikte izler, lotu sınıra göre küçültür ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları hazır.</p>
+        <span>Prop kalkanını incele</span>
+      </a>
+      <a href="/forex/">
+        <h3>Kendi hesabınla işlem yapıyorsan</h3>
+        <p>Kaybın en güçlü nedeni kaldıraç ve pozisyon büyüklüğü. Risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzelt, sonra stratejiyi sına.</p>
+        <span>Bireysel forex için</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -310,6 +335,8 @@
     <div>
       <h4>Ürün</h4>
       <a href="/lab/">Laboratuvar</a>
+      <a href="/prop/">Prop kalkanı</a>
+      <a href="/forex/">Bireysel forex</a>
       <a href="/kurulum/">Kurulum</a>
       <a href="/guvenlik/">Güvenlik</a>
       <a href="/pro/">Abonelik</a>
