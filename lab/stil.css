@@ -139,3 +139,6 @@ canvas{width:100%;display:block;background:var(--bg-1);border:1px solid var(--bo
 
 /* Logo site ana sayfasına döner. */
 a.logo { text-decoration: none; color: inherit; }
+
+/* Eğitim örneği yüklendiğinde: öneri olmadığını ve riskin kullanıcıda olduğunu söyler. */
+.ornek-uyari{margin:12px 20px 0;padding:10px 14px;border:1px solid var(--border-2);border-left:3px solid #d9a441;border-radius:6px;background:var(--surface);color:var(--text);font-size:13.5px;line-height:1.5}

@@ -320,6 +320,8 @@ const DIPNOT = {
   mt5: 'Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Makas, komisyon ve kayma ' +
     'hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
 };
+// Her kaynakta aynı uyarı: sonuç bir simülasyondur, öneri değildir.
+for (const k of Object.keys(DIPNOT)) DIPNOT[k] += ' Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.';
 
 function provaBos(mesaj) {
   $('#istatistik').innerHTML = `<div style="grid-column:1/-1"><span>${mesaj}</span></div>`;
@@ -331,6 +333,7 @@ function provaBos(mesaj) {
 function provaCalistir() {
   const kaynak = $('#prova-kaynak').value;
   const veri = kaynak === 'mt5' ? mt5Veri : kaynak === 'dosya' ? provaVeri : null;
+  if (hatalar.length && hatalar.every(h => h.yol.startsWith('risk'))) return provaBos('Provayı görmek için Risk bölümünde işlem başına riski kendin belirle.');
   if (hatalar.length) return provaBos('Prova için önce sorunları giderin.');
   if (kaynak === 'dosya' && !veri) {
     $('#rozet').textContent = 'DOSYA BEKLENİYOR';
@@ -664,19 +667,36 @@ $('#durum').addEventListener('click', e => {
   if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus?.(); }
 });
 
+// Eğitim örnekleri bir öneri değil, başlangıç noktasıdır. Örnek yüklenince kullanıcı onu kendi kopyası
+// olarak düzenler ve risk bölümünü kendisi doldurur; doldurmadan Motor dosyası indirilmez. Örnek
+// dosyalar sonradan değişse de kullanıcının indirdiği kural dosyası değişmez (bağlantı tutulmaz).
+const RISK_KULLANICININ = ['islem_basi_yuzde', 'gunluk_max_kayip_yuzde', 'max_acik_pozisyon'];
+let ornektenAd = null;
+
+function ornekUyarisi() {
+  const el = $('#ornek-uyari');
+  el.hidden = !ornektenAd;
+  if (ornektenAd) el.textContent = `"${ornektenAd}" bir eğitim örneğidir, yatırım önerisi değildir. Bu senin kopyan: ` +
+    'kuralları kendi amacına göre değiştir ve risk bölümünü kendin doldur. Risk bölümü dolmadan Motor dosyası indirilmez.';
+}
+
 $('#sablon').addEventListener('change', async e => {
   const v = e.target.value;
   e.target.value = '';
   if (!v) return;
-  if (!confirm('Mevcut taslak şablonla değiştirilecek. Devam edilsin mi?')) return;
-  if (v === 'bos') s = BOS();
+  if (!confirm('Mevcut taslak değiştirilecek. Devam edilsin mi?')) return;
+  if (v === 'bos') { s = BOS(); ornektenAd = null; }
   else {
     try {
       const yanit = await fetch(`../ornekler/${v}.json`);
       s = await yanit.json();
-    } catch { alert('Şablon yüklenemedi.'); return; }
+    } catch { alert('Örnek yüklenemedi.'); return; }
+    ornektenAd = s.ad;
+    s.ad = `${s.ad} (benim kopyam)`;
+    s.risk ??= {};
+    for (const k of RISK_KULLANICININ) delete s.risk[k];
   }
-  formCiz(); panelCiz();
+  ornekUyarisi(); formCiz(); panelCiz();
 });
 
 $('#ice-aktar').addEventListener('change', async e => {
@@ -688,11 +708,17 @@ $('#ice-aktar').addEventListener('change', async e => {
     if (typeof v !== 'object' || v === null || Array.isArray(v)) throw new Error();
     s = v;
     s.gostergeler ??= {};
+    ornektenAd = null; ornekUyarisi();
     formCiz(); panelCiz();
   } catch { alert('Dosya geçerli bir JSON değil.'); }
 });
 
 $('#indir').addEventListener('click', () => {
+  if (hatalar.some(h => h.yol.startsWith('risk'))) {
+    alert('Risk bölümünü kendin doldurmalısın: işlem başına bakiyenin yüzde kaçını riske attığını belirlemeden Motor dosyası indirilmez.');
+    document.querySelector('[data-yol="risk.islem_basi_yuzde"]')?.focus();
+    return;
+  }
   if (hatalar.length && !confirm(`${hatalar.length} sorun var; Motor bu dosyayı reddeder. Yine de indirilsin mi?`)) return;
   const dosyaAdi = (s.ad || 'strateji').toLocaleLowerCase('tr').replace(/[çğıöşü]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' }[c]))
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'strateji';
