@@ -2,11 +2,13 @@
 // POST /api/odeme/baslat  { sartlar: true }  → { url }
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { dilUygula } from '../_lib/dil.ts';
 import { kokAdres, stripeIstemci } from '../_lib/stripe.ts';
 
 export const config = { maxDuration: 10 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const dil = dilUygula(req, res);
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return res.status(405).json({ hata: 'yalnız POST' });
   const stripe = stripeIstemci();
@@ -22,11 +24,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const s = await stripe('checkout/sessions', {
       mode: 'subscription',
       line_items: [{ price: fiyat, quantity: 1 }],
-      success_url: `${kok}/hesap/?oturum={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${kok}/pro/?iptal=1`,
+      success_url: `${kok}${dil === 'en' ? '/en/license/' : '/hesap/'}?oturum={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${kok}${dil === 'en' ? '/en/pricing/' : '/pro/'}?iptal=1`,
       allow_promotion_codes: 'true',
       billing_address_collection: 'auto',
-      locale: 'tr',
+      locale: dil === 'en' ? 'auto' : 'tr',
       // Şartların hangi sürümünün onaylandığı ödeme kaydında da dursun.
       metadata: { sartlar_onay: '2026-10-21' },
       subscription_data: { metadata: { sartlar_onay: '2026-10-21' } },

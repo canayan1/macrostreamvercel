@@ -3,6 +3,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/en/lab",
+      "destination": "/lab/?dil=en",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/lab/:path*",
+      "destination": "/lab/:path*?dil=en",
+      "statusCode": 302
+    },
+    {
       "source": "/kurumsal/egitim/:path*",
       "destination": "/egitim",
       "statusCode": 301

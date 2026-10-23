@@ -77,15 +77,23 @@
     var d = document.createElement('div');
     d.id = 'km-cerez';
     d.setAttribute('role', 'region');
-    d.setAttribute('aria-label', 'Çerez tercihi');
-    d.innerHTML =
-      '<p>Ziyaret istatistikleri için Google Analytics çerezlerini yalnızca izin verirseniz ' +
-      'kullanırız. İzin verirseniz kullanım verileriniz Google\'ın yurt dışındaki sunucularına ' +
-      'aktarılır. Ayrıntılar <a href="/gizlilik/">Gizlilik Politikası</a>\'nda.</p>' +
-      '<div class="km-btns">' +
-      '<button type="button" class="km-red">Reddet</button>' +
-      '<button type="button" class="km-kabul">Kabul et</button>' +
-      '</div>';
+    var en = document.documentElement.lang === 'en';
+    d.setAttribute('aria-label', en ? 'Cookie preference' : 'Çerez tercihi');
+    d.innerHTML = en
+      ? '<p>We use Google Analytics cookies for visit statistics only if you allow them. If you do, ' +
+        'your usage data is transferred to Google\'s servers outside Turkey. Details in the ' +
+        '<a href="/en/privacy/">Privacy Policy</a>.</p>' +
+        '<div class="km-btns">' +
+        '<button type="button" class="km-red">Decline</button>' +
+        '<button type="button" class="km-kabul">Accept</button>' +
+        '</div>'
+      : '<p>Ziyaret istatistikleri için Google Analytics çerezlerini yalnızca izin verirseniz ' +
+        'kullanırız. İzin verirseniz kullanım verileriniz Google\'ın yurt dışındaki sunucularına ' +
+        'aktarılır. Ayrıntılar <a href="/gizlilik/">Gizlilik Politikası</a>\'nda.</p>' +
+        '<div class="km-btns">' +
+        '<button type="button" class="km-red">Reddet</button>' +
+        '<button type="button" class="km-kabul">Kabul et</button>' +
+        '</div>';
     document.body.appendChild(d);
     d.querySelector('.km-kabul').onclick = function () { yaz('kabul'); d.remove(); gaYukle(); };
     d.querySelector('.km-red').onclick = function () { yaz('red'); d.remove(); gaCerezleriniSil(); };

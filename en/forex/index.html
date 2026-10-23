@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Retail forex: don't blow up your account</title>
+<meta name="description" content="In leveraged trading, the strongest driver of losses is position size. Kalibre Lab fixes risk first with a risk budget, volatility-scaled lots and a daily loss limit.">
+<link rel="canonical" href="https://kalibremarkets.com/en/forex/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/forex/">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/forex/">
+<meta property="og:title" content="Retail forex: don't blow up your account">
+<meta property="og:description" content="In leveraged trading, the strongest driver of losses is position size. Kalibre Lab fixes risk first with a risk budget, volatility-scaled lots and a daily loss limit.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<style>
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 8px; }
+.hesap { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.hesap .alanlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px 18px; margin-bottom: 14px; }
+.hesap label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+.hesap input, .hesap select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--mono); }
+.hesap select { font-family: var(--sans); }
+.hesap .tablo th { width: 55%; }
+.durum { margin: 4px 0 0; font-weight: 600; }
+.durum.iyi { color: var(--yesil); } .durum.uyari { color: var(--kehribar); } .durum.kotu { color: var(--kirmizi); }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/en/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Main menu">
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/egitim/">Education (Turkish)</a>
+      <a href="/en/pricing/">Pricing</a>
+    </nav>
+    <a class="dil" href="/forex/" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme kucuk" href="/en/lab/">Open the lab</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Don't blow up your account.</h1>
+<p class="giris">Most retail leveraged trading accounts lose money. The strongest driver of those losses is leverage and position size; strategy comes second. Kalibre Lab fixes those two first.</p>
+<div class="eylem-satir"><a class="dugme" href="/en/lab/">Open the lab</a><a class="dugme ikincil" href="/en/setup/">Read the setup guide</a></div>
+
+<h2 id="why">Why risk first?</h2>
+<ul>
+  <li><b>Loss rates are high.</b> According to the European regulator ESMA's 2018 review, 74-89% of retail CFD accounts lost money. In Turkey, the Capital Markets Board said in 2015 that about 87-88% of forex investors lost money, and cut maximum leverage to 1:10 in 2017.</li>
+  <li><b>Leverage magnifies losses.</b> An academic study of the 2010 US leverage cap (Heimer and Simsek, Journal of Financial Economics, 2019) found that the cap reduced high-leverage traders' losses by about 40%.</li>
+  <li><b>Volatility changes, so should your lot size.</b> When volatility rises, the same lot means more risk. Scaling positions to volatility has been shown not to raise returns meaningfully in currencies, but to reduce extreme losses (Harvey et al., 2018). That is why our promise is not "win more" but "blow up less".</li>
+</ul>
+
+<h2 id="tools">In Kalibre Lab</h2>
+<ul>
+  <li><b>Risk budget:</b> you decide what percentage of your balance each trade risks; the lot is calculated from the stop distance.</li>
+  <li><b>Volatility scaling:</b> when volatility rises above normal, risk shrinks on its own (EWMA, Yang-Zhang, GARCH).</li>
+  <li><b>Daily loss limit and news filter:</b> to stop on a bad day and to stay out around high-impact releases.</li>
+  <li><b>Your own data:</b> you test your rule on your broker's prices; the final test is in MT5 Strategy Tester, with your own cost settings.</li>
+</ul>
+
+<h2 id="broker">Your broker</h2>
+<p>Kalibre Lab is not a broker. It does not open your account or route your orders; it works on your own account with any broker that offers MetaTrader 5. Use a broker authorised by the regulator in your country.</p>
+
+<div class="kutu">Kalibre Lab is a software tool; it does not provide investment advice and does not promise returns. Leveraged trading can lose you all of the money you deposit.</div>
+
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#why">Why risk first?</a><a href="#tools">In Kalibre Lab</a><a href="#broker">Your broker</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>A strategy lab for MetaTrader 5.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/forex/">Retail forex</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/en/pricing/">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/en/methodology/">Methodology</a>
+      <a href="/egitim/">Education (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/en/about/">About</a>
+      <a href="/iletisim/">Contact</a>
+      <a href="/en/terms/">Terms of use</a>
+      <a href="/en/privacy/">Privacy</a>
+    </div>
+    <p class="yasal">Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+  </div>
+</footer>
+
+</body>
+</html>

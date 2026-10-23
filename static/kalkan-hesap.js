@@ -13,8 +13,19 @@
     ftmoi: { ad: 'FTMO Instant', gunluk: 3, azami: 10, tur: 'iz' },
     the5ers: { ad: 'The5ers High Stakes', gunluk: 5, azami: 10, tur: 'sabit' },
   };
-  var para = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  var yuzde = new Intl.NumberFormat('tr-TR', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var EN = document.documentElement.lang === 'en';
+  var M = EN ? {
+    gunluk: ' (daily limit)', azami: ' (total limit)', yok: 'no room for a new trade',
+    kilit: 'Locked: positions are closed, no new trades until the day resets.',
+    dur: 'Stop: you are close to the floor, no new trades.', acik: 'Open: new trades allowed.'
+  } : {
+    gunluk: ' (günlük sınır)', azami: ' (azami sınır)', yok: 'yeni işlem için yer yok',
+    kilit: 'Kilit: pozisyonlar kapatılır, gün sıfırlanana kadar yeni işlem yok.',
+    dur: 'Dur: tabana yakınsın, yeni işlem açılmaz.', acik: 'Açık: yeni işleme izin var.'
+  };
+  var yerel = EN ? 'en-US' : 'tr-TR';
+  var para = new Intl.NumberFormat(yerel, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var yuzde = new Intl.NumberFormat(yerel, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 });
   var $ = function (s) { return kok.querySelector(s); };
   var sayi = function (ad) { var v = parseFloat(String($('[name=' + ad + ']').value).replace(',', '.')); return isFinite(v) ? v : NaN; };
 
@@ -32,16 +43,16 @@
     var oda = varlik - taban, tampon = bas * pay / 100;
     var riskSiniri = oda - 2 * tampon - acik;
     var durum, sinif;
-    if (oda <= tampon) { durum = 'Kilit: pozisyonlar kapatılır, gün sıfırlanana kadar yeni işlem yok.'; sinif = 'kotu'; }
-    else if (oda <= 2 * tampon) { durum = 'Dur: tabana yakınsın, yeni işlem açılmaz.'; sinif = 'uyari'; }
-    else { durum = 'Açık: yeni işleme izin var.'; sinif = 'iyi'; }
+    if (oda <= tampon) { durum = M.kilit; sinif = 'kotu'; }
+    else if (oda <= 2 * tampon) { durum = M.dur; sinif = 'uyari'; }
+    else { durum = M.acik; sinif = 'iyi'; }
 
     $('[data-sonuc]').hidden = false;
     $('[data-s=gunluk]').textContent = para.format(gunlukTaban);
     $('[data-s=azami]').textContent = para.format(azamiTaban);
-    $('[data-s=taban]').textContent = para.format(taban) + (gunlukTaban >= azamiTaban ? ' (günlük sınır)' : ' (azami sınır)');
+    $('[data-s=taban]').textContent = para.format(taban) + (gunlukTaban >= azamiTaban ? M.gunluk : M.azami);
     $('[data-s=oda]').textContent = para.format(oda) + ' (' + yuzde.format(oda / bas) + ')';
-    $('[data-s=risk]').textContent = riskSiniri > 0 ? para.format(riskSiniri) : 'yeni işlem için yer yok';
+    $('[data-s=risk]').textContent = riskSiniri > 0 ? para.format(riskSiniri) : M.yok;
     var d = $('[data-s=durum]');
     d.textContent = durum; d.className = 'durum ' + sinif;
   }

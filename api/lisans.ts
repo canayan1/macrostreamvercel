@@ -3,12 +3,14 @@
 // 200: "v1|urun|hesap|bitis|imza" (düz metin)   4xx: kullanıcıya gösterilecek kısa Türkçe mesaj
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { dilUygula } from './_lib/dil.ts';
 import { depoSec } from './_lib/depo.ts';
 import { lisansIsle } from './_lib/lisans.ts';
 
 export const config = { maxDuration: 10 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const dil = dilUygula(req, res);
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   if (req.method !== 'GET') return res.status(405).send('Yalnız GET.');

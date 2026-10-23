@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kalibre Lab: test your strategy on your own MetaTrader 5 data</title>
+<meta name="description" content="Kalibre Lab is a strategy lab for MetaTrader 5. Your price history is encrypted on your computer, your strategy is tested in your browser, and the final test runs in MT5 Strategy Tester. Not investment advice.">
+<link rel="canonical" href="https://kalibremarkets.com/en/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/">
+<meta property="og:title" content="Kalibre Lab: test your strategy on your own MetaTrader 5 data">
+<meta property="og:description" content="Write the assumption, test it on your own data, measure the risk. Your data is encrypted on your computer; only you hold the key.">
+<meta property="og:url" content="https://kalibremarkets.com/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<style>
+  .acilis { padding: clamp(48px, 8vw, 96px) 0 clamp(64px, 9vw, 112px); }
+  .acilis .kap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 56px; align-items: start; }
+  .acilis h1 { margin-bottom: 24px; max-width: 14ch; }
+  .acilis .giris { margin-bottom: 32px; }
+  .eylem { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  @media (max-width: 960px) { .acilis .kap { grid-template-columns: 1fr; } }
+
+  /* Karar notu: sayfanın tek gösterişli öğesi. Bir hazine notu gibi: başlık, varsayım, veri, sonuç. */
+  .notu { background: #f4f6f8; color: #18222f; border-radius: 6px; padding: 26px 28px 22px; box-shadow: 0 24px 60px -30px rgba(0,0,0,.7); }
+  .notu-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid #18222f; padding-bottom: 10px; margin-bottom: 16px; }
+  .notu-bas h2 { font-size: 22px; }
+  .notu-bas span { font-size: 13px; color: #5a6878; }
+  .notu dl { display: grid; grid-template-columns: 92px 1fr; gap: 8px 16px; margin: 0 0 14px; font-size: 15px; }
+  .notu dt { color: #5a6878; }
+  .notu dd { margin: 0; }
+  .sentetik { display: inline-block; font-size: 12px; font-weight: 600; color: #8a5a00; background: #f6e7c4; border-radius: 3px; padding: 1px 7px; margin-right: 6px; }
+  .seri-dugme { margin-top: 8px; font: 500 14px var(--sans); color: #1f5f8a; background: none; border: 1px solid #b9c6d4; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  .seri-dugme:hover { border-color: #1f5f8a; }
+  .ayar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin: 4px 0 14px; }
+  .ayar label { display: block; font-size: 14px; color: #3c4a5a; }
+  .ayar output { font-family: var(--mono); color: #18222f; float: right; }
+  .ayar input { width: 100%; accent-color: #1f7a5c; margin-top: 6px; }
+  .notu svg { width: 100%; height: auto; background: #fff; border: 1px solid #d9dfe6; border-radius: 4px; }
+  .lejant { display: flex; gap: 18px; font-size: 13px; color: #5a6878; margin: 8px 0 14px; flex-wrap: wrap; }
+  .lejant i { display: inline-block; width: 16px; height: 2px; vertical-align: middle; margin-right: 6px; }
+  .notu table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .notu th, .notu td { padding: 7px 0; border-bottom: 1px solid #dfe4ea; text-align: right; }
+  .notu th:first-child, .notu td:first-child { text-align: left; color: #5a6878; font-weight: 400; }
+  .notu thead th { color: #5a6878; font-weight: 500; font-size: 13px; }
+  .notu .arti { color: #1f7a5c; } .notu .eksi { color: #b23b2e; }
+  .notu .cumle { font-family: var(--serif); font-size: 17px; line-height: 1.45; margin: 14px 0 0; }
+  .notu .dipnot { font-size: 12.5px; color: #5a6878; margin: 10px 0 0; }
+
+  .kimin { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .kimin a { display: block; text-decoration: none; background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 26px 28px; }
+  .kimin a:hover { border-color: var(--cizgi-2); }
+  .kimin h3 { margin-bottom: 10px; }
+  .kimin p { color: var(--soluk); margin-bottom: 14px; }
+  .kimin span { color: var(--yesil); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) { .kimin { grid-template-columns: 1fr; } }
+  .ilkeler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--cizgi-2); }
+  .ilkeler > div { padding: 28px 28px 8px 0; }
+  .ilkeler > div + div { padding-left: 28px; border-left: 1px solid var(--cizgi); }
+  .ilkeler h3 { margin-bottom: 10px; }
+  .ilkeler p { color: var(--soluk); }
+  @media (max-width: 860px) { .ilkeler { grid-template-columns: 1fr; } .ilkeler > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--cizgi); } }
+
+  .adimlar { list-style: none; padding: 0; margin: 0; counter-reset: adim; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .adimlar li { counter-increment: adim; }
+  .adimlar li::before { content: counter(adim); display: block; font: 600 44px/1 var(--serif); color: var(--yesil); margin-bottom: 14px; }
+  .adimlar h3 { margin-bottom: 8px; }
+  .adimlar p { color: var(--soluk); margin: 0; }
+  @media (max-width: 860px) { .adimlar { grid-template-columns: 1fr; } }
+
+  .araclar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; }
+  .araclar > div { padding: 22px 0; border-bottom: 1px solid var(--cizgi); }
+  .araclar h3 { font-size: 19px; margin-bottom: 6px; }
+  .araclar p { color: var(--soluk); margin: 0; font-size: 16px; }
+  @media (max-width: 860px) { .araclar { grid-template-columns: 1fr; } }
+
+  .gorur { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .gorur > div { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 24px 26px; }
+  .gorur h3 { font-size: 19px; margin-bottom: 12px; }
+  .gorur ul { margin: 0; padding-left: 1.1em; color: var(--soluk); }
+  .gorur li { margin-bottom: 6px; }
+  .gorur .evet h3 { color: var(--kehribar); }
+  .gorur .hayir h3 { color: var(--yesil); }
+  @media (max-width: 760px) { .gorur { grid-template-columns: 1fr; } }
+
+  .degil { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; }
+  .degil ul { list-style: none; padding: 0; margin: 0; }
+  .degil li { padding: 14px 0; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+  .degil li b { color: var(--metin); font-weight: 600; }
+  @media (max-width: 860px) { .degil { grid-template-columns: 1fr; } }
+
+  .son { text-align: left; }
+  .son .kap { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .son h2 { max-width: 20ch; }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/en/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Main menu">
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/egitim/">Education (Turkish)</a>
+      <a href="/en/pricing/">Pricing</a>
+    </nav>
+    <a class="dil" href="/" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme kucuk" href="/en/lab/">Open the lab</a>
+  </div>
+</header>
+
+<main>
+<section class="acilis">
+  <div class="kap">
+    <div>
+      <h1>Test your strategy on your own data before you put money behind it.</h1>
+      <p class="giris">Kalibre Lab is a strategy lab for MetaTrader 5. Your price history is encrypted on your own computer and your strategy is tested in your browser. You write the assumption, test it on data, measure the risk. The decision stays yours.</p>
+      <div class="eylem">
+        <a class="dugme" href="/en/lab/">Open the lab</a>
+        <a class="dugme ikincil" href="/en/setup/">Read the setup guide</a>
+      </div>
+      <p class="not">For MetaTrader 5. No signals, no custody of funds. Not investment advice.</p>
+    </div>
+
+    <article class="notu" id="karar-notu" aria-label="Sample decision memo">
+      <div class="notu-bas">
+        <h2>Decision memo</h2>
+        <span>Calculated on this page</span>
+      </div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Buy while the fast average is above the slow one, sell while it is below.</dd>
+        <dt>Data</dt>
+        <dd><span class="sentetik">SYNTHETIC</span>3,000 hourly sample candles, series no. <span data-s="serino" class="sayi">1</span>. Not a real market.<br><button type="button" class="seri-dugme" data-eylem="yeni-seri">Generate another sample series</button></dd>
+      </dl>
+      <div class="ayar">
+        <label>Fast average <output data-deger="hizli">20</output>
+          <input type="range" name="hizli" min="5" max="60" step="1" value="20"></label>
+        <label>Slow average <output data-deger="yavas">100</output>
+          <input type="range" name="yavas" min="30" max="250" step="5" value="100"></label>
+      </div>
+      <svg viewBox="0 0 560 180" role="img" aria-label="Equity curves before and after costs">
+        <line data-cizgi="taban" x1="0" x2="560" y1="90" y2="90" stroke="#c4ccd6" stroke-dasharray="3 4"/>
+        <path data-cizgi="maliyetsiz" fill="none" stroke="#7d8a99" stroke-width="1.6"/>
+        <path data-cizgi="maliyetli" fill="none" stroke="#1f7a5c" stroke-width="2"/>
+      </svg>
+      <div class="lejant">
+        <span><i style="background:#7d8a99"></i>Before costs</span>
+        <span><i style="background:#1f7a5c"></i>With 1 pip cost per trade</span>
+        <span><i style="background:#c4ccd6"></i>Starting capital</span>
+      </div>
+      <table>
+        <thead><tr><th></th><th>Before costs</th><th>With 1 pip cost</th></tr></thead>
+        <tbody>
+          <tr><td>Total return</td><td data-s="getiri0" class="sayi"></td><td data-s="getiri1" class="sayi"></td></tr>
+          <tr><td>Largest drawdown</td><td data-s="dusus0" class="sayi"></td><td data-s="dusus1" class="sayi"></td></tr>
+          <tr><td>Number of trades</td><td data-s="islem" class="sayi" colspan="2"></td></tr>
+        </tbody>
+      </table>
+      <p class="cumle" data-s="cumle"></p>
+      <p class="dipnot">Unleveraged, full position. The lab's quick test is also cost-free; the final test is in MT5 Strategy Tester with your own broker's spread and commission.</p>
+    </article>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="kimin">
+      <a href="/en/prop/">
+        <h3>If you are taking a prop firm challenge</h3>
+        <p>Most accounts are lost to one bad day. The shield watches daily and total loss limits on every tick, sizes lots to the limit and stops near the floor. FTMO and The5ers presets are ready.</p>
+        <span>See the prop shield</span>
+      </a>
+      <a href="/en/forex/">
+        <h3>If you trade your own account</h3>
+        <p>The strongest driver of losses is leverage and position size. Fix risk first with a risk budget, volatility-scaled lots and a daily loss limit, then test the strategy.</p>
+        <span>For retail forex</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Risk is asked about before return.</h2>
+      <p>On a bank's treasury desk, a position is judged not by what it could earn but by what it could lose on its worst day. An economist, likewise, looks less at one period's result and more at whether the conditions behind it will repeat. Kalibre Lab puts those two questions at the start of every test.</p>
+    </div>
+    <div class="ilkeler">
+      <div>
+        <h3>Worst period first</h3>
+        <p>The largest drawdown sits on the same line as the return. You size a strategy by what you could carry through its worst stretch.</p>
+      </div>
+      <div>
+        <h3>Size from a risk budget</h3>
+        <p>Position size comes not from a feeling but from the share of balance you risk, the stop distance and how volatile the market is right now.</p>
+      </div>
+      <div>
+        <h3>Regimes change</h3>
+        <p>A rule that works in a calm market may fail when volatility jumps. Volatility models show which conditions a strategy was tested in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Setup takes three steps.</h2>
+      <p>Your data leaves MetaTrader 5 and reaches the lab encrypted. The details, screen by screen, are on the <a href="/en/setup/">setup page</a>.</p>
+    </div>
+    <ol class="adimlar">
+      <li>
+        <h3>Install the add-on</h3>
+        <p>Add the Kalibre Bridge add-on to MetaTrader 5. It places no trades; it only reads price history and your open positions.</p>
+      </li>
+      <li>
+        <h3>Paste the code, allow the address</h3>
+        <p>Paste the pairing code the lab creates into the add-on. In MT5's options, allow the Kalibre address once.</p>
+      </li>
+      <li>
+        <h3>Test your strategy</h3>
+        <p>Your own broker's candles arrive in the lab. Build your rule, run the quick test, then test the one you like in MT5.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>What is in the lab?</h2>
+      <p>A strategy is a rule file. It is built in the lab, rehearsed in the browser and run in MetaTrader 5 with the same file. Nothing is rewritten in between.</p>
+    </div>
+    <div class="araclar">
+      <div>
+        <h3>Rule file</h3>
+        <p>Entry, exit, stop and target rules with SMA, EMA, RSI, ATR, ADX, Bollinger, MACD and volatility indicators. The rule you build is also written out as a plain sentence.</p>
+      </div>
+      <div>
+        <h3>Quick test</h3>
+        <p>Tries the rule on your own candles in seconds. It runs in the browser and leaves out costs; it is for ruling ideas out, not for confirming them.</p>
+      </div>
+      <div>
+        <h3>Volatility lab</h3>
+        <p>EWMA, Yang-Zhang and GARCH models. Shows when volatility clusters and which regime a strategy was tested in.</p>
+      </div>
+      <div>
+        <h3>The final test in MetaTrader 5</h3>
+        <p>The same rule file is tested in MT5 Strategy Tester with your broker's spread, commission and trading hours settings.</p>
+      </div>
+      <div>
+        <h3>Live bridge</h3>
+        <p>While the add-on runs, each newly closed candle and your open positions reach the lab encrypted. You can always see how fresh the connection is.</p>
+      </div>
+      <div>
+        <h3>Your own file</h3>
+        <p>You can also work without the add-on: just drag and drop a CSV or JSON file exported from MT5.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas">
+      <h2>Your data. Your key.</h2>
+      <p>Your prices leave your computer encrypted and are opened only in your browser. The key is the pairing code; we have no copy. Details are on the <a href="/en/security/">security page</a>.</p>
+    </div>
+    <div class="gorur">
+      <div class="evet">
+        <h3>What our server sees</h3>
+        <ul>
+          <li>Unreadable, encrypted packets</li>
+          <li>Packet size and arrival time</li>
+          <li>A random-looking channel number</li>
+        </ul>
+      </div>
+      <div class="hayir">
+        <h3>What our server cannot see</h3>
+        <ul>
+          <li>Which symbols you follow, and the prices</li>
+          <li>Your positions, balance, profit and loss</li>
+          <li>Your account number and password</li>
+          <li>Your pairing code, the key itself</li>
+        </ul>
+      </div>
+    </div>
+    <p class="not" style="margin-top:20px">Packets are deleted on their own after two hours at most.</p>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap degil">
+    <h2>What Kalibre Lab is not</h2>
+    <ul>
+      <li><b>Not investment advice.</b> You decide which rule to build and when to trade which symbol.</li>
+      <li><b>It does not decide for you.</b> The bridge add-on only reads. Kalibre Motor trades only with the rule file you built, on your account, when you start it.</li>
+      <li><b>It does not sell market data.</b> Prices come from your broker, through your account. We publish no prices.</li>
+      <li><b>It does not promise returns.</b> A rule that worked in the past may not work in the future. The lab exists to make that easier to see.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="bolum son">
+  <div class="kap">
+    <h2>$19 a month. Cancel any time.</h2>
+    <div class="eylem" style="margin:0">
+      <a class="dugme" href="/en/pricing/">See pricing</a>
+      <a class="dugme ikincil" href="/en/lab/">Try it on sample data</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>A strategy lab for MetaTrader 5.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/forex/">Retail forex</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/en/pricing/">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/en/methodology/">Methodology</a>
+      <a href="/egitim/">Education (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/en/about/">About</a>
+      <a href="/iletisim/">Contact</a>
+      <a href="/en/terms/">Terms of use</a>
+      <a href="/en/privacy/">Privacy</a>
+    </div>
+    <p class="yasal">Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+  </div>
+</footer>
+
+<script src="/static/karar-notu.js" defer></script>
+</body>
+</html>

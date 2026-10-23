@@ -62,9 +62,10 @@
     return { getiri: deger - 1, dusus: dusus, islem: islem, egri: egri };
   }
 
-  var yuzde = new Intl.NumberFormat('tr-TR', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1, signDisplay: 'exceptZero' });
-  var yuzdeSade = new Intl.NumberFormat('tr-TR', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  var tam = new Intl.NumberFormat('tr-TR');
+  var EN = document.documentElement.lang === 'en', YEREL = EN ? 'en-US' : 'tr-TR';
+  var yuzde = new Intl.NumberFormat(YEREL, { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1, signDisplay: 'exceptZero' });
+  var yuzdeSade = new Intl.NumberFormat(YEREL, { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var tam = new Intl.NumberFormat(YEREL);
 
   var el = function (s) { return kok.querySelector(s); };
   var hizliEl = el('[name=hizli]'), yavasEl = el('[name=yavas]');
@@ -103,11 +104,19 @@
     el('[data-s=getiri1]').className = 'sayi ' + (b.getiri < 0 ? 'eksi' : 'arti');
     el('[data-s=getiri0]').className = 'sayi ' + (a.getiri < 0 ? 'eksi' : 'arti');
 
-    var c;
-    if (a.getiri > 0 && b.getiri <= 0) c = 'Maliyetsiz kazandıran kural, işlem başına 1 pip maliyetle kaybettiriyor.';
-    else if (a.getiri > 0) c = 'İşlem başına 1 pip maliyet, getirinin ' + yuzdeSade.format((a.getiri - b.getiri) / a.getiri) + ' kadarını götürüyor.';
-    else c = 'Bu ayarla kural maliyetten önce de kazandırmıyor.';
-    el('[data-s=cumle]').textContent = c + ' Tek bir seride görülen sonuç, kuralın işe yaradığını kanıtlamaz; aynı kuralı başka bir seride dene.';
+    var c, pay = yuzdeSade.format(a.getiri > 0 ? (a.getiri - b.getiri) / a.getiri : 0);
+    if (EN) {
+      if (a.getiri > 0 && b.getiri <= 0) c = 'The rule that wins before costs loses with a 1 pip cost per trade.';
+      else if (a.getiri > 0) c = 'A 1 pip cost per trade takes ' + pay + ' of the return.';
+      else c = 'With these settings the rule does not win even before costs.';
+      c += ' A result on one series does not prove the rule works; try the same rule on another series.';
+    } else {
+      if (a.getiri > 0 && b.getiri <= 0) c = 'Maliyetsiz kazandıran kural, işlem başına 1 pip maliyetle kaybettiriyor.';
+      else if (a.getiri > 0) c = 'İşlem başına 1 pip maliyet, getirinin ' + pay + ' kadarını götürüyor.';
+      else c = 'Bu ayarla kural maliyetten önce de kazandırmıyor.';
+      c += ' Tek bir seride görülen sonuç, kuralın işe yaradığını kanıtlamaz; aynı kuralı başka bir seride dene.';
+    }
+    el('[data-s=cumle]').textContent = c;
     el('[data-s=serino]').textContent = tam.format(seriNo);
   }
 

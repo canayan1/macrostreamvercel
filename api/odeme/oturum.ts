@@ -2,6 +2,7 @@
 // GET /api/odeme/oturum?oturum=cs_...  → { anahtar, durum, bitis, hesaplar, hesapSiniri, eposta }
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { dilUygula } from '../_lib/dil.ts';
 import { depoSec } from '../_lib/depo.ts';
 import { stripeIstemci } from '../_lib/stripe.ts';
 import { kayitGorunumu, oturumCoz } from '../_lib/lisans.ts';
@@ -9,6 +10,7 @@ import { kayitGorunumu, oturumCoz } from '../_lib/lisans.ts';
 export const config = { maxDuration: 10 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const dil = dilUygula(req, res);
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'GET') return res.status(405).json({ hata: 'yalnız GET' });
   const oturum = String(req.query.oturum ?? '');

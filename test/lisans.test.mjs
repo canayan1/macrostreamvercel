@@ -162,3 +162,17 @@ test('eklenti indirme: geçerli abonelik indirir; süresi dolmuş, bilinmeyen ve
   assert.equal((await eklentiIndir(d, 'KLM-00000-00000-00000-00000', 'kopru', simdi)).durum, 404);
   assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', (T0 + 31 * 86400) * 1000)).durum, 403, 'süresi dolmuş');
 });
+
+test('İngilizce mesajlar: uçların ve lisans ucunun her Türkçe mesajının çevirisi var', async () => {
+  const { cevir, EN } = await import('../api/_lib/dil.ts');
+  const { readFileSync } = await import('node:fs');
+  const kaynak = ['api/_lib/lisans.ts', 'api/lisans.ts', 'api/indir.ts', 'api/odeme/baslat.ts', 'api/odeme/oturum.ts', 'api/odeme/portal.ts']
+    .map(p => readFileSync(new URL('../' + p, import.meta.url), 'utf8')).join('\n');
+  const mesajlar = [...kaynak.matchAll(/(?:hata|govde): '([^']+)'/g)].map(m => m[1]).concat(
+    [...kaynak.matchAll(/\.send\('([^']+)'\)/g)].map(m => m[1]));
+  const eksik = mesajlar.filter(m => cevir(m, 'en') === m);
+  assert.deepEqual(eksik, [], 'çevirisi eksik mesajlar');
+  assert.match(cevir('Bu anahtar en çok 2 MT5 hesabında kullanılabilir. Değiştirmek için bize yazın.', 'en'), /at most 2 MT5 accounts/);
+  assert.equal(cevir('Lisans anahtarı bulunamadı.', 'tr'), 'Lisans anahtarı bulunamadı.');
+  assert.ok(Object.keys(EN).length > 15);
+});

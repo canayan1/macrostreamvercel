@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Security: your data, your key</title>
+<meta name="description" content="How the Kalibre Lab MetaTrader 5 bridge encrypts your data, what the server can and cannot see, and where the protection ends.">
+<link rel="canonical" href="https://kalibremarkets.com/en/security/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/guvenlik/">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/security/">
+<meta property="og:title" content="Security: your data, your key">
+<meta property="og:description" content="How the Kalibre Lab MetaTrader 5 bridge encrypts your data, what the server can and cannot see, and where the protection ends.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/en/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Main menu">
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/" aria-current="page">Security</a>
+      <a href="/egitim/">Education (Turkish)</a>
+      <a href="/en/pricing/">Pricing</a>
+    </nav>
+    <a class="dil" href="/guvenlik/" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme kucuk" href="/en/lab/">Open the lab</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Security</h1>
+<p class="giris">Your price history and positions are encrypted on your own computer and opened only in your own browser. The server in between, meaning us, cannot read the content. This page explains how that is achieved and where it ends.</p>
+
+<h2 id="summary">In short</h2>
+<ul>
+  <li>The key is the pairing code your browser creates in the lab. We have no copy of it.</li>
+  <li>The add-on encrypts and seals every packet before sending it. A packet whose seal does not match is not opened.</li>
+  <li>The server only stores encrypted packets briefly and deletes them after two hours at most.</li>
+  <li>The bridge add-on places no trades and does not read your account number or password.</li>
+</ul>
+
+<h2 id="code">The pairing code</h2>
+<p>The code is a 32-byte secret created with your browser's secure random number generator and starts with <code>KLB1</code>. It lives in two places: this browser's local storage and the add-on's settings in MT5. It is never sent to the server.</p>
+<p>Three separate keys are derived from the code (with HMAC-SHA256): a <b>channel number</b> used to find packets, an <b>encryption key</b> that encrypts the content and a <b>seal key</b> that signs each packet. The server only sees the channel number; neither the code nor the other keys can be worked out from it.</p>
+
+<h2 id="encryption">Encryption and seal</h2>
+<ul>
+  <li>Content is encrypted with AES-256 (CTR mode). Every packet gets a starting value that is never reused.</li>
+  <li>Every packet is sealed with HMAC-SHA256. The seal covers the channel number, the slot the packet belongs to and the encrypted content together.</li>
+  <li>The browser checks the seal first, then opens the packet. A packet that was altered, moved to another slot or sealed with another code is rejected.</li>
+  <li>Symbol names are encrypted too. The server cannot tell from a packet's name which symbol you follow.</li>
+</ul>
+<p>The protocol has been written three times: in the MetaTrader 5 add-on, in the lab and in an independent reference implementation. Given the same input, all three produce byte-for-byte the same encrypted packet; this comparison is repeated by automated tests in every version.</p>
+
+<h2 id="server">What the server does</h2>
+<table class="tablo">
+  <thead><tr><th>What the server sees</th><th>What the server cannot see</th></tr></thead>
+  <tbody>
+    <tr><td>Encrypted packets</td><td>Symbols, prices, candles</td></tr>
+    <tr><td>Packet size and arrival time</td><td>Positions, balance, profit and loss</td></tr>
+    <tr><td>Channel number</td><td>Your broker and server name</td></tr>
+    <tr><td>The connection's IP address (during transfer)</td><td>The pairing code</td></tr>
+  </tbody>
+</table>
+<p>The server checks a packet's format and keeps it in short-lived storage. Each packet is deleted on its own after two hours at most; when a newer one arrives, the old one is replaced at once. Packet contents are never written to logs. The number of packets a channel can write per minute is limited.</p>
+
+<h2 id="add-on">What the add-on reads</h2>
+<p>Kalibre Bridge only reads; it sends no orders, closes no positions and changes no settings. What it reads, encrypts and sends:</p>
+<ul>
+  <li>Closed candles of the symbols you choose: time, open, high, low, close, tick volume.</li>
+  <li>Open positions: symbol, side, lot, open time and price, current price, stop, target, profit and the position's magic number.</li>
+  <li>Your account currency, balance and equity.</li>
+  <li>Your broker's name, server name and whether the account is demo or live.</li>
+</ul>
+<p>It does not read your account number, password, personal details or trade history. For the license check, the add-on sends your license key and MT5 account number to our license server; that request is separate from the encrypted data.</p>
+
+<h2 id="limits">Limits of the protection</h2>
+<p>No system protects against everything. This one rests on these assumptions:</p>
+<ul>
+  <li><b>Whoever has your code can read your data.</b> Do not share it. If in doubt, create a new code in the lab and paste it into the add-on; the old code stops working from then on.</li>
+  <li><b>Your device's security is yours.</b> Someone with access to your computer or browser can also see decrypted data.</li>
+  <li><b>That traffic exists is not secret.</b> The server sees how often and how large a channel's packets are. That shows usage, not content.</li>
+</ul>
+<p>If you think you have found a security issue, please <a href="/iletisim/">write to us</a>.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#summary">In short</a><a href="#code">The pairing code</a><a href="#encryption">Encryption and seal</a><a href="#server">What the server does</a><a href="#add-on">What the add-on reads</a><a href="#limits">Limits of the protection</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>A strategy lab for MetaTrader 5.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/en/lab/">Lab</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/forex/">Retail forex</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/en/pricing/">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/en/methodology/">Methodology</a>
+      <a href="/egitim/">Education (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/en/about/">About</a>
+      <a href="/iletisim/">Contact</a>
+      <a href="/en/terms/">Terms of use</a>
+      <a href="/en/privacy/">Privacy</a>
+    </div>
+    <p class="yasal">Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+  </div>
+</footer>
+
+</body>
+</html>
