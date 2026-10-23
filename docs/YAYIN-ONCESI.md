@@ -7,7 +7,9 @@
 
 - [ ] **Upstash Redis**: Vercel → Storage → Upstash. Köprü rölesi ve lisans kayıtları kullanır.
 - [ ] **Stripe (önce test modu)**
-  - [ ] Ürün "Kalibre Lab", aylık yinelenen fiyat (ör. 399 TRY) → `STRIPE_PRICE_ID`
+  - [ ] Ürün "Kalibre Lab", aylık yinelenen tek fiyat: 399 TRY, aynı fiyata para birimi seçenekleri
+        (currency options) 19 USD ve 17 EUR → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre
+        para birimini kendisi seçer.
   - [ ] Webhook: `https://kalibremarkets.com/api/odeme/webhook`, olaylar:
         `checkout.session.completed`, `customer.subscription.created|updated|deleted`,
         `invoice.paid`, `invoice.payment_failed` → `STRIPE_WEBHOOK_SECRET`
@@ -17,7 +19,8 @@
       kalibre-lab'de `mql5/Include/Kalibre/LisansSirri.mqh` içine (repoya girmez). Motor ve Köprü
       bu dosyayla yeniden derlenir.
 - [ ] Gizlilik politikasında `[STRIPE TÜZEL KİŞİSİ]`, `[DEPO SAĞLAYICI]`, `[UNVAN]`, `[ADRES]`
-- [ ] Avukat incelemesi: gizlilik ve şartlardaki `AVUKAT İÇİN` yorumları (yurt dışı aktarım,
+- [ ] Avukat incelemesi: gizlilik ve şartlardaki `AVUKAT İÇİN` yorumları ve İngilizce
+      sürümlerdeki `FOR COUNSEL` notları (AB/İngiltere tüketicileri için bağımsız İngilizce metin gerekir mi?) (yurt dışı aktarım,
       mesafeli satış ve cayma hakkı, lisans maddesi, Stripe'ın rolü)
 
 ## Geliştirme tarafında kalanlar
