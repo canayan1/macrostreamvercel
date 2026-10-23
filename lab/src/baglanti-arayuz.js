@@ -3,15 +3,16 @@
 // Yoklama yalnız prova kaynağı "MetaTrader'ım" seçiliyken çalışır: kullanıcı istemeden ağa çıkılmaz.
 
 import { kodUret } from './veri/role.js';
+import { t as ceviri, yerel } from './dil.js';
 import { istemci, sinifla, tazelenmeli, seriAdi, roleAdresi, izinAdresi, utcEtiket, YOKLAMA_SN, VARSAYILAN_ROLE } from './veri/baglanti.js';
 
 const KOD_ANAHTARI = 'kalibre-kopru-kod';
 const ROLE_ANAHTARI = 'kalibre-kopru-role';
-const HESAP = { demo: ['DEMO', ''], gercek: ['GERÇEK HESAP', 'gercek'], yarisma: ['YARIŞMA', ''] };
+const HESAP = { demo: ['DEMO', ''], gercek: ['GERÇEK HESAP', 'gercek'], yarisma: ['YARIŞMA', ''] }; // etiketler t() ile çevrilir
 
 const $ = s => document.querySelector(s);
 const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const para = x => (typeof x === 'number' ? x.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '');
+const para = x => (typeof x === 'number' ? x.toLocaleString(yerel, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '');
 
 // Tarayıcı deposu yoksa (gizli pencere, engellenmiş site verisi) panel yine çalışır; kod yalnız bu oturumda kalır.
 const depo = {
@@ -57,11 +58,11 @@ export function mt5Panel({ yukle, hata }) {
     kutu.dataset.sinif = d.sinif;
     $('#mt5-baslik').textContent = d.baslik;
     let ayrinti = d.ayrinti;
-    if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ` Mum zamanları sunucu saatidir, ${utcEtiket(durum.sunucuUtcFarkiSn)}.`;
+    if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ' ' + ceviri('Mum zamanları sunucu saatidir, {utc}.', { utc: utcEtiket(durum.sunucuUtcFarkiSn) });
     $('#mt5-ayrinti').textContent = ayrinti;
     const h = durum && HESAP[durum.terminal.hesapTuru];
     $('#mt5-hesap').hidden = !h;
-    if (h) { $('#mt5-hesap').textContent = h[0]; $('#mt5-hesap').className = `rozet ikincil ${h[1]}`; }
+    if (h) { $('#mt5-hesap').textContent = ceviri(h[0]); $('#mt5-hesap').className = `rozet ikincil ${h[1]}`; }
     // Kurulum adımları bağlanınca katlanır, bağlantı yokken açılır.
     if (d.sinif !== sonSinif) $('#mt5-kurulum').open = d.sinif !== 'bagli';
     sonSinif = d.sinif;
@@ -73,7 +74,7 @@ export function mt5Panel({ yukle, hata }) {
     const mevcut = [...sec.options].map(o => o.value);
     if (adlar.join() !== mevcut.join()) {
       const secili = sec.value;
-      sec.innerHTML = durum.seriler.map(s => `<option value="${kacis(seriAdi(s.sembol, s.zamanDilimi))}">${kacis(s.sembol)} ${kacis(s.zamanDilimi)}${s.adet ? ` · ${s.adet} mum` : ''}</option>`).join('');
+      sec.innerHTML = durum.seriler.map(s => `<option value="${kacis(seriAdi(s.sembol, s.zamanDilimi))}">${kacis(s.sembol)} ${kacis(s.zamanDilimi)}${s.adet ? ` · ${ceviri('{n} mum', { n: s.adet })}` : ''}</option>`).join('');
       if (adlar.includes(secili)) sec.value = secili;
     }
     $('#mt5-seri-alan').hidden = adlar.length === 0;
@@ -82,13 +83,13 @@ export function mt5Panel({ yukle, hata }) {
   function pozisyonYaz(p) {
     const kutu = $('#mt5-pozisyon');
     if (!p) { kutu.hidden = true; return; }
-    const bas = `<h3>Açık pozisyonlar</h3>`;
-    const hesap = `<p class="dipnot">Bakiye ${para(p.bakiye)} ${kacis(p.para)} · varlık ${para(p.varlik)} ${kacis(p.para)}</p>`;
+    const bas = `<h3>${ceviri('Açık pozisyonlar')}</h3>`;
+    const hesap = `<p class="dipnot">${ceviri('Bakiye {b} {p} · varlık {v} {p}', { b: para(p.bakiye), v: para(p.varlik), p: kacis(p.para) })}</p>`;
     kutu.innerHTML = p.pozisyonlar.length
-      ? `${bas}<table class="pozisyon"><thead><tr><th>Sembol</th><th>Yön</th><th>Lot</th><th>Açılış</th><th>Güncel</th><th>Kâr</th></tr></thead><tbody>${
-        p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}</td><td>${x.yon === 'al' ? 'Al' : 'Sat'}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td class="${x.kar >= 0 ? 'pozitif' : 'negatif'}">${para(x.kar)}</td></tr>`).join('')
+      ? `${bas}<table class="pozisyon"><thead><tr>${['Sembol', 'Yön', 'Lot', 'Açılış', 'Güncel', 'Kâr'].map(b => `<th>${ceviri(b)}</th>`).join('')}</tr></thead><tbody>${
+        p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}</td><td>${ceviri(x.yon === 'al' ? 'Al' : 'Sat')}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td class="${x.kar >= 0 ? 'pozitif' : 'negatif'}">${para(x.kar)}</td></tr>`).join('')
       }</tbody></table>${hesap}`
-      : `${bas}<p class="dipnot">Açık pozisyon yok.</p>${hesap}`;
+      : `${bas}<p class="dipnot">${ceviri('Açık pozisyon yok.')}</p>${hesap}`;
     kutu.hidden = false;
   }
 
@@ -100,16 +101,16 @@ export function mt5Panel({ yukle, hata }) {
     try {
       const r = await ist.seri(k.sembol, k.zamanDilimi, { enAz: 200 });
       if (n !== nesil || istek !== seriIstek) return;
-      if (!r) { hata(`${k.sembol} ${k.zamanDilimi} serisi henüz röleye ulaşmadı; eklenti ilk mum kapanışında gönderir.`); return; }
+      if (!r) { hata(ceviri('{s} {z} serisi henüz röleye ulaşmadı; eklenti ilk mum kapanışında gönderir.', { s: k.sembol, z: k.zamanDilimi })); return; }
       const sunucu = durum.terminal.sunucu ?? 'MT5';
       yuklu = { sembol: k.sembol, zamanDilimi: k.zamanDilimi, son: r.mumlar[r.mumlar.length - 1].t };
       yukle({
         mumlar: r.mumlar, zamanDilimi: r.meta.zamanDilimi, takvim: r.meta.takvim, sembol: r.meta.sembol,
         ornek: r.ornek, atlanan: r.atlanan, uyarilar: r.uyarilar,
-        ad: r.ornek ? `ÖRNEK (SENTETİK) · ${k.sembol} ${k.zamanDilimi}` : `MT5 · ${sunucu} · ${k.sembol} ${k.zamanDilimi}`,
+        ad: r.ornek ? `${ceviri('ÖRNEK (SENTETİK)')} · ${k.sembol} ${k.zamanDilimi}` : `MT5 · ${sunucu} · ${k.sembol} ${k.zamanDilimi}`,
       });
     } catch (e) {
-      if (n === nesil && istek === seriIstek) hata(`${k.sembol} ${k.zamanDilimi} okunamadı: ${e.message}`);
+      if (n === nesil && istek === seriIstek) hata(ceviri('{s} {z} okunamadı: {m}', { s: k.sembol, z: k.zamanDilimi, m: ceviri(e.message) }));
     }
   }
 
@@ -139,19 +140,19 @@ export function mt5Panel({ yukle, hata }) {
 
   $('#mt5-kopyala').addEventListener('click', async () => {
     const d = $('#mt5-kopyala');
-    try { await navigator.clipboard.writeText(kod); d.textContent = 'Kopyalandı'; }
-    catch { $('#mt5-kod').select(); d.textContent = 'Seçildi, Ctrl+C'; }
-    setTimeout(() => { d.textContent = 'Kopyala'; }, 1500);
+    try { await navigator.clipboard.writeText(kod); d.textContent = ceviri('Kopyalandı'); }
+    catch { $('#mt5-kod').select(); d.textContent = ceviri('Seçildi, Ctrl+C'); }
+    setTimeout(() => { d.textContent = ceviri('Kopyala'); }, 1500);
   });
   $('#mt5-yeni').addEventListener('click', () => {
-    if (!confirm('Yeni kod üretilirse eski kodla çalışan eklentinin bağlantısı kesilir. Yeni kodu MT5\'teki eklentiye yeniden yapıştırman gerekir. Devam edilsin mi?')) return;
+    if (!confirm(ceviri("Yeni kod üretilirse eski kodla çalışan eklentinin bağlantısı kesilir. Yeni kodu MT5'teki eklentiye yeniden yapıştırman gerekir. Devam edilsin mi?"))) return;
     kod = kodUret();
     depo.yaz(KOD_ANAHTARI, kod);
     yenidenKur();
   });
   $('#mt5-role').addEventListener('change', e => {
-    const t = e.target.value.trim();
-    adres = roleAdresi('', t);
+    const yeni = e.target.value.trim();
+    adres = roleAdresi('', yeni);
     depo.yaz(ROLE_ANAHTARI, adres === VARSAYILAN_ROLE ? null : adres);
     yenidenKur();
   });

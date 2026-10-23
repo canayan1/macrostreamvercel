@@ -7,10 +7,12 @@ import { yillikDonem, takvimTahmin, TAKVIMLER } from './veri/kaynak.js';
 import { getiriler, kapanisKapanis, parkinson, garmanKlass, rogersSatchell, yangZhang, ewma } from './modeller/oynaklik.js';
 import { garchKestir } from './modeller/garch.js';
 import { sarimaKestir } from './modeller/sarima.js';
+import { t as ceviri, sayiMetni, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 
 const $ = s => document.querySelector(s);
 const renk = ad => getComputedStyle(document.documentElement).getPropertyValue(ad).trim();
-const sayi = (v, b = 2) => (Number.isFinite(v) ? v.toFixed(b).replace('.', ',') : '—');
+const sayi = (v, b = 2) => (Number.isFinite(v) ? sayiMetni(v, b) : '—');
+const yz = (v, b = 1) => yuzdeMetni(sayi(v, b));
 const PALET = ['--accent', '--blue', '--green', '--violet', '--red', '--text-dim'];
 
 let veri = null;
@@ -32,7 +34,7 @@ function cizgi(c, seriler, { yuzde = false, dikey = null } = {}) {
   for (let i = 0; i <= 4; i++) {
     const v = lo + (hi - lo) * i / 4, yy = Y(v);
     x.beginPath(); x.moveTo(sol, yy); x.lineTo(w - pad, yy); x.stroke();
-    x.fillText(yuzde ? `%${(v * 100).toFixed(0)}` : v.toPrecision(3), 2, yy + 3);
+    x.fillText(yuzde ? yuzdeMetni((v * 100).toFixed(0)) : v.toPrecision(3), 2, yy + 3);
   }
   if (dikey !== null) { x.strokeStyle = renk('--border-2'); x.setLineDash([3, 3]); x.beginPath(); x.moveTo(X(dikey), 4); x.lineTo(X(dikey), h - 18); x.stroke(); x.setLineDash([]); }
   seriler.forEach((s, k) => {
@@ -52,7 +54,7 @@ function veriYukle() {
   if ($('#kaynak').value === 'sentetik') {
     const tohum = Number($('#tohum').value) || 1;
     const mumlar = uret({ tohum, rejim: $('#rejim').value, adet: 3000, zamanDilimi: 'H1' });
-    veri = { mumlar, ad: `SENTETİK · tohum ${tohum}`, zamanDilimi: 'H1' };
+    veri = { mumlar, ad: ceviri('SENTETİK · tohum {n}', { n: tohum }), zamanDilimi: 'H1' };
     $('#takvim').value = takvimTahmin(mumlar);
   }
   if (!veri) return;
@@ -69,7 +71,7 @@ $('#csv').addEventListener('change', async e => {
     $('#takvim').value = d.takvim;
     veriYukle();
   } catch (err) {
-    $('#meta').innerHTML = `<span style="color:var(--red)">Dosya okunamadı: ${String(err.message).replace(/</g, '&lt;')}</span>`;
+    $('#meta').innerHTML = `<span style="color:var(--red)">${ceviri('Dosya okunamadı: {m}', { m: ceviri(String(err.message)) }).replace(/</g, '&lt;')}</span>`;
   }
 });
 
@@ -78,18 +80,18 @@ function analizEt() {
   const { mumlar } = veri, n = Number($('#pencere').value), takvim = $('#takvim').value;
   const yd = yillikDonem(veri.zamanDilimi, takvim), olcek = Math.sqrt(yd);
   const ilk = new Date(mumlar[0].t * 1000).toISOString().slice(0, 10), son = new Date(mumlar.at(-1).t * 1000).toISOString().slice(0, 10);
-  $('#meta').innerHTML = `<span>${mumlar.length} mum</span><span>${veri.zamanDilimi}</span><span>${ilk} → ${son}</span><span>${TAKVIMLER[takvim].ad}: yılda ${yd} dönem</span>${veri.atlanan ? `<span>${veri.atlanan} satır atlandı</span>` : ''}`;
+  $('#meta').innerHTML = `<span>${ceviri('{n} mum', { n: mumlar.length })}</span><span>${veri.zamanDilimi}</span><span>${ilk} → ${son}</span><span>${ceviri('{takvim}: yılda {n} dönem', { takvim: ceviri(TAKVIMLER[takvim].ad), n: yd })}</span>${veri.atlanan ? `<span>${ceviri('{n} satır atlandı', { n: veri.atlanan })}</span>` : ''}`;
 
   // 1) gerçekleşen oynaklık
   const tahminciler = [
     ['Kapanış-kapanış', kapanisKapanis], ['Parkinson', parkinson], ['Garman-Klass', garmanKlass],
     ['Rogers-Satchell', rogersSatchell], ['Yang-Zhang', yangZhang],
-  ].map(([ad, f]) => ({ ad, deger: f(mumlar, n).map(v => v * olcek) }));
+  ].map(([ad, f]) => ({ ad: ceviri(ad), deger: f(mumlar, n).map(v => v * olcek) }));
   cizgi($('#g-gercek'), tahminciler, { yuzde: true });
   lejant($('#l-gercek'), tahminciler);
-  tablo($('#t-gercek'), ['Tahminci', 'Son', 'Ortalama', 'En yüksek'], tahminciler.map(t => {
+  tablo($('#t-gercek'), ['Tahminci', 'Son', 'Ortalama', 'En yüksek'].map(b => ceviri(b)), tahminciler.map(t => {
     const v = t.deger.filter(Number.isFinite);
-    return [t.ad, `%${sayi(v.at(-1) * 100, 1)}`, `%${sayi(v.reduce((a, b) => a + b, 0) / v.length * 100, 1)}`, `%${sayi(Math.max(...v) * 100, 1)}`];
+    return [t.ad, yz(v.at(-1) * 100), yz(v.reduce((a, b) => a + b, 0) / v.length * 100), yz(Math.max(...v) * 100)];
   }));
 
   // 2) GARCH ailesi: modeller tek tek kestirilir, arada arayüz güncellenir
@@ -98,7 +100,7 @@ function analizEt() {
   const rd = r.map(v => v - ort);
   const sd = Math.sqrt(rd.reduce((a, b) => a + b * b, 0) / rd.length);
   const basiklik = rd.reduce((a, b) => a + (b / sd) ** 4, 0) / rd.length - 3;
-  $('#meta').insertAdjacentHTML('beforeend', `<span>Fazla basıklık ${sayi(basiklik, 1)} (normal dağılımda 0)</span>`);
+  $('#meta').insertAdjacentHTML('beforeend', `<span>${ceviri('Fazla basıklık {x} (normal dağılımda 0)', { x: sayi(basiklik, 1) })}</span>`);
   const LISTE = [['arch', 'normal'], ['garch', 'normal'], ['gjr', 'normal'], ['egarch', 'normal'], ['garch', 't'], ['gjr', 't'], ['egarch', 't']];
   const modeller = [];
   const kimlik = ++analizNo;
@@ -107,7 +109,7 @@ function analizEt() {
     if (kimlik !== analizNo) return; // yeni veri geldi, eski kestirimi bırak
     if (modeller.length < LISTE.length) {
       const [tip, dagilim] = LISTE[modeller.length];
-      $('#garch-durum').textContent = `kestiriliyor ${modeller.length + 1}/${LISTE.length}…`;
+      $('#garch-durum').textContent = ceviri('kestiriliyor {i}/{n}…', { i: modeller.length + 1, n: LISTE.length });
       setTimeout(() => {
         try { modeller.push(garchKestir(rd, { tip, dagilim })); } catch { modeller.push(null); }
         sonraki();
@@ -120,19 +122,19 @@ function analizEt() {
     const ew = ewma(rd);
     const seriler = [
       ...sirali.slice(0, 3).map((m, i) => ({ ad: ad(m), deger: [NaN, ...m.kosulluOynaklik.map(v => v / 100 * olcek)], kalin: i === 0 })),
-      { ad: 'EWMA (λ=0,94)', deger: [NaN, ...ew.map(v => v / 100 * olcek)], renk: '--text-dim' },
+      { ad: `EWMA (λ=${sayi(0.94)})`, deger: [NaN, ...ew.map(v => v / 100 * olcek)], renk: '--text-dim' },
     ];
     cizgi($('#g-garch'), seriler, { yuzde: true });
     lejant($('#l-garch'), seriler);
     const kalici = m => m.kalicilik > 0.999;
-    tablo($('#t-garch'), ['Model', 'ω', 'α', 'γ', 'β', 'ν', 'Kalıcılık', 'Yarı ömür', 'Uzun dön. yıllık', 'BIC'], gecerli.map(m => [
+    tablo($('#t-garch'), ['Model', 'ω', 'α', 'γ', 'β', 'ν', 'Kalıcılık', 'Yarı ömür', 'Uzun dön. yıllık', 'BIC'].map(b => ceviri(b)), gecerli.map(m => [
       ad(m), sayi(m.parametreler.omega, 4), sayi(m.parametreler.alpha, 3), sayi(m.parametreler.gamma ?? NaN, 3), sayi(m.parametreler.beta ?? NaN, 3),
       sayi(m.parametreler.nu ?? NaN, 1), sayi(m.kalicilik, 3), kalici(m) ? '∞' : sayi(m.yariOmur, 1),
-      kalici(m) ? 'tanımsız' : `%${sayi(m.uzunDonemOynaklik / 100 * olcek * 100, 1)}`, sayi(m.bic, 0),
+      kalici(m) ? ceviri('tanımsız') : yz(m.uzunDonemOynaklik / 100 * olcek * 100), sayi(m.bic, 0),
     ]), enIyi);
     const en = gecerli[enIyi], o = en.ongoru(10);
-    tablo($('#t-ongoru'), [`Öngörü (${ad(en)})`, ...[1, 2, 5, 10].map(h => `+${h} mum`)],
-      [['Yıllık oynaklık', ...[1, 2, 5, 10].map(h => `%${sayi(o[h - 1] / 100 * olcek * 100, 1)}`)]]);
+    tablo($('#t-ongoru'), [ceviri('Öngörü ({m})', { m: ad(en) }), ...[1, 2, 5, 10].map(h => ceviri('+{n} mum', { n: h }))],
+      [[ceviri('Yıllık oynaklık'), ...[1, 2, 5, 10].map(h => yz(o[h - 1] / 100 * olcek * 100))]]);
     $('#garch-durum').textContent = '';
   };
   sonraki();
@@ -150,12 +152,12 @@ function sarimaKestirCiz() {
   else if (tur === 'mutlak') y = r.map(Math.abs);
   else if (tur === 'aralik') y = mumlar.map(m => Math.log(m.y / m.d) * 100);
   else {
-    if (!mumlar.every(m => Number.isFinite(m.h))) { $('#sarima-durum').textContent = 'Bu veride hacim yok'; return; }
+    if (!mumlar.every(m => Number.isFinite(m.h))) { $('#sarima-durum').textContent = ceviri('Bu veride hacim yok'); return; }
     y = mumlar.map(m => Math.log(1 + m.h));
   }
   const ayar = Object.fromEntries(['p', 'd', 'q', 'P', 'D', 'Q', 's'].map(k => [k, Math.max(0, Math.floor(Number($('#s-' + k).value) || 0))]));
   if (!(ayar.P || ayar.D || ayar.Q)) ayar.s = 0;
-  $('#sarima-durum').textContent = 'kestiriliyor…';
+  $('#sarima-durum').textContent = ceviri('kestiriliyor…');
   setTimeout(() => {
     try {
       const son = y.slice(-2000);
@@ -164,25 +166,27 @@ function sarimaKestirCiz() {
       const ong = m.ongoru(h);
       const gosterilen = son.slice(-4 * h);
       cizgi($('#g-sarima'), [
-        { ad: 'Seri (son)', deger: [...gosterilen, ...new Array(h).fill(NaN)], renk: '--text-dim' },
-        { ad: `Öngörü (+${h})`, deger: [...new Array(gosterilen.length - 1).fill(NaN), gosterilen.at(-1), ...ong], renk: '--accent', kalin: true },
+        { ad: ceviri('Seri (son)'), deger: [...gosterilen, ...new Array(h).fill(NaN)], renk: '--text-dim' },
+        { ad: ceviri('Öngörü (+{n})', { n: h }), deger: [...new Array(gosterilen.length - 1).fill(NaN), gosterilen.at(-1), ...ong], renk: '--accent', kalin: true },
       ], { dikey: gosterilen.length - 1 });
-      lejant($('#l-sarima'), [{ ad: 'Seri (son)', renk: '--text-dim' }, { ad: `Öngörü (+${h})`, renk: '--accent' }]);
+      lejant($('#l-sarima'), [{ ad: ceviri('Seri (son)'), renk: '--text-dim' }, { ad: ceviri('Öngörü (+{n})', { n: h }), renk: '--accent' }]);
       const p = m.parametreler, satir = [];
       p.phi.forEach((v, i) => satir.push([`φ${i + 1} (AR)`, sayi(v, 3)]));
       p.theta.forEach((v, i) => satir.push([`θ${i + 1} (MA)`, sayi(v, 3)]));
-      p.Phi.forEach((v, i) => satir.push([`Φ${i + 1} (mevsimsel AR)`, sayi(v, 3)]));
-      p.Theta.forEach((v, i) => satir.push([`Θ${i + 1} (mevsimsel MA)`, sayi(v, 3)]));
-      if (p.sabit !== undefined) satir.push(['Sabit', sayi(p.sabit, 4)]);
-      satir.push(['σ² (artık)', sayi(m.sigma2, 4)], ['AIC', sayi(m.aic, 0)], ['Gözlem', String(son.length)]);
-      tablo($('#t-sarima'), [`SARIMA(${ayar.p},${ayar.d},${ayar.q})(${ayar.P},${ayar.D},${ayar.Q})${ayar.s || ''}`, 'Değer'], satir);
+      p.Phi.forEach((v, i) => satir.push([`Φ${i + 1} (${ceviri('mevsimsel AR')})`, sayi(v, 3)]));
+      p.Theta.forEach((v, i) => satir.push([`Θ${i + 1} (${ceviri('mevsimsel MA')})`, sayi(v, 3)]));
+      if (p.sabit !== undefined) satir.push([ceviri('Sabit'), sayi(p.sabit, 4)]);
+      satir.push([ceviri('σ² (artık)'), sayi(m.sigma2, 4)], ['AIC', sayi(m.aic, 0)], [ceviri('Gözlem'), String(son.length)]);
+      tablo($('#t-sarima'), [`SARIMA(${ayar.p},${ayar.d},${ayar.q})(${ayar.P},${ayar.D},${ayar.Q})${ayar.s || ''}`, ceviri('Değer')], satir);
       $('#sarima-durum').textContent = '';
-    } catch (err) { $('#sarima-durum').textContent = err.message; }
+    } catch (err) { $('#sarima-durum').textContent = ceviri(err.message); }
   }, 20);
 }
 
 // ------------------------------------------------------------------ olaylar
-$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${r.ad}</option>`).join('');
+sayfayiCevir();
+dilAnahtari(document.querySelector('.ust-eylem'));
+$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${ceviri(r.ad)}</option>`).join('');
 $('#kaynak').addEventListener('change', () => {
   const csv = $('#kaynak').value === 'csv';
   $('#csv-alan').hidden = !csv; $('#tohum-alan').hidden = csv; $('#rejim-alan').hidden = csv;

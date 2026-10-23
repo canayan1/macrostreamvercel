@@ -16,6 +16,8 @@
 
 import { DAKIKA, TAKVIMLER, zamanDilimiTahmin } from './kaynak.js';
 
+import { t as ceviri } from '../dil.js';
+
 export const KOPRU_SURUM = 1;
 
 // Varlık sınıfı → varsayılan işlem takvimi. Motor takvimi ayrıca bildirirse o kullanılır.
@@ -28,12 +30,12 @@ const YON = ['al', 'sat'];
 const VARSAYILAN_ARALIK = 5; // sn; motor yazmaAraligiSn bildirmezse
 
 function surumDenetle(n, tur) {
-  if (!n || typeof n !== 'object') throw new Error(`${tur}: geçerli bir JSON nesnesi değil`);
+  if (!n || typeof n !== 'object') throw new Error(ceviri('{tur}: geçerli bir JSON nesnesi değil', { tur }));
   if (n.kalibre_kopru !== KOPRU_SURUM) {
-    throw new Error(`${tur}: desteklenmeyen köprü sürümü (${n.kalibre_kopru ?? 'yok'}); beklenen ${KOPRU_SURUM}`);
+    throw new Error(ceviri('{tur}: desteklenmeyen köprü sürümü ({v}); beklenen {b}', { tur, v: n.kalibre_kopru ?? ceviri('yok'), b: KOPRU_SURUM }));
   }
   // Belgeler tek bir kanaldan da gelebilir; tür alanı karışmayı önler.
-  if (n.tur !== tur) throw new Error(`${tur} bekleniyordu, '${n.tur ?? 'tür yok'}' geldi`);
+  if (n.tur !== tur) throw new Error(ceviri("{tur} bekleniyordu, '{g}' geldi", { tur, g: n.tur ?? ceviri('tür yok') }));
 }
 
 const sayi = v => typeof v === 'number' && Number.isFinite(v);
@@ -44,17 +46,17 @@ const sayi = v => typeof v === 'number' && Number.isFinite(v);
 // Dönüş: { mumlar: [{t,a,y,d,k,h?}], meta: {sembol,sinif,takvim,zamanDilimi,nokta}, atlanan, uyarilar, ornek }
 export function seriCoz(n, { enAz = 2 } = {}) {
   surumDenetle(n, 'seri');
-  if (typeof n.sembol !== 'string' || !n.sembol.trim()) throw new Error('seri: sembol eksik');
-  if (!DAKIKA[n.zamanDilimi]) throw new Error(`seri: bilinmeyen zaman dilimi '${n.zamanDilimi}'`);
-  if (n.kaynak !== undefined && n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(`seri: bilinmeyen kaynak '${n.kaynak}'`);
+  if (typeof n.sembol !== 'string' || !n.sembol.trim()) throw new Error(ceviri('seri: sembol eksik'));
+  if (!DAKIKA[n.zamanDilimi]) throw new Error(ceviri("seri: bilinmeyen zaman dilimi '{z}'", { z: n.zamanDilimi }));
+  if (n.kaynak !== undefined && n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(ceviri("seri: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
   const m = n.meta ?? {};
   const sinif = SINIFLAR[m.sinif] ? m.sinif : 'diger';
   const takvim = TAKVIMLER[m.takvim] ? m.takvim : SINIFLAR[sinif];
-  if (!Array.isArray(n.alanlar)) throw new Error('seri: alanlar listesi eksik');
+  if (!Array.isArray(n.alanlar)) throw new Error(ceviri('seri: alanlar listesi eksik'));
   const sira = {};
   n.alanlar.forEach((a, i) => { sira[a] = i; });
-  for (const g of ['t', 'a', 'y', 'd', 'k']) if (sira[g] === undefined) throw new Error(`seri: '${g}' alanı eksik`);
-  if (!Array.isArray(n.mumlar)) throw new Error('seri: mumlar listesi eksik');
+  for (const g of ['t', 'a', 'y', 'd', 'k']) if (sira[g] === undefined) throw new Error(ceviri("seri: '{g}' alanı eksik", { g }));
+  if (!Array.isArray(n.mumlar)) throw new Error(ceviri('seri: mumlar listesi eksik'));
 
   const hamlar = [];
   let atlanan = 0;
@@ -70,14 +72,14 @@ export function seriCoz(n, { enAz = 2 } = {}) {
   hamlar.sort((p, q) => p.t - q.t);
   const mumlar = hamlar.filter((x, i) => i === 0 || x.t !== hamlar[i - 1].t);
   atlanan += hamlar.length - mumlar.length;
-  if (mumlar.length < enAz) throw new Error(`seri: en az ${enAz} geçerli mum gerekir, ${mumlar.length} bulundu`);
+  if (mumlar.length < enAz) throw new Error(ceviri('seri: en az {n} geçerli mum gerekir, {b} bulundu', { n: enAz, b: mumlar.length }));
 
   const uyarilar = [];
   const tahmin = mumlar.length > 20 ? zamanDilimiTahmin(mumlar) : null;
   if (tahmin && tahmin !== n.zamanDilimi) {
-    uyarilar.push(`bildirilen zaman dilimi ${n.zamanDilimi}, mum aralıkları ise ${tahmin} gösteriyor`);
+    uyarilar.push(ceviri('bildirilen zaman dilimi {z}, mum aralıkları ise {t} gösteriyor', { z: n.zamanDilimi, t: tahmin }));
   }
-  if (atlanan) uyarilar.push(`${atlanan} mum geçersiz ya da tekrar olduğu için atlandı`);
+  if (atlanan) uyarilar.push(ceviri('{n} mum geçersiz ya da tekrar olduğu için atlandı', { n: atlanan }));
 
   return {
     mumlar,
@@ -95,13 +97,13 @@ export function seriCoz(n, { enAz = 2 } = {}) {
 // Tazelik: canli (≤ 3 yazma aralığı), gecikmeli (≤ 20 aralık), kopuk.
 export function durumCoz(n, simdi = Date.now() / 1000) {
   surumDenetle(n, 'durum');
-  if (!sayi(n.uretildi)) throw new Error('durum: uretildi zamanı eksik');
-  if (n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(`durum: bilinmeyen kaynak '${n.kaynak}'`);
+  if (!sayi(n.uretildi)) throw new Error(ceviri('durum: uretildi zamanı eksik'));
+  if (n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(ceviri("durum: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
   const aralik = sayi(n.yazmaAraligiSn) && n.yazmaAraligiSn > 0 ? n.yazmaAraligiSn : VARSAYILAN_ARALIK;
   const yas = simdi - n.uretildi;
   const uyarilar = [];
   // Saat farkı: tarayıcının saati ileri ya da geri olabilir. Bir dakikadan fazla gelecekteyse belirt.
-  if (yas < -60) uyarilar.push('kalp atışı gelecekte görünüyor; bilgisayar saatlerini kontrol et');
+  if (yas < -60) uyarilar.push(ceviri('kalp atışı gelecekte görünüyor; bilgisayar saatlerini kontrol et'));
   const y = Math.max(0, yas);
   const tazelik = y <= 3 * aralik ? 'canli' : y <= 20 * aralik ? 'gecikmeli' : 'kopuk';
 

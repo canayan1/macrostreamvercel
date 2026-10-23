@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,17 +12,17 @@
 </head>
 <body>
 <header class="ust">
-  <a class="logo" href="/" title="Kalibre ana sayfa"><i></i>Kalibre Lab <span>Strateji Kurucu</span></a>
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>Strateji Kurucu</span></a>
   <div class="ust-eylem">
-    <label class="secici">Eğitim örneği
+    <label class="secici"><span data-t>Eğitim örneği</span>
       <select id="sablon">
-        <option value="">Seçin…</option>
-        <option value="bos">Boş strateji</option>
+        <option value="" data-t>Seçin…</option>
+        <option value="bos" data-t>Boş strateji</option>
       </select>
     </label>
-    <a class="dugme ikincil" href="oynaklik.html">Oynaklık Lab</a>
-    <label class="dugme ikincil">İçe aktar<input type="file" id="ice-aktar" accept=".json,application/json" hidden></label>
-    <button class="dugme" id="indir">JSON indir</button>
+    <a class="dugme ikincil" href="oynaklik.html" data-t>Oynaklık Lab</a>
+    <label class="dugme ikincil"><span data-t>İçe aktar</span><input type="file" id="ice-aktar" accept=".json,application/json" hidden></label>
+    <button class="dugme" id="indir" data-t>JSON indir</button>
   </div>
 </header>
 
@@ -34,65 +34,65 @@
     <section class="kart" id="durum"></section>
 
     <section class="kart">
-      <h2>Kurduğun strateji</h2>
+      <h2 data-t>Kurduğun strateji</h2>
       <dl id="ozet" class="ozet"></dl>
     </section>
 
     <section class="kart" id="prova-kart">
       <div class="kart-bas">
-        <h2>Hızlı prova</h2>
+        <h2 data-t>Hızlı prova</h2>
         <span class="rozet" id="rozet">SENTETİK</span>
       </div>
       <div class="prova-ayar">
-        <label>Veri
-          <select id="prova-kaynak"><option value="sentetik">Sentetik piyasa</option><option value="dosya">Kendi dosyam</option><option value="mt5">MetaTrader'ım (canlı)</option></select>
+        <label><span data-t>Veri</span>
+          <select id="prova-kaynak"><option value="sentetik" data-t>Sentetik piyasa</option><option value="dosya" data-t>Kendi dosyam</option><option value="mt5" data-t>MetaTrader'ım (canlı)</option></select>
         </label>
-        <label id="prova-dosya-alan" hidden>Dosya
+        <label id="prova-dosya-alan" hidden><span data-t>Dosya</span>
           <input type="file" id="prova-dosya" accept=".json,.csv,.txt,application/json,text/csv">
         </label>
-        <label id="rejim-alan">Piyasa
+        <label id="rejim-alan"><span data-t>Piyasa</span>
           <select id="rejim"></select>
         </label>
-        <label id="tohum-alan">Tohum
-          <span class="satir"><input type="number" id="tohum" min="1" max="999999" step="1"><button type="button" class="kucuk" id="zar" title="Yeni tohum">↻</button></span>
+        <label id="tohum-alan"><span data-t>Tohum</span>
+          <span class="satir"><input type="number" id="tohum" min="1" max="999999" step="1"><button type="button" class="kucuk" id="zar" title="Yeni tohum" data-t-attr="title">↻</button></span>
         </label>
-        <label id="adet-alan">Mum
+        <label id="adet-alan"><span data-t>Mum</span>
           <select id="adet"><option>1000</option><option selected>2000</option><option>5000</option></select>
         </label>
       </div>
       <div id="mt5-alan" class="mt5" hidden>
         <div class="mt5-durum" id="mt5-durum" data-sinif="bekleniyor">
-          <i></i><div><b id="mt5-baslik">Eklenti bekleniyor</b> <span class="rozet ikincil" id="mt5-hesap" hidden></span>
-          <p id="mt5-ayrinti">Henüz MT5'ten kalp atışı gelmedi.</p></div>
+          <i></i><div><b id="mt5-baslik" data-t>Eklenti bekleniyor</b> <span class="rozet ikincil" id="mt5-hesap" hidden></span>
+          <p id="mt5-ayrinti" data-t>Henüz MT5'ten kalp atışı gelmedi.</p></div>
         </div>
-        <label id="mt5-seri-alan" hidden>Seri
+        <label id="mt5-seri-alan" hidden><span data-t>Seri</span>
           <select id="mt5-seri"></select>
         </label>
         <details class="mt5-kurulum" id="mt5-kurulum" open>
-          <summary>MetaTrader'ı bağla</summary>
+          <summary data-t>MetaTrader'ı bağla</summary>
           <ol>
-            <li>MT5'te <b>KalibreKopru</b> eklentisini bir grafiğe sürükle.</li>
-            <li>Açılan pencerede <b>Eşleştirme kodu</b> alanına aşağıdaki kodu yapıştır.</li>
-            <li><b>Araçlar → Seçenekler → Uzman Danışmanlar</b> (Tools → Options → Expert Advisors): "Allow WebRequest for listed URL" kutusunu işaretle, listeye <code id="mt5-izin">https://kalibremarkets.com</code> adresini ekle ve <b>OK</b>'e bas. OK'e basmadan izin uygulanmaz.</li>
+            <li data-t>MT5'te <b>KalibreKopru</b> eklentisini bir grafiğe sürükle.</li>
+            <li data-t>Açılan pencerede <b>Eşleştirme kodu</b> alanına aşağıdaki kodu yapıştır.</li>
+            <li data-t><b>Araçlar → Seçenekler → Uzman Danışmanlar</b> (Tools → Options → Expert Advisors): "Allow WebRequest for listed URL" kutusunu işaretle, listeye <code id="mt5-izin">https://kalibremarkets.com</code> adresini ekle ve <b>OK</b>'e bas. OK'e basmadan izin uygulanmaz.</li>
           </ol>
           <div class="mt5-kod">
-            <input type="text" id="mt5-kod" readonly spellcheck="false" aria-label="Eşleştirme kodu">
-            <button type="button" class="kucuk" id="mt5-kopyala">Kopyala</button>
-            <button type="button" class="kucuk sil" id="mt5-yeni">Yeni kod</button>
+            <input type="text" id="mt5-kod" readonly spellcheck="false" aria-label="Eşleştirme kodu" data-t-attr="aria-label">
+            <button type="button" class="kucuk" id="mt5-kopyala" data-t>Kopyala</button>
+            <button type="button" class="kucuk sil" id="mt5-yeni" data-t>Yeni kod</button>
           </div>
-          <p class="dipnot">Veri senin bilgisayarında şifrelenir. Anahtar bu koddur ve yalnız bu tarayıcıda durur;
+          <p class="dipnot" data-t>Veri senin bilgisayarında şifrelenir. Anahtar bu koddur ve yalnız bu tarayıcıda durur;
             Kalibre sunucusu içeriği okuyamaz, hangi sembolün taşındığını da bilmez. Şifreli paketler 2 saat içinde kendiliğinden silinir.
             Eklenti işlem açmaz.</p>
           <details class="mt5-gelismis">
-            <summary>Gelişmiş</summary>
-            <label>Röle adresi
+            <summary data-t>Gelişmiş</summary>
+            <label><span data-t>Röle adresi</span>
               <input type="url" id="mt5-role" placeholder="/api/kopru" spellcheck="false">
             </label>
           </details>
         </details>
         <div id="mt5-pozisyon" hidden></div>
       </div>
-      <p class="dipnot" id="prova-ipucu" hidden>MT5'te <b>KalibreDisaAktar</b> betiğini grafiğe sürükle; oluşan
+      <p class="dipnot" id="prova-ipucu" hidden data-t>MT5'te <b>KalibreDisaAktar</b> betiğini grafiğe sürükle; oluşan
         <code>seri-…json</code> dosyasını buraya bırak ya da yukarıdan seç. CSV de olur. Dosya tarayıcında okunur, hiçbir yere gönderilmez.</p>
       <canvas id="grafik" height="220"></canvas>
       <canvas id="egri" height="90"></canvas>
@@ -105,10 +105,10 @@
 
     <section class="kart">
       <div class="kart-bas">
-        <h2>Kural dosyası</h2>
-        <button type="button" class="kucuk" id="kopyala">Kopyala</button>
+        <h2 data-t>Kural dosyası</h2>
+        <button type="button" class="kucuk" id="kopyala" data-t>Kopyala</button>
       </div>
-      <pre id="json" class="json" tabindex="0" aria-label="Kural dosyası (JSON)"></pre>
+      <pre id="json" class="json" tabindex="0" aria-label="Kural dosyası (JSON)" data-t-attr="aria-label"></pre>
     </section>
   </aside>
 </main>

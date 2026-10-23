@@ -4,8 +4,9 @@
 import { csvCoz } from './csv.js';
 import { seriCoz } from './kopru.js';
 import { zamanDilimiTahmin, takvimTahmin } from './kaynak.js';
+import { t as ceviri } from '../dil.js';
 
-const TUR_ADI = { durum: 'bağlantı durumu', pozisyonlar: 'pozisyon listesi' };
+const TUR_ADI = { durum: 'bağlantı durumu', pozisyonlar: 'pozisyon listesi' }; // t() ile çevrilir
 
 // Dönüş: { mumlar, ad, zamanDilimi, takvim, sembol, ornek, atlanan, uyarilar }
 export function dosyaCoz(metin, dosyaAdi = 'dosya', { enAz = 200 } = {}) {
@@ -13,10 +14,10 @@ export function dosyaCoz(metin, dosyaAdi = 'dosya', { enAz = 200 } = {}) {
   let sonuc;
   if (bas.startsWith('{')) {
     let n;
-    try { n = JSON.parse(bas); } catch { throw new Error('JSON dosyası bozuk ya da yarım kalmış'); }
-    if (n?.kalibre_kopru === undefined) throw new Error('bu bir Kalibre köprü dosyası değil');
+    try { n = JSON.parse(bas); } catch { throw new Error(ceviri('JSON dosyası bozuk ya da yarım kalmış')); }
+    if (n?.kalibre_kopru === undefined) throw new Error(ceviri('bu bir Kalibre köprü dosyası değil'));
     if (n.tur !== 'seri') {
-      throw new Error(`bu dosya bir ${TUR_ADI[n.tur] ?? `'${n.tur}' belgesi`}; mum içeren "seri-…" dosyasını seçin`);
+      throw new Error(ceviri('bu dosya bir {tur}; mum içeren "seri-…" dosyasını seçin', { tur: TUR_ADI[n.tur] ? ceviri(TUR_ADI[n.tur]) : ceviri("'{tur}' belgesi", { tur: n.tur }) }));
     }
     const r = seriCoz(n, { enAz });
     sonuc = {
@@ -25,15 +26,15 @@ export function dosyaCoz(metin, dosyaAdi = 'dosya', { enAz = 200 } = {}) {
     };
   } else {
     const r = csvCoz(metin);
-    if (r.mumlar.length < enAz) throw new Error(`en az ${enAz} mum gerekir, ${r.mumlar.length} bulundu`);
+    if (r.mumlar.length < enAz) throw new Error(ceviri('en az {n} mum gerekir, {b} bulundu', { n: enAz, b: r.mumlar.length }));
     sonuc = {
       mumlar: r.mumlar, zamanDilimi: zamanDilimiTahmin(r.mumlar) ?? 'H1', takvim: takvimTahmin(r.mumlar),
       sembol: null, ornek: false, atlanan: r.atlanan,
-      uyarilar: r.atlanan ? [`${r.atlanan} satır geçersiz ya da tekrar olduğu için atlandı`] : [],
+      uyarilar: r.atlanan ? [ceviri('{n} satır geçersiz ya da tekrar olduğu için atlandı', { n: r.atlanan })] : [],
     };
   }
   // Rozet metni: örnek veri hiçbir zaman "kendi verin" diye gösterilmez.
   const etiket = sonuc.sembol ? `${sonuc.sembol} ${sonuc.zamanDilimi}` : dosyaAdi;
-  sonuc.ad = sonuc.ornek ? `ÖRNEK (SENTETİK) · ${etiket}` : `KENDİ VERİN · ${etiket}`;
+  sonuc.ad = `${ceviri(sonuc.ornek ? 'ÖRNEK (SENTETİK)' : 'KENDİ VERİN')} · ${etiket}`;
   return sonuc;
 }

@@ -7,6 +7,7 @@
 // Kod hiçbir zaman ağa çıkmaz; röleye yalnız koddan türetilmiş kanal ve yuva kimlikleri gider.
 
 import { anahtarlar, yuva, ac } from './role.js';
+import { t as ceviri } from '../dil.js';
 import { seriCoz, durumCoz, pozisyonCoz } from './kopru.js';
 
 export const VARSAYILAN_ROLE = '/api/kopru';
@@ -37,7 +38,7 @@ export function izinAdresi(adres, sayfa = 'https://kalibremarkets.com/') {
 
 // Sunucu saati farkı: 10800 → "UTC+3", -16200 → "UTC-4:30".
 export function utcEtiket(farkSn) {
-  if (typeof farkSn !== 'number' || !Number.isFinite(farkSn)) return 'UTC farkı bilinmiyor';
+  if (typeof farkSn !== 'number' || !Number.isFinite(farkSn)) return ceviri('UTC farkı bilinmiyor');
   const d = Math.round(farkSn / 60);
   const isaret = d < 0 ? '-' : '+';
   const s = Math.floor(Math.abs(d) / 60), dk = Math.abs(d) % 60;
@@ -60,18 +61,19 @@ export function istemci(kod, adres = VARSAYILAN_ROLE, getir = (...a) => fetch(..
     try {
       r = await getir(`${adres}${ayrac}k=${a.kanal}&y=${y}`, { cache: 'no-store' });
     } catch {
-      throw new BaglantiHatasi('role', 'röleye ulaşılamadı');
+      throw new BaglantiHatasi('role', ceviri('röleye ulaşılamadı'));
     }
     if (r.status === 404) return null;
-    if (r.status === 503) throw new BaglantiHatasi('role', 'röle henüz yapılandırılmamış');
-    if (r.status !== 200) throw new BaglantiHatasi('role', `röle yanıtı ${r.status}`);
+    if (r.status === 503) throw new BaglantiHatasi('role', ceviri('röle henüz yapılandırılmamış'));
+    if (r.status !== 200) throw new BaglantiHatasi('role', ceviri('röle yanıtı {k}', { k: r.status }));
     let z;
-    try { z = await r.json(); } catch { throw new BaglantiHatasi('bozuk', 'röle yanıtı JSON değil'); }
+    try { z = await r.json(); } catch { throw new BaglantiHatasi('bozuk', ceviri('röle yanıtı JSON değil')); }
     let metin;
     try { metin = await ac(a, y, z); } catch (e) {
-      throw new BaglantiHatasi(/mühür/.test(e.message) ? 'kod' : 'bozuk', e.message);
+      // role.js hataları Türkçe kaynak metindir: sınıflandırma onunla yapılır, gösterim çevrilir.
+      throw new BaglantiHatasi(/mühür/.test(e.message) ? 'kod' : 'bozuk', ceviri(e.message));
     }
-    try { return JSON.parse(metin); } catch { throw new BaglantiHatasi('bozuk', 'belge JSON değil'); }
+    try { return JSON.parse(metin); } catch { throw new BaglantiHatasi('bozuk', ceviri('belge JSON değil')); }
   }
   return {
     kanal: hazir.then(a => a.kanal),
@@ -90,29 +92,29 @@ export function istemci(kod, adres = VARSAYILAN_ROLE, getir = (...a) => fetch(..
 export function sinifla({ durum, hata } = {}) {
   if (hata) {
     if (hata.tur === 'kod') {
-      return { sinif: 'kod', baslik: 'Kod eşleşmiyor', ayrinti: 'Röledeki veri bu kodla açılmadı. MT5\'teki eklentiye bu sayfadaki kodu yapıştırdığından emin ol.' };
+      return { sinif: 'kod', baslik: ceviri('Kod eşleşmiyor'), ayrinti: ceviri("Röledeki veri bu kodla açılmadı. MT5'teki eklentiye bu sayfadaki kodu yapıştırdığından emin ol.") };
     }
     if (hata.tur === 'role') {
-      return { sinif: 'role', baslik: 'Röleye ulaşılamıyor', ayrinti: `${hata.message}. Biraz sonra yeniden denenir.` };
+      return { sinif: 'role', baslik: ceviri('Röleye ulaşılamıyor'), ayrinti: ceviri('{m}. Biraz sonra yeniden denenir.', { m: hata.message }) };
     }
-    return { sinif: 'bozuk', baslik: 'Okunamayan veri', ayrinti: hata.message };
+    return { sinif: 'bozuk', baslik: ceviri('Okunamayan veri'), ayrinti: hata.message };
   }
   if (!durum) {
-    return { sinif: 'bekleniyor', baslik: 'Eklenti bekleniyor', ayrinti: 'Henüz MT5\'ten kalp atışı gelmedi.' };
+    return { sinif: 'bekleniyor', baslik: ceviri('Eklenti bekleniyor'), ayrinti: ceviri("Henüz MT5'ten kalp atışı gelmedi.") };
   }
   const yer = [durum.terminal.sirket, durum.terminal.sunucu].filter(Boolean).join(' · ');
   const yas = sureMetni(durum.yas);
-  if (durum.tazelik === 'canli') return { sinif: 'bagli', baslik: 'Bağlı', ayrinti: `${yer}. Son kalp atışı ${yas} önce.` };
-  if (durum.tazelik === 'gecikmeli') return { sinif: 'gecikmeli', baslik: 'Gecikmeli', ayrinti: `${yer}. Son kalp atışı ${yas} önce; MT5 açık mı?` };
-  return { sinif: 'koptu', baslik: 'Bağlantı koptu', ayrinti: `Son kalp atışı ${yas} önce. MT5 kapalı ya da eklenti grafikten kaldırılmış olabilir.` };
+  if (durum.tazelik === 'canli') return { sinif: 'bagli', baslik: ceviri('Bağlı'), ayrinti: ceviri('{yer}. Son kalp atışı {yas} önce.', { yer, yas }) };
+  if (durum.tazelik === 'gecikmeli') return { sinif: 'gecikmeli', baslik: ceviri('Gecikmeli'), ayrinti: ceviri('{yer}. Son kalp atışı {yas} önce; MT5 açık mı?', { yer, yas }) };
+  return { sinif: 'koptu', baslik: ceviri('Bağlantı koptu'), ayrinti: ceviri('Son kalp atışı {yas} önce. MT5 kapalı ya da eklenti grafikten kaldırılmış olabilir.', { yas }) };
 }
 
 export function sureMetni(sn) {
   const s = Math.max(0, Math.round(sn));
-  if (s < 60) return `${s} sn`;
-  if (s < 3600) return `${Math.floor(s / 60)} dk`;
-  if (s < 86400) return `${Math.floor(s / 3600)} sa`;
-  return `${Math.floor(s / 86400)} gün`;
+  if (s < 60) return ceviri('{n} sn', { n: s });
+  if (s < 3600) return ceviri('{n} dk', { n: Math.floor(s / 60) });
+  if (s < 86400) return ceviri('{n} sa', { n: Math.floor(s / 3600) });
+  return ceviri('{n} gün', { n: Math.floor(s / 86400) });
 }
 
 // Yüklü seri tazelenmeli mi? Eklenti yeni bir mum kapandığında seriyi yeniden yazar ve

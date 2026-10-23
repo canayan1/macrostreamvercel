@@ -142,3 +142,8 @@ a.logo { text-decoration: none; color: inherit; }
 
 /* Eğitim örneği yüklendiğinde: öneri olmadığını ve riskin kullanıcıda olduğunu söyler. */
 .ornek-uyari{margin:12px 20px 0;padding:10px 14px;border:1px solid var(--border-2);border-left:3px solid #d9a441;border-radius:6px;background:var(--surface);color:var(--text);font-size:13.5px;line-height:1.5}
+
+/* Dil anahtarı (TR | EN) */
+.dil-anahtari{display:inline-flex;border:1px solid var(--border-2);border-radius:6px;overflow:hidden}
+.dil-anahtari button{background:transparent;color:var(--text-dim);border:0;padding:6px 9px;font:600 12px var(--mono);cursor:pointer}
+.dil-anahtari button[aria-pressed="true"]{background:var(--surface-2);color:var(--text)}

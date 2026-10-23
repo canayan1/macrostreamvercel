@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -35,64 +35,64 @@ tr.secili td{color:var(--accent)}
 </head>
 <body>
 <header class="ust">
-  <a class="logo" href="/" title="Kalibre ana sayfa"><i></i>Kalibre Lab <span>Oynaklık Laboratuvarı</span></a>
-  <div class="ust-eylem"><a class="dugme ikincil" href="./">Strateji Kurucu</a></div>
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>Oynaklık Laboratuvarı</span></a>
+  <div class="ust-eylem"><a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a></div>
 </header>
 
 <main class="tek-sutun">
   <section class="kart">
-    <div class="kart-bas"><h2>Veri</h2><span class="rozet" id="rozet">SENTETİK</span></div>
+    <div class="kart-bas"><h2 data-t>Veri</h2><span class="rozet" id="rozet">SENTETİK</span></div>
     <div class="veri-satiri">
-      <label>Kaynak
-        <select id="kaynak"><option value="sentetik">Sentetik piyasa</option><option value="csv">Kendi dosyam (MT5 JSON ya da CSV)</option></select>
+      <label><span data-t>Kaynak</span>
+        <select id="kaynak"><option value="sentetik" data-t>Sentetik piyasa</option><option value="csv" data-t>Kendi dosyam (MT5 JSON ya da CSV)</option></select>
       </label>
-      <label id="csv-alan" hidden>Dosya<input type="file" id="csv" accept=".json,.csv,.txt,application/json,text/csv"></label>
-      <label id="tohum-alan">Tohum<input type="number" id="tohum" value="4821" min="1" step="1"></label>
-      <label id="rejim-alan">Rejim<select id="rejim"></select></label>
-      <label>Takvim
-        <select id="takvim"><option value="yedi24">7/24 (kripto)</option><option value="bes24">5/24 (forex, CFD)</option><option value="borsa">Borsa seansı</option></select>
+      <label id="csv-alan" hidden><span data-t>Dosya</span><input type="file" id="csv" accept=".json,.csv,.txt,application/json,text/csv"></label>
+      <label id="tohum-alan"><span data-t>Tohum</span><input type="number" id="tohum" value="4821" min="1" step="1"></label>
+      <label id="rejim-alan"><span data-t>Rejim</span><select id="rejim"></select></label>
+      <label><span data-t>Takvim</span>
+        <select id="takvim"><option value="yedi24" data-t>7/24 (kripto)</option><option value="bes24" data-t>5/24 (forex, CFD)</option><option value="borsa" data-t>Borsa seansı</option></select>
       </label>
-      <label>Pencere (mum)<select id="pencere"><option>20</option><option selected>30</option><option>60</option><option>120</option></select></label>
+      <label><span data-t>Pencere (mum)</span><select id="pencere"><option>20</option><option selected>30</option><option>60</option><option>120</option></select></label>
     </div>
     <div class="meta" id="meta"></div>
-    <p class="ipucu">CSV: MT5'te Sembol listesi → Mumlar → Dışa aktar; ya da borsanın kline CSV'si. Dosya tarayıcında okunur, hiçbir yere gönderilmez.</p>
+    <p class="ipucu" data-t>CSV: MT5'te Sembol listesi → Mumlar → Dışa aktar; ya da borsanın kline CSV'si. Dosya tarayıcında okunur, hiçbir yere gönderilmez.</p>
   </section>
 
   <div class="iki">
     <section class="kart">
-      <div class="kart-bas"><h2>Gerçekleşen oynaklık (yıllık)</h2></div>
+      <div class="kart-bas"><h2 data-t>Gerçekleşen oynaklık (yıllık)</h2></div>
       <canvas id="g-gercek" height="230"></canvas>
       <div class="lejant" id="l-gercek"></div>
     </section>
     <section class="kart">
-      <div class="kart-bas"><h2>Son değerler</h2></div>
-      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Son oynaklık değerleri"><table id="t-gercek"></table></div>
-      <p class="uyari-kutu">Aralık tahmincileri (Parkinson, Garman-Klass, Rogers-Satchell) kapanış-kapanıştan daha verimlidir; Yang-Zhang gece boşluğunu da sayar. 7/24 piyasada boşluk yoktur.</p>
+      <div class="kart-bas"><h2 data-t>Son değerler</h2></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Son oynaklık değerleri" data-t-attr="aria-label"><table id="t-gercek"></table></div>
+      <p class="uyari-kutu" data-t>Aralık tahmincileri (Parkinson, Garman-Klass, Rogers-Satchell) kapanış-kapanıştan daha verimlidir; Yang-Zhang gece boşluğunu da sayar. 7/24 piyasada boşluk yoktur.</p>
     </section>
   </div>
 
   <div class="iki">
     <section class="kart">
-      <div class="kart-bas"><h2>Koşullu oynaklık · GARCH ailesi</h2><span class="bekle" id="garch-durum"></span></div>
+      <div class="kart-bas"><h2 data-t>Koşullu oynaklık · GARCH ailesi</h2><span class="bekle" id="garch-durum"></span></div>
       <canvas id="g-garch" height="230"></canvas>
       <div class="lejant" id="l-garch"></div>
     </section>
     <section class="kart">
-      <div class="kart-bas"><h2>Model karşılaştırması</h2></div>
-      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Model karşılaştırması"><table id="t-garch"></table></div>
-      <p class="uyari-kutu">Getiriler yüzde olarak modellenir; tablo dönemlik parametreleri gösterir. En düşük BIC vurgulanır. GJR ve EGARCH'ta γ düşüşlerin oynaklığı yükselişlerden farklı etkileyip etkilemediğini, ν (t dağılımı) kuyrukların ne kadar kalın olduğunu gösterir: ν küçüldükçe uç hareketler daha sık. EGARCH'ın çok adımlı öngörüsü simülasyonla hesaplanır. Kalıcılık 1'e yaklaştıkça şoklar daha yavaş söner; yarı ömür mum cinsindendir. Kalıcılık 1'e çok yakınsa (IGARCH benzeri) uzun dönem oynaklık tanımsızdır; bu genellikle seride rejim değişimi olduğunu gösterir.</p>
-      <div class="tablo-kutu" style="margin-top:10px" tabindex="0" role="region" aria-label="Oynaklık öngörüsü"><table id="t-ongoru"></table></div>
+      <div class="kart-bas"><h2 data-t>Model karşılaştırması</h2></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="Model karşılaştırması" data-t-attr="aria-label"><table id="t-garch"></table></div>
+      <p class="uyari-kutu" data-t>Getiriler yüzde olarak modellenir; tablo dönemlik parametreleri gösterir. En düşük BIC vurgulanır. GJR ve EGARCH'ta γ düşüşlerin oynaklığı yükselişlerden farklı etkileyip etkilemediğini, ν (t dağılımı) kuyrukların ne kadar kalın olduğunu gösterir: ν küçüldükçe uç hareketler daha sık. EGARCH'ın çok adımlı öngörüsü simülasyonla hesaplanır. Kalıcılık 1'e yaklaştıkça şoklar daha yavaş söner; yarı ömür mum cinsindendir. Kalıcılık 1'e çok yakınsa (IGARCH benzeri) uzun dönem oynaklık tanımsızdır; bu genellikle seride rejim değişimi olduğunu gösterir.</p>
+      <div class="tablo-kutu" style="margin-top:10px" tabindex="0" role="region" aria-label="Oynaklık öngörüsü" data-t-attr="aria-label"><table id="t-ongoru"></table></div>
     </section>
   </div>
 
   <section class="kart">
-    <div class="kart-bas"><h2>Zaman serisi · SARIMA</h2><span class="bekle" id="sarima-durum"></span></div>
+    <div class="kart-bas"><h2 data-t>Zaman serisi · SARIMA</h2><span class="bekle" id="sarima-durum"></span></div>
     <div class="sira">
-      <label>Seri<select id="s-seri">
-        <option value="mutlak">Mutlak getiri (oynaklık vekili)</option>
-        <option value="aralik">Log yüksek/düşük aralığı</option>
-        <option value="getiri">Getiri</option>
-        <option value="hacim">Hacim</option>
+      <label><span data-t>Seri</span><select id="s-seri">
+        <option value="mutlak" data-t>Mutlak getiri (oynaklık vekili)</option>
+        <option value="aralik" data-t>Log yüksek/düşük aralığı</option>
+        <option value="getiri" data-t>Getiri</option>
+        <option value="hacim" data-t>Hacim</option>
       </select></label>
       <label>p<input type="number" id="s-p" value="1" min="0" max="3"></label>
       <label>d<input type="number" id="s-d" value="0" min="0" max="2"></label>
@@ -101,13 +101,13 @@ tr.secili td{color:var(--accent)}
       <label>D<input type="number" id="s-D" value="0" min="0" max="1"></label>
       <label>Q<input type="number" id="s-Q" value="0" min="0" max="2"></label>
       <label>s<input type="number" id="s-s" value="24" min="0" max="400"></label>
-      <button type="button" class="dugme" id="s-kestir">Kestir</button>
+      <button type="button" class="dugme" id="s-kestir" data-t>Kestir</button>
     </div>
     <div class="iki" style="margin-top:12px">
       <div><canvas id="g-sarima" height="200"></canvas><div class="lejant" id="l-sarima"></div></div>
-      <div class="tablo-kutu" tabindex="0" role="region" aria-label="SARIMA sonuçları"><table id="t-sarima"></table></div>
+      <div class="tablo-kutu" tabindex="0" role="region" aria-label="SARIMA sonuçları" data-t-attr="aria-label"><table id="t-sarima"></table></div>
     </div>
-    <p class="uyari-kutu">Fiyat getirisinin yönünü öngörmek zordur; getiri serisinde SARIMA katsayılarının küçük çıkması beklenir. Mevsimsel yapı daha çok oynaklıkta, hacimde ve aralıkta görülür: saatlik veride s = 24 (gün), günlük veride s = 7 (hafta, 7/24 piyasada) deneyin.</p>
+    <p class="uyari-kutu" data-t>Fiyat getirisinin yönünü öngörmek zordur; getiri serisinde SARIMA katsayılarının küçük çıkması beklenir. Mevsimsel yapı daha çok oynaklıkta, hacimde ve aralıkta görülür: saatlik veride s = 24 (gün), günlük veride s = 7 (hafta, 7/24 piyasada) deneyin.</p>
   </section>
 </main>
 

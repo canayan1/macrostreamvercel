@@ -3,6 +3,8 @@
 // vermelidir; araclar/dogrula.test.mjs ikisini karşılaştırır.
 // Her hata { yol, mesaj } döner; yol arayüzde alanın yanına hata yazmak için kullanılır.
 
+import { t as ceviri } from './dil.js';
+
 export const ZAMAN_DILIMLERI = ['M1', 'M5', 'M15', 'M30', 'H1', 'H4', 'D1', 'W1'];
 export const GOSTERGE_TIPLERI = ['SMA', 'EMA', 'RSI', 'ATR', 'ADX', 'BB', 'MACD', 'EWMA_VOL', 'YZ_VOL', 'GARCH_VOL'];
 export const OYNAKLIK = ['EWMA_VOL', 'YZ_VOL', 'GARCH_VOL'];
@@ -23,12 +25,13 @@ const tamMi = (v, a, b) => Number.isInteger(v) && v >= a && v <= b;
 
 export function dogrula(s) {
   const h = [];
-  const hata = (yol, mesaj) => h.push({ yol, mesaj });
+  // Mesajlar Türkçe kaynak metinle yazılır, arayüz diline çevrilir; yol değerleri dilden bağımsızdır.
+  const hata = (yol, mesaj, d) => h.push({ yol, mesaj: ceviri(mesaj, d) });
   const fazla = (o, izinli, yol) => {
-    for (const k of Object.keys(o)) if (!izinli.includes(k)) hata(`${yol}.${k}`.replace(/^\./, ''), `bilinmeyen alan '${k}'`);
+    for (const k of Object.keys(o)) if (!izinli.includes(k)) hata(`${yol}.${k}`.replace(/^\./, ''), "bilinmeyen alan '{k}'", { k });
   };
 
-  if (!nesneMi(s)) return [{ yol: '', mesaj: 'strateji bir nesne olmalı' }];
+  if (!nesneMi(s)) return [{ yol: '', mesaj: ceviri('strateji bir nesne olmalı') }];
   fazla(s, ['kalibre', 'ad', 'aciklama', 'zaman_dilimi', 'yon', 'gostergeler', 'giris', 'cikis', 'risk', 'filtre'], '');
   if (s.kalibre !== 1 && s.kalibre !== 2) hata('kalibre', 'şema sürümü 1 ya da 2 olmalı');
   if (typeof s.ad !== 'string' || s.ad.length < 1 || s.ad.length > 60) hata('ad', 'ad 1-60 karakter olmalı');
@@ -44,7 +47,7 @@ export function dogrula(s) {
     if (adlar.length < 1 || adlar.length > 16) hata('gostergeler', '1-16 gösterge olmalı');
     for (const ad of adlar) {
       const yol = `gostergeler.${ad}`;
-      if (!AD_DESENI.test(ad)) hata(yol, `'${ad}': küçük harf ile başlamalı; yalnız a-z, 0-9, _ (en çok 24)`);
+      if (!AD_DESENI.test(ad)) hata(yol, "'{ad}': küçük harf ile başlamalı; yalnız a-z, 0-9, _ (en çok 24)", { ad });
       if (ad === 'fiyat') hata(yol, "'fiyat' gösterge adı olamaz");
       const t = g[ad];
       if (!nesneMi(t)) { hata(yol, 'gösterge nesne olmalı'); continue; }
@@ -83,15 +86,15 @@ export function dogrula(s) {
     if (typeof o !== 'string' || !OPERAND_DESENI.test(o)) return hata(yol, 'geçersiz operand');
     const [ad, hat = ''] = o.split('.');
     if (ad === 'fiyat' || !g) return;
-    if (!g[ad]) return hata(yol, `tanımsız gösterge '${ad}'`);
+    if (!g[ad]) return hata(yol, "tanımsız gösterge '{ad}'", { ad });
     if (GOSTERGE_TIPLERI.includes(g[ad].tip) && !HATLAR[g[ad].tip].includes(hat))
-      hata(yol, `'${ad}' (${g[ad].tip}) göstergesinde '${hat}' hattı yok`);
+      hata(yol, "'{ad}' ({tip}) göstergesinde '{hat}' hattı yok", { ad, tip: g[ad].tip, hat });
   };
   const grup = (gr, yol) => {
     if (gr === undefined) return;
     if (!nesneMi(gr) || Object.keys(gr).length !== 1) return hata(yol, "grup tam olarak 'hepsi' ya da 'herhangi' içermeli");
     const tur = Object.keys(gr)[0];
-    if (tur !== 'hepsi' && tur !== 'herhangi') return hata(yol, `bilinmeyen grup '${tur}'`);
+    if (tur !== 'hepsi' && tur !== 'herhangi') return hata(yol, "bilinmeyen grup '{tur}'", { tur });
     const liste = gr[tur];
     if (!Array.isArray(liste) || liste.length < 1 || liste.length > 12) return hata(`${yol}.${tur}`, '1-12 koşul olmalı');
     liste.forEach((k, i) => {
@@ -192,7 +195,7 @@ export function dogrula(s) {
   }
   if (s.kalibre === 1) {
     const v2 = v2Ozellikleri(s);
-    if (v2.length) hata('kalibre', `${v2.join(', ')} şema sürümü 2 gerektirir`);
+    if (v2.length) hata('kalibre', '{liste} şema sürümü 2 gerektirir', { liste: v2.map(o => ceviri(o)).join(', ') });
   }
   return h;
 }

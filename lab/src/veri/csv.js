@@ -5,6 +5,8 @@
 //   Genel             : time|date|timestamp, open, high, low, close[, volume] (ISO, unix sn ya da ms)
 // Ayırıcı: sekme, virgül ya da noktalı virgül. Ondalık ayırıcı nokta.
 
+import { t as ceviri } from '../dil.js';
+
 const BASLIK = {
   zaman: ['time', 'date', 'datetime', 'timestamp', 'open_time', 'opentime', '<date>', 'tarih'],
   saat: ['<time>', 'saat'],
@@ -37,7 +39,7 @@ function zamanCoz(deger, saat) {
 
 export function csvCoz(metin) {
   const satirlar = metin.replace(/^﻿/, '').split(/\r?\n/).map(s => s.trim()).filter(Boolean);
-  if (satirlar.length < 2) throw new Error('CSV boş ya da tek satır');
+  if (satirlar.length < 2) throw new Error(ceviri('CSV boş ya da tek satır'));
   const ayr = ayiriciBul(satirlar[0]);
   const ilk = satirlar[0].split(ayr).map(s => s.trim().toLowerCase().replace(/^"|"$/g, ''));
   const baslikVar = ilk.some(h => Number.isNaN(Number(h)));
@@ -48,7 +50,7 @@ export function csvCoz(metin) {
       const i = ilk.findIndex(h => adlar.includes(h));
       if (i >= 0) sutun[alan] = i;
     }
-    for (const g of ['zaman', 'a', 'y', 'd', 'k']) if (sutun[g] === undefined) throw new Error(`CSV'de '${g}' sütunu bulunamadı`);
+    for (const g of ['zaman', 'a', 'y', 'd', 'k']) if (sutun[g] === undefined) throw new Error(ceviri("CSV'de '{g}' sütunu bulunamadı", { g }));
   } else sutun = { zaman: 0, a: 1, y: 2, d: 3, k: 4, h: 5 }; // borsa kline biçimi
 
   const mumlar = [];
@@ -65,6 +67,6 @@ export function csvCoz(metin) {
   }
   mumlar.sort((x, y) => x.t - y.t);
   const tekil = mumlar.filter((m, i) => i === 0 || m.t !== mumlar[i - 1].t);
-  if (tekil.length < 2) throw new Error('geçerli mum bulunamadı');
+  if (tekil.length < 2) throw new Error(ceviri('geçerli mum bulunamadı'));
   return { mumlar: tekil, atlanan: atlanan + (mumlar.length - tekil.length) };
 }

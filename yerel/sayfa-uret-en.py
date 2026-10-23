@@ -52,7 +52,7 @@ SETUP = '''
 </ol>
 
 <h2 id="check">5. Check the connection</h2>
-<p>A <b>Kalibre Köprü</b> line appears in the top-left corner of the chart. The add-on first checks your license (a few seconds), then starts sending data. Once the status reads <b>bağlı</b> (connected), the count of sent documents goes up. In the lab you will see the connection status, your broker's name and how many seconds ago the last heartbeat arrived.</p>
+<p>A <b>Kalibre Bridge</b> line appears in the top-left corner of the chart. The add-on first checks your license (a few seconds), then starts sending data. Once the status reads <b>connected</b>, the count of sent documents goes up. In the lab you will see the connection status, your broker's name and how many seconds ago the last heartbeat arrived.</p>
 <p>Series refresh when a new candle closes: hourly on H1, daily on D1.</p>
 
 <h2 id="troubleshooting">Common situations</h2>
@@ -70,7 +70,7 @@ SETUP = '''
 
 <h2 id="without">Working without the add-on</h2>
 <p>If you prefer not to install the add-on, drag and drop a candle file exported from MT5 (CSV or JSON) into the lab. The file never leaves your computer; it is read in your browser.</p>
-<p class="not">The add-ons currently show their on-chart status in Turkish or English depending on your MT5 language.</p>
+<p class="not">The add-ons show their messages in English, or in Turkish if your MetaTrader 5 is set to Turkish.</p>
 '''
 sayfa("en/setup/index.html", "Setup: connect MetaTrader 5 to Kalibre Lab", "How to install the Kalibre Bridge add-on in MetaTrader 5, enter the pairing code and license key, and allow WebRequest.", "/en/setup/", SETUP,
       icindekiler(SETUP) + '<p>Stuck on a step? <a href="/iletisim/" style="display:inline">Write to us</a>.</p>', dil="en")
@@ -219,7 +219,7 @@ PRICING = """
     <p class="fiyat"><span class="sayi">$19</span> / month <span class="not">(€17 in the euro area, 399 TL in Turkey)</span></p>
   </div>
   <ul>
-    <li>Kalibre Motor: the add-on that runs your rule file on your live MT5 account</li>
+    <li>Kalibre Engine: the add-on that runs your rule file on your live MT5 account</li>
     <li>Prop shield: daily and total loss limits, FTMO and The5ers presets</li>
     <li>Live, encrypted data bridge from MetaTrader 5</li>
     <li>Up to 2 MT5 accounts</li>
@@ -235,10 +235,10 @@ PRICING = """
 <ul>
   <li>The lab, with SYNTHETIC sample series and files you upload yourself.</li>
   <li>Building rule files, the quick test and the volatility lab.</li>
-  <li>Kalibre Motor in MT5 Strategy Tester: historical tests need no license.</li>
+  <li>Kalibre Engine in MT5 Strategy Tester: historical tests need no license.</li>
 </ul>
 
-<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Motor places trades with your approval, according to rules you built; you are responsible for the results.</div>
+<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Engine places trades with your approval, according to rules you built; you are responsible for the results.</div>
 """
 EN_PRO_BETIK = """<script>
 (function () {
@@ -266,7 +266,7 @@ _tr = open(os.path.join(_d, "sayfa-uret.py")).read()
 PRO_STIL = _tr.split('PRO_STIL = """')[1].split('"""')[0]
 HESAP_STIL = _tr.split('HESAP_STIL = """')[1].split('"""')[0]
 PROP_STIL = _tr.split('PROP_STIL = """')[1].split('"""')[0]
-sayfa("en/pricing/index.html", "Pricing: Kalibre Lab", "Kalibre Lab subscription: run Kalibre Motor and the prop shield on your live MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.", "/en/pricing/", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
+sayfa("en/pricing/index.html", "Pricing: Kalibre Lab", "Kalibre Lab subscription: run Kalibre Engine and the prop shield on your live MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.", "/en/pricing/", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
 
 # ------------------------------------------------------------------ license
 LICENSE = """
@@ -293,7 +293,7 @@ LICENSE = """
   <p class="not">Both work with the same license key. Setup steps are on the <a href="/en/setup/">setup page</a>.</p>
   <div class="eylem-satir">
     <button type="button" class="dugme" data-eklenti="kopru">Kalibre Bridge</button>
-    <button type="button" class="dugme" data-eklenti="motor">Kalibre Motor</button>
+    <button type="button" class="dugme" data-eklenti="motor">Kalibre Engine</button>
   </div>
   <p class="not" id="indir-durum" role="status"></p>
 </div>
@@ -310,13 +310,13 @@ LICENSE = """
   </div>
 </div>
 
-<h2 id="motor">Enter the key in Kalibre Motor</h2>
+<h2 id="motor">Enter the key in Kalibre Engine</h2>
 <ol>
-  <li>Attach Kalibre Motor to a chart and open the <b>Inputs</b> tab.</li>
+  <li>Attach Kalibre Engine to a chart and open the <b>Inputs</b> tab.</li>
   <li>Paste your key into <b>License key</b> and click <b>OK</b>.</li>
   <li>Make sure MT5 allows WebRequest for <code>https://kalibremarkets.com</code> (<a href="/en/setup/#permission">step 4 of setup</a>).</li>
 </ol>
-<p>Motor checks the license a few seconds after starting and renews it every 6 hours. If the internet connection drops, it keeps working on the last valid license for 72 more hours. Historical tests in Strategy Tester need no license.</p>
+<p>Engine checks the license a few seconds after starting and renews it every 6 hours. If the internet connection drops, it keeps working on the last valid license for 72 more hours. Historical tests in Strategy Tester need no license.</p>
 
 <h2 id="cancel">Cancelling and changing accounts</h2>
 <p><b>Manage subscription</b> takes you to Stripe's secure page, where you can change your card, download invoices or cancel. If you cancel, your license stays valid until the end of the period.</p>
@@ -358,14 +358,14 @@ sayfa("en/license/index.html", "Your license: Kalibre Lab", "Your Kalibre Lab li
 # ------------------------------------------------------------------ prop
 PROP = """
 <h1>Don't fail the challenge on a rule breach.</h1>
-<p class="giris">Most prop firm challenges are not lost to a bad strategy but to one bad day: the daily loss or total drawdown limit is breached and the account is closed. The Kalibre Motor shield watches those limits on every tick and steps in before you notice.</p>
+<p class="giris">Most prop firm challenges are not lost to a bad strategy but to one bad day: the daily loss or total drawdown limit is breached and the account is closed. The Kalibre Engine shield watches those limits on every tick and steps in before you notice.</p>
 <div class="eylem-satir"><a class="dugme" href="/en/pricing/">See pricing</a><a class="dugme ikincil" href="#calculate">Check your own account</a></div>
 
 <h2 id="how">What the shield does</h2>
 <ul>
   <li><b>It tracks both floors.</b> The daily floor comes from the start-of-day balance, the total floor from the starting or peak balance; whichever is higher applies. The day resets at the firm's time (for FTMO, 00:00 Central European time, including summer time).</li>
   <li><b>It sizes lots to the limit.</b> A new trade's loss at its stop, together with the risk left to the stops of open positions, cannot exceed the distance to the floor. Positions you opened by hand on the account count too.</li>
-  <li><b>It stops first, then closes.</b> Once the distance to the floor is down to twice the safety margin, no new trades are opened. At one margin, Motor closes its own positions and trades no more until the day resets.</li>
+  <li><b>It stops first, then closes.</b> Once the distance to the floor is down to twice the safety margin, no new trades are opened. At one margin, Engine closes its own positions and trades no more until the day resets.</li>
   <li><b>It applies the news rule.</b> If the firm bans trading around high-impact news, no new trades are opened in that window.</li>
 </ul>
 
@@ -422,12 +422,12 @@ PROP = """
 
 <h2 id="scope">Scope and limits</h2>
 <ul>
-  <li>The shield is part of Kalibre Motor. Motor runs the rule file you build in Kalibre Lab on your own account; we sell no signals and make no decisions for you.</li>
+  <li>The shield is part of Kalibre Engine. Engine runs the rule file you build in Kalibre Lab on your own account; we sell no signals and make no decisions for you.</li>
   <li>Kalibre is not a prop firm and is not affiliated with any firm. Firm names appear only to describe their rules.</li>
   <li>Slippage and gaps can cause losses beyond the stop; that is what the safety margin is for.</li>
 </ul>
 """
-sayfa("en/prop/index.html", "Prop firm shield: don't fail the challenge on a rule breach", "The Kalibre Motor shield watches daily and total loss limits on every tick, sizes lots to the limit and stops near the floor. FTMO and The5ers presets.", "/en/prop/", PROP, icindekiler(PROP), ek_stil=PROP_STIL, ek_betik='<script src="/static/kalkan-hesap.js" defer></script>', dil="en")
+sayfa("en/prop/index.html", "Prop firm shield: don't fail the challenge on a rule breach", "The Kalibre Engine shield watches daily and total loss limits on every tick, sizes lots to the limit and stops near the floor. FTMO and The5ers presets.", "/en/prop/", PROP, icindekiler(PROP), ek_stil=PROP_STIL, ek_betik='<script src="/static/kalkan-hesap.js" defer></script>', dil="en")
 
 # ------------------------------------------------------------------ forex
 FOREX = """

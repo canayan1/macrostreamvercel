@@ -16,7 +16,9 @@
       "dayanak": [
         "faber2007"
       ],
-      "kisa": "200 günlük ortalamanın üstünde long, altında nakit. Uzun düşüşlerden kaçmak için."
+      "kisa": "200 günlük ortalamanın üstünde long, altında nakit. Uzun düşüşlerden kaçmak için.",
+      "ad_en": "Defensive Long",
+      "kisa_en": "Long above the 200-day average, cash below it. Built to sidestep long declines."
     },
     {
       "id": "altin-kesisim",
@@ -32,7 +34,9 @@
       "dayanak": [
         "bajgrowicz2012"
       ],
-      "kisa": "SMA50/SMA200 kesişimi. Az işlem, geç giriş, büyük trendler."
+      "kisa": "SMA50/SMA200 kesişimi. Az işlem, geç giriş, büyük trendler.",
+      "ad_en": "Golden Cross",
+      "kisa_en": "SMA50/SMA200 crossover. Few trades, late entries, big trends."
     },
     {
       "id": "trend-ici-geri-cekilme",
@@ -50,7 +54,9 @@
         "lehmann1990",
         "faber2007"
       ],
-      "kisa": "Yükselen piyasada kısa vadeli aşırı satımı al."
+      "kisa": "Yükselen piyasada kısa vadeli aşırı satımı al.",
+      "ad_en": "Pullback in a Trend",
+      "kisa_en": "Buy short-term oversold moves in a rising market."
     },
     {
       "id": "koruma-short",
@@ -68,7 +74,9 @@
         "faber2007",
         "stambaugh2012"
       ],
-      "kisa": "200 günlük ortalamanın altında short. Long portföy için düşüş koruması."
+      "kisa": "200 günlük ortalamanın altında short. Long portföy için düşüş koruması.",
+      "ad_en": "Protective Short",
+      "kisa_en": "Short below the 200-day average. Downside protection for a long portfolio."
     },
     {
       "id": "ayi-rejimi-tepki-satisi",
@@ -86,7 +94,9 @@
         "lehmann1990",
         "stambaugh2012"
       ],
-      "kisa": "Düşen piyasada kısa vadeli aşırı alımı sat."
+      "kisa": "Düşen piyasada kısa vadeli aşırı alımı sat.",
+      "ad_en": "Selling Rallies in a Bear Regime",
+      "kisa_en": "Sell short-term overbought moves in a falling market."
     },
     {
       "id": "asagi-kirilim",
@@ -104,7 +114,9 @@
         "moskowitz2012",
         "stambaugh2012"
       ],
-      "kisa": "Güçlü düşüş trendinde SMA50 kırılımı."
+      "kisa": "Güçlü düşüş trendinde SMA50 kırılımı.",
+      "ad_en": "Downside Breakout",
+      "kisa_en": "SMA50 break in a strong downtrend."
     },
     {
       "id": "ema-trend",
@@ -125,7 +137,9 @@
         "hurst2017",
         "bajgrowicz2012"
       ],
-      "kisa": "EMA20/50 kesişimi + ADX filtresi. Kütüphanenin başlangıç şablonu."
+      "kisa": "EMA20/50 kesişimi + ADX filtresi. Kütüphanenin başlangıç şablonu.",
+      "ad_en": "EMA Trend Following",
+      "kisa_en": "EMA20/50 crossover with an ADX filter. The library starter template."
     },
     {
       "id": "kaldiracli-trend-ls",
@@ -144,7 +158,9 @@
         "hurst2017",
         "moreira2017"
       ],
-      "kisa": "SMA100 kesişimi iki yönde, iz süren stop, sıkı risk."
+      "kisa": "SMA100 kesişimi iki yönde, iz süren stop, sıkı risk.",
+      "ad_en": "Leveraged Trend",
+      "kisa_en": "SMA100 crossover both ways, trailing stop, tight risk."
     },
     {
       "id": "macd-trend-onayi",
@@ -160,7 +176,9 @@
       "dayanak": [
         "bajgrowicz2012"
       ],
-      "kisa": "MACD kesişimi, SMA200 rejim filtresiyle."
+      "kisa": "MACD kesişimi, SMA200 rejim filtresiyle.",
+      "ad_en": "MACD Trend Confirmation",
+      "kisa_en": "MACD crossover with an SMA200 regime filter."
     },
     {
       "id": "adx-trend-devami",
@@ -177,7 +195,9 @@
         "moskowitz2012",
         "bajgrowicz2012"
       ],
-      "kisa": "Güçlü trendde geri çekilmeye giriş."
+      "kisa": "Güçlü trendde geri çekilmeye giriş.",
+      "ad_en": "ADX Trend Continuation",
+      "kisa_en": "Enter on pullbacks in a strong trend."
     },
     {
       "id": "bant-disi-momentum",
@@ -193,7 +213,9 @@
       "dayanak": [
         "bajgrowicz2012"
       ],
-      "kisa": "Bollinger bandı dışına kapanışı momentum olarak oku."
+      "kisa": "Bollinger bandı dışına kapanışı momentum olarak oku.",
+      "ad_en": "Outside-the-Band Momentum",
+      "kisa_en": "Read a close outside the Bollinger band as momentum."
     },
     {
       "id": "rsi-bollinger-donus",
@@ -211,7 +233,9 @@
         "lehmann1990",
         "bajgrowicz2012"
       ],
-      "kisa": "Zayıf trendde Bollinger bandı uçlarından dönüş."
+      "kisa": "Zayıf trendde Bollinger bandı uçlarından dönüş.",
+      "ad_en": "Reversal Inside the Bands",
+      "kisa_en": "Reversals from the Bollinger band edges in a weak trend."
     },
     {
       "id": "gun-ici-momentum",
@@ -392,7 +416,9 @@
         "moreira2017",
         "hurst2017"
       ],
-      "kisa": "Trend sinyali, GARCH oynaklığına göre ölçeklenen lot ve oynaklık tabanlı stop."
+      "kisa": "Trend sinyali, GARCH oynaklığına göre ölçeklenen lot ve oynaklık tabanlı stop.",
+      "ad_en": "Volatility-Targeted Trend",
+      "kisa_en": "Trend signal, lot size scaled by GARCH volatility and a volatility-based stop."
     },
     {
       "id": "coklu-zaman-trend",
