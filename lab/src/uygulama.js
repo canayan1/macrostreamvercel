@@ -8,6 +8,7 @@ import { prova } from './motor.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { mt5Panel } from './baglanti-arayuz.js';
+import { blokFormu, blokDinle, modAnahtari, modOku } from './blok-arayuz.js';
 import { baglanDugmesi } from './baglan-ortak.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 
@@ -203,13 +204,20 @@ function mesafeHtml(yol, baslik, { zorunlu = false, rIzinli = false } = {}) {
 }
 
 function formCiz() {
+  // Basit mod: hazır kalıplı kartlar (blok-arayuz.js). İkisi de aynı `s`'i düzenler.
+  const mod = modOku();
+  if (mod === 'basit') {
+    $('#form').innerHTML = modAnahtari(mod) + blokFormu(s);
+    hatalariIsaretle();
+    return;
+  }
   const zd = ZAMAN_DILIMLERI.map(z => `<option${z === s.zaman_dilimi ? ' selected' : ''}>${z}</option>`).join('');
   const yon = [['iki_yon', 'İki yön'], ['sadece_long', 'Sadece long'], ['sadece_short', 'Sadece short']]
     .map(([v, e]) => `<option value="${v}"${(s.yon ?? 'iki_yon') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
   const f = s.filtre ?? {};
   const r = s.risk ?? {};
 
-  $('#form').innerHTML = `
+  $('#form').innerHTML = modAnahtari(mod) + `
   <section class="kart">
     <h2><span class="bolum-no">01</span>${ceviri('Genel')}</h2>
     <div class="alanlar">
@@ -644,6 +652,7 @@ function eylem(e) {
 $('#form').addEventListener('click', e => {
   if (e.target.matches('button[data-eylem]')) eylem(e);
 });
+blokDinle($('#form'), { al: () => s, koy: y => { s = y; }, ciz: () => { formCiz(); panelCiz(); }, panel: () => panelCiz() });
 $('#form').addEventListener('change', e => {
   if (e.target.matches('input[type=checkbox][data-eylem], select[data-eylem], input[data-eylem="gosterge-ad"]')) eylem(e);
 });

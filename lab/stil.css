@@ -211,3 +211,22 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 @media(max-width:560px){.baglan{padding:12px}.baglan .mt5-kod{flex-wrap:wrap}.baglan .mt5-kod input{flex-basis:100%}}
 .baglan a:not(.dugme):not(.baglan-hap){color:var(--accent)}
 .adim[aria-current=step].tamam .adim-no{color:#08130f}
+
+/* ---------------------------------------------------------------- Optimizasyon */
+.opt{max-width:1180px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.opt-satir{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-end}
+.opt-satir label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text-dim)}
+.opt-tablo-kap{overflow-x:auto;margin-top:8px}
+.opt-param input[type=text]{width:84px;font-family:var(--mono);text-align:right}
+.opt-param code{font-size:10px;color:var(--muted)}
+.opt-param td{vertical-align:middle}
+.opt-ozet{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:8px 0}
+.opt-ozet div{background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.opt-ozet b{display:block;font:600 16px var(--mono)}
+.opt-ozet span{font-size:11px;color:var(--muted);line-height:1.4}
+.opt-uyari li{margin-bottom:4px;color:#d9a441}
+.opt-eylem{white-space:nowrap;display:flex;gap:6px;justify-content:flex-end}
+.opt-feragat{margin:14px 0 0}
+.opt-feragat p{margin:0 0 6px}
+#ilerleme{width:100%;height:8px;margin-top:10px;accent-color:var(--accent)}
+@media(max-width:560px){.opt{padding:12px}}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Optimizasyon · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>Optimizasyon</span></a>
+  <div class="ust-eylem">
+    <a class="dugme ikincil" href="./" id="git-kurucu" data-t>Strateji Kurucu</a>
+    <a class="dugme ikincil" href="panom.html" data-t>Panom</a>
+    <a class="dugme ikincil" href="oynaklik.html" data-t>Oynaklık Lab</a>
+  </div>
+</header>
+
+<main class="opt">
+  <section class="kart">
+    <div class="kart-bas"><h2 data-t>Strateji</h2>
+      <div class="satir-dugme">
+        <button type="button" class="kucuk" id="taslak-yukle" data-t>Kurucudaki taslağı yükle</button>
+        <label class="kucuk"><span data-t>İçe aktar</span><input type="file" id="ice-aktar" accept=".json,application/json" hidden></label>
+      </div>
+    </div>
+    <p class="dipnot" id="strateji-kaynak"></p>
+    <dl class="ozet" id="ozet"></dl>
+    <p class="dipnot uyari" id="strateji-hata" hidden></p>
+  </section>
+
+  <section class="kart">
+    <div class="kart-bas"><h2 data-t>Veri</h2><span class="rozet" id="veri-rozet">SENTETİK</span></div>
+    <div class="opt-satir">
+      <label><span data-t>Kaynak</span>
+        <select id="kaynak">
+          <option value="sentetik" data-t>Sentetik piyasa</option>
+          <option value="dosya" data-t>Kendi dosyam (MT5 JSON ya da CSV)</option>
+          <option value="mt5" data-t>MetaTrader'ım (canlı)</option>
+        </select>
+      </label>
+      <label id="rejim-alan"><span data-t>Piyasa</span><select id="rejim"></select></label>
+      <label id="tohum-alan"><span data-t>Tohum</span><input type="number" id="tohum" value="4821" min="1"></label>
+      <label id="adet-alan"><span data-t>Mum</span>
+        <select id="adet"><option>1500</option><option selected>3000</option><option>5000</option></select>
+      </label>
+      <label id="dosya-alan" hidden><span data-t>Dosya</span><input type="file" id="dosya" accept=".json,.csv,text/csv,application/json"></label>
+      <label id="mt5-alan" hidden><span data-t>Seri</span><select id="mt5-seri"></select></label>
+    </div>
+    <p class="dipnot" id="veri-durum"></p>
+  </section>
+
+  <section class="kart">
+    <div class="kart-bas"><h2 data-t>Taranacak parametreler</h2><span class="rozet ikincil" id="plan-rozet"></span></div>
+    <p class="dipnot" data-t>En çok 3 parametre seç ve her biri için en küçük, en büyük değeri ve adımı belirle. Risk ayarları taranmaz: işlem başına risk ve günlük kayıp sınırı senin kararındır.</p>
+    <div class="opt-tablo-kap"><table class="pozisyon opt-param" id="param-tablo"></table></div>
+    <p class="dipnot" id="plan-metin"></p>
+  </section>
+
+  <section class="kart">
+    <h2 data-t>Seçenekler</h2>
+    <div class="opt-satir">
+      <label><span data-t>Sıralama ölçütü</span>
+        <select id="olcut">
+          <option value="getiri_dusus" data-t>Getiri / en büyük düşüş</option>
+          <option value="sharpe" data-t>Sharpe (mum başına)</option>
+          <option value="kar_faktoru" data-t>Kâr faktörü</option>
+          <option value="beklenti" data-t>Beklenti (R)</option>
+        </select>
+      </label>
+      <label><span data-t>Eğitim dönemi (%)</span><input type="number" id="egitim" value="70" min="50" max="90" step="5"></label>
+      <label><span data-t>En az işlem</span><input type="number" id="en-az" value="20" min="1" max="500"></label>
+      <label><span data-t>Örneklem sınırı</span><input type="number" id="ornek-sinir" value="500" min="10" max="2000" step="10"></label>
+      <label><span data-t>Prop kuralı filtresi</span>
+        <select id="prop">
+          <option value="" data-t>Yok</option>
+          <option value="ftmo2">FTMO 2-Step</option>
+          <option value="ftmo1">FTMO 1-Step</option>
+          <option value="ftmoi">FTMO Instant</option>
+          <option value="the5ers">The5ers High Stakes</option>
+        </select>
+      </label>
+    </div>
+    <p class="dipnot" data-t>Ayarlar yalnız eğitim döneminde sıralanır; kalan dönem sınama içindir ve sıralamaya katılmaz. Prop filtresi seçilirse günlük ya da toplam kayıp sınırını eğitim döneminde aşan ayarlar elenir.</p>
+    <div class="satir-dugme">
+      <button type="button" class="dugme" id="baslat" data-t>Taramayı başlat</button>
+      <button type="button" class="dugme ikincil" id="iptal" hidden data-t>İptal et</button>
+    </div>
+    <progress id="ilerleme" max="1" value="0" hidden></progress>
+    <p class="dipnot" id="calisma-durum" role="status"></p>
+  </section>
+
+  <section class="kart" id="sonuc-kart" hidden>
+    <h2 data-t>Eğitim döneminde ölçüte göre sıralanan ayarlar</h2>
+    <div class="opt-ozet" id="sonuc-ozet"></div>
+    <ul class="uyarilar opt-uyari" id="sonuc-uyari"></ul>
+    <div id="isi-kap" hidden>
+      <h3 class="bosluk" data-t>Isı haritası (eğitim puanı)</h3>
+      <canvas id="isi" height="300" aria-label="Isı haritası" data-t-attr="aria-label"></canvas>
+      <p class="dipnot" data-t>Yeşil yüksek, kırmızı düşük puan. Çerçeveli hücre sıralamadaki ilk ayar. Gri taralı hücreler yetersiz işlem ya da prop ihlali nedeniyle elendi; boş hücreler denenmedi.</p>
+    </div>
+    <div class="opt-tablo-kap"><table class="pozisyon" id="sonuc-tablo"></table></div>
+    <div class="ornek-uyari opt-feragat" role="note">
+      <p data-t>Varsayımsal ve simülasyon sonuçlarının doğası gereği sınırları vardır. Bu sonuçlar gerçek işlemleri temsil etmez. Hızlı prova spread, komisyon, swap ve kaymayı içermez. Ayarlar geçmiş veride, sonradan bakmanın avantajıyla sıralanmıştır. Herhangi bir hesabın benzer kâr ya da zarar elde edeceğine dair hiçbir beyanda bulunulmamaktadır.</p>
+      <p data-t><b>Ayarı sen seçersin; Kalibre bir ayar önermez.</b> Seçtiğin ayarın kesin sınavı MT5 Strategy Tester'da, aracı kurumunun maliyet ayarlarıyla yapılır.</p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="src/optimizasyon-arayuz.js"></script>
+</body>
+</html>

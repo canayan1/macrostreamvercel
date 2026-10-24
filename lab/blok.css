@@ -1,0 +1,22 @@
+/* Basit mod (blok kurucu). blok-arayuz.js yükler. */
+.mod-satiri{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mod-satiri .ipucu{margin:0}
+.mod-anahtari button{font:600 12px var(--sans);padding:7px 12px}
+.blok-grup .kosullar{gap:6px}
+.blok{border:1px solid var(--border-2);border-radius:9px;background:var(--surface);padding:10px 12px}
+.blok-bas{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.blok-bas .ad{font-weight:600;font-size:13px}
+.blok-eylem{display:flex;gap:4px}
+.blok-eylem .kucuk:disabled{opacity:.35;cursor:default}
+.cumle{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px}
+.cumle select{max-width:100%}
+.cumle>span{color:var(--text-dim)}
+.mini{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-dim)}
+.mini input[type=number]{width:72px}
+.palet{margin-top:8px}
+.palet>summary{display:inline-block;list-style:none}
+.palet>summary::-webkit-details-marker{display:none}
+.palet[open]>summary{color:var(--text);border-color:var(--text-dim)}
+.palet-liste{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.blok.hatali,.mesafe.hatali{border-color:var(--red)}
+@media(max-width:640px){.cumle{font-size:12.5px}.cumle select{flex:1 1 100%}}
