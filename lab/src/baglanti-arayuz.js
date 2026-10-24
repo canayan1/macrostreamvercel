@@ -21,7 +21,8 @@ const depo = {
 };
 
 // yukle(veri): prova verisini değiştirir (dosyaCoz ile aynı biçim). hata(mesaj): provada hata gösterir.
-export function mt5Panel({ yukle, hata }) {
+export function mt5Panel({ yukle, hata, istenenSembol = '' }) {
+  let istenen = istenenSembol; // Panom'dan "Backtest" ile gelindiyse ilk uygun seri seçilir
   const parametre = new URLSearchParams(location.search).get('role');
   if (parametre && roleAdresi(location.search) !== VARSAYILAN_ROLE) depo.yaz(ROLE_ANAHTARI, roleAdresi(location.search));
   let kod = depo.oku(KOD_ANAHTARI);
@@ -78,6 +79,12 @@ export function mt5Panel({ yukle, hata }) {
       if (adlar.includes(secili)) sec.value = secili;
     }
     $('#mt5-seri-alan').hidden = adlar.length === 0;
+    if (istenen && adlar.length) {
+      const uygun = adlar.find(a => a.startsWith(`${istenen}-`));
+      if (uygun) sec.value = uygun;
+      else hata(ceviri("{s} serisi bu eklenti ayarıyla gönderilmiyor. Eklenti, Market Watch'taki ilk {n} sembolü gönderir; sembolü listede yukarı taşı ya da Semboller girdisine yaz.", { s: istenen, n: 12 }));
+      istenen = '';
+    }
   }
 
   function pozisyonYaz(p) {

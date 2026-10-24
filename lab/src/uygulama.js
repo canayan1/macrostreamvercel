@@ -28,6 +28,7 @@ const BOS = () => ({
 let s = taslakOku() ?? BOS();
 let hatalar = [];
 let provaZamanlayici = 0;
+const ISTENEN_SEMBOL = (new URLSearchParams(location.search).get('sembol') ?? '').trim().slice(0, 32);
 let provaVeri = null; // kullanıcının bıraktığı dosya (dosyaCoz sonucu)
 let mt5Veri = null;   // MetaTrader köprüsünden gelen seri (aynı biçim)
 let mt5 = null;
@@ -381,7 +382,7 @@ function provaKaynakGoster() {
   for (const id of ['#rejim-alan', '#tohum-alan', '#adet-alan']) $(id).hidden = kaynak !== 'sentetik';
   $('#prova-dipnot').textContent = DIPNOT[kaynak];
   // Röle yalnız kullanıcı MetaTrader kaynağını seçtiğinde yoklanır.
-  if (kaynak === 'mt5') (mt5 ??= mt5Panel({ yukle: mt5Yukle, hata: mt5Hata })).baslat();
+  if (kaynak === 'mt5') (mt5 ??= mt5Panel({ yukle: mt5Yukle, hata: mt5Hata, istenenSembol: ISTENEN_SEMBOL })).baslat();
   else mt5?.durdur();
 }
 
@@ -766,6 +767,13 @@ $('#prova-kart').addEventListener('drop', e => {
 });
 sayfayiCevir();
 dilAnahtari(document.querySelector('.ust-eylem'));
+// Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
+if (ISTENEN_SEMBOL) {
+  $('#prova-kaynak').value = 'mt5';
+  provaKaynakGoster();
+  provaCalistir();
+  $('#prova-kart').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 provaKaynakGoster();
 window.addEventListener('resize', () => { clearTimeout(provaZamanlayici); provaZamanlayici = setTimeout(provaCalistir, 150); });
 

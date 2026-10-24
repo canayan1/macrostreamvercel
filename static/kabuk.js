@@ -12,7 +12,7 @@
   if (document.getElementById('km-ust')) return;
 
   var yol = location.pathname.replace(/index\.html$/, '');
-  var MENU = [['/lab/', 'Laboratuvar'], ['/prop/', 'Prop kalkanı'], ['/kurulum/', 'Kurulum'], ['/guvenlik/', 'Güvenlik'], ['/egitim/', 'Eğitim'], ['/pro/', 'Abonelik']];
+  var MENU = [['/lab/', 'Laboratuvar'], ['/lab/panom.html', 'Panom'], ['/prop/', 'Prop kalkanı'], ['/kurulum/', 'Kurulum'], ['/guvenlik/', 'Güvenlik'], ['/egitim/', 'Eğitim'], ['/pro/', 'Abonelik']];
 
   var css = ''
     + '#km-ust{position:sticky;top:0;z-index:60;border-bottom:1px solid #24344c;background:rgba(14,23,36,.94);'
@@ -65,7 +65,7 @@
   alt.id = 'km-alt';
   alt.innerHTML = '<div class="k">'
     + '<div><p><b style="font:600 18px \'Source Serif 4\',Georgia,serif;color:#e7ecf2">Kalibre</b></p><p>MetaTrader 5 için strateji laboratuvarı.</p></div>'
-    + '<div><h4>Ürün</h4><a href="/lab/">Laboratuvar</a><a href="/prop/">Prop kalkanı</a><a href="/forex/">Bireysel forex</a><a href="/kurulum/">Kurulum</a><a href="/guvenlik/">Güvenlik</a><a href="/pro/">Abonelik</a></div>'
+    + '<div><h4>Ürün</h4><a href="/lab/">Laboratuvar</a><a href="/lab/panom.html">Panom</a><a href="/prop/">Prop kalkanı</a><a href="/forex/">Bireysel forex</a><a href="/kurulum/">Kurulum</a><a href="/guvenlik/">Güvenlik</a><a href="/pro/">Abonelik</a></div>'
     + '<div><h4>Öğren</h4><a href="/egitim/">Eğitim</a><a href="/metodoloji/">Metodoloji</a><a href="/grafik-oku/">Grafik okuma testi</a><a href="/trading/onyargi-testi/">Önyargı testi</a></div>'
     + '<div><h4>Kalibre</h4><a href="/hakkinda">Hakkında</a><a href="/iletisim/">İletişim</a><a href="/kullanim-sartlari/">Kullanım şartları</a><a href="/gizlilik/">Gizlilik</a></div>'
     + '<p class="y">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım tavsiyesi değildir.</p>'

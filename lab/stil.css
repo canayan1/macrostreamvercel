@@ -147,3 +147,37 @@ a.logo { text-decoration: none; color: inherit; }
 .dil-anahtari{display:inline-flex;border:1px solid var(--border-2);border-radius:6px;overflow:hidden}
 .dil-anahtari button{background:transparent;color:var(--text-dim);border:0;padding:6px 9px;font:600 12px var(--mono);cursor:pointer}
 .dil-anahtari button[aria-pressed="true"]{background:var(--surface-2);color:var(--text)}
+
+/* ---------------------------------------------------------------- Panom */
+.panom{display:flex;flex-direction:column;gap:16px}
+.hesap-karolar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
+.hesap-karolar div{background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.hesap-karolar b{display:block;font:600 16px var(--mono)}
+.hesap-karolar span{font-size:11px;color:var(--muted)}
+.satir-dugme{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+.kota-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.kota{background:var(--bg-1);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.kota-bas{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.kota-bas b{font-size:14px}
+.kota-bas span{font:500 12px var(--mono)}
+.kota-tanim{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kota-fiyat{display:flex;justify-content:space-between;align-items:baseline;font:600 15px var(--mono)}
+.kota-satis{font-weight:400;font-size:12px;color:var(--text-dim)}
+.aralik{position:relative;height:4px;border-radius:2px;background:var(--border-2);margin:4px 0}
+.aralik i{position:absolute;top:-2px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--accent)}
+.kota-alt{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-top:2px}
+a.kucuk{font:600 11px var(--sans);color:var(--accent);text-decoration:none;border:1px solid rgba(95,184,154,.4);border-radius:6px;padding:3px 8px}
+a.kucuk:hover{background:rgba(95,184,154,.12)}
+.panom-istatistik{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:0 0 12px}
+.takvim-bas{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:12px}
+.takvim{display:grid;grid-template-columns:repeat(21,1fr);gap:3px;margin:6px 0 12px}
+.takvim i{display:block;aspect-ratio:1;border-radius:3px;background:var(--surface-2)}
+.takvim i.pozitif{background:var(--green)}
+.takvim i.negatif{background:var(--red)}
+.takvim i.notr{background:var(--text-dim)}
+.islem-ust{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0 6px}
+.islem-tablo td:first-child{white-space:nowrap}
+.rozet.mini{font-size:9px;padding:1px 5px;margin-left:4px}
+h3.bosluk{margin-top:14px;margin-bottom:6px}
+.panom-dipnot{max-width:80ch}
+@media (max-width:720px){.takvim{grid-template-columns:repeat(14,1fr)}}

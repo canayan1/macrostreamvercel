@@ -4,6 +4,8 @@
 //   durum      : kalp atışı. Hangi seriler var, bağlantı canlı mı.
 //   seri       : bir sembol ve zaman dilimi için mumlar.
 //   pozisyonlar: açık pozisyonlar ve hesap özeti.
+//   kotalar    : Market Watch'taki sembollerin son fiyatları (Panom, sözleşme eki 1b).
+//   islemler   : kapanmış işlemler ve bakiye hareketleri (Panom, sözleşme eki 1b).
 //
 // Sözleşme taşıma yolundan bağımsızdır: belgeler yerel bir bağlayıcıdan, şifreli bir
 // röleden ya da kullanıcının elle yüklediği bir dosyadan gelse de aynı biçimdedir.
@@ -93,7 +95,7 @@ export function seriCoz(n, { enAz = 2 } = {}) {
 // ------------------------------------------------------------------ durum
 // { kalibre_kopru, tur: "durum", uretildi (UTC unix sn), yazmaAraligiSn?, kaynak: "mt5"|"ornek",
 //   terminal: { sirket, sunucu, hesapTuru: "demo"|"gercek"|"yarisma" },
-//   sunucuUtcFarkiSn, seriler: [{ sembol, zamanDilimi, adet, son }], pozisyonlarVar }
+//   sunucuUtcFarkiSn, seriler: [{ sembol, zamanDilimi, adet, son }], pozisyonlarVar, kotalarVar?, islemlerVar? }
 // Tazelik: canli (≤ 3 yazma aralığı), gecikmeli (≤ 20 aralık), kopuk.
 export function durumCoz(n, simdi = Date.now() / 1000) {
   surumDenetle(n, 'durum');
@@ -126,6 +128,8 @@ export function durumCoz(n, simdi = Date.now() / 1000) {
     sunucuUtcFarkiSn: sayi(n.sunucuUtcFarkiSn) ? n.sunucuUtcFarkiSn : null,
     seriler,
     pozisyonlarVar: n.pozisyonlarVar === true,
+    kotalarVar: n.kotalarVar === true,
+    islemlerVar: n.islemlerVar === true,
     uyarilar,
   };
 }
@@ -158,5 +162,76 @@ export function pozisyonCoz(n) {
     varlik: sayi(n.varlik) ? n.varlik : null,
     pozisyonlar,
     atlanan,
+  };
+}
+
+// ------------------------------------------------------------------ kotalar (Panom)
+// { kalibre_kopru, tur: "kotalar", uretildi, sunucuSaati?, kotalar: [{ sembol, tanim?, sinif?, basamak?, nokta?,
+//   alis, satis, zaman?, gunAcilis?, gunYuksek?, gunDusuk?, oncekiKapanis? }] }
+// Günlük değişim burada hesaplanır: (alis - oncekiKapanis) / oncekiKapanis. Fiyatsız satır atlanır.
+export function kotaCoz(n) {
+  surumDenetle(n, 'kotalar');
+  if (!Array.isArray(n.kotalar)) throw new Error(ceviri('kotalar: kotalar listesi eksik'));
+  let atlanan = 0;
+  const kotalar = [];
+  for (const k of n.kotalar) {
+    const tamam = k && typeof k.sembol === 'string' && k.sembol.trim() && sayi(k.alis) && sayi(k.satis) && k.alis > 0 && k.satis > 0;
+    if (!tamam) { atlanan++; continue; }
+    const basamak = Number.isInteger(k.basamak) && k.basamak >= 0 && k.basamak <= 10 ? k.basamak : null;
+    const nokta = sayi(k.nokta) && k.nokta > 0 ? k.nokta : (basamak !== null ? Math.pow(10, -basamak) : null);
+    const onceki = sayi(k.oncekiKapanis) && k.oncekiKapanis > 0 ? k.oncekiKapanis : null;
+    kotalar.push({
+      sembol: k.sembol.trim(),
+      tanim: typeof k.tanim === 'string' ? k.tanim : '',
+      sinif: typeof k.sinif === 'string' && k.sinif in SINIFLAR ? k.sinif : 'diger',
+      basamak, nokta,
+      alis: k.alis, satis: k.satis,
+      makas: nokta ? Math.round((k.satis - k.alis) / nokta) : null, // puan
+      zaman: Number.isInteger(k.zaman) ? k.zaman : null,
+      gunAcilis: sayi(k.gunAcilis) && k.gunAcilis > 0 ? k.gunAcilis : null,
+      gunYuksek: sayi(k.gunYuksek) && k.gunYuksek > 0 ? k.gunYuksek : null,
+      gunDusuk: sayi(k.gunDusuk) && k.gunDusuk > 0 ? k.gunDusuk : null,
+      oncekiKapanis: onceki,
+      gunlukDegisim: onceki ? (k.alis - onceki) / onceki : null,
+    });
+  }
+  return { uretildi: sayi(n.uretildi) ? n.uretildi : null, sunucuSaati: sayi(n.sunucuSaati) ? n.sunucuSaati : null, kotalar, atlanan };
+}
+
+// ------------------------------------------------------------------ islemler (Panom)
+// { kalibre_kopru, tur: "islemler", uretildi, para?, gunSayisi?,
+//   islemler: [{ bilet, sembol, yon, lot, acilisZamani, acilisFiyati, kapanisZamani, kapanisFiyati, kar, swap?, komisyon?, sihirli?, yorum? }],
+//   bakiyeHareketleri: [{ zaman, tutar, tur: "yatirma"|"cekme"|"diger" }] }
+// Bir satır bir kapanıştır (kısmi kapanışlar ayrı). Zamanlar sunucu saatidir. kar: o kapanışın net sonucu.
+const HAREKET = ['yatirma', 'cekme', 'diger'];
+export function islemCoz(n) {
+  surumDenetle(n, 'islemler');
+  if (!Array.isArray(n.islemler)) throw new Error(ceviri('islemler: islemler listesi eksik'));
+  let atlanan = 0;
+  const islemler = [];
+  for (const i of n.islemler) {
+    const tamam = i && typeof i.sembol === 'string' && i.sembol.trim() && YON.includes(i.yon) && sayi(i.lot) && i.lot > 0 &&
+      Number.isInteger(i.acilisZamani) && Number.isInteger(i.kapanisZamani) && i.kapanisZamani >= i.acilisZamani &&
+      sayi(i.acilisFiyati) && sayi(i.kapanisFiyati) && sayi(i.kar);
+    if (!tamam) { atlanan++; continue; }
+    islemler.push({
+      bilet: Number.isInteger(i.bilet) ? i.bilet : null, sembol: i.sembol.trim(), yon: i.yon, lot: i.lot,
+      acilisZamani: i.acilisZamani, acilisFiyati: i.acilisFiyati, kapanisZamani: i.kapanisZamani, kapanisFiyati: i.kapanisFiyati,
+      kar: i.kar, swap: sayi(i.swap) ? i.swap : 0, komisyon: sayi(i.komisyon) ? i.komisyon : 0,
+      sihirli: Number.isInteger(i.sihirli) ? i.sihirli : null, yorum: typeof i.yorum === 'string' ? i.yorum : '',
+    });
+  }
+  islemler.sort((a, b) => a.kapanisZamani - b.kapanisZamani || (a.bilet ?? 0) - (b.bilet ?? 0));
+  const bakiyeHareketleri = [];
+  for (const h of Array.isArray(n.bakiyeHareketleri) ? n.bakiyeHareketleri : []) {
+    if (!h || !Number.isInteger(h.zaman) || !sayi(h.tutar)) { atlanan++; continue; }
+    bakiyeHareketleri.push({ zaman: h.zaman, tutar: h.tutar, tur: HAREKET.includes(h.tur) ? h.tur : (h.tutar >= 0 ? 'yatirma' : 'cekme') });
+  }
+  bakiyeHareketleri.sort((a, b) => a.zaman - b.zaman);
+  return {
+    uretildi: sayi(n.uretildi) ? n.uretildi : null,
+    para: typeof n.para === 'string' ? n.para : null,
+    gunSayisi: Number.isInteger(n.gunSayisi) && n.gunSayisi > 0 ? n.gunSayisi : null,
+    islemler, bakiyeHareketleri, atlanan,
   };
 }

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panom · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>Panom</span></a>
+  <div class="ust-eylem">
+    <a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a>
+    <a class="dugme ikincil" href="oynaklik.html" data-t>Oynaklık Lab</a>
+  </div>
+</header>
+
+<main class="tek-sutun panom">
+  <section class="kart" id="baglanti-kart">
+    <div class="kart-bas"><h2 data-t>Hesap</h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
+    <div class="mt5-durum" id="mt5-durum" data-sinif="bekleniyor">
+      <i></i><div><b id="mt5-baslik" data-t>Eklenti bekleniyor</b> <span class="rozet ikincil" id="mt5-hesap" hidden></span>
+      <p id="mt5-ayrinti" data-t>Henüz MT5'ten kalp atışı gelmedi.</p></div>
+    </div>
+    <div class="hesap-karolar" id="hesap-karolar" hidden></div>
+    <div id="baglan-kutu" class="mt5-kurulum" hidden>
+      <p data-t>Panom, MetaTrader 5'indeki verinin senin tarayıcında açılmış halidir. Giriş için şifre yok: laboratuvardaki eşleştirme kodunu MT5'teki <b>KalibreKopru</b> eklentisine yapıştırman yeter.</p>
+      <div class="satir-dugme">
+        <a class="dugme" href="./#prova-kart" id="baglan-git" data-t>MetaTrader'ı bağla</a>
+        <button type="button" class="dugme ikincil" id="ornek-yukle" data-t>Örnek veriyle gör</button>
+      </div>
+      <p class="dipnot" data-t>Örnek veri SENTETİK'tir: gerçek bir piyasayı ya da hesabı göstermez, yalnız Panom'u tanıtmak içindir.</p>
+    </div>
+  </section>
+
+  <section class="kart" id="kota-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Takip ettiğin kurlar</h2><span class="dipnot" id="kota-not"></span></div>
+    <div class="kota-izgara" id="kota-izgara"></div>
+  </section>
+
+  <section class="kart" id="pozisyon-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Açık pozisyonlar</h2><span class="dipnot" id="pozisyon-not"></span></div>
+    <div id="pozisyon-kutu"></div>
+  </section>
+
+  <section class="kart" id="islem-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Kapanmış işlemler</h2><span class="dipnot" id="islem-not"></span></div>
+    <div class="istatistik panom-istatistik" id="islem-istatistik"></div>
+    <canvas id="bakiye-egri" height="150"></canvas>
+    <div class="takvim-bas"><h3 data-t>Son 6 hafta, günlük net</h3><span class="dipnot" id="takvim-not"></span></div>
+    <div class="takvim" id="takvim"></div>
+    <div class="islem-ust">
+      <h3 data-t>İşlemler</h3>
+      <label class="secici"><span data-t>Sembol</span><select id="islem-sembol"></select></label>
+    </div>
+    <div class="tablo-kutu"><table class="pozisyon islem-tablo" id="islem-tablo"></table></div>
+    <h3 class="bosluk" data-t>Sembol bazında</h3>
+    <div class="tablo-kutu"><table class="pozisyon" id="sembol-tablo"></table></div>
+  </section>
+
+  <p class="dipnot panom-dipnot" data-t>Burada gördüğün kâr ve zarar, aracı kurumunun işlem geçmişidir ve tarayıcında hesaplanır; Kalibre sunucusuna gitmez. Geçmiş sonuçlar gelecekteki sonuçların göstergesi değildir; yatırım tavsiyesi değildir.</p>
+</main>
+
+<script type="module" src="src/panom.js"></script>
+</body>
+</html>

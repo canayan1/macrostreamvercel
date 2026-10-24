@@ -2,11 +2,11 @@
 import os, re
 KOK = "/private/tmp/claude-501/-Users-can-Documents-macrostreamvercel--claude-worktrees-loving-noyce-59a4b3/aebca502-9ff1-4d14-897c-d2dcd733daaa/scratchpad/site-wt"
 
-MENU = [("/lab/", "Laboratuvar"), ("/prop/", "Prop kalkanı"), ("/kurulum/", "Kurulum"), ("/guvenlik/", "Güvenlik"), ("/egitim/", "Eğitim"), ("/pro/", "Abonelik")]
-MENU_EN = [("/en/lab/", "Lab"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"), ("/egitim/", "Education (Turkish)"), ("/en/pricing/", "Pricing")]
+MENU = [("/lab/", "Laboratuvar"), ("/lab/panom.html", "Panom"), ("/prop/", "Prop kalkanı"), ("/kurulum/", "Kurulum"), ("/guvenlik/", "Güvenlik"), ("/egitim/", "Eğitim"), ("/pro/", "Abonelik")]
+MENU_EN = [("/en/lab/", "Lab"), ("/lab/panom.html?dil=en", "Dashboard"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"), ("/egitim/", "Education (Turkish)"), ("/en/pricing/", "Pricing")]
 
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için).
-ESLER = {"/": "/en/", "/lab/": "/en/lab/", "/prop/": "/en/prop/", "/forex/": "/en/forex/", "/kurulum/": "/en/setup/",
+ESLER = {"/": "/en/", "/lab/": "/en/lab/", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop/": "/en/prop/", "/forex/": "/en/forex/", "/kurulum/": "/en/setup/",
          "/guvenlik/": "/en/security/", "/metodoloji/": "/en/methodology/", "/hakkinda": "/en/about/", "/pro/": "/en/pricing/",
          "/hesap/": "/en/license/", "/kullanim-sartlari/": "/en/terms/", "/gizlilik/": "/en/privacy/"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
@@ -45,6 +45,7 @@ ALT_EN = '''<footer class="alt">
     <div>
       <h4>Product</h4>
       <a href="/en/lab/">Lab</a>
+      <a href="/lab/panom.html?dil=en">Dashboard</a>
       <a href="/en/prop/">Prop shield</a>
       <a href="/en/forex/">Retail forex</a>
       <a href="/en/setup/">Setup</a>

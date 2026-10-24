@@ -3,6 +3,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/panom",
+      "destination": "/lab/panom.html",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/dashboard",
+      "destination": "/lab/panom.html?dil=en",
+      "statusCode": 302
+    },
+    {
       "source": "/en/lab",
       "destination": "/lab/?dil=en",
       "statusCode": 302

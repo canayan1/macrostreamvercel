@@ -8,7 +8,7 @@
 
 import { anahtarlar, yuva, ac } from './role.js';
 import { t as ceviri } from '../dil.js';
-import { seriCoz, durumCoz, pozisyonCoz } from './kopru.js';
+import { seriCoz, durumCoz, pozisyonCoz, kotaCoz, islemCoz } from './kopru.js';
 
 export const VARSAYILAN_ROLE = '/api/kopru';
 export const YOKLAMA_SN = { gorunur: 5, gizli: 30 };
@@ -79,6 +79,8 @@ export function istemci(kod, adres = VARSAYILAN_ROLE, getir = (...a) => fetch(..
     kanal: hazir.then(a => a.kanal),
     async durum(simdi) { const n = await oku('durum'); return n && durumCoz(n, simdi); },
     async pozisyonlar() { const n = await oku('pozisyonlar'); return n && pozisyonCoz(n); },
+    async kotalar() { const n = await oku('kotalar'); return n && kotaCoz(n); },
+    async islemler() { const n = await oku('islemler'); return n && islemCoz(n); },
     async seri(sembol, zamanDilimi, secenek) {
       const n = await oku('seri', seriAdi(sembol, zamanDilimi));
       return n && seriCoz(n, secenek);
