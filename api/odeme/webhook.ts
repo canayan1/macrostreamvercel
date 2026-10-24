@@ -13,8 +13,8 @@ import { olayIsle } from '../_lib/lisans.ts';
 export const config = { maxDuration: 15, api: { bodyParser: false } };
 
 async function hamGovde(req: VercelRequest): Promise<string> {
-  const parca: Buffer[] = [];
-  for await (const p of req as any) parca.push(Buffer.isBuffer(p) ? p : Buffer.from(p));
+  const parca: Uint8Array[] = [];
+  for await (const p of req as any) parca.push(new Uint8Array(Buffer.isBuffer(p) ? p : Buffer.from(p)));
   if (parca.length) return Buffer.concat(parca).toString('utf8');
   // Bazı çalışma ortamları gövdeyi önceden okur; ham metin ya da Buffer olarak kaldıysa onu kullan.
   const b = (req as any).body;

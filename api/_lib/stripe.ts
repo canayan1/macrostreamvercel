@@ -25,7 +25,7 @@ export function imzaDogrula(hamGovde: string, baslik: string | undefined, sir: s
   const beklenen = Buffer.from(createHmac('sha256', sir).update(`${t}.${hamGovde}`).digest('hex'));
   return imzalar.some(i => {
     const b = Buffer.from(i);
-    return b.length === beklenen.length && timingSafeEqual(b, beklenen);
+    return b.length === beklenen.length && timingSafeEqual(new Uint8Array(b), new Uint8Array(beklenen));
   });
 }
 
