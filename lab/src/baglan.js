@@ -32,6 +32,8 @@ let yonlendirme = 0;
 let iptal = false;
 const lisans = depo.oku(LISANS_ANAHTARI);
 const dugme = baglanDugmesi(document.querySelector('.ust-eylem'));
+// Tradier sekmesi kaynak değiştirince başlıktaki hap yenilenir (tradier-baglan.js).
+document.addEventListener('kalibre-kaynak', () => dugme.guncelle());
 
 // ---------------------------------------------------------------- çizim
 function adimlariYaz() {

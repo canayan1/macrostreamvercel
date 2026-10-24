@@ -194,6 +194,15 @@ KURULUM = '''
   </tbody>
 </table>
 
+<h2 id="tradier">Tradier (ABD) ile bağlanmak</h2>
+<p>ABD'deki aracı kurum Tradier'de hesabın varsa MetaTrader 5 yerine onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Tradier'e doğrudan senin tarayıcından bağlanır.</p>
+<ol>
+  <li>Tradier hesabında bir API erişim token'ı oluştur. İlk deneme için <b>Sandbox</b> token'ı öneririz; Sandbox fiyatları 15 dakika gecikmelidir.</li>
+  <li><a href="/lab/baglan.html?kaynak=tradier">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li>Birden çok hesabın varsa birini seç. Panom, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
+</ol>
+<div class="kutu">Tradier token'ı hesabına tam erişim verir. Laboratuvar onu yalnız okumak için kullanır, emir göndermez. Token yalnız bu tarayıcıda saklanır ve yalnız Tradier'e gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde token tarayıcından silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
+
 <h2 id="eklentisiz">Eklentisiz çalışmak</h2>
 <p>Eklenti kurmak istemiyorsan, MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara sürükleyip bırakabilirsin. Dosya bilgisayarından hiç çıkmaz; tarayıcında okunur.</p>
 '''

@@ -230,3 +230,18 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 .opt-feragat p{margin:0 0 6px}
 #ilerleme{width:100%;height:8px;margin-top:10px;accent-color:var(--accent)}
 @media(max-width:560px){.opt{padding:12px}}
+
+/* Bağlantı sayfası: kaynak sekmeleri (MetaTrader 5 | Tradier) */
+.kaynak-sec{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.sekmeler{display:inline-flex;border:1px solid var(--border-2);border-radius:8px;overflow:hidden}
+.sekme{font:600 13px var(--sans);padding:8px 14px;background:transparent;color:var(--text-dim);border:0;cursor:pointer}
+.sekme+.sekme{border-left:1px solid var(--border-2)}
+.sekme[aria-selected="true"]{background:var(--surface-2);color:var(--text)}
+.sekme:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.baglan[data-kaynak="tradier"] #mt5-giris,.baglan[data-kaynak="tradier"] #adimlar{display:none !important}
+.baglan:not([data-kaynak="tradier"]) #tradier{display:none !important}
+#t-ortam,#t-hesap{min-height:36px;margin-bottom:10px}
+/* Kurucu ve optimizasyon: Tradier sembol/zaman dilimi seçimi */
+.tradier-secim{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-end}
+.tradier-secim label{display:grid;gap:4px;font-size:12px;color:var(--text-dim)}
+.tradier-secim input{width:120px;text-transform:uppercase}

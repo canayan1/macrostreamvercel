@@ -8,6 +8,7 @@ import { kotaCoz, islemCoz, pozisyonCoz, durumCoz } from './veri/kopru.js';
 import { hesapOzeti, sonGunler, gunAnahtari } from './panom/ozet.js';
 import { panomOrnek } from './panom/ornek.js';
 import { baglanDugmesi, tazeGoruldu } from './baglan-ortak.js';
+import { etkinKaynak, kayitliTradierIstemci } from './veri/tradier.js';
 
 const KOD_ANAHTARI = 'kalibre-kopru-kod';
 const ROLE_ANAHTARI = 'kalibre-kopru-role';
@@ -30,7 +31,10 @@ const depo = {
 };
 
 const dilEki = dil === 'en' ? '&dil=en' : '';
-const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${dilEki}`;
+const KAYNAK = etkinKaynak();
+const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${KAYNAK === 'tradier' ? '&kaynak=tradier' : ''}${dilEki}`;
+// Tradier hız sınırı dakikada 60 (sandbox) / 120 (canlı): yoklama seyrek tutulur.
+const TRADIER_YOKLAMA_SN = { gorunur: 15, gizli: 60 };
 
 // ---------------------------------------------------------------- çizim
 function tuval(c) {
@@ -85,7 +89,8 @@ function durumYaz(d, durum) {
   kutu.dataset.sinif = d.sinif;
   $('#mt5-baslik').textContent = d.baslik;
   let ayrinti = d.ayrinti;
-  if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ' ' + ceviri('Zamanlar sunucu saatidir, {utc}.', { utc: utcEtiket(durum.sunucuUtcFarkiSn) });
+  if (durum?.kaynak === 'tradier') ayrinti += ' ' + ceviri('Zamanlar UTC; günlük mumlar ABD seans günüdür.');
+  else if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ' ' + ceviri('Zamanlar sunucu saatidir, {utc}.', { utc: utcEtiket(durum.sunucuUtcFarkiSn) });
   $('#mt5-ayrinti').textContent = ayrinti;
   const h = durum && HESAP[durum.terminal.hesapTuru];
   $('#mt5-hesap').hidden = !h;
@@ -95,7 +100,9 @@ function durumYaz(d, durum) {
 function kotalarYaz(k) {
   const kart = $('#kota-kart');
   if (!k || !k.kotalar.length) { kart.hidden = true; return; }
-  $('#kota-not').textContent = ceviri('{n} sembol, MT5 Market Watch listesinden', { n: k.kotalar.length });
+  $('#kota-not').textContent = KAYNAK === 'tradier'
+    ? ceviri('{n} sembol, Tradier izleme listenden (yoksa açık pozisyonlarından)', { n: k.kotalar.length })
+    : ceviri('{n} sembol, MT5 Market Watch listesinden', { n: k.kotalar.length });
   $('#kota-izgara').innerHTML = k.kotalar.map(q => {
     const d = q.gunlukDegisim;
     const dMetin = d === null ? '' : `<span class="${sinif(d)}">${d > 0 ? '+' : ''}${yuzde(d, 2)}</span>`;
@@ -109,7 +116,7 @@ function kotalarYaz(k) {
       <div class="kota-tanim">${kacis(q.tanim)}</div>
       <div class="kota-fiyat"><span>${fiyat(q.alis, q.basamak)}</span><span class="kota-satis">${fiyat(q.satis, q.basamak)}</span></div>
       ${aralik}
-      <div class="kota-alt"><span>${q.makas !== null ? ceviri('makas {n} puan', { n: q.makas }) : ''}</span>
+      <div class="kota-alt"><span>${KAYNAK === 'tradier' ? ceviri('makas {n}', { n: fiyat(q.satis - q.alis, 2) }) : q.makas !== null ? ceviri('makas {n} puan', { n: q.makas }) : ''}</span>
         <a class="kucuk" href="${backtestBaglantisi(q.sembol)}">${ceviri('Backtest')}</a></div>
     </div>`;
   }).join('');
@@ -206,9 +213,10 @@ function ornekGoster() {
 }
 
 // ---------------------------------------------------------------- canlı kip
-function canli(kod) {
-  const adres = roleAdresi(location.search, depo.oku(ROLE_ANAHTARI));
-  const ist = istemci(kod, adres);
+function canli(ist) {
+  const tradierMi = ist.kaynak === 'tradier';
+  const yoklama = tradierMi ? TRADIER_YOKLAMA_SN : YOKLAMA_SN;
+  let bekle = 0;
   let zamanlayici = 0;
   let sonIslemZamani = 0;
   let sonIslemUretildi = null;
@@ -216,10 +224,11 @@ function canli(kod) {
   async function yokla() {
     zamanlayici = 0;
     let durum = null, h = null;
-    try { durum = await ist.durum(); } catch (e) { h = e; }
+    try { durum = await ist.durum(); } catch (e) { h = e; bekle = e?.bekleMs ?? 0; }
     const sinifli = sinifla({ durum, hata: h });
     durumYaz(sinifli, durum);
-    if (sinifli.sinif === 'bagli') { tazeGoruldu(); baglanHap.guncelle(); }
+    // MT5 kalp atışı zamanı yalnız köprüden gelince kaydedilir; Tradier bağlantısı onu tazelemez.
+    if (sinifli.sinif === 'bagli') { if (!tradierMi) tazeGoruldu(); baglanHap.guncelle(); }
     $('#baglan-kutu').hidden = !!durum;
     if (durum) {
       $('#kaynak-rozet').hidden = !durum.ornek;
@@ -244,7 +253,10 @@ function canli(kod) {
   }
   function planla() {
     clearTimeout(zamanlayici);
-    zamanlayici = setTimeout(yokla, 1000 * (document.hidden ? YOKLAMA_SN.gizli : YOKLAMA_SN.gorunur));
+    // Hız sınırında Tradier'in bildirdiği süre beklenir.
+    const sn = Math.max(document.hidden ? yoklama.gizli : yoklama.gorunur, Math.ceil(bekle / 1000));
+    bekle = 0;
+    zamanlayici = setTimeout(yokla, 1000 * sn);
   }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) { clearTimeout(zamanlayici); yokla(); } });
   window.addEventListener('pagehide', () => clearTimeout(zamanlayici));
@@ -264,7 +276,8 @@ $('#baglan-git').href = `baglan.html${dilEki ? '?dil=en' : ''}`;
 window.addEventListener('resize', () => { if (sonIslemler) islemlerYaz(sonIslemler, Date.now() / 1000); });
 
 const kod = depo.oku(KOD_ANAHTARI);
-if (/^KLB1[0-9a-f]{64}$/i.test(kod ?? '')) canli(kod);
+if (KAYNAK === 'tradier') canli(kayitliTradierIstemci());
+else if (/^KLB1[0-9a-f]{64}$/i.test(kod ?? '')) canli(istemci(kod, roleAdresi(location.search, depo.oku(ROLE_ANAHTARI))));
 else {
   durumYaz({ sinif: 'bekleniyor', baslik: ceviri('Bağlı MetaTrader yok'), ayrinti: ceviri('Önce laboratuvarda eşleştirme kodu üret ve eklentiye yapıştır; Panom aynı tarayıcıda kendiliğinden açılır.') }, null);
   $('#baglan-kutu').hidden = false;

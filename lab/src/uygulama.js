@@ -8,6 +8,7 @@ import { prova } from './motor.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { mt5Panel } from './baglanti-arayuz.js';
+import { tradierSecici } from './tradier-kaynak.js';
 import { blokFormu, blokDinle, modAnahtari, modOku } from './blok-arayuz.js';
 import { baglanDugmesi } from './baglan-ortak.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
@@ -33,6 +34,8 @@ let provaZamanlayici = 0;
 const ISTENEN_SEMBOL = (new URLSearchParams(location.search).get('sembol') ?? '').trim().slice(0, 32);
 let provaVeri = null; // kullanıcının bıraktığı dosya (dosyaCoz sonucu)
 let mt5Veri = null;   // MetaTrader köprüsünden gelen seri (aynı biçim)
+let tradierVeri = null; // Tradier'den gelen seri (aynı biçim)
+let tradier = null;
 let mt5 = null;
 
 // ---------------------------------------------------------------- yol yardımcıları
@@ -332,6 +335,8 @@ const DIPNOT = {
     'daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
   mt5: 'Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Makas, komisyon ve kayma ' +
     'hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
+  tradier: 'Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre ' +
+    'düzeltilmemiştir. Komisyon ve kayma hesaba katılmaz.',
 };
 // Her kaynakta aynı uyarı: sonuç bir simülasyondur, öneri değildir.
 for (const k of Object.keys(DIPNOT)) DIPNOT[k] = ceviri(DIPNOT[k]) + ' ' + ceviri('Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.');
@@ -345,12 +350,16 @@ function provaBos(mesaj) {
 
 function provaCalistir() {
   const kaynak = $('#prova-kaynak').value;
-  const veri = kaynak === 'mt5' ? mt5Veri : kaynak === 'dosya' ? provaVeri : null;
+  const veri = kaynak === 'mt5' ? mt5Veri : kaynak === 'tradier' ? tradierVeri : kaynak === 'dosya' ? provaVeri : null;
   if (hatalar.length && hatalar.every(h => h.yol.startsWith('risk'))) return provaBos(ceviri('Provayı görmek için Risk bölümünde işlem başına riski kendin belirle.'));
   if (hatalar.length) return provaBos(ceviri('Prova için önce sorunları giderin.'));
   if (kaynak === 'dosya' && !veri) {
     $('#rozet').textContent = ceviri('DOSYA BEKLENİYOR');
     return provaBos(ceviri('Bir veri dosyası seç ya da bu karta sürükleyip bırak.'));
+  }
+  if (kaynak === 'tradier' && !veri) {
+    $('#rozet').textContent = ceviri('TRADIER BEKLENİYOR');
+    return provaBos(ceviri('Tradier bağlandığında seçtiğin sembolün serisi burada çalışır.'));
   }
   if (kaynak === 'mt5' && !veri) {
     $('#rozet').textContent = ceviri('MT5 BEKLENİYOR');
@@ -364,6 +373,11 @@ function provaCalistir() {
     $('#rozet').textContent = veri.ad;
     veriUyarilari.push(...veri.uyarilar);
     const strTd = s.zaman_dilimi ?? 'H1';
+    // Saat penceresi günlük ve haftalık mumlarda anlamsızdır: mum zamanı günün başıdır, her mum dışarıda kalabilir.
+    const sa = s.filtre?.saat;
+    if (sa && sa.bas !== sa.bit && (veri.zamanDilimi === 'D1' || veri.zamanDilimi === 'W1')) {
+      veriUyarilari.push(ceviri('Saat penceresi filtresi günlük ve haftalık mumlarda işlemlerin hepsini engelleyebilir; bu veride filtreyi kapat.'));
+    }
     if (veri.zamanDilimi && veri.zamanDilimi !== strTd) {
       veriUyarilari.push(ceviri("Strateji {s} için yazılmış, veri {v}. Motor MT5'te {s} mumlarıyla çalışır; bu prova farklı sonuç verebilir.", { s: strTd, v: veri.zamanDilimi }));
     }
@@ -388,11 +402,24 @@ function provaKaynakGoster() {
   $('#prova-dosya-alan').hidden = kaynak !== 'dosya';
   $('#prova-ipucu').hidden = kaynak !== 'dosya';
   $('#mt5-alan').hidden = kaynak !== 'mt5';
+  $('#tradier-alan').hidden = kaynak !== 'tradier';
+  if (kaynak === 'tradier') (tradier ??= tradierSecici($('#tradier-alan'), { yukle: tradierYukle, hata: tradierHata, istenenSembol: ISTENEN_SEMBOL, zamanDilimi: s.zaman_dilimi })).baslat();
   for (const id of ['#rejim-alan', '#tohum-alan', '#adet-alan']) $(id).hidden = kaynak !== 'sentetik';
   $('#prova-dipnot').textContent = DIPNOT[kaynak];
   // Röle yalnız kullanıcı MetaTrader kaynağını seçtiğinde yoklanır.
   if (kaynak === 'mt5') (mt5 ??= mt5Panel({ yukle: mt5Yukle, hata: mt5Hata, istenenSembol: ISTENEN_SEMBOL })).baslat();
   else mt5?.durdur();
+}
+
+function tradierYukle(veri) {
+  tradierVeri = veri;
+  if ($('#prova-kaynak').value === 'tradier') provaCalistir();
+}
+
+function tradierHata(mesaj) {
+  if ($('#prova-kaynak').value !== 'tradier' || tradierVeri) return;
+  $('#rozet').textContent = ceviri('TRADIER VERİSİ YOK');
+  provaBos(`<span style="color:var(--red)">${kacis(mesaj)}</span>`);
 }
 
 function mt5Yukle(veri) {
@@ -780,7 +807,7 @@ baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 // Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {
-  $('#prova-kaynak').value = 'mt5';
+  $('#prova-kaynak').value = new URLSearchParams(location.search).get('kaynak') === 'tradier' ? 'tradier' : 'mt5';
   provaKaynakGoster();
   provaCalistir();
   $('#prova-kart').scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -68,6 +68,15 @@ SETUP = '''
   </tbody>
 </table>
 
+<h2 id="tradier">Connecting with Tradier (US)</h2>
+<p>If you have an account with the US broker Tradier, you can connect it instead of MetaTrader 5. No add-on is needed; the lab talks to Tradier directly from your browser.</p>
+<ol>
+  <li>Create an API access token in your Tradier account. We suggest a <b>Sandbox</b> token for your first try; Sandbox prices are delayed by 15 minutes.</li>
+  <li>On the <a href="/lab/baglan.html?kaynak=tradier&amp;dil=en">connect page</a>, choose the <b>Tradier</b> tab, paste the token, pick the environment and press <b>Connect</b>.</li>
+  <li>If you have several accounts, pick one. The Dashboard, the strategy builder and the optimizer now use Tradier data.</li>
+</ol>
+<div class="kutu">A Tradier token gives full access to your account. The lab only uses it to read and never sends orders. The token is stored only in this browser and sent only to Tradier; it never reaches Kalibre. Disconnecting deletes it from your browser. Under Tradier's terms this connection is for personal use.</div>
+
 <h2 id="without">Working without the add-on</h2>
 <p>If you prefer not to install the add-on, drag and drop a candle file exported from MT5 (CSV or JSON) into the lab. The file never leaves your computer; it is read in your browser.</p>
 <p class="not">The add-ons show their messages in English, or in Turkish if your MetaTrader 5 is set to Turkish.</p>

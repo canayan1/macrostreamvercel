@@ -99,6 +99,10 @@ export function sinifla({ durum, hata } = {}) {
     if (hata.tur === 'role') {
       return { sinif: 'role', baslik: ceviri('Röleye ulaşılamıyor'), ayrinti: ceviri('{m}. Biraz sonra yeniden denenir.', { m: hata.message }) };
     }
+    // Tradier istemcisinin hata türleri (veri/tradier.js TradierHatasi).
+    if (hata.tur === 'token') return { sinif: 'kod', baslik: ceviri('Tradier token geçersiz'), ayrinti: hata.message };
+    if (hata.tur === 'sinir') return { sinif: 'gecikmeli', baslik: ceviri('Tradier hız sınırı'), ayrinti: hata.message };
+    if (hata.tur === 'erisim' || hata.tur === 'yok') return { sinif: 'bozuk', baslik: ceviri('Tradier erişimi'), ayrinti: hata.message };
     return { sinif: 'bozuk', baslik: ceviri('Okunamayan veri'), ayrinti: hata.message };
   }
   if (!durum) {

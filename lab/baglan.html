@@ -21,7 +21,51 @@
 </header>
 
 <main class="baglan">
-  <section class="kart">
+  <section class="kart kaynak-sec" id="kaynak-sec">
+    <span class="baglan-etiket" data-t>Ne bağlamak istiyorsun?</span>
+    <div class="sekmeler" role="tablist">
+      <button type="button" role="tab" class="sekme" data-kaynak="mt5" aria-selected="true" data-t>MetaTrader 5</button>
+      <button type="button" role="tab" class="sekme" data-kaynak="tradier" aria-selected="false" data-t>Tradier (ABD)</button>
+    </div>
+  </section>
+
+  <section class="kart" id="tradier">
+    <h2 data-t>Tradier hesabını bağla</h2>
+    <p data-t>Token yalnız bu tarayıcıda saklanır ve yalnız Tradier'e gönderilir; Kalibre sunucusuna hiç gelmez. Tradier kullanıcı adını ya da şifreni hiçbir zaman istemeyiz.</p>
+    <p class="dipnot uyari" data-t>Tradier token'ı hesabına tam erişim verir (emir dahil). Kalibre yalnız okur, hiçbir emir göndermez. Önce <b>Sandbox</b> token'ıyla dene.</p>
+    <ol class="adim-liste">
+      <li data-t><b>web.tradier.com</b> → <b>API Settings</b> (API Access) sayfasını aç.</li>
+      <li data-t>Sandbox ya da canlı token'ını kopyala.</li>
+      <li data-t>Aşağıya yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+    </ol>
+    <label class="baglan-etiket" for="t-token" data-t>API token</label>
+    <div class="mt5-kod">
+      <input type="password" id="t-token" autocomplete="off" spellcheck="false">
+      <button type="button" class="kucuk" id="t-goster" data-t>Göster</button>
+    </div>
+    <label class="baglan-etiket" for="t-ortam" data-t>Ortam</label>
+    <select id="t-ortam">
+      <option value="sandbox" data-t>Sandbox (deneme, 15 dk gecikmeli)</option>
+      <option value="canli" data-t>Canlı</option>
+    </select>
+    <div class="satir-dugme"><button type="button" class="dugme" id="t-baglan" data-t>Bağlan</button></div>
+    <p class="dipnot" id="t-durum" role="status"></p>
+    <div id="t-hesaplar" hidden>
+      <label class="baglan-etiket" for="t-hesap" data-t>Hesap</label>
+      <select id="t-hesap"></select>
+      <div class="satir-dugme"><button type="button" class="dugme" id="t-kaydet" data-t>Bu hesabı kullan</button></div>
+    </div>
+    <div id="t-bagli" hidden>
+      <p class="baglan-basari"><b id="t-bagli-metin"></b></p>
+      <div class="satir-dugme">
+        <a class="dugme" id="t-panom" href="panom.html" data-t>Panoma git</a>
+        <button type="button" class="dugme ikincil" id="t-kes" data-t>Bağlantıyı kes</button>
+      </div>
+    </div>
+    <p class="dipnot" data-t>Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik önizleme özelliğidir.</p>
+  </section>
+
+  <section class="kart" id="mt5-giris">
     <h2 data-t>MetaTrader'ı bağla</h2>
     <p data-t>MT5 şifren hiçbir yere girilmez; giriş, senin MT5'indeki eklentiyle tarayıcın arasındaki eşleştirme kodudur. Verin şifreli gelir, anahtar yalnız sende.</p>
     <div id="zaten" class="baglan-zaten" hidden>
@@ -113,5 +157,6 @@
 </main>
 
 <script type="module" src="src/baglan.js"></script>
+<script type="module" src="src/tradier-baglan.js"></script>
 </body>
 </html>

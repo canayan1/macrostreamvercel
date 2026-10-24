@@ -8,6 +8,7 @@ import { ozet } from './ozet.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { istemci, sinifla, roleAdresi } from './veri/baglanti.js';
+import { tradierSecici } from './tradier-kaynak.js';
 import { baglanDugmesi, depo, KOD_ANAHTARI, ROLE_ANAHTARI, KOD_RE } from './baglan-ortak.js';
 import { parametreler, ayarla, tara } from './optimizasyon.js';
 import { plan, isiHaritasi, hucreRengi, dosyaAdi, komsulukSinifi, dsrSinifi, PROP_ON_AYAR, EN_COK_PARAMETRE, VARSAYILAN_ORNEK } from './optimizasyon-yardim.js';
@@ -23,6 +24,8 @@ let params = [];         // parametreler(s) + seçim ve aralıklar
 let veri = null;         // { mumlar, ad, uyarilar }
 let mt5 = null;          // istemci
 let mt5Seriler = [];
+let tradier = null;       // tradierSecici
+let tradierSon = null;    // son yüklenen Tradier serisi
 let calisiyor = false, iptalIstendi = false;
 let sonuc = null, secilenSon = [];
 
@@ -139,6 +142,7 @@ function kaynakGoster() {
   for (const id of ['#rejim-alan', '#tohum-alan', '#adet-alan']) $(id).hidden = k !== 'sentetik';
   $('#dosya-alan').hidden = k !== 'dosya';
   $('#mt5-alan').hidden = k !== 'mt5';
+  $('#tradier-alan').hidden = k !== 'tradier';
   veriHazirla();
 }
 
@@ -157,6 +161,15 @@ async function veriHazirla() {
     catch (err) { $('#veri-rozet').textContent = ceviri('DOSYA OKUNAMADI'); $('#veri-durum').textContent = ceviri('Dosya okunamadı: {m}', { m: ceviri(err.message) }); baslatDurumu(); return; }
   } else if (k === 'mt5') {
     await mt5Hazirla();
+  } else if (k === 'tradier') {
+    tradier ??= tradierSecici($('#tradier-alan'), {
+      zamanDilimi: s?.zaman_dilimi,
+      yukle: v => { tradierSon = v; if ($('#kaynak').value === 'tradier') veriHazirla(); },
+      hata: m => { if ($('#kaynak').value === 'tradier' && !tradierSon) { $('#veri-rozet').textContent = ceviri('TRADIER VERİSİ YOK'); $('#veri-durum').textContent = m; } },
+    });
+    tradier.baslat();
+    if (tradierSon) veri = { mumlar: tradierSon.mumlar, ad: tradierSon.ad, uyarilar: tradierSon.uyarilar };
+    else $('#veri-rozet').textContent = ceviri('TRADIER BEKLENİYOR');
   }
   if (veri) {
     $('#veri-rozet').textContent = veri.ad;

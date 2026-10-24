@@ -47,7 +47,7 @@
       </div>
       <div class="prova-ayar">
         <label><span data-t>Veri</span>
-          <select id="prova-kaynak"><option value="sentetik" data-t>Sentetik piyasa</option><option value="dosya" data-t>Kendi dosyam</option><option value="mt5" data-t>MetaTrader'ım (canlı)</option></select>
+          <select id="prova-kaynak"><option value="sentetik" data-t>Sentetik piyasa</option><option value="dosya" data-t>Kendi dosyam</option><option value="mt5" data-t>MetaTrader'ım (canlı)</option><option value="tradier" data-t>Tradier (ABD)</option></select>
         </label>
         <label id="prova-dosya-alan" hidden><span data-t>Dosya</span>
           <input type="file" id="prova-dosya" accept=".json,.csv,.txt,application/json,text/csv">
@@ -62,6 +62,7 @@
           <select id="adet"><option>1000</option><option selected>2000</option><option>5000</option></select>
         </label>
       </div>
+      <div id="tradier-alan" class="mt5" hidden></div>
       <div id="mt5-alan" class="mt5" hidden>
         <div class="mt5-durum" id="mt5-durum" data-sinif="bekleniyor">
           <i></i><div><b id="mt5-baslik" data-t>Eklenti bekleniyor</b> <span class="rozet ikincil" id="mt5-hesap" hidden></span>

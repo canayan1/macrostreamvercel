@@ -29,6 +29,8 @@ export const SINIFLAR = {
 };
 
 const YON = ['al', 'sat'];
+// Belgeyi üreten: MT5 köprüsü, sentetik örnek ya da Tradier istemcisi (veri/tradier.js).
+export const KAYNAKLAR = ['mt5', 'ornek', 'tradier'];
 const VARSAYILAN_ARALIK = 5; // sn; motor yazmaAraligiSn bildirmezse
 
 function surumDenetle(n, tur) {
@@ -43,14 +45,14 @@ function surumDenetle(n, tur) {
 const sayi = v => typeof v === 'number' && Number.isFinite(v);
 
 // ------------------------------------------------------------------ seri
-// { kalibre_kopru, tur: "seri", sembol, zamanDilimi, uretildi, kaynak?: "mt5"|"ornek", meta: { sinif, takvim?, nokta, basamak?, hacimTuru? },
+// { kalibre_kopru, tur: "seri", sembol, zamanDilimi, uretildi, kaynak?: "mt5"|"ornek"|"tradier", meta: { sinif, takvim?, nokta, basamak?, hacimTuru? },
 //   alanlar: ["t","a","y","d","k","h"?], mumlar: [[t,a,y,d,k,h?], ...] }
 // Dönüş: { mumlar: [{t,a,y,d,k,h?}], meta: {sembol,sinif,takvim,zamanDilimi,nokta}, atlanan, uyarilar, ornek }
 export function seriCoz(n, { enAz = 2 } = {}) {
   surumDenetle(n, 'seri');
   if (typeof n.sembol !== 'string' || !n.sembol.trim()) throw new Error(ceviri('seri: sembol eksik'));
   if (!DAKIKA[n.zamanDilimi]) throw new Error(ceviri("seri: bilinmeyen zaman dilimi '{z}'", { z: n.zamanDilimi }));
-  if (n.kaynak !== undefined && n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(ceviri("seri: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
+  if (n.kaynak !== undefined && !KAYNAKLAR.includes(n.kaynak)) throw new Error(ceviri("seri: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
   const m = n.meta ?? {};
   const sinif = SINIFLAR[m.sinif] ? m.sinif : 'diger';
   const takvim = TAKVIMLER[m.takvim] ? m.takvim : SINIFLAR[sinif];
@@ -93,14 +95,14 @@ export function seriCoz(n, { enAz = 2 } = {}) {
 }
 
 // ------------------------------------------------------------------ durum
-// { kalibre_kopru, tur: "durum", uretildi (UTC unix sn), yazmaAraligiSn?, kaynak: "mt5"|"ornek",
+// { kalibre_kopru, tur: "durum", uretildi (UTC unix sn), yazmaAraligiSn?, kaynak: "mt5"|"ornek"|"tradier",
 //   terminal: { sirket, sunucu, hesapTuru: "demo"|"gercek"|"yarisma" },
 //   sunucuUtcFarkiSn, seriler: [{ sembol, zamanDilimi, adet, son }], pozisyonlarVar, kotalarVar?, islemlerVar? }
 // Tazelik: canli (≤ 3 yazma aralığı), gecikmeli (≤ 20 aralık), kopuk.
 export function durumCoz(n, simdi = Date.now() / 1000) {
   surumDenetle(n, 'durum');
   if (!sayi(n.uretildi)) throw new Error(ceviri('durum: uretildi zamanı eksik'));
-  if (n.kaynak !== 'mt5' && n.kaynak !== 'ornek') throw new Error(ceviri("durum: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
+  if (!KAYNAKLAR.includes(n.kaynak)) throw new Error(ceviri("durum: bilinmeyen kaynak '{k}'", { k: n.kaynak }));
   const aralik = sayi(n.yazmaAraligiSn) && n.yazmaAraligiSn > 0 ? n.yazmaAraligiSn : VARSAYILAN_ARALIK;
   const yas = simdi - n.uretildi;
   const uyarilar = [];

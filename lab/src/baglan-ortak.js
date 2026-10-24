@@ -3,6 +3,7 @@
 // eşleştirmeyi görür. Saf işlevler (bagliMi, aktifAdim) Node testlerinde de çalışır.
 
 import { t as ceviri, dil } from './dil.js';
+import { etkinKaynak } from './veri/tradier.js';
 
 export const KOD_ANAHTARI = 'kalibre-kopru-kod';
 export const ROLE_ANAHTARI = 'kalibre-kopru-role';
@@ -52,10 +53,13 @@ export function baglanDugmesi(yer) {
   const a = globalThis.document.createElement('a');
   a.href = `baglan.html${dil === 'en' ? '?dil=en' : ''}`;
   function guncelle() {
-    const bagli = bagliMi(KOD_RE.test(depo.oku(KOD_ANAHTARI) ?? ''), depo.oku(SON_ANAHTARI));
+    // Tradier etkin kaynaksa token kayıtlı olması yeter (yoklama Tradier'e gider, kalp atışı yoktur).
+    const tradierMi = etkinKaynak() === 'tradier';
+    const bagli = tradierMi || bagliMi(KOD_RE.test(depo.oku(KOD_ANAHTARI) ?? ''), depo.oku(SON_ANAHTARI));
     a.className = bagli ? 'baglan-hap' : 'dugme ikincil';
     a.textContent = bagli ? ceviri('Bağlı') : ceviri('Bağlan');
-    a.title = bagli ? ceviri('MetaTrader bağlı. Bağlantı ayarları için tıkla.') : ceviri("MetaTrader'ı bağla");
+    a.title = tradierMi ? ceviri('Tradier bağlı. Bağlantı ayarları için tıkla.')
+      : bagli ? ceviri('MetaTrader bağlı. Bağlantı ayarları için tıkla.') : ceviri("MetaTrader'ı bağla");
   }
   guncelle();
   yer.prepend(a);
