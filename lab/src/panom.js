@@ -85,7 +85,6 @@ function durumYaz(d, durum) {
   $('#mt5-baslik').textContent = d.baslik;
   let ayrinti = d.ayrinti;
   if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ' ' + ceviri('Zamanlar sunucu saatidir, {utc}.', { utc: utcEtiket(durum.sunucuUtcFarkiSn) });
-  if (durum && durum.terminal.sirket) ayrinti = `${durum.terminal.sirket}${durum.terminal.sunucu ? ' · ' + durum.terminal.sunucu : ''}. ${ayrinti}`;
   $('#mt5-ayrinti').textContent = ayrinti;
   const h = durum && HESAP[durum.terminal.hesapTuru];
   $('#mt5-hesap').hidden = !h;
