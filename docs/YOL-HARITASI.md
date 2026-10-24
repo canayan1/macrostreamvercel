@@ -62,6 +62,22 @@ Claude:
 - Röle: Upstash bölge seçimi ve yedek; kota ve maliyet izleme
 - Yedekleme ve olay planı: lisans kayıtlarının günlük dışa aktarımı
 
+## 7. ABD (araştırma: reports/ABD genişleme araştırması.md, 24.10.2026)
+
+Sıra (Can'ın istediği: önce ABD'ye satış, sonra Robinhood benzeri aracı kurumlar, sonra tahmin piyasaları):
+1. İngilizce arayüz (bitti) + CSV içe aktarma + tarayıcıda backtest; performans iddiası yok.
+2. Aracı kurum bağlantısı: önce Tradier (tarayıcıdan doğrudan, kişisel anahtar), sonra Alpaca ve
+   tastytrade (CORS denemesiyle). Robinhood'un hisse API'si yok; kripto API'si ve Mayıs 2026'daki
+   ajan MCP'si izlenir. Schwab/IBKR onay süreçleri uzun.
+3. ABD avukatı görüşü gelmeden: MT5 eklentisinin ABD sürümü ve hazır örneklerin ABD'de sunumu yok.
+   MT5'in ABD sürümü netting + FIFO desteği ister.
+4. Tahmin piyasası analitiği (Kalshi, Polymarket US): veri kullanım izni yazılı alınınca.
+
+Tasarım kuralları (CFTC 4.14(a)(9) ve personel yazıları): araç hesaplar, kullanıcı seçer; "önerilen
+ayar" yok; varsayımsal sonuçlarda 4.41 tarzı uyarı; sunucu tarafında emir yok; işlem başı ücret yok.
+Satış vergisi: eşik altında başlanır, Stripe Tax ile izlenir; eyalet kaydı için ABD dışı satıcıya
+Stripe değil Taxually gibi bir hizmet gerekir.
+
 ## Kararlar (verildi)
 
 - Segment: prop sınavı + bireysel forex, iki tanıtım sayfası
