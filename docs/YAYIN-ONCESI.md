@@ -3,9 +3,17 @@
 `urun-sitesi` dalı canlıya alınmadan önce tamamlanması gerekenler. İşaretlenmeyen madde varken
 `vercel --prod` yapılmaz.
 
+## Önizleme
+
+Son önizleme: https://macrostreamvercel-ecylm9qpq-canayan1s-projects.vercel.app (24.10.2026,
+`vercel deploy --yes`, canlı değil). Her yeni yüklemede adres değişir; proje panelindeki son
+"Preview" yüklemesi geçerlidir. Koruma: Settings → Deployment Protection → Vercel Authentication.
+
 ## Can'ın yapacakları (hesap ve anahtar gerektirir)
 
 - [ ] **Upstash Redis**: Vercel → Storage → Upstash. Köprü rölesi ve lisans kayıtları kullanır.
+      Projede eski `KV_*` değişkenleri duruyor ve önizlemede `/api/kopru` 502 veriyor: ya eski depo
+      silinmiş ya da erişilemiyor. Yeni depo bağlanınca eski `KV_*` değişkenleri kaldırılmalı.
 - [ ] **Stripe (önce test modu)**
   - [ ] Ürün "Kalibre Lab", aylık yinelenen tek fiyat: 399 TRY, aynı fiyata para birimi seçenekleri
         (currency options) 19 USD ve 17 EUR → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre
