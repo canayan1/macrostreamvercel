@@ -3,6 +3,7 @@
 // Yoklama yalnız prova kaynağı "MetaTrader'ım" seçiliyken çalışır: kullanıcı istemeden ağa çıkılmaz.
 
 import { kodUret } from './veri/role.js';
+import { tazeGoruldu } from './baglan-ortak.js';
 import { t as ceviri, yerel } from './dil.js';
 import { istemci, sinifla, tazelenmeli, seriAdi, roleAdresi, izinAdresi, utcEtiket, YOKLAMA_SN, VARSAYILAN_ROLE } from './veri/baglanti.js';
 
@@ -128,7 +129,9 @@ export function mt5Panel({ yukle, hata, istenenSembol = '' }) {
     let durum = null, h = null;
     try { durum = await ist.durum(); } catch (e) { h = e; }
     if (n !== nesil || !calisiyor) return;
-    durumYaz(sinifla({ durum, hata: h }), durum);
+    const sinifli = sinifla({ durum, hata: h });
+    durumYaz(sinifli, durum);
+    if (sinifli.sinif === 'bagli') tazeGoruldu();
     if (durum) {
       serileriYaz(durum);
       const secili = $('#mt5-seri').value;

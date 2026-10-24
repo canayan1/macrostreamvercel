@@ -134,4 +134,6 @@ p { margin: 0 0 1em; }
 /* Dil bağlantısı (TR | EN) */
 .ust .dil { font: 600 13px var(--sans); color: var(--soluk); text-decoration: none; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 4px 8px; }
 .ust .dil:hover { color: var(--metin); border-color: var(--soluk); }
-@media (max-width: 860px) { .ust .dil { margin-left: auto; } .ust .dil + .dugme { margin-left: 0; } }
+@media (max-width: 860px) { .ust .dil { margin-left: auto; } .ust .dil + .dugme, .ust .dugme + .dugme { margin-left: 0; } }
+/* Dar ekranda tek giriş düğmesi kalır; laboratuvar menüde zaten var. */
+@media (max-width: 560px) { .ust .dugme.kucuk:not(.baglan) { display: none; } .ust .dugme.baglan { margin-left: auto; } .ust .dil + .dugme.baglan { margin-left: 0; } }

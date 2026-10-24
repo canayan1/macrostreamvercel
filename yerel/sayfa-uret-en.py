@@ -25,7 +25,7 @@ SETUP = '''
 
 <h2 id="code">2. Create a pairing code in the lab</h2>
 <ol>
-  <li>Open the <a href="/en/lab/">lab</a> and go to <b>Connect MetaTrader</b>.</li>
+  <li>Open the <a href="/en/connect">Connect MetaTrader</a> page; it walks you through the steps.</li>
   <li>Your browser creates a pairing code for you. Copy it with the <b>Copy</b> button.</li>
 </ol>
 <p>The code starts with <code>KLB1</code> and is the key that encrypts your data. It lives only in this browser and in the add-on's settings; we never have a copy. Do not share it.</p>

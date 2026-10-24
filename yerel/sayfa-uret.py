@@ -23,6 +23,7 @@ def ust(aktif, dil="tr", diger=None):
         dil_baglanti = (f'<a class="dil" href="{diger}" hreflang="tr" lang="tr">TR</a>' if dil == "en"
                         else f'<a class="dil" href="{diger}" hreflang="en" lang="en">EN</a>')
     ana, ac, etiket = ("/en/", "Open the lab", "Main menu") if dil == "en" else ("/", "Laboratuvarı aç", "Ana menü")
+    baglan_url, baglan = ("/en/connect", "Connect MetaTrader") if dil == "en" else ("/baglan", "MetaTrader'ı bağla")
     return f'''<header class="ust">
   <div class="kap">
     <a class="marka" href="{ana}"><b>Kalibre</b><span>Lab</span></a>
@@ -30,6 +31,7 @@ def ust(aktif, dil="tr", diger=None):
 {a}
     </nav>
     {dil_baglanti}
+    <a class="dugme ikincil kucuk baglan" href="{baglan_url}">{baglan}</a>
     <a class="dugme kucuk" href="{"/en/lab/" if dil == "en" else "/lab/"}">{ac}</a>
   </div>
 </header>'''
@@ -149,7 +151,7 @@ KURULUM = '''
 
 <h2 id="kod">2. Laboratuvarda eşleştirme kodunu üret</h2>
 <ol>
-  <li><a href="/lab/">Laboratuvarı</a> aç ve <b>MetaTrader'ı bağla</b> bölümüne gel.</li>
+  <li><a href="/baglan">MetaTrader'ı bağla</a> sayfasını aç; adımlar orada sırayla gösterilir.</li>
   <li>Tarayıcın senin için bir eşleştirme kodu üretir. <b>Kopyala</b> düğmesiyle kopyala.</li>
 </ol>
 <p>Kod <code>KLB1</code> ile başlar ve verini şifreleyen anahtardır. Yalnız bu tarayıcıda ve eklentinin ayarında durur; bizde bir kopyası yoktur. Kimseyle paylaşma.</p>

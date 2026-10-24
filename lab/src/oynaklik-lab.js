@@ -8,6 +8,7 @@ import { getiriler, kapanisKapanis, parkinson, garmanKlass, rogersSatchell, yang
 import { garchKestir } from './modeller/garch.js';
 import { sarimaKestir } from './modeller/sarima.js';
 import { t as ceviri, sayiMetni, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
+import { baglanDugmesi } from './baglan-ortak.js';
 
 const $ = s => document.querySelector(s);
 const renk = ad => getComputedStyle(document.documentElement).getPropertyValue(ad).trim();
@@ -185,6 +186,7 @@ function sarimaKestirCiz() {
 
 // ------------------------------------------------------------------ olaylar
 sayfayiCevir();
+baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 $('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${ceviri(r.ad)}</option>`).join('');
 $('#kaynak').addEventListener('change', () => {

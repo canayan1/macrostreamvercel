@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MetaTrader'ı bağla · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>MetaTrader'ı bağla</span></a>
+  <div class="ust-eylem">
+    <a class="dugme ikincil" href="./" id="git-kurucu" data-t>Strateji Kurucu</a>
+    <a class="dugme ikincil" href="panom.html" id="git-panom" data-t>Panom</a>
+  </div>
+</header>
+
+<main class="baglan">
+  <section class="kart">
+    <h2 data-t>MetaTrader'ı bağla</h2>
+    <p data-t>MT5 şifren hiçbir yere girilmez; giriş, senin MT5'indeki eklentiyle tarayıcın arasındaki eşleştirme kodudur. Verin şifreli gelir, anahtar yalnız sende.</p>
+    <div id="zaten" class="baglan-zaten" hidden>
+      <p><b data-t>Zaten bağlısın.</b> <span id="zaten-ayrinti"></span></p>
+      <div class="satir-dugme">
+        <a class="dugme" id="zaten-panom" href="panom.html" data-t>Panoma git</a>
+        <button type="button" class="dugme ikincil" id="kes" data-t>Bağlantıyı kes</button>
+        <button type="button" class="dugme ikincil" id="yeniden-kur" data-t>Adımları göster</button>
+      </div>
+    </div>
+  </section>
+
+  <ol class="adimlar" id="adimlar">
+    <li class="kart adim" data-adim="1">
+      <h3><span class="adim-no">1</span><span data-t>Eklentiyi indir ve kur</span></h3>
+      <div id="lisans-var" hidden>
+        <p data-t>Lisansın bu tarayıcıda kayıtlı. Kalibre Köprü eklentisini indir:</p>
+        <div class="satir-dugme"><button type="button" class="dugme" id="eklenti-indir" data-t>KalibreKopru.ex5 indir</button></div>
+        <p class="dipnot" id="indir-durum" role="status"></p>
+      </div>
+      <div id="lisans-yok">
+        <p><span data-t>Eklenti, Kalibre Lab aboneliğiyle gelir.</span> <a id="abone-baglanti" href="/pro/" data-t>Aboneliği incele</a>. <span data-t>Abone olduysan lisans anahtarını</span> <a id="lisans-baglanti" href="/hesap/" data-t>Lisansım</a> <span data-t>sayfasından bu tarayıcıya kaydet.</span></p>
+      </div>
+      <ol class="adim-liste">
+        <li data-t>MT5'te <b>File → Open Data Folder</b> menüsünü aç; dosyayı <code>MQL5\Experts</code> klasörüne kopyala.</li>
+        <li data-t><b>Navigator</b> penceresinde <b>Expert Advisors</b> başlığına sağ tıkla, <b>Refresh</b> de.</li>
+        <li data-t><b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle; açılan pencereyi kapatma, 2. adımda kullanacağız.</li>
+      </ol>
+      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="1" data-t>Kurdum, devam</button></div>
+    </li>
+
+    <li class="kart adim" data-adim="2">
+      <h3><span class="adim-no">2</span><span data-t>Kodunu kopyala ve eklentiye yapıştır</span></h3>
+      <p data-t>Eklenti penceresinde <b>Inputs</b> sekmesine geç ve aşağıdakileri yapıştır.</p>
+      <label class="baglan-etiket" for="kod" data-t>Eşleştirme kodu</label>
+      <div class="mt5-kod">
+        <input type="password" id="kod" readonly spellcheck="false" autocomplete="off">
+        <button type="button" class="kucuk" id="kod-goster" data-t>Göster</button>
+        <button type="button" class="kucuk" id="kod-kopyala" data-t>Kopyala</button>
+        <button type="button" class="kucuk sil" id="kod-yeni" data-t>Yeni kod üret</button>
+      </div>
+      <div id="lisans-alan" hidden>
+        <label class="baglan-etiket" for="lisans" data-t>Lisans anahtarı</label>
+        <div class="mt5-kod">
+          <input type="text" id="lisans" readonly spellcheck="false">
+          <button type="button" class="kucuk" id="lisans-kopyala" data-t>Kopyala</button>
+        </div>
+      </div>
+      <p class="dipnot" data-t>Semboller satırını boş bırakırsan eklenti MT5'teki Market Watch listeni gönderir. Kod bu tarayıcıda saklanır; kimseyle paylaşma.</p>
+      <details class="mt5-kurulum gelismis">
+        <summary data-t>Gelişmiş: röle adresi</summary>
+        <p class="dipnot" data-t>Yalnız kendi sunucunu kullanıyorsan değiştir. Boş bırakılırsa bu sitenin rölesi kullanılır.</p>
+        <input type="url" id="role" placeholder="/api/kopru" spellcheck="false">
+      </details>
+    </li>
+
+    <li class="kart adim" data-adim="3">
+      <h3><span class="adim-no">3</span><span data-t>MetaTrader 5'te izin ver</span></h3>
+      <ol class="adim-liste">
+        <li data-t><b>Tools → Options</b> menüsünü aç, <b>Expert Advisors</b> sekmesine geç.</li>
+        <li data-t><b>Allow WebRequest for listed URL</b> kutusunu işaretle.</li>
+        <li data-t>Listeye şu adresi ekle:</li>
+      </ol>
+      <div class="mt5-kod">
+        <input type="text" id="izin" readonly spellcheck="false">
+        <button type="button" class="kucuk" id="izin-kopyala" data-t>Kopyala</button>
+      </div>
+      <p class="dipnot uyari" data-t>Adresi tam böyle yaz: boşluk yok, port numarasından önce iki nokta (:) var. Sonra <b>OK</b>'e bas; pencereyi çarpıyla kapatırsan izin kaydedilmez.</p>
+      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="3" data-t>İzni verdim, OK'e bastım</button></div>
+    </li>
+
+    <li class="kart adim" data-adim="4">
+      <h3><span class="adim-no">4</span><span data-t>Bağlantı bekleniyor</span></h3>
+      <div class="mt5-durum" id="durum" data-sinif="bekleniyor">
+        <i></i><div><b id="durum-baslik" data-t>Eklenti bekleniyor</b> <span class="rozet ikincil" id="durum-hesap" hidden></span>
+        <p id="durum-ayrinti" data-t>Henüz MT5'ten kalp atışı gelmedi.</p>
+        <p id="durum-cozum" class="dipnot"></p></div>
+      </div>
+      <div id="bagli-kutu" hidden>
+        <p class="baglan-basari"><b id="bagli-metin"></b></p>
+        <div class="satir-dugme">
+          <a class="dugme" id="panoma-git" href="panom.html" data-t>Panoma git</a>
+          <button type="button" class="dugme ikincil" id="yonlendirme-iptal" data-t>Burada kal</button>
+        </div>
+        <p class="dipnot" id="yonlendirme-not" role="status"></p>
+      </div>
+    </li>
+  </ol>
+</main>
+
+<script type="module" src="src/baglan.js"></script>
+</body>
+</html>

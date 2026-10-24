@@ -181,3 +181,33 @@ a.kucuk:hover{background:rgba(95,184,154,.12)}
 h3.bosluk{margin-top:14px;margin-bottom:6px}
 .panom-dipnot{max-width:80ch}
 @media (max-width:720px){.takvim{grid-template-columns:repeat(14,1fr)}}
+
+/* ---------------------------------------------------------------- Bağlan (giriş) */
+.baglan{max-width:760px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.baglan h2{font-size:18px}
+.baglan p{color:var(--text-dim);line-height:1.55}
+.adimlar{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.adim{border-left:3px solid var(--border-2);opacity:.75;transition:opacity .15s,border-color .15s}
+.adim[aria-current=step]{border-left-color:var(--accent);opacity:1}
+.adim.tamam{opacity:.6}
+.adim h3{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:600 15px var(--sans);text-transform:none;letter-spacing:0;color:var(--text)}
+.adim-no{flex:none;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:600 12px var(--mono);border:1px solid var(--border-2);color:var(--text-dim)}
+.adim[aria-current=step] .adim-no{background:var(--accent);border-color:var(--accent);color:#08130f}
+.adim.tamam .adim-no{color:var(--accent);border-color:var(--accent)}
+.adim.tamam .adim-no::before{content:"✓";font-size:13px}
+.adim.tamam .adim-no{font-size:0}
+.adim-liste{margin:8px 0;padding-left:20px;color:var(--text-dim);font-size:13px;line-height:1.6}
+.adim-liste code,.baglan code{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.baglan-etiket{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+.baglan .mt5-kod input{min-width:0}
+.baglan .gelismis{margin-top:10px}
+.baglan .gelismis input{width:100%;margin-top:6px;font:12px var(--mono)}
+.dipnot.uyari{color:#d9a441}
+.baglan-basari{color:var(--accent)!important;margin:10px 0 0}
+.baglan-zaten{margin-top:10px}
+.baglan-hap{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--sans);color:#08130f;background:var(--accent);border-radius:999px;padding:6px 12px;text-decoration:none}
+.baglan-hap::before{content:"";width:7px;height:7px;border-radius:50%;background:#08130f}
+.baglan-hap:hover{background:var(--accent-hot)}
+@media(max-width:560px){.baglan{padding:12px}.baglan .mt5-kod{flex-wrap:wrap}.baglan .mt5-kod input{flex-basis:100%}}
+.baglan a:not(.dugme):not(.baglan-hap){color:var(--accent)}
+.adim[aria-current=step].tamam .adim-no{color:#08130f}

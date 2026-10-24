@@ -8,6 +8,7 @@ import { prova } from './motor.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { mt5Panel } from './baglanti-arayuz.js';
+import { baglanDugmesi } from './baglan-ortak.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 
 const TASLAK_ANAHTARI = 'kalibre-lab-taslak';
@@ -766,6 +767,7 @@ $('#prova-kart').addEventListener('drop', e => {
   provaDosyaYukle(e.dataTransfer.files[0]);
 });
 sayfayiCevir();
+baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 // Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {

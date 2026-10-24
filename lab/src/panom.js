@@ -7,6 +7,7 @@ import { istemci, sinifla, roleAdresi, utcEtiket, sureMetni, YOKLAMA_SN } from '
 import { kotaCoz, islemCoz, pozisyonCoz, durumCoz } from './veri/kopru.js';
 import { hesapOzeti, sonGunler, gunAnahtari } from './panom/ozet.js';
 import { panomOrnek } from './panom/ornek.js';
+import { baglanDugmesi, tazeGoruldu } from './baglan-ortak.js';
 
 const KOD_ANAHTARI = 'kalibre-kopru-kod';
 const ROLE_ANAHTARI = 'kalibre-kopru-role';
@@ -216,7 +217,9 @@ function canli(kod) {
     zamanlayici = 0;
     let durum = null, h = null;
     try { durum = await ist.durum(); } catch (e) { h = e; }
-    durumYaz(sinifla({ durum, hata: h }), durum);
+    const sinifli = sinifla({ durum, hata: h });
+    durumYaz(sinifli, durum);
+    if (sinifli.sinif === 'bagli') { tazeGoruldu(); baglanHap.guncelle(); }
     $('#baglan-kutu').hidden = !!durum;
     if (durum) {
       $('#kaynak-rozet').hidden = !durum.ornek;
@@ -250,13 +253,14 @@ function canli(kod) {
 
 // ---------------------------------------------------------------- başlat
 sayfayiCevir();
+const baglanHap = baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 $('#islem-sembol').addEventListener('change', e => {
   secilenSembol = e.target.value;
   if (sonIslemler) islemTablosuYaz(sonIslemler, sonIslemler.para ? ` ${kacis(sonIslemler.para)}` : '');
 });
 $('#ornek-yukle').addEventListener('click', ornekGoster);
-if (dilEki) $('#baglan-git').href = `./?dil=en#prova-kart`;
+$('#baglan-git').href = `baglan.html${dilEki ? '?dil=en' : ''}`;
 window.addEventListener('resize', () => { if (sonIslemler) islemlerYaz(sonIslemler, Date.now() / 1000); });
 
 const kod = depo.oku(KOD_ANAHTARI);

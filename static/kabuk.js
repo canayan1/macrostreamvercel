@@ -28,9 +28,13 @@
     + '#km-ust .d{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:6px;background:#5fb89a;'
     + 'color:#08130f;font-weight:600;font-size:14px;text-decoration:none}'
     + '#km-ust .d:hover{background:#74c8ab}'
+    + '#km-ust .d.ikincil{background:transparent;color:#e7ecf2;border:1px solid #33465f;margin-left:4px}'
+    + '#km-ust .d.ikincil:hover{border-color:#a3b0c2;background:transparent}'
+    + '#km-ust .d.ikincil + .d{margin-left:-16px}'
     + '#km-ust a:focus-visible,#km-alt a:focus-visible{outline:2px solid #8fc7ff;outline-offset:3px}'
     + '@media(max-width:860px){#km-ust .k{flex-wrap:wrap;gap:6px 18px;padding-top:10px;padding-bottom:10px}'
-    + '#km-ust nav{order:3;width:100%;margin:0;overflow-x:auto;gap:18px;font-size:14px;scrollbar-width:none}#km-ust .d{margin-left:auto}}'
+    + '#km-ust nav{order:3;width:100%;margin:0;overflow-x:auto;gap:18px;font-size:14px;scrollbar-width:none}#km-ust .d{margin-left:auto}#km-ust .d.ikincil{margin-left:auto}#km-ust .d.ikincil + .d{margin-left:0}}'
+    + '@media(max-width:560px){#km-ust .d:not(.ikincil){display:none}}'
     + '#km-alt{border-top:1px solid #24344c;padding:48px 0 56px;margin-top:64px;color:#73839a;font:400 14px/1.6 "IBM Plex Sans",system-ui,sans-serif;background:#0e1724}'
     + '#km-alt .k{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}'
     + '#km-alt h4{font:600 14px/1.4 "IBM Plex Sans",sans-serif;color:#a3b0c2;margin:0 0 10px}'
@@ -58,7 +62,7 @@
     + MENU.map(function (m) {
       return '<a href="' + m[0] + '"' + (yol.indexOf(m[0]) === 0 ? ' aria-current="page"' : '') + '>' + m[1] + '</a>';
     }).join('')
-    + '</nav><a class="d" href="/lab/">Laboratuvarı aç</a></div>';
+    + '</nav><a class="d ikincil" href="/baglan">MetaTrader\'ı bağla</a><a class="d" href="/lab/">Laboratuvarı aç</a></div>';
   document.body.insertBefore(ust, document.body.firstChild);
 
   var alt = document.createElement('footer');

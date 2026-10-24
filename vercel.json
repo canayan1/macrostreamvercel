@@ -3,6 +3,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/baglan",
+      "destination": "/lab/baglan.html",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/connect",
+      "destination": "/lab/baglan.html?dil=en",
+      "statusCode": 302
+    },
+    {
       "source": "/panom",
       "destination": "/lab/panom.html",
       "statusCode": 302
