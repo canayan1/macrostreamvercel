@@ -1,6 +1,6 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 25 Ekim 2026 (çekirdek paket sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 25 Ekim 2026 (bağımsız referans ve doğrulama paketi sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
 
@@ -135,7 +135,8 @@ Ortam değişkenleri (değerleri yalnız kurucu girer; Claude okumaz):
 | B | Elle hesaplı vakalar, MT5 gösterge eşleşmesi, maliyet modeli | Bitti (ADX ısınma hatası düzeltildi) |
 | C | MT5 Strategy Tester ile işlem işlem karşılaştırma | Bitti: 97 koşunun 96'sı geçti, açıklanamayan fark yok (`docs/dogrulama/C-raporu.md`). Motor 0.22: XAUUSD'de 10 kat risk hatası düzeltildi |
 | D | Sıfır testi, gömülü kenar, PBO/CSCV, yürüyen ileri, Harvey-Liu | Bitti, tüm ölçütler geçti (`docs/dogrulama/D-raporu.md`) |
-| E | Regresyon + doğruluk raporu | Bekliyor |
+| E | Bağımsız Python referansıyla karşılaştırma (yalnız yazılı kurallardan, kodu görmeden): 1.035 vaka, 87.315 işlem, 1,33 milyon gösterge değeri; açıklanamayan fark 0. Bulunan tek fark (düz pencerede RSI) motor 0.1.1'de düzeltildi (`docs/dogrulama/E-raporu.md`) | Bitti |
+| Paket | Banka düzeninde doğrulama paketi (SR 26-2 / PRA SS1/23 ilkeleri): `docs/dogrulama/DOGRULAMA-PAKETI.md` | Taslak; bağımsız dış inceleme gerekir |
 
 Kalkan (prop): günlük taban = gün başı bakiye − g% × başlangıç; toplam taban statik / gün sonu
 izleyen / gün içi izleyen; ön ayarlar FTMO 2-Step, 1-Step, Instant (23.10.2026 doğrulandı),
@@ -146,8 +147,6 @@ Kurumsal hedef (rapor: `reports/Kurumsal motor gereksinimleri.md`). Sıradaki i�
 Biten: `@kalibre/core` (kalibre-lab `lab/core/`, CLI, `docs/core.md`), `resultId` (kanonik JSON + SHA-256), maliyet modeli v2 ve çubuk içi dolum modelleri (isteğe bağlı; varsayılan sonuçlar değişmedi, 337 test).
 4. Enstrüman ve maliyet modelinin 2. sürümü: lot adımı, kur çevrimi, swap, teminat
 5. Çubuk içi dolum modelleri
-6. Bağımsız Python referansı
-7. Doğrulama paketi (SR 26-2 / PRA SS1/23 düzeninde)
 8. CAIQ/SIG taslakları, sızma testi, SOC 2
 9. Pilotlar: prop firmasına Kalkan lisansı, aracı kuruma gömülü lab
 
@@ -228,7 +227,7 @@ Kurucunun yapacakları:
 4. Pazartesi demo işlemlerle Pano kâr/zarar kontrolü.
 
 Claude'un yapacakları:
-1. Bağımsız Python referansı + doğrulama paketi (sürüyor); maliyet/dolum arayüzü ve Türkçe adlar bitti (Hızlı Backtest, Kalibre Engine, Pano).
+1. Bridge belgesine sembol özellikleri (sözleşme büyüklüğü, lot sınırları, swap) eklemek; arayüze kur serisi yükleme.
 2. Motor 0.22'yi sırla derle ve yükle.
 3. Eklentileri sırla derle ve yükle, önizlemede uçtan uca dene.
 5. Canlıya çıkış listesini tamamla, ardından kurucunun "canlıya al" onayı.

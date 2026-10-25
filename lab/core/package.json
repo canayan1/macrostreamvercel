@@ -1,6 +1,6 @@
 {
   "name": "@kalibre/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kalibre Lab headless backtest engine: deterministic, browser and Node",
   "type": "module",
   "main": "./src/index.js",

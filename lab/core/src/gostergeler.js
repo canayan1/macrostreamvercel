@@ -48,12 +48,12 @@ export function rsi(kapanis, p) {
     if (d > 0) kaz += d; else kay -= d;
   }
   kaz /= p; kay /= p;
-  y[p] = kay === 0 ? 100 : 100 - 100 / (1 + kaz / kay);
+  y[p] = kay === 0 ? (kaz > 0 ? 100 : 50) : 100 - 100 / (1 + kaz / kay);
   for (let i = p + 1; i < n; i++) {
     const d = kapanis[i] - kapanis[i - 1];
     kaz = (kaz * (p - 1) + Math.max(d, 0)) / p;
     kay = (kay * (p - 1) + Math.max(-d, 0)) / p;
-    y[i] = kay === 0 ? 100 : 100 - 100 / (1 + kaz / kay);
+    y[i] = kay === 0 ? (kaz > 0 ? 100 : 50) : 100 - 100 / (1 + kaz / kay);
   }
   return y;
 }
