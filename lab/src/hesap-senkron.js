@@ -6,8 +6,8 @@
 // yeni bir taslak varsa sayfa üstte bunu söyler; kullanıcı isterse yükler, mevcut taslak sessizce
 // değiştirilmez.
 //
-// Yalnız kural dosyası gider: piyasa verisi, prova sonucu, eşleştirme kodu ya da aracı kurum
-// anahtarları gitmez.
+// Yalnız kural dosyası ve prova ayarları (gerçekçi maliyetler, dolum modeli; ekAl ile) gider: piyasa
+// verisi, prova sonucu, eşleştirme kodu ya da aracı kurum anahtarları gitmez.
 
 import { dil } from './dil.js';
 
@@ -20,6 +20,7 @@ function yerelDepo() {
 
 export function hesapSenkron({
   al,                         // () => güncel strateji nesnesi
+  ekAl = () => null,          // () => payload'a eklenecek ek alanlar (ör. { prova }) ya da null
   teklif = () => {},          // (satir) => hesapta daha yeni taslak var; arayüz kullanıcıya sorar
   auth = () => globalThis.KalibreAuth,
   store = () => globalThis.KalibreStore,
@@ -41,9 +42,10 @@ export function hesapSenkron({
     if (!girisli()) return null;
     const s = al();
     if (!s || typeof s !== 'object') return null;
-    const metin = JSON.stringify(s);
+    const ek = ekAl() ?? {};
+    const metin = JSON.stringify({ s, ek });
     if (metin === son) return null;
-    const satir = await store().save('strateji', String(s.ad ?? '').slice(0, 120), { strateji: s, kaynak: 'lab' }, oku(KIMLIK_ANAHTARI) ?? undefined);
+    const satir = await store().save('strateji', String(s.ad ?? '').slice(0, 120), { ...ek, strateji: s, kaynak: 'lab' }, oku(KIMLIK_ANAHTARI) ?? undefined);
     son = metin;
     if (satir?.id && !String(satir.id).startsWith('loc-')) yaz(KIMLIK_ANAHTARI, satir.id);
     return satir;
@@ -67,7 +69,7 @@ export function hesapSenkron({
     if (!satir) return null;
     const yerelZaman = Number(oku(ZAMAN_ANAHTARI) ?? 0);
     const bulutZaman = Date.parse(satir.updated_at) || 0;
-    if (JSON.stringify(satir.payload.strateji) === JSON.stringify(al())) { yaz(KIMLIK_ANAHTARI, satir.id); son = JSON.stringify(al()); return null; }
+    if (JSON.stringify(satir.payload.strateji) === JSON.stringify(al())) { yaz(KIMLIK_ANAHTARI, satir.id); son = null; return null; }
     if (bulutZaman <= yerelZaman + 1000) return null; // yerel daha yeni: bir sonraki değişiklikte hesaba yazılır
     teklif(satir);
     return satir;
@@ -77,7 +79,7 @@ export function hesapSenkron({
   function kabul(satir) {
     yaz(KIMLIK_ANAHTARI, satir.id);
     yaz(ZAMAN_ANAHTARI, Date.parse(satir.updated_at) || saat());
-    son = JSON.stringify(satir.payload.strateji);
+    son = null; // bir sonraki değişiklikte strateji ve ayarlar birlikte yazılır
   }
 
   async function baslat() {

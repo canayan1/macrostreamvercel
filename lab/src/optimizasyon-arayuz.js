@@ -11,6 +11,7 @@ import { istemci, sinifla, roleAdresi } from './veri/baglanti.js';
 import { tradierSecici, alpacaSecici } from './tradier-kaynak.js';
 import { baglanDugmesi, depo, KOD_ANAHTARI, ROLE_ANAHTARI, KOD_RE } from './baglan-ortak.js';
 import { parametreler, ayarla, tara } from './optimizasyon.js';
+import { maliyetVar } from './motor.js';
 import { denemeSayaci } from './asiri-uyum.js';
 import { yuruyenIleri, pencereler } from './yuruyen-ileri.js';
 import './dil-dogrulama.js';
@@ -21,6 +22,8 @@ const $ = s => document.querySelector(s);
 import { kacis, stratejiyiTemizle } from './guvenlik.js';
 import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
 import { kimlikSatiri } from './calistirma-arayuz.js';
+import { gercekciAlani, durumOku as gercekciOku, provaSecenekleri, dolumAdi } from './gercekci-arayuz.js';
+import './dil-gercekci.js';
 const sayiOku = v => Number(String(v).trim().replace(',', '.'));
 const dilEki = dil === 'tr' ? '?dil=tr' : '';
 
@@ -35,6 +38,13 @@ let alpaca = null;        // alpacaSecici
 let alpacaSon = null;     // son yüklenen Alpaca serisi
 let calisiyor = false, iptalIstendi = false;
 let sonuc = null, secilenSon = [];
+let altMumlar = null; // M1 büyüteç için alt zaman dilimi mumları (yalnız bellekte)
+
+// Gerçekçi maliyetler ve dolum: kapalıyken boş nesne (sonuç ve resultId değişmez).
+function gercekciSecenek() {
+  const g = provaSecenekleri(gercekciOku(), { altMumlar, nokta: veri?.nokta ?? null });
+  return { provaSecenek: Object.keys(g.secenek).length ? g.secenek : undefined, uyarilar: g.uyarilar };
+}
 
 // ---------------------------------------------------------------- etiketler
 // Motorun etiketleri Türkçedir; arayüzde parametre yolundan dile göre yeniden kurulur.
@@ -222,7 +232,7 @@ async function mt5Hazirla() {
     const r = await mt5.seri(sembol, td, { enAz: 200 });
     if (!r) { $('#veri-durum').textContent = ceviri('Bu seri henüz gelmedi; birkaç saniye sonra yeniden dene.'); return; }
     const sunucu = durum.terminal.sunucu ?? 'MT5';
-    veri = { mumlar: r.mumlar, ad: r.ornek ? `${ceviri('ÖRNEK (SENTETİK)')} · ${sembol} ${td}` : `MT5 · ${sunucu} · ${sembol} ${td}`, uyarilar: r.uyarilar };
+    veri = { mumlar: r.mumlar, ad: r.ornek ? `${ceviri('ÖRNEK (SENTETİK)')} · ${sembol} ${td}` : `MT5 · ${sunucu} · ${sembol} ${td}`, uyarilar: r.uyarilar, nokta: r.meta?.nokta ?? null };
   } catch (err) {
     const d = sinifla({ hata: err });
     $('#veri-rozet').textContent = ceviri('MT5 VERİSİ YOK');
@@ -254,8 +264,10 @@ async function baslat() {
   const egitim = Math.min(90, Math.max(50, sayiOku($('#egitim').value) || 70)) / 100;
   const t0 = performance.now();
   const sayac = denemeSayaci();
+  const gs = gercekciSecenek();
   try {
     sonuc = await tara(s, veri.mumlar, sec, {
+      ...(gs.provaSecenek ? { provaSecenek: gs.provaSecenek } : {}),
       oncekiDeneme: sayac.oku(s),
       olcut: $('#olcut').value,
       egitimOrani: egitim,
@@ -274,6 +286,8 @@ async function baslat() {
     $('#calisma-durum').textContent = sonuc.iptal
       ? ceviri('Tarama iptal edildi; o ana kadar denenen {n} ayar gösteriliyor.', { n: sonuc.denenen })
       : ceviri('Tarama bitti: {n} ayar, {s} saniye.', { n: sonuc.denenen, s: dil === 'en' ? sn : sn.replace('.', ',') });
+    if (gs.uyarilar.length) $('#calisma-durum').textContent += ` ${gs.uyarilar.join(' ')}`;
+    sonuc.gercekci = gs.provaSecenek ?? null;
     sonucCiz();
   } catch (err) {
     $('#calisma-durum').textContent = ceviri('Tarama tamamlanamadı: {m}', { m: err.message });
@@ -307,7 +321,9 @@ function ozetCiz() {
   const r = sonuc;
   const satir = (b, m) => `<div><b>${b}</b><span>${m}</span></div>`;
   const parca = [
-    satir(kacis(maliyetEtiketi(r.maliyet)), kacis(ceviri('tüm puanlar bu maliyetle hesaplandı'))),
+    ...(r.gercekci?.enstruman && !maliyetVar(r.maliyet) ? [] : [satir(kacis(maliyetEtiketi(r.maliyet)), kacis(ceviri('tüm puanlar bu maliyetle hesaplandı')))]),
+    ...(r.gercekci ? [satir(kacis(r.gercekci.enstruman ? ceviri('Gerçekçi maliyetler açık') : ceviri('Gerçekçi maliyetler kapalı')),
+      kacis([r.gercekci.enstruman ? ceviri('lot, kur çevrimi, lot başı komisyon, swap ve teminat dahil') : '', ceviri('dolum modeli: {m}', { m: dolumAdi(r.gercekci.dolum ?? 'stop-once') })].filter(Boolean).join('; ')))] : []),
     satir(`${r.denenen.toLocaleString(yerel)} / ${r.toplam.toLocaleString(yerel)}`, kacis(r.ornek ? ceviri('denenen / toplam (örneklem)') : ceviri('denenen / toplam'))),
     satir(String(r.yetersiz + r.propElenen + r.gecersiz), kacis(ceviri('elenen: {a} yetersiz işlem, {b} prop ihlali, {c} geçersiz', { a: r.yetersiz, b: r.propElenen, c: r.gecersiz }))),
   ];
@@ -341,6 +357,7 @@ function ozetCiz() {
   $('#sonuc-uyari').innerHTML = r.uyarilar.map(u => `<li>${kacis(uyariMetni(u))}</li>`).join('');
   // Sonuç kimliği: aynı strateji, veri, aralıklar, seçenekler ve önceki deneme sayısı aynı kimliği verir.
   const strateji = JSON.parse(JSON.stringify(s)), parametre = secilenSon;
+  $('#kimlik-not').hidden = false;
   kimlikSatiri($('#calistirma'), {
     resultId: r.resultId, dosyaAdi: 'kalibre-optimizasyon',
     paket: () => ({
@@ -438,6 +455,7 @@ function yuruyenKutusu() {
     <button type="button" class="dugme ikincil" id="yuruyen-baslat">${kacis(ceviri('Çalıştır'))}</button>
     <span class="durum" id="yuruyen-durum" role="status"></span>
     <div class="opt-ozet" id="yuruyen-ozet"></div>
+    <p class="calistirma" id="yuruyen-kimlik" hidden></p>
     <div class="opt-tablo-kap"><table class="pozisyon" id="yuruyen-tablo"></table></div>`;
   $('#sonuc-uyari').after(k);
   $('#yuruyen-baslat').addEventListener('click', yuruyenCalistir);
@@ -451,13 +469,25 @@ async function yuruyenCalistir() {
   if (pencereler(T, { egitim, sinama, embargo: 5, tur }).length < 2) { $('#yuruyen-durum').textContent = ceviri('Yürüyen ileri için veri kısa: en az iki pencere gerekir.'); return; }
   calisiyor = true; baslatDurumu();
   $('#yuruyen-baslat').disabled = true;
+  kimlikSatiri($('#yuruyen-kimlik'), {});
+  const gs = gercekciSecenek();
   try {
     const k = await yuruyenIleri(s, veri.mumlar, secilenSon, {
+      ...(gs.provaSecenek ? { provaSecenek: gs.provaSecenek } : {}),
       egitim, sinama, embargo: 5, tur, olcut: $('#olcut').value,
       enAzIslem: Math.max(1, Math.round((sayiOku($('#en-az').value) || 20) * 0.4)),
       sinir: Math.min(200, sonuc?.planlanan ?? 200), maliyet: maliyetOku(), iptal: () => iptalIstendi,
     }, (i, n) => { $('#yuruyen-durum').textContent = ceviri('Yürüyen ileri analiz sürüyor: {i}/{n}', { i, n }); });
-    $('#yuruyen-durum').textContent = '';
+    $('#yuruyen-durum').textContent = gs.uyarilar.join(' ');
+    const strateji = JSON.parse(JSON.stringify(s)), parametre = secilenSon;
+    kimlikSatiri($('#yuruyen-kimlik'), {
+      resultId: k.resultId, dosyaAdi: 'kalibre-walk-forward',
+      paket: () => ({
+        format: 'kalibre-walk-forward', formatVersion: 1, manifest: k.manifest, strategy: strateji, parameters: parametre,
+        summary: { type: k.tur, train: k.egitim, test: k.sinama, embargo: k.embargo, wfe: k.wfe, oosReturnPct: k.oosGetiriYuzde, settingChangeRate: k.ayarDegisimOrani },
+        folds: k.katlar, oosEquity: k.oosOzkaynak,
+      }),
+    });
     const satir = (b, m) => `<div><b>${b}</b><span>${m}</span></div>`;
     $('#yuruyen-ozet').innerHTML = [
       satir(k.wfe === null ? '-' : sayiMetni(k.wfe, 2), kacis(ceviri('yürüyen ileri verimliliği (WFE): sınamadaki ortalama getirinin eğitimdekine oranı; 1\'e yakınsa seçim tutmuş, 0 ya da altıysa tutmamış'))),
@@ -480,6 +510,7 @@ function sonucCiz() {
   ozetCiz();
   yuruyenKutusu();
   $('#yuruyen-ozet').innerHTML = ''; $('#yuruyen-tablo').innerHTML = ''; $('#yuruyen-durum').textContent = '';
+  kimlikSatiri($('#yuruyen-kimlik'), {});
   tabloCiz();
   isiCiz();
 }
@@ -525,6 +556,10 @@ $('#ice-aktar').addEventListener('change', async e => {
 
 $('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${kacis(k)}">${kacis(ceviri(r.ad))}</option>`).join('');
 maliyetAlani($('#maliyet-alan'));
+gercekciAlani($('#gercekci-alan'), {
+  m1Var: () => !!altMumlar?.length,
+  m1Yukle: async f => { altMumlar = dosyaCoz(await f.text(), f.name, { enAz: 1 }).mumlar; return { adet: altMumlar.length }; },
+});
 for (const o of $('#olcut').options) o.textContent = OLCUT_ADI()[o.value] ?? o.textContent;
 sayfayiCevir();
 baglanDugmesi(document.querySelector('.ust-eylem'));

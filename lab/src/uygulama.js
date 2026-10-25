@@ -4,7 +4,7 @@
 
 import { dogrula, v2Ozellikleri, ZAMAN_DILIMLERI, GOSTERGE_TIPLERI, OPERATORLER, HATLAR, OYNAKLIK } from './dogrula.js';
 import { ozet, gostergeTanimi } from './ozet.js';
-import { prova } from './motor.js';
+import { prova, maliyetVar } from './motor.js';
 import { calistir, disaAktar } from '../core/src/calistir.js';
 import { kimlikSatiri } from './calistirma-arayuz.js';
 import { uret, REJIMLER } from './sentetik.js';
@@ -14,6 +14,8 @@ import { tradierSecici, alpacaSecici } from './tradier-kaynak.js';
 import { blokFormu, blokDinle, modAnahtari, modOku } from './blok-arayuz.js';
 import { baglanDugmesi } from './baglan-ortak.js';
 import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
+import { gercekciAlani, durumOku as gercekciOku, durumYaz as gercekciYaz, provaSecenekleri, dolumMetni, enstrumanMetni } from './gercekci-arayuz.js';
+import './dil-gercekci.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 
 const TASLAK_ANAHTARI = 'kalibre-lab-taslak';
@@ -36,9 +38,11 @@ let s = taslakOku() ?? BOS();
 // Giriş yapılmışsa taslak Kalibre Markets hesabına da yazılır; hesapta daha yenisi varsa sorulur.
 const senkron = hesapSenkron({
   al: () => s,
+  ekAl: () => ({ prova: gercekciOku() }),
   teklif: satir => teklifBandi(satir, () => {
     s = stratejiyiTemizle(satir.payload.strateji).strateji;
     s.gostergeler ??= {};
+    if (satir.payload.prova) { gercekciYaz(satir.payload.prova); gercekci?.yenile(); }
     senkron.kabul(satir);
     ornektenAd = null; ornekUyarisi(); formCiz(); panelCiz();
   }),
@@ -53,6 +57,8 @@ let tradier = null;
 let alpacaVeri = null;  // Alpaca'dan gelen seri (aynı biçim)
 let alpaca = null;
 let mt5 = null;
+let altMumlar = null; // M1 büyüteç için kullanıcının yüklediği alt zaman dilimi mumları (yalnız bellekte)
+let gercekci = null;
 
 // ---------------------------------------------------------------- yol yardımcıları
 const parcala = yol => yol.split('.').map(p => (/^\d+$/.test(p) ? Number(p) : p));
@@ -417,9 +423,15 @@ function provaCalistir() {
   // Maliyet bölümü boşsa brüt (maliyetsiz) prova; doluysa net. Etiket her sonuçla birlikte görünür.
   const maliyet = maliyetOku();
   // Kimlikli prova: aynı strateji, veri ve ayarlar her zaman aynı sonuç kimliğini (resultId) verir.
-  const provaAyar = { maliyet };
+  // Gerçekçi maliyetler ve dolum modeli kapalıyken ek seçenek yoktur: sonuç ve resultId değişmez.
+  const g = provaSecenekleri(gercekciOku(), { altMumlar, nokta: veri?.meta?.nokta ?? null });
+  veriUyarilari.push(...g.uyarilar);
+  if (!veri && g.secenek.enstruman) veriUyarilari.push(ceviri('Sentetik fiyatlar bu sembolün ölçeğinde değildir; lot ve maliyet sonuçları anlamlı olmayabilir. Gerçekçi maliyetleri kendi verinle kullan.'));
+  const provaAyar = { maliyet, ...g.secenek };
   const sonuc = calistir(s, mumlar, provaAyar, ayar ? { ek: { sentetik: ayar } } : {});
-  $('#maliyet-sonuc').textContent = maliyetEtiketi(maliyet);
+  // Gerçekçi maliyetler açıkken "Brüt (maliyetsiz)" etiketi yanıltır: yalnız spread/kayma girilmişse gösterilir.
+  const maliyetYazi = sonuc.enstruman && !maliyetVar(maliyet) ? '' : maliyetEtiketi(maliyet);
+  $('#maliyet-sonuc').textContent = [maliyetYazi, enstrumanMetni(sonuc.enstruman), dolumMetni(sonuc.dolum)].filter(Boolean).join(' · ');
   const strateji = JSON.parse(JSON.stringify(s));
   kimlikSatiri($('#calistirma'), { resultId: sonuc.resultId, paket: () => disaAktar(strateji, provaAyar, sonuc), dosyaAdi: 'kalibre-backtest' });
   fiyatCiz($('#grafik'), mumlar, sonuc.islemler);
@@ -427,7 +439,10 @@ function provaCalistir() {
   istatistikCiz(sonuc.istatistik);
   $('#uyarilar').innerHTML = [...veriUyarilari, ...sonuc.uyarilar].map(u => `<li>${kacis(ceviri(u))}</li>`).join('');
   // Sağlamlık testi sentetik piyasalarla çalışır; kendi verinle yapılan provada karışıklık yaratmasın.
-  if (ayar) saglamlikCiz(ayar, maliyet); else $('#saglamlik').innerHTML = '';
+  // Sağlamlıkta her piyasa farklı bir sentetik seridir: alt zaman dilimi mumları ona ait olmadığından M1 büyüteç kullanılmaz.
+  const { altMumlar: _a, ...sagEk } = g.secenek;
+  if (sagEk.dolum === 'm1') delete sagEk.dolum;
+  if (ayar) saglamlikCiz(ayar, maliyet, sagEk); else $('#saglamlik').innerHTML = '';
 }
 
 function provaKaynakGoster() {
@@ -468,8 +483,11 @@ function tradierHata(mesaj) {
   provaBos(`<span style="color:var(--red)">${kacis(mesaj)}</span>`);
 }
 
+let sonNokta = null;
 function mt5Yukle(veri) {
   mt5Veri = veri;
+  // MT5 nokta büyüklüğü değişince gerçekçi maliyet notu yenilensin (her yeni mumda değil).
+  if ((veri?.meta?.nokta ?? null) !== sonNokta) { sonNokta = veri?.meta?.nokta ?? null; gercekci?.yenile(); }
   if ($('#prova-kaynak').value === 'mt5') provaCalistir();
 }
 
@@ -500,7 +518,7 @@ async function provaDosyaYukle(f) {
 // Parça parça çalışır, arayüzü kilitlemez; yeni bir değişiklik eski hesabı iptal eder.
 // GARCH_VOL her piyasada yeniden kestirildiği için o durumda 10 piyasa kullanılır.
 let saglamlikNo = 0;
-function saglamlikCiz(ayar, maliyet) {
+function saglamlikCiz(ayar, maliyet, ek = {}) {
   const no = ++saglamlikNo;
   const N = Object.values(s.gostergeler ?? {}).some(t => t.tip === 'GARCH_VOL') ? 10 : 50;
   const getiriler = [], beklentiler = [];
@@ -508,7 +526,7 @@ function saglamlikCiz(ayar, maliyet) {
     if (no !== saglamlikNo) return;
     if (i <= N) {
       $('#saglamlik').innerHTML = ceviri('<b>Sağlamlık:</b> {N} sentetik piyasa çalıştırılıyor… {i}/{N}', { N, i: i - 1 });
-      const st = prova(s, uret({ ...ayar, tohum: 100000 + i * 7919 }), { maliyet }).istatistik;
+      const st = prova(s, uret({ ...ayar, tohum: 100000 + i * 7919 }), { ...ek, maliyet }).istatistik;
       getiriler.push(st.getiriYuzde);
       if (st.islem) beklentiler.push(st.beklentiR);
       setTimeout(() => adim(i + 1), 0);
@@ -856,6 +874,16 @@ sayfayiCevir();
 baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 maliyetAlani($('#maliyet-alan'), () => { clearTimeout(provaZamanlayici); provaZamanlayici = setTimeout(provaCalistir, 250); });
+gercekci = gercekciAlani($('#gercekci-alan'), {
+  degisince: () => { senkron.degisti(); clearTimeout(provaZamanlayici); provaZamanlayici = setTimeout(provaCalistir, 250); },
+  m1Var: () => !!altMumlar?.length,
+  kaynakNot: () => (mt5Veri?.meta?.nokta ? ceviri('MT5 bağlıyken puan mesafeleri MT5 nokta büyüklüğüyle ({n}) hesaplanır. Kalibre Bridge sözleşme büyüklüğü, lot sınırları ve swap göndermez.', { n: mt5Veri.meta.nokta }) : ''),
+  m1Yukle: async f => {
+    const v = dosyaCoz(await f.text(), f.name, { enAz: 1 });
+    altMumlar = v.mumlar;
+    return { adet: altMumlar.length };
+  },
+});
 // Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {
   const istenenKaynak = new URLSearchParams(location.search).get('kaynak');

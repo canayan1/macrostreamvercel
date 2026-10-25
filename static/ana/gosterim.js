@@ -1,5 +1,5 @@
 // Ana sayfadaki canlı gösterim: laboratuvarın gerçek modülleriyle, SENTETİK veriyle.
-//   - Mini Panom: lab/src/panom/ornek.js örnek hesabı, lab/src/panom/ozet.js özeti.
+//   - Mini Pano: lab/src/panom/ornek.js örnek hesabı, lab/src/panom/ozet.js özeti.
 //   - Mini optimizasyon: lab/src/sentetik.js serisinde EMA trend örneği, lab/src/optimizasyon.js taraması.
 // Hiçbir şey ağdan gelmez; hiçbir şey sunucuya gitmez.
 
@@ -21,7 +21,7 @@ async function baslat() {
   const sayi = (v, b) => new Intl.NumberFormat(yerel, { minimumFractionDigits: b, maximumFractionDigits: b }).format(v);
   const $ = s => kok.querySelector(s);
 
-  // ------------------------------------------------------------ mini Panom
+  // ------------------------------------------------------------ mini Pano
   const o = panomOrnek();   // köprü belge biçiminde: kotalar.kotalar, islemler.islemler, pozisyonlar
   const oz = hesapOzeti(o.islemler);
   const p = o.pozisyonlar;

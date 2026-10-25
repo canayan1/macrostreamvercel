@@ -259,3 +259,7 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 .sembol-ekle{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .sembol-ekle label{font-size:13px;color:var(--text-dim)}
 .sembol-ekle input{flex:1 1 180px;min-width:0}
+/* Gerçekçi maliyetler ve dolum (gercekci-arayuz.js) */
+.gercekci .gercekci-ac{display:flex;align-items:center;gap:6px;margin:10px 0 0;font-size:13px}
+.gercekci .prova-ayar input[type=text]{width:6em;text-transform:uppercase}
+.gercekci .prova-ayar input[type=file]{max-width:16em;font-size:12px}

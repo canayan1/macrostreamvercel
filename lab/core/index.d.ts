@@ -106,7 +106,8 @@ export function ayarla(s: Strateji, yol: string, deger: number): Strateji;
 export function degerler(a: { min: number; max: number; adim: number }): number[];
 export function izgara(secilen: any[], s?: { sinir?: number; tohum?: number }): { ayarlar: number[][]; toplam: number; ornek: boolean };
 export const OLCUTLER: Record<string, { deger: (i: any) => number; yon: number }>;
-export function provaAralik(s: Strateji, mumlar: Mum[], bas: number, son: number, isinma?: number, maliyet?: Maliyet): ProvaSonuc & { mumlar: Mum[] };
+/** ek: extra prova() options (enstruman, dolum, altMumlar). tara/yuruyenIleri accept the same as secenek.provaSecenek. */
+export function provaAralik(s: Strateji, mumlar: Mum[], bas: number, son: number, isinma?: number, maliyet?: Maliyet, ek?: Record<string, unknown>): ProvaSonuc & { mumlar: Mum[] };
 export function propIhlali(ozkaynak: number[], mumlar: Mum[], k: { gunluk: number; azami: number; tur?: string }): { ihlal: boolean } & Record<string, unknown>;
 export function deflatedSharpe(sharpeler: number[], en: Record<string, number>, N?: number): number | null;
 export function tara(s: Strateji, mumlar: Mum[], secilen: any[], secenek?: Record<string, unknown>, ilerleme?: (i: number, n: number) => void): Promise<Record<string, any> & { manifest: Manifest; resultId: string }>;

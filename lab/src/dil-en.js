@@ -162,7 +162,7 @@ export const EN = {
   'Azami açık pozisyon': 'Maximum open positions',
   'Günlük kayıp sınırı (%)': 'Daily loss limit (%)',
   'Azami spread (puan)': 'Maximum spread (points)',
-  'Lot, stop olursa bu yüzdeyi kaybedecek şekilde hesaplanır. Aracı kurumun asgari lotu bu riski aşıyorsa Motor işlemi atlar.': 'Lot size is set so that a stop-out loses this percentage. If your broker\'s minimum lot exceeds this risk, the Engine skips the trade.',
+  'Lot, stop olursa bu yüzdeyi kaybedecek şekilde hesaplanır. Aracı kurumun asgari lotu bu riski aşıyorsa Motor işlemi atlar.': 'Lot size is set so that a stop-out loses this percentage. If your broker\'s minimum lot exceeds this risk, Kalibre Engine skips the trade.',
   'Oynaklığa göre ölçekle': 'Scale by volatility',
   'Oynaklığa göre ölçekle (v2)': 'Scale by volatility (v2)',
   'En az (×)': 'Minimum (×)',
@@ -183,14 +183,14 @@ export const EN = {
   'Bu ad zaten kullanılıyor': 'This name is already in use',
 
   // ------------------------------------------------------------ panel ve prova
-  '{n} sorun var, Motor bu dosyayı yürütmez': '{n} problems; the Engine will not run this file',
+  '{n} sorun var, Motor bu dosyayı yürütmez': '{n} problems; Kalibre Engine will not run this file',
   '✓ Geçerli. Kalibre Motor bu dosyayı yürütebilir.': '✓ Valid. Kalibre Engine can run this file.',
   "Gerçek bir piyasa değildir. Sentetik prova kuralların nasıl davrandığını görmek içindir; gerçek backtest, kendi aracı kurum verinle MT5 Strategy Tester'da Kalibre Motor ile yapılır.":
     'This is not a real market. The synthetic test shows how your rules behave; the real backtest is done with Kalibre Engine in the MT5 Strategy Tester, on your own broker\'s data.',
   "Kendi verinle hızlı ön izleme. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
-    'A quick preview on your own data. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run the same strategy with Kalibre Engine in the MT5 Strategy Tester.',
+    'Quick Backtest on your own data. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run the same strategy with Kalibre Engine in the MT5 Strategy Tester.',
   "Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
-    'A quick preview on your own MT5 data; it refreshes as new bars close. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run it with Kalibre Engine in the MT5 Strategy Tester.',
+    'Quick Backtest on your own MT5 data; it refreshes as new bars close. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run it with Kalibre Engine in the MT5 Strategy Tester.',
   'Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.': 'This is a simulation on historical or synthetic data; it is not real performance or investment advice.',
   'Provayı görmek için Risk bölümünde işlem başına riski kendin belirle.': 'To see the test, set your own risk per trade in the Risk section.',
   'Prova için önce sorunları giderin.': 'Fix the problems first to run the test.',
@@ -198,7 +198,7 @@ export const EN = {
   'Bir veri dosyası seç ya da bu karta sürükleyip bırak.': 'Choose a data file or drag and drop it onto this card.',
   'MT5 BEKLENİYOR': 'WAITING FOR MT5',
   'MetaTrader bağlandığında seri burada çalışır. Yukarıdaki adımları izle.': 'When MetaTrader connects, the series runs here. Follow the steps above.',
-  "Strateji {s} için yazılmış, veri {v}. Motor MT5'te {s} mumlarıyla çalışır; bu prova farklı sonuç verebilir.": 'The strategy is written for {s}, the data is {v}. The Engine runs on {s} bars in MT5, so this test may give different results.',
+  "Strateji {s} için yazılmış, veri {v}. Motor MT5'te {s} mumlarıyla çalışır; bu prova farklı sonuç verebilir.": 'The strategy is written for {s}, the data is {v}. Kalibre Engine runs on {s} bars in MT5, so this test may give different results.',
   'SENTETİK': 'SYNTHETIC',
   'SENTETİK · tohum {n}': 'SYNTHETIC · seed {n}',
   'MT5 VERİSİ YOK': 'NO MT5 DATA',
@@ -222,13 +222,13 @@ export const EN = {
 
   // ------------------------------------------------------------ örnekler
   '"{ad}" bir eğitim örneğidir, yatırım önerisi değildir. Bu senin kopyan: kuralları kendi amacına göre değiştir ve risk bölümünü kendin doldur. Risk bölümü dolmadan Motor dosyası indirilmez.':
-    '"{ad}" is an educational example, not investment advice. This is your copy: change the rules to fit your own goals and fill in the risk section yourself. The Engine file cannot be downloaded until the risk section is filled in.',
+    '"{ad}" is an educational example, not investment advice. This is your copy: change the rules to fit your own goals and fill in the risk section yourself. Kalibre Engine file cannot be downloaded until the risk section is filled in.',
   'Mevcut taslak değiştirilecek. Devam edilsin mi?': 'Your current draft will be replaced. Continue?',
   'Örnek yüklenemedi.': 'Could not load the example.',
   '{ad} (benim kopyam)': '{ad} (my copy)',
   'Dosya geçerli bir JSON değil.': 'The file is not valid JSON.',
-  'Risk bölümünü kendin doldurmalısın: işlem başına bakiyenin yüzde kaçını riske attığını belirlemeden Motor dosyası indirilmez.': 'You need to fill in the risk section yourself: the Engine file cannot be downloaded until you set what percentage of your balance you risk per trade.',
-  '{n} sorun var; Motor bu dosyayı reddeder. Yine de indirilsin mi?': '{n} problems; the Engine will reject this file. Download anyway?',
+  'Risk bölümünü kendin doldurmalısın: işlem başına bakiyenin yüzde kaçını riske attığını belirlemeden Motor dosyası indirilmez.': 'You need to fill in the risk section yourself: Kalibre Engine file cannot be downloaded until you set what percentage of your balance you risk per trade.',
+  '{n} sorun var; Motor bu dosyayı reddeder. Yine de indirilsin mi?': '{n} problems; Kalibre Engine will reject this file. Download anyway?',
 
   // ------------------------------------------------------------ sentetik piyasa ve takvim
   'Karışık (rejimler arası geçiş)': 'Mixed (switching regimes)',
@@ -742,7 +742,7 @@ export const EN = {
   "Sandbox (deneme, 15 dk gecikmeli)": "Sandbox (testing, 15 min delayed)",
   "Bu hesabı kullan": "Use this account",
   "Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik beta aşamasındadır.": "Under Tradier's terms, the API is for personal use in apps that are not Tradier partners; this connection is in beta for now.",
-  "Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre düzeltilmemiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick preview on your Tradier account's price history. Daily prices are adjusted for splits but not for dividends. Unless you fill in the Costs section, commission and slippage are not included.",
+  "Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre düzeltilmemiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick Backtest on your Tradier account's price history. Daily prices are adjusted for splits but not for dividends. Unless you fill in the Costs section, commission and slippage are not included.",
   "Saat penceresi filtresi günlük ve haftalık mumlarda işlemlerin hepsini engelleyebilir; bu veride filtreyi kapat.": "The time-window filter can block every trade on daily and weekly candles; turn the filter off for this data.",
   // ------------------------------------------------------------ Alpaca (veri/alpaca.js, alpaca-baglan.js, araci.js)
   "Alpaca (ABD)": "Alpaca (US)",
@@ -777,7 +777,7 @@ export const EN = {
   "ALPACA BEKLENİYOR": "WAITING FOR ALPACA",
   "Alpaca bağlandığında seçtiğin sembolün serisi burada çalışır.": "Once Alpaca is connected, the series of the symbol you pick runs here.",
   "ALPACA VERİSİ YOK": "NO ALPACA DATA",
-  "Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre düzeltilmiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick preview on your Alpaca account's price history. Stock prices come from the free IEX feed (a single exchange) and are split-adjusted. Unless you fill in the Costs section, commission and slippage are not included.",
+  "Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre düzeltilmiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick Backtest on your Alpaca account's price history. Stock prices come from the free IEX feed (a single exchange) and are split-adjusted. Unless you fill in the Costs section, commission and slippage are not included.",
   "Alpaca izleme listen ve açık pozisyonun yok; aşağıdan sembol ekle.": "You have no Alpaca watchlist and no open positions; add symbols below.",
   "{n} sembol, Alpaca izleme listenden (yoksa açık pozisyonlarından ya da eklediğin sembollerden). Hisse fiyatları IEX akışındandır.": "{n} symbols, from your Alpaca watchlist (otherwise your open positions or the symbols you added). Stock prices come from the IEX feed.",
   "Sembol ekle": "Add symbols",

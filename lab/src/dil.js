@@ -8,6 +8,7 @@
 // seçilince (?dil=tr ya da kayıtlı seçim) gelir. Node'da (testler) varsayılan Türkçedir.
 
 import { EN } from './dil-en.js';
+import { trGoster } from './dil-tr.js';
 
 const DEPO = 'kalibre-dil';
 const gecerli = d => d === 'tr' || d === 'en';
@@ -41,7 +42,7 @@ export function dilAyarla(d) {
 }
 
 export function t(tr, d) {
-  let s = dil === 'en' ? (EN[tr] ?? tr) : tr;
+  let s = dil === 'en' ? (EN[tr] ?? tr) : trGoster(tr);
   if (d) s = s.replace(/\{(\w+)\}/g, (m, k) => (k in d ? String(d[k]) : m));
   return s;
 }
@@ -59,7 +60,8 @@ export const isaretliYuzde = (v, b = 1) => `${v >= 0 ? '+' : '−'}${yuzdeMetni(
 // data-t-attr="title,aria-label": bu özniteliklerin değerleri çevrilir.
 export const sade = s => s.replace(/\s+/g, ' ').trim();
 export function sayfayiCevir(kok = globalThis.document) {
-  if (!kok || dil === 'tr') return;
+  if (!kok) return;
+  if (dil === 'tr') { trSayfa(kok); return; }
   for (const el of kok.querySelectorAll('[data-t]')) {
     const k = sade(el.innerHTML);
     if (EN[k] !== undefined) el.innerHTML = EN[k];
@@ -71,6 +73,21 @@ export function sayfayiCevir(kok = globalThis.document) {
     }
   }
   if (kok.title && EN[kok.title] !== undefined) kok.title = EN[kok.title];
+}
+
+// Türkçe sayfada görünen adların düzeltilmesi (dil-tr.js): data-t içerikleri, çevrilen öznitelikler ve başlık.
+function trSayfa(kok) {
+  for (const el of kok.querySelectorAll('[data-t]')) {
+    const yeni = trGoster(el.innerHTML);
+    if (yeni !== el.innerHTML) el.innerHTML = yeni;
+  }
+  for (const el of kok.querySelectorAll('[data-t-attr]')) {
+    for (const a of el.dataset.tAttr.split(',')) {
+      const v = el.getAttribute(a.trim());
+      if (v) el.setAttribute(a.trim(), trGoster(v));
+    }
+  }
+  if (kok.title) kok.title = trGoster(kok.title);
 }
 
 // Başlıktaki TR | EN anahtarı: seçimi kaydeder ve sayfayı o dilde yeniden açar.

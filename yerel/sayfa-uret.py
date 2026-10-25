@@ -5,7 +5,7 @@ KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # site kökü
 # Ödemeler açıldığında True yap ve üç üreticiyi yeniden çalıştır (sayfa-uret.py, sayfa-uret-en.py, ana-en-uret.py).
 ODEME_ACIK = False  # 25.10.2026: ödemeler şirket kurulana kadar kapalı (bekleme listesi + davetli beta). Açıkken de sunucu 503 dönerse sayfa "ödemeler yakında" kartına düşer
 
-MENU = [("/lab?dil=tr", "Laboratuvar"), ("/lab/panom?dil=tr", "Panom"), ("/tr/prop", "Prop Kalkanı"), ("/tr/setup", "Kurulum"), ("/tr/security", "Güvenlik"), ("/tr/pricing", "Fiyat")]
+MENU = [("/lab?dil=tr", "Laboratuvar"), ("/lab/panom?dil=tr", "Pano"), ("/tr/prop", "Prop Kalkanı"), ("/tr/setup", "Kurulum"), ("/tr/security", "Güvenlik"), ("/tr/pricing", "Fiyat")]
 MENU_EN = [("/lab", "Lab"), ("/lab/panom", "Dashboard"), ("/prop", "Prop Shield"), ("/setup", "Setup"), ("/security", "Security"), ("/pricing", "Pricing")]
 
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için). Site kökü İngilizce, Türkçe /tr altında.
@@ -220,7 +220,7 @@ KURULUM = '''
 <ol>
   <li>Tradier hesabında bir API erişim token'ı oluştur. İlk deneme için <b>Sandbox</b> token'ı öneririz; Sandbox fiyatları 15 dakika gecikmelidir.</li>
   <li><a href="/lab/baglan?kaynak=tradier&dil=tr">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
-  <li>Birden çok hesabın varsa birini seç. Panom, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
+  <li>Birden çok hesabın varsa birini seç. Pano, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
 </ol>
 <div class="kutu">Tradier token'ı hesabına tam erişim verir. Kalibre bu token'la sadece okuma isteği yapar, emir göndermez. Token bu tarayıcıda saklanır ve sadece Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
 
@@ -229,7 +229,7 @@ KURULUM = '''
 <ol>
   <li>Alpaca panelinde bir API anahtar çifti oluştur (Key ID ve Secret). İlk deneme için <b>Paper</b> (sanal) hesabı öneririz.</li>
   <li><a href="/lab/baglan?kaynak=alpaca&dil=tr">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
-  <li>Panom, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Panom'da eklediğin semboller gösterilir.</li>
+  <li>Pano, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Pano'da eklediğin semboller gösterilir.</li>
 </ol>
 <div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar sadece IEX borsasından gelir. Bu, toplam piyasa hacminin küçük bir kısmıdır. Kalibre anahtarlarınla sadece okuma isteği yapar, emir göndermez. Anahtarlar bu tarayıcıda saklanır ve sadece Alpaca'ya gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Kendi kişisel API anahtarlarını kullan.</div>
 
@@ -369,7 +369,7 @@ HAKKINDA = '''
 <ul>
   <li><b>Strateji Kurucu ve Hızlı Backtest:</b> giriş ve çıkış kurallarını kur, verinde tarayıcıda test et.</li>
   <li><b>Optimizasyon:</b> parametreleri ayrı eğitim ve test dönemleriyle tara.</li>
-  <li><b>Panom:</b> bağlı hesabının bakiyesi, pozisyonları, fiyatları ve kapanmış işlemleri.</li>
+  <li><b>Pano:</b> bağlı hesabının bakiyesi, pozisyonları, fiyatları ve kapanmış işlemleri.</li>
   <li><b>Kalibre Bridge ve Kalibre Engine:</b> şifreli veri eşitleme ve kural dosyasını çalıştırma için MT5 eklentileri.</li>
   <li><b>Prop Kalkanı:</b> prop firması sınavları için günlük ve toplam kayıp sınırları.</li>
 </ul>
@@ -417,7 +417,7 @@ PRO = f"""
     <li>Lisans başına 2 MT5 hesabı</li>
     {PRO_MOTOR_TR}
     <li>FTMO ve The5ers ön ayarlı Prop Kalkanı</li>
-    <li>Kalibre Bridge: MT5'ten Panom'a ve laboratuvara şifreli canlı veri</li>
+    <li>Kalibre Bridge: MT5'ten Pano'ya ve laboratuvara şifreli canlı veri</li>
     <li>Ücretsiz plandaki her şey</li>
   </ul>
 {PLAN_SECIM}
@@ -648,7 +648,7 @@ def beta_form(dil):
     t = (lambda tr, e: e) if en else (lambda tr, e: tr)
     sonraki = "https://kalibremarkets.com/beta?ok=1" if en else "https://kalibremarkets.com/tr/beta?ok=1"
     secenek = lambda deger, etiket: f'<option value="{deger}">{etiket}</option>'
-    sayfalar = [("baglan", t("Bağlanma sayfası", "Connect page")), ("panom", t("Panom", "Dashboard")), ("kurucu", t("Strateji kurucu", "Strategy builder")),
+    sayfalar = [("baglan", t("Bağlanma sayfası", "Connect page")), ("panom", t("Pano", "Dashboard")), ("kurucu", t("Strateji kurucu", "Strategy builder")),
                 ("optimizasyon", t("Optimizasyon", "Optimization")),
                 ("kopru", t("Kalibre Bridge (MT5)", "Kalibre Bridge (MT5)")), ("alpaca", "Alpaca"), ("tradier", "Tradier"), ("site", t("Sitenin diğer sayfaları", "Other site pages"))]
     ciddiyet = [("P0", t("P0: yanlış sayı ya da veri sızıntısı", "P0: wrong numbers or a data leak")),
@@ -706,7 +706,7 @@ BETA = f"""
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
-  <li><b>MetaTrader 5 köprüsü ve Panom:</b> demo MT5 hesabının bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
+  <li><b>MetaTrader 5 köprüsü ve Pano:</b> demo MT5 hesabının bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
   <li><b>Strateji kurucu:</b> Basit mod (bloklar) ve İleri mod (form); ikisi aynı stratejiyi düzenler.</li>
   <li><b>Hızlı Backtest:</b> kuralı mumlarında saniyeler içinde çalıştırır. Maliyetler isteğe bağlıdır, varsayılanı sıfırdır.</li>
   <li><b>Optimizasyon:</b> parametre taraması, eğitim ve sınama dönemi, ısı haritası, şans eseri olup olmadığı ölçüsü.</li>
@@ -717,10 +717,10 @@ BETA = f"""
 <h2 id="ilk-oturum">İlk oturum (yaklaşık 30 dakika)</h2>
 <ol>
   <li><a href="/tr/connect">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
-  <li><a href="/tr/dashboard">Panom'u</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
+  <li><a href="/tr/dashboard">Pano'yu</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
   <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; Hızlı Backtest'i çalıştır.</li>
   <li><a href="/lab/optimizasyon?dil=tr">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
-  <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/tr/connect">bağlanma sayfasından</a> bağla ve Panom'u onunla dene.</li>
+  <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/tr/connect">bağlanma sayfasından</a> bağla ve Pano'yu onunla dene.</li>
 </ol>
 
 <h2 id="yapma">Bunları yapma</h2>

@@ -122,9 +122,10 @@ function momentler(x) {
 }
 
 // Bir aralık için prova: [bas, son) mumları değerlendirilir; öncesinden ısınma payı göstergeler için kullanılır.
-export function provaAralik(s, mumlar, bas, son, isinma = 300, maliyet = MALIYETSIZ) {
+// ek (isteğe bağlı): prova()'ya geçen diğer seçenekler (enstruman, dolum, altMumlar). Verilmezse sonuç eskisiyle aynıdır.
+export function provaAralik(s, mumlar, bas, son, isinma = 300, maliyet = MALIYETSIZ, ek = undefined) {
   const k = Math.max(0, bas - isinma);
-  const p = prova(s, mumlar.slice(k, son), { maliyet });
+  const p = prova(s, mumlar.slice(k, son), { ...(ek ?? {}), maliyet });
   const ofset = bas - k;
   const islemler = p.islemler.filter(i => i.girisI >= ofset);
   const ozk = p.ozkaynak.slice(Math.max(0, ofset - 1));
@@ -168,12 +169,13 @@ export function deflatedSharpe(sharpeler, en, N = sharpeler.length) {
 
 // ------------------------------------------------------------------ tarama
 // secilen: parametreler()'den seçilenler (min/max/adim kullanıcı değiştirebilir).
-// secenek: { olcut, egitimOrani, enAzIslem, sinir, prop: {gunluk, azami, tur} | null, enIyiSayisi, iptal, maliyet }
+// secenek: { olcut, egitimOrani, enAzIslem, sinir, prop: {gunluk, azami, tur} | null, enIyiSayisi, iptal, maliyet, provaSecenek }
+// provaSecenek (isteğe bağlı): her provaya geçen ek seçenekler (enstruman, dolum, altMumlar); manifestte de yer alır.
 // iptal: isteğe bağlı () => boolean; true dönerse tarama o ana kadarki sonuçlarla biter (iptal: true).
 // ilerleme(i, toplam): isteğe bağlı; arayüz çubuk çizer. Dönen sözü arayüz bekler.
 export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}) {
   const { olcut = 'getiri_dusus', egitimOrani = 0.7, enAzIslem = 20, sinir = 500, prop = null, enIyiSayisi = 10, bolum = 25, iptal = null, maliyet = MALIYETSIZ,
-    pbo = true, pboBlok = 16, oncekiDeneme = 0 } = secenek;
+    pbo = true, pboBlok = 16, oncekiDeneme = 0, provaSecenek } = secenek;
   const O = OLCUTLER[olcut] ?? OLCUTLER.getiri_dusus;
   const kesim = Math.floor(mumlar.length * egitimOrani);
   const { ayarlar, toplam, ornek } = izgara(secilen, { sinir });
@@ -184,10 +186,10 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
     let aday = s;
     ayarlar[i].forEach((v, j) => { aday = ayarla(aday, secilen[j].yol, v); });
     if (dogrula(aday).length) { gecersiz++; continue; }
-    const e = provaAralik(aday, mumlar, 0, kesim, 0, maliyet);
+    const e = provaAralik(aday, mumlar, 0, kesim, 0, maliyet, provaSecenek);
     const satir = { degerler: ayarlar[i], egitim: e.istatistik, puan: O.deger(e.istatistik) };
     // PBO için tüm dönemin mum başı getirileri (CSCV kendi bölmelerini yapar).
-    if (pbo) satir.getiriler = getiriler(prova(aday, mumlar, { maliyet }).ozkaynak);
+    if (pbo) satir.getiriler = getiriler(prova(aday, mumlar, { ...(provaSecenek ?? {}), maliyet }).ozkaynak);
     satir.yetersiz = e.istatistik.islem < enAzIslem;
     if (prop) satir.propIhlal = propIhlali(e.ozkaynak, e.mumlar, prop).ihlal;
     sonuclar.push(satir);
@@ -202,7 +204,7 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
   for (const r of enIyiler) {
     let aday = s;
     r.degerler.forEach((v, j) => { aday = ayarla(aday, secilen[j].yol, v); });
-    const t = provaAralik(aday, mumlar, kesim, mumlar.length, 300, maliyet);
+    const t = provaAralik(aday, mumlar, kesim, mumlar.length, 300, maliyet, provaSecenek);
     r.sinama = t.istatistik;
     r.sinamaPuan = O.deger(t.istatistik);
     if (prop) r.sinamaPropIhlal = propIhlali(t.ozkaynak, t.mumlar, prop).ihlal;
@@ -240,8 +242,8 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
   for (const r of sonuclar) delete r.getiriler;
   // Manifest: aynı strateji, veri, parametre aralıkları ve seçeneklerle tarama aynı resultId'yi verir.
   // Örneklemeli ızgara tohumu 1'dir (izgara()).
-  const { iptal: _i, ...secenekKimlik } = secenek;
-  const manifest = manifestOlustur({ strateji: s, mumlar, seed: 1, tur: 'optimizasyon', ayar: { ...secenekKimlik, parametreler: secilen } });
+  const { iptal: _i, provaSecenek: _p, ...secenekKimlik } = secenek;
+  const manifest = manifestOlustur({ strateji: s, mumlar, seed: 1, tur: 'optimizasyon', ayar: { ...secenekKimlik, ...(provaSecenek ?? {}), parametreler: secilen } });
   return {
     manifest, resultId: manifest.resultId,
     N, kirpma, pbo: pboSonuc,

@@ -21,6 +21,7 @@ import { hesapla } from './gostergeler.js';
 import { fark } from './esitlik.js';
 import { enstrumanHazirla, kurFonksiyonu, lotYuvarla, teminat, tickDenetimi } from './enstruman.js';
 import { DOLUM_MODELLERI, altMumAraliklari, ilkVurus } from './dolum.js';
+import { t } from './ceviri.js';
 
 const FIYAT = { acilis: 'a', yuksek: 'y', dusuk: 'd', kapanis: 'k' };
 export const NOKTA = 0.001; // sentetik enstrümanın "puan" büyüklüğü
@@ -303,10 +304,10 @@ export function prova(s, mumlar, { baslangic = 10000, maliyet = MALIYETSIZ, giri
     dolum: dolumRaporu,
   };
   if (E) {
-    if (tickUyarisi) uyarilar.push(`Verilen tick değeri (${tickUyarisi.verilen}) hesaplanandan (${tickUyarisi.hesaplanan.toPrecision(6)}) farklı; kâr sözleşme büyüklüğü ve kurla hesaplandı.`);
-    if (minLotAtlanan) uyarilar.push(`${minLotAtlanan} girişte hesaplanan lot en küçük lotun altında kaldı; işlem açılmadı.`);
-    if (teminatAtlanan) uyarilar.push(`${teminatAtlanan} girişte serbest teminat yetmedi; işlem açılmadı.`);
-    if (stopOutSay) uyarilar.push(`Teminat seviyesi ${stopOutSay} kez stop out sınırının altına indi.`);
+    if (tickUyarisi) uyarilar.push(t('Verilen tick değeri ({v}) hesaplanandan ({h}) farklı; kâr sözleşme büyüklüğü ve kurla hesaplandı.', { v: tickUyarisi.verilen, h: tickUyarisi.hesaplanan.toPrecision(6) }));
+    if (minLotAtlanan) uyarilar.push(t('{n} girişte hesaplanan lot en küçük lotun altında kaldı; işlem açılmadı.', { n: minLotAtlanan }));
+    if (teminatAtlanan) uyarilar.push(t('{n} girişte serbest teminat yetmedi; işlem açılmadı.', { n: teminatAtlanan }));
+    if (stopOutSay) uyarilar.push(t('Teminat seviyesi {n} kez stop out sınırının altına indi.', { n: stopOutSay }));
     sonuc.enstruman = { swapToplam, komisyonToplam, minLotAtlanan, teminatAtlanan, stopOut: stopOutSay };
   }
   return sonuc;

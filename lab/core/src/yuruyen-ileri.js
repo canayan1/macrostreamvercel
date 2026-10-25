@@ -30,7 +30,7 @@ export function pencereler(T, { egitim, sinama, embargo = 0, tur = 'kayan' }) {
 
 export async function yuruyenIleri(s, mumlar, secilen, secenek = {}, ilerleme = () => {}) {
   const { egitim = Math.floor(mumlar.length * 0.4), sinama = Math.floor(mumlar.length * 0.15), embargo = 0, tur = 'kayan',
-    olcut = 'getiri_dusus', enAzIslem = 10, sinir = 200, maliyet = MALIYETSIZ, isinma = 300, iptal = null } = secenek;
+    olcut = 'getiri_dusus', enAzIslem = 10, sinir = 200, maliyet = MALIYETSIZ, isinma = 300, iptal = null, provaSecenek } = secenek;
   const O = OLCUTLER[olcut] ?? OLCUTLER.getiri_dusus;
   const { ayarlar } = izgara(secilen, { sinir });
   const adaylar = [];
@@ -47,13 +47,13 @@ export async function yuruyenIleri(s, mumlar, secilen, secenek = {}, ilerleme = 
     const p = P[k];
     let en = null;
     for (const a of adaylar) {
-      const e = provaAralik(a.s, mumlar, p.isBas, p.isSon, tur === 'capali' ? 0 : isinma, maliyet);
+      const e = provaAralik(a.s, mumlar, p.isBas, p.isSon, tur === 'capali' ? 0 : isinma, maliyet, provaSecenek);
       if (e.istatistik.islem < enAzIslem) continue;
       const puan = O.deger(e.istatistik);
       if (!en || O.yon * (puan - en.puan) > 0) en = { a, puan, isOrt: ort(getiriler(e.ozkaynak)), is: e.istatistik };
     }
     if (!en) { katlar.push({ ...p, secim: null }); continue; }
-    const t = provaAralik(en.a.s, mumlar, p.oosBas, p.oosSon, isinma, maliyet);
+    const t = provaAralik(en.a.s, mumlar, p.oosBas, p.oosSon, isinma, maliyet, provaSecenek);
     const g = getiriler(t.ozkaynak);
     oosGetiri.push(...g);
     katlar.push({ ...p, secim: en.a.degerler, isPuan: en.puan, isOrt: en.isOrt, oosOrt: ort(g), oos: t.istatistik });
@@ -67,8 +67,8 @@ export async function yuruyenIleri(s, mumlar, secilen, secenek = {}, ilerleme = 
   // Ayar istikrarı: ardışık katlarda seçilen ayar ne sıklıkla değişti?
   let degisim = 0;
   for (let i = 1; i < dolu.length; i++) if (dolu[i].secim.join('|') !== dolu[i - 1].secim.join('|')) degisim++;
-  const { iptal: _i, ...secenekKimlik } = secenek;
-  const manifest = manifestOlustur({ strateji: s, mumlar, seed: 1, tur: 'yuruyen-ileri', ayar: { ...secenekKimlik, parametreler: secilen } });
+  const { iptal: _i, provaSecenek: _p, ...secenekKimlik } = secenek;
+  const manifest = manifestOlustur({ strateji: s, mumlar, seed: 1, tur: 'yuruyen-ileri', ayar: { ...secenekKimlik, ...(provaSecenek ?? {}), parametreler: secilen } });
   return {
     manifest, resultId: manifest.resultId,
     tur, egitim, sinama, embargo, katlar, iptal: iptalEdildi,
