@@ -1,6 +1,6 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 25 Ekim 2026. Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 25 Ekim 2026 (aşama C sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
 
@@ -133,7 +133,7 @@ Ortam değişkenleri (değerleri yalnız kurucu girer; Claude okumaz):
 |---|---|---|
 | A | Motor kuralları şartnamesi (`docs/motor-kurallari.md`, MQL5 ile 22 fark) | Bitti |
 | B | Elle hesaplı vakalar, MT5 gösterge eşleşmesi, maliyet modeli | Bitti (ADX ısınma hatası düzeltildi) |
-| C | MT5 Strategy Tester ile işlem işlem karşılaştırma | Sürüyor |
+| C | MT5 Strategy Tester ile işlem işlem karşılaştırma | Bitti: 97 koşunun 96'sı geçti, açıklanamayan fark yok (`docs/dogrulama/C-raporu.md`). Motor 0.22: XAUUSD'de 10 kat risk hatası düzeltildi |
 | D | Sıfır testi, gömülü kenar, PBO/CSCV, yürüyen ileri, Harvey-Liu | Bitti, tüm ölçütler geçti (`docs/dogrulama/D-raporu.md`) |
 | E | Regresyon + doğruluk raporu | Bekliyor |
 
@@ -145,7 +145,6 @@ Kalkan "sunucu tarafı denetim" olarak satılmaz: aynı hesaptaki başka EA'yı 
 Kurumsal hedef (rapor: `reports/Kurumsal motor gereksinimleri.md`). Sıradaki işler:
 1. Başsız `@kalibre/core` paketi
 2. Çalıştırma manifesti ve `resultId` (motor + şartname + veri + yapılandırma + tohum özeti)
-3. Aşama C'nin tamamlanması
 4. Enstrüman ve maliyet modelinin 2. sürümü: lot adımı, kur çevrimi, swap, teminat
 5. Çubuk içi dolum modelleri
 6. Bağımsız Python referansı
@@ -230,8 +229,8 @@ Kurucunun yapacakları:
 4. Pazartesi demo işlemlerle Panom kâr/zarar kontrolü.
 
 Claude'un yapacakları:
-1. Aşama C'yi bitir.
-2. `@kalibre/core` ve `resultId`.
+1. `@kalibre/core`, `resultId`, maliyet modeli v2, çubuk içi dolum modelleri (sürüyor).
+2. Motor 0.22'yi sırla derle ve yükle.
 3. Eklentileri sırla derle ve yükle, önizlemede uçtan uca dene.
 4. Lab'in Türkçe adlarını düzelt ("Hızlı prova", "Panom").
 5. Canlıya çıkış listesini tamamla, ardından kurucunun "canlıya al" onayı.
