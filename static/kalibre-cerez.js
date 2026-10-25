@@ -7,7 +7,7 @@
  * olmalıdır: iki düğme aynı görünürlüktedir.
  *
  * Tercih tarayıcıda saklanır. window.kmCerezTercihi() bandı yeniden açar
- * (Gizlilik Politikası'ndaki "Çerez tercihlerini değiştir" düğmesi bunu çağırır).
+ * ([data-cerez-ayar] taşıyan bağlantı ve düğmeler de bandı açar: alt bilgi, /cookies, /privacy).
  *
  * Kullanım: <head> içine <script src="/static/kalibre-cerez.js"></script>
  */
@@ -81,15 +81,15 @@
     d.setAttribute('aria-label', en ? 'Cookie preference' : 'Çerez tercihi');
     d.innerHTML = en
       ? '<p>We use Google Analytics cookies for visit statistics only if you allow them. If you do, ' +
-        'your usage data is transferred to Google\'s servers outside Turkey. Details in the ' +
-        '<a href="/privacy">Privacy Policy</a>.</p>' +
+        'your usage data is sent to Google, including to servers in the United States. Details in the ' +
+        '<a href="/cookies">Cookie Notice</a>.</p>' +
         '<div class="km-btns">' +
         '<button type="button" class="km-red">Decline</button>' +
         '<button type="button" class="km-kabul">Accept</button>' +
         '</div>'
       : '<p>Ziyaret istatistikleri için Google Analytics çerezlerini yalnızca izin verirseniz ' +
         'kullanırız. İzin verirseniz kullanım verileriniz Google\'ın yurt dışındaki sunucularına ' +
-        'aktarılır. Ayrıntılar <a href="/tr/privacy">Gizlilik Politikası</a>\'nda.</p>' +
+        'aktarılır. Ayrıntılar <a href="/tr/cookies">Çerez Bildirimi</a>\'nde.</p>' +
         '<div class="km-btns">' +
         '<button type="button" class="km-red">Reddet</button>' +
         '<button type="button" class="km-kabul">Kabul et</button>' +
@@ -105,6 +105,17 @@
   }
 
   window.kmCerezTercihi = bantAc;
+
+  // Alt bilgideki "Cookie settings / Çerez ayarları" bağlantısı ve yasal sayfalardaki düğme
+  // (data-cerez-ayar) bandı yeniden açar. Betik yüklenmezse bağlantı çerez bildirimine gider.
+  document.addEventListener('click', function (e) {
+    var h = e.target && e.target.closest && e.target.closest('[data-cerez-ayar]');
+    if (!h) return;
+    e.preventDefault();
+    var eski = document.getElementById('km-cerez');
+    if (eski) eski.remove();
+    bant();
+  });
 
   var r = oku();
   if (r === 'kabul') gaYukle();

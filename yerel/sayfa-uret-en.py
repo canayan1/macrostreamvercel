@@ -245,8 +245,8 @@ sayfa("about/index.html", "About: Kalibre Markets", "Kalibre Markets builds soft
 
 # ------------------------------------------------------------------ pricing
 EN_MOTOR = '<li>Kalibre Engine for demo and live accounts. Live use is in <b>beta</b> and requires explicit acceptance and a loss limit (<a href="/risk-disclosure">risk disclosure</a>).</li>'
-EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span>I have read and accept the <a href="/terms">terms of use</a> and the <a href="/privacy">privacy policy</a>.</span></label>
-  <label class="onay"><input type="checkbox" id="cayma" required> <span>I agree that performance of the service begins as soon as my license key is delivered and activated on a MetaTrader 5 account, and that I lose my 14-day right of withdrawal once it is activated (<a href="/terms#withdrawal">terms, section 12a</a>).</span></label>
+EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span>I accept the <a href="/terms">Terms of Service</a> and the <a href="/refunds">Refund and Cancellation Policy</a>, and I have read the <a href="/privacy">Privacy Policy</a>.</span></label>
+  <label class="onay"><input type="checkbox" id="cayma" required> <span>I request immediate access to the service. I understand that I lose my 14-day right of withdrawal once my licence key is first activated on a MetaTrader 5 account (<a href="/refunds#withdrawal">Refund and Cancellation Policy, section 4</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Subscribe</button>
   <p class="not" id="odeme-durum" role="status"></p>
   <p class="not">You sign in to your Kalibre Markets account before checkout. If you do not have an account, it is created at this step. Payments are processed by Stripe, and we do not receive your card details. Cancel anytime on your <a href="/account">Account</a> page. Access continues until the end of the billing period.</p>"""
@@ -316,7 +316,7 @@ EN_PRO_BETIK_ACIK = """<script>
   var d = document.getElementById('abone-ol');
   if (q.get('abone') === '1') { var plan = document.getElementById('plan'); if (plan) plan.scrollIntoView({ block: 'start' }); }
   d.addEventListener('click', async function () {
-    if (!document.getElementById('sartlar').checked) { durum.textContent = 'To continue, please accept the terms of use and the privacy policy.'; return; }
+    if (!document.getElementById('sartlar').checked) { durum.textContent = 'To continue, please accept the Terms of Service and the Refund and Cancellation Policy.'; return; }
     if (!document.getElementById('cayma').checked) { durum.textContent = 'To continue, please tick the box about the right of withdrawal.'; return; }
     d.disabled = true; d.textContent = 'Opening checkout';
     durum.textContent = '';
@@ -500,42 +500,4 @@ BETA_EN = f"""
 """
 sayfa("beta/index.html", "Beta programme guide: Kalibre Lab", "Kalibre Lab beta programme: what is included, first session, what to avoid and how to send feedback.", "", BETA_EN, icindekiler(BETA_EN), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True, dil="en")
 
-# ------------------------------------------------------------------ risk disclosure
-RISK = """
-<h1>Risk disclosure</h1>
-<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. This risk disclosure forms an integral part of the <a href="/terms">terms of use</a>.</p>
-
-<h2 id="beta">Beta version</h2>
-<p>Kalibre Lab is in beta. Features may change, the software may contain errors and calculations may produce incorrect results. Before relying on a result, test the same rule in your own MetaTrader 5 Strategy Tester and on a demo account. Report any number that looks wrong through the <a href="/beta">feedback form</a>.</p>
-
-<h2 id="simulated">Simulated and hypothetical results</h2>
-<p>The lab, the quick test, the optimization panel and the examples on these pages show hypothetical (simulated) results, which have inherent limitations:</p>
-<ul>
-  <li>Unlike an actual performance record, simulated results do not represent actual trading.</li>
-  <li>Since the trades have not been executed, the results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity.</li>
-  <li>The quick test does not include spread, commission, swap or slippage; real results are usually lower.</li>
-  <li>Optimization is carried out on past data with the benefit of hindsight; the setting that looks best is often fitted to the past.</li>
-  <li>No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.</li>
-</ul>
-
-<h2 id="leverage">Risk of leveraged trading</h2>
-<p>Leveraged trading (forex, CFDs and similar products) can lose you all of the money you deposit. According to the European regulator ESMA's 2018 review, 74-89% of retail CFD accounts lost money. In Turkey, the Capital Markets Board said in 2015 that about 87-88% of forex investors lost money. Do not trade with money you cannot afford to lose.</p>
-
-<h2 id="engine">Using Kalibre Engine on a real account</h2>
-<p>Kalibre Engine runs the rule file you build on your account and sends orders. On a real account during the beta, these risks apply:</p>
-<ul>
-  <li><b>Software errors:</b> the rule file or the Engine may behave unexpectedly.</li>
-  <li><b>Connectivity:</b> if MetaTrader 5 closes, the computer sleeps or the internet drops, the Engine cannot manage positions.</li>
-  <li><b>Slippage and gaps:</b> in fast markets, around news and at weekend opens, orders can be filled at prices different from the stop or target.</li>
-  <li><b>The shield is not a guarantee:</b> the prop shield and loss limits can be exceeded because of gaps, slippage and broker rules.</li>
-</ul>
-<p>That is why, on a real account, the Engine opens no new trades unless you tick "I accept the beta risk on a real account" in the add-on's settings and a loss limit (the prop shield or a daily loss limit) is set.</p>
-
-<h2 id="no-advice">Not investment advice</h2>
-<p>Kalibre Markets does not provide investment advice, portfolio management or brokerage services and is not a licensed investment firm. You decide which rule to build and when, in which symbol and at what size to trade; you are responsible for the results. Educational examples are starting points, not recommendations.</p>
-<p>Kalibre Markets never holds your money, securities or crypto assets, never asks for access to them and never opens an account in your name. Your assets are held only at the broker you choose.</p>
-
-<h2 id="data">Data and privacy</h2>
-<p>Your data from the bridge is end-to-end encrypted; your Alpaca and Tradier data comes directly to your browser. Which data is processed where is described in the <a href="/privacy">privacy policy</a> and on the <a href="/security">security page</a>.</p>
-"""
-sayfa("risk-disclosure/index.html", "Risk disclosure: Kalibre Lab", "Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.", "", RISK, icindekiler(RISK), dil="en")
+# The risk disclosure and the other legal pages (terms, privacy, refunds, cookies) are generated by yerel/yasal-uret.py.

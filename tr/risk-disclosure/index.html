@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Risk bildirimi: Kalibre Lab</title>
-<meta name="description" content="Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.">
+<title>Risk Bildirimi | Kalibre Markets</title>
+<meta name="description" content="Alım satım işlemlerinin ve Kalibre Lab, Kalibre Bridge ile Kalibre Engine kullanımının riskleri: kaldıraç, varsayımsal backtest sonuçları, otomatik işlem ve beta yazılım.">
 <link rel="canonical" href="https://kalibremarkets.com/tr/risk-disclosure">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/risk-disclosure">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/risk-disclosure">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/risk-disclosure">
-<meta property="og:title" content="Risk bildirimi: Kalibre Lab">
-<meta property="og:description" content="Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.">
+<meta property="og:title" content="Risk Bildirimi | Kalibre Markets">
+<meta property="og:description" content="Alım satım işlemlerinin ve Kalibre Lab, Kalibre Bridge ile Kalibre Engine kullanımının riskleri: kaldıraç, varsayımsal backtest sonuçları, otomatik işlem ve beta yazılım.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -29,7 +29,27 @@
 <meta name="kalibre:yol:lab" content="/lab?dil=tr">
 <meta name="kalibre:yol:home" content="/tr">
 <script src="/static/kalibre-auth.js" defer></script>
-
+<style>
+.belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
+.ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
+.belge-govde h3 { font-size: 19px; }
+.belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
+.belge-govde blockquote p { margin: 0 0 .6em; } .belge-govde blockquote p:last-child { margin-bottom: 0; }
+.belge-govde blockquote.buyuk-harf p { font-size: 13px; letter-spacing: .01em; }
+.belge-izgara > * { min-width: 0; }
+.tablo-kap { overflow-x: auto; margin: 16px 0 24px; }
+.belge-govde table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+.belge-govde table.genis { min-width: 520px; }
+.belge-govde th, .belge-govde td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+.belge-govde th { color: var(--metin); font-weight: 600; border-bottom-color: var(--cizgi-2); }
+.belge-govde p, .belge-govde li { overflow-wrap: break-word; }
+.icindekiler-mobil { display: none; margin: 0 0 28px; border: 1px solid var(--cizgi); border-radius: 4px; padding: 10px 14px; }
+.icindekiler-mobil summary { cursor: pointer; font-weight: 600; }
+.icindekiler-mobil ol { list-style: none; padding: 0; margin: 10px 0 0; }
+.icindekiler-mobil a { display: block; padding: 5px 0; text-decoration: none; }
+@media (max-width: 960px) { .icindekiler-mobil { display: block; } }
+</style>
 </head>
 <body>
 
@@ -53,45 +73,86 @@
 <main class="belge">
   <div class="kap belge-izgara">
     <article class="belge-govde">
+<h1>Risk Bildirimi</h1>
+<p class="ceviri-notu">Bu metin İngilizce aslının çevirisidir; uyuşmazlıkta İngilizce metin esastır. <a href="/risk-disclosure" hreflang="en" lang="en">English original</a></p>
 
-<h1>Risk bildirimi</h1>
-<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce lütfen bu sayfayı okuyun. Bu Risk Bildirimi, <a href="/tr/terms">Kullanım Şartları</a>'nın ayrılmaz bir parçasıdır.</p>
+<p class="belge-meta">Yürürlük tarihi: 25 Ekim 2026<br>Sürüm: 2026-10-25-en1</p>
+<details class="icindekiler-mobil"><summary>İçindekiler</summary><ol><li><a href="#loss">1. Alım satım işlemleri para kaybettirebilir</a></li><li><a href="#no-advice">2. Tavsiye vermeyiz</a></li><li><a href="#no-custody">3. Paranızı hiçbir zaman tutmayız</a></li><li><a href="#hypothetical">4. Varsayımsal ve simüle edilmiş sonuçlar</a></li><li><a href="#kalibre-engine">5. Kalibre Engine ile otomatik işlem</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge ve veriler</a></li><li><a href="#beta-software">7. Beta yazılım</a></li><li><a href="#responsibility">8. Sorumluluğunuz</a></li><li><a href="#contact">9. Sorular</a></li></ol></details>
 
-<h2 id="beta">Beta sürümü</h2>
-<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta deneyin. Yanlış gördüğünüz her sayıyı <a href="/tr/beta">geri bildirim formuyla</a> bildirin.</p>
+<p>Kalibre Lab, Kalibre Bridge, Kalibre Engine veya diğer herhangi bir Kalibre Markets ürününü kullanmadan önce lütfen bu metni okuyun. Bu bildirim <a href="/tr/terms">Hizmet Şartlarımızın</a> parçasıdır. Tüm riskleri saymaz.</p>
 
-<h2 id="simulasyon">Simülasyon ve varsayımsal sonuçlar</h2>
-<p>Laboratuvar, hızlı prova, optimizasyon ve sayfalardaki örnekler varsayımsal (simüle edilmiş) sonuçlardır ve doğal sınırları vardır:</p>
+<h2 id="loss">1. Alım satım işlemleri para kaybettirebilir</h2>
+
+<p>Forex, CFD, vadeli işlemler, hisse senetleri, kripto varlıklar ve diğer araçlarla işlem yapmak yüksek zarar riski taşır. Kaldıraçlı ürünler hem kazancı hem zararı büyütür ve yatırdığınız paranın tamamını kaybedebilirsiniz; bazı aracı kurumlarda ve ürünlerde daha fazlasını da kaybedebilirsiniz. Avrupa Menkul Kıymetler ve Piyasalar Otoritesi (ESMA), bireysel müşterilere satılan CFD'lere 2018'de getirdiği kısıtlamalar sırasında, bireysel CFD hesaplarının genellikle %74 ile %89'unun para kaybettiğini bildirmiştir. Aracı kurumunuz kendi oranını yayımlar. Yalnızca kaybetmeyi göze alabileceğiniz parayla işlem yapın ve işlem yaptığınız ürünleri anladığınızdan emin olun.</p>
+
+<!-- FOR COUNSEL / DATA CHECK: the 74-89% range is from ESMA's 2018 CFD product intervention measures (ESMA Decision (EU) 2018/796 and accompanying statement). Verified 25 Oct 2026 against ESMA's press release of 27 March 2018 ("ESMA agrees to prohibit binary options and restrict CFDs to protect retail investors", esma.europa.eu/node/84933): national regulators' analyses showed 74-89% of retail accounts typically lose money. -->
+
+<h2 id="no-advice">2. Tavsiye vermeyiz</h2>
+
+<p>Kalibre Markets yazılım ve genel eğitim içeriği sunar. Aracı kurum, yatırım danışmanı, emtia alım satım danışmanı, portföy yöneticisi veya sinyal sağlayıcı değiliz. Ürünlerimizdeki hiçbir şey herhangi bir şeyi almak, satmak veya elde tutmak için öneri değildir ve hiçbir şey kişisel durumunuzu dikkate almaz. Örnek stratejiler öğrenme amaçlıdır, öneri değildir. Hangi kuralları oluşturacağınıza, hangi araçlarla, ne zaman ve ne miktarda işlem yapacağınıza siz karar verirsiniz. Tavsiyeye ihtiyacınız varsa yetkili bir danışmanla görüşün.</p>
+
+<h2 id="no-custody">3. Paranızı hiçbir zaman tutmayız</h2>
+
+<p>Fonlarınızı veya varlıklarınızı tutmaz, almaz veya kontrol etmeyiz ve sizin adınıza hesap açmayız. Paranız aracı kurumunuzda kalır; aracı kurumunuzun batması veya hesabınızı kısıtlaması riski kontrolümüz dışındadır.</p>
+
+<h2 id="hypothetical">4. Varsayımsal ve simüle edilmiş sonuçlar</h2>
+
+<p>Backtestler, hızlı testler, optimizasyon sonuçları, sermaye eğrileri, örnek sonuçlar ve ürünlerimizde bir kuralın nasıl performans "göstermiş olacağını" gösteren diğer her şey varsayımsaldır.</p>
+
+<p>Aşağıdaki açıklama, varsayımsal performans sunumları için ABD Emtia Vadeli İşlemler Komisyonu (CFTC) tarafından zorunlu tutulmaktadır ve gösterdiğimiz bu tür tüm sonuçlar için geçerlidir (İngilizce asıl metin ve Türkçe çevirisi):</p>
+
+<blockquote class="buyuk-harf"><p>THESE RESULTS ARE BASED ON SIMULATED OR HYPOTHETICAL PERFORMANCE RESULTS THAT HAVE CERTAIN INHERENT LIMITATIONS. UNLIKE THE RESULTS SHOWN IN AN ACTUAL PERFORMANCE RECORD, THESE RESULTS DO NOT REPRESENT ACTUAL TRADING. ALSO, BECAUSE THESE TRADES HAVE NOT ACTUALLY BEEN EXECUTED, THESE RESULTS MAY HAVE UNDER-OR OVER-COMPENSATED FOR THE IMPACT, IF ANY, OF CERTAIN MARKET FACTORS, SUCH AS LACK OF LIQUIDITY. SIMULATED OR HYPOTHETICAL TRADING PROGRAMS IN GENERAL ARE ALSO SUBJECT TO THE FACT THAT THEY ARE DESIGNED WITH THE BENEFIT OF HINDSIGHT. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THESE BEING SHOWN.</p></blockquote>
+
+<blockquote class="buyuk-harf"><p>BU SONUÇLAR, BELİRLİ DOĞAL SINIRLAMALARI OLAN SİMÜLE EDİLMİŞ VEYA VARSAYIMSAL PERFORMANS SONUÇLARINA DAYANMAKTADIR. GERÇEK BİR PERFORMANS KAYDINDA GÖSTERİLEN SONUÇLARIN AKSİNE, BU SONUÇLAR GERÇEK İŞLEMLERİ TEMSİL ETMEZ. AYRICA, BU İŞLEMLER GERÇEKTE YAPILMADIĞINDAN, BU SONUÇLAR LİKİDİTE EKSİKLİĞİ GİBİ BAZI PİYASA FAKTÖRLERİNİN ETKİSİNİ, VARSA, OLDUĞUNDAN AZ VEYA FAZLA YANSITMIŞ OLABİLİR. SİMÜLE EDİLMİŞ VEYA VARSAYIMSAL İŞLEM PROGRAMLARI GENEL OLARAK GERİYE DÖNÜK BİLGİNİN AVANTAJIYLA TASARLANMIŞ OLMALARI OLGUSUNA DA TABİDİR. HERHANGİ BİR HESABIN GÖSTERİLENLERE BENZER KÂR VEYA ZARARLAR ELDE EDECEĞİ VEYA EDEBİLECEĞİ YÖNÜNDE HİÇBİR BEYANDA BULUNULMAMAKTADIR.</p></blockquote>
+
+<!-- FOR COUNSEL: text of CFTC Rule 4.41(b)(1)(i) (17 CFR 4.41), verified verbatim against the LII copy of the e-CFR on 25 Oct 2026. Myfxbook uses the longer NFA-style statement; TraderSync paraphrases it. Rule 4.41 strictly applies to CPOs/CTAs and their principals; we use it as the market-standard disclosure, not as an admission that Kalibre Markets is a CTA. -->
+
+<p>Buna ek olarak, özellikle ürünlerimizde:</p>
+
 <ul>
-  <li>Gerçek bir işlem kaydının aksine, simüle edilmiş sonuçlar gerçek işlemleri göstermez.</li>
-  <li>İşlemler gerçekten yapılmadığı için sonuçlar, likidite eksikliği gibi bazı piyasa etkilerini olduğundan az ya da çok yansıtmış olabilir.</li>
-  <li>Hızlı prova spread, komisyon, swap ve kaymayı içermez; gerçek sonuç genellikle daha düşüktür.</li>
-  <li>Optimizasyon, geçmiş veri üzerinde ve geriye dönük bilgiyle yapılır; en iyi görünen ayar çoğu zaman geçmişe uydurulmuştur.</li>
-  <li>Herhangi bir hesabın gösterilenlere benzer kâr ya da zarar elde edeceği ya da etmesinin muhtemel olduğu yönünde hiçbir beyanda bulunulmamaktadır.</li>
+  <li><strong>Dışarıda bırakılan maliyetler.</strong> Hızlı test spread, komisyon, swap veya kaymayı içermez. Gerçek sonuçlar genellikle daha kötüdür.</li>
+  <li><strong>Mum içi varsayımlar.</strong> Bir stop ve bir hedefin aynı mum içinde gerçekleşmiş olabileceği durumlarda test, hangisinin önce gerçekleştiğini varsaymak zorundadır. Gerçek işlem fiyatları farklı olabilir.</li>
+  <li><strong>Veri kalitesi.</strong> Sonuçlar kullanılan veriye bağlıdır. Aracı kurum verileri aracı kurumlar ve sunucular arasında farklılık gösterir; boşluklar, hatalar ve eksik geçmiş sonuçları değiştirir. Sentetik olarak işaretlenmiş sentetik veriler hiçbir gerçek piyasayı temsil etmez.</li>
+  <li><strong>Aşırı uyum (overfitting).</strong> Optimizasyon, geçmiş veride en iyi işe yarayacak ayarları arar. En iyi görünen ayarlar çoğu zaman geçmişteki gürültüye uydurulmuştur ve yeni veride daha kötü performans gösterme eğilimindedir.</li>
+  <li><strong>Gerçek dünya baskısı yok.</strong> Bir backtest, gerçek sonuçları etkileyen kayıp serilerine, kaçırılan işlemlere veya kuralları yarı yolda değiştirme isteğine dayanmak zorunda değildir.</li>
+  <li><strong>Geçmiş performans, gelecekteki sonuçların güvenilir bir göstergesi değildir.</strong></li>
 </ul>
 
-<h2 id="kaldirac">Kaldıraçlı işlemlerin riski</h2>
-<p>Kaldıraçlı işlemler (forex, CFD ve benzerleri) yatırdığınız tutarın tamamını kaybetmenize yol açabilir. Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK, 2015'te forex yatırımcılarının yaklaşık %87-88'inin zarar ettiğini açıkladı. Kaybetmeyi göze alamayacağınız parayla işlem yapmayın.</p>
+<p>Hesaplamalarımızın nasıl çalıştığı Metodoloji sayfasında açıklanır. MetaTrader 5 Strateji Test Aracı sonuçları da aracı kurumunuza ve seçtiğiniz test ayarlarına bağlıdır.</p>
 
-<h2 id="motor">Kalibre Motor'un gerçek hesapta kullanımı</h2>
-<p>Kalibre Motor, sizin kurduğunuz kural dosyasını sizin hesabınızda çalıştırır ve emir gönderir. Gerçek hesapta beta aşamasında şu riskler vardır:</p>
+<h2 id="kalibre-engine">5. Kalibre Engine ile otomatik işlem</h2>
+
+<p>Kalibre Engine, kural dosyanıza uyarak eklendiği hesapta gerçek emirler verir. Ek riskler şunlardır:</p>
+
 <ul>
-  <li><b>Yazılım hataları:</b> kural dosyası ya da Motor beklenmeyen bir şekilde davranabilir.</li>
-  <li><b>Bağlantı:</b> MetaTrader 5 kapanırsa, bilgisayar uykuya geçerse ya da internet koparsa Motor pozisyonları yönetemez.</li>
-  <li><b>Kayma ve boşluklar:</b> hızlı piyasada, haber anlarında ve hafta sonu açılışlarında emirler stop ya da hedef fiyatından farklı gerçekleşebilir.</li>
-  <li><b>Kalkan garanti değildir:</b> prop kalkanı ve kayıp sınırları boşluklar, kayma ve aracı kurum kuralları nedeniyle aşılabilir.</li>
+  <li><strong>Kural ve yazılım hataları.</strong> Kural dosyanız amaçladığınızı yapmayabilir ve yazılımımız, özellikle beta aşamasında, hatalar içerebilir.</li>
+  <li><strong>Bağlantı.</strong> MetaTrader 5 kapanırsa, bilgisayarınız uyku moduna geçerse, VPS'iniz arızalanırsa veya internet kesilirse Kalibre Engine pozisyonları yönetemez.</li>
+  <li><strong>İşlem gerçekleşmesi.</strong> Hızlı piyasalar, haber açıklamaları, düşük likidite ve hafta sonu veya seans açılışları kayma, fiyat boşluğu, kısmi gerçekleşme, yeniden fiyat teklifi (requote) veya reddedilen emirlere yol açabilir; bu nedenle işlemler stopunuzdan veya hedefinizden çok uzak fiyatlardan kapanabilir.</li>
+  <li><strong>Aracı kurum farklılıkları.</strong> Kontrat büyüklükleri, teminat kuralları, işlem saatleri, swaplar ve emir türleri aracı kuruma göre farklıdır ve değişebilir.</li>
+  <li><strong>Prop firması kuralları.</strong> Prop firmaları kendi düşüş (drawdown), haber ve tutarlılık kurallarını belirler. Bunlara uymak sizin sorumluluğunuzdadır.</li>
 </ul>
-<p>Bu yüzden Motor gerçek hesapta, eklenti ayarlarında "Gerçek hesapta beta riskini kabul ediyorum" seçeneğini siz işaretlemedikçe ve bir kayıp sınırı (prop kalkanı ya da günlük kayıp sınırı) tanımlı olmadıkça yeni işlem açmaz.</p>
 
-<h2 id="tavsiye">Yatırım tavsiyesi değildir</h2>
-<p>Kalibre Markets yatırım danışmanlığı, portföy yöneticiliği ya da aracılık hizmeti sunmaz ve SPK lisanslı bir kurum değildir. Hangi kuralı kuracağınıza, hangi sembolde ne zaman ve ne büyüklükte işlem yapacağınıza siz karar verirsiniz; sonuçların sorumluluğu size aittir. Eğitim örnekleri birer başlangıç noktasıdır, öneri değildir.</p>
-<p>Kalibre Markets hiçbir zaman paranızı, menkul kıymetlerinizi veya kripto varlıklarınızı tutmaz, bunlara erişim yetkisi istemez ve sizin adınıza hesap açmaz. Size ait varlıklar yalnızca seçtiğiniz aracı kurumda bulunur.</p>
+<p><strong>Gerçek hesaplardaki önlemler.</strong> Gerçek bir hesapta Kalibre Engine, gerçek hesap riskini kabul ettiğiniz ayarı işaretleyene ve bir kayıp sınırı (risk kalkanı veya kural dosyanızdaki günlük kayıp sınırı) belirlenene kadar yeni pozisyon açmaz. Bu önlemler riski azaltır ancak ortadan kaldırmaz: <strong>risk kalkanı ve kayıp sınırları garanti değildir</strong> ve boşluklar, kayma, gecikmeler, bağlantı kopmaları veya aracı kurum kuralları nedeniyle aşılabilir.</p>
 
-<h2 id="veri">Veri ve gizlilik</h2>
-<p>Köprüden gelen verileriniz uçtan uca şifrelidir; Alpaca ve Tradier verileriniz doğrudan tarayıcınıza gelir. Hangi verinin nerede işlendiği <a href="/tr/privacy">Gizlilik Politikası</a>'nda ve <a href="/tr/security">Güvenlik</a> sayfasında açıklanır.</p>
+<p>Bir kural dosyasını gerçek bir hesapta kullanmadan önce her zaman Strateji Test Aracı'nda ve bir demo hesapta test edin ve gerçek hesaptaki işlemleri izleyin.</p>
 
+<h2 id="kalibre-bridge">6. Kalibre Bridge ve veriler</h2>
+
+<p>Kalibre Bridge salt okunurdur ve emir vermez. Terminalinize, bağlantınıza, aracı kurumunuzun sunucularına ve aktarıcımıza bağlıdır; bu nedenle veriler gecikebilir, eksik olabilir veya hiç gelmeyebilir. Açık pozisyonları izlemek için tek yolunuz olarak kullanmayın.</p>
+
+<h2 id="beta-software">7. Beta yazılım</h2>
+
+<p>Beta olarak işaretlenen özellikler değişebilir, hata içerebilir veya yanlış sonuç üretebilir. Önemli rakamları kendi MetaTrader 5 terminalinizle karşılaştırın ve yanlış görünen her şeyi bize bildirin.</p>
+
+<h2 id="responsibility">8. Sorumluluğunuz</h2>
+
+<p>Alım satım kararlarınızdan, çalıştırdığınız kurallardan, seçtiğiniz ayarlardan, yaşadığınız yerde işlem yapmanın hukuka uygun olup olmadığını kontrol etmekten ve sonuçlarınıza ilişkin vergilerden siz sorumlusunuz. Kalibre Engine tarafından verilenler dahil, hesabınızda yapılan tüm işlemler sizin işlemlerinizdir.</p>
+
+<h2 id="contact">9. Sorular</h2>
+
+<p>Buradaki herhangi bir husus açık değilse, işlem yapmadan önce <span class="yer-tutucu">[CONTACT EMAIL]</span> adresinden bizimle iletişime geçin.</p>
     </article>
-    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#beta">Beta sürümü</a><a href="#simulasyon">Simülasyon ve varsayımsal sonuçlar</a><a href="#kaldirac">Kaldıraçlı işlemlerin riski</a><a href="#motor">Kalibre Motor'un gerçek hesapta kullanımı</a><a href="#tavsiye">Yatırım tavsiyesi değildir</a><a href="#veri">Veri ve gizlilik</a></aside>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#loss">1. Alım satım işlemleri para kaybettirebilir</a><a href="#no-advice">2. Tavsiye vermeyiz</a><a href="#no-custody">3. Paranızı hiçbir zaman tutmayız</a><a href="#hypothetical">4. Varsayımsal ve simüle edilmiş sonuçlar</a><a href="#kalibre-engine">5. Kalibre Engine ile otomatik işlem</a><a href="#kalibre-bridge">6. Kalibre Bridge ve veriler</a><a href="#beta-software">7. Beta yazılım</a><a href="#responsibility">8. Sorumluluğunuz</a><a href="#contact">9. Sorular</a></aside>
   </div>
 </main>
 
@@ -122,9 +183,12 @@
       <h4>Kalibre Markets</h4>
       <a href="/tr/about">Hakkında</a>
       <a href="/iletisim">İletişim</a>
-      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/terms">Hizmet şartları</a>
       <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/refunds">İade ve iptal</a>
+      <a href="/tr/cookies">Çerezler</a>
       <a href="/tr/risk-disclosure">Risk bildirimi</a>
+      <a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a>
     </div>
     <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
   </div>

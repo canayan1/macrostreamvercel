@@ -123,6 +123,36 @@
       "statusCode": 308
     },
     {
+      "source": "/en/refunds",
+      "destination": "/refunds",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/cookies",
+      "destination": "/cookies",
+      "statusCode": 308
+    },
+    {
+      "source": "/refund-policy",
+      "destination": "/refunds",
+      "statusCode": 308
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookies",
+      "statusCode": 308
+    },
+    {
+      "source": "/iade-politikasi",
+      "destination": "/tr/refunds",
+      "statusCode": 308
+    },
+    {
+      "source": "/cerez-politikasi",
+      "destination": "/tr/cookies",
+      "statusCode": 308
+    },
+    {
       "source": "/en/sign-in",
       "destination": "/sign-in",
       "statusCode": 308

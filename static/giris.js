@@ -2,7 +2,7 @@
  * Giriş ilk kez yapılıyorsa hesap o anda oluşturulur (Supabase). Dönüşte ?sonra= yoluna gidilir. */
 (function () {
   'use strict';
-  var SARTLAR_SURUMU = '2026-10-25';
+  var SARTLAR_SURUMU = '2026-10-25-en1';
   var A = window.KalibreAuth;
   var $ = function (id) { return document.getElementById(id); };
   if (!A) return;

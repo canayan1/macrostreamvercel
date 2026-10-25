@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Terms of Use | Kalibre Lab</title>
-<meta name="description" content="Terms of use for kalibremarkets.com, Kalibre Lab and the Kalibre Bridge add-on: not investment advice, data policy, software license, subscriptions and liability.">
+<title>Terms of Service | Kalibre Markets</title>
+<meta name="description" content="Terms of Service for kalibremarkets.com, Kalibre Lab, Kalibre Bridge and Kalibre Engine: software not advice, no custody, licences, subscriptions, liability and disputes.">
 <link rel="canonical" href="https://kalibremarkets.com/terms">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/terms">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/terms">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/terms">
-<meta property="og:title" content="Terms of Use | Kalibre Lab">
-<meta property="og:description" content="Terms of use for kalibremarkets.com, Kalibre Lab and the Kalibre Bridge add-on: not investment advice, data policy, software license, subscriptions and liability.">
+<meta property="og:title" content="Terms of Service | Kalibre Markets">
+<meta property="og:description" content="Terms of Service for kalibremarkets.com, Kalibre Lab, Kalibre Bridge and Kalibre Engine: software not advice, no custody, licences, subscriptions, liability and disputes.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -22,7 +22,34 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
 <script src="/static/kalibre-auth.js" defer></script>
+<style>
+.belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
+.ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
+.belge-govde h3 { font-size: 19px; }
+.belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
+.belge-govde blockquote p { margin: 0 0 .6em; } .belge-govde blockquote p:last-child { margin-bottom: 0; }
+.belge-govde blockquote.buyuk-harf p { font-size: 13px; letter-spacing: .01em; }
+.belge-izgara > * { min-width: 0; }
+.tablo-kap { overflow-x: auto; margin: 16px 0 24px; }
+.belge-govde table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+.belge-govde table.genis { min-width: 520px; }
+.belge-govde th, .belge-govde td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+.belge-govde th { color: var(--metin); font-weight: 600; border-bottom-color: var(--cizgi-2); }
+.belge-govde p, .belge-govde li { overflow-wrap: break-word; }
+.icindekiler-mobil { display: none; margin: 0 0 28px; border: 1px solid var(--cizgi); border-radius: 4px; padding: 10px 14px; }
+.icindekiler-mobil summary { cursor: pointer; font-weight: 600; }
+.icindekiler-mobil ol { list-style: none; padding: 0; margin: 10px 0 0; }
+.icindekiler-mobil a { display: block; padding: 5px 0; text-decoration: none; }
+@media (max-width: 960px) { .icindekiler-mobil { display: block; } }
+</style>
 </head>
 <body>
 
@@ -36,8 +63,9 @@
       <a href="/setup">Setup</a>
       <a href="/security">Security</a>
       <a href="/pricing">Pricing</a>
-      <a href="/tr/terms" hreflang="tr" lang="tr">TR</a>
     </nav>
+    <a class="dil" href="/tr/terms" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
     <a class="dugme kucuk" href="/lab">Open the lab</a>
   </div>
 </header>
@@ -45,167 +73,288 @@
 <main class="belge">
   <div class="kap belge-izgara">
     <article class="belge-govde">
+<h1>Terms of Service</h1>
 
-<h1>Terms of Use</h1>
-<p class="not">Effective date: 25 October 2026</p>
-<p class="not">This is a translation. If the English and Turkish versions differ, the Turkish version prevails. <a href="/tr/terms" hreflang="tr" lang="tr">Türkçe metin</a></p>
-<!-- FOR COUNSEL: EU/UK consumers may require English-language terms and privacy information that stand on their own (GDPR, consumer protection law) rather than a translation in which the Turkish text prevails. To be reviewed. -->
+<p class="belge-meta">Effective date: 25 October 2026<br>Terms version: 2026-10-25-en1</p>
+<details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#who-we-are">1. Who we are and what these Terms cover</a></li><li><a href="#eligibility">2. Who can use the Services</a></li><li><a href="#account">3. Your Kalibre Markets account</a></li><li><a href="#not-advice">4. What the Services are, and what they are not</a></li><li><a href="#kalibre-lab">5. Kalibre Lab</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge</a></li><li><a href="#kalibre-engine">7. Kalibre Engine</a></li><li><a href="#third-parties">8. Broker and third-party connections</a></li><li><a href="#beta-features">9. Beta features</a></li><li><a href="#payment">10. Subscriptions and payment</a></li><li><a href="#withdrawal">11. Right of withdrawal (EU, EEA and UK consumers)</a></li><li><a href="#licence">12. Licence to use our software</a></li><li><a href="#your-content">13. Your strategies and content</a></li><li><a href="#acceptable-use">14. Acceptable use</a></li><li><a href="#ai-assistant">15. AI assistant</a></li><li><a href="#changes">16. Changes to the Services and to these Terms</a></li><li><a href="#suspension-termination">17. Suspension and termination</a></li><li><a href="#statutory-rights">18. Your statutory rights</a></li><li><a href="#disclaimers">19. Disclaimers</a></li><li><a href="#liability">20. Limitation of liability</a></li><li><a href="#indemnity">21. Indemnity</a></li><li><a href="#force-majeure">22. Events outside our control</a></li><li><a href="#law">23. Governing law and disputes</a></li><li><a href="#general">24. General</a></li><li><a href="#contact">25. Contact</a></li></ol></details>
+<!-- FOR COUNSEL: must match SARTLAR_SURUMU in api/odeme/baslat.ts, which is written to the Stripe record at checkout. -->
 
-<h2 id="parties">1. Parties and scope</h2>
-<p>These Terms of Use (the "Terms") govern the use of the content and tools offered through the kalibremarkets.com domain and its subpages, (the "Site"), the Kalibre Lab strategy lab and the Kalibre Bridge, Kalibre Engine and other add-ons offered for MetaTrader 5 (together, the "Service"). The <a href="/risk-disclosure">Risk Disclosure</a> forms an integral part of these Terms. The Service is operated by [COMPANY NAME] ("Kalibre Markets"). Address: [ADDRESS]. E-mail: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>.</p>
-<p>The simulation game at oyun.kalibremarkets.com is a separate service; it is outside the scope of these Terms and is subject to its own conditions.</p>
+<div class="kutu"><b>Beta: paid plans are not yet available.</b> During the beta, access is free and by invitation. The sections of these Terms about paid plans (subscriptions, payment, renewal, withdrawal and refunds) apply once paid plans open. We will tell you before any charge is made.</div>
 
-<h2 id="acceptance">2. Acceptance and changes</h2>
-<p>By using the Site you declare that you have read and accepted these Terms. If you do not accept the Terms, do not use the Site.</p>
-<p>Kalibre Markets may update these Terms. The current text is published on this page together with its effective date. In the case of material changes, paying subscribers and beta licence holders are also notified separately by e-mail. Continuing to use the Site after a change means that you accept the updated Terms.</p>
+<p>Please read these Terms carefully. They form a binding agreement between you and us. The short version: our software helps you build, test and run your own trading rules. We do not give advice, we do not hold your money, and you are responsible for your trading decisions and their results.</p>
 
-<h2 id="eligibility">2a. Who may use the Service</h2>
-<p>To use the Site, Kalibre Lab and the add-ons you must be at least 18 years old and have the legal capacity to enter into a contract. If you use them on behalf of a legal entity, you declare that you are authorised to bind that entity to these Terms. If the law of the country where you are located prohibits, or requires a licence for, the use of automated trading software, leveraged products or similar tools, complying with that law is your responsibility. You may not purchase paid services if you are on a sanctions list maintained by the Republic of Türkiye, the United Nations, the European Union or the United States, or if you are resident in a country or region covered by such lists. Kalibre Markets may restrict access or sales from certain countries where legislation or the rules of the payment provider require it; in that case any amount paid in advance for an unused period is refunded.</p>
-<!-- FOR COUNSEL: (1) Which sanctions regimes to name (TR, UN, EU, US/OFAC) should match Stripe's merchant terms. (2) US users: if the Engine sends orders on a forex/CFD account used from the US, the CTA status or software vendor exemption under CFTC/NFA rules should be assessed; the emphasis that the software runs the user's own rules and gives no personalised advice matters. Excluding the US entirely is also an option. (3) The "law of your country" sentence places a compliance burden on consumers; unfair-term risk is low but the wording was kept plain. -->
+<h2 id="who-we-are">1. Who we are and what these Terms cover</h2>
 
-<h2 id="no-advice">3. Not investment advice</h2>
-<p>The Site has been prepared for educational and informational purposes. Kalibre Markets is not an institution authorised by the Capital Markets Board of Turkey (Sermaye Piyasası Kurulu) to provide investment advice or any other investment service or activity, and it does not provide any such service within the meaning of Capital Markets Law No. 6362.</p>
-<p>The articles, example strategies, calculators, tests and simulations on the Site are information of a general nature. Kalibre Lab is a software tool that tests the rules you set up against the data you choose; you decide which rules to set up and whether to trade. The content has not been prepared taking into account your personal financial situation, risk preferences or investment objectives. No content may be interpreted as a recommendation, advice or signal to buy, sell or hold any particular asset. You should make your investment decisions based on your own assessment and, where necessary, with advisory services obtained from an authorised institution.</p>
-<p>Kalibre Markets never holds your money, securities or crypto assets, never asks for access to them and never opens an account in your name. Your assets are held only at the broker you choose.</p>
+<p>1.1 <strong>Who we are.</strong> The Services are provided by <span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading under the name Kalibre Markets, of <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> ("Kalibre Markets", "we", "us", "our"). Kalibre Markets is a trading name, not a separately incorporated company. If we later transfer the Services to a company, we will tell you in advance as described in these Terms. You can contact us at <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
 
-<h2 id="data">4. Data policy</h2>
-<p>No live or delayed market prices or exchange data are published on the Site. Data used in examples, charts and calculations is of one of the following four kinds:</p>
+<!-- FOR COUNSEL: the founder operates as a sole trader (no company, 25 Oct 2026). Confirm sole-trader registration/tax registration needs in the country of residence, whether consumer law requires the full name and geographic address to be shown (EU Consumer Rights Directive Art. 6(1)(b)-(d) does), and whether a 24.x assignment clause permitting transfer to a future company is adequate. Personal unlimited liability: consider incorporating before scale. -->
+
+<p>1.2 <strong>What the Services are.</strong> "Services" means everything we offer under these Terms, including:</p>
+
 <ul>
-  <li><strong>Data you enter.</strong> Values you enter yourself into calculators, the journal or the dashboard.</li>
-  <li><strong>Synthetic data.</strong> Data generated to illustrate a method that does not represent a real market. Such data is marked "SENTETİK" (synthetic).</li>
-  <li><strong>Data from your own broker.</strong> Files you load into Kalibre Lab or prices arriving through the MetaTrader 5 bridge. This data comes from your account at your broker and is shown only in your browser; Kalibre Markets does not publish it, cannot read it and does not make it available to others.</li>
-  <li><strong>Data taken once from public sources.</strong> Data taken once on a specific date, with its source and date stated next to it. Such data is not updated and is meaningful only as of the date stated. The rights in such data belong to the relevant source.</li>
+  <li>the website at kalibremarkets.com and its pages, tools and educational content (the "Site");</li>
+  <li><strong>Kalibre Lab</strong>, our browser-based workspace for charting, technical analysis, building strategies, backtesting and optimisation;</li>
+  <li><strong>Kalibre Bridge</strong>, a MetaTrader 5 add-on that reads market and account data from your own MetaTrader 5 terminal and sends it, encrypted, to Kalibre Lab in your browser;</li>
+  <li><strong>Kalibre Engine</strong>, a MetaTrader 5 Expert Advisor that runs the rule file you build and places orders on your MetaTrader 5 account according to those rules, with an optional risk shield;</li>
+  <li>your Kalibre Markets account; and</li>
+  <li>any other product we add later and make available under these Terms.</li>
 </ul>
-<p>Kalibre Markets does not warrant the accuracy, completeness or timeliness of any data.</p>
 
-<h2 id="simulations">5. Simulations and past performance</h2>
-<p>Backtests, simulations and example results on the Site are hypothetical. They do not fully reflect real trading conditions such as commissions, taxes, slippage and liquidity. Results obtained with synthetic data do not show the result that would be obtained in a real market. Past performance is not an indication or guarantee of future performance.</p>
-<p>The quick test in Kalibre Lab is an approximate calculation: it does not include spread, commission, swap or slippage, and it determines the order of prices within a candle by assumption. The method and its limits are explained on the <a href="/methodology">Methodology</a> page. MetaTrader 5 Strategy Tester results also depend on your broker and on the test settings you choose.</p>
+<p>1.3 <strong>Additional terms.</strong> Some products or features may come with extra terms shown to you before you use them ("Product Terms"). Product Terms form part of these Terms. If they conflict with these Terms, the Product Terms apply to that product.</p>
 
-<h2 id="assistant">6. AI assistant</h2>
-<p>The assistant on the Site works using a third-party artificial intelligence service. The assistant's replies are generated automatically; they may contain incorrect, incomplete or outdated information and do not constitute investment advice. Messages you write to the assistant are sent to that service provider to generate a reply. Do not write identity details, account details or other personal or sensitive data to the assistant. Details are in the <a href="/privacy">Privacy Policy</a>.</p>
+<p>1.4 <strong>Other documents.</strong> These documents also apply and form part of our agreement with you:</p>
 
-<h2 id="your-data">7. Your account, data you enter and your licence key</h2>
-<p>Entries you make in tools such as the decision journal and Kalibre Lab are, unless stated otherwise, stored only in your own browser. If you are signed in to your account, your Kalibre Lab strategy drafts are also saved to your account (section 10a). Clearing browser data will cause entries kept only in the browser to be lost; backing them up is your responsibility.</p>
-<p><strong>Account.</strong> A Kalibre Markets account is required to subscribe to paid services; one account covers all Kalibre Markets products. You must sign in with an e-mail address that belongs to you and that you control, and keep access to that e-mail address and to your Google account secure. An account is personal: do not share it or let others use it. You are responsible for activity carried out through your account. You may delete your account at any time on the Account page. We may suspend or close an account used in breach of these Terms; where possible, we will tell you first and give our reasons.</p>
-<p><strong>Licence key.</strong> Paid and beta services are activated with a licence key shown on your Account page. You are responsible for keeping your licence key confidential and for use made with your key. Your personal data is processed in accordance with Law No. 6698 on the Protection of Personal Data; details are in the <a href="/privacy">Privacy Policy</a>.</p>
-
-<h2 id="software">8. Kalibre Lab and the MetaTrader 5 add-ons</h2>
-<p><strong>License.</strong> Kalibre Markets permits you to use Kalibre Lab and the add-ons it offers for MetaTrader 5 (including Kalibre Bridge and Kalibre Engine) for your own personal use in accordance with these Terms. This permission is personal, non-transferable, non-sublicensable and non-exclusive. Ownership of the software remains with Kalibre Markets; for paid versions the conditions in section 12 also apply.</p>
-<p><strong>What Kalibre Bridge does.</strong> The Kalibre Bridge add-on only reads: it encrypts the price history of the symbols you select, your open positions and your account summary, and transmits them to Kalibre Lab. It does not send orders, close positions or make changes to your account. You decide on which account and with which settings to run the add-on.</p>
-<p><strong>What Kalibre Engine does.</strong> Unlike Kalibre Bridge, Kalibre Engine sends orders: it runs the rule file you build on your account and opens, manages and closes trades only according to those rules. It does not choose or recommend strategies on its own. Additional conditions for its use on a real account are in section 8b.</p>
-<p><strong>MetaTrader 5 permission.</strong> For the add-on to connect to the internet you must allow the Kalibre address in the MetaTrader 5 settings. You grant this permission yourself and may withdraw it at any time. The setup steps are on the <a href="/setup">Setup</a> page.</p>
-<p><strong>Broker terms.</strong> Prices passing through the bridge come from your broker, through your account. You are responsible for complying with the terms of use of your broker and of MetaQuotes when using this data. This data is for your own use only; you agree not to distribute, publish or sell to others price data obtained through Kalibre Lab.</p>
-<p><strong>Pairing code.</strong> The pairing code is the key that encrypts your data and is held only by you. Keeping the code confidential is your responsibility. If you suspect that your code has fallen into someone else's hands, you must generate a new code in Kalibre Lab. Because Kalibre Markets does not know your code, it cannot recover a lost code and cannot access data encrypted with it.</p>
-<p><strong>Continuity.</strong> The bridge depends on MetaTrader 5 being open, on your internet connection, on your broker's server and on the Site's relay server. Kalibre Markets does not guarantee that the bridge will operate without interruption, that every piece of data will be transmitted or that data will arrive within a particular time. The bridge is not a trading or risk management system; rely on your broker's platform to monitor your open positions.</p>
-<p><strong>MetaTrader.</strong> MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with or endorsed by MetaQuotes Ltd.</p>
-
-<h2 id="beta">8a. Beta version</h2>
-<p>Kalibre Lab, Kalibre Bridge and Kalibre Engine are in <strong>beta</strong>. During the beta, features may change, be added or be removed without prior notice; the software may contain errors and calculations may produce incorrect results. Except where the law requires otherwise, the beta is provided "as is", without any warranty of accuracy, uninterrupted availability or fitness for a particular purpose.</p>
-<p><strong>Beta licence.</strong> Free beta licences given by invitation are personal, non-transferable, valid for the stated period and cover only the products named in the licence (for example, Kalibre Bridge only). Kalibre Markets may end a beta licence before its expiry. A beta licence does not turn into a paid subscription automatically.</p>
-<p><strong>Feedback.</strong> Kalibre Markets may use the feedback you send during the beta to improve the product without paying you anything for it. Do not include pairing codes, licence keys, API keys or passwords in your feedback.</p>
-<!-- FOR COUNSEL: "as is" provision and warranty disclaimer have limited effect against consumers under Turkish consumer law (Law No. 6502) and EU/UK consumer law; review the scope of the beta clause for consumers once paid subscriptions start. -->
-
-<h2 id="engine-real">8b. Using Kalibre Engine on a real account</h2>
-<p>Kalibre Engine runs the rule file you build on your MetaTrader 5 account and sends orders according to those rules. Using the Engine on an account that trades real money (a real account) carries additional risks during the beta: software errors, lost connections, broker-side delays, slippage and price gaps can cause losses larger than expected.</p>
 <ul>
-  <li><strong>Explicit acceptance.</strong> On a real account, the Engine opens no new trades unless you yourself tick "I accept the beta risk on a real account" in the add-on's settings.</li>
-  <li><strong>Mandatory loss limit.</strong> On a real account, the Engine opens no new trades unless the prop shield or a daily loss limit in the rule file is set.</li>
-  <li><strong>The shield is not a guarantee.</strong> The prop shield and loss limits can be exceeded because of price gaps, slippage, lost connections or differences in your broker's trading rules.</li>
-  <li><strong>Responsibility.</strong> The results of all trades the Engine opens with your rules are yours. Before using the Engine on a real account, you must test the same rule file in MT5 Strategy Tester and on a demo account. Details are in the <a href="/risk-disclosure">Risk Disclosure</a>.</li>
+  <li>the <a href="/risk-disclosure">Risk Disclosure</a>;</li>
+  <li>the <a href="/refunds">Refund and Cancellation Policy</a>;</li>
+  <li>the <a href="/privacy">Privacy Policy</a> and <a href="/cookies">Cookie Notice</a>, which explain how we handle personal data (they are notices, not contract terms you have to agree to).</li>
 </ul>
-<!-- FOR COUNSEL: offering the Engine on real accounts as part of a paid plan should be reassessed under SPK (III-37.1 art. 37 and 45), CFTC 4.14(a)(9) and FCA PERG 8.30; explicit acceptance and the mandatory loss limit are enforced in the software. -->
 
-<h2 id="brokers">8c. Broker connections and keys</h2>
-<p>If you connect Kalibre Lab to a broker account other than MetaTrader 5, such as Alpaca or Tradier, the connection is made between your browser and the broker and is subject to that broker's terms of use, fees and data licences. Kalibre Markets is not the representative, partner or intermediary of these firms; it does not hold the money or assets in your account, does not route orders on your behalf, and is not responsible for the broker's service interruptions, account restrictions or insolvency.</p>
-<p>It is your obligation to use the API keys, access tokens, pairing code and Kalibre licence key you use for the connection only yourself, not to share them with anyone, and not to put them in screenshots, feedback or public code. Where possible, we recommend creating keys at your broker that carry only the permissions needed and no withdrawal rights. If you suspect a key has fallen into someone else's hands, you must revoke it at your broker immediately and, in the case of a licence key, tell us. Kalibre Markets is not responsible for the consequences of third parties using a key before you notify us.</p>
-<!-- FOR COUNSEL: Liability for use before notification may be considered heavy for consumers; should cases of Kalibre's own fault (e.g. a leak) be expressly reserved? Check consistency with Privacy Policy section 5. -->
+<p>1.5 <strong>Accepting these Terms.</strong> You accept these Terms by creating an account, by ticking the acceptance box at checkout, or by using the Services. If you do not agree, please do not use the Services.</p>
 
-<h2 id="prohibited">9. Prohibited uses</h2>
-<p>When using the Site you agree not to:</p>
+<h2 id="eligibility">2. Who can use the Services</h2>
+
+<p>2.1 You must be at least 18 years old and legally able to enter into a binding contract.</p>
+
+<p>2.2 If you use the Services for a company or other organisation, you confirm that you have authority to bind it to these Terms, and "you" includes that organisation.</p>
+
+<p>2.3 <strong>Sanctions.</strong> You may not use the Services if you are (a) named on, or owned or controlled by someone named on, a sanctions list maintained by the United Nations, the European Union, the United Kingdom, the United States (including the list of the U.S. Treasury Office of Foreign Assets Control) or <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>, or (b) located in, or ordinarily resident in, a country or territory subject to comprehensive sanctions under any of those regimes. If this changes after you sign up, you must stop using the Services and tell us.</p>
+
+<p>2.4 <strong>Your local law.</strong> Some countries restrict or license automated trading software, leveraged products such as forex and CFDs, or the use of trading tools. You are responsible for checking that your use of the Services is lawful where you live and where you trade. Nothing on the Site is an offer of the Services in a place where offering them would be unlawful.</p>
+
+<p>2.5 <strong>Restricting regions.</strong> We may refuse, limit or end access from particular countries where the law, our payment provider or sanctions rules require it. If we do this to an existing paid subscriber for a reason other than a breach of these Terms, we will refund any prepaid fees for the unused part of the period.</p>
+
+<!-- FOR COUNSEL: (1) Confirm the list of sanctions regimes against the [COUNTRY OF RESIDENCE] regime and Stripe's restricted-business and restricted-country rules. (2) United States: no competitor reviewed excludes US users, but Kalibre Engine places orders on forex/CFD accounts. Confirm whether supplying Engine to US persons raises CFTC/NFA questions (for example commodity trading advisor status or the exemption for software that runs only the user's own rules without personalised advice), and decide whether to exclude US persons from Engine on live accounts. (3) Consider whether any other jurisdiction should be excluded at launch. -->
+
+<h2 id="account">3. Your Kalibre Markets account</h2>
+
+<p>3.1 <strong>Signing in.</strong> You can sign in with a one-time link or code sent to your email address, or with your Google account. We do not ask you to create a password with us. Large parts of Kalibre Lab work without an account; you need an account to buy a subscription, to manage your licence and to sync saved items between devices.</p>
+
+<p>3.2 <strong>One account, several products.</strong> One Kalibre Markets account can hold licences for more than one product.</p>
+
+<p>3.3 <strong>Keeping access secure.</strong> Keep access to your email account and Google account secure, because anyone who controls them can sign in to your Kalibre Markets account. Tell us promptly at <span class="yer-tutucu">[CONTACT EMAIL]</span> if you think someone else has used your account. You are responsible for activity on your account unless it was caused by our failure to take reasonable security measures.</p>
+
+<p>3.4 <strong>Accurate information.</strong> Keep the email address on your account current. We send important notices there.</p>
+
+<p>3.5 <strong>Deleting your account.</strong> You can delete your account at any time from the account page. Deleting your account sets any paid subscription to end at the close of the current period, so you will not be charged again. Your licence keeps working in MetaTrader 5 until that period ends. Some records are kept after deletion as described in the Privacy Policy.</p>
+
+<h2 id="not-advice">4. What the Services are, and what they are not</h2>
+
+<p>4.1 <strong>Software, not advice.</strong> The Services are software tools and general educational content. They help you build and test rules you choose, and, if you use Kalibre Engine, carry out those rules on an account you control. Nothing in the Services is investment, financial, legal or tax advice, a personal recommendation, a trading signal, or an offer or solicitation to buy or sell any financial instrument. Example strategies, templates and educational material are starting points for your own research, not recommendations. Content is not tailored to your circumstances, objectives or risk tolerance.</p>
+
+<p>4.2 <strong>Not a broker, adviser or manager.</strong> Kalibre Markets is not a broker, dealer, investment adviser, commodity trading adviser, portfolio manager or signal provider, and is not authorised by any financial regulator to provide investment services. We do not manage accounts, run copy trading or pool funds.</p>
+
+<p>4.3 <strong>No custody.</strong> We never hold, receive or control your money, securities or crypto assets. We do not open accounts in your name. Your funds stay with the broker you chose.</p>
+
+<p>4.4 <strong>No orders from our servers.</strong> Our servers never place, change or cancel orders. Orders are only ever sent by Kalibre Engine, running in your own MetaTrader 5 terminal, according to the rule file you load and the settings you choose.</p>
+
+<p>4.5 <strong>Your decisions.</strong> You alone decide whether to trade, what to trade, how much to trade and which rules to run. You are responsible for those decisions and for all results, including losses. Please read the Risk Disclosure before you trade.</p>
+
+<!-- FOR COUNSEL: confirm that the "not authorised" statement is accurate for [COUNTRY OF RESIDENCE] and that no local licence is needed for selling Kalibre Engine (rule execution software without discretion). -->
+
+<h2 id="kalibre-lab">5. Kalibre Lab</h2>
+
+<p>5.1 Kalibre Lab runs in your browser. Unless you are signed in and choose to save an item, your strategies, drafts, journal entries and settings are stored only in your browser on your device. If you clear your browser data, unsynced items are lost; keeping backups is your responsibility.</p>
+
+<p>5.2 <strong>Market data.</strong> Kalibre Lab does not publish live or delayed exchange data. Prices you see come from data you load, from your own broker (through Kalibre Bridge or a broker connection you set up), from synthetic data marked as synthetic, or from public data captured once on a stated date. We do not guarantee that any data is accurate, complete or up to date.</p>
+
+<p>5.3 <strong>Backtests and optimisation are hypothetical.</strong> Results in Kalibre Lab are simulations based on past or synthetic data and on simplifying assumptions. The quick test, for example, does not include spread, commission, swap or slippage, and it assumes the order of prices inside each candle. The Methodology page explains how results are calculated. Results can differ materially from what you would get in a real account. See the Risk Disclosure.</p>
+
+<h2 id="kalibre-bridge">6. Kalibre Bridge</h2>
+
+<p>6.1 <strong>Read-only.</strong> Kalibre Bridge reads the price history of symbols you select, your open positions and a summary of your account from your MetaTrader 5 terminal, encrypts that data on your computer and sends it to Kalibre Lab in your browser. It does not place, change or close orders, and it does not change your account settings.</p>
+
+<p>6.2 <strong>No passwords.</strong> Kalibre Bridge never asks for, reads or sends your MetaTrader 5 password or your broker login password.</p>
+
+<p>6.3 <strong>End-to-end encryption.</strong> Data is encrypted on your computer with keys derived from a pairing code that Kalibre Lab creates in your browser. We never receive the pairing code, so we cannot read the data and cannot recover a lost code. Our relay only passes the encrypted packets along and deletes each one automatically within two hours.</p>
+
+<p>6.4 <strong>Pairing code.</strong> Keep your pairing code private. If you think someone else has it, create a new code in Kalibre Lab and enter it in the add-on.</p>
+
+<p>6.5 <strong>Licence check.</strong> Like Kalibre Engine, Kalibre Bridge checks your licence with our server when it starts and about every six hours. That check sends your licence key and your MetaTrader 5 account number. See the Privacy Policy.</p>
+
+<p>6.6 <strong>Not a monitoring system.</strong> Kalibre Bridge depends on your terminal being open, your internet connection, your broker's servers and our relay. It may miss or delay data. Do not rely on it to monitor open positions; use your broker's platform for that.</p>
+
+<h2 id="kalibre-engine">7. Kalibre Engine</h2>
+
+<p>7.1 <strong>What it does.</strong> Kalibre Engine runs the rule file you build and, following only those rules and your settings, opens, manages and closes positions on the MetaTrader 5 account where you attach it. It does not choose strategies, generate its own signals or change your rules.</p>
+
+<p>7.2 <strong>Test first.</strong> Before using Kalibre Engine on an account that trades real money (a "live account"), test the same rule file in the MetaTrader 5 Strategy Tester and on a demo account.</p>
+
+<p>7.3 <strong>Live-account safeguards.</strong> On a live account, Kalibre Engine will not open new positions unless (a) you have ticked the setting confirming that you accept the risk of using it on a live account, and (b) a loss limit is set, either the risk shield or a daily loss limit in your rule file.</p>
+
+<p>7.4 <strong>The risk shield is not a guarantee.</strong> The risk shield and loss limits are designed to stop new trading when limits are reached. They can be exceeded because of price gaps, slippage, delays, lost connections, terminal shutdowns or your broker's or prop firm's own rules. Meeting a prop firm's rules is your responsibility.</p>
+
+<p>7.5 <strong>When a subscription ends.</strong> If your subscription ends or your licence is suspended, Kalibre Engine stops opening new positions on live accounts. It continues to apply the stop, target and exit rules of positions that are already open while it remains attached. You remain responsible for checking and, if needed, closing your open positions.</p>
+
+<p>7.6 <strong>Your results.</strong> All trades placed by Kalibre Engine on your account are your trades. You are responsible for their results.</p>
+
+<h2 id="third-parties">8. Broker and third-party connections</h2>
+
+<p>8.1 If you connect Kalibre Lab or the add-ons to a broker, prop firm, data provider or other third party, that connection is between you and that third party and is governed by its terms, fees and data licences. We are not its agent or partner, and we are not responsible for its services, outages, account decisions or insolvency.</p>
+
+<p>8.2 Price data you receive from your broker is for your own use. Do not redistribute, publish or sell it unless your broker's terms allow it.</p>
+
+<p>8.3 <strong>Keys and codes.</strong> Keep your licence key, pairing code, broker API keys and access tokens private. Do not put them in screenshots, feedback, forums or public code. Where your broker allows it, create keys with only the permissions needed and without withdrawal rights. If a key may have leaked, revoke it with your broker straight away and, for a licence key, tell us. Unless we caused the leak, we are not responsible for use of a key before you tell us.</p>
+
+<p>8.4 MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with or endorsed by MetaQuotes Ltd.</p>
+
+<h2 id="beta-features">9. Beta features</h2>
+
+<p>Features labelled beta, preview or experimental may change, be withdrawn or behave unexpectedly, and calculations may be wrong. We provide them as they are and may stop them at any time. Free beta licences are personal, cover only the products they name, last for the period stated and do not turn into paid subscriptions automatically. If you send us feedback, we may use it to improve the Services without owing you anything; do not include keys, codes or passwords in feedback.</p>
+
+<h2 id="payment">10. Subscriptions and payment</h2>
+
+<p>10.1 <strong>Plans and prices.</strong> Paid plans are billed monthly in advance. The price is shown on the pricing page and at checkout (the planned launch price is USD 19 or EUR 17 per month, depending on your region). Prices include or show applicable taxes as stated at checkout.</p>
+
+<p>10.2 <strong>Payment.</strong> Payments are processed by Stripe. Your card details go directly to Stripe and do not reach us.</p>
+
+<p>10.3 <strong>Automatic renewal.</strong> Your subscription renews automatically at the end of each monthly period, and we charge the payment method on file, until you cancel.</p>
+
+<p>10.4 <strong>Cancelling.</strong> You can cancel at any time from your account page or the Stripe billing page linked from it. Cancellation takes effect at the end of the current period. You keep access until then, and you will not be charged again.</p>
+
+<p>10.5 <strong>Licence and accounts.</strong> After payment your account shows a licence key. A licence can be used on up to two MetaTrader 5 accounts; it is bound to the first two accounts on which it is used. To change those accounts, contact us.</p>
+
+<p>10.6 <strong>Failed payments.</strong> If a renewal payment fails, Stripe retries it over several days. Your licence keeps working for up to three days after the paid period ends while payment is retried. If payment still fails, the subscription ends.</p>
+
+<p>10.7 <strong>Price changes.</strong> We may change prices. For existing subscribers a new price applies only from the first renewal at least 30 days after we email you about it. If you do not want to pay the new price, cancel before that renewal.</p>
+
+<p>10.8 <strong>Free periods, promotion codes and tester codes.</strong> The length, scope and end-of-offer price of any free period or promotion code are shown with the offer. Codes are personal, have no cash value, cannot be combined unless we say so, and expire on the stated date. We may cancel codes that are misused. Codes with a 100% discount given to invited testers last at most three months and may cover only the products named with the code (for example, Kalibre Bridge only); while the code is active your licence covers only those products. When the code expires, your subscription continues at the normal price and covers the full product unless you cancel first. A card is not needed while a 100% code applies; we will ask for one, and email you, before the first paid charge.</p>
+
+<p>10.9 <strong>Refunds.</strong> Refunds are covered by the <a href="/refunds">Refund and Cancellation Policy</a>.</p>
+
+<p>10.10 <strong>Chargebacks.</strong> If you think a charge is wrong, please contact us first; we can usually fix it faster than a bank dispute. If a payment is disputed, we may suspend the licence linked to that payment until the dispute is resolved. This does not affect your rights with your bank or card issuer.</p>
+
+<p>10.11 <strong>Taxes on your trading.</strong> You are responsible for any taxes on gains or losses from your trading.</p>
+
+<!-- FOR COUNSEL: (1) UK Digital Markets, Competition and Consumers Act 2024 subscription-contract rules (reminder notices, easy exit, cooling-off on renewal) and US state automatic-renewal laws (for example California) may require renewal reminders, an online cancellation path and specific pre-purchase disclosures; check commencement dates and whether a monthly-renewal reminder is needed. (2) Decide whether to say "prices include VAT/sales tax" per region once Stripe Tax is configured. -->
+
+<h2 id="withdrawal">11. Right of withdrawal (EU, EEA and UK consumers)</h2>
+
+<p>If you are a consumer in the EU, EEA or UK, you have a legal right to withdraw from a new subscription within 14 days without giving a reason. Because the Services are digital content and services that start straight away, at checkout we ask you to request immediate access and to confirm that you lose the right of withdrawal once the licence is activated. Payment is not possible without that confirmation. How this works in practice, including what happens if you have not activated your licence, is set out in the <a href="/refunds">Refund and Cancellation Policy</a>. This section does not take away any right you have by law.</p>
+
+<h2 id="licence">12. Licence to use our software</h2>
+
+<p>12.1 While you comply with these Terms and, for paid features, have an active subscription, we give you a personal, non-exclusive, non-transferable, revocable licence to use the Services for your own trading and research.</p>
+
+<p>12.2 The software, Site content, design, example strategies and templates, and the Kalibre names and logos belong to us or our licensors. These Terms do not transfer ownership of any of them to you. You may change and run our example strategies for your own use, but you may not republish them commercially.</p>
+
+<p>12.3 Add-on files are compiled for licensing and may only be downloaded with an active licence. Do not remove licence checks or copy-protection.</p>
+
+<h2 id="your-content">13. Your strategies and content</h2>
+
+<p>13.1 The strategies, rule files, parameters, watchlists and notes you create ("Your Content") belong to you. We claim no ownership of them.</p>
+
+<p>13.2 If you save Your Content to your account, you give us a non-exclusive, worldwide, royalty-free permission to store, copy, process and display it to you only as needed to provide the Services to you. This permission ends when you delete the item or your account, except for copies kept for a short time in backups.</p>
+
+<p>13.3 We do not show Your Content to other users, sell it, or use it in our own examples or marketing without your express consent. If we later offer a sharing feature, the terms for sharing will be shown before you use it.</p>
+
+<p>13.4 You confirm you have the right to use anything you upload or import, and that it does not break the law or anyone else's rights.</p>
+
+<h2 id="acceptable-use">14. Acceptable use</h2>
+
+<p>You agree not to:</p>
+
 <ul>
-  <li>collect, copy or bulk-download Site content with automated tools;</li>
-  <li>attempt to circumvent or disable the Site's security and bot protection measures;</li>
-  <li>place an unusual load on the Site or its infrastructure or disrupt its operation;</li>
-  <li>reverse engineer, modify or distribute in modified form the software and add-ons on the Site, except where permitted by law;</li>
-  <li>use the bridge server for purposes other than Kalibre Lab, for example as a general data storage or transmission tool;</li>
-  <li>republish or distribute Site content for commercial purposes;</li>
-  <li>share, rent or sell your licence key, pairing code or access to a paid feature, or run the licence on accounts other than your own;</li>
-  <li>use Kalibre Lab, Kalibre Engine or the results you produce with them to provide investment advice, trading signals, account management or portfolio management services to others without the required authorisations, or use the Kalibre name to promote such a service;</li>
-  <li>publish test results produced by Kalibre as if they were realised returns, without stating that they are hypothetical;</li>
-  <li>use the Site for an unlawful purpose or in a way that infringes the rights of others.</li>
+  <li>copy, scrape or bulk-download the Site or Services with automated tools, or overload or disrupt them;</li>
+  <li>probe, bypass or disable security, rate limits, licence checks or bot protection;</li>
+  <li>reverse engineer, decompile or modify the software or add-ons, except where the law allows this despite this restriction;</li>
+  <li>use our relay or servers for anything other than the Services, for example as general storage or messaging;</li>
+  <li>share, rent, sell or publish your licence key, pairing code or access to paid features, or run a licence on accounts that are not yours;</li>
+  <li>use the Services, or results you produce with them, to provide investment advice, trading signals, copy trading, account management or portfolio management to others without the authorisations the law requires, or use the Kalibre name to promote such a service;</li>
+  <li>present backtest or simulated results as if they were real trading results, or publish them without saying they are hypothetical;</li>
+  <li>use the Services to manipulate markets, breach your broker's or prop firm's rules, or for any unlawful purpose; or</li>
+  <li>infringe anyone's intellectual property, privacy or other rights.</li>
 </ul>
-<!-- FOR COUNSEL: Capital Markets Law No. 6362 art. 109 and Communiqué III-37.1: prohibition on unauthorised investment advice. This item regulates user conduct, not Kalibre's own activity; read together with the power to restrict access in section 14. -->
 
-<h2 id="ip">10. Intellectual property</h2>
-<p>The original texts, educational content, tools, software and design on the Site, and the "Kalibre" name and logo, belong to Kalibre Markets and are protected under Law No. 5846 on Intellectual and Artistic Works and related legislation. Short quotations may be made from the content with attribution and a link. Written permission is required to copy, reproduce or publish all or a substantial part of the content. Rights in data and content belonging to third-party sources belong to their owners.</p>
+<h2 id="ai-assistant">15. AI assistant</h2>
 
-<h2 id="your-strategies">10a. Your strategies</h2>
-<p>The strategies, rules, parameters and notes you build in Kalibre Lab or in a rule file belong to you. Kalibre Markets claims no ownership of them. Unless stated otherwise, this content is kept only on your device; if you use optional sync or sharing features, you grant Kalibre Markets a non-exclusive permission, limited in time to that function, only to store this content, show it to you and perform the function you request. Kalibre Markets does not show your strategies to others, sell them or use them in its own examples without your explicit consent. The example strategies and templates on the Site belong to Kalibre Markets; you may modify and run them for your own use but may not republish them for commercial purposes.</p>
-<!-- FOR COUNSEL: Whether a "rule set" is a work under Law No. 5846 is debatable; the clause rests on Kalibre not claiming rights rather than on ownership. If a sync feature is launched, sync data must be added to the Privacy Policy. -->
+<p>Where we offer an assistant on the Site, its replies are generated automatically by a third-party AI service. They may be wrong or out of date and are not advice. Do not enter personal details, account numbers, keys or passwords. The Privacy Policy explains which provider receives your messages.</p>
 
-<h2 id="third-party">11. Third-party links</h2>
-<p>The Site may contain links to sites and services belonging to third parties. Kalibre Markets has no control over the content, privacy practices or terms of those sites; their use is subject to the terms of the relevant third party.</p>
+<h2 id="changes">16. Changes to the Services and to these Terms</h2>
 
-<h2 id="paid">12. Paid services</h2>
-<p>The Kalibre Lab subscription is monthly. Payment is taken on the payment page provided by Stripe; the applicable price and taxes are shown on the payment page. The subscription renews automatically at the end of each period with the same payment method until you cancel it.</p>
-<p>After payment you receive a license key. The key is bound to the first MetaTrader 5 accounts on which it is used, up to two; to move it to another account you can contact us.</p>
-<p>You can cancel your subscription at any time from the Account page on the Site. Cancellation takes effect at the end of the current period, and you can continue to use the service until the end of the period. Except where required by law, no partial refunds are given for periods already used. If a payment cannot be collected, Stripe retries the payment over a few days; during this time your license remains valid for at most three more days.</p>
-<p>When the subscription ends, Kalibre Engine does not open new trades on a live account; the stop, target and exit rules of your open positions continue to be managed. The free sections and past tests in Strategy Tester do not require a subscription.</p>
-<p>Paid services are also subject to any pre-contractual information form and distance sales contract that may be provided before purchase. In the event of a conflict between those documents and these Terms, those documents prevail with respect to the service concerned.
-<!-- FOR COUNSEL: (1) The seller is outside Turkey; how should the distance contract, pre-contractual information and right of withdrawal be applied to sales to consumers in Turkey? (2) A waiver of the 14-day right of withdrawal has been added to the payment flow (consent checkbox on /pro and /en/pricing, stored as cayma_onay in the Checkout metadata); confirmation on a durable medium (e-mail) should be assessed separately. (3) Notice of automatic renewal. -->
-</p>
-<p>Signing up for the waitlist does not create any obligation to purchase.</p>
+<p>16.1 <strong>Services.</strong> We improve the Services over time and may add, change or remove features. If we remove a paid feature that is a main reason for your subscription, or stop a paid product entirely, we will give reasonable notice where we can, and you may cancel and receive a pro-rata refund of prepaid fees for the unused period.</p>
 
-<h2 id="withdrawal">12a. Right of withdrawal</h2>
-<p>If you subscribed as a consumer, under distance contract legislation you have the right to withdraw within fourteen days from the day the contract is concluded, without giving any reason. However, supply of the digital content begins when the licence key is delivered to you and the licence is activated for the first time on a MetaTrader 5 account; if you gave your explicit consent to this on the payment page, your right of withdrawal ends after activation. Payment cannot be made without this consent. If you have never activated the licence, you may withdraw within fourteen days by writing to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>; the amount you paid is refunded to the same payment method within fourteen days at the latest.</p>
+<p>16.2 <strong>These Terms.</strong> We may update these Terms, for example to reflect new products, legal changes or how the Services work. We will post the new version with its effective date. For material changes we will email account holders at least 30 days before the change applies to them, unless a shorter period is needed for legal or security reasons. If you do not agree, you may cancel before the change takes effect. If you keep using the Services after that date, the new Terms apply.</p>
 
-<h2 id="price-changes">12b. Price changes</h2>
-<p>Kalibre Markets may change the subscription price. For existing subscribers, a new price applies only from the first renewal period that starts at least thirty days after the change is notified by e-mail. If you do not accept the new price, you may cancel your subscription before that renewal.</p>
+<h2 id="suspension-termination">17. Suspension and termination</h2>
 
-<h2 id="trials">12c. Trial periods and promotion codes</h2>
-<p>If a free trial, discount or promotion code is offered, its duration, scope and whether a paid subscription follows the end of the trial are shown separately with the offer; if you will be charged at the end of a trial, this is stated clearly before your payment method is requested. Promotion codes are personal, cannot be exchanged for cash, cannot be combined with other codes and are valid until the expiry date stated on them. Codes that are misused may be cancelled.</p>
-<p>Codes with a 100% discount given to invited testers are valid for a period of at most three months and cover only the products stated with the code (for example, Kalibre Bridge only); while the code is active your licence is limited to those products. After the code expires, your subscription continues at the normal price unless you cancel it, and your licence then covers the full product. You are notified by e-mail before any charge is made.</p>
-<!-- FOR COUNSEL: With tester codes the subscription can start without a payment method (Stripe "if_required"); if there is no payment method when the code ends, the subscription becomes unpaid and the licence ends. The founder should confirm that the "notice before any charge" commitment is met by Stripe's renewal reminder e-mails. -->
+<p>17.1 <strong>By you.</strong> You may stop using the Services, cancel your subscription or delete your account at any time.</p>
 
-<h2 id="taxes">12d. Taxes and payment disputes</h2>
-<p>Applicable taxes are either included in the price shown on the payment page or shown separately. The tax consequences of gains and losses from trades you make with Kalibre Lab are yours. If you start a payment dispute through your bank without a valid reason, your licence may be suspended until the dispute is resolved; we ask that you contact us first.</p>
-<!-- FOR COUNSEL: Regulation on Distance Contracts art. 15(1)(ğ): withdrawal exception for intangible goods performed instantly in electronic form and delivered instantly to the consumer; applying the exception may require the consumer's prior explicit consent and confirmation of the information on a durable medium. The pre-contractual information form and distance sales contract are referenced in section 12; their content must match. Notice obligations for subscription renewals under the Regulation and Law No. 6502 art. 51 (subscription contracts) should be assessed separately. The payment-dispute sentence must not read as restricting the consumer's right to apply to their bank. -->
+<p>17.2 <strong>By us, for cause.</strong> We may suspend or end your access, account or licence, with notice where practical, if you seriously or repeatedly breach these Terms, if your use creates a security, legal, fraud or sanctions risk, if a payment is disputed or fails, or if the law or a regulator requires it. Where a breach can be fixed, we will usually give you a reasonable chance to fix it first. If we end your subscription for a serious breach, prepaid fees are not refunded, unless the law requires otherwise.</p>
 
-<h2 id="liability">13. Limitation of liability</h2>
-<p>The Site and its content are provided "as is". Kalibre Markets does not warrant that the Site will operate without interruption or error, or that the content will be fit for a particular purpose.</p>
-<p>To the extent permitted by law, Kalibre Markets is not liable for investment decisions made in reliance on Site content or Kalibre Lab results, for loss of profit or damage arising from such decisions, for indirect damage, for interruption of the bridge or delays in data, or for the Site being unavailable.</p>
-<p>These limitations do not exclude or restrict Kalibre Markets' liability arising from intent or gross negligence, or consumers' statutory rights.</p>
-<p><strong>Maximum liability.</strong> To the extent permitted by law and without prejudice to cases of intent and gross negligence, Kalibre Markets' total liability to you for any reason arising from these Terms or the paid services does not exceed the total subscription fees you actually paid to Kalibre Markets in the twelve months before the event that caused the damage. For users of the free sections or a free beta licence this amount is zero, except where the law requires otherwise. This limit never makes Kalibre Markets liable for market losses from trades that Kalibre Engine opens with your rule file; under section 8b those losses are yours.</p>
-<p><strong>Force majeure.</strong> Kalibre Markets cannot be held liable for late performance or non-performance of its obligations due to events that could not reasonably be foreseen or prevented, such as natural disasters, epidemics, war, terrorism, civil unrest, strikes, decisions of public authorities, large-scale outages of energy or internet infrastructure, disruptions outside Kalibre Markets' control in the services of hosting and storage providers, brokers, MetaQuotes or payment institutions, and cyber attacks. The obligations concerned are suspended for that period. If force majeure lasts longer than thirty days, paying subscribers may terminate their subscription immediately and request a refund of the fee for the unused period.</p>
-<!-- FOR COUNSEL: Under Turkish Code of Obligations art. 115, an agreement excluding liability for gross fault is void; for slight negligence, consumer contracts are also subject to unfair-terms review under Law No. 6502 art. 5 and the Unfair Terms Regulation. The validity of a 12-month fee cap against consumers is debatable; a separate cap for merchant users and a softened version for consumers ("to the extent permitted by law") could be considered. "Zero" for free users may be considered an unfair term in Turkey; alternative: a reasonable fixed amount. The 30-day threshold and refund right in force majeure were added to keep the balance for consumers. EU/UK consumer law may also limit these clauses. -->
+<p>17.3 <strong>By us, without cause.</strong> We may also end your subscription for any other reason by giving you at least 30 days' notice. In that case we refund prepaid fees for the unused period.</p>
 
-<h2 id="claims">13a. Third-party claims</h2>
-<p>You agree to cover the damage and reasonable defence costs that Kalibre Markets incurs because of claims brought against it by third parties as a result of your culpable breach of these Terms, of the terms of your broker or data provider, or of the rights of third parties, where that damage is determined by a final court or arbitral decision or with your consent. When Kalibre Markets learns of such a claim, it notifies you within a reasonable time and gives you the opportunity to take part in the defence.</p>
-<!-- FOR COUNSEL: A general indemnity obligation in a consumer contract may be considered an unfair term; the clause was tied to fault and a final decision. A broader version could be kept for merchant users. Since the general liability rules of the Code of Obligations (art. 49 et seq.) apply anyway, including this clause is a matter of choice. -->
+<p>17.4 <strong>Effect.</strong> When your licence ends, the add-ons stop paid functions as described in section 7.5. Sections that by their nature should continue (including 4, 12, 13, 19 to 23 and 24) survive termination.</p>
 
-<h2 id="changes-access">14. Changes to the service, suspension and termination</h2>
-<p>Kalibre Markets may change or end all or part of the Service. If it permanently removes a paid feature, it refunds the fee for the unused period.</p>
-<p>If you breach these Terms, use the Service in a way that harms others, or a legal obligation requires it, Kalibre Markets may temporarily suspend your access or licence; if the breach can be remedied it first gives you a reasonable period, and in the case of serious or repeated breaches it may end the licence with notice. Where the licence is ended for a serious breach, the fee for the unused period is not refunded, except where the law requires otherwise. You may also stop using the Service at any time and cancel your subscription under section 12.</p>
-<p>Whatever the reason the licence ends, Kalibre Engine stops opening new trades and your open positions are managed as described in section 12; however, checking and, if necessary, closing your open positions is your responsibility. The provisions on intellectual property, limitation of liability, third-party claims, governing law and other provisions that by their nature must continue remain in force after the agreement ends.</p>
-<!-- FOR COUNSEL: Whether the Engine continues to manage open positions during a suspension must be confirmed technically; the text must be consistent with section 12. -->
+<h2 id="statutory-rights">18. Your statutory rights</h2>
 
-<h2 id="law">15. Governing law and disputes</h2>
-<p>These Terms are governed by the laws of the Republic of Türkiye. Those who use the Site as consumers may apply to the consumer arbitration committees at their place of residence within the monetary limits set under Consumer Protection Law No. 6502, and to consumer courts for disputes exceeding those limits. For disputes with users who are not consumers, the courts and enforcement offices of Istanbul have jurisdiction.</p>
+<p>If you are a consumer, you have legal rights in relation to digital content and services that are not as described, faulty or not supplied with reasonable care and skill. Nothing in these Terms affects those rights. Where these Terms say something applies "to the extent the law allows", that means it does not apply where a law that protects you says otherwise.</p>
 
-<h2 id="general">16. General provisions</h2>
-<p>These Terms, the Risk Disclosure and the Privacy Policy, together with the pre-contractual information form and distance sales contract provided separately for paid services, form the entire agreement between us regarding the Service. If any provision is held invalid, the other provisions are not affected; the invalid provision is deemed replaced by the valid provision closest to its purpose. Kalibre Markets not exercising a right, or exercising it late, does not mean it has waived that right. You may not transfer your rights under these Terms or your licence to anyone else without Kalibre Markets' written consent. Kalibre Markets may transfer these Terms to a person who takes over the Service, provided your rights are not reduced and you are notified. These Terms are published in Turkish and English; if the two texts conflict, the Turkish text prevails.</p>
-<!-- FOR COUNSEL: Against consumers, the rule that the Turkish text prevails may be challenged because a foreign consumer would be bound in a language they do not understand; decide whether the English version should be stated to be for information only, or whether both languages should be equal. Check whether consumer consent is required for transfer (Code of Obligations art. 205, transfer of contract). -->
+<h2 id="disclaimers">19. Disclaimers</h2>
 
-<h2 id="notices">16a. Notices and communications</h2>
-<p>Notices under these Terms are given to the e-mail address you provided at checkout or through the Site. A notice sent by e-mail is deemed to reach you on the day it is sent; keeping your e-mail address up to date is your responsibility. Service e-mails about your licence, your payments, security and changes to these Terms are part of the subscription and do not require separate consent. Promotional messages such as campaigns, new products and newsletters are sent only if you give separate consent; you may withdraw that consent at any time through the link in each message or by writing to us. For formal notices to us, use markets@kalibrefin.com and the postal address given in section 1.</p>
-<!-- FOR COUNSEL: Law No. 6563 on the Regulation of Electronic Commerce art. 6 and the Regulation on Commercial Communications: prior consent and registration in the Turkish message management system (İYS) for commercial messages. The distinction between service e-mails and commercial messages must match the exceptions in art. 6 of the Regulation. For merchant users, assess whether notices with serious consequences (termination) require registered electronic mail (KEP) or a notary. For EU/UK users, e-privacy rules on marketing consent also apply. -->
+<p>19.1 The Services are provided "as is" and "as available". To the extent the law allows, we make no promise that they will be uninterrupted, error-free or secure, that calculations or data will be accurate or complete, or that they will meet your needs or produce any trading result, and we exclude implied warranties of merchantability, fitness for a particular purpose and non-infringement.</p>
 
-<h2 id="contact">17. Contact</h2>
-<p>For questions about these Terms: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
+<p>19.2 We are not responsible for third-party services we do not control, including MetaTrader 5, your broker or prop firm, internet providers, Stripe, Google and our hosting and storage providers.</p>
 
+<h2 id="liability">20. Limitation of liability</h2>
+
+<p>20.1 <strong>What we do not exclude.</strong> Nothing in these Terms limits or excludes our liability for death or personal injury caused by our negligence, for fraud or fraudulent misrepresentation, for loss caused by our intentional misconduct or gross negligence, or for any other liability that the law does not allow us to limit or exclude.</p>
+
+<p>20.2 <strong>Trading losses.</strong> To the extent the law allows, we are not liable for trading or investment losses, lost profits or missed opportunities resulting from your trading decisions, your rule files, the operation of Kalibre Engine according to your rules and settings, market conditions, slippage or gaps, or the acts of your broker, prop firm or other third parties.</p>
+
+<p>20.3 <strong>Indirect loss.</strong> To the extent the law allows, we are not liable for indirect or consequential loss, loss of data you did not back up, or loss of business, revenue or goodwill.</p>
+
+<p>20.4 <strong>Cap.</strong> To the extent the law allows, our total liability to you for all claims arising out of or relating to the Services or these Terms in any 12-month period is limited to the greater of (a) the fees you paid us in the 12 months before the event giving rise to the claim and (b) USD 100.</p>
+
+<p>20.5 <strong>Consumers in the EU, EEA and UK.</strong> If you are a consumer in these regions, we are liable for foreseeable loss caused by our breach of these Terms or our failure to use reasonable care and skill, and sections 20.2 to 20.4 apply only as far as the law of your country allows.</p>
+
+<!-- FOR COUNSEL: (1) Cap formula follows QuantConnect (greater of 12 months' fees or USD 100) and FX Blue (fees paid). The previous TR draft set the cap at zero for free users; replaced by the USD 100 floor as more defensible for consumers. (2) Under German-style law (Edgewonk), limitation for ordinary negligence is restricted to typical foreseeable damage for breach of essential obligations; check if [COUNTRY OF RESIDENCE] law needs a similar formula. (3) Check that 20.2 is enforceable against consumers in key markets (EU Unfair Terms Directive, UK CRA 2015 s.31 and s.65). -->
+
+<h2 id="indemnity">21. Indemnity</h2>
+
+<p>To the extent the law allows, you will cover our reasonable losses and costs (including reasonable legal fees) from claims brought against us by third parties that arise from your breach of these Terms, your breach of your broker's or a data provider's terms, your unlawful use of the Services, or Your Content infringing someone's rights. This does not apply to the extent the claim was caused by our own breach or negligence. We will tell you about such a claim promptly and let you take part in the defence. If you are a consumer, this section applies only where the law of your country allows it.</p>
+
+<!-- FOR COUNSEL: indemnity kept because every competitor read has one; narrowed along the lines of Edgewonk and 3Commas. Consider dropping it for consumers entirely. -->
+
+<h2 id="force-majeure">22. Events outside our control</h2>
+
+<p>We are not responsible for delay or failure caused by events beyond our reasonable control, such as natural disasters, epidemics, war, terrorism, civil unrest, strikes, government action, widespread power or internet failures, failures of hosting, storage, payment or broker services, or cyber attacks we could not reasonably prevent. Our obligations are paused while the event continues. If it lasts more than 30 days, you may cancel and receive a pro-rata refund of prepaid fees for the unused period.</p>
+
+<h2 id="law">23. Governing law and disputes</h2>
+
+<p>23.1 <strong>Talk to us first.</strong> If you have a complaint, please email <span class="yer-tutucu">[CONTACT EMAIL]</span>. We aim to reply within 14 days and to resolve most issues informally.</p>
+
+<p>23.2 <strong>Governing law.</strong> These Terms and any dispute about them or the Services are governed by the laws of <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>, without regard to its conflict-of-law rules. The UN Convention on Contracts for the International Sale of Goods does not apply.</p>
+
+<p>23.3 <strong>Courts.</strong> The courts of <span class="yer-tutucu">[CITY, COUNTRY]</span> have jurisdiction.</p>
+
+<p>23.4 <strong>Consumers.</strong> If you are a consumer, you also keep the protection of the mandatory laws of the country where you live, and you may bring proceedings in the courts of that country. EU consumers may also use the out-of-court dispute bodies available in their country.</p>
+
+<!-- FOR COUNSEL: (1) [COUNTRY OF RESIDENCE] not yet chosen; the majority of competitors use the provider's home law and courts. (2) No arbitration clause: TradingView and QuantConnect (US) use US arbitration with a class-action waiver; FX Blue, Myfxbook, Edgewonk, 3Commas, TradeZella and TraderSync do not. Decide whether to add a US-only arbitration and class-waiver clause with an opt-out window. (3) If the entity is in Turkey, Turkish consumer law (TKHK 6502) may also apply to Turkish users and the Turkish-language terms should be aligned. -->
+
+<h2 id="general">24. General</h2>
+
+<p>24.1 <strong>Entire agreement.</strong> These Terms, together with any Product Terms, the Risk Disclosure and the Refund and Cancellation Policy, are the whole agreement between you and us about the Services.</p>
+
+<p>24.2 <strong>Language.</strong> These Terms are written in English. If we provide a translation, it is for convenience, and the English version governs if they differ, unless the law of your country requires otherwise.</p>
+
+<p>24.3 <strong>Transfer.</strong> You may not transfer your account, licence or rights under these Terms without our written consent. We may transfer our rights and obligations to another organisation, for example if our business is sold, as long as this does not reduce your rights. We will tell you if this happens.</p>
+
+<p>24.4 <strong>Severability.</strong> If a court finds part of these Terms unenforceable, the rest stays in effect and the affected part is applied as closely as possible to its original purpose.</p>
+
+<p>24.5 <strong>No waiver.</strong> If we do not enforce a right straight away, we can still enforce it later.</p>
+
+<p>24.6 <strong>No third-party rights.</strong> No one other than you and us has a right to enforce these Terms.</p>
+
+<p>24.7 <strong>Notices.</strong> We send notices to the email address on your account or show them in the Services. An email notice counts as received when sent, unless we receive a delivery failure. Formal notices to us must be sent to <span class="yer-tutucu">[CONTACT EMAIL]</span> and, for legal claims, also to <span class="yer-tutucu">[POSTAL ADDRESS]</span>.</p>
+
+<p>24.8 <strong>Electronic communications.</strong> You agree to receive contracts, receipts and notices electronically. Service emails about your account, licence, payments, security and changes to these Terms are part of the Services. Product update emails and how to opt out of them are described in the Privacy Policy.</p>
+
+<h2 id="contact">25. Contact</h2>
+
+<p><span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading as Kalibre Markets, <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>. Email: <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
     </article>
-    <aside class="belge-kenar" aria-label="On this page"><a href="#parties">1. Parties and scope</a><a href="#acceptance">2. Acceptance and changes</a><a href="#eligibility">2a. Who may use the Service</a><a href="#no-advice">3. Not investment advice</a><a href="#data">4. Data policy</a><a href="#simulations">5. Simulations and past performance</a><a href="#assistant">6. AI assistant</a><a href="#your-data">7. Your account, data you enter and your licence key</a><a href="#software">8. Kalibre Lab and the MetaTrader 5 add-ons</a><a href="#beta">8a. Beta version</a><a href="#engine-real">8b. Using Kalibre Engine on a real account</a><a href="#brokers">8c. Broker connections and keys</a><a href="#prohibited">9. Prohibited uses</a><a href="#ip">10. Intellectual property</a><a href="#your-strategies">10a. Your strategies</a><a href="#third-party">11. Third-party links</a><a href="#paid">12. Paid services</a><a href="#withdrawal">12a. Right of withdrawal</a><a href="#price-changes">12b. Price changes</a><a href="#trials">12c. Trial periods and promotion codes</a><a href="#taxes">12d. Taxes and payment disputes</a><a href="#liability">13. Limitation of liability</a><a href="#claims">13a. Third-party claims</a><a href="#changes-access">14. Changes to the service, suspension and termination</a><a href="#law">15. Governing law and disputes</a><a href="#general">16. General provisions</a><a href="#notices">16a. Notices and communications</a><a href="#contact">17. Contact</a></aside>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#who-we-are">1. Who we are and what these Terms cover</a><a href="#eligibility">2. Who can use the Services</a><a href="#account">3. Your Kalibre Markets account</a><a href="#not-advice">4. What the Services are, and what they are not</a><a href="#kalibre-lab">5. Kalibre Lab</a><a href="#kalibre-bridge">6. Kalibre Bridge</a><a href="#kalibre-engine">7. Kalibre Engine</a><a href="#third-parties">8. Broker and third-party connections</a><a href="#beta-features">9. Beta features</a><a href="#payment">10. Subscriptions and payment</a><a href="#withdrawal">11. Right of withdrawal (EU, EEA and UK consumers)</a><a href="#licence">12. Licence to use our software</a><a href="#your-content">13. Your strategies and content</a><a href="#acceptable-use">14. Acceptable use</a><a href="#ai-assistant">15. AI assistant</a><a href="#changes">16. Changes to the Services and to these Terms</a><a href="#suspension-termination">17. Suspension and termination</a><a href="#statutory-rights">18. Your statutory rights</a><a href="#disclaimers">19. Disclaimers</a><a href="#liability">20. Limitation of liability</a><a href="#indemnity">21. Indemnity</a><a href="#force-majeure">22. Events outside our control</a><a href="#law">23. Governing law and disputes</a><a href="#general">24. General</a><a href="#contact">25. Contact</a></aside>
   </div>
 </main>
 
@@ -234,12 +383,16 @@
       <h4>Kalibre Markets</h4>
       <a href="/about">About</a>
       <a href="mailto:markets@kalibrefin.com">Contact</a>
-      <a href="/terms">Terms of use</a>
+      <a href="/terms">Terms of service</a>
       <a href="/privacy">Privacy</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/cookies">Cookies</a>
       <a href="/risk-disclosure">Risk disclosure</a>
+      <a href="/cookies#manage" data-cerez-ayar>Cookie settings</a>
     </div>
     <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>
+
 </body>
 </html>

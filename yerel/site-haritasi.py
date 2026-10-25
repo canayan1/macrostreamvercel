@@ -17,7 +17,8 @@ EK = ['lab/index.html']
 # Türkçe sayfa -> İngilizce eşi (site kökü İngilizce, Türkçe /tr altında; sayfa-uret.py ESLER ile aynı).
 ESLER = {'/tr': '/', '/tr/beta': '/beta', '/tr/account': '/account', '/tr/sign-in': '/sign-in', '/tr/prop': '/prop', '/tr/forex': '/forex',
          '/tr/setup': '/setup', '/tr/security': '/security', '/tr/methodology': '/methodology', '/tr/about': '/about',
-         '/tr/pricing': '/pricing', '/tr/risk-disclosure': '/risk-disclosure', '/tr/terms': '/terms', '/tr/privacy': '/privacy'}
+         '/tr/pricing': '/pricing', '/tr/risk-disclosure': '/risk-disclosure', '/tr/terms': '/terms', '/tr/privacy': '/privacy',
+         '/tr/refunds': '/refunds', '/tr/cookies': '/cookies'}
 ONCELIK = {'/': '1.0', '/tr': '0.9', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
            '/prop': '0.8', '/tr/prop': '0.7', '/forex': '0.8', '/tr/forex': '0.7'}
 

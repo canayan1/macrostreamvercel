@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Privacy Policy | Kalibre Lab</title>
-<meta name="description" content="How Kalibre Markets processes personal data under Turkish Law No. 6698 (KVKK): site visits, analytics, subscriptions, the encrypted MetaTrader 5 bridge, retention and your rights.">
+<title>Privacy Policy | Kalibre Markets</title>
+<meta name="description" content="What personal data Kalibre Markets collects, why, who processes it, how long it is kept and your rights. Trading data stays local; Bridge data is end-to-end encrypted.">
 <link rel="canonical" href="https://kalibremarkets.com/privacy">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/privacy">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/privacy">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/privacy">
-<meta property="og:title" content="Privacy Policy | Kalibre Lab">
-<meta property="og:description" content="How Kalibre Markets processes personal data under Turkish Law No. 6698 (KVKK): site visits, analytics, subscriptions, the encrypted MetaTrader 5 bridge, retention and your rights.">
+<meta property="og:title" content="Privacy Policy | Kalibre Markets">
+<meta property="og:description" content="What personal data Kalibre Markets collects, why, who processes it, how long it is kept and your rights. Trading data stays local; Bridge data is end-to-end encrypted.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -22,7 +22,34 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
 <script src="/static/kalibre-auth.js" defer></script>
+<style>
+.belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
+.ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
+.belge-govde h3 { font-size: 19px; }
+.belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
+.belge-govde blockquote p { margin: 0 0 .6em; } .belge-govde blockquote p:last-child { margin-bottom: 0; }
+.belge-govde blockquote.buyuk-harf p { font-size: 13px; letter-spacing: .01em; }
+.belge-izgara > * { min-width: 0; }
+.tablo-kap { overflow-x: auto; margin: 16px 0 24px; }
+.belge-govde table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+.belge-govde table.genis { min-width: 520px; }
+.belge-govde th, .belge-govde td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+.belge-govde th { color: var(--metin); font-weight: 600; border-bottom-color: var(--cizgi-2); }
+.belge-govde p, .belge-govde li { overflow-wrap: break-word; }
+.icindekiler-mobil { display: none; margin: 0 0 28px; border: 1px solid var(--cizgi); border-radius: 4px; padding: 10px 14px; }
+.icindekiler-mobil summary { cursor: pointer; font-weight: 600; }
+.icindekiler-mobil ol { list-style: none; padding: 0; margin: 10px 0 0; }
+.icindekiler-mobil a { display: block; padding: 5px 0; text-decoration: none; }
+@media (max-width: 960px) { .icindekiler-mobil { display: block; } }
+</style>
 </head>
 <body>
 
@@ -36,8 +63,9 @@
       <a href="/setup">Setup</a>
       <a href="/security">Security</a>
       <a href="/pricing">Pricing</a>
-      <a href="/tr/privacy" hreflang="tr" lang="tr">TR</a>
     </nav>
+    <a class="dil" href="/tr/privacy" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
     <a class="dugme kucuk" href="/lab">Open the lab</a>
   </div>
 </header>
@@ -45,141 +73,180 @@
 <main class="belge">
   <div class="kap belge-izgara">
     <article class="belge-govde">
+<h1>Privacy Policy</h1>
 
-<h1>Privacy Policy and Information Notice</h1>
-<p class="not">Effective date: 25 October 2026</p>
-<p class="not">This is a translation. If the English and Turkish versions differ, the Turkish version prevails. <a href="/tr/privacy" hreflang="tr" lang="tr">Türkçe metin</a></p>
-<!-- FOR COUNSEL: EU/UK consumers may require English-language terms and privacy information that stand on their own (GDPR, consumer protection law) rather than a translation in which the Turkish text prevails. To be reviewed. -->
-<p class="giris">This notice explains, under Turkish Law No. 6698 on the Protection of Personal Data ("KVKK"), which personal data is processed through kalibremarkets.com (the "Site"), for what purposes and on what legal grounds, to whom it is transferred, and what your rights are.</p>
+<p class="belge-meta">Effective date: 25 October 2026<br>Version: 2026-10-25-en1</p>
+<details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#controller">1. Who is responsible for your data</a></li><li><a href="#collect-why">2. What we collect and why</a></li><li><a href="#sharing">3. Who we share data with</a></li><li><a href="#transfers">4. International transfers</a></li><li><a href="#retention">5. How long we keep data</a></li><li><a href="#security">6. Security</a></li><li><a href="#rights">7. Your rights</a></li><li><a href="#children">8. Children</a></li><li><a href="#changes">9. Changes to this policy</a></li><li><a href="#contact">10. Contact</a></li></ol></details>
 
-<h2 id="controller">1. Data controller</h2>
-<p>[COMPANY NAME] ("Kalibre Markets"). Address: [ADDRESS]. E-mail: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-<p>Separate services offered at oyun.kalibremarkets.com and other subdomains of kalibremarkets.com are outside the scope of this notice.</p>
+<p>This policy explains what personal data Kalibre Markets collects when you use our website, Kalibre Lab, Kalibre Bridge, Kalibre Engine and our other products (the "Services"), why we use it, who we share it with, how long we keep it and what rights you have.</p>
 
-<h2 id="account">2. Your Kalibre Markets account</h2>
-<p>The Site's free tools, including the Kalibre Lab strategy builder, can be used without an account. To subscribe, you need a Kalibre Markets account. One account covers all Kalibre Markets products. You sign in with a one-time link or code sent to your e-mail address, or with your Google account; we do not use passwords.</p>
-<p><strong>What we store in your account:</strong> your e-mail address; the name and interface language you choose; whether you agreed to receive product news and when; when you accepted the Terms of Use and which version; the licences linked to your account (product, the last five characters of the key, status and validity date); and, if you are signed in while using the lab, the strategy drafts and lists you save. We do not store market data, positions or trade history in your account. Your MetaTrader 5 pairing code and broker keys stay in your browser (section 5) and are not saved to your account.</p>
-<p><strong>Google sign-in.</strong> If you sign in with Google, Google sends us your e-mail address, your name and the address of your profile picture, and confirms that the e-mail address is verified. We use these only to create and identify your account; we do not receive your Google password or access to your Google services.</p>
-<p><strong>Sign-in e-mails</strong> are sent through our e-mail delivery provider ([EMAIL DELIVERY PROVIDER]). Sign-in records (time, IP address and browser information) are kept by our account provider for security.</p>
-<p><strong>Account provider.</strong> Account data is stored by Supabase, Inc. on servers in [SUPABASE REGION], acting as our data processor. Legal ground: the establishment and performance of the contract for the account and subscription you request (KVKK art. 5(2)(c)); for product news, your consent (KVKK art. 5(1)), which you can withdraw at any time on the Account page.</p>
-<p><strong>Deleting your account.</strong> You can delete your account at any time on the Account page. Your profile, saved strategies and licence links are deleted at once; an active subscription is set to end at the close of the current period and you are not charged again. Payment and invoice records are kept as described in section 8.</p>
-<!-- FOR COUNSEL: (1) Supabase's role as processor and the data processing agreement (DPA) to be accepted in the Supabase dashboard; region to be filled in ([SUPABASE REGION], planned: EU, Frankfurt). (2) Transfer abroad under KVKK art. 9 for Supabase and the e-mail delivery provider. (3) Whether Google, for Google sign-in, should be named as an independent controller. -->
+<p>Our approach in one paragraph: Kalibre Lab is built to work locally first. Your trading data (prices from your broker, positions, account balances and trade history) is not stored on our servers. The Bridge relay only ever holds encrypted packets that we cannot read, for at most two hours. What we do keep is the minimum needed to run your account and subscription.</p>
 
-<h2 id="data">3. What data we process and why</h2>
-<p><strong>a) When you visit the Site.</strong> Your IP address, browser and device information, the page requested and the time of the request are recorded in server logs by the Site's hosting provider. This information is processed to operate the Site, keep it secure and protect it against automated attacks. Legal ground: our legitimate interest in providing the Site securely (KVKK art. 5(2)(f)).</p>
-<p><strong>b) Visit statistics (Google Analytics).</strong> Used only if you select "Accept" in the cookie banner. In that case usage data such as a cookie identifier, the pages visited, visit duration, device and browser type and approximate location is processed to measure how the Site is used. Legal ground: your explicit consent (KVKK art. 5(1)). You may withdraw your consent at any time (see section 6).</p>
-<p><strong>c) AI assistant.</strong> Messages you write to the assistant are sent to Google's Gemini service, or to Groq if that service is unavailable, to generate a reply. Your messages are not stored on our servers; the last 20 messages of your chat history are kept only in your own browser. Do not write identity details, contact details or other personal data to the assistant. Legal ground: provision of the service you request (KVKK art. 5(2)(c)).</p>
-<p><strong>d) Subscription waitlist.</strong> The e-mail address you leave on the waitlist is sent to us through the FormSubmit service and is used only to inform you when Kalibre Lab subscriptions become available. Legal ground: the consent you give when signing up (KVKK art. 5(1)).</p>
-<p><strong>e) Contact e-mails.</strong> The links on the contact page open your e-mail program; your name, e-mail address and message are sent to us from your own e-mail account. This information is processed to assess your question or request and to reply to you. Legal ground: our legitimate interest in responding to your request (KVKK art. 5(2)(f)) and, where your request relates to entering into a contract, the establishment of that contract (KVKK art. 5(2)(c)).</p>
-<p><strong>f) Page translation.</strong> If you press the translation button on a page, the Google Translate service is loaded and the page content and your connection information are sent to Google for translation. The service is not loaded unless you press the button.</p>
-<p><strong>g) Fonts.</strong> The Site's fonts are loaded from Google Fonts. In doing so your IP address and browser information are sent to Google's servers. Legal ground: our legitimate interest in displaying the Site (KVKK art. 5(2)(f)).</p>
-<p><strong>h) Subscription and license.</strong> When you subscribe, the payment page is provided by Stripe. Your name, e-mail address, card details and billing address are sent directly to Stripe; <strong>your card details do not reach us</strong>. The information we receive from Stripe and store is: your e-mail address, the Kalibre Markets account the subscription belongs to, your Stripe customer and subscription numbers, the status of the subscription and its validity date. In addition we store the license key issued to you and the numbers of up to two MetaTrader 5 accounts on which the license has been used. When checking the license, Kalibre Engine sends the license key and the MT5 account number to our server; these requests may also appear in the hosting provider's server logs. To prevent abuse, a request counter per account number is kept for about two minutes. The fact that you ticked the right-of-withdrawal consent box on the payment page, and any promotion code you used, are also stored at Stripe with the payment record; this record is kept so that we can show your consent was given. Service e-mails about your licence, payments and security fall under this purpose; promotional commercial messages are sent only if you give separate consent. This information is used to run the subscription, bind the license to your account and keep payment records. Legal ground: the establishment and performance of a contract (KVKK art. 5(2)(c)) and, for invoice and tax records, compliance with a legal obligation (KVKK art. 5(2)(ç)).
-<!-- FOR COUNSEL: Clarify whether Stripe acts as a data processor or as an independent data controller in this relationship (Stripe also processes data for its own fraud-prevention purposes), and which Stripe entity is the counterparty ([STRIPE ENTITY], depends on the country in which the account was opened). -->
-</p>
+<h2 id="controller">1. Who is responsible for your data</h2>
 
-<h2 id="bridge">4. MetaTrader 5 bridge</h2>
-<!-- FOR COUNSEL (not shown on the page):
-  1) Encrypted packets will be held with [STORAGE PROVIDER]; the provider may be located abroad. Because Kalibre does
-     not hold the key, it is debatable whether the packets are personal data from Kalibre's perspective. If they are,
-     a transfer mechanism is needed under KVKK art. 9 (as amended in 2024): standard contract plus notification to the
-     Board within 5 business days, or another route? The same question is open for Vercel, Google, Groq and FormSubmit.
-  2) Art. 5(2)(c) (performance of a contract) was chosen as the legal ground; assess whether it is sufficient for free
-     use and whether explicit consent should be used instead where necessary.
-  3) Broker name, server name and account type, together with the balance, may make the person identifiable; assess
-     whether these categories are disclosed clearly enough.
--->
-<p>If you choose to connect Kalibre Lab to your MetaTrader 5 account, the Kalibre Bridge add-on that you install on your own computer reads the following information, encrypts it on your computer and transmits it through the Site's server only to your browser:</p>
+<p>The controller of your personal data is <span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading as Kalibre Markets, <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> ("we", "us"). Contact: <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
+
+<!-- FOR COUNSEL: (1) If the entity is outside the EU/UK and we target EU/UK users, GDPR Art. 27 and UK GDPR Art. 27 representatives are likely needed (Myfxbook and TradingView appoint them). Add [EU REPRESENTATIVE] and [UK REPRESENTATIVE]. (2) Decide whether a DPO is required. (3) If the entity is in Turkey, add the KVKK information-notice elements and VERBIS position. -->
+
+<h2 id="collect-why">2. What we collect and why</h2>
+
+<h3>2.1 Your account</h3>
+
+<p>When you sign in we create a Kalibre Markets account, using Supabase as our authentication and database provider.</p>
+
 <ul>
-  <li>closed candles of the symbols you select: time, open, high, low and close price, tick volume;</li>
-  <li>your open positions: symbol, direction, lot size, opening time and price, current price, stop-loss and take-profit levels, profit or loss, and the number of the add-on that opened the position (magic number);</li>
-  <li>your account's currency, balance and equity;</li>
-  <li>the name of your broker, the name of the trading server and whether the account is a demo or a live account.</li>
-</ul>
-<p>The add-on does not read your account number, password, identity details or trade history; it does not open trades and makes no changes to your account.</p>
-<p><strong>End-to-end encryption.</strong> This information is encrypted (AES-256) and sealed (HMAC-SHA256) on your computer with keys derived from the pairing code that Kalibre Lab generates in your browser. The pairing code exists only in your browser and in the add-on's settings; it is never transmitted to Kalibre Markets. Kalibre Markets therefore cannot access the content of the encrypted packets. Symbol names are also part of the encrypted content. Technical details are on the <a href="/security">Security</a> page.</p>
-<p><strong>What is processed on the server.</strong> For the bridge, the Site's server processes only: the encrypted packets; the size of the packets and the time they are received; a channel number derived from the pairing code that cannot be used to recover the code; and a counter kept to limit the number of writes per channel. The encrypted packets are held in a store provided by [STORAGE PROVIDER]; a packet is replaced when a new packet of the same type arrives and is in any case deleted automatically no later than two hours after it is received. Counters are deleted after about two minutes. The content of the packets is not written to server logs. During the connection your IP address is processed by the hosting provider to deliver the transmission (see 3(a)); Kalibre Markets does not store IP addresses in connection with the bridge.</p>
-<p><strong>Legal assessment.</strong> Because Kalibre Markets does not hold the key needed to decrypt the encrypted packets, it is debatable whether these packets constitute personal data from Kalibre Markets' perspective. For transparency, this processing is described here on the assumption that it is personal data. Legal ground: provision of the service you request (KVKK art. 5(2)(c)).</p>
-<p>Using the bridge is optional. When you remove the add-on from the chart or close MetaTrader 5, data transmission stops; the last packets on the server are deleted within two hours at most.</p>
-
-<h2 id="browser">5. Data that stays only in your browser</h2>
-<p>The following data is kept on your own device, in your browser's local storage, and is not sent to us:</p>
-<ul>
-  <li>your decision journal entries;</li>
-  <li>your strategy draft in Kalibre Lab;</li>
-  <li>the MetaTrader 5 bridge pairing code and, if you changed it, the relay address setting;</li>
-  <li>your bias test and chart test results and your pre-trade check history;</li>
-  <li>the last 20 messages of your chat with the assistant;</li>
-  <li>your onboarding tour and guide preferences and your cookie preference.</li>
-</ul>
-<p>You can delete this data at any time using your browser's feature for clearing site data. Deleted data cannot be recovered. To invalidate a pairing code you can generate a new code in Kalibre Lab; after that, packets encrypted with the old code cannot be opened and you will need to enter the new code in the add-on.</p>
-<p>If you connect a Tradier account in Kalibre Lab, your Tradier access token, the selected environment and account number are also kept only in your browser's local storage. Your browser sends the token directly to Tradier and receives your account and market data directly from Tradier; none of this passes through or is stored on our servers, and we receive none of it. Disconnecting in Kalibre Lab deletes the token from your browser. Tradier processes this data under its own privacy policy.</p>
-<!-- FOR COUNSEL: Tradier connection (browser-only, direct to Tradier, nothing reaches Kalibre). Confirm whether this needs mention under recipients/transfers abroad, and whether Tradier's personal-use API terms require any wording here. To be reviewed. -->
-<p>If you connect an Alpaca account in Kalibre Lab, your Alpaca API key ID and secret key, the selected environment and any symbols you add to your list are also kept only in your browser's local storage. Your browser sends the keys directly to Alpaca and receives your account and market data directly from Alpaca; none of this passes through or is stored on our servers, and we receive none of it. Disconnecting in Kalibre Lab deletes the keys from your browser. Alpaca processes this data under its own privacy policy.</p>
-<!-- FOR COUNSEL: Alpaca connection (browser-only, user's own personal API keys, direct to Alpaca, nothing reaches Kalibre). Same questions as Tradier: recipients/transfers abroad, and whether Alpaca's API terms need wording here. A later Alpaca Connect (OAuth) version would involve a small Kalibre server step for the code exchange and must be reviewed again before launch. To be reviewed. -->
-
-<h2 id="cookies">6. Cookies</h2>
-<p>Cookies used on the Site:</p>
-<ul>
-  <li><strong>Strictly necessary cookies.</strong> The cookie used by our hosting provider's security check. It is required for the Site to work and does not depend on your consent.</li>
-  <li><strong>Analytics cookies.</strong> Google Analytics cookies (<code>_ga</code> and those beginning with <code>_ga_</code>, up to 2 years). Used only with your consent.</li>
-</ul>
-<p>You can change your cookie preference at any time. When you withdraw your consent, the Google Analytics cookies are deleted from your browser.</p>
-<p><button type="button" class="dugme ikincil kucuk" onclick="window.kmCerezTercihi&amp;&amp;window.kmCerezTercihi()">Change cookie preferences</button></p>
-
-<h2 id="recipients">7. Parties to whom data is transferred</h2>
-<p>Your personal data is transferred, limited to the purposes above, to the following service providers:</p>
-<ul>
-  <li><strong>Vercel Inc.</strong> Hosting and security of the Site.</li>
-  <li><strong>Google LLC.</strong> Google Analytics (only with your consent), Gemini (assistant), Google Translate (only if you press the translation button) and Google Fonts.</li>
-  <li><strong>Groq, Inc.</strong> Fallback reply service for the assistant.</li>
-  <li><strong>[STORAGE PROVIDER].</strong> Storage of the MetaTrader 5 bridge's encrypted packets for up to two hours (the provider cannot read the content of the packets) and storage of subscription license records.</li>
-  <li><strong>Supabase, Inc.</strong> Storage of Kalibre Markets accounts (section 2) and sign-in.</li>
-  <li><strong>[EMAIL DELIVERY PROVIDER].</strong> Delivery of sign-in e-mails.</li>
-  <li><strong>Google LLC (Google sign-in).</strong> Only if you choose to sign in with Google.</li>
-  <li><strong>[STRIPE ENTITY] (Stripe).</strong> Collection of subscription payments, invoicing, subscription management and fraud prevention.</li>
-  <li><strong>FormSubmit.</strong> Delivery of waitlist sign-ups.</li>
-  <li><strong>Our e-mail service provider.</strong> Receipt and storage of e-mails you send us.</li>
-</ul>
-<p>The servers of these service providers are located abroad, mainly in the United States of America; the servers of [STORAGE PROVIDER] may also be located abroad. The data described above is therefore transferred abroad.</p>
-<p>Your personal data may also be transferred to public authorities and institutions authorised by law, in the cases provided for by law and upon request.</p>
-
-<h2 id="retention">8. Retention periods</h2>
-<ul>
-  <li>Server logs: for the limited period set by the hosting provider.</li>
-  <li>Google Analytics data: for the period set in the Google Analytics settings, at most 14 months.</li>
-  <li>Encrypted packets of the MetaTrader 5 bridge: at most two hours; write counters about two minutes.</li>
-  <li>Waitlist: until information about subscriptions has been sent or until you ask to be removed from the list.</li>
-  <li>License record (e-mail, Stripe numbers, license key, linked MT5 account numbers): for the duration of the subscription and at most one year after it ends. Payment and invoice records are kept at Stripe and in our accounting records for the period required by the applicable tax and commercial legislation.</li>
-  <li>Account (profile, saved strategies, licence links): until you delete your account. Accounts with no sign-in and no subscription for three years may be deleted after advance notice by e-mail. Sign-in records: for the period set by our account provider, at most one year.</li>
-  <li>Contact e-mails: after your request has been resolved, for the statutory limitation period for possible disputes.</li>
-</ul>
-<p>Data whose retention period has expired is deleted, destroyed or anonymised.</p>
-
-<h2 id="rights">9. Your rights</h2>
-<p>Under Article 11 of the KVKK you have the right to:</p>
-<ul>
-  <li>learn whether your personal data is being processed and, if so, request information about it;</li>
-  <li>learn the purpose of the processing and whether the data is used in accordance with that purpose;</li>
-  <li>know the third parties in Turkey or abroad to whom it is transferred;</li>
-  <li>request correction if it has been processed incompletely or inaccurately;</li>
-  <li>request deletion or destruction under the conditions set out in the KVKK;</li>
-  <li>request that third parties to whom the data was transferred be notified of the correction, deletion or destruction;</li>
-  <li>object to a result to your detriment arising from analysis exclusively by automated systems;</li>
-  <li>claim compensation if you suffer damage because of unlawful processing.</li>
+  <li><strong>Data:</strong> email address; an internal user ID; display name if you add one; language preference; whether you opted in to marketing emails and when; when you accepted our Terms and which version; account creation and update times. If you sign in with Google, Google tells us your email address, name and Google account identifier, and confirms your identity. We never receive your Google password.</li>
+  <li><strong>Sign-in:</strong> we send a one-time link or code to your email address. We do not store a password for you.</li>
+  <li><strong>Why:</strong> to create and secure your account, let you sign in, and link your licences to you.</li>
+  <li><strong>Legal basis:</strong> performance of our contract with you. Recording your acceptance of the Terms: our legitimate interest in being able to show what was agreed.</li>
 </ul>
 
-<h2 id="requests">10. How to make a request</h2>
-<p>To exercise your rights, you may send your request in writing to [ADDRESS], or e-mail it to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> from an e-mail address you have previously provided to us and that is registered in our system. Your request should include information verifying your identity and a description of what you are asking for.</p>
-<p>Your request will be resolved free of charge within thirty days at the latest. If the action requires an additional cost, a fee according to the tariff set by the Personal Data Protection Board may be charged. If your request is rejected, the answer is found insufficient or no answer is given in time, you may lodge a complaint with the Personal Data Protection Board.</p>
+<h3>2.2 Items you save while signed in</h3>
 
-<h2 id="children">11. Children</h2>
-<p>The Site is not intended for persons under 18. If you are under 18, do not submit personal data to the Site.</p>
+<p>If you are signed in and save a strategy, watchlist, setting or note in Kalibre Lab, a copy is stored in your account so you can use it on other devices. These items contain your rules and preferences, not your broker's market data or your trade history. You can delete them at any time. If you are not signed in, these items stay only in your browser.</p>
 
-<h2 id="changes">12. Changes</h2>
-<p>This notice may be updated. The current text is published on this page together with its effective date. Updates that materially change how your personal data is processed are announced on this page before they are applied.</p>
+<ul>
+  <li><strong>Legal basis:</strong> performance of our contract with you.</li>
+</ul>
 
+<h3>2.3 Subscriptions and payments</h3>
+
+<p>Paid subscriptions are not yet available; during the beta, access is free and by invitation. This section applies once paid plans open. Payments are handled by Stripe. When you subscribe, you enter your card details and billing address on Stripe's checkout page; they go directly to Stripe and we never see your full card number.</p>
+
+<ul>
+  <li><strong>What we receive and keep:</strong> your email address; your Stripe customer and subscription IDs; subscription status and the date it is paid until; any promotion code used and the products it covers.</li>
+  <li><strong>Checkout consents:</strong> at checkout we record, with the Stripe payment record, which version of the Terms you accepted, that you ticked the box requesting immediate access and acknowledging the loss of the withdrawal right on activation, and the time you did so. We keep this so we can show the consent was given.</li>
+  <li><strong>Why:</strong> to take payment, run and renew your subscription, prevent fraud, handle refunds and disputes, and keep accounting records.</li>
+  <li><strong>Legal basis:</strong> performance of our contract; compliance with tax and accounting law; our legitimate interest in preventing fraud and defending claims.</li>
+</ul>
+
+<h3>2.4 Licences and the MetaTrader 5 add-ons</h3>
+
+<ul>
+  <li><strong>Licence record:</strong> your licence key; the products it covers; its status and expiry; the email address and Stripe IDs above; the account it belongs to; and the numbers of up to two MetaTrader 5 accounts on which the licence has been used.</li>
+  <li><strong>Licence check:</strong> Kalibre Engine and Kalibre Bridge check your licence with our server when they start and about every six hours. Each check sends your licence key, your MetaTrader 5 account number, the product name and a protocol version number. It does not send your password, balances or positions. Our hosting provider also sees your IP address for these requests (see 2.7). To stop abuse we keep a short-lived counter of checks per MetaTrader 5 account number, deleted after about two minutes.</li>
+  <li><strong>Downloads:</strong> when you download an add-on we check your licence key and keep a short-lived download counter, deleted after about two minutes.</li>
+  <li><strong>Why:</strong> to bind your licence to your accounts, enforce the account limit and stop key sharing.</li>
+  <li><strong>Legal basis:</strong> performance of our contract; our legitimate interest in preventing misuse.</li>
+</ul>
+
+<h3>2.5 Kalibre Bridge relay (encrypted)</h3>
+
+<p>If you connect Kalibre Lab to MetaTrader 5, Kalibre Bridge reads from your terminal: closed price candles for the symbols you choose; your open positions (symbol, direction, size, open time and price, current price, stop-loss and take-profit, profit or loss, and the magic number of the add-on that opened it); your account currency, balance and equity; and your broker name, server name and whether the account is demo or live. It never reads or sends your MetaTrader 5 password.</p>
+
+<p>This data is encrypted (AES-256) and authenticated (HMAC-SHA256) on your computer, with keys derived from a pairing code that Kalibre Lab creates in your browser. The pairing code never reaches us. Symbol names are inside the encrypted content.</p>
+
+<p>Our servers handle only: the encrypted packets; their size and arrival time; a channel identifier derived from the pairing code, from which the code cannot be worked out; and a write counter for rate limiting. Packets are stored in Upstash and each packet is replaced by the next one of the same type and deleted automatically no later than two hours after it arrives. Counters are deleted after about two minutes. We do not write packet contents to logs, and our relay code does not store IP addresses.</p>
+
+<p>Because we cannot decrypt the packets, it is arguable whether they are personal data in our hands. We describe them here anyway for transparency.</p>
+
+<ul>
+  <li><strong>Legal basis:</strong> performance of our contract (providing the feature you asked for).</li>
+</ul>
+
+<h3>2.6 Data that stays only in your browser</h3>
+
+<p>These stay in your browser's local storage and are not sent to us: your Bridge pairing code; unsynced strategy drafts, journal entries and test results; your sign-in session token; your cookie choice; and interface preferences. If you connect a broker account directly in Kalibre Lab (for example Alpaca or Tradier), your API keys or access tokens are also kept only in your browser and your browser talks to that broker directly; we receive none of that data. Clearing your browser's site data deletes these items permanently.</p>
+
+<h3>2.7 Website visits and security</h3>
+
+<p>Our hosting provider, Vercel, processes your IP address, browser and device information, the page or endpoint requested and the time, to deliver the Site, protect it against attacks and keep short-term logs.</p>
+
+<ul>
+  <li><strong>Legal basis:</strong> our legitimate interest in running a secure service.</li>
+</ul>
+
+<h3>2.8 Analytics (only with your consent)</h3>
+
+<p>If you click "Accept" in the cookie banner, we load Google Analytics to understand how the Site is used (pages viewed, visit length, device and browser type, approximate location, a cookie identifier). If you decline, Google Analytics is not loaded.</p>
+
+<ul>
+  <li><strong>Legal basis:</strong> your consent, which you can withdraw at any time from the cookie settings link.</li>
+</ul>
+
+<p><button type="button" class="dugme ikincil kucuk" data-cerez-ayar>Cookie settings</button></p>
+
+<h3>2.9 Emails</h3>
+
+<ul>
+  <li><strong>Service emails</strong> (sign-in links, receipts, licence and payment notices, security alerts, changes to our Terms) are part of the Services and are sent whether or not you opt in to marketing.</li>
+  <li><strong>Product update emails</strong> (new features, product news and offers for Kalibre Markets products) are sent to account holders. When you create an account we tell you this and give you a way to opt out straight away. You can also opt out at any time from the link in every such email or in your account settings. Opting out does not affect service emails.</li>
+  <li><strong>People without an account</strong> (for example on a waiting list) receive marketing emails only if they ask for them.</li>
+  <li><strong>Legal basis:</strong> contract for service emails; our legitimate interest in telling customers about similar products of our own, with the right to object at any time, for product update emails; consent for people without an account.</li>
+</ul>
+
+<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Our code stores an explicit opt-in (profiles.marketing_consent, default false), so the policy describes opt-in. Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Code must store opt-out (marketing_consent true by default for account holders, set false on opt-out). -->
+
+<h3>2.10 Waitlists, contact and support</h3>
+
+<p>If you join a waitlist or beta sign-up, your email address and any details you enter are sent to us through FormSubmit and used only for that purpose. If you email us, we use your message and contact details to answer you.</p>
+
+<ul>
+  <li><strong>Legal basis:</strong> consent (waitlists); legitimate interest in answering you (support).</li>
+</ul>
+
+<h3>2.11 AI assistant (where offered)</h3>
+
+<p>If you use the assistant, your messages are sent to an AI provider (Google Gemini, or Groq as a fallback) to generate a reply. We do not store your messages on our servers; recent chat history stays in your browser. Do not enter personal or account details.</p>
+
+<ul>
+  <li><strong>Legal basis:</strong> performance of the service you request.</li>
+</ul>
+
+<h3>2.12 What we do not do</h3>
+
+<p>We do not sell or rent your personal data. We do not use your strategies or trading data for advertising. We do not make decisions about you based solely on automated processing that have legal or similarly significant effects.</p>
+
+<h2 id="sharing">3. Who we share data with</h2>
+
+<p>We use the following service providers (processors), each only for the purposes described above:</p>
+
+<div class="tablo-kap"><table class="genis"><thead><tr><th>Provider</th><th>Purpose</th><th>Data location</th></tr></thead><tbody><tr><td>Supabase, Inc.</td><td>Authentication, account database, sign-in emails</td><td><span class="yer-tutucu">[SUPABASE REGION]</span></td></tr><tr><td>Stripe (Stripe Payments Europe Ltd or Stripe, Inc., depending on region)</td><td>Payments, invoices, subscription management, fraud prevention</td><td>US and EU</td></tr><tr><td>Vercel Inc.</td><td>Hosting, serverless functions, security</td><td>US and global edge network</td></tr><tr><td>Upstash, Inc.</td><td>Licence records, short-lived counters, encrypted Bridge packets (max 2 hours)</td><td><span class="yer-tutucu">[UPSTASH REGION]</span></td></tr><tr><td>Google LLC / Google Ireland Ltd</td><td>Google sign-in (if you choose it); Google Analytics (only with consent); Google Fonts; Gemini for the assistant (where offered)</td><td>US and global</td></tr><tr><td>Groq, Inc.</td><td>Fallback assistant replies (where offered)</td><td>US</td></tr><tr><td>FormSubmit</td><td>Delivering waitlist and beta sign-up forms</td><td><span class="yer-tutucu">[FORMSUBMIT LOCATION]</span></td></tr><tr><td><span class="yer-tutucu">[EMAIL PROVIDER]</span></td><td>Sending and receiving email</td><td><span class="yer-tutucu">[EMAIL PROVIDER LOCATION]</span></td></tr></tbody></table></div>
+
+<p>Stripe and Google are also independent controllers for some of their own processing (for example Stripe's fraud checks and Google account sign-in), under their own privacy policies.</p>
+
+<p>We may also disclose data to professional advisers, to a buyer or successor if our business is sold or reorganised (who must respect this policy), and to courts, regulators or authorities where the law requires it or to protect our rights.</p>
+
+<!-- FOR COUNSEL: confirm the Stripe contracting entity for [COUNTRY OF RESIDENCE], whether Supabase sends sign-in emails with its built-in service or a custom SMTP provider, the Upstash database region, and data processing agreements with each provider. -->
+
+<h2 id="transfers">4. International transfers</h2>
+
+<p>Some providers process data outside your country, including in the United States. Where data leaves the EU, EEA or UK, we rely on an adequacy decision (including the EU-US Data Privacy Framework and its UK extension, for providers certified under it) or on the European Commission's Standard Contractual Clauses and the UK International Data Transfer Addendum, together with additional safeguards where needed. You can ask us for a copy of the relevant safeguards.</p>
+
+<h2 id="retention">5. How long we keep data</h2>
+
+<div class="tablo-kap"><table><thead><tr><th>Data</th><th>How long</th></tr></thead><tbody><tr><td>Account profile</td><td>Until you delete your account. Deleting it removes your profile, saved items and licence display records immediately.</td></tr><tr><td>Saved strategies, watchlists, settings, notes</td><td>Until you delete them or your account.</td></tr><tr><td>Licence record and linked MT5 account numbers</td><td>While the subscription is active and for up to 12 months after it ends, then deleted or anonymised.</td></tr><tr><td>Payment, invoice and tax records</td><td>For the period required by tax and commercial law in <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> (typically <span class="yer-tutucu">[X]</span> years). Stripe keeps its own records under its policy.</td></tr><tr><td>Checkout consent records (terms version, withdrawal-consent tick and time)</td><td>For as long as the payment record is kept, so we can show the consent was given.</td></tr><tr><td>Encrypted Bridge packets</td><td>At most 2 hours.</td></tr><tr><td>Rate-limit counters</td><td>About 2 minutes.</td></tr><tr><td>Checkout session pointer (used to show your key after payment)</td><td>7 days.</td></tr><tr><td>Hosting and security logs</td><td>For the limited period set by Vercel.</td></tr><tr><td>Google Analytics data</td><td>Up to 14 months.</td></tr><tr><td>Marketing consent record</td><td>While you are subscribed to marketing and for 24 months after you unsubscribe, to show consent.</td></tr><tr><td>Support emails</td><td>Up to 3 years after the last message, or longer if needed for a dispute.</td></tr><tr><td>Waitlist sign-ups</td><td>Until we have contacted you about the launch or you ask to be removed.</td></tr></tbody></table></div>
+
+<!-- FOR COUNSEL: fill [X] years for [COUNTRY OF RESIDENCE] tax law; confirm the 12-month licence retention (matches previous TR/EN draft) and whether a deletion job exists for expired licence records in Upstash (code keeps them until removed). -->
+
+<h2 id="security">6. Security</h2>
+
+<p>We use encryption in transit (TLS), end-to-end encryption for Bridge data, row-level security on our database, server-side secrets kept out of the browser, and rate limits on our endpoints. No system is perfectly secure, so please keep your email account, licence key and pairing code safe.</p>
+
+<h2 id="rights">7. Your rights</h2>
+
+<p>Depending on where you live, you may have the right to: access your data; correct it; delete it; restrict or object to processing (including at any time to direct marketing); receive your data in a portable format; and withdraw consent at any time without affecting earlier processing.</p>
+
+<ul>
+  <li><strong>EU, EEA and UK residents</strong> can also complain to their data protection authority (in the UK, the Information Commissioner's Office). We would appreciate the chance to resolve your concern first.</li>
+  <li><strong>California and other US state residents</strong> have the right to know, delete and correct personal information and not to be discriminated against for using these rights. We do not sell or share personal information for cross-context behavioural advertising.</li>
+</ul>
+
+<p>You can delete your account and saved items yourself in your account page. For other requests, email <span class="yer-tutucu">[CONTACT EMAIL]</span> from the address linked to your account. We will reply within one month (this can be extended by two months for complex requests, and we will tell you if so). We may need to verify your identity.</p>
+
+<h2 id="children">8. Children</h2>
+
+<p>The Services are for adults. We do not knowingly collect data from anyone under 18. If you believe a child has given us data, contact us and we will delete it.</p>
+
+<h2 id="changes">9. Changes to this policy</h2>
+
+<p>We will post updates here with a new effective date. If a change materially affects how we use your data, we will tell account holders by email or in the Services before it applies.</p>
+
+<h2 id="contact">10. Contact</h2>
+
+<p><span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading as Kalibre Markets, <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>. Email: <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
     </article>
-    <aside class="belge-kenar" aria-label="On this page"><a href="#controller">1. Data controller</a><a href="#account">2. Your Kalibre Markets account</a><a href="#data">3. What data we process and why</a><a href="#bridge">4. MetaTrader 5 bridge</a><a href="#browser">5. Data that stays only in your browser</a><a href="#cookies">6. Cookies</a><a href="#recipients">7. Parties to whom data is transferred</a><a href="#retention">8. Retention periods</a><a href="#rights">9. Your rights</a><a href="#requests">10. How to make a request</a><a href="#children">11. Children</a><a href="#changes">12. Changes</a></aside>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#controller">1. Who is responsible for your data</a><a href="#collect-why">2. What we collect and why</a><a href="#sharing">3. Who we share data with</a><a href="#transfers">4. International transfers</a><a href="#retention">5. How long we keep data</a><a href="#security">6. Security</a><a href="#rights">7. Your rights</a><a href="#children">8. Children</a><a href="#changes">9. Changes to this policy</a><a href="#contact">10. Contact</a></aside>
   </div>
 </main>
 
@@ -208,12 +275,16 @@
       <h4>Kalibre Markets</h4>
       <a href="/about">About</a>
       <a href="mailto:markets@kalibrefin.com">Contact</a>
-      <a href="/terms">Terms of use</a>
+      <a href="/terms">Terms of service</a>
       <a href="/privacy">Privacy</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/cookies">Cookies</a>
       <a href="/risk-disclosure">Risk disclosure</a>
+      <a href="/cookies#manage" data-cerez-ayar>Cookie settings</a>
     </div>
     <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>
+
 </body>
 </html>

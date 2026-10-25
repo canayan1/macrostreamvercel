@@ -2,8 +2,9 @@
 // POST /api/odeme/baslat  { sartlar: true, cayma_onay: true }  → { url }
 // Hesap gerekir: Authorization: Bearer <Supabase erişim belirteci>. Oturum, client_reference_id ile
 // kullanıcıya bağlanır; webhook lisansı bu hesaba yazar (api/_lib/lisans.ts oturumKullanicisi).
-// cayma_onay: lisans etkinleştirilince ifaya başlanacağını ve cayma hakkının sona ereceğini kabul
-// (Mesafeli Sözleşmeler Yönetmeliği m.15/1-ğ; şartlar bölüm 12a). Onay Checkout metadata'sında saklanır.
+// cayma_onay: hizmete hemen başlanmasını istediğini ve lisans anahtarı bir MetaTrader 5 hesabında ilk kez
+// etkinleştirilince 14 günlük cayma hakkının sona ereceğini kabul (İade ve İptal Politikası bölüm 4, /refunds#withdrawal;
+// Hizmet Şartları bölüm 11). Onay Checkout metadata'sında saklanır.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { dilUygula } from '../_lib/dil.ts';
@@ -13,8 +14,9 @@ import { kullaniciLisanslari } from '../_lib/hesap.ts';
 import { belirtecAl, kullaniciDogrula, supabaseAyar, type Kullanici } from '../_lib/supabase.ts';
 
 export const config = { maxDuration: 10 };
-// Onaylanan kullanım şartlarının yürürlük tarihi (kullanim-sartlari sayfasındaki tarihle aynı tutulmalı).
-export const SARTLAR_SURUMU = '2026-10-25';
+// Onaylanan Hizmet Şartları'nın sürümü. /terms sayfasındaki "Terms version" bu değerden üretilir
+// (yerel/yasal-uret.py); static/giris.js'teki SARTLAR_SURUMU ile aynı olmalı (test/odeme.test.mjs denetler).
+export const SARTLAR_SURUMU = '2026-10-25-en1';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const dil = dilUygula(req, res);
@@ -26,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   let g: any = req.body;
   if (typeof g === 'string') { try { g = JSON.parse(g); } catch { g = {}; } }
-  if (g?.sartlar !== true) return res.status(400).json({ hata: 'Devam etmek için kullanım şartlarını onaylamalısın.' });
+  if (g?.sartlar !== true) return res.status(400).json({ hata: 'Devam etmek için hizmet şartlarını onaylamalısın.' });
   if (g?.cayma_onay !== true) return res.status(400).json({ hata: 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.' });
   const onay: Record<string, string> = { sartlar_onay: SARTLAR_SURUMU, cayma_onay: 'evet', cayma_onay_zamani: new Date().toISOString() };
 

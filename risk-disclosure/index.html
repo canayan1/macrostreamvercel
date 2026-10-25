@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Risk disclosure: Kalibre Lab</title>
-<meta name="description" content="Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.">
+<title>Risk Disclosure | Kalibre Markets</title>
+<meta name="description" content="Risks of trading and of using Kalibre Lab, Kalibre Bridge and Kalibre Engine: leverage, hypothetical backtest results, automated trading and beta software.">
 <link rel="canonical" href="https://kalibremarkets.com/risk-disclosure">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/risk-disclosure">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/risk-disclosure">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/risk-disclosure">
-<meta property="og:title" content="Risk disclosure: Kalibre Lab">
-<meta property="og:description" content="Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.">
+<meta property="og:title" content="Risk Disclosure | Kalibre Markets">
+<meta property="og:description" content="Risks of trading and of using Kalibre Lab, Kalibre Bridge and Kalibre Engine: leverage, hypothetical backtest results, automated trading and beta software.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -29,7 +29,27 @@
 <meta name="kalibre:yol:lab" content="/lab">
 <meta name="kalibre:yol:home" content="/">
 <script src="/static/kalibre-auth.js" defer></script>
-
+<style>
+.belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
+.ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
+.belge-govde h3 { font-size: 19px; }
+.belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
+.belge-govde blockquote p { margin: 0 0 .6em; } .belge-govde blockquote p:last-child { margin-bottom: 0; }
+.belge-govde blockquote.buyuk-harf p { font-size: 13px; letter-spacing: .01em; }
+.belge-izgara > * { min-width: 0; }
+.tablo-kap { overflow-x: auto; margin: 16px 0 24px; }
+.belge-govde table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+.belge-govde table.genis { min-width: 520px; }
+.belge-govde th, .belge-govde td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--cizgi); color: #cdd6e1; }
+.belge-govde th { color: var(--metin); font-weight: 600; border-bottom-color: var(--cizgi-2); }
+.belge-govde p, .belge-govde li { overflow-wrap: break-word; }
+.icindekiler-mobil { display: none; margin: 0 0 28px; border: 1px solid var(--cizgi); border-radius: 4px; padding: 10px 14px; }
+.icindekiler-mobil summary { cursor: pointer; font-weight: 600; }
+.icindekiler-mobil ol { list-style: none; padding: 0; margin: 10px 0 0; }
+.icindekiler-mobil a { display: block; padding: 5px 0; text-decoration: none; }
+@media (max-width: 960px) { .icindekiler-mobil { display: block; } }
+</style>
 </head>
 <body>
 
@@ -53,45 +73,83 @@
 <main class="belge">
   <div class="kap belge-izgara">
     <article class="belge-govde">
+<h1>Risk Disclosure</h1>
 
-<h1>Risk disclosure</h1>
-<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. This risk disclosure forms an integral part of the <a href="/terms">terms of use</a>.</p>
+<p class="belge-meta">Effective date: 25 October 2026<br>Version: 2026-10-25-en1</p>
+<details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#loss">1. Trading can lose you money</a></li><li><a href="#no-advice">2. We do not give advice</a></li><li><a href="#no-custody">3. We never hold your money</a></li><li><a href="#hypothetical">4. Hypothetical and simulated results</a></li><li><a href="#kalibre-engine">5. Automated trading with Kalibre Engine</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge and data</a></li><li><a href="#beta-software">7. Beta software</a></li><li><a href="#responsibility">8. Your responsibility</a></li><li><a href="#contact">9. Questions</a></li></ol></details>
 
-<h2 id="beta">Beta version</h2>
-<p>Kalibre Lab is in beta. Features may change, the software may contain errors and calculations may produce incorrect results. Before relying on a result, test the same rule in your own MetaTrader 5 Strategy Tester and on a demo account. Report any number that looks wrong through the <a href="/beta">feedback form</a>.</p>
+<p>Please read this before using Kalibre Lab, Kalibre Bridge, Kalibre Engine or any other Kalibre Markets product. This disclosure is part of our <a href="/terms">Terms of Service</a>. It does not list every risk.</p>
 
-<h2 id="simulated">Simulated and hypothetical results</h2>
-<p>The lab, the quick test, the optimization panel and the examples on these pages show hypothetical (simulated) results, which have inherent limitations:</p>
+<h2 id="loss">1. Trading can lose you money</h2>
+
+<p>Trading forex, CFDs, futures, stocks, crypto assets and other instruments carries a high risk of loss. Leveraged products magnify both gains and losses, and you can lose all the money you deposit; with some brokers and products you can lose more. When the European Securities and Markets Authority introduced its 2018 restrictions on CFDs sold to retail clients, it reported that between 74% and 89% of retail CFD accounts typically lose money. Your broker publishes its own figure. Only trade with money you can afford to lose, and make sure you understand the products you trade.</p>
+
+<!-- FOR COUNSEL / DATA CHECK: the 74-89% range is from ESMA's 2018 CFD product intervention measures (ESMA Decision (EU) 2018/796 and accompanying statement). Verified 25 Oct 2026 against ESMA's press release of 27 March 2018 ("ESMA agrees to prohibit binary options and restrict CFDs to protect retail investors", esma.europa.eu/node/84933): national regulators' analyses showed 74-89% of retail accounts typically lose money. -->
+
+<h2 id="no-advice">2. We do not give advice</h2>
+
+<p>Kalibre Markets provides software and general education. We are not a broker, investment adviser, commodity trading adviser, portfolio manager or signal provider. Nothing in our products is a recommendation to buy, sell or hold anything, and nothing takes your personal situation into account. Example strategies are for learning, not recommendations. You decide which rules to build, which instruments to trade, when and how much. If you need advice, speak to an authorised adviser.</p>
+
+<h2 id="no-custody">3. We never hold your money</h2>
+
+<p>We do not hold, receive or control your funds or assets, and we do not open accounts for you. Your money stays with your broker, and the risk of your broker failing or restricting your account is outside our control.</p>
+
+<h2 id="hypothetical">4. Hypothetical and simulated results</h2>
+
+<p>Backtests, quick tests, optimisation results, equity curves, example results and anything else in our products that shows how a rule "would have" performed are hypothetical.</p>
+
+<p>The following statement is required by the U.S. Commodity Futures Trading Commission for hypothetical performance presentations and applies to all such results we show:</p>
+
+<blockquote class="buyuk-harf"><p>THESE RESULTS ARE BASED ON SIMULATED OR HYPOTHETICAL PERFORMANCE RESULTS THAT HAVE CERTAIN INHERENT LIMITATIONS. UNLIKE THE RESULTS SHOWN IN AN ACTUAL PERFORMANCE RECORD, THESE RESULTS DO NOT REPRESENT ACTUAL TRADING. ALSO, BECAUSE THESE TRADES HAVE NOT ACTUALLY BEEN EXECUTED, THESE RESULTS MAY HAVE UNDER-OR OVER-COMPENSATED FOR THE IMPACT, IF ANY, OF CERTAIN MARKET FACTORS, SUCH AS LACK OF LIQUIDITY. SIMULATED OR HYPOTHETICAL TRADING PROGRAMS IN GENERAL ARE ALSO SUBJECT TO THE FACT THAT THEY ARE DESIGNED WITH THE BENEFIT OF HINDSIGHT. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THESE BEING SHOWN.</p></blockquote>
+
+<!-- FOR COUNSEL: text of CFTC Rule 4.41(b)(1)(i) (17 CFR 4.41), verified verbatim against the LII copy of the e-CFR on 25 Oct 2026. Myfxbook uses the longer NFA-style statement; TraderSync paraphrases it. Rule 4.41 strictly applies to CPOs/CTAs and their principals; we use it as the market-standard disclosure, not as an admission that Kalibre Markets is a CTA. -->
+
+<p>In addition, in our products specifically:</p>
+
 <ul>
-  <li>Unlike an actual performance record, simulated results do not represent actual trading.</li>
-  <li>Since the trades have not been executed, the results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity.</li>
-  <li>The quick test does not include spread, commission, swap or slippage; real results are usually lower.</li>
-  <li>Optimization is carried out on past data with the benefit of hindsight; the setting that looks best is often fitted to the past.</li>
-  <li>No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.</li>
+  <li><strong>Costs left out.</strong> The quick test does not include spread, commission, swap or slippage. Real results are usually worse.</li>
+  <li><strong>Inside-the-candle assumptions.</strong> When a stop and a target could both have been hit within one candle, the test has to assume which came first. Real fills may differ.</li>
+  <li><strong>Data quality.</strong> Results depend on the data used. Broker data differs between brokers and servers; gaps, errors and missing history change results. Synthetic data, marked as synthetic, does not represent any real market.</li>
+  <li><strong>Overfitting.</strong> Optimisation searches past data for the settings that would have worked best. The best-looking settings are often fitted to past noise and tend to perform worse on new data.</li>
+  <li><strong>No real-world pressure.</strong> A backtest does not have to survive losing streaks, missed trades or the temptation to change rules halfway, all of which affect real results.</li>
+  <li><strong>Past performance is not a reliable indicator of future results.</strong></li>
 </ul>
 
-<h2 id="leverage">Risk of leveraged trading</h2>
-<p>Leveraged trading (forex, CFDs and similar products) can lose you all of the money you deposit. According to the European regulator ESMA's 2018 review, 74-89% of retail CFD accounts lost money. In Turkey, the Capital Markets Board said in 2015 that about 87-88% of forex investors lost money. Do not trade with money you cannot afford to lose.</p>
+<p>The Methodology page explains how our calculations work. MetaTrader 5 Strategy Tester results also depend on your broker and the test settings you choose.</p>
 
-<h2 id="engine">Using Kalibre Engine on a real account</h2>
-<p>Kalibre Engine runs the rule file you build on your account and sends orders. On a real account during the beta, these risks apply:</p>
+<h2 id="kalibre-engine">5. Automated trading with Kalibre Engine</h2>
+
+<p>Kalibre Engine places real orders on the account where you attach it, following your rule file. Additional risks include:</p>
+
 <ul>
-  <li><b>Software errors:</b> the rule file or the Engine may behave unexpectedly.</li>
-  <li><b>Connectivity:</b> if MetaTrader 5 closes, the computer sleeps or the internet drops, the Engine cannot manage positions.</li>
-  <li><b>Slippage and gaps:</b> in fast markets, around news and at weekend opens, orders can be filled at prices different from the stop or target.</li>
-  <li><b>The shield is not a guarantee:</b> the prop shield and loss limits can be exceeded because of gaps, slippage and broker rules.</li>
+  <li><strong>Rule and software errors.</strong> Your rule file may not do what you intended, and our software may contain bugs, especially in beta.</li>
+  <li><strong>Connectivity.</strong> If MetaTrader 5 closes, your computer sleeps, your VPS fails or the internet drops, Kalibre Engine cannot manage positions.</li>
+  <li><strong>Execution.</strong> Fast markets, news releases, low liquidity and weekend or session openings can cause slippage, gaps, partial fills, requotes or rejected orders, so trades can close at prices far from your stop or target.</li>
+  <li><strong>Broker differences.</strong> Contract sizes, margin rules, trading hours, swaps and order types differ by broker and can change.</li>
+  <li><strong>Prop firm rules.</strong> Prop firms set their own drawdown, news and consistency rules. Meeting them is your responsibility.</li>
 </ul>
-<p>That is why, on a real account, the Engine opens no new trades unless you tick "I accept the beta risk on a real account" in the add-on's settings and a loss limit (the prop shield or a daily loss limit) is set.</p>
 
-<h2 id="no-advice">Not investment advice</h2>
-<p>Kalibre Markets does not provide investment advice, portfolio management or brokerage services and is not a licensed investment firm. You decide which rule to build and when, in which symbol and at what size to trade; you are responsible for the results. Educational examples are starting points, not recommendations.</p>
-<p>Kalibre Markets never holds your money, securities or crypto assets, never asks for access to them and never opens an account in your name. Your assets are held only at the broker you choose.</p>
+<p><strong>Safeguards on live accounts.</strong> On a live account Kalibre Engine opens no new positions until you tick the setting accepting the live-account risk and a loss limit (the risk shield or a daily loss limit in your rule file) is set. These safeguards reduce risk but do not remove it: <strong>the risk shield and loss limits are not a guarantee</strong> and can be exceeded because of gaps, slippage, delays, disconnections or broker rules.</p>
 
-<h2 id="data">Data and privacy</h2>
-<p>Your data from the bridge is end-to-end encrypted; your Alpaca and Tradier data comes directly to your browser. Which data is processed where is described in the <a href="/privacy">privacy policy</a> and on the <a href="/security">security page</a>.</p>
+<p>Always test a rule file in Strategy Tester and on a demo account before using it on a live account, and monitor live trading.</p>
 
+<h2 id="kalibre-bridge">6. Kalibre Bridge and data</h2>
+
+<p>Kalibre Bridge is read-only and does not place orders. It depends on your terminal, your connection, your broker's servers and our relay, so data may be delayed, incomplete or missing. Do not use it as your only way to watch open positions.</p>
+
+<h2 id="beta-software">7. Beta software</h2>
+
+<p>Features marked beta may change, contain errors or produce wrong results. Check important numbers against your own MetaTrader 5 terminal and report anything that looks wrong.</p>
+
+<h2 id="responsibility">8. Your responsibility</h2>
+
+<p>You are responsible for your trading decisions, the rules you run, the settings you choose, checking that trading is lawful where you live, and any taxes on your results. All trades placed on your account, including by Kalibre Engine, are your trades.</p>
+
+<h2 id="contact">9. Questions</h2>
+
+<p>If anything here is unclear, contact <span class="yer-tutucu">[CONTACT EMAIL]</span> before you trade.</p>
     </article>
-    <aside class="belge-kenar" aria-label="On this page"><a href="#beta">Beta version</a><a href="#simulated">Simulated and hypothetical results</a><a href="#leverage">Risk of leveraged trading</a><a href="#engine">Using Kalibre Engine on a real account</a><a href="#no-advice">Not investment advice</a><a href="#data">Data and privacy</a></aside>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#loss">1. Trading can lose you money</a><a href="#no-advice">2. We do not give advice</a><a href="#no-custody">3. We never hold your money</a><a href="#hypothetical">4. Hypothetical and simulated results</a><a href="#kalibre-engine">5. Automated trading with Kalibre Engine</a><a href="#kalibre-bridge">6. Kalibre Bridge and data</a><a href="#beta-software">7. Beta software</a><a href="#responsibility">8. Your responsibility</a><a href="#contact">9. Questions</a></aside>
   </div>
 </main>
 
@@ -120,9 +178,12 @@
       <h4>Kalibre Markets</h4>
       <a href="/about">About</a>
       <a href="mailto:markets@kalibrefin.com">Contact</a>
-      <a href="/terms">Terms of use</a>
+      <a href="/terms">Terms of service</a>
       <a href="/privacy">Privacy</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/cookies">Cookies</a>
       <a href="/risk-disclosure">Risk disclosure</a>
+      <a href="/cookies#manage" data-cerez-ayar>Cookie settings</a>
     </div>
     <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>

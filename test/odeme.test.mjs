@@ -92,3 +92,15 @@ test('Supabase yapılandırılmamışsa 503', async () => {
   process.env.SUPABASE_URL = eski;
   assert.equal(r.statusCode, 503);
 });
+
+test('şart sürümü her yerde aynı: baslat.ts, giris.js, /terms ve /tr/terms; onay kutusu iade politikasına bağlı', async () => {
+  const fs = await import('node:fs');
+  const oku = p => fs.readFileSync(new URL('../' + p, import.meta.url), 'utf8');
+  assert.ok(oku('static/giris.js').includes(`var SARTLAR_SURUMU = '${SARTLAR_SURUMU}';`));
+  assert.ok(oku('terms/index.html').includes(`Terms version: ${SARTLAR_SURUMU}`));
+  assert.ok(oku('tr/terms/index.html').includes(`Şartlar sürümü: ${SARTLAR_SURUMU}`));
+  // Cayma hakkı lisans bir MT5 hesabında ilk kez etkinleştirilince biter (refunds.md 4.3); onay metni bunu söyler.
+  assert.match(oku('refunds/index.html'), /id="withdrawal"/);
+  assert.match(oku('yerel/sayfa-uret-en.py'), /once my licence key is first activated on a MetaTrader 5 account \(<a href="\/refunds#withdrawal">/);
+  assert.match(oku('yerel/sayfa-uret.py'), /ilk kez etkinleştirildiğinde 14 günlük cayma hakkımı kaybedeceğimi anlıyorum \(<a href="\/tr\/refunds#withdrawal">/);
+});
