@@ -27,6 +27,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       success_url: `${kok}${dil === 'en' ? '/en/license/' : '/hesap/'}?oturum={CHECKOUT_SESSION_ID}`,
       cancel_url: `${kok}${dil === 'en' ? '/en/pricing/' : '/pro/'}?iptal=1`,
       allow_promotion_codes: 'true',
+      // %100 indirimli davet kodunda kart istenmez; ilk ücretli faturadan önce Stripe kart ister.
+      payment_method_collection: 'if_required',
       billing_address_collection: 'auto',
       locale: dil === 'en' ? 'auto' : 'tr',
       // Şartların hangi sürümünün onaylandığı ödeme kaydında da dursun.

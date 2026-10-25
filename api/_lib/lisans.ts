@@ -1,7 +1,7 @@
 // Abonelik kaydı ve MT5 lisans belirteci. Protokol: kalibre-lab/docs/lisans.md (v1).
 //
 // Kayıtlar (depo anahtarları):
-//   lisans:<anahtar>          { anahtar, eposta, musteri, abonelik, durum, bitis, hesaplar[], olusturma }
+//   lisans:<anahtar>          { anahtar, eposta, musteri, abonelik, durum, bitis, hesaplar[], olusturma, urunler? }
 //   lisans-abone:<sub_id>     → anahtar   (webhook'ların kaydı bulması için)
 //   lisans-oturum:<cs_id>     → anahtar   (ödeme sonrası sayfanın anahtarı göstermesi için, 7 gün)
 //
@@ -26,12 +26,38 @@ export interface Kayit {
   bitis: number;   // aboneliğin ödendiği son an (UTC, sn)
   hesaplar: number[];
   olusturma: number;
-  urunler?: string[]; // yoksa tüm ürünler (ücretli abonelik); kapalı beta yalnız ['kopru']
+  urunler?: string[]; // yoksa tüm ürünler; kupon metadata'sı urunler=kopru ise yalnız ['kopru']
 }
 
 // Lisansın kapsadığı ürünler. Alan yoksa abonelik bütün ürünleri kapsar.
 export const urunKapsar = (k: { urunler?: unknown }, urun: string) => !Array.isArray(k.urunler) || k.urunler.includes(urun);
-const KAPSAM_DISI = 'Bu lisans bu eklentiyi kapsamıyor. Kapalı betada yalnız Kalibre Köprü kullanılabilir; otomatik işlem betanın parçası değildir.';
+
+// Kupon kapsamı: Stripe kuponunun metadata'sında `urunler` (virgüllü liste, ör. "kopru") varsa
+// lisans yalnız o ürünleri kapsar. İlk testçilerin %100 indirimli kuponu böyle Köprü'yle sınırlanır.
+// Metadata var ama tanınan ürün yoksa liste boş döner (lisans hiçbir eklentiyi açmaz; kapalı hata).
+// İndirim bittiğinde kapsam kendiliğinden genişlemez: kayıttaki liste korunur (docs/CANLIYA-CIKIS.md, "Kupon kapsamı").
+const ADLAR: Record<string, string> = { kopru: 'kopru', 'köprü': 'kopru', bridge: 'kopru', motor: 'motor', engine: 'motor' };
+function urunListesi(m: unknown): string[] | null {
+  if (typeof m !== 'string' || !m.trim()) return null;
+  const l = m.split(',').map(x => ADLAR[x.trim().toLocaleLowerCase('tr')]).filter((x): x is string => !!x);
+  return [...new Set(l)];
+}
+export async function kuponUrunleri(sub: any, stripe?: StripeIstek): Promise<string[] | null> {
+  const indirimler: any[] = [];
+  if (sub?.discount && typeof sub.discount === 'object') indirimler.push(sub.discount); // eski API sürümleri
+  for (const x of Array.isArray(sub?.discounts) ? sub.discounts : []) if (x && typeof x === 'object') indirimler.push(x);
+  for (const x of indirimler) {
+    let kupon = x.coupon ?? x.source?.coupon;
+    if (typeof kupon === 'string') kupon = stripe ? await stripe(`coupons/${encodeURIComponent(kupon)}`) : null;
+    const l = urunListesi(kupon?.metadata?.urunler);
+    if (l) return l;
+  }
+  return null;
+}
+// Abonelik, indirimler açılmış (expand) olarak çekilir; kupon kapsamı buradan okunur.
+const aboneYolu = (id: any) => `subscriptions/${encodeURIComponent(typeof id === 'string' ? id : id.id)}?expand[]=discounts`;
+
+const KAPSAM_DISI = 'Bu lisans bu eklentiyi kapsamıyor. Davetli beta lisansı yalnız Kalibre Köprü\'yü kapsar; Kalibre Motor için tam abonelik gerekir.';
 
 // ------------------------------------------------------------------ belirteç
 export function belirtecImzala(sir: string, urun: string, hesap: number | string, bitis: number): string {
@@ -72,7 +98,7 @@ const yaz = (d: Depo, k: Kayit) => d.yaz(`lisans:${k.anahtar}`, JSON.stringify(k
 
 // Ödeme tamamlanınca kayıt açar; aynı abonelik için ikinci kez çağrılırsa mevcut anahtarı döner
 // (webhook ve ödeme sonrası sayfa yarışabilir, Stripe olayları da tekrar gönderebilir).
-export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, oturum: string | null, simdi = Date.now()): Promise<Kayit> {
+export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, oturum: string | null, simdi = Date.now(), urunler?: string[] | null): Promise<Kayit> {
   const aday = anahtarUret();
   const kazandi = await d.yazYoksa(`lisans-abone:${sub.id}`, aday);
   const anahtar = kazandi ? aday : (await d.oku(`lisans-abone:${sub.id}`))!;
@@ -87,6 +113,8 @@ export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, 
     hesaplar: eski?.hesaplar ?? [],
     olusturma: eski?.olusturma ?? Math.floor(simdi / 1000),
   };
+  const kapsam = urunler ?? eski?.urunler;
+  if (kapsam) k.urunler = kapsam;
   await yaz(d, k);
   if (oturum) await d.yaz(`lisans-oturum:${oturum}`, anahtar, OTURUM_TTL_SN);
   return k;
@@ -94,13 +122,14 @@ export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, 
 
 // Yenileme, iptal, ödeme gecikmesi: kayıt varsa günceller. Yoksa (checkout olayı henüz
 // gelmediyse) hiçbir şey yapmaz; checkout olayı kaydı güncel abonelikle zaten açar.
-export async function aboneligiGuncelle(d: Depo, sub: any): Promise<Kayit | null> {
+export async function aboneligiGuncelle(d: Depo, sub: any, urunler?: string[] | null): Promise<Kayit | null> {
   const anahtar = await d.oku(`lisans-abone:${sub.id}`);
   if (!anahtar) return null;
   const k = await oku(d, anahtar);
   if (!k) return null;
   k.durum = sub.status;
   k.bitis = bitisHesapla(sub);
+  if (urunler) k.urunler = urunler; // kupon yoksa (ör. indirim bitti) mevcut kapsam korunur
   await yaz(d, k);
   return k;
 }
@@ -120,20 +149,20 @@ export async function olayIsle(d: Depo, olay: any, stripe: StripeIstek): Promise
   switch (olay?.type) {
     case 'checkout.session.completed': {
       if (o.mode !== 'subscription' || !o.subscription) return 'abonelik değil';
-      const sub = await stripe(`subscriptions/${typeof o.subscription === 'string' ? o.subscription : o.subscription.id}`);
-      await aboneligiKaydet(d, sub, o.customer_details?.email ?? o.customer_email ?? null, o.id);
+      const sub = await stripe(aboneYolu(o.subscription));
+      await aboneligiKaydet(d, sub, o.customer_details?.email ?? o.customer_email ?? null, o.id, Date.now(), await kuponUrunleri(sub, stripe));
       return 'kaydedildi';
     }
     case 'customer.subscription.created':
     case 'customer.subscription.updated':
     case 'customer.subscription.deleted':
-      return (await aboneligiGuncelle(d, o)) ? 'güncellendi' : 'kayıt yok';
+      return (await aboneligiGuncelle(d, o, await kuponUrunleri(o, stripe))) ? 'güncellendi' : 'kayıt yok';
     case 'invoice.paid':
     case 'invoice.payment_failed': {
       const id = o.subscription ?? o.parent?.subscription_details?.subscription;
       if (!id) return 'abonelik yok';
-      const sub = await stripe(`subscriptions/${typeof id === 'string' ? id : id.id}`);
-      return (await aboneligiGuncelle(d, sub)) ? 'güncellendi' : 'kayıt yok';
+      const sub = await stripe(aboneYolu(id));
+      return (await aboneligiGuncelle(d, sub, await kuponUrunleri(sub, stripe))) ? 'güncellendi' : 'kayıt yok';
     }
   }
   return 'yok sayıldı';
@@ -147,8 +176,8 @@ export async function oturumCoz(d: Depo, oturum: string, stripe: StripeIstek): P
   const s = await stripe(`checkout/sessions/${encodeURIComponent(oturum)}`);
   if (s?.mode !== 'subscription' || s?.status !== 'complete' || !s?.subscription) return null;
   if (s.payment_status !== 'paid' && s.payment_status !== 'no_payment_required') return null;
-  const sub = await stripe(`subscriptions/${typeof s.subscription === 'string' ? s.subscription : s.subscription.id}`);
-  return aboneligiKaydet(d, sub, s.customer_details?.email ?? null, s.id);
+  const sub = await stripe(aboneYolu(s.subscription));
+  return aboneligiKaydet(d, sub, s.customer_details?.email ?? null, s.id, Date.now(), await kuponUrunleri(sub, stripe));
 }
 
 // Sayfada gösterilecek kısım: müşteri ve abonelik kimlikleri gösterilmez.

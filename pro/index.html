@@ -6,12 +6,12 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Abonelik: Kalibre Lab</title>
-<meta name="description" content="Kalibre Lab aboneliği: Kalibre Motor'u canlı MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal.">
+<meta name="description" content="Kalibre Lab aboneliği: Kalibre Motor'u MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal.">
 <link rel="canonical" href="https://kalibremarkets.com/pro/">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/pro/">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/pricing/">
 <meta property="og:title" content="Abonelik: Kalibre Lab">
-<meta property="og:description" content="Kalibre Lab aboneliği: Kalibre Motor'u canlı MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal.">
+<meta property="og:description" content="Kalibre Lab aboneliği: Kalibre Motor'u MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -31,6 +31,10 @@
 .onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin-bottom: 16px; cursor: pointer; }
 .onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
 #odeme-durum:empty { display: none; }
+.yakinda { border-top: 1px solid var(--cizgi); padding-top: 14px; }
+.yakinda h3 { margin: 0 0 6px; font-size: 20px; color: var(--kehribar); }
+.yakinda p { margin: 0 0 8px; color: var(--soluk); }
+.rozet-beta { font: 600 12px var(--sans); color: #08130f; background: var(--kehribar); border-radius: 4px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
 #odeme-durum { color: var(--kehribar); }
 .bekleme { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
 .bekleme label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
@@ -68,19 +72,27 @@
 
 <div class="plan" id="plan">
   <div class="plan-bas">
-    <h2>Kalibre Lab</h2>
+    <h2>Kalibre Lab <span class="rozet-beta">beta</span></h2>
     <p class="fiyat"><span class="sayi">399 TL</span> / ay</p>
   </div>
   <ul>
-    <li>Kalibre Motor: kural dosyanı MT5'te canlı hesabında çalıştıran eklenti</li>
-    <li>MetaTrader 5'ten canlı, şifreli veri köprüsü</li>
+    <li>Kalibre Motor: kural dosyanı MT5'te çalıştıran eklenti. Gerçek hesapta kullanımı <b>beta</b>dır; açık kabul ve kayıp sınırı ister, <a href="/risk-bildirimi/">risk bildirimini</a> oku.</li>
+    <li>Prop kalkanı: günlük ve toplam kayıp sınırları, FTMO ve The5ers ön ayarları</li>
+    <li>MetaTrader 5'ten canlı, şifreli veri köprüsü (Kalibre Köprü)</li>
     <li>En çok 2 MT5 hesabı</li>
     <li>Ücretsiz kısmın tamamı</li>
   </ul>
+<div id="odeme-acik">
   <label class="onay"><input type="checkbox" id="sartlar"> <span><a href="/kullanim-sartlari/">Kullanım şartlarını</a> ve <a href="/gizlilik/">gizlilik politikasını</a> okudum, kabul ediyorum.</span></label>
   <button type="button" class="dugme" id="abone-ol">Abone ol</button>
   <p class="not" id="odeme-durum" role="status"></p>
   <p class="not">Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap/">hesap sayfasından</a> iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>
+</div>
+  <div class="yakinda" id="odeme-yakinda" hidden>
+    <h3>Ödemeler yakında açılıyor</h3>
+    <p>Kalibre Lab şu an beta sürümünde. Abonelikler açıldığında haber almak için aşağıdaki listeye yazıl.</p>
+    <p><b>Davetli misin?</b> Sana gönderilen beta lisansını <a href="/hesap/">Lisansım</a> sayfasına kaydet.</p>
+  </div>
 </div>
 
 <h2 id="ucretsiz">Ücretsiz kalanlar</h2>
@@ -109,7 +121,7 @@
   <p class="not">E-postan yalnız bunun için kullanılır ve FormSubmit hizmeti aracılığıyla bize iletilir. Listeden çıkmak için <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazman yeterli.</p>
 </div>
 
-<div class="kutu">Kalibre Markets SPK lisanslı bir kurum değildir ve yatırım danışmanlığı vermez. Abonelik, kendi kurduğun kurallar ve testler için bir yazılım aracıdır; yatırım tavsiyesi değildir. Kalibre Motor senin onayınla, senin kurduğun kurallara göre işlem açar; sonuçların sorumluluğu sana aittir.</div>
+<div class="kutu">Kalibre Markets SPK lisanslı bir kurum değildir ve yatırım danışmanlığı vermez. Abonelik, kendi kurduğun kurallar ve testler için bir yazılım aracıdır; yatırım tavsiyesi değildir. Kalibre Motor senin onayınla, senin kurduğun kurallara göre işlem açar; sonuçların sorumluluğu sana aittir. Ayrıntılar <a href="/risk-bildirimi/">risk bildiriminde</a>.</div>
 
     </article>
     
@@ -145,8 +157,9 @@
       <a href="/iletisim/">İletişim</a>
       <a href="/kullanim-sartlari/">Kullanım şartları</a>
       <a href="/gizlilik/">Gizlilik</a>
+      <a href="/risk-bildirimi/">Risk bildirimi</a>
     </div>
-    <p class="yasal">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
   </div>
 </footer>
 <script>
@@ -170,6 +183,17 @@
     }
     d.disabled = false; d.textContent = 'Abone ol';
   });
+})();
+</script><script>
+if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }
+</script><script>
+// Ödeme sunucuda yapılandırılmamışsa (503) "yakında" kartına düş.
+(function () {
+  var acik = document.getElementById('odeme-acik'), yakin = document.getElementById('odeme-yakinda');
+  if (!acik || !yakin) return;
+  fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: false }) })
+    .then(function (r) { if (r.status === 503) { acik.hidden = true; yakin.hidden = false; } })
+    .catch(function () {});
 })();
 </script>
 </body>

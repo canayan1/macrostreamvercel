@@ -1,12 +1,24 @@
-# Kapalı beta planı (yalnız demo hesaplar)
+# Davetli beta planı (testçiler: yalnız Köprü, demo hesaplar)
 
-Hedef başlangıç: 1-2 Kasım 2026. Süre: 2 hafta. Katılımcı: 10-20 kişi.
+Güncelleme 25.10.2026: site bu hafta canlıya **beta olarak ve ödemeler açık** çıkıyor; ayrı bir
+beta adresi yok. Ücretli abonelik Kalibre Motor'u gerçek hesapta beta uyarılarıyla içerir (açık
+onay ve kayıp sınırı şart; `docs/CANLIYA-CIKIS.md`). Bu plan **davetli testçiler** içindir: onlar
+Motor almaz, yalnız Köprü'yü demo hesapta kullanır.
+
+Hedef başlangıç: canlıya çıkıştan sonraki ilk hafta. Süre: 2 hafta. Katılımcı: 10-20 kişi.
 Tester rehberi: `/beta/` (TR) ve `/en/beta/` (EN); sitede her sayfadaki beta bandı oraya götürür.
 
 **Kapsam:** MT5 köprüsü (yalnız okuma) ve Panom, Alpaca paper / Tradier sandbox bağlantıları, strateji
 kurucu (Basit/İleri), hızlı prova, optimizasyon. **Otomatik işlem betanın parçası değildir:** Kalibre
-Motor ve prop kalkanı testerlara verilmez. Beta lisansları yalnız `kopru` ürününü kapsar
+Motor ve prop kalkanı testerlara verilmez. Testçi lisansları yalnız `kopru` ürününü kapsar
 (`urunler: ["kopru"]`); Motor için lisans ya da indirme isteği açık bir mesajla 403 döner.
+
+Testçi lisansı iki yoldan açılır:
+- **Promosyon kodu (önerilen):** "Kalibre ilk testçiler" kuponu (%100, 3 ay, metadata
+  `urunler=kopru`), testçi başına tek kullanımlık kod. Testçi `/pro/` sayfasında abone olur, kart
+  sorulmaz, lisans otomatik açılır. 3 ay sonunda iptal etmezse abonelik ücretliye döner; kapsam
+  yine yalnız Köprü kalır (Can'ın kararı bekleniyor, `CANLIYA-CIKIS.md`).
+- **Doğrudan beta lisansı:** Stripe'sız, `yerel/beta-lisans.mjs` ile (aşağıda).
 
 ## 1. Kimleri davet edelim
 
@@ -18,7 +30,12 @@ Motor ve prop kalkanı testerlara verilmez. Beta lisansları yalnız `kopru` ür
 
 ## 2. Davet e-postası
 
-Her tester için yerelde bir beta lisansı üret (Upstash bilgileri ortamdayken):
+Promosyon koduyla davette şablondaki 1. adım şöyle olur: "https://kalibremarkets.com/pro
+sayfasında Abone ol'a bas, ödeme sayfasında Promosyon kodu ekle'ye **{KOD}** yaz; ilk 3 ay
+ücretsiz, kart istenmez. 3 ay dolmadan Lisansım sayfasından iptal edebilirsin." Lisans anahtarı
+satırı çıkarılır.
+
+Doğrudan lisansla davet için her tester için yerelde bir beta lisansı üret (Upstash bilgileri ortamdayken):
 
 ```
 node --env-file=.env.local yerel/beta-lisans.mjs olustur --eposta kisi@ornek.com --gun 60 --not "demo MT5, Windows"
@@ -100,23 +117,32 @@ Not: sitede kullanıcı davranışı izlenmiyor (Analytics yalnız onayla ve say
 - **P1:** kurulum ya da kullanım engelleniyor (eklenti bağlanmıyor, sayfa açılmıyor). 24 saat içinde çözüm ya da geçici yol.
 - **P2:** kafa karıştıran ifade, görsel hata, küçük kusur. Haftalık toplu düzeltme.
 
-## 6. Aşama 2'ye (gerçek hesaplarda yalnız okuma) geçiş koşulları
+## 6. Testçiler için aşama 2'ye (gerçek hesaplarda yalnız okuma) geçiş koşulları
 
-Hepsi sağlanmadan gerçek hesap bağlantısı açılmaz:
+Bu koşullar davetli testçiler içindir; ücretli abonelerin gerçek hesap kullanımı kurucunun
+25.10.2026 kararıyla beta uyarılarıyla açıktır. Hepsi sağlanmadan testçilere gerçek hesap
+bağlantısı önerilmez:
 
 - [ ] 7 gün boyunca açık P0 yok.
 - [ ] Testerların en az %70'i bağlantıyı kendi başına kurabildi.
 - [ ] `docs/GUVENLIK-INCELEMESI.md` maddeleri tamamlandı (özellikle içe aktarılan dosyalardan XSS ve CSP).
 - [ ] Gizlilik politikasındaki boşluklar dolduruldu ([UNVAN], [ADRES], [DEPO SAĞLAYICI], [STRIPE TÜZEL KİŞİSİ]) ve avukat incelemesi yapıldı.
 - [ ] Motor doğrulamasının A-C aşamaları bitti (kurallar yayımlandı, bilinen-cevap testleri, MT5 ile işlem işlem karşılaştırma).
-- [ ] Aşama 2'de Motor gerçek hesapta emir açmaz; yalnız köprü (okuma) ve Panom açılır.
+- [ ] Aşama 2'de testçi lisansı yine yalnız köprü (okuma) ve Panom'u kapsar.
 
-## 7. Kalibre Motor (otomatik işlem): yalnız kurucu, yalnız demo
+## 7. Kalibre Motor (otomatik işlem)
 
-- Motor ve prop kalkanı betada testerlara verilmez.
+Kurucu kararı (25.10.2026): ücretli abonelik Motor'u içerir ve gerçek hesapta beta uyarılarıyla
+kullanılabilir. Güvenceler Motor 0.21'de: gerçek hesapta `InpGercekOnay` açıkça işaretlenmeden ve
+bir kayıp sınırı (prop kalkanı ya da strateji `gunluk_max_kayip`) tanımlanmadan yeni işlem açılmaz;
+panelde "BETA" yazar. Kullanıcı risk bildirimini ve şartlar madde 8b'yi kabul eder. Aşağıdaki
+doğrulama işi kurucu tarafında sürer ve ilk ay içinde tamamlanmalıdır:
+
+- Motor ve prop kalkanı davetli testçilere verilmez.
 - Kurucu Motor'u demo hesapta **en az 4 hafta** kesintisiz çalıştırır: kalkan ön ayarları, lisans
   yenileme, MT5 yeniden başlatma, internet kesintisi, haber filtresi, açık pozisyonların yönetimi.
   Her hafta Uzmanlar günlüğü ve işlem listesi saklanır; beklenmeyen her emir P0'dır.
 - Motor doğrulamasının A-C aşamaları (kurallar, bilinen-cevap testleri, MT5 Strategy Tester ile işlem
-  işlem karşılaştırma) bitmeden ve bu 4 hafta sorunsuz geçmeden, Motor'un herhangi bir gerçek hesapta
-  kullanılması ya da kullanıcılara sunulması söz konusu değildir.
+  işlem karşılaştırma) ve bu 4 haftalık demo çalışma, ücretli sunumla paralel yürür. Bu süreçte
+  bulunan her beklenmeyen emir P0'dır: düzeltme yayımlanana kadar ücretli abonelere e-postayla
+  duyurulur.

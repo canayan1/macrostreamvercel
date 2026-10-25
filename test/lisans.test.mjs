@@ -5,7 +5,7 @@ import { bellekDepo } from '../api/_lib/depo.ts';
 import { imzaDogrula, formKodla, kokAdres } from '../api/_lib/stripe.ts';
 import {
   belirtecImzala, anahtarUret, ANAHTAR_RE, bitisHesapla, donemSonu, aboneligiKaydet, olayIsle,
-  oturumCoz, lisansIsle, kayitGorunumu, HESAP_SINIRI, GECIKME_TOLERANSI_SN,
+  oturumCoz, lisansIsle, kuponUrunleri, kayitGorunumu, HESAP_SINIRI, GECIKME_TOLERANSI_SN,
 } from '../api/_lib/lisans.ts';
 
 const SIR = 'degistir-beni';
@@ -70,7 +70,7 @@ function sahteStripe(kayitlar) {
 test('ödeme → kayıt; webhook ve ödeme sonrası sayfa yarışsa da tek anahtar', async () => {
   const d = bellekDepo();
   const oturum = { id: 'cs_test_abc123456789', mode: 'subscription', status: 'complete', payment_status: 'paid', subscription: 'sub_1', customer_details: { email: 'can@ornek.com' } };
-  const stripe = sahteStripe({ 'subscriptions/sub_1': sub(), 'checkout/sessions/cs_test_abc123456789': oturum });
+  const stripe = sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': sub(), 'checkout/sessions/cs_test_abc123456789': oturum });
 
   // Sayfa webhook'tan önce gelir: oturumu Stripe'tan doğrular, kaydı açar.
   const k1 = await oturumCoz(d, oturum.id, stripe);
@@ -100,7 +100,7 @@ test('tamamlanmamış ya da abonelik olmayan oturum kayıt açmaz', async () => 
 test('yenileme, gecikme ve iptal olayları bitişi günceller; bilinmeyen abonelik yok sayılır', async () => {
   const d = bellekDepo();
   const yenilendi = sub({ items: { data: [{ current_period_end: T0 + 60 * 86400 }] } });
-  const stripe = sahteStripe({ 'subscriptions/sub_1': yenilendi });
+  const stripe = sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': yenilendi });
   const k = await aboneligiKaydet(d, sub(), 'a@b.c', null);
   // invoice.paid: yeni (basil) biçimde abonelik kimliği parent altında.
   await olayIsle(d, { type: 'invoice.paid', data: { object: { parent: { subscription_details: { subscription: 'sub_1' } } } } }, stripe);
@@ -175,4 +175,36 @@ test('İngilizce mesajlar: uçların ve lisans ucunun her Türkçe mesajının �
   assert.match(cevir('Bu anahtar en çok 2 MT5 hesabında kullanılabilir. Değiştirmek için bize yazın.', 'en'), /at most 2 MT5 accounts/);
   assert.equal(cevir('Lisans anahtarı bulunamadı.', 'tr'), 'Lisans anahtarı bulunamadı.');
   assert.ok(Object.keys(EN).length > 15);
+});
+
+test('kupon kapsamı: metadata urunler=kopru lisansı Köprü ile sınırlar, indirim bitince korunur', async () => {
+  const d = bellekDepo();
+  const simdi = T0 * 1000;
+  const kupon = { id: 'ilk-testciler', percent_off: 100, duration: 'repeating', duration_in_months: 3, metadata: { urunler: 'kopru' } };
+  // Yeni API: discounts[] açılmış, kupon source.coupon altında kimlik olarak; ayrıca çekilir.
+  const indirimli = sub({ discounts: [{ id: 'di_1', source: { type: 'coupon', coupon: 'ilk-testciler' } }] });
+  const oturum = { id: 'cs_test_kupon0000001', mode: 'subscription', status: 'complete', payment_status: 'no_payment_required', subscription: 'sub_1', customer_details: { email: 't@ornek.com' } };
+  const stripe = sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': indirimli, 'checkout/sessions/cs_test_kupon0000001': oturum, 'coupons/ilk-testciler': kupon });
+  const k = await oturumCoz(d, oturum.id, stripe);
+  assert.deepEqual(k.urunler, ['kopru']);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'motor', simdi)).durum, 403);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'kopru', simdi)).durum, 200);
+  // İndirim bitti: abonelikte kupon yok, kapsam kayıttaki gibi kalır.
+  await olayIsle(d, { type: 'customer.subscription.updated', data: { object: sub({ discounts: [] }) } }, stripe);
+  assert.deepEqual((await oturumKaydi(d, k.anahtar)).urunler, ['kopru']);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'motor', simdi)).durum, 403);
+});
+
+test('kupon kapsamı: eski biçim, açılmış kupon, tanınmayan ad ve kuponsuz abonelik', async () => {
+  assert.deepEqual(await kuponUrunleri({ discount: { coupon: { metadata: { urunler: 'kopru' } } } }), ['kopru']);
+  assert.deepEqual(await kuponUrunleri({ discounts: [{ coupon: { metadata: { urunler: ' Köprü , motor' } } }] }), ['kopru', 'motor']);
+  assert.deepEqual(await kuponUrunleri({ discounts: [{ source: { coupon: { metadata: { urunler: 'yanlis' } } } }] }), []);
+  assert.equal(await kuponUrunleri({ discounts: [{ source: { coupon: { metadata: {} } } }] }), null);
+  assert.equal(await kuponUrunleri({ discounts: ['di_1'] }), null); // açılmamış kimlik: kapsam yok
+  assert.equal(await kuponUrunleri(sub()), null);
+  // Kuponsuz ücretli abonelik tüm ürünleri kapsar.
+  const d = bellekDepo();
+  const k = await aboneligiKaydet(d, sub(), 'a@b.c', null);
+  assert.equal(k.urunler, undefined);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5552', 'motor', T0 * 1000)).durum, 200);
 });

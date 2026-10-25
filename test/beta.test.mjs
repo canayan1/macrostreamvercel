@@ -30,11 +30,11 @@ test('beta lisansı Motor\'u kapsamaz: lisans ve indirme 403, açık mesajla; ü
   await d.yaz('eklenti:motor', JSON.stringify({ dosya: 'KalibreMotor.ex5', surum: 'b', sha256: '', b64: 'AA==' }));
   const l = await lisansIsle(d, SIR, k.anahtar, '12345', 'motor', T0);
   assert.equal(l.durum, 403);
-  assert.match(l.govde, /otomatik işlem betanın parçası değildir/);
+  assert.match(l.govde, /Kalibre Motor için tam abonelik gerekir/);
   const i = await eklentiIndir(d, k.anahtar, 'motor', T0);
   assert.equal(i.durum, 403);
   const { cevir } = await import('../api/_lib/dil.ts');
-  assert.match(cevir(l.govde, 'en'), /automated trading is not part of the beta/);
+  assert.match(cevir(l.govde, 'en'), /Kalibre Engine needs a full subscription/);
   // Hesap Motor isteğiyle bağlanmaz (reddedilen istek hesap sınırını tüketmez).
   assert.deepEqual(JSON.parse(await d.oku(`lisans:${k.anahtar}`)).hesaplar, []);
   // urunler alanı olmayan (ücretli) kayıt her iki ürünü kapsar.

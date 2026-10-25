@@ -86,6 +86,8 @@ SETUP = '''
 </ol>
 <div class="kutu">On the free Alpaca plan, live prices come from the IEX exchange only, which is a small share of total market volume. The lab only uses the keys to read and never sends orders. The keys are stored only in this browser and sent only to Alpaca; they never reach Kalibre. Disconnecting deletes them from your browser. This connection works with your own personal keys.</div>
 
+<div class="kutu">Kalibre Lab is in beta. Before you set it up, read the <a href="/en/risk-disclosure/">risk disclosure</a>; do your first setup on a demo account.</div>
+
 <h2 id="without">Working without the add-on</h2>
 <p>If you prefer not to install the add-on, drag and drop a candle file exported from MT5 (CSV or JSON) into the lab. The file never leaves your computer; it is read in your browser.</p>
 <p class="not">The add-ons show their messages in English, or in Turkish if your MetaTrader 5 is set to Turkish.</p>
@@ -227,26 +229,53 @@ ABOUT = '''
 sayfa("en/about/index.html", "About: Kalibre", "Why Kalibre exists, how it works and what it does not do.", "", ABOUT, dil="en")
 
 # ------------------------------------------------------------------ pricing
-PRICING = """
+EN_MOTOR = '<li>Kalibre Engine: the add-on that runs your rule file in MT5. Use on a real account is <b>beta</b>; it requires explicit acceptance and a loss limit, read the <a href="/en/risk-disclosure/">risk disclosure</a>.</li>'
+EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar"> <span>I have read and accept the <a href="/en/terms/">terms of use</a> and the <a href="/en/privacy/">privacy policy</a>.</span></label>
+  <button type="button" class="dugme" id="abone-ol">Subscribe</button>
+  <p class="not" id="odeme-durum" role="status"></p>
+  <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license/">License</a> page and keep using the service until the end of the period.</p>"""
+EN_KAPALI = """  <div class="yakinda">
+    <h3>Payments open soon</h3>
+    <p>Kalibre Lab is in beta. Join the list below to hear when subscriptions open.</p>
+    <p><b>Invited?</b> Save the beta licence you received on the <a href="/en/license/">License</a> page.</p>
+  </div>"""
+EN_BEKLEME = f"""
+<h2 id="waitlist">{"Not ready yet?" if ODEME_ACIK else "Hear when payments open"}</h2>
+<p>{"Leave your email to hear when new features ship." if ODEME_ACIK else "We will email you when subscriptions open and when new features ship."}</p>
+<div class="bekleme">
+  <p id="ok-msg" hidden><b>You are on the list.</b> We will email you {"when new features ship" if ODEME_ACIK else "when subscriptions open"}.</p>
+  <form action="https://formsubmit.co/markets@kalibrefin.com" method="POST" id="wl-form">
+    <input type="hidden" name="_subject" value="Kalibre Lab waitlist: new sign-up (EN)">
+    <input type="hidden" name="_next" value="https://kalibremarkets.com/en/pricing/?ok=1">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <label for="eposta">Your email</label>
+    <div class="satir">
+      <input type="email" id="eposta" name="email" required autocomplete="email">
+      <button type="submit" class="dugme">Join the list</button>
+    </div>
+  </form>
+  <p class="not">Your email is used only for this and is delivered to us through the FormSubmit service. To leave the list, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>. Details are in the <a href="/en/privacy/">privacy policy</a>.</p>
+</div>
+"""
+PLAN_SECIM = ('<div id="odeme-acik">\n' + EN_ACIK + '\n</div>\n' + EN_KAPALI.replace('<div class="yakinda">', '<div class="yakinda" id="odeme-yakinda" hidden>')) if ODEME_ACIK else EN_KAPALI
+PRICING = f"""
 <h1>Pricing</h1>
 <p class="giris">The free part of the lab lets you rule ideas out. The subscription is for running a rule you trust on your own MetaTrader 5 account and streaming your data live.</p>
 
 <div class="plan" id="plan">
   <div class="plan-bas">
-    <h2>Kalibre Lab</h2>
+    <h2>Kalibre Lab <span class="rozet-beta">beta</span></h2>
     <p class="fiyat"><span class="sayi">$19</span> / month <span class="not">(€17 in the euro area, 399 TL in Turkey)</span></p>
   </div>
   <ul>
-    <li>Kalibre Engine: the add-on that runs your rule file on your live MT5 account</li>
+    {EN_MOTOR}
     <li>Prop shield: daily and total loss limits, FTMO and The5ers presets</li>
-    <li>Live, encrypted data bridge from MetaTrader 5</li>
+    <li>Live, encrypted data bridge from MetaTrader 5 (Kalibre Bridge)</li>
     <li>Up to 2 MT5 accounts</li>
     <li>Everything in the free part</li>
   </ul>
-  <label class="onay"><input type="checkbox" id="sartlar"> <span>I have read and accept the <a href="/en/terms/">terms of use</a> and the <a href="/en/privacy/">privacy policy</a>.</span></label>
-  <button type="button" class="dugme" id="abone-ol">Subscribe</button>
-  <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license/">License</a> page and keep using the service until the end of the period.</p>
+{PLAN_SECIM}
 </div>
 
 <h2 id="free">What stays free</h2>
@@ -255,10 +284,13 @@ PRICING = """
   <li>Building rule files, the quick test and the volatility lab.</li>
   <li>Kalibre Engine in MT5 Strategy Tester: historical tests need no license.</li>
 </ul>
-
-<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Engine places trades with your approval, according to rules you built; you are responsible for the results.</div>
+{EN_BEKLEME}
+<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Engine places trades with your approval, according to rules you built; you are responsible for the results. Details are in the <a href="/en/risk-disclosure/">risk disclosure</a>.</div>
 """
-EN_PRO_BETIK = """<script>
+EN_PRO_BETIK_KAPALI = """<script>
+if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }
+</script>"""
+EN_PRO_BETIK_ACIK = """<script>
 (function () {
   var q = new URLSearchParams(location.search);
   var durum = document.getElementById('odeme-durum');
@@ -284,7 +316,9 @@ _tr = open(os.path.join(_d, "sayfa-uret.py")).read()
 PRO_STIL = _tr.split('PRO_STIL = """')[1].split('"""')[0]
 HESAP_STIL = _tr.split('HESAP_STIL = """')[1].split('"""')[0]
 PROP_STIL = _tr.split('PROP_STIL = """')[1].split('"""')[0]
-sayfa("en/pricing/index.html", "Pricing: Kalibre Lab", "Kalibre Lab subscription: run Kalibre Engine and the prop shield on your live MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.", "/en/pricing/", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
+PRO_ODEME_YEDEK = _tr.split('PRO_ODEME_YEDEK = """')[1].split('"""')[0]
+EN_PRO_BETIK = (EN_PRO_BETIK_ACIK + EN_PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else EN_PRO_BETIK_KAPALI
+sayfa("en/pricing/index.html", "Pricing: Kalibre Lab", ("Kalibre Lab subscription: run Kalibre Engine and the prop shield on your MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time." if ODEME_ACIK else "Kalibre Lab (beta) subscription: $19 a month. Payments open soon; join the waitlist."), "/en/pricing/", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
 
 # ------------------------------------------------------------------ license
 LICENSE = """
@@ -443,6 +477,7 @@ PROP = """
   <li>The shield is part of Kalibre Engine. Engine runs the rule file you build in Kalibre Lab on your own account; we sell no signals and make no decisions for you.</li>
   <li>Kalibre is not a prop firm and is not affiliated with any firm. Firm names appear only to describe their rules.</li>
   <li>Slippage and gaps can cause losses beyond the stop; that is what the safety margin is for.</li>
+  <li>The shield is in beta and is not a guarantee. Read the <a href="/en/risk-disclosure/">risk disclosure</a> before using it on a real account.</li>
 </ul>
 """
 sayfa("en/prop/index.html", "Prop firm shield: don't fail the challenge on a rule breach", "The Kalibre Engine shield watches daily and total loss limits on every tick, sizes lots to the limit and stops near the floor. FTMO and The5ers presets.", "/en/prop/", PROP, icindekiler(PROP), ek_stil=PROP_STIL, ek_betik='<script src="/static/kalkan-hesap.js" defer></script>', dil="en")
@@ -479,9 +514,13 @@ sayfa("en/forex/index.html", "Retail forex: don't blow up your account", "In lev
 _tr2 = open(os.path.join(_d, "sayfa-uret.py")).read()
 exec(_tr2[_tr2.index("# ------------------------------------------------------------------ kapalı beta rehberi"):_tr2.index('BETA = f"""')])
 BETA_EN = f"""
-<h1>Closed beta guide</h1>
+<h1>Beta programme guide</h1>
 <p class="giris">Thank you for trying Kalibre Lab. This page explains what is in the beta, what to do in your first session, what to avoid and how to send feedback.</p>
-<div class="kutu"><b>Demo accounts only.</b> During the beta, do not connect any account that trades real money. All results are simulations and may not include costs; do not make real-money decisions with them.</div>
+<div class="kutu"><b>Use a demo account in the beta programme.</b> Do not connect an account that trades real money with an invited beta licence. All results are simulations and may not include costs; do not make real-money decisions with them. Details are in the <a href="/en/risk-disclosure/">risk disclosure</a>.</div>
+
+<h2 id="licence">How do I get my beta licence?</h2>
+<p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing/">Pricing</a> page, accept the terms and press "Subscribe"; on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license/">License</a> page. If you were sent a licence key directly, save it on the same page.</p>
+<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license/">License</a> page before the period ends; if no payment is made the licence closes within a few days. A licence opened with an invite code covers Kalibre Bridge only.</div>
 
 <h2 id="whats-in">What is in the beta?</h2>
 <ul>
@@ -491,7 +530,7 @@ BETA_EN = f"""
   <li><b>Optimization:</b> parameter scan, training and test periods, heat map, a measure of whether a result could be luck.</li>
   <li><b>Alpaca (paper) and Tradier (sandbox):</b> direct browser connection to US brokers.</li>
 </ul>
-<div class="kutu"><b>Automated trading is not part of the beta.</b> Kalibre Engine (the add-on that runs a rule file in MT5) and the prop shield are not included; your beta licence covers Kalibre Bridge (read-only) only. No orders are placed on any account during the beta.</div>
+<div class="kutu"><b>Automated trading is not part of the beta programme.</b> Kalibre Engine (the add-on that runs a rule file in MT5) and the prop shield are not included in the beta licence; your beta licence covers Kalibre Bridge (read-only) only. No orders are placed on any account in the beta programme.</div>
 
 <h2 id="first-session">First session (about 30 minutes)</h2>
 <ol>
@@ -525,4 +564,43 @@ BETA_EN = f"""
 <p>Fill in the form or <a href="{beta_mailto("en")}">send it by email</a> (a template opens).</p>
 {beta_form("en")}
 """
-sayfa("en/beta/index.html", "Closed beta guide: Kalibre Lab", "Kalibre Lab closed beta: what is included, first session, what to avoid and how to send feedback.", "", BETA_EN, icindekiler(BETA_EN), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True, dil="en")
+sayfa("en/beta/index.html", "Beta programme guide: Kalibre Lab", "Kalibre Lab beta programme: what is included, first session, what to avoid and how to send feedback.", "", BETA_EN, icindekiler(BETA_EN), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True, dil="en")
+
+# ------------------------------------------------------------------ risk disclosure
+RISK = """
+<h1>Risk disclosure</h1>
+<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. It forms part of the <a href="/en/terms/">terms of use</a>.</p>
+
+<h2 id="beta">Beta version</h2>
+<p>Kalibre Lab is in beta. Features may change, the software may contain errors and calculations may produce incorrect results. Before relying on a result, test the same rule in your own MetaTrader 5 Strategy Tester and on a demo account. Report any number that looks wrong through the <a href="/en/beta/">feedback form</a>.</p>
+
+<h2 id="simulated">Simulated and hypothetical results</h2>
+<p>The lab, the quick test, the optimization panel and the examples on these pages show hypothetical (simulated) results, which have inherent limitations:</p>
+<ul>
+  <li>Unlike an actual performance record, simulated results do not represent actual trading.</li>
+  <li>Since the trades have not been executed, the results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity.</li>
+  <li>The quick test does not include spread, commission, swap or slippage; real results are usually lower.</li>
+  <li>Optimization is carried out on past data with the benefit of hindsight; the setting that looks best is often fitted to the past.</li>
+  <li>No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.</li>
+</ul>
+
+<h2 id="leverage">Risk of leveraged trading</h2>
+<p>Leveraged trading (forex, CFDs and similar products) can lose you all of the money you deposit. According to the European regulator ESMA's 2018 review, 74-89% of retail CFD accounts lost money. In Turkey, the Capital Markets Board said in 2015 that about 87-88% of forex investors lost money. Do not trade with money you cannot afford to lose.</p>
+
+<h2 id="engine">Using Kalibre Engine on a real account</h2>
+<p>Kalibre Engine runs the rule file you build on your account and sends orders. On a real account during the beta, these risks apply:</p>
+<ul>
+  <li><b>Software errors:</b> the rule file or the Engine may behave unexpectedly.</li>
+  <li><b>Connectivity:</b> if MetaTrader 5 closes, the computer sleeps or the internet drops, the Engine cannot manage positions.</li>
+  <li><b>Slippage and gaps:</b> in fast markets, around news and at weekend opens, orders can be filled at prices different from the stop or target.</li>
+  <li><b>The shield is not a guarantee:</b> the prop shield and loss limits can be exceeded because of gaps, slippage and broker rules.</li>
+</ul>
+<p>That is why, on a real account, the Engine opens no new trades unless you tick "I accept the beta risk on a real account" in the add-on's settings and a loss limit (the prop shield or a daily loss limit) is set.</p>
+
+<h2 id="no-advice">Not investment advice</h2>
+<p>Kalibre Markets does not provide investment advice, portfolio management or brokerage services and is not a licensed investment firm. You decide which rule to build and when, in which symbol and at what size to trade; you are responsible for the results. Educational examples are starting points, not recommendations.</p>
+
+<h2 id="data">Data and privacy</h2>
+<p>Your data from the bridge is end-to-end encrypted; your Alpaca and Tradier data comes directly to your browser. Which data is processed where is described in the <a href="/en/privacy/">privacy policy</a> and on the <a href="/en/security/">security page</a>.</p>
+"""
+sayfa("en/risk-disclosure/index.html", "Risk disclosure: Kalibre Lab", "Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.", "", RISK, icindekiler(RISK), dil="en")

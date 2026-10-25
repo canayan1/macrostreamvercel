@@ -1,14 +1,17 @@
-# Kalibre Lab yol haritası (24 Ekim 2026)
+# Kalibre Lab yol haritası (25 Ekim 2026)
 
 Durum: ürün, site ve abonelik altyapısı yerelde bitti ve test edildi; canlıda eski site duruyor.
+Karar (25.10.2026): canlıya bu hafta, **beta olarak ve ödemeler açık** çıkılır; ayrı bir beta
+adresi yok. Ücretli plan Motor'u gerçek hesapta beta uyarılarıyla içerir; davetli testçiler
+%100 indirimli kuponla yalnız Köprü alır. Çıkış listesi: `docs/CANLIYA-CIKIS.md`.
 Sıra, bağımlılığa göre. Her aşama bitince bir sonrakine geçilir; canlıya alma her seferinde
 açık onayla yapılır.
 
 ## 1. Canlıya hazırlık (bu hafta)
 
 Can:
-- Stripe test modu: ürün, tek aylık fiyat 399 TRY + para birimi seçenekleri 19 USD / 17 EUR,
-  webhook, müşteri portalı → anahtarlar Vercel'e
+- Stripe test modu, sonra canlı mod: ürün, tek aylık fiyat 399 TRY + para birimi seçenekleri
+  19 USD / 17 EUR, webhook, müşteri portalı, "Kalibre ilk testçiler" kuponu → anahtarlar Vercel'e
 - Upstash Redis (Vercel Storage)
 - Lisans sırrı (`openssl rand -hex 32`) → Vercel + LisansSirri.mqh
 - Gizlilik/şartlardaki boşluklar: unvan, adres, Stripe şirketi, depo sağlayıcı
@@ -24,14 +27,15 @@ Claude:
 
 ## 2. Canlıya alma (onayla)
 
-- `urun-sitesi` → main, `vercel --prod`
+- `urun-sitesi` → main, `vercel --prod` (beta etiketiyle, ödemeler açık)
 - Stripe canlı moda geçiş, webhook adresi canlı
 - İlk 48 saat: lisans ve röle uçlarının günlüklerini izle; MT5'ten gerçek bağlantı
 - Arama motorları: yeni site haritası, eski adreslerin 301'leri
 
 ## 3. İlk kullanıcılar (canlıdan sonraki 4 hafta)
 
-- 10-20 kişilik kapalı deneme: bekleme listesi + Türkçe prop/forex toplulukları
+- 10-20 kişilik davetli beta (promosyon koduyla, yalnız Köprü, demo hesap): bekleme listesi +
+  Türkçe prop/forex toplulukları
 - Geri bildirim döngüsü: kurulumda takılma noktaları, kalkan ön ayarlarının doğruluğu
 - Ölçüm: deneme → abonelik dönüşümü, ilk ay iptali, MT5 bağlantısı kuran oranı
 - Fiyat ve mesaj düzeltmeleri bu geri bildirime göre

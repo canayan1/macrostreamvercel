@@ -1,6 +1,6 @@
 # English legal pages (privacy, terms) in the new site design. One-off generator.
 import os, re
-KOK = "/private/tmp/claude-501/-Users-can-Documents-macrostreamvercel--claude-worktrees-loving-noyce-59a4b3/aebca502-9ff1-4d14-897c-d2dcd733daaa/scratchpad/site-wt"
+KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # site kökü
 MAIL = '<a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>'
 
 MENU = [("/en/lab/", "Lab"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"),
@@ -45,8 +45,9 @@ ALT = '''<footer class="alt">
       <a href="/iletisim/" hreflang="tr">Contact</a>
       <a href="/en/terms/">Terms of use</a>
       <a href="/en/privacy/">Privacy</a>
+      <a href="/en/risk-disclosure/">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past data and are not an indication of future results. Leveraged trading can lead to the loss of your entire deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past data and are not an indication of future results. Leveraged trading can lead to the loss of your entire deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
   </div>
 </footer>'''
 
@@ -230,7 +231,7 @@ GIZLILIK = f'''
 # ------------------------------------------------------------------ terms
 SARTLAR = f'''
 <h1>Terms of Use</h1>
-<p class="not">Effective date: 21 October 2026</p>
+<p class="not">Effective date: 25 October 2026</p>
 {CEVIRI.format(tr="/kullanim-sartlari/")}
 
 <h2 id="parties">1. Parties and scope</h2>
@@ -274,6 +275,22 @@ SARTLAR = f'''
 <p><strong>Pairing code.</strong> The pairing code is the key that encrypts your data and is held only by you. Keeping the code confidential is your responsibility. If you suspect that your code has fallen into someone else's hands, you must generate a new code in Kalibre Lab. Because Kalibre Markets does not know your code, it cannot recover a lost code and cannot access data encrypted with it.</p>
 <p><strong>Continuity.</strong> The bridge depends on MetaTrader 5 being open, on your internet connection, on your broker's server and on the Site's relay server. Kalibre Markets does not guarantee that the bridge will operate without interruption, that every piece of data will be transmitted or that data will arrive within a particular time. The bridge is not a trading or risk management system; rely on your broker's platform to monitor your open positions.</p>
 <p><strong>MetaTrader.</strong> MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with or endorsed by MetaQuotes Ltd.</p>
+
+<h2 id="beta">8a. Beta version</h2>
+<p>Kalibre Lab, Kalibre Bridge and Kalibre Engine are in <strong>beta</strong>. During the beta, features may change, be added or be removed without prior notice; the software may contain errors and calculations may produce incorrect results. Except where the law requires otherwise, the beta is provided "as is", without any warranty of accuracy, uninterrupted availability or fitness for a particular purpose.</p>
+<p><strong>Beta licence.</strong> Free beta licences given by invitation are personal, non-transferable, valid for the stated period and cover only the products named in the licence (for example, Kalibre Bridge only). Kalibre Markets may end a beta licence before its expiry. A beta licence does not turn into a paid subscription automatically.</p>
+<p><strong>Feedback.</strong> Kalibre Markets may use the feedback you send during the beta to improve the product without paying you anything for it. Do not include pairing codes, licence keys, API keys or passwords in your feedback.</p>
+<!-- FOR COUNSEL: "as is" provision and warranty disclaimer have limited effect against consumers under Turkish consumer law (Law No. 6502) and EU/UK consumer law; review the scope of the beta clause for consumers once paid subscriptions start. -->
+
+<h2 id="engine-real">8b. Using Kalibre Engine on a real account</h2>
+<p>Kalibre Engine runs the rule file you build on your MetaTrader 5 account and sends orders according to those rules. Using the Engine on an account that trades real money (a real account) carries additional risks during the beta: software errors, lost connections, broker-side delays, slippage and price gaps can cause losses larger than expected.</p>
+<ul>
+  <li><strong>Explicit acceptance.</strong> On a real account, the Engine opens no new trades unless you yourself tick "I accept the beta risk on a real account" in the add-on's settings.</li>
+  <li><strong>Mandatory loss limit.</strong> On a real account, the Engine opens no new trades unless the prop shield or a daily loss limit in the rule file is set.</li>
+  <li><strong>The shield is not a guarantee.</strong> The prop shield and loss limits can be exceeded because of price gaps, slippage, lost connections or differences in your broker's trading rules.</li>
+  <li><strong>Responsibility.</strong> The results of all trades the Engine opens with your rules are yours. Before using the Engine on a real account, you must test the same rule file in MT5 Strategy Tester and on a demo account. Details are in the <a href="/en/risk-disclosure/">Risk Disclosure</a>.</li>
+</ul>
+<!-- FOR COUNSEL: offering the Engine on real accounts as part of a paid plan should be reassessed under SPK (III-37.1 art. 37 and 45), CFTC 4.14(a)(9) and FCA PERG 8.30; explicit acceptance and the mandatory loss limit are enforced in the software. -->
 
 <h2 id="prohibited">9. Prohibited uses</h2>
 <p>When using the Site you agree not to:</p>

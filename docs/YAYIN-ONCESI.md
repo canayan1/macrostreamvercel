@@ -1,7 +1,8 @@
 # Ürün sitesi: canlıya almadan önce
 
 `urun-sitesi` dalı canlıya alınmadan önce tamamlanması gerekenler. İşaretlenmeyen madde varken
-`vercel --prod` yapılmaz.
+`vercel --prod` yapılmaz. Güncel ve ayrıntılı liste: `docs/CANLIYA-CIKIS.md` (25.10.2026: bu
+hafta beta olarak, ödemeler açık; ayrı beta adresi yok).
 
 ## Önizleme
 
@@ -22,6 +23,8 @@ Son önizleme: https://macrostreamvercel-ecylm9qpq-canayan1s-projects.vercel.app
         `checkout.session.completed`, `customer.subscription.created|updated|deleted`,
         `invoice.paid`, `invoice.payment_failed` → `STRIPE_WEBHOOK_SECRET`
   - [ ] Müşteri portalı: iptal, kart güncelleme, faturalar açık
+  - [ ] Davet kuponu "Kalibre ilk testçiler": %100, 3 ay yinelenen, metadata `urunler=kopru`;
+        testçi başına tek kullanımlık promosyon kodu (ayrıntı `CANLIYA-CIKIS.md`)
   - [ ] `STRIPE_SECRET_KEY`
 - [ ] **Lisans sırrı**: `openssl rand -hex 32` → Vercel'de `KALIBRE_LISANS_SIRRI`; aynı değer
       kalibre-lab'de `mql5/Include/Kalibre/LisansSirri.mqh` içine (repoya girmez). Motor ve Köprü
@@ -36,10 +39,14 @@ Son önizleme: https://macrostreamvercel-ecylm9qpq-canayan1s-projects.vercel.app
 - [x] **Eklenti indirme**: `/hesap` sayfasında geçerli lisansa `/api/indir` ile (POST, anahtar URL'de
       görünmez). Dosyalar depoda `eklenti:kopru|motor` anahtarında.
 - [ ] **Eklentileri yükle**: lisans sırrıyla derlenmiş `.ex5`'ler, Upstash bilgileri ortamdayken
-      `node yerel/eklenti-yukle.mjs kopru <yol> 1.00` ve `... motor <yol> 0.20`.
+      `node yerel/eklenti-yukle.mjs kopru <yol> 1.00` ve `... motor <yol> 0.21`.
 - [ ] Kurulum sayfasına ekran görüntüleri (hesap numarası ve ad görünmeyecek şekilde).
 - [x] OG görseli yeni tasarımda (`yerel/og-uret.py`).
-- [ ] Test kartıyla gerçek Stripe test modunda uçtan uca deneme (önizleme adresinde).
+- [ ] Test kartıyla gerçek Stripe test modunda uçtan uca deneme (önizleme adresinde), promosyon
+      koduyla kartsız abonelik dahil.
+- [x] Beta metinleri: beta bandı, risk bildirimi (TR/EN), şartlar 8a/8b, fiyat sayfasında 503'te
+      "Ödemeler yakında" yedeği, site haritası ve robots.txt (25.10.2026).
+- [x] Motor 0.21: gerçek hesapta açık onay ve kayıp sınırı olmadan yeni işlem yok (kalibre-lab).
 
 ## Bilinen notlar
 

@@ -1,4 +1,4 @@
-/* Kalibre: kapalı beta bandı. Ürün sayfalarının üst barının hemen altında ince bir uyarı.
+/* Kalibre: beta bandı. Ürün sayfalarının üst barının hemen altında ince bir uyarı.
  * Oturum boyunca kapatılabilir (sessionStorage; erişilemezse her sayfada görünür).
  * Dil: <html lang>. Kullanım: <script src="/static/beta.js" defer></script>
  */
@@ -10,10 +10,12 @@
 
   var en = document.documentElement.lang === 'en';
   var metin = en
-    ? 'Closed beta: use demo accounts only. All results are simulations and may not include costs; do not make real-money decisions with them.'
-    : 'Kapalı beta: yalnız demo hesaplarla kullanın. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar vermeyin.';
-  var baglanti = en ? 'Send feedback' : 'Geri bildirim gönder';
-  var adres = en ? '/en/beta/' : '/beta/';
+    ? 'Kalibre Lab is in beta. Results are simulations; read the risks before making real-money decisions.'
+    : 'Kalibre Lab beta sürümünde. Sonuçlar simülasyondur; gerçek parayla karar vermeden önce riskleri oku.';
+  var baglanti = en ? 'Risk disclosure' : 'Risk bildirimi';
+  var adres = en ? '/en/risk-disclosure/' : '/risk-bildirimi/';
+  var baglanti2 = en ? 'Beta programme' : 'Beta programı';
+  var adres2 = en ? '/en/beta/' : '/beta/';
   var kapat = en ? 'Close' : 'Kapat';
 
   var st = document.createElement('style');
@@ -38,6 +40,11 @@
   a.href = adres;
   a.textContent = baglanti;
   p.appendChild(a);
+  p.appendChild(document.createTextNode(' · '));
+  var a2 = document.createElement('a');
+  a2.href = adres2;
+  a2.textContent = baglanti2;
+  p.appendChild(a2);
   var b = document.createElement('button');
   b.type = 'button';
   b.textContent = kapat;

@@ -6,12 +6,12 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Pricing: Kalibre Lab</title>
-<meta name="description" content="Kalibre Lab subscription: run Kalibre Engine and the prop shield on your live MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.">
+<meta name="description" content="Kalibre Lab subscription: run Kalibre Engine and the prop shield on your MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.">
 <link rel="canonical" href="https://kalibremarkets.com/en/pricing/">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/pro/">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/pricing/">
 <meta property="og:title" content="Pricing: Kalibre Lab">
-<meta property="og:description" content="Kalibre Lab subscription: run Kalibre Engine and the prop shield on your live MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.">
+<meta property="og:description" content="Kalibre Lab subscription: run Kalibre Engine and the prop shield on your MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -31,6 +31,10 @@
 .onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin-bottom: 16px; cursor: pointer; }
 .onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
 #odeme-durum:empty { display: none; }
+.yakinda { border-top: 1px solid var(--cizgi); padding-top: 14px; }
+.yakinda h3 { margin: 0 0 6px; font-size: 20px; color: var(--kehribar); }
+.yakinda p { margin: 0 0 8px; color: var(--soluk); }
+.rozet-beta { font: 600 12px var(--sans); color: #08130f; background: var(--kehribar); border-radius: 4px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
 #odeme-durum { color: var(--kehribar); }
 .bekleme { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
 .bekleme label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
@@ -68,20 +72,27 @@
 
 <div class="plan" id="plan">
   <div class="plan-bas">
-    <h2>Kalibre Lab</h2>
+    <h2>Kalibre Lab <span class="rozet-beta">beta</span></h2>
     <p class="fiyat"><span class="sayi">$19</span> / month <span class="not">(€17 in the euro area, 399 TL in Turkey)</span></p>
   </div>
   <ul>
-    <li>Kalibre Engine: the add-on that runs your rule file on your live MT5 account</li>
+    <li>Kalibre Engine: the add-on that runs your rule file in MT5. Use on a real account is <b>beta</b>; it requires explicit acceptance and a loss limit, read the <a href="/en/risk-disclosure/">risk disclosure</a>.</li>
     <li>Prop shield: daily and total loss limits, FTMO and The5ers presets</li>
-    <li>Live, encrypted data bridge from MetaTrader 5</li>
+    <li>Live, encrypted data bridge from MetaTrader 5 (Kalibre Bridge)</li>
     <li>Up to 2 MT5 accounts</li>
     <li>Everything in the free part</li>
   </ul>
+<div id="odeme-acik">
   <label class="onay"><input type="checkbox" id="sartlar"> <span>I have read and accept the <a href="/en/terms/">terms of use</a> and the <a href="/en/privacy/">privacy policy</a>.</span></label>
   <button type="button" class="dugme" id="abone-ol">Subscribe</button>
   <p class="not" id="odeme-durum" role="status"></p>
   <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license/">License</a> page and keep using the service until the end of the period.</p>
+</div>
+  <div class="yakinda" id="odeme-yakinda" hidden>
+    <h3>Payments open soon</h3>
+    <p>Kalibre Lab is in beta. Join the list below to hear when subscriptions open.</p>
+    <p><b>Invited?</b> Save the beta licence you received on the <a href="/en/license/">License</a> page.</p>
+  </div>
 </div>
 
 <h2 id="free">What stays free</h2>
@@ -91,7 +102,25 @@
   <li>Kalibre Engine in MT5 Strategy Tester: historical tests need no license.</li>
 </ul>
 
-<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Engine places trades with your approval, according to rules you built; you are responsible for the results.</div>
+<h2 id="waitlist">Not ready yet?</h2>
+<p>Leave your email to hear when new features ship.</p>
+<div class="bekleme">
+  <p id="ok-msg" hidden><b>You are on the list.</b> We will email you when new features ship.</p>
+  <form action="https://formsubmit.co/markets@kalibrefin.com" method="POST" id="wl-form">
+    <input type="hidden" name="_subject" value="Kalibre Lab waitlist: new sign-up (EN)">
+    <input type="hidden" name="_next" value="https://kalibremarkets.com/en/pricing/?ok=1">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <label for="eposta">Your email</label>
+    <div class="satir">
+      <input type="email" id="eposta" name="email" required autocomplete="email">
+      <button type="submit" class="dugme">Join the list</button>
+    </div>
+  </form>
+  <p class="not">Your email is used only for this and is delivered to us through the FormSubmit service. To leave the list, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>. Details are in the <a href="/en/privacy/">privacy policy</a>.</p>
+</div>
+
+<div class="kutu">Kalibre Markets is not a licensed investment firm and does not give investment advice. The subscription is a software tool for rules and tests you set up yourself; it is not investment advice. Kalibre Engine places trades with your approval, according to rules you built; you are responsible for the results. Details are in the <a href="/en/risk-disclosure/">risk disclosure</a>.</div>
 
     </article>
     
@@ -125,8 +154,9 @@
       <a href="/iletisim/">Contact</a>
       <a href="/en/terms/">Terms of use</a>
       <a href="/en/privacy/">Privacy</a>
+      <a href="/en/risk-disclosure/">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
   </div>
 </footer>
 <script>
@@ -149,6 +179,17 @@
     }
     d.disabled = false; d.textContent = 'Subscribe';
   });
+})();
+</script><script>
+if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }
+</script><script>
+// Ödeme sunucuda yapılandırılmamışsa (503) "yakında" kartına düş.
+(function () {
+  var acik = document.getElementById('odeme-acik'), yakin = document.getElementById('odeme-yakinda');
+  if (!acik || !yakin) return;
+  fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: false }) })
+    .then(function (r) { if (r.status === 503) { acik.hidden = true; yakin.hidden = false; } })
+    .catch(function () {});
 })();
 </script>
 </body>

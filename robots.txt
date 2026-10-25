@@ -1,6 +1,7 @@
 # Kalibre Markets robots.txt
 User-agent: *
 Allow: /
+Disallow: /api/
 
 # AdSense crawler
 User-agent: Mediapartners-Google

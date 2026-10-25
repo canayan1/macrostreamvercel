@@ -199,7 +199,7 @@ GOVDE = '''<main>
 
 <section class="bolum son">
   <div class="kap">
-    <h2>$19 a month. Cancel any time.</h2>
+    <h2>Kalibre Lab (beta): $19 / €17 / 399 TL a month.</h2>
     <div class="eylem" style="margin:0">
       <a class="dugme" href="/en/pricing/">See pricing</a>
       <a class="dugme ikincil" href="/en/lab/">Try it on sample data</a>

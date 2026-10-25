@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Risk disclosure: Kalibre Lab</title>
+<meta name="description" content="Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.">
+<link rel="canonical" href="https://kalibremarkets.com/en/risk-disclosure/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/risk-bildirimi/">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/risk-disclosure/">
+<meta property="og:title" content="Risk disclosure: Kalibre Lab">
+<meta property="og:description" content="Kalibre Lab beta status, limits of simulated results, the risk of leveraged trading and the risks of using Kalibre Engine on a real account.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/en/"><b>Kalibre</b><span>Lab</span></a>
+    <nav aria-label="Main menu">
+      <a href="/en/lab/">Lab</a>
+      <a href="/lab/panom.html?dil=en">Dashboard</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/egitim/">Education (Turkish)</a>
+      <a href="/en/pricing/">Pricing</a>
+    </nav>
+    <a class="dil" href="/risk-bildirimi/" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/en/connect">Connect MetaTrader</a>
+    <a class="dugme kucuk" href="/en/lab/">Open the lab</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Risk disclosure</h1>
+<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. It forms part of the <a href="/en/terms/">terms of use</a>.</p>
+
+<h2 id="beta">Beta version</h2>
+<p>Kalibre Lab is in beta. Features may change, the software may contain errors and calculations may produce incorrect results. Before relying on a result, test the same rule in your own MetaTrader 5 Strategy Tester and on a demo account. Report any number that looks wrong through the <a href="/en/beta/">feedback form</a>.</p>
+
+<h2 id="simulated">Simulated and hypothetical results</h2>
+<p>The lab, the quick test, the optimization panel and the examples on these pages show hypothetical (simulated) results, which have inherent limitations:</p>
+<ul>
+  <li>Unlike an actual performance record, simulated results do not represent actual trading.</li>
+  <li>Since the trades have not been executed, the results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity.</li>
+  <li>The quick test does not include spread, commission, swap or slippage; real results are usually lower.</li>
+  <li>Optimization is carried out on past data with the benefit of hindsight; the setting that looks best is often fitted to the past.</li>
+  <li>No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.</li>
+</ul>
+
+<h2 id="leverage">Risk of leveraged trading</h2>
+<p>Leveraged trading (forex, CFDs and similar products) can lose you all of the money you deposit. According to the European regulator ESMA's 2018 review, 74-89% of retail CFD accounts lost money. In Turkey, the Capital Markets Board said in 2015 that about 87-88% of forex investors lost money. Do not trade with money you cannot afford to lose.</p>
+
+<h2 id="engine">Using Kalibre Engine on a real account</h2>
+<p>Kalibre Engine runs the rule file you build on your account and sends orders. On a real account during the beta, these risks apply:</p>
+<ul>
+  <li><b>Software errors:</b> the rule file or the Engine may behave unexpectedly.</li>
+  <li><b>Connectivity:</b> if MetaTrader 5 closes, the computer sleeps or the internet drops, the Engine cannot manage positions.</li>
+  <li><b>Slippage and gaps:</b> in fast markets, around news and at weekend opens, orders can be filled at prices different from the stop or target.</li>
+  <li><b>The shield is not a guarantee:</b> the prop shield and loss limits can be exceeded because of gaps, slippage and broker rules.</li>
+</ul>
+<p>That is why, on a real account, the Engine opens no new trades unless you tick "I accept the beta risk on a real account" in the add-on's settings and a loss limit (the prop shield or a daily loss limit) is set.</p>
+
+<h2 id="no-advice">Not investment advice</h2>
+<p>Kalibre Markets does not provide investment advice, portfolio management or brokerage services and is not a licensed investment firm. You decide which rule to build and when, in which symbol and at what size to trade; you are responsible for the results. Educational examples are starting points, not recommendations.</p>
+
+<h2 id="data">Data and privacy</h2>
+<p>Your data from the bridge is end-to-end encrypted; your Alpaca and Tradier data comes directly to your browser. Which data is processed where is described in the <a href="/en/privacy/">privacy policy</a> and on the <a href="/en/security/">security page</a>.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#beta">Beta version</a><a href="#simulated">Simulated and hypothetical results</a><a href="#leverage">Risk of leveraged trading</a><a href="#engine">Using Kalibre Engine on a real account</a><a href="#no-advice">Not investment advice</a><a href="#data">Data and privacy</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
+      <p>A strategy lab for MetaTrader 5.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/en/lab/">Lab</a>
+      <a href="/lab/panom.html?dil=en">Dashboard</a>
+      <a href="/en/prop/">Prop shield</a>
+      <a href="/en/forex/">Retail forex</a>
+      <a href="/en/setup/">Setup</a>
+      <a href="/en/security/">Security</a>
+      <a href="/en/pricing/">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/en/methodology/">Methodology</a>
+      <a href="/egitim/">Education (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre</h4>
+      <a href="/en/about/">About</a>
+      <a href="/iletisim/">Contact</a>
+      <a href="/en/terms/">Terms of use</a>
+      <a href="/en/privacy/">Privacy</a>
+      <a href="/en/risk-disclosure/">Risk disclosure</a>
+    </div>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+  </div>
+</footer>
+
+</body>
+</html>
