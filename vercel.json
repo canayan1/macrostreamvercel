@@ -128,13 +128,13 @@
       "statusCode": 308
     },
     {
-      "source": "/en/lab/:path*",
-      "destination": "/lab/:path*",
+      "source": "/en/lab",
+      "destination": "/lab",
       "statusCode": 308
     },
     {
-      "source": "/en/lab",
-      "destination": "/lab",
+      "source": "/en/lab/:path*",
+      "destination": "/lab/:path*",
       "statusCode": 308
     },
     {
