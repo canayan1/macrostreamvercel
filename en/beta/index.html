@@ -22,6 +22,13 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/en/sign-in">
+<meta name="kalibre:yol:account" content="/en/license">
+<meta name="kalibre:yol:pricing" content="/en/pricing">
+<meta name="kalibre:yol:connect" content="/en/connect">
+<meta name="kalibre:yol:lab" content="/lab/?dil=en">
+<meta name="kalibre:yol:home" content="/en">
+<script src="/static/kalibre-auth.js" defer></script>
 <style>
 .geri { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
 .geri .alanlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px 18px; margin-bottom: 14px; }
@@ -61,8 +68,8 @@
 <div class="kutu"><b>Use a demo account in the beta programme.</b> Do not connect an account that trades real money with an invited beta licence. All results are simulations and may not include costs; do not make real-money decisions with them. Details are in the <a href="/en/risk-disclosure">risk disclosure</a>.</div>
 
 <h2 id="licence">How do I get my beta licence?</h2>
-<p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing">Pricing</a> page, accept the terms and press "Subscribe"; on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license">License</a> page. If you were sent a licence key directly, save it on the same page.</p>
-<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license">License</a> page before the period ends; if no payment is made the licence closes within a few days. While the invite code is active the licence covers Kalibre Bridge only; once the free period ends and the paid plan starts, the licence covers the full product, including Kalibre Engine.</div>
+<p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing">Pricing</a> page, accept the terms, press "Subscribe" and sign in to your Kalibre Markets account (one is created at that step if you do not have one); on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license">Account</a> page. If you were sent a licence key directly, use "Link to my account" on the same page.</p>
+<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license">Account</a> page before the period ends; if no payment is made the licence closes within a few days. While the invite code is active the licence covers Kalibre Bridge only; once the free period ends and the paid plan starts, the licence covers the full product, including Kalibre Engine.</div>
 
 <h2 id="whats-in">What is in the beta?</h2>
 <ul>
@@ -100,7 +107,7 @@
 </ul>
 
 <h2 id="privacy">What do we see about you?</h2>
-<p>We cannot see your market data, positions or trades: data from the bridge is encrypted and opens only in your browser; Alpaca and Tradier data comes straight to your browser. All we see is the feedback you send us and the MT5 account number your beta licence is used on (to bind the licence to the account).</p>
+<p>We cannot see your market data, positions or trades: data from the bridge is encrypted and opens only in your browser; Alpaca and Tradier data comes straight to your browser. What we do see: your Kalibre Markets account e-mail and profile, the strategy drafts you save while signed in, the feedback you send us and the MT5 account number your beta licence is used on (to bind the licence to the account).</p>
 
 <h2 id="send">Send feedback</h2>
 <p>Fill in the form or <a href="mailto:markets@kalibrefin.com?subject=Kalibre%20beta%20geri%20bildirim&body=Section%20/%20page%3A%0ABrowser%20and%20OS%3A%0ASteps%3A%0A1.%0A2.%0A3.%0AExpected%3A%0AActual%20%28exact%20error%20message%29%3A%0A%0ADo%20not%20include%20pairing%20codes%2C%20licence%20keys%2C%20API%20keys%20or%20passwords.">send it by email</a> (a template opens).</p>

@@ -14,7 +14,7 @@ process.env.KOPRU_BELLEK = '1';
 const KOK = fileURLToPath(new URL('..', import.meta.url));
 const port = Number(process.argv[2] ?? 8788);
 const TUR = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
-const UCLAR = ['kopru', 'lisans', 'indir', 'odeme/baslat', 'odeme/webhook', 'odeme/oturum', 'odeme/portal'];
+const UCLAR = ['kopru', 'lisans', 'indir', 'hesap', 'odeme/baslat', 'odeme/webhook', 'odeme/oturum', 'odeme/portal'];
 
 async function dosyaBul(yol) {
   const p = normalize(join(KOK, decodeURIComponent(yol)));

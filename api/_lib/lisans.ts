@@ -4,6 +4,7 @@
 //   lisans:<anahtar>          { anahtar, eposta, musteri, abonelik, durum, bitis, hesaplar[], olusturma, urunler? }
 //   lisans-abone:<sub_id>     → anahtar   (webhook'ların kaydı bulması için)
 //   lisans-oturum:<cs_id>     → anahtar   (ödeme sonrası sayfanın anahtarı göstermesi için, 7 gün)
+//   lisans-kullanici:<uuid>   → [anahtar] (Supabase hesabının lisansları; api/_lib/hesap.ts)
 //
 // Hiçbir fiyat, pozisyon ya da işlem verisi buraya gelmez. MT5 hesap numarası yalnız lisansı
 // hesaba bağlamak için saklanır.
@@ -11,6 +12,8 @@
 import { createHmac, randomBytes } from 'node:crypto';
 import type { Depo } from './depo.ts';
 import type { StripeIstek } from './stripe.ts';
+import { kullaniciyaEkle, lisansAyna } from './hesap.ts';
+import { uuidMi } from './supabase.ts';
 
 export const URUNLER = ['motor', 'kopru']; // tek abonelik ikisini de kapsar
 export const HESAP_SINIRI = Number(process.env.LISANS_HESAP_SINIRI ?? 2);
@@ -27,6 +30,8 @@ export interface Kayit {
   hesaplar: number[];
   olusturma: number;
   urunler?: string[]; // yoksa tüm ürünler; kupon metadata'sı urunler=kopru ise yalnız ['kopru']
+  urun?: string;      // hangi Kalibre Markets ürünü; yoksa 'lab' (Kalibre Lab). urunler bu ürünün eklentileridir.
+  kullanici?: string; // Supabase kullanıcı kimliği (Checkout client_reference_id ya da elle bağlama)
 }
 
 // Lisansın kapsadığı ürünler. Alan yoksa abonelik bütün ürünleri kapsar.
@@ -106,11 +111,22 @@ const oku = async (d: Depo, anahtar: string): Promise<Kayit | null> => {
   const v = await d.oku(`lisans:${anahtar}`);
   return v ? JSON.parse(v) : null;
 };
-const yaz = (d: Depo, k: Kayit) => d.yaz(`lisans:${k.anahtar}`, JSON.stringify(k));
+// Her yazımda hesap dizini ve Supabase'deki lisans görüntüsü de güncellenir (görüntü en iyi çabadır).
+const yaz = async (d: Depo, k: Kayit) => {
+  await d.yaz(`lisans:${k.anahtar}`, JSON.stringify(k));
+  if (k.kullanici) { await kullaniciyaEkle(d, k.kullanici, k.anahtar); await lisansAyna(k); }
+};
+
+// Checkout oturumunun hangi hesaba ait olduğu: client_reference_id (api/odeme/baslat.ts doğrulanmış
+// kullanıcıdan yazar), yoksa abonelik metadata'sı.
+export function oturumKullanicisi(oturum: any, sub?: any): string | null {
+  for (const v of [oturum?.client_reference_id, oturum?.metadata?.kullanici, sub?.metadata?.kullanici]) if (uuidMi(v)) return v;
+  return null;
+}
 
 // Ödeme tamamlanınca kayıt açar; aynı abonelik için ikinci kez çağrılırsa mevcut anahtarı döner
 // (webhook ve ödeme sonrası sayfa yarışabilir, Stripe olayları da tekrar gönderebilir).
-export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, oturum: string | null, simdi = Date.now(), urunler?: string[] | null): Promise<Kayit> {
+export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, oturum: string | null, simdi = Date.now(), urunler?: string[] | null, kullanici?: string | null): Promise<Kayit> {
   const aday = anahtarUret();
   const kazandi = await d.yazYoksa(`lisans-abone:${sub.id}`, aday);
   const anahtar = kazandi ? aday : (await d.oku(`lisans-abone:${sub.id}`))!;
@@ -127,6 +143,8 @@ export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, 
   };
   const kapsam = urunler ?? eski?.urunler;
   if (kapsam) k.urunler = kapsam;
+  const sahip = eski?.kullanici ?? (uuidMi(kullanici) ? kullanici : null);
+  if (sahip) k.kullanici = sahip;
   await yaz(d, k);
   if (oturum) await d.yaz(`lisans-oturum:${oturum}`, anahtar, OTURUM_TTL_SN);
   return k;
@@ -164,7 +182,7 @@ export async function olayIsle(d: Depo, olay: any, stripe: StripeIstek): Promise
     case 'checkout.session.completed': {
       if (o.mode !== 'subscription' || !o.subscription) return 'abonelik değil';
       const sub = await stripe(aboneYolu(o.subscription));
-      await aboneligiKaydet(d, sub, o.customer_details?.email ?? o.customer_email ?? null, o.id, Date.now(), await kuponUrunleri(sub, stripe));
+      await aboneligiKaydet(d, sub, o.customer_details?.email ?? o.customer_email ?? null, o.id, Date.now(), await kuponUrunleri(sub, stripe), oturumKullanicisi(o, sub));
       return 'kaydedildi';
     }
     case 'customer.subscription.created':
@@ -195,7 +213,7 @@ export async function oturumCoz(d: Depo, oturum: string, stripe: StripeIstek): P
   if (s?.mode !== 'subscription' || s?.status !== 'complete' || !s?.subscription) return null;
   if (s.payment_status !== 'paid' && s.payment_status !== 'no_payment_required') return null;
   const sub = await stripe(aboneYolu(s.subscription));
-  return aboneligiKaydet(d, sub, s.customer_details?.email ?? null, s.id, Date.now(), await kuponUrunleri(sub, stripe));
+  return aboneligiKaydet(d, sub, s.customer_details?.email ?? null, s.id, Date.now(), await kuponUrunleri(sub, stripe), oturumKullanicisi(s, sub));
 }
 
 // Sayfada gösterilecek kısım: müşteri ve abonelik kimlikleri gösterilmez.

@@ -84,6 +84,13 @@
     + '</div>';
   document.body.appendChild(alt);
 
+  // Hesap menüsü (static/kalibre-auth.js) başlığa kendini yerleştirir; sayfa kendi eklemediyse.
+  if (!document.querySelector('script[src="/static/kalibre-auth.js"]')) {
+    var ha = document.createElement('script');
+    ha.src = '/static/kalibre-auth.js';
+    document.body.appendChild(ha);
+  }
+
   // Kapalı beta bandı (static/beta.js); sayfa kendi eklemediyse.
   if (!document.querySelector('script[src="/static/beta.js"]')) {
     var bt = document.createElement('script');

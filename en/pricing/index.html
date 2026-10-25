@@ -21,6 +21,13 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/en/sign-in">
+<meta name="kalibre:yol:account" content="/en/license">
+<meta name="kalibre:yol:pricing" content="/en/pricing">
+<meta name="kalibre:yol:connect" content="/en/connect">
+<meta name="kalibre:yol:lab" content="/lab/?dil=en">
+<meta name="kalibre:yol:home" content="/en">
+<script src="/static/kalibre-auth.js" defer></script>
 <style>
 .plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
 .plan-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--cizgi); padding-bottom: 14px; margin-bottom: 14px; }
@@ -87,12 +94,12 @@
   <label class="onay"><input type="checkbox" id="cayma" required> <span>I agree that performance of the service begins as soon as my licence key is delivered and activated on a MetaTrader 5 account, and that I lose my 14-day right of withdrawal once it is activated (<a href="/en/terms#withdrawal">terms, section 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Subscribe</button>
   <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license">License</a> page and keep using the service until the end of the period.</p>
+  <p class="not">Your subscription is linked to your Kalibre Markets account: you sign in first, and an account is created at that step if you do not have one. Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from your <a href="/en/license">Account</a> page and keep using the service until the end of the period.</p>
 </div>
   <div class="yakinda" id="odeme-yakinda" hidden>
     <h3>Payments open soon</h3>
     <p>Kalibre Lab is in beta. Join the list below to hear when subscriptions open.</p>
-    <p><b>Invited?</b> Save the beta licence you received on the <a href="/en/license">License</a> page.</p>
+    <p><b>Invited?</b> Sign in and link the beta licence you received to your account on the <a href="/en/license">Account</a> page.</p>
   </div>
 </div>
 
@@ -166,19 +173,19 @@
   var durum = document.getElementById('odeme-durum');
   if (q.get('iptal') === '1') durum.textContent = 'Checkout was not completed; your card was not charged. You can try again at any time.';
   var d = document.getElementById('abone-ol');
+  if (q.get('abone') === '1') { var plan = document.getElementById('plan'); if (plan) plan.scrollIntoView({ block: 'start' }); }
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'To continue, please accept the terms of use and the privacy policy.'; return; }
     if (!document.getElementById('cayma').checked) { durum.textContent = 'To continue, please tick the box about the right of withdrawal.'; return; }
     d.disabled = true; d.textContent = 'Opening checkout';
     durum.textContent = '';
-    try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true, dil: 'en' }) });
-      var j = await r.json().catch(function () { return {}; });
-      if (r.ok && j.url) { location.href = j.url; return; }
-      durum.textContent = j.hata || 'Checkout could not be opened. Please try again shortly.';
-    } catch (e) {
-      durum.textContent = 'Could not connect. Check your internet connection and try again.';
-    }
+    var A = window.KalibreAuth; // ertelenmiş betik: tıklama anında okunur
+    if (A) await A.ready();
+    if (!A || !A.enabled) { durum.textContent = 'Accounts are not available yet. Please try again shortly.'; d.disabled = false; d.textContent = 'Subscribe'; return; }
+    if (!A.user()) { location.href = A.paths.signIn + '?sonra=' + encodeURIComponent(location.pathname + '?abone=1'); return; }
+    var r = await A.api('/api/odeme/baslat', { body: { sartlar: true, cayma_onay: true } });
+    if (r.ok && r.data && r.data.url) { location.href = r.data.url; return; }
+    durum.textContent = (r.data && r.data.hata) || (r.status ? 'Checkout could not be opened. Please try again shortly.' : 'Could not connect. Check your internet connection and try again.');
     d.disabled = false; d.textContent = 'Subscribe';
   });
 })();

@@ -15,6 +15,8 @@ Son önizleme: https://macrostreamvercel-ecylm9qpq-canayan1s-projects.vercel.app
 - [ ] **Upstash Redis**: Vercel → Storage → Upstash. Köprü rölesi ve lisans kayıtları kullanır.
       Projede eski `KV_*` değişkenleri duruyor ve önizlemede `/api/kopru` 502 veriyor: ya eski depo
       silinmiş ya da erişilemiyor. Yeni depo bağlanınca eski `KV_*` değişkenleri kaldırılmalı.
+- [ ] **Hesaplar (Supabase)**: `docs/HESAP-KURULUMU.md` adım 1-6 (proje, SQL, adresler, SMTP,
+      Google, anahtarlar). Bunlar olmadan "Abone ol" çalışmaz: ödeme hesap ister.
 - [ ] **Stripe (önce test modu)**
   - [ ] Ürün "Kalibre Lab", aylık yinelenen tek fiyat: 399 TRY, aynı fiyata para birimi seçenekleri
         (currency options) 19 USD ve 17 EUR → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre

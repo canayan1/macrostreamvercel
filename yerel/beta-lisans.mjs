@@ -7,9 +7,36 @@
 //   listele
 //   uzat --anahtar KLM-... --gun 30
 //   iptal --anahtar KLM-...
+//   bagla --anahtar KLM-... (--kullanici <uuid> | --hesap <e-posta>)
+//     Lisansı bir Kalibre hesabına bağlar. --hesap için SUPABASE_URL, SUPABASE_ANON_KEY ve
+//     SUPABASE_SERVICE_ROLE_KEY ortamda olmalı (e-posta profiles tablosunda aranır).
+//   olustur komutu da --kullanici ya da --hesap alırsa yeni lisansı hemen bağlar.
 
 import { depoSec } from '../api/_lib/depo.ts';
 import { betaOlustur, betaListele, betaUzat, betaIptal } from './beta-lisans-cekirdek.mjs';
+import { lisansBagla } from '../api/_lib/hesap.ts';
+import { servisIstemci, supabaseAyar, uuidMi } from '../api/_lib/supabase.ts';
+
+// --kullanici <uuid> ya da --hesap <e-posta> → Supabase kullanıcı kimliği
+async function kullaniciBul(secenek) {
+  if (secenek.kullanici) {
+    if (!uuidMi(secenek.kullanici)) throw new Error('--kullanici bir uuid olmalı');
+    return secenek.kullanici;
+  }
+  if (!secenek.hesap) return null;
+  const servis = servisIstemci(supabaseAyar());
+  if (!servis) throw new Error('--hesap için SUPABASE_URL, SUPABASE_ANON_KEY ve SUPABASE_SERVICE_ROLE_KEY gerekli');
+  const l = await servis.sec('profiles', `select=id&email=ilike.${encodeURIComponent(String(secenek.hesap).trim())}&limit=2`);
+  if (!l?.length) throw new Error(`bu e-postayla hesap yok: ${secenek.hesap} (önce siteye giriş yapmalı)`);
+  if (l.length > 1) throw new Error('bu e-postayla birden çok hesap var; --kullanici ile kimliği ver');
+  return l[0].id;
+}
+async function bagla(anahtar, uid) {
+  const r = await lisansBagla(depo, anahtar, uid);
+  if (r.durum !== 200) throw new Error(r.hata);
+  console.log(`${anahtar}  hesaba bağlandı: ${uid}`);
+}
+
 
 const [komut, ...arg] = process.argv.slice(2);
 const secenek = {};
@@ -23,8 +50,14 @@ if (!depo) {
 }
 try {
   if (komut === 'olustur') {
+    const uid = await kullaniciBul(secenek); // önce: hesap yoksa lisans açılmadan dur
     const k = await betaOlustur(depo, { eposta: secenek.eposta, gun: Number(secenek.gun ?? 60), not: secenek.not ?? '' });
     console.log(`${k.anahtar}  ${k.eposta}  bitiş ${tarih(k.bitis)}`);
+    if (uid) await bagla(k.anahtar, uid);
+  } else if (komut === 'bagla') {
+    const uid = await kullaniciBul(secenek);
+    if (!uid || !secenek.anahtar) throw new Error('kullanım: bagla --anahtar K (--kullanici U | --hesap E)');
+    await bagla(secenek.anahtar, uid);
   } else if (komut === 'listele') {
     const liste = await betaListele(depo);
     if (!liste.length) console.log('beta lisansı yok');
@@ -36,7 +69,7 @@ try {
     const k = await betaIptal(depo, secenek.anahtar);
     console.log(`${k.anahtar}  iptal edildi`);
   } else {
-    console.error('kullanım: olustur --eposta E [--gun 60] [--not N] | listele | uzat --anahtar K --gun N | iptal --anahtar K');
+    console.error('kullanım: olustur --eposta E [--gun 60] [--not N] [--kullanici U | --hesap E] | bagla --anahtar K (--kullanici U | --hesap E) | listele | uzat --anahtar K --gun N | iptal --anahtar K');
     process.exit(1);
   }
 } catch (e) {

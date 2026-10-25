@@ -13,7 +13,7 @@ SETUP = '''
 <ul>
   <li>MetaTrader 5. On Windows, your broker's installer is enough; on macOS, the official MetaQuotes app.</li>
   <li>A demo or live MT5 account with any broker.</li>
-  <li>The Kalibre Bridge add-on (<code>KalibreKopru.ex5</code>) and your license key. Both are on the <a href="/en/license/">License</a> page once you subscribe.</li>
+  <li>The Kalibre Bridge add-on (<code>KalibreKopru.ex5</code>) and your license key. Both are on the <a href="/en/license/">Account</a> page once you subscribe.</li>
 </ul>
 
 <h2 id="add-on">1. Add the add-on to MetaTrader 5</h2>
@@ -35,7 +35,7 @@ SETUP = '''
   <li>Drag <b>KalibreKopru</b> from the Navigator onto any chart.</li>
   <li>Open the <b>Inputs</b> tab.</li>
   <li>Paste the lab's code into <b>Pairing code</b>.</li>
-  <li>Paste your license key (it starts with <code>KLM-</code>) from the <a href="/en/license/">License</a> page into <b>License key</b>.</li>
+  <li>Paste your license key (it starts with <code>KLM-</code>) from the <a href="/en/license/">Account</a> page into <b>License key</b>.</li>
   <li>List the symbols you want under <b>Symbols</b>, separated by commas, e.g. <code>EURUSD,GBPUSD,XAUUSD</code>. Left empty, only the chart's own symbol is sent.</li>
   <li>Pick a <b>Timeframe</b> (M1, M5, M15, M30, H1, H4, D1 or W1) and click <b>OK</b>.</li>
 </ol>
@@ -61,7 +61,7 @@ SETUP = '''
   <tbody>
     <tr><td>No WebRequest permission</td><td>Repeat step 4. Make sure the address is exactly <code>https://kalibremarkets.com</code> and that you clicked <b>OK</b>.</td></tr>
     <tr><td>The add-on will not attach, a code error appears</td><td>Copy the code from the lab again. A character may be missing at the start or end.</td></tr>
-    <tr><td>License invalid</td><td>Copy the key again from the <a href="/en/license/">License</a> page. You also see this if your subscription has ended or the key is already used on two MT5 accounts. The add-on retries every minute.</td></tr>
+    <tr><td>License invalid</td><td>Copy the key again from the <a href="/en/license/">Account</a> page. You also see this if your subscription has ended or the key is already used on two MT5 accounts. The add-on retries every minute.</td></tr>
     <tr><td>Relay unreachable</td><td>Check your internet connection. The add-on retries every few seconds.</td></tr>
     <tr><td>The lab says "code does not match"</td><td>The code in the add-on differs from the lab's. If you created a new code in the lab, paste the new one into the add-on too.</td></tr>
     <tr><td>The connection drops after a while</td><td>The bridge works while MT5 is open and the computer is awake. When the computer sleeps, data stops; it resumes on its own when MT5 is back.</td></tr>
@@ -234,11 +234,11 @@ EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar" required>
   <label class="onay"><input type="checkbox" id="cayma" required> <span>I agree that performance of the service begins as soon as my licence key is delivered and activated on a MetaTrader 5 account, and that I lose my 14-day right of withdrawal once it is activated (<a href="/en/terms#withdrawal">terms, section 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Subscribe</button>
   <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license/">License</a> page and keep using the service until the end of the period.</p>"""
+  <p class="not">Your subscription is linked to your Kalibre Markets account: you sign in first, and an account is created at that step if you do not have one. Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from your <a href="/en/license/">Account</a> page and keep using the service until the end of the period.</p>"""
 EN_KAPALI = """  <div class="yakinda">
     <h3>Payments open soon</h3>
     <p>Kalibre Lab is in beta. Join the list below to hear when subscriptions open.</p>
-    <p><b>Invited?</b> Save the beta licence you received on the <a href="/en/license/">License</a> page.</p>
+    <p><b>Invited?</b> Sign in and link the beta licence you received to your account on the <a href="/en/license/">Account</a> page.</p>
   </div>"""
 EN_BEKLEME = f"""
 <h2 id="waitlist">{"Not ready yet?" if ODEME_ACIK else "Hear when payments open"}</h2>
@@ -297,117 +297,32 @@ EN_PRO_BETIK_ACIK = """<script>
   var durum = document.getElementById('odeme-durum');
   if (q.get('iptal') === '1') durum.textContent = 'Checkout was not completed; your card was not charged. You can try again at any time.';
   var d = document.getElementById('abone-ol');
+  if (q.get('abone') === '1') { var plan = document.getElementById('plan'); if (plan) plan.scrollIntoView({ block: 'start' }); }
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'To continue, please accept the terms of use and the privacy policy.'; return; }
     if (!document.getElementById('cayma').checked) { durum.textContent = 'To continue, please tick the box about the right of withdrawal.'; return; }
     d.disabled = true; d.textContent = 'Opening checkout';
     durum.textContent = '';
-    try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true, dil: 'en' }) });
-      var j = await r.json().catch(function () { return {}; });
-      if (r.ok && j.url) { location.href = j.url; return; }
-      durum.textContent = j.hata || 'Checkout could not be opened. Please try again shortly.';
-    } catch (e) {
-      durum.textContent = 'Could not connect. Check your internet connection and try again.';
-    }
+    var A = window.KalibreAuth; // ertelenmiş betik: tıklama anında okunur
+    if (A) await A.ready();
+    if (!A || !A.enabled) { durum.textContent = 'Accounts are not available yet. Please try again shortly.'; d.disabled = false; d.textContent = 'Subscribe'; return; }
+    if (!A.user()) { location.href = A.paths.signIn + '?sonra=' + encodeURIComponent(location.pathname + '?abone=1'); return; }
+    var r = await A.api('/api/odeme/baslat', { body: { sartlar: true, cayma_onay: true } });
+    if (r.ok && r.data && r.data.url) { location.href = r.data.url; return; }
+    durum.textContent = (r.data && r.data.hata) || (r.status ? 'Checkout could not be opened. Please try again shortly.' : 'Could not connect. Check your internet connection and try again.');
     d.disabled = false; d.textContent = 'Subscribe';
   });
 })();
 </script>"""
 _tr = open(os.path.join(_d, "sayfa-uret.py")).read()
 PRO_STIL = _tr.split('PRO_STIL = """')[1].split('"""')[0]
-HESAP_STIL = _tr.split('HESAP_STIL = """')[1].split('"""')[0]
 PROP_STIL = _tr.split('PROP_STIL = """')[1].split('"""')[0]
 PRO_ODEME_YEDEK = _tr.split('PRO_ODEME_YEDEK = """')[1].split('"""')[0]
 EN_PRO_BETIK = (EN_PRO_BETIK_ACIK + EN_PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else EN_PRO_BETIK_KAPALI
 sayfa("en/pricing/index.html", "Pricing: Kalibre Lab", ("Kalibre Lab subscription: run Kalibre Engine and the prop shield on your MT5 account and stream your data through the encrypted bridge. $19/month, cancel any time." if ODEME_ACIK else "Kalibre Lab (beta) subscription: $19 a month. Payments open soon; join the waitlist."), "/en/pricing/", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
 
-# ------------------------------------------------------------------ license
-LICENSE = """
-<h1>Your license</h1>
-<p class="giris" id="hesap-giris">Your subscription's license key appears here. You enter it once in the Kalibre add-ons; they renew it on their own while your subscription runs.</p>
-
-<div class="lisans" id="lisans" hidden>
-  <p class="not" id="lisans-durum"></p>
-  <label for="anahtar-alan">Your license key</label>
-  <div class="satir">
-    <input id="anahtar-alan" class="sayi" readonly spellcheck="false">
-    <button type="button" class="dugme" id="kopyala">Copy</button>
-  </div>
-  <p class="not">Do not share the key. It can be used on up to 2 MT5 accounts and is bound to the first accounts it is used on.</p>
-  <div class="eylem-satir">
-    <button type="button" class="dugme ikincil" id="portal">Manage subscription</button>
-    <button type="button" class="dugme ikincil" id="unut">Remove from this browser</button>
-  </div>
-  <p class="not" id="portal-durum" role="status"></p>
-</div>
-
-<div class="lisans" id="indirmeler" hidden>
-  <h2 style="font-size:22px;margin:0 0 6px">Download the add-ons</h2>
-  <p class="not">Both work with the same license key. Setup steps are on the <a href="/en/setup/">setup page</a>.</p>
-  <div class="eylem-satir">
-    <button type="button" class="dugme" data-eklenti="kopru">Kalibre Bridge</button>
-    <button type="button" class="dugme" data-eklenti="motor">Kalibre Engine</button>
-  </div>
-  <p class="not" id="indir-durum" role="status"></p>
-</div>
-
-<div id="anahtar-yok">
-  <p>There is no license saved in this browser. If you have subscribed, paste your key below; otherwise see the <a href="/en/pricing/">pricing page</a>.</p>
-  <div class="lisans">
-    <label for="anahtar-gir">License key</label>
-    <div class="satir">
-      <input id="anahtar-gir" class="sayi" placeholder="KLM-XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off">
-      <button type="button" class="dugme ikincil" id="kaydet">Save</button>
-    </div>
-    <p class="not" id="gir-durum" role="status"></p>
-  </div>
-</div>
-
-<h2 id="motor">Enter the key in Kalibre Engine</h2>
-<ol>
-  <li>Attach Kalibre Engine to a chart and open the <b>Inputs</b> tab.</li>
-  <li>Paste your key into <b>License key</b> and click <b>OK</b>.</li>
-  <li>Make sure MT5 allows WebRequest for <code>https://kalibremarkets.com</code> (<a href="/en/setup/#permission">step 4 of setup</a>).</li>
-</ol>
-<p>Engine checks the license a few seconds after starting and renews it every 6 hours. If the internet connection drops, it keeps working on the last valid license for 72 more hours. Historical tests in Strategy Tester need no license.</p>
-
-<h2 id="cancel">Cancelling and changing accounts</h2>
-<p><b>Manage subscription</b> takes you to Stripe's secure page, where you can change your card, download invoices or cancel. If you cancel, your license stays valid until the end of the period.</p>
-<p>To move your license to another MT5 account, <a href="/iletisim/">write to us</a>.</p>
-"""
-_hb = _tr.split('HESAP_BETIK = """')[1].split('"""')[0]
-CEVIRI = [
-  ("var DURUM = { active: 'etkin', trialing: 'deneme süresinde', past_due: 'ödeme bekleniyor', canceled: 'iptal edildi', unpaid: 'ödenmedi' };",
-   "var DURUM = { active: 'active', trialing: 'in trial', past_due: 'payment pending', canceled: 'cancelled', unpaid: 'unpaid' };"),
-  ("toLocaleDateString('tr-TR'", "toLocaleDateString('en-GB'"),
-  ("'Abonelik: <b class=\"'", "'Subscription: <b class=\"'"),
-  ("', geçerlilik ' + tarih(bilgi.bitis)", "', valid until ' + tarih(bilgi.bitis)"),
-  ("'. Hesap: ' + bilgi.eposta", "'. Account: ' + bilgi.eposta"),
-  ("'Ödemen alınıyor, lisans anahtarın hazırlanıyor.'", "'Receiving your payment, preparing your license key.'"),
-  ("'Teşekkürler, aboneliğin başladı. Lisans anahtarın aşağıda; bu tarayıcıda da saklandı.'", "'Thank you, your subscription has started. Your license key is below; it is also saved in this browser.'"),
-  ("history.replaceState(null, '', '/hesap/');", "history.replaceState(null, '', '/en/license/');"),
-  ("'Lisans bilgisi alınamadı. Ödeme tamamlandıysa birkaç dakika sonra bu sayfayı yenile ya da bize yaz.'", "'License details could not be retrieved. If your payment went through, reload this page in a few minutes or write to us.'"),
-  ("'Bağlantı kurulamadı. Sayfayı yenile.'", "'Could not connect. Reload the page.'"),
-  ("this.textContent = 'Kopyalandı'", "this.textContent = 'Copied'"),
-  ("this.textContent = 'Seçildi, Ctrl+C'", "this.textContent = 'Selected, press Ctrl+C'"),
-  ("b.textContent = 'Kopyala'", "b.textContent = 'Copy'"),
-  ("'Anahtar KLM ile başlar ve dört gruptan oluşur. Kopyalarken eksik kalmış olabilir.'", "'The key starts with KLM and has four groups. Part of it may be missing.'"),
-  ("'Anahtar yalnız bu tarayıcıdan kaldırılır; aboneliğin ve MT5 eklentin etkilenmez. Devam edilsin mi?'", "'The key is only removed from this browser; your subscription and MT5 add-ons are not affected. Continue?'"),
-  ("durum.textContent = j.hata || 'İndirilemedi.';", "durum.textContent = j.hata || 'Download failed.';"),
-  ("' indirildi' + (r.headers.get('X-Kalibre-Surum') ? ' (sürüm ' + r.headers.get('X-Kalibre-Surum') + ')' : '') + '. Dosyayı MT5 veri klasöründe MQL5\\\\Experts altına kopyala.'",
-   "' downloaded' + (r.headers.get('X-Kalibre-Surum') ? ' (version ' + r.headers.get('X-Kalibre-Surum') + ')' : '') + '. Copy the file into MQL5\\\\Experts in your MT5 data folder.'"),
-  ("durum.textContent = 'Bağlantı kurulamadı.';", "durum.textContent = 'Could not connect.';"),
-  ("$('portal-durum').textContent = j.hata || 'Abonelik sayfası açılamadı.';", "$('portal-durum').textContent = j.hata || 'The subscription page could not be opened.';"),
-  ("$('portal-durum').textContent = 'Bağlantı kurulamadı.';", "$('portal-durum').textContent = 'Could not connect.';"),
-  ("'/api/odeme/oturum?oturum=' + encodeURIComponent(oturum)", "'/api/odeme/oturum?dil=en&oturum=' + encodeURIComponent(oturum)"),
-  ("JSON.stringify({ anahtar: $('anahtar-alan').value, eklenti: b.dataset.eklenti })", "JSON.stringify({ anahtar: $('anahtar-alan').value, eklenti: b.dataset.eklenti, dil: 'en' })"),
-  ("JSON.stringify({ anahtar: $('anahtar-alan').value }) });", "JSON.stringify({ anahtar: $('anahtar-alan').value, dil: 'en' }) });"),
-]
-for a, b in CEVIRI:
-    assert _hb.count(a) >= 1, a[:70]
-    _hb = _hb.replace(a, b)
-sayfa("en/license/index.html", "Your license: Kalibre Lab", "Your Kalibre Lab license key, subscription status, add-on downloads and subscription management.", "", LICENSE, ek_stil=HESAP_STIL, ek_betik=_hb, gizli=True, dil="en")
+# ------------------------------------------------------------------ account
+# Sign-in (/en/sign-in) and Account (/en/license) pages: yerel/hesap-uret.py (EN + TR).
 
 # ------------------------------------------------------------------ prop
 PROP = """
@@ -521,8 +436,8 @@ BETA_EN = f"""
 <div class="kutu"><b>Use a demo account in the beta programme.</b> Do not connect an account that trades real money with an invited beta licence. All results are simulations and may not include costs; do not make real-money decisions with them. Details are in the <a href="/en/risk-disclosure/">risk disclosure</a>.</div>
 
 <h2 id="licence">How do I get my beta licence?</h2>
-<p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing/">Pricing</a> page, accept the terms and press "Subscribe"; on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license/">License</a> page. If you were sent a licence key directly, save it on the same page.</p>
-<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license/">License</a> page before the period ends; if no payment is made the licence closes within a few days. While the invite code is active the licence covers Kalibre Bridge only; once the free period ends and the paid plan starts, the licence covers the full product, including Kalibre Engine.</div>
+<p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing/">Pricing</a> page, accept the terms, press "Subscribe" and sign in to your Kalibre Markets account (one is created at that step if you do not have one); on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license/">Account</a> page. If you were sent a licence key directly, use "Link to my account" on the same page.</p>
+<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license/">Account</a> page before the period ends; if no payment is made the licence closes within a few days. While the invite code is active the licence covers Kalibre Bridge only; once the free period ends and the paid plan starts, the licence covers the full product, including Kalibre Engine.</div>
 
 <h2 id="whats-in">What is in the beta?</h2>
 <ul>
@@ -560,7 +475,7 @@ BETA_EN = f"""
 </ul>
 
 <h2 id="privacy">What do we see about you?</h2>
-<p>We cannot see your market data, positions or trades: data from the bridge is encrypted and opens only in your browser; Alpaca and Tradier data comes straight to your browser. All we see is the feedback you send us and the MT5 account number your beta licence is used on (to bind the licence to the account).</p>
+<p>We cannot see your market data, positions or trades: data from the bridge is encrypted and opens only in your browser; Alpaca and Tradier data comes straight to your browser. What we do see: your Kalibre Markets account e-mail and profile, the strategy drafts you save while signed in, the feedback you send us and the MT5 account number your beta licence is used on (to bind the licence to the account).</p>
 
 <h2 id="send">Send feedback</h2>
 <p>Fill in the form or <a href="{beta_mailto("en")}">send it by email</a> (a template opens).</p>

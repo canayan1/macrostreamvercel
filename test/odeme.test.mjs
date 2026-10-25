@@ -5,9 +5,13 @@ import assert from 'node:assert/strict';
 process.env.STRIPE_SECRET_KEY = 'sk_test_sahte';
 process.env.STRIPE_PRICE_ID = 'price_sahte';
 delete process.env.STRIPE_API_KOK;
+process.env.SUPABASE_URL = 'https://ornek.supabase.co';
+process.env.SUPABASE_ANON_KEY = 'anon-sahte';
+const UID = '11111111-2222-4333-8444-555555555555';
+const BELIRTEC = 'gecerli-belirtec-0123456789abcdef';
 const { default: handler, SARTLAR_SURUMU } = await import('../api/odeme/baslat.ts');
 
-function cagir(body, query = {}) {
+function cagir(body, query = {}, yetki = `Bearer ${BELIRTEC}`) {
   return new Promise(resolve => {
     const res = {
       statusCode: 200, govde: undefined, bas: {},
@@ -16,13 +20,17 @@ function cagir(body, query = {}) {
       json(o) { this.govde = o; resolve(this); return this; },
       send(s) { this.govde = s; resolve(this); return this; },
     };
-    handler({ method: 'POST', query, body, headers: { host: 'kalibremarkets.com' } }, res);
+    handler({ method: 'POST', query, body, headers: { host: 'kalibremarkets.com', ...(yetki ? { authorization: yetki } : {}) } }, res);
   });
 }
 
 const gonderilen = [];
 const eskiFetch = globalThis.fetch;
 globalThis.fetch = async (url, o) => {
+  if (String(url).endsWith('/auth/v1/user')) {
+    const ok = o?.headers?.Authorization === `Bearer ${BELIRTEC}` && o?.headers?.apikey === 'anon-sahte';
+    return new Response(JSON.stringify(ok ? { id: UID, email: 'deneme@ornek.com', user_metadata: {} } : { msg: 'invalid' }), { status: ok ? 200 : 401 });
+  }
   gonderilen.push({ url: String(url), govde: decodeURIComponent(String(o?.body ?? '')) });
   return new Response(JSON.stringify({ url: 'https://checkout.stripe.com/c/pay/cs_test_1' }), { status: 200 });
 };
@@ -54,4 +62,33 @@ test('iki onayla Checkout açılır; onay ve şart sürümü oturum ve abonelik 
   assert.ok(g.includes(`metadata[sartlar_onay]=${SARTLAR_SURUMU}`));
   assert.match(g, /metadata\[cayma_onay_zamani\]=\d{4}-\d{2}-\d{2}T/);
   assert.ok(g.includes('success_url=https://kalibremarkets.com/hesap?oturum='));
+});
+
+test('giriş yoksa ya da belirteç geçersizse 401 ve Stripe çağrılmaz', async () => {
+  gonderilen.length = 0;
+  let r = await cagir({ sartlar: true, cayma_onay: true }, {}, null);
+  assert.equal(r.statusCode, 401);
+  assert.match(r.govde.hata, /önce giriş yap/);
+  r = await cagir({ sartlar: true, cayma_onay: true, dil: 'en' }, {}, 'Bearer sahte-belirtec-xxxxxxxxxxxxxxxx');
+  assert.equal(r.statusCode, 401);
+  assert.equal(r.govde.hata, 'Please sign in to subscribe.');
+  assert.equal(gonderilen.length, 0);
+});
+
+test('oturum hesaba bağlanır: client_reference_id, e-posta ve metadata kullanici', async () => {
+  gonderilen.length = 0;
+  const r = await cagir({ sartlar: true, cayma_onay: true });
+  assert.equal(r.statusCode, 200);
+  const g = gonderilen[0].govde;
+  assert.ok(g.includes(`client_reference_id=${UID}`));
+  assert.ok(g.includes('customer_email=deneme@ornek.com'));
+  assert.ok(g.includes(`subscription_data[metadata][kullanici]=${UID}`));
+});
+
+test('Supabase yapılandırılmamışsa 503', async () => {
+  const eski = process.env.SUPABASE_URL;
+  delete process.env.SUPABASE_URL;
+  const r = await cagir({ sartlar: true, cayma_onay: true });
+  process.env.SUPABASE_URL = eski;
+  assert.equal(r.statusCode, 503);
 });

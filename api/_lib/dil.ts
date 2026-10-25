@@ -31,6 +31,10 @@ export const EN: Record<string, string> = {
   'Yalnız GET.': 'GET only.',
   'yalnız GET': 'GET only',
   'yalnız POST': 'POST only',
+  'Hesaplar henüz açılmadı.': 'Accounts are not available yet.',
+  'Oturum doğrulanamadı. Biraz sonra yeniden dene.': 'We could not verify your session. Please try again shortly.',
+  'Ödeme için önce giriş yap.': 'Please sign in to subscribe.',
+  'Bu hesapta zaten etkin bir abonelik var. Hesabım sayfasından yönetebilirsin.': 'This account already has an active subscription. You can manage it on your Account page.',
 };
 
 export function cevir(metin: string, dil: string): string {

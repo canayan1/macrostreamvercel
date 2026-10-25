@@ -11,7 +11,7 @@ MENU_EN = [("/en/lab/", "Lab"), ("/lab/panom.html?dil=en", "Dashboard"), ("/en/p
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için).
 ESLER = {"/": "/en", "/lab": "/en/lab", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop": "/en/prop", "/forex": "/en/forex", "/kurulum": "/en/setup",
          "/guvenlik": "/en/security", "/metodoloji": "/en/methodology", "/hakkinda": "/en/about", "/pro": "/en/pricing",
-         "/hesap": "/en/license", "/risk-bildirimi": "/en/risk-disclosure", "/kullanim-sartlari": "/en/terms", "/gizlilik": "/en/privacy", "/beta": "/en/beta"}
+         "/hesap": "/en/license", "/giris": "/en/sign-in", "/risk-bildirimi": "/en/risk-disclosure", "/kullanim-sartlari": "/en/terms", "/gizlilik": "/en/privacy", "/beta": "/en/beta"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -79,6 +79,12 @@ ALT_EN = '''<footer class="alt">
   </div>
 </footer>'''
 
+# Hesap betiği (static/kalibre-auth.js) bu yolları okur; site köküne İngilizce taşınınca yalnız burası değişir.
+YOLLAR = {"tr": {"signIn": "/giris", "account": "/hesap", "pricing": "/pro", "connect": "/baglan", "lab": "/lab/", "home": "/"},
+          "en": {"signIn": "/en/sign-in", "account": "/en/license", "pricing": "/en/pricing", "connect": "/en/connect", "lab": "/lab/?dil=en", "home": "/en"}}
+def yol_etiketleri(dil):
+    return "".join(f'<meta name="kalibre:yol:{k}" content="{v}">\n' for k, v in YOLLAR[dil].items())
+
 def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik="", gizli=False, dil="tr"):
     url = yol_url(yol)
     kanon = "https://kalibremarkets.com" + url
@@ -110,6 +116,7 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+{yol_etiketleri(dil)}<script src="/static/kalibre-auth.js" defer></script>
 {f"<style>{ek_stil}</style>" if ek_stil else ""}
 </head>
 <body>
@@ -149,7 +156,7 @@ KURULUM = '''
 <ul>
   <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
   <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
-  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap/">Lisansım</a> sayfasındadır.</li>
+  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap/">Hesabım</a> sayfasındadır.</li>
 </ul>
 
 <h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
@@ -171,7 +178,7 @@ KURULUM = '''
   <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
   <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
   <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
-  <li><b>Lisans anahtarı</b> satırına <a href="/hesap/">Lisansım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/hesap/">Hesabım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
   <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan yalnız eklendiği grafiğin sembolü gönderilir.</li>
   <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
 </ol>
@@ -198,7 +205,7 @@ KURULUM = '''
     <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
     <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
     <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
-    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap/">Lisansım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap/">Hesabım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
     <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
     <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Köprü, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
   </tbody>
@@ -369,11 +376,11 @@ PRO_ACIK_TR = """  <label class="onay"><input type="checkbox" id="sartlar" requi
   <label class="onay"><input type="checkbox" id="cayma" required> <span>Lisans anahtarımın teslim edilip bir MetaTrader 5 hesabında etkinleştirilmesiyle hizmetin ifasına hemen başlanacağını ve etkinleştirmeden sonra 14 günlük cayma hakkımı kaybedeceğimi kabul ediyorum (<a href="/kullanim-sartlari#cayma">şartlar, bölüm 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Abone ol</button>
   <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap/">hesap sayfasından</a> iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>"""
+  <p class="not">Abonelik Kalibre Markets hesabına bağlanır: önce giriş yaparsın, hesabın yoksa bu adımda oluşturulur. Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap/">Hesabım</a> sayfasından iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>"""
 PRO_KAPALI_TR = """  <div class="yakinda">
     <h3>Ödemeler yakında açılıyor</h3>
     <p>Kalibre Lab şu an beta sürümünde. Abonelikler açıldığında haber almak için aşağıdaki listeye yazıl.</p>
-    <p><b>Davetli misin?</b> Sana gönderilen beta lisansını <a href="/hesap/">Lisansım</a> sayfasına kaydet.</p>
+    <p><b>Davetli misin?</b> Giriş yap ve sana gönderilen beta lisansını <a href="/hesap/">Hesabım</a> sayfasında hesabına bağla.</p>
   </div>"""
 PLAN_SECIM = ('<div id="odeme-acik">\n' + PRO_ACIK_TR + '\n</div>\n' + PRO_KAPALI_TR.replace('<div class="yakinda">', '<div class="yakinda" id="odeme-yakinda" hidden>')) if ODEME_ACIK else PRO_KAPALI_TR
 PRO = f"""
@@ -454,19 +461,20 @@ PRO_BETIK_ACIK = """<script>
   var durum = document.getElementById('odeme-durum');
   if (q.get('iptal') === '1') durum.textContent = 'Ödeme tamamlanmadı; kartından bir şey çekilmedi. İstediğin zaman yeniden deneyebilirsin.';
   var d = document.getElementById('abone-ol');
+  if (q.get('abone') === '1') { var plan = document.getElementById('plan'); if (plan) plan.scrollIntoView({ block: 'start' }); }
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'Devam etmek için kullanım şartlarını ve gizlilik politikasını onaylamalısın.'; return; }
     if (!document.getElementById('cayma').checked) { durum.textContent = 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.'; return; }
     d.disabled = true; d.textContent = 'Ödeme sayfası açılıyor';
     durum.textContent = '';
-    try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true }) });
-      var j = await r.json().catch(function () { return {}; });
-      if (r.ok && j.url) { location.href = j.url; return; }
-      durum.textContent = j.hata || 'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.';
-    } catch (e) {
-      durum.textContent = 'Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.';
-    }
+    var A = window.KalibreAuth; // ertelenmiş betik: tıklama anında okunur
+    if (A) await A.ready();
+    if (!A || !A.enabled) { durum.textContent = 'Hesaplar henüz açılmadı. Biraz sonra yeniden dene.'; d.disabled = false; d.textContent = 'Abone ol'; return; }
+    // Abonelik bir hesaba bağlanır: giriş yoksa giriş sayfasına, sonra bu plana dönülür.
+    if (!A.user()) { location.href = A.paths.signIn + '?sonra=' + encodeURIComponent(location.pathname + '?abone=1'); return; }
+    var r = await A.api('/api/odeme/baslat', { body: { sartlar: true, cayma_onay: true } });
+    if (r.ok && r.data && r.data.url) { location.href = r.data.url; return; }
+    durum.textContent = (r.data && r.data.hata) || (r.status ? 'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.' : 'Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.');
     d.disabled = false; d.textContent = 'Abone ol';
   });
 })();
@@ -484,159 +492,8 @@ PRO_ODEME_YEDEK = """<script>
 PRO_BETIK = (PRO_BETIK_ACIK + PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else PRO_BETIK_KAPALI
 sayfa("pro/index.html", "Abonelik: Kalibre Lab", ("Kalibre Lab aboneliği: Kalibre Motor'u MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal." if ODEME_ACIK else "Kalibre Lab (beta) aboneliği: aylık 399 TL. Ödemeler yakında açılıyor; bekleme listesine yazıl."), "/pro/", PRO, ek_stil=PRO_STIL, ek_betik=PRO_BETIK)
 
-# ------------------------------------------------------------------ hesap (lisans)
-HESAP = """
-<h1>Lisansım</h1>
-<p class="giris" id="hesap-giris">Aboneliğinin lisans anahtarı burada görünür. Anahtarı Kalibre Motor'a bir kez girersin; aboneliğin sürdükçe eklenti onu kendiliğinden yeniler.</p>
-
-<div class="lisans" id="lisans" hidden>
-  <p class="not" id="lisans-durum"></p>
-  <label for="anahtar-alan">Lisans anahtarın</label>
-  <div class="satir">
-    <input id="anahtar-alan" class="sayi" readonly spellcheck="false">
-    <button type="button" class="dugme" id="kopyala">Kopyala</button>
-  </div>
-  <p class="not">Anahtarı kimseyle paylaşma. En çok 2 MT5 hesabında kullanılabilir; ilk kullanıldığı hesaplara bağlanır.</p>
-  <div class="eylem-satir">
-    <button type="button" class="dugme ikincil" id="portal">Aboneliği yönet</button>
-    <button type="button" class="dugme ikincil" id="unut">Bu tarayıcıdan kaldır</button>
-  </div>
-  <p class="not" id="portal-durum" role="status"></p>
-</div>
-
-<div class="lisans" id="indirmeler" hidden>
-  <h2 style="font-size:22px;margin:0 0 6px">Eklentileri indir</h2>
-  <p class="not">İkisi de aynı lisans anahtarıyla çalışır. Kurulum adımları <a href="/kurulum/">kurulum sayfasında</a>.</p>
-  <div class="eylem-satir">
-    <button type="button" class="dugme" data-eklenti="kopru">Kalibre Köprü</button>
-    <button type="button" class="dugme" data-eklenti="motor">Kalibre Motor</button>
-  </div>
-  <p class="not" id="indir-durum" role="status"></p>
-</div>
-
-<div id="anahtar-yok">
-  <p>Bu tarayıcıda kayıtlı bir lisans yok. Abone olduysan anahtarını aşağıya yapıştırabilirsin; değilsen <a href="/pro/">abonelik sayfasına</a> bak.</p>
-  <div class="lisans">
-    <label for="anahtar-gir">Lisans anahtarı</label>
-    <div class="satir">
-      <input id="anahtar-gir" class="sayi" placeholder="KLM-XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off">
-      <button type="button" class="dugme ikincil" id="kaydet">Kaydet</button>
-    </div>
-    <p class="not" id="gir-durum" role="status"></p>
-  </div>
-</div>
-
-<h2 id="kurulum">Anahtarı Kalibre Motor'a gir</h2>
-<ol>
-  <li>Kalibre Motor'u bir grafiğe ekle ve <b>Inputs</b> sekmesine geç.</li>
-  <li><b>Lisans anahtarı</b> satırına anahtarını yapıştır ve <b>OK</b> de.</li>
-  <li>MT5'te <code>https://kalibremarkets.com</code> adresine WebRequest izni verdiğinden emin ol (<a href="/kurulum/#izin">kurulumun 4. adımı</a>).</li>
-</ol>
-<p>Motor açılışta lisansı denetler ve 6 saatte bir yeniler. İnternet bağlantısı koparsa, son geçerli lisansla 72 saat daha çalışmaya devam eder. Strategy Tester'daki geçmiş testler lisans istemez.</p>
-
-<h2 id="iptal">İptal ve hesap değişikliği</h2>
-<p><b>Aboneliği yönet</b> düğmesi seni Stripe'ın güvenli sayfasına götürür: kartını değiştirebilir, faturalarını indirebilir ya da aboneliği iptal edebilirsin. İptal ettiğinde dönem sonuna kadar lisansın geçerli kalır.</p>
-<p>Lisansını başka bir MT5 hesabına taşımak istersen <a href="/iletisim/">bize yaz</a>.</p>
-"""
-HESAP_STIL = """
-.lisans { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 28px; }
-.lisans label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
-.lisans .satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
-.lisans input { flex: 1 1 300px; min-height: 46px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 500 17px var(--mono); letter-spacing: .04em; }
-.eylem-satir { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-#lisans-durum b.iyi { color: var(--yesil); } #lisans-durum b.kotu { color: var(--kehribar); }
-#portal-durum:empty, #gir-durum:empty, #indir-durum:empty { display: none; }
-"""
-HESAP_BETIK = """<script>
-(function () {
-  var ANAHTAR = 'kalibre-lisans-anahtari';
-  var RE = /^KLM(-[0-9A-HJKMNP-TV-Z]{5}){4}$/;
-  var $ = function (id) { return document.getElementById(id); };
-  var oku = function () { try { return localStorage.getItem(ANAHTAR); } catch (e) { return null; } };
-  var yaz = function (v) { try { v ? localStorage.setItem(ANAHTAR, v) : localStorage.removeItem(ANAHTAR); } catch (e) {} };
-  var tarih = function (sn) { return new Date(sn * 1000).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }); };
-  var DURUM = { active: 'etkin', trialing: 'deneme süresinde', past_due: 'ödeme bekleniyor', canceled: 'iptal edildi', unpaid: 'ödenmedi' };
-
-  function goster(anahtar, bilgi) {
-    $('lisans').hidden = false; $('indirmeler').hidden = false; $('anahtar-yok').hidden = true;
-    $('anahtar-alan').value = anahtar;
-    if (bilgi) {
-      var iyi = bilgi.durum === 'active' || bilgi.durum === 'trialing';
-      $('lisans-durum').innerHTML = 'Abonelik: <b class="' + (iyi ? 'iyi' : 'kotu') + '">' + (DURUM[bilgi.durum] || bilgi.durum) + '</b>' +
-        (bilgi.bitis ? ', geçerlilik ' + tarih(bilgi.bitis) : '') + (bilgi.eposta ? '. Hesap: ' + bilgi.eposta : '') + '.';
-    }
-  }
-
-  var oturum = new URLSearchParams(location.search).get('oturum');
-  if (oturum) {
-    $('hesap-giris').textContent = 'Ödemen alınıyor, lisans anahtarın hazırlanıyor.';
-    var deneme = 0;
-    (async function sor() {
-      try {
-        var r = await fetch('/api/odeme/oturum?oturum=' + encodeURIComponent(oturum));
-        var j = await r.json().catch(function () { return {}; });
-        if (r.ok && j.anahtar) {
-          yaz(j.anahtar);
-          $('hesap-giris').textContent = 'Teşekkürler, aboneliğin başladı. Lisans anahtarın aşağıda; bu tarayıcıda da saklandı.';
-          history.replaceState(null, '', '/hesap/');
-          return goster(j.anahtar, j);
-        }
-        if (r.status === 404 && ++deneme < 10) return setTimeout(sor, 2000);
-        $('hesap-giris').textContent = j.hata || 'Lisans bilgisi alınamadı. Ödeme tamamlandıysa birkaç dakika sonra bu sayfayı yenile ya da bize yaz.';
-      } catch (e) {
-        $('hesap-giris').textContent = 'Bağlantı kurulamadı. Sayfayı yenile.';
-      }
-    })();
-  } else if (oku()) {
-    goster(oku());
-  }
-
-  $('kopyala').addEventListener('click', async function () {
-    try { await navigator.clipboard.writeText($('anahtar-alan').value); this.textContent = 'Kopyalandı'; }
-    catch (e) { $('anahtar-alan').select(); this.textContent = 'Seçildi, Ctrl+C'; }
-    var b = this; setTimeout(function () { b.textContent = 'Kopyala'; }, 1500);
-  });
-  $('kaydet').addEventListener('click', function () {
-    var v = $('anahtar-gir').value.trim().toUpperCase();
-    if (!RE.test(v)) { $('gir-durum').textContent = 'Anahtar KLM ile başlar ve dört gruptan oluşur. Kopyalarken eksik kalmış olabilir.'; return; }
-    yaz(v); goster(v);
-  });
-  $('unut').addEventListener('click', function () {
-    if (!confirm('Anahtar yalnız bu tarayıcıdan kaldırılır; aboneliğin ve MT5 eklentin etkilenmez. Devam edilsin mi?')) return;
-    yaz(null); $('lisans').hidden = true; $('indirmeler').hidden = true; $('anahtar-yok').hidden = false;
-  });
-  document.querySelectorAll('[data-eklenti]').forEach(function (b) {
-    b.addEventListener('click', async function () {
-      var durum = $('indir-durum'); durum.textContent = ''; b.disabled = true;
-      try {
-        var r = await fetch('/api/indir', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ anahtar: $('anahtar-alan').value, eklenti: b.dataset.eklenti }) });
-        if (!r.ok) { var j = await r.json().catch(function () { return {}; }); durum.textContent = j.hata || 'İndirilemedi.'; }
-        else {
-          var ad = (r.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/);
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(await r.blob());
-          a.download = ad ? ad[1] : 'Kalibre.ex5';
-          a.click();
-          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-          durum.textContent = a.download + ' indirildi' + (r.headers.get('X-Kalibre-Surum') ? ' (sürüm ' + r.headers.get('X-Kalibre-Surum') + ')' : '') + '. Dosyayı MT5 veri klasöründe MQL5\\Experts altına kopyala.';
-        }
-      } catch (e) { durum.textContent = 'Bağlantı kurulamadı.'; }
-      b.disabled = false;
-    });
-  });
-  $('portal').addEventListener('click', async function () {
-    var b = this; b.disabled = true; $('portal-durum').textContent = '';
-    try {
-      var r = await fetch('/api/odeme/portal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ anahtar: $('anahtar-alan').value }) });
-      var j = await r.json().catch(function () { return {}; });
-      if (r.ok && j.url) { location.href = j.url; return; }
-      $('portal-durum').textContent = j.hata || 'Abonelik sayfası açılamadı.';
-    } catch (e) { $('portal-durum').textContent = 'Bağlantı kurulamadı.'; }
-    b.disabled = false;
-  });
-})();
-</script>"""
-sayfa("hesap/index.html", "Lisansım: Kalibre Lab", "Kalibre Lab lisans anahtarın, aboneliğinin durumu ve aboneliği yönetme.", "", HESAP, ek_stil=HESAP_STIL, ek_betik=HESAP_BETIK, gizli=True)
+# ------------------------------------------------------------------ hesap
+# Giriş (/giris) ve Hesabım (/hesap) sayfaları: yerel/hesap-uret.py (TR + EN).
 
 # ------------------------------------------------------------------ prop trader
 PROP = """
@@ -821,8 +678,8 @@ BETA = f"""
 <div class="kutu"><b>Beta programında demo hesap kullan.</b> Davetle verilen beta lisansıyla gerçek parayla çalışan bir hesap bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme. Ayrıntılar <a href="/risk-bildirimi/">risk bildiriminde</a>.</div>
 
 <h2 id="lisans">Beta lisansını nasıl alırım?</h2>
-<p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro/">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas; ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap/">Lisansım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse onu aynı sayfada "Kaydet" ile kaydet.</p>
-<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap/">Lisansım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
+<p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro/">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas, Kalibre Markets hesabınla giriş yap (hesabın yoksa bu adımda açılır); ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap/">Hesabım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse aynı sayfada "Hesabıma bağla" ile hesabına bağla.</p>
+<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap/">Hesabım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
@@ -860,7 +717,7 @@ BETA = f"""
 </ul>
 
 <h2 id="gizlilik">Senin hakkında ne görüyoruz?</h2>
-<p>Piyasa verini, pozisyonlarını ve işlemlerini göremeyiz: köprüden gelen veri şifrelidir ve yalnız senin tarayıcında açılır; Alpaca ve Tradier verisi doğrudan tarayıcına gelir. Gördüğümüz tek şey bize gönderdiğin geri bildirim ve beta lisansının kullanıldığı MT5 hesap numarasıdır (lisansı hesaba bağlamak için).</p>
+<p>Piyasa verini, pozisyonlarını ve işlemlerini göremeyiz: köprüden gelen veri şifrelidir ve yalnız senin tarayıcında açılır; Alpaca ve Tradier verisi doğrudan tarayıcına gelir. Gördüklerimiz: Kalibre Markets hesabının e-posta adresi ve profilin, giriş yapmışken kaydettiğin strateji taslakları, bize gönderdiğin geri bildirim ve beta lisansının kullanıldığı MT5 hesap numarası (lisansı hesaba bağlamak için).</p>
 
 <h2 id="gonder">Geri bildirim gönder</h2>
 <p>Formu doldur ya da <a href="{beta_mailto("tr")}">e-postayla gönder</a> (hazır şablon açılır).</p>

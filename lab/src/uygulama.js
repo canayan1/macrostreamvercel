@@ -18,6 +18,7 @@ const TASLAK_ANAHTARI = 'kalibre-lab-taslak';
 const $ = s => document.querySelector(s);
 const sayi = (v, b = 1) => sayiMetni(v, b);
 import { kacis, stratejiyiTemizle } from './guvenlik.js';
+import { hesapSenkron, teklifBandi } from './hesap-senkron.js';
 
 const BOS = () => ({
   kalibre: 1,
@@ -30,6 +31,16 @@ const BOS = () => ({
 });
 
 let s = taslakOku() ?? BOS();
+// Giriş yapılmışsa taslak Kalibre Markets hesabına da yazılır; hesapta daha yenisi varsa sorulur.
+const senkron = hesapSenkron({
+  al: () => s,
+  teklif: satir => teklifBandi(satir, () => {
+    s = stratejiyiTemizle(satir.payload.strateji).strateji;
+    s.gostergeler ??= {};
+    senkron.kabul(satir);
+    ornektenAd = null; ornekUyarisi(); formCiz(); panelCiz();
+  }),
+});
 let hatalar = [];
 let provaZamanlayici = 0;
 const ISTENEN_SEMBOL = (new URLSearchParams(location.search).get('sembol') ?? '').trim().slice(0, 32);
@@ -65,6 +76,7 @@ function taslakOku() {
 }
 function taslakYaz() {
   try { localStorage.setItem(TASLAK_ANAHTARI, JSON.stringify(s)); } catch { /* özel pencere vb. */ }
+  senkron.degisti();
 }
 
 // ---------------------------------------------------------------- operand seçenekleri
@@ -850,3 +862,4 @@ window.addEventListener('resize', () => { clearTimeout(provaZamanlayici); provaZ
 s.gostergeler ??= {};
 formCiz();
 panelCiz();
+senkron.baslat();

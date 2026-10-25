@@ -315,6 +315,7 @@ def sayfa_yaz(dil):
 <link rel="stylesheet" href="/static/ana/ana.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<script src="/static/kalibre-auth.js" defer></script>
 </head>
 <body>
 

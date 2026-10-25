@@ -1,331 +1,329 @@
-/* Kalibre — hesap ve kayıt katmanı.
+/* Kalibre: hesap katmanı (Supabase Auth) ve başlıktaki hesap menüsü.
  *
- * Tasarım ilkesi: ÖNCE YEREL. Site hesapsız da tam çalışır; kayıtlar her zaman
- * localStorage'a yazılır. Kullanıcı giriş yaparsa aynı kayıtlar buluta da
- * senkronlanır ve cihazlar arası taşınır. Yapılandırma yoksa (kalibre-config.js
- * boşsa) giriş arayüzü hiç görünmez ve her şey yerelde çalışmaya devam eder.
+ * Tek bir Kalibre Markets hesabı tüm ürünleri kapsar (şimdilik Kalibre Lab).
+ * Her kullanıcının kalıcı bir hesabı vardır (e-postayla tek kullanımlık bağlantı/kod ya da Google).
+ * Abonelik satın almak için hesap gerekir; laboratuvar hesapsız da tam çalışır (önce yerel).
  *
- * Kullanım:
- *   <script src="/static/kalibre-config.js"></script>
- *   <script src="/static/kalibre-auth.js" defer></script>
+ * Supabase'de tutulanlar: profil (ad, dil, izinler), kaydedilen stratejiler ve izleme listeleri
+ * (user_items), lisans görüntüsü. Piyasa verisi, pozisyon ve işlem geçmişi tutulmaz; MT5 eşleştirme
+ * kodu ve aracı kurum anahtarları yalnız bu cihazda kalır.
  *
- * API:
- *   KalibreAuth.ready()                  → Promise, katman hazır olunca çözülür
- *   KalibreAuth.user()                   → {id,email} veya null
- *   KalibreAuth.openLogin()              → giriş kutusunu aç
- *   KalibreAuth.signOut()
- *   KalibreAuth.onChange(fn)             → oturum değişince çağrılır
- *   KalibreStore.list(kind)              → Promise<[{id,name,payload,updated_at}]>
- *   KalibreStore.save(kind,name,payload,id?) → Promise<kayıt>
- *   KalibreStore.remove(kind,id)         → Promise
+ * Kullanım: <script src="/static/kalibre-auth.js" defer></script>
+ * (kalibre-config.js sayfada yoksa bu betik onu kendisi yükler.)
+ *
+ * API (window.KalibreAuth):
+ *   ready() → Promise            user() → {id,email,name} | null      enabled
+ *   signInWithEmail(email, {next}) → Promise<{error}>     verifyCode(email, code) → Promise<{error}>
+ *   signInWithGoogle({next})       signOut()               onChange(fn)
+ *   token() → erişim belirteci | null                     api(yol, {method, body}) → Promise<{ok,status,data}>
+ *   profile() → Promise<profil>    updateProfile(alanlar) → Promise<{error}>
+ *   client() → Supabase istemcisi  paths → {signIn, account, pricing, connect, lab, home}  lang
+ *
+ * Dil <html lang>'den (yoksa ?dil=, kayıtlı seçim, tarayıcı dili) okunur. Yollar dile göre varsayılandır;
+ * sayfa <meta name="kalibre:yol:signIn" content="/..."> gibi etiketlerle değiştirebilir (site köküne
+ * İngilizce taşındığında betik değişmez, yalnız üretilen etiketler değişir).
+ * window.KalibreStore: list(kind), save(kind, name, payload, id?), remove(kind, id)
+ *   Buluta yalnız 'strateji', 'izleme', 'ayar', 'not' türleri gider; diğerleri (ör. defter) yalnız yereldir.
  */
 (function () {
   'use strict';
   if (window.KalibreAuth) return;
 
-  var CFG = window.KALIBRE_CONFIG || {};
-  var ENABLED = !!(CFG.supabaseUrl && CFG.supabaseAnonKey);
-  var SDK = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-  var LS_PREFIX = 'kalibre-store-';
-  var sb = null, session = null, listeners = [], readyResolve, readyPromise;
+  var SDK = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/+esm';
+  var BULUT_TURLERI = ['strateji', 'izleme', 'ayar', 'not'];
+  var LS = 'kalibre-store-';
 
-  readyPromise = new Promise(function (res) { readyResolve = res; });
+  // ── dil ─────────────────────────────────────────────────────────────────
+  function dilBul() {
+    try {
+      var q = new URLSearchParams(location.search).get('dil');
+      if (q === 'en' || q === 'tr') return q;
+    } catch (e) {}
+    var h = (document.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase();
+    if (h === 'en' || h === 'tr') return h;
+    try { var k = localStorage.getItem('kalibre-dil'); if (k === 'en' || k === 'tr') return k; } catch (e) {}
+    return String(navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+  }
+  var DIL = dilBul();
+  var EN = DIL === 'en';
+  var M = EN ? {
+    signIn: 'Sign in', account: 'Account', license: 'License', strategies: 'Saved strategies', signOut: 'Sign out',
+    notConfigured: 'Sign-in not configured', menu: 'Account menu'
+  } : {
+    signIn: 'Giriş yap', account: 'Hesabım', license: 'Lisans', strategies: 'Kayıtlı stratejiler', signOut: 'Çıkış yap',
+    notConfigured: 'Giriş yapılandırılmadı', menu: 'Hesap menüsü'
+  };
+  var PATHS = EN
+    ? { signIn: '/en/sign-in', account: '/en/license', pricing: '/en/pricing', connect: '/en/connect', lab: '/lab/?dil=en', home: '/en' }
+    : { signIn: '/giris', account: '/hesap', pricing: '/pro', connect: '/baglan', lab: '/lab/', home: '/' };
+  Object.keys(PATHS).forEach(function (k) {
+    var m = document.querySelector('meta[name="kalibre:yol:' + k + '"]');
+    if (m && /^\/(?!\/)/.test(m.content)) PATHS[k] = m.content;
+  });
 
-  // ── yardımcılar ─────────────────────────────────────────────────────────
-  function uid() {
-    return 'loc-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
-  }
-  function lsGet(kind) {
-    try { return JSON.parse(localStorage.getItem(LS_PREFIX + kind) || '[]'); }
-    catch (e) { return []; }
-  }
-  function lsSet(kind, rows) {
-    try { localStorage.setItem(LS_PREFIX + kind, JSON.stringify(rows)); } catch (e) {}
-  }
+  // ── durum ───────────────────────────────────────────────────────────────
+  var CFG = {}, ENABLED = false, sb = null, session = null, dinleyiciler = [], hazirCoz;
+  var hazir = new Promise(function (r) { hazirCoz = r; });
+  var GELISTIRME = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || /\.vercel\.app$/.test(location.hostname);
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function emit() { listeners.forEach(function (fn) { try { fn(user()); } catch (e) {} }); }
   function user() {
-    return session && session.user ? { id: session.user.id, email: session.user.email } : null;
+    var u = session && session.user;
+    if (!u) return null;
+    var m = u.user_metadata || {};
+    return { id: u.id, email: u.email || '', name: m.full_name || m.name || '' };
+  }
+  function yay() { var u = user(); dinleyiciler.forEach(function (f) { try { f(u); } catch (e) {} }); }
+
+  // Yalnız bu sitenin içindeki bir yola dönülür (açık yönlendirme olmasın).
+  function guvenliYol(y) {
+    y = String(y || '');
+    return /^\/(?!\/)[A-Za-z0-9\-._~\/?=&%#]*$/.test(y) && y.indexOf('\\') < 0 ? y : PATHS.account;
+  }
+  function donusAdresi(next) {
+    return location.origin + PATHS.signIn + '?sonra=' + encodeURIComponent(guvenliYol(next || PATHS.account));
   }
 
-  // ── stil ────────────────────────────────────────────────────────────────
-  var css =
-    '.kauth-btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:12.5px;' +
-    'color:#b8ae9e;background:transparent;border:1px solid #24344c;border-radius:999px;padding:6px 13px;' +
-    'cursor:pointer;transition:border-color .12s,color .12s;white-space:nowrap}' +
-    '.kauth-btn:hover{border-color:#5fb89a;color:#5fb89a}' +
-    '.kauth-btn .kauth-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex:none}' +
-    '.kauth-ov{position:fixed;inset:0;z-index:100000;background:rgba(6,5,4,.82);backdrop-filter:blur(6px);' +
-    'display:none;align-items:center;justify-content:center;padding:20px}' +
-    '.kauth-ov.on{display:flex}' +
-    '.kauth-box{width:100%;max-width:410px;background:#132033;border:1px solid #24344c;border-radius:16px;' +
-    'padding:26px 24px;box-shadow:0 24px 60px rgba(0,0,0,.6);' +
-    "font-family:'IBM Plex Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;color:#e7ecf2}" +
-    '.kauth-box h3{margin:0 0 6px;font-size:20px;font-weight:600;letter-spacing:-.01em}' +
-    '.kauth-box p.sub{margin:0 0 20px;font-size:13.5px;color:#b8ae9e;line-height:1.55}' +
-    '.kauth-box label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;' +
-    "color:#8d9cb0;margin-bottom:7px;font-family:'JetBrains Mono',ui-monospace,monospace}" +
-    '.kauth-box input{width:100%;background:#0e0c09;border:1px solid #24344c;border-radius:10px;' +
-    'padding:12px 14px;color:#e7ecf2;font-size:15px;font-family:inherit;outline:none}' +
-    '.kauth-box input:focus{border-color:#5fb89a}' +
-    '.kauth-primary{width:100%;margin-top:12px;background:#5fb89a;color:#08130f;border:0;border-radius:10px;' +
-    'padding:12px 18px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}' +
-    '.kauth-primary:hover{background:#ff7a00}' +
-    '.kauth-primary:disabled{opacity:.55;cursor:default}' +
-    '.kauth-google{width:100%;margin-bottom:16px;background:#fff;color:#1f1f1f;border:0;border-radius:10px;' +
-    'padding:12px 18px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;' +
-    'display:flex;align-items:center;justify-content:center;gap:10px}' +
-    '.kauth-google:hover{background:#f1f1f1}' +
-    '.kauth-or{display:flex;align-items:center;gap:12px;color:#8d9cb0;font-size:11.5px;margin:0 0 16px}' +
-    '.kauth-or::before,.kauth-or::after{content:"";flex:1;height:1px;background:#24344c}' +
-    '.kauth-msg{margin-top:14px;font-size:13px;line-height:1.55;display:none}' +
-    '.kauth-msg.ok{display:block;color:#4ade80}' +
-    '.kauth-msg.err{display:block;color:#ef5350}' +
-    '.kauth-fine{margin-top:18px;font-size:11.5px;color:#8d9cb0;line-height:1.6}' +
-    '.kauth-fine a{color:#5fb89a;text-decoration:none}' +
-    '.kauth-x{position:absolute;top:14px;right:16px;background:none;border:0;color:#8d9cb0;font-size:22px;' +
-    'cursor:pointer;line-height:1;padding:4px}' +
-    '.kauth-x:hover{color:#e7ecf2}' +
-    '.kauth-menu{position:absolute;right:0;top:calc(100% + 8px);background:#132033;border:1px solid #24344c;' +
-    'border-radius:12px;padding:6px;min-width:206px;box-shadow:0 14px 40px rgba(0,0,0,.55);display:none;z-index:99999}' +
-    '.kauth-menu.on{display:block}' +
-    '.kauth-menu .em{padding:9px 12px 10px;font-size:12px;color:#8d9cb0;border-bottom:1px solid #24344c;' +
-    'margin-bottom:5px;word-break:break-all;line-height:1.45}' +
-    '.kauth-menu a,.kauth-menu button{display:block;width:100%;text-align:left;background:none;border:0;' +
-    'color:#b8ae9e;font-size:13.5px;padding:9px 12px;border-radius:8px;cursor:pointer;font-family:inherit;' +
-    'text-decoration:none}' +
-    '.kauth-menu a:hover,.kauth-menu button:hover{background:#17263b;color:#5fb89a}';
+  // ── başlık menüsü ───────────────────────────────────────────────────────
+  var CSS =
+    '.kh{position:relative;display:inline-flex;flex-shrink:0}' +
+    '.kh-d{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 12px;border-radius:6px;border:1px solid #33465f;' +
+    'background:transparent;color:#e7ecf2;font:500 14px/1 "IBM Plex Sans",system-ui,sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}' +
+    '.kh-d:hover{border-color:#a3b0c2;color:#fff}' +
+    '.kh-d.pasif{color:#73839a;border-style:dashed;cursor:default}' +
+    '.kh-a{width:24px;height:24px;border-radius:50%;background:#5fb89a;color:#08130f;display:inline-grid;place-items:center;font:600 12px/1 "IBM Plex Sans",sans-serif;text-transform:uppercase}' +
+    '.kh-d.yuvarlak{padding:0 6px 0 6px;border-color:transparent}.kh-d.yuvarlak:hover{border-color:#33465f}' +
+    '.kh-m{position:absolute;right:0;top:calc(100% + 8px);min-width:220px;background:#132033;border:1px solid #33465f;border-radius:8px;padding:6px;' +
+    'box-shadow:0 14px 40px rgba(0,0,0,.45);z-index:100;display:none;font:400 14px/1.45 "IBM Plex Sans",system-ui,sans-serif}' +
+    '.kh-m.acik{display:block}' +
+    '.kh-m .e{padding:8px 10px 10px;color:#73839a;font-size:13px;border-bottom:1px solid #24344c;margin-bottom:4px;word-break:break-all}' +
+    '.kh-m a,.kh-m button{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:6px;border:0;background:none;color:#a3b0c2;text-decoration:none;font:inherit;cursor:pointer}' +
+    '.kh-m a:hover,.kh-m button:hover{background:#17263b;color:#e7ecf2}' +
+    '@media(max-width:560px){.kh-d .kh-ad{display:none}}';
 
-  function injectCss() {
-    if (document.getElementById('kauth-css')) return;
-    var s = document.createElement('style');
-    s.id = 'kauth-css'; s.textContent = css;
+  function stilEkle() {
+    if (document.getElementById('kh-stil')) return;
+    var s = document.createElement('style'); s.id = 'kh-stil'; s.textContent = CSS;
     document.head.appendChild(s);
   }
 
-  // ── giriş kutusu ────────────────────────────────────────────────────────
-  var ov = null;
-  function buildOverlay() {
-    if (ov) return ov;
-    ov = document.createElement('div');
-    ov.className = 'kauth-ov';
-    ov.innerHTML =
-      '<div class="kauth-box" style="position:relative" role="dialog" aria-modal="true" aria-label="Kalibre hesabı">' +
-        '<button class="kauth-x" aria-label="Kapat">&times;</button>' +
-        '<h3>Kalibre hesabı</h3>' +
-        '<p class="sub">Portföylerin, izleme listen ve serilerinin cihazlar arası taşınması için. ' +
-        'Hesap zorunlu değil: girmezsen her şey yine çalışır, kayıtlar bu tarayıcıda kalır.</p>' +
-        '<button class="kauth-google">' +
-          '<svg width="17" height="17" viewBox="0 0 48 48" aria-hidden="true">' +
-          '<path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.9 2.5 30.400 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/>' +
-          '<path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9.1h12.4c-.5 2.9-2.2 5.3-4.7 6.9l7.3 5.7c4.3-3.9 6.8-9.7 6.8-16.6z"/>' +
-          '<path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.4 0 20.1 0 24s1 7.6 2.6 10.8l7.9-6.2z"/>' +
-          '<path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2.1 1.4-4.8 2.2-8.6 2.2-6.3 0-11.6-4.1-13.5-9.9l-7.9 6.2C6.5 42.6 14.6 48 24 48z"/>' +
-          '</svg>Google ile devam et</button>' +
-        '<div class="kauth-or">veya e-posta ile</div>' +
-        '<form class="kauth-form">' +
-          '<label for="kauth-email">E-posta adresin</label>' +
-          '<input id="kauth-email" type="email" required autocomplete="email" placeholder="ornek@eposta.com">' +
-          '<button type="submit" class="kauth-primary">Giriş bağlantısı gönder</button>' +
-        '</form>' +
-        '<div class="kauth-msg"></div>' +
-        '<p class="kauth-fine">Şifre yok: e-postana tek kullanımlık bir giriş bağlantısı gelir. ' +
-        'Adresini yalnızca hesabını tanımak için saklarız, üçüncü tarafla paylaşmayız. ' +
-        '<a href="/gizlilik/">Gizlilik politikası</a></p>' +
-      '</div>';
-    document.body.appendChild(ov);
-
-    var msg = ov.querySelector('.kauth-msg');
-    function say(text, kind) { msg.textContent = text; msg.className = 'kauth-msg ' + kind; }
-
-    ov.querySelector('.kauth-x').onclick = closeLogin;
-    ov.addEventListener('click', function (e) { if (e.target === ov) closeLogin(); });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && ov.classList.contains('on')) closeLogin();
-    });
-
-    ov.querySelector('.kauth-google').onclick = function () {
-      say('Google\'a yönlendiriliyorsun…', 'ok');
-      sb.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: location.origin + '/hesap/' }
-      }).then(function (r) {
-        if (r.error) say('Google girişi şu an açılamadı: ' + r.error.message, 'err');
-      });
-    };
-
-    ov.querySelector('.kauth-form').onsubmit = function (e) {
-      e.preventDefault();
-      var btn = this.querySelector('.kauth-primary');
-      var email = this.querySelector('#kauth-email').value.trim();
-      if (!email) return;
-      btn.disabled = true; btn.textContent = 'Gönderiliyor…';
-      sb.auth.signInWithOtp({
-        email: email,
-        options: { emailRedirectTo: location.origin + '/hesap/' }
-      }).then(function (r) {
-        btn.disabled = false; btn.textContent = 'Giriş bağlantısı gönder';
-        if (r.error) say('Gönderilemedi: ' + r.error.message, 'err');
-        else say('Bağlantı ' + email + ' adresine gönderildi. Gelen kutunu kontrol et (spam klasörüne de bak).', 'ok');
-      });
-    };
-    return ov;
+  // Başlıktaki yer: açık yuva > site üst barı > eski sayfaların kabuğu > laboratuvar başlığı.
+  function yuvalar() {
+    var l = [].slice.call(document.querySelectorAll('[data-kalibre-auth]'));
+    if (l.length) return l;
+    var hedef = null, once = null;
+    var site = document.querySelector('header.ust > .kap');
+    var kabuk = document.querySelector('#km-ust > .k');
+    var lab = document.querySelector('header.ust > .ust-eylem');
+    if (site) { hedef = site; once = site.querySelector(':scope > .dugme:not(.ikincil)'); }
+    else if (kabuk) { hedef = kabuk; once = kabuk.querySelector(':scope > .d:not(.ikincil)'); }
+    else if (lab) { hedef = lab; }
+    if (!hedef) return [];
+    var y = document.createElement('span');
+    y.setAttribute('data-kalibre-auth', '');
+    hedef.insertBefore(y, once);
+    return [y];
   }
-  function openLogin() {
-    if (!ENABLED) return;
-    buildOverlay().classList.add('on');
-    var i = ov.querySelector('#kauth-email');
-    setTimeout(function () { try { i.focus(); } catch (e) {} }, 60);
-  }
-  function closeLogin() { if (ov) ov.classList.remove('on'); }
 
-  // ── başlıktaki düğme ────────────────────────────────────────────────────
-  function mountButtons() {
-    if (!ENABLED) return;
-    var slots = document.querySelectorAll('[data-kalibre-auth]');
-    for (var i = 0; i < slots.length; i++) renderSlot(slots[i]);
-  }
-  function renderSlot(slot) {
+  var acikMenu = null;
+  document.addEventListener('click', function () { if (acikMenu) { acikMenu.classList.remove('acik'); acikMenu = null; } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && acikMenu) { acikMenu.classList.remove('acik'); acikMenu = null; } });
+
+  function menuCiz() {
+    stilEkle();
     var u = user();
-    slot.style.position = 'relative';
-    slot.innerHTML = '';
-    var btn = document.createElement('button');
-    btn.className = 'kauth-btn';
-    btn.type = 'button';
-    if (u) {
-      btn.innerHTML = '<span class="kauth-dot"></span>' + esc(u.email.split('@')[0]);
-      var menu = document.createElement('div');
-      menu.className = 'kauth-menu';
-      menu.innerHTML =
-        '<div class="em">' + esc(u.email) + '</div>' +
-        '<a href="/hesap/">Panom</a>' +
-        '<a href="/defter/">Defterim</a>' +
-        '<button type="button" data-signout>Çıkış yap</button>';
-      menu.querySelector('[data-signout]').onclick = function () { signOut(); };
-      btn.onclick = function (e) { e.stopPropagation(); menu.classList.toggle('on'); };
-      document.addEventListener('click', function () { menu.classList.remove('on'); });
-      slot.appendChild(btn); slot.appendChild(menu);
-    } else {
-      btn.textContent = 'Giriş yap';
-      btn.onclick = openLogin;
-      slot.appendChild(btn);
-    }
+    yuvalar().forEach(function (y) {
+      y.className = 'kh';
+      if (!ENABLED) {
+        y.innerHTML = GELISTIRME ? '<span class="kh-d pasif" title="static/kalibre-config.js">' + esc(M.notConfigured) + '</span>' : '';
+        return;
+      }
+      if (!u) {
+        if (location.pathname.replace(/\/$/, '') === PATHS.signIn) { y.innerHTML = ''; return; } // giriş sayfasının kendisi
+        var sonra = location.pathname + location.search;
+        y.innerHTML = '<a class="kh-d" href="' + PATHS.signIn + '?sonra=' + encodeURIComponent(sonra) + '">' + esc(M.signIn) + '</a>';
+        return;
+      }
+      var bas = (u.name || u.email || '?').trim().charAt(0) || '?';
+      var hesap = PATHS.account;
+      y.innerHTML =
+        '<button type="button" class="kh-d yuvarlak" aria-haspopup="true" aria-expanded="false" aria-label="' + esc(M.menu) + '">' +
+        '<span class="kh-a" aria-hidden="true">' + esc(bas) + '</span></button>' +
+        '<div class="kh-m" role="menu">' +
+        '<div class="e">' + esc(u.email) + '</div>' +
+        '<a role="menuitem" href="' + hesap + '">' + esc(M.account) + '</a>' +
+        '<a role="menuitem" href="' + hesap + '#lisanslar">' + esc(M.license) + '</a>' +
+        '<a role="menuitem" href="' + hesap + '#stratejiler">' + esc(M.strategies) + '</a>' +
+        '<button type="button" role="menuitem" data-cikis>' + esc(M.signOut) + '</button></div>';
+      var d = y.querySelector('button.kh-d'), m = y.querySelector('.kh-m');
+      d.onclick = function (e) {
+        e.stopPropagation();
+        var ac = !m.classList.contains('acik');
+        if (acikMenu && acikMenu !== m) acikMenu.classList.remove('acik');
+        m.classList.toggle('acik', ac); d.setAttribute('aria-expanded', String(ac)); acikMenu = ac ? m : null;
+      };
+      m.onclick = function (e) { e.stopPropagation(); };
+      y.querySelector('[data-cikis]').onclick = function () { signOut(); };
+    });
   }
 
+  // ── oturum işlemleri ────────────────────────────────────────────────────
+  function kapali() { return Promise.resolve({ error: { message: M.notConfigured } }); }
+
+  function signInWithEmail(email, o) {
+    if (!sb) return kapali();
+    return sb.auth.signInWithOtp({
+      email: String(email || '').trim(),
+      options: { emailRedirectTo: donusAdresi(o && o.next), shouldCreateUser: true, data: { locale: DIL } }
+    });
+  }
+  function verifyCode(email, code) {
+    if (!sb) return kapali();
+    return sb.auth.verifyOtp({ email: String(email || '').trim(), token: String(code || '').replace(/\s/g, ''), type: 'email' });
+  }
+  function signInWithGoogle(o) {
+    if (!sb) return kapali();
+    return sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: donusAdresi(o && o.next) } });
+  }
   function signOut() {
     if (!sb) return Promise.resolve();
     return sb.auth.signOut().then(function () {
-      session = null; mountButtons(); emit();
-      if (location.pathname.indexOf('/hesap') === 0) location.href = '/';
+      session = null; menuCiz(); yay();
+      if (location.pathname === PATHS.account || location.pathname === PATHS.account + '/') location.href = PATHS.home;
     });
   }
+  function token() { return session && session.access_token || null; }
 
-  // ── kayıt katmanı: önce yerel, giriş varsa bulut ─────────────────────────
+  // Kalibre uçlarına belirteçli istek. Yanıt her zaman {ok, status, data} döner.
+  function api(yol, o) {
+    o = o || {};
+    var bas = { 'Content-Type': 'application/json' };
+    var t = token();
+    if (t) bas.Authorization = 'Bearer ' + t;
+    var govde = o.body ? Object.assign({ dil: DIL }, o.body) : undefined;
+    var url = yol + (yol.indexOf('?') < 0 ? '?' : '&') + 'dil=' + DIL;
+    return fetch(url, { method: o.method || (govde ? 'POST' : 'GET'), headers: bas, body: govde ? JSON.stringify(govde) : undefined })
+      .then(function (r) {
+        var tur = r.headers.get('content-type') || '';
+        return (tur.indexOf('json') >= 0 ? r.json() : r.blob()).catch(function () { return null; })
+          .then(function (d) { return { ok: r.ok, status: r.status, data: d, headers: r.headers }; });
+      })
+      .catch(function () { return { ok: false, status: 0, data: null }; });
+  }
+
+  function profile() {
+    if (!sb || !user()) return Promise.resolve(null);
+    return sb.from('profiles').select('id,email,display_name,locale,marketing_consent,marketing_consent_at,terms_accepted_at,terms_version,created_at')
+      .eq('id', user().id).maybeSingle().then(function (r) { return r.error ? null : r.data; });
+  }
+  function updateProfile(alanlar) {
+    if (!sb || !user()) return kapali();
+    return sb.from('profiles').update(alanlar).eq('id', user().id).then(function (r) { return { error: r.error }; });
+  }
+
+  // ── kayıt katmanı: önce yerel, giriş yapılmışsa bulut ───────────────────
+  function lsAl(k) { try { return JSON.parse(localStorage.getItem(LS + k) || '[]'); } catch (e) { return []; } }
+  function lsKoy(k, v) { try { localStorage.setItem(LS + k, JSON.stringify(v)); } catch (e) {} }
+  function yerelKimlik() { return 'loc-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8); }
+  function buluta(kind) { return !!(sb && user() && BULUT_TURLERI.indexOf(kind) >= 0); }
+
   var Store = {
     list: function (kind) {
-      var local = lsGet(kind);
-      if (!sb || !user()) return Promise.resolve(local);
-      return sb.from('kalibre_items')
-        .select('id,kind,name,payload,updated_at')
-        .eq('kind', kind)
-        .order('updated_at', { ascending: false })
+      var yerel = lsAl(kind);
+      if (!buluta(kind)) return Promise.resolve(yerel);
+      return sb.from('user_items').select('id,kind,name,payload,updated_at').eq('kind', kind)
+        .order('updated_at', { ascending: false }).limit(200)
         .then(function (r) {
-          if (r.error) return local;                 // ağ/izin hatasında yerelden devam
-          lsSet(kind, r.data || []);
-          return r.data || [];
+          if (r.error) return yerel;
+          var bekleyen = yerel.filter(function (x) { return String(x.id).indexOf('loc-') === 0; });
+          var l = bekleyen.concat(r.data || []);
+          lsKoy(kind, l);
+          return l;
         });
     },
     save: function (kind, name, payload, id) {
-      var row = {
-        id: id || uid(), kind: kind, name: name, payload: payload,
-        updated_at: new Date().toISOString()
-      };
-      var rows = lsGet(kind).filter(function (r) { return r.id !== row.id; });
-      rows.unshift(row); lsSet(kind, rows);
-      if (!sb || !user()) return Promise.resolve(row);
-      var cloud = {
-        kind: kind, name: name, payload: payload,
-        user_id: user().id, updated_at: row.updated_at
-      };
-      // Yerelde üretilmiş 'loc-' kimlikleri buluta gönderilmez; bulut kendi uuid'ini verir.
-      if (id && String(id).indexOf('loc-') !== 0) cloud.id = id;
-      return sb.from('kalibre_items').upsert(cloud).select().then(function (r) {
-        if (r.error || !r.data || !r.data[0]) return row;
-        var saved = r.data[0];
-        var fixed = lsGet(kind).filter(function (x) { return x.id !== row.id && x.id !== saved.id; });
-        fixed.unshift(saved); lsSet(kind, fixed);
-        return saved;
+      var satir = { id: id || yerelKimlik(), kind: kind, name: String(name || '').slice(0, 120), payload: payload, updated_at: new Date().toISOString() };
+      var l = lsAl(kind).filter(function (x) { return x.id !== satir.id; });
+      l.unshift(satir); lsKoy(kind, l);
+      if (!buluta(kind)) return Promise.resolve(satir);
+      var bulut = { kind: kind, name: satir.name, payload: payload, user_id: user().id };
+      if (id && String(id).indexOf('loc-') !== 0) bulut.id = id;
+      return sb.from('user_items').upsert(bulut).select('id,kind,name,payload,updated_at').then(function (r) {
+        if (r.error || !r.data || !r.data[0]) return satir;
+        var k = r.data[0];
+        var yeni = lsAl(kind).filter(function (x) { return x.id !== satir.id && x.id !== k.id; });
+        yeni.unshift(k); lsKoy(kind, yeni);
+        return k;
       });
     },
     remove: function (kind, id) {
-      lsSet(kind, lsGet(kind).filter(function (r) { return r.id !== id; }));
-      if (!sb || !user() || String(id).indexOf('loc-') === 0) return Promise.resolve();
-      return sb.from('kalibre_items').delete().eq('id', id).then(function () {});
-    },
-    // Giriş anında bu tarayıcıdaki yerel kayıtları buluta taşır (bir kez).
-    pushLocal: function (kinds) {
-      if (!sb || !user()) return Promise.resolve();
-      var jobs = [];
-      kinds.forEach(function (kind) {
-        lsGet(kind).forEach(function (r) {
-          if (String(r.id).indexOf('loc-') !== 0) return;
-          jobs.push(sb.from('kalibre_items').insert({
-            kind: kind, name: r.name, payload: r.payload, user_id: user().id
-          }));
-        });
-      });
-      if (!jobs.length) return Promise.resolve();
-      return Promise.all(jobs).then(function () {
-        kinds.forEach(function (kind) {
-          lsSet(kind, lsGet(kind).filter(function (r) { return String(r.id).indexOf('loc-') !== 0; }));
-        });
-      }).catch(function () {});
+      lsKoy(kind, lsAl(kind).filter(function (x) { return x.id !== id; }));
+      if (!buluta(kind) || String(id).indexOf('loc-') === 0) return Promise.resolve();
+      return sb.from('user_items').delete().eq('id', id).then(function () {});
     }
   };
 
   // ── başlatma ────────────────────────────────────────────────────────────
-  function boot() {
-    injectCss();
-    if (!ENABLED) { readyResolve(); return; }
-    import(SDK).then(function (mod) {
-      sb = mod.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
-      });
-      return sb.auth.getSession().then(function (r) {
-        session = (r.data && r.data.session) || null;
-        sb.auth.onAuthStateChange(function (evt, s) {
-          var was = !!user();
-          session = s;
-          mountButtons();
-          if (!was && user()) Store.pushLocal(['portfoy', 'izleme']);
-          emit();
+  function ayarYukle() {
+    if (window.KALIBRE_CONFIG) return Promise.resolve(window.KALIBRE_CONFIG);
+    return new Promise(function (coz) {
+      var s = document.createElement('script');
+      s.src = '/static/kalibre-config.js';
+      s.onload = function () { coz(window.KALIBRE_CONFIG || {}); };
+      s.onerror = function () { coz({}); };
+      document.head.appendChild(s);
+    });
+  }
+
+  function basla() {
+    ayarYukle().then(function (c) {
+      CFG = c || {};
+      ENABLED = !!(CFG.supabaseUrl && CFG.supabaseAnonKey);
+      window.KalibreAuth.enabled = ENABLED;
+      if (!ENABLED) { menuCiz(); hazirCoz(); return; }
+      return import(SDK).then(function (mod) {
+        sb = mod.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {
+          auth: { flowType: 'pkce', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: 'kalibre-oturum' }
         });
-        mountButtons();
-        if (user()) Store.pushLocal(['portfoy', 'izleme']);
-        readyResolve();
+        return sb.auth.getSession().then(function (r) {
+          session = (r.data && r.data.session) || null;
+          sb.auth.onAuthStateChange(function (olay, s) { session = s; menuCiz(); yay(); });
+          menuCiz();
+          hazirCoz();
+        });
       });
     }).catch(function (e) {
-      // SDK yüklenemedi: site yerel modda tam çalışmaya devam eder.
-      if (window.console) console.warn('[kalibre-auth] bulut katmanı kapalı:', e && e.message);
-      sb = null; readyResolve();
+      if (window.console) console.warn('[kalibre-auth]', e && e.message);
+      sb = null; ENABLED = false; window.KalibreAuth.enabled = false; menuCiz(); hazirCoz();
     });
   }
 
   window.KalibreAuth = {
-    enabled: ENABLED,
-    ready: function () { return readyPromise; },
+    enabled: false,
+    lang: DIL,
+    paths: PATHS,
+    ready: function () { return hazir; },
     user: user,
-    openLogin: openLogin,
+    token: token,
+    api: api,
+    client: function () { return sb; },
+    signInWithEmail: signInWithEmail,
+    verifyCode: verifyCode,
+    signInWithGoogle: signInWithGoogle,
     signOut: signOut,
-    onChange: function (fn) { listeners.push(fn); },
-    refreshButtons: mountButtons
+    profile: profile,
+    updateProfile: updateProfile,
+    openLogin: function () { location.href = PATHS.signIn + '?sonra=' + encodeURIComponent(location.pathname + location.search); },
+    onChange: function (f) { dinleyiciler.push(f); },
+    refreshButtons: menuCiz,
+    safePath: guvenliYol
   };
   window.KalibreStore = Store;
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', basla);
+  else basla();
 })();

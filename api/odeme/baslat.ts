@@ -1,11 +1,16 @@
 // Abonelik ödemesini başlatır: Stripe Checkout oturumu açar ve ödeme sayfasının adresini döner.
 // POST /api/odeme/baslat  { sartlar: true, cayma_onay: true }  → { url }
+// Hesap gerekir: Authorization: Bearer <Supabase erişim belirteci>. Oturum, client_reference_id ile
+// kullanıcıya bağlanır; webhook lisansı bu hesaba yazar (api/_lib/lisans.ts oturumKullanicisi).
 // cayma_onay: lisans etkinleştirilince ifaya başlanacağını ve cayma hakkının sona ereceğini kabul
 // (Mesafeli Sözleşmeler Yönetmeliği m.15/1-ğ; şartlar bölüm 12a). Onay Checkout metadata'sında saklanır.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { dilUygula } from '../_lib/dil.ts';
 import { kokAdres, stripeIstemci } from '../_lib/stripe.ts';
+import { depoSec } from '../_lib/depo.ts';
+import { kullaniciLisanslari } from '../_lib/hesap.ts';
+import { belirtecAl, kullaniciDogrula, supabaseAyar, type Kullanici } from '../_lib/supabase.ts';
 
 export const config = { maxDuration: 10 };
 // Onaylanan kullanım şartlarının yürürlük tarihi (kullanim-sartlari sayfasındaki tarihle aynı tutulmalı).
@@ -23,12 +28,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (typeof g === 'string') { try { g = JSON.parse(g); } catch { g = {}; } }
   if (g?.sartlar !== true) return res.status(400).json({ hata: 'Devam etmek için kullanım şartlarını onaylamalısın.' });
   if (g?.cayma_onay !== true) return res.status(400).json({ hata: 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.' });
-  const onay = { sartlar_onay: SARTLAR_SURUMU, cayma_onay: 'evet', cayma_onay_zamani: new Date().toISOString() };
+  const onay: Record<string, string> = { sartlar_onay: SARTLAR_SURUMU, cayma_onay: 'evet', cayma_onay_zamani: new Date().toISOString() };
+
+  // Hesap: her abonelik bir Kalibre hesabına aittir.
+  const sb = supabaseAyar();
+  if (!sb) return res.status(503).json({ hata: 'Hesaplar henüz açılmadı.' });
+  let kullanici: Kullanici | null;
+  try { kullanici = await kullaniciDogrula(sb, belirtecAl(req.headers.authorization)); }
+  catch { return res.status(502).json({ hata: 'Oturum doğrulanamadı. Biraz sonra yeniden dene.' }); }
+  if (!kullanici) return res.status(401).json({ hata: 'Ödeme için önce giriş yap.' });
+  onay.kullanici = kullanici.id;
+
+  // Aynı hesapta ikinci ücretli abonelik açılmaz; daha önce Stripe müşterisi olduysa o kullanılır.
+  let musteri: string | null = null;
+  const depo = depoSec();
+  if (depo) {
+    const simdi = Date.now();
+    for (const k of await kullaniciLisanslari(depo, kullanici.id).catch(() => [])) {
+      if (k.beta) continue;
+      if (k.musteri) musteri ??= k.musteri;
+      if (['active', 'trialing', 'past_due'].includes(k.durum) && k.bitis * 1000 > simdi)
+        return res.status(409).json({ hata: 'Bu hesapta zaten etkin bir abonelik var. Hesabım sayfasından yönetebilirsin.' });
+    }
+  }
 
   const kok = kokAdres(req.headers['x-forwarded-host'] ?? req.headers.host);
   try {
     const s = await stripe('checkout/sessions', {
       mode: 'subscription',
+      client_reference_id: kullanici.id,
+      ...(musteri ? { customer: musteri } : kullanici.eposta ? { customer_email: kullanici.eposta } : {}),
       line_items: [{ price: fiyat, quantity: 1 }],
       success_url: `${kok}${dil === 'en' ? '/en/license' : '/hesap'}?oturum={CHECKOUT_SESSION_ID}`,
       cancel_url: `${kok}${dil === 'en' ? '/en/pricing' : '/pro'}?iptal=1`,

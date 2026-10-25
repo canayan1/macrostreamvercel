@@ -235,6 +235,7 @@ html = f'''<!doctype html>
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<script src="/static/kalibre-auth.js" defer></script>
 {stil}
 </head>
 <body>

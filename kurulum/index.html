@@ -21,6 +21,13 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/giris">
+<meta name="kalibre:yol:account" content="/hesap">
+<meta name="kalibre:yol:pricing" content="/pro">
+<meta name="kalibre:yol:connect" content="/baglan">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
 
 </head>
 <body>
@@ -55,7 +62,7 @@
 <ul>
   <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
   <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
-  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap">Lisansım</a> sayfasındadır.</li>
+  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap">Hesabım</a> sayfasındadır.</li>
 </ul>
 
 <h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
@@ -77,7 +84,7 @@
   <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
   <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
   <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
-  <li><b>Lisans anahtarı</b> satırına <a href="/hesap">Lisansım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/hesap">Hesabım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
   <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan yalnız eklendiği grafiğin sembolü gönderilir.</li>
   <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
 </ol>
@@ -104,7 +111,7 @@
     <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
     <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
     <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
-    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap">Lisansım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap">Hesabım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
     <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
     <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Köprü, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
   </tbody>

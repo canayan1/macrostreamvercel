@@ -22,6 +22,13 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/giris">
+<meta name="kalibre:yol:account" content="/hesap">
+<meta name="kalibre:yol:pricing" content="/pro">
+<meta name="kalibre:yol:connect" content="/baglan">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
 <style>
 .geri { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
 .geri .alanlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px 18px; margin-bottom: 14px; }
@@ -61,8 +68,8 @@
 <div class="kutu"><b>Beta programında demo hesap kullan.</b> Davetle verilen beta lisansıyla gerçek parayla çalışan bir hesap bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme. Ayrıntılar <a href="/risk-bildirimi">risk bildiriminde</a>.</div>
 
 <h2 id="lisans">Beta lisansını nasıl alırım?</h2>
-<p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas; ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap">Lisansım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse onu aynı sayfada "Kaydet" ile kaydet.</p>
-<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap">Lisansım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
+<p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas, Kalibre Markets hesabınla giriş yap (hesabın yoksa bu adımda açılır); ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap">Hesabım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse aynı sayfada "Hesabıma bağla" ile hesabına bağla.</p>
+<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap">Hesabım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
@@ -100,7 +107,7 @@
 </ul>
 
 <h2 id="gizlilik">Senin hakkında ne görüyoruz?</h2>
-<p>Piyasa verini, pozisyonlarını ve işlemlerini göremeyiz: köprüden gelen veri şifrelidir ve yalnız senin tarayıcında açılır; Alpaca ve Tradier verisi doğrudan tarayıcına gelir. Gördüğümüz tek şey bize gönderdiğin geri bildirim ve beta lisansının kullanıldığı MT5 hesap numarasıdır (lisansı hesaba bağlamak için).</p>
+<p>Piyasa verini, pozisyonlarını ve işlemlerini göremeyiz: köprüden gelen veri şifrelidir ve yalnız senin tarayıcında açılır; Alpaca ve Tradier verisi doğrudan tarayıcına gelir. Gördüklerimiz: Kalibre Markets hesabının e-posta adresi ve profilin, giriş yapmışken kaydettiğin strateji taslakları, bize gönderdiğin geri bildirim ve beta lisansının kullanıldığı MT5 hesap numarası (lisansı hesaba bağlamak için).</p>
 
 <h2 id="gonder">Geri bildirim gönder</h2>
 <p>Formu doldur ya da <a href="mailto:markets@kalibrefin.com?subject=Kalibre%20beta%20geri%20bildirim&body=B%C3%B6l%C3%BCm%20/%20sayfa%3A%0ATaray%C4%B1c%C4%B1%20ve%20i%C5%9Fletim%20sistemi%3A%0AAd%C4%B1mlar%3A%0A1.%0A2.%0A3.%0ABeklenen%3A%0AOlan%20%28hata%20mesaj%C4%B1%20aynen%29%3A%0A%0AKod%2C%20lisans%20anahtar%C4%B1%2C%20API%20anahtar%C4%B1%20ya%20da%20%C5%9Fifre%20yazma.">e-postayla gönder</a> (hazır şablon açılır).</p>

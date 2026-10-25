@@ -21,6 +21,13 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/giris">
+<meta name="kalibre:yol:account" content="/hesap">
+<meta name="kalibre:yol:pricing" content="/pro">
+<meta name="kalibre:yol:connect" content="/baglan">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
 <style>
 .plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
 .plan-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--cizgi); padding-bottom: 14px; margin-bottom: 14px; }
@@ -87,12 +94,12 @@
   <label class="onay"><input type="checkbox" id="cayma" required> <span>Lisans anahtarımın teslim edilip bir MetaTrader 5 hesabında etkinleştirilmesiyle hizmetin ifasına hemen başlanacağını ve etkinleştirmeden sonra 14 günlük cayma hakkımı kaybedeceğimi kabul ediyorum (<a href="/kullanim-sartlari#cayma">şartlar, bölüm 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Abone ol</button>
   <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap">hesap sayfasından</a> iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>
+  <p class="not">Abonelik Kalibre Markets hesabına bağlanır: önce giriş yaparsın, hesabın yoksa bu adımda oluşturulur. Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap">Hesabım</a> sayfasından iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>
 </div>
   <div class="yakinda" id="odeme-yakinda" hidden>
     <h3>Ödemeler yakında açılıyor</h3>
     <p>Kalibre Lab şu an beta sürümünde. Abonelikler açıldığında haber almak için aşağıdaki listeye yazıl.</p>
-    <p><b>Davetli misin?</b> Sana gönderilen beta lisansını <a href="/hesap">Lisansım</a> sayfasına kaydet.</p>
+    <p><b>Davetli misin?</b> Giriş yap ve sana gönderilen beta lisansını <a href="/hesap">Hesabım</a> sayfasında hesabına bağla.</p>
   </div>
 </div>
 
@@ -170,19 +177,20 @@
   var durum = document.getElementById('odeme-durum');
   if (q.get('iptal') === '1') durum.textContent = 'Ödeme tamamlanmadı; kartından bir şey çekilmedi. İstediğin zaman yeniden deneyebilirsin.';
   var d = document.getElementById('abone-ol');
+  if (q.get('abone') === '1') { var plan = document.getElementById('plan'); if (plan) plan.scrollIntoView({ block: 'start' }); }
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'Devam etmek için kullanım şartlarını ve gizlilik politikasını onaylamalısın.'; return; }
     if (!document.getElementById('cayma').checked) { durum.textContent = 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.'; return; }
     d.disabled = true; d.textContent = 'Ödeme sayfası açılıyor';
     durum.textContent = '';
-    try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true }) });
-      var j = await r.json().catch(function () { return {}; });
-      if (r.ok && j.url) { location.href = j.url; return; }
-      durum.textContent = j.hata || 'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.';
-    } catch (e) {
-      durum.textContent = 'Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.';
-    }
+    var A = window.KalibreAuth; // ertelenmiş betik: tıklama anında okunur
+    if (A) await A.ready();
+    if (!A || !A.enabled) { durum.textContent = 'Hesaplar henüz açılmadı. Biraz sonra yeniden dene.'; d.disabled = false; d.textContent = 'Abone ol'; return; }
+    // Abonelik bir hesaba bağlanır: giriş yoksa giriş sayfasına, sonra bu plana dönülür.
+    if (!A.user()) { location.href = A.paths.signIn + '?sonra=' + encodeURIComponent(location.pathname + '?abone=1'); return; }
+    var r = await A.api('/api/odeme/baslat', { body: { sartlar: true, cayma_onay: true } });
+    if (r.ok && r.data && r.data.url) { location.href = r.data.url; return; }
+    durum.textContent = (r.data && r.data.hata) || (r.status ? 'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.' : 'Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.');
     d.disabled = false; d.textContent = 'Abone ol';
   });
 })();
