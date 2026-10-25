@@ -1,6 +1,6 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 25 Ekim 2026 (aşama C sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 25 Ekim 2026 (çekirdek paket sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
 
@@ -143,8 +143,7 @@ The5ers HS. Strategy Tester kanıtı: kalkansız en kötü gün 18.900 kayıp, k
 Kalkan "sunucu tarafı denetim" olarak satılmaz: aynı hesaptaki başka EA'yı ya da elle emri durduramaz.
 
 Kurumsal hedef (rapor: `reports/Kurumsal motor gereksinimleri.md`). Sıradaki işler:
-1. Başsız `@kalibre/core` paketi
-2. Çalıştırma manifesti ve `resultId` (motor + şartname + veri + yapılandırma + tohum özeti)
+Biten: `@kalibre/core` (kalibre-lab `lab/core/`, CLI, `docs/core.md`), `resultId` (kanonik JSON + SHA-256), maliyet modeli v2 ve çubuk içi dolum modelleri (isteğe bağlı; varsayılan sonuçlar değişmedi, 337 test).
 4. Enstrüman ve maliyet modelinin 2. sürümü: lot adımı, kur çevrimi, swap, teminat
 5. Çubuk içi dolum modelleri
 6. Bağımsız Python referansı
@@ -218,7 +217,7 @@ Biten (urun-sitesi, canlıda değil):
 - Aşama D
 - Kurumsal araştırma
 
-Son önizleme: https://macrostreamvercel-22dg05l5t-canayan1s-projects.vercel.app
+Son önizleme: https://macrostreamvercel-4cqg4ohvk-canayan1s-projects.vercel.app
 
 Kurucunun yapacakları:
 1. Supabase: eski projelerden birini duraklat, Frankfurt'ta yeni proje aç. Sonra SQL, giriş ayarları,
@@ -229,8 +228,7 @@ Kurucunun yapacakları:
 4. Pazartesi demo işlemlerle Panom kâr/zarar kontrolü.
 
 Claude'un yapacakları:
-1. `@kalibre/core`, `resultId`, maliyet modeli v2, çubuk içi dolum modelleri (sürüyor).
+1. Bağımsız Python referansı + doğrulama paketi (sürüyor); maliyet/dolum modellerinin lab arayüzü + Türkçe ad temizliği (sürüyor).
 2. Motor 0.22'yi sırla derle ve yükle.
 3. Eklentileri sırla derle ve yükle, önizlemede uçtan uca dene.
-4. Lab'in Türkçe adlarını düzelt ("Hızlı prova", "Panom").
 5. Canlıya çıkış listesini tamamla, ardından kurucunun "canlıya al" onayı.
