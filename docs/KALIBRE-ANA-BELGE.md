@@ -23,7 +23,7 @@ canlı siteye yüklenmez.
 
 | Ürün | Ne yapar | Durum |
 |---|---|---|
-| Kalibre Lab (tarayıcı) | Strateji kurucu (Basit bloklar + İleri form), Quick Backtest, optimizasyon (ızgara, eğitim/sınama, komşuluk, DSR, PBO/CSCV, yürüyen ileri, Harvey-Liu), oynaklık laboratuvarı (GARCH), Panom (MT5 hesap paneli), bağlantı sihirbazı | Beta |
+| Kalibre Lab (tarayıcı) | Strateji kurucu (Basit bloklar + İleri form), Quick Backtest, optimizasyon (ızgara, eğitim/sınama, komşuluk, DSR, PBO/CSCV, yürüyen ileri, Harvey-Liu), oynaklık laboratuvarı (GARCH), Pano (MT5 hesap paneli), bağlantı sihirbazı | Beta |
 | Kalibre Bridge (MT5 EA) | MT5'ten fiyat geçmişi, Market Watch fiyatları, açık pozisyonlar, 90 günlük kapanmış işlemler ve bakiye hareketlerini şifreli röle üzerinden tarayıcıya taşır; salt okuma | Beta (testçilere açık) |
 | Kalibre Engine (MT5 EA) | Kullanıcının kendi kurallarını MT5'te çalıştırır; prop kalkanı (günlük/toplam kayıp tabanı); gerçek hesapta açık onay ve zorunlu kayıp sınırı | Yalnız kurucunun demo hesabında; testçilere YOK |
 | Alpaca / Tradier bağlantısı | ABD hisseleri için tarayıcıdan doğrudan, kullanıcının kendi anahtarıyla, salt okuma | Beta; ticari kullanım için yazılı onay gerekir |
@@ -123,7 +123,7 @@ Ortam değişkenleri (değerleri yalnız kurucu girer; Claude okumaz):
   `data-cerez-ayar` seçimi yeniden açar.
 - Lab modülleri (kalibre-lab `lab/src`): `motor.js`, `gostergeler.js`, `optimizasyon.js`,
   `asiri-uyum.js` (DSR, PBO/CSCV, Harvey-Liu, deneme sayacı), `yuruyen-ileri.js`, `bloklar.js`,
-  `panom/`, `veri/` (kopru, role, alpaca, tradier, csv), `modeller/` (GARCH, SARIMA),
+  `panom/` (Pano), `veri/` (kopru, role, alpaca, tradier, csv), `modeller/` (GARCH, SARIMA),
   `hesap-senkron.js` (giriş yapılmışsa taslak eşitleme), `guvenlik.js` (XSS kaçışı),
   `dil.js` / `dil-en.js` / `dil-dogrulama.js`.
 
@@ -217,7 +217,7 @@ Biten (urun-sitesi, canlıda değil):
 - Aşama D
 - Kurumsal araştırma
 
-Son önizleme: https://macrostreamvercel-4cqg4ohvk-canayan1s-projects.vercel.app
+Son önizleme: https://macrostreamvercel-5dzmjm7vp-canayan1s-projects.vercel.app
 
 Kurucunun yapacakları:
 1. Supabase: eski projelerden birini duraklat, Frankfurt'ta yeni proje aç. Sonra SQL, giriş ayarları,
@@ -225,10 +225,10 @@ Kurucunun yapacakları:
    service_role yalnız Vercel'e girilir.
 2. `KALIBRE_LISANS_SIRRI` değişkenine Preview ortamını ekle. Aynı değeri `LisansSirri.mqh` dosyasına yaz.
 3. Yasal yer tutucuları ver.
-4. Pazartesi demo işlemlerle Panom kâr/zarar kontrolü.
+4. Pazartesi demo işlemlerle Pano kâr/zarar kontrolü.
 
 Claude'un yapacakları:
-1. Bağımsız Python referansı + doğrulama paketi (sürüyor); maliyet/dolum modellerinin lab arayüzü + Türkçe ad temizliği (sürüyor).
+1. Bağımsız Python referansı + doğrulama paketi (sürüyor); maliyet/dolum arayüzü ve Türkçe adlar bitti (Hızlı Backtest, Kalibre Engine, Pano).
 2. Motor 0.22'yi sırla derle ve yükle.
 3. Eklentileri sırla derle ve yükle, önizlemede uçtan uca dene.
 5. Canlıya çıkış listesini tamamla, ardından kurucunun "canlıya al" onayı.
