@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Pricing: Kalibre Lab</title>
+<meta name="description" content="Kalibre Lab (beta): planned launch price $19 per month. Join the waitlist or request beta access.">
+<link rel="canonical" href="https://kalibremarkets.com/pricing">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/pricing">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/pricing">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/pricing">
+<meta property="og:title" content="Pricing: Kalibre Lab">
+<meta property="og:description" content="Kalibre Lab (beta): planned launch price $19 per month. Join the waitlist or request beta access.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
+.plan-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--cizgi); padding-bottom: 14px; margin-bottom: 14px; }
+.plan-bas h2 { margin: 0; font-size: 26px; }
+.fiyat { margin: 0; color: var(--soluk); }
+.fiyat .sayi { font-size: 28px; color: var(--metin); }
+.plan ul { margin: 0 0 20px; }
+.onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin-bottom: 16px; cursor: pointer; }
+.onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
+#odeme-durum:empty { display: none; }
+.yakinda { border-top: 1px solid var(--cizgi); padding-top: 14px; }
+.yakinda h3 { margin: 0 0 6px; font-size: 20px; color: var(--kehribar); }
+.yakinda p { margin: 0 0 8px; color: var(--soluk); }
+.rozet-beta { font: 600 12px var(--sans); color: #08130f; background: var(--kehribar); border-radius: 4px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
+#odeme-durum { color: var(--kehribar); }
+.bekleme { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.bekleme label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
+.bekleme .satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.bekleme input[type=email] { flex: 1 1 240px; min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
+.bekleme #ok-msg { color: var(--yesil); }
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 12px; }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Main menu">
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing" aria-current="page">Pricing</a>
+    </nav>
+    <a class="dil" href="/tr/pricing" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
+    <a class="dugme kucuk" href="/lab">Open the lab</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Pricing</h1>
+<p class="giris">Backtesting is free. At launch, the subscription will add Kalibre Engine, Prop Shield and the live data bridge for MetaTrader 5.</p>
+
+<div class="plan" id="plan">
+  <div class="plan-bas">
+    <h2>Kalibre Lab <span class="rozet-beta">beta</span></h2>
+    <p class="fiyat"><span class="sayi">$19</span> / month at launch <span class="not">Also available in EUR: €17 / month. Checkout shows the price in your currency.</span></p>
+  </div>
+  <ul>
+    <li>2 MT5 accounts per license</li>
+    <li>Kalibre Engine for demo and live accounts. Live use is in <b>beta</b> and requires explicit acceptance and a loss limit (<a href="/risk-disclosure">risk disclosure</a>).</li>
+    <li>Prop Shield with FTMO and The5ers presets</li>
+    <li>Kalibre Bridge: encrypted live data from MT5 to the Dashboard and lab</li>
+    <li>Everything in Free</li>
+  </ul>
+  <div class="yakinda">
+    <h3>Subscriptions open soon</h3>
+    <p>Kalibre Lab is in beta. The planned price at launch is $19 per month. Join the waitlist to hear when subscriptions open.</p>
+    <div class="eylem-satir"><a class="dugme" href="#waitlist">Join the waitlist</a><a class="dugme ikincil" href="mailto:markets@kalibrefin.com?subject=Kalibre%20Lab%20beta%20access">Request beta access</a></div>
+    <p><b>Invited?</b> Sign in and link the beta license you received to your account on the <a href="/account">Account</a> page.</p>
+  </div>
+</div>
+
+<h2 id="free">Free</h2>
+<ul>
+  <li>The lab with SYNTHETIC sample series and your own files</li>
+  <li>Strategy Builder, Quick Backtest and Volatility Lab</li>
+  <li>Kalibre Engine in MT5 Strategy Tester, with no license needed</li>
+</ul>
+
+<h2 id="waitlist">Waitlist</h2>
+<p>We will email you when subscriptions open and when new features ship.</p>
+<div class="bekleme">
+  <p id="ok-msg" hidden><b>You are on the list.</b> We will email you when subscriptions open.</p>
+  <form action="https://formsubmit.co/markets@kalibrefin.com" method="POST" id="wl-form">
+    <input type="hidden" name="_subject" value="Kalibre Lab waitlist: new sign-up (EN)">
+    <input type="hidden" name="_next" value="https://kalibremarkets.com/pricing?ok=1">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <label for="eposta">Your email</label>
+    <div class="satir">
+      <input type="email" id="eposta" name="email" required autocomplete="email">
+      <button type="submit" class="dugme">Join the waitlist</button>
+    </div>
+    <label class="onay"><input type="checkbox" name="consent" value="yes" required> <span>I agree to receive emails from Kalibre Markets about Kalibre Lab. I can unsubscribe at any time.</span></label>
+  </form>
+  <p class="not">Your email is used only for this and is delivered to us through the FormSubmit service. To leave the list, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>. Details are in the <a href="/privacy">privacy policy</a>.</p>
+</div>
+
+<div class="kutu">Kalibre Lab is software. Kalibre Markets is not a broker or investment adviser and does not provide investment advice. Kalibre Engine places orders only from a rule file you built, on an account you choose, after you start it. Test on a demo account first. You are responsible for all trades. See the <a href="/risk-disclosure">risk disclosure</a>.</div>
+
+    </article>
+    
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of use</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
+    </div>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script>
+if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }
+</script>
+</body>
+</html>

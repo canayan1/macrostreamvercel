@@ -7,7 +7,7 @@ import { alpacaIstemci, alpacaAdresi, alpacaOku, alpacaYaz, ALPACA_ADRES } from 
 import { kaynakYaz, maskeliHesap } from './veri/tradier.js';
 
 const $ = s => document.querySelector(s);
-const ek = dil === 'en' ? '?dil=en' : '';
+const ek = dil === 'tr' ? '?dil=tr' : '';
 const ortamAdi = o => (o === 'canli' ? ceviri('Canlı') : 'Paper');
 const para = (v, p) => (v === null ? '' : `${v.toLocaleString(dil === 'en' ? 'en-US' : 'tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${p}`);
 

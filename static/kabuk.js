@@ -12,11 +12,11 @@
   if (document.getElementById('km-ust')) return;
 
   var yol = location.pathname.replace(/index\.html$/, '').replace(/(.)\/$/, '$1');
-  var MENU = [['/lab', 'Laboratuvar'], ['/lab/panom.html', 'Panom'], ['/prop', 'Prop kalkanı'], ['/kurulum', 'Kurulum'], ['/guvenlik', 'Güvenlik'], ['/egitim', 'Eğitim'], ['/pro', 'Abonelik']];
-  // Etkin menü: yolla eşleşen en uzun öğe (/lab/panom.html'de yalnız Panom, /prop'ta /pro değil).
+  var MENU = [['/lab?dil=tr', 'Laboratuvar'], ['/lab/panom?dil=tr', 'Panom'], ['/tr/prop', 'Prop Kalkanı'], ['/tr/setup', 'Kurulum'], ['/tr/security', 'Güvenlik'], ['/egitim', 'Eğitim'], ['/tr/pricing', 'Fiyat']];
+  // Etkin menü: yolla eşleşen en uzun öğe (/lab/panom'da yalnız Panom). Sorgu (?dil=tr) karşılaştırmaya girmez.
   var etkin = MENU.reduce(function (en, m) {
-    var y = m[0].replace(/\.html$/, '');
-    var uyar = yol === m[0] || yol === y || yol.indexOf(y + '/') === 0;
+    var y = m[0].split('?')[0].replace(/\.html$/, '');
+    var uyar = yol === y || yol.indexOf(y + '/') === 0;
     return uyar && (!en || m[0].length > en.length) ? m[0] : en;
   }, null);
 
@@ -66,21 +66,21 @@
 
   var ust = document.createElement('header');
   ust.id = 'km-ust';
-  ust.innerHTML = '<div class="k"><a class="m" href="/"><b>Kalibre</b><span>Lab</span></a><nav aria-label="Ana menü">'
+  ust.innerHTML = '<div class="k"><a class="m" href="/tr"><b>Kalibre</b><span>Markets</span></a><nav aria-label="Ana menü">'
     + MENU.map(function (m) {
       return '<a href="' + m[0] + '"' + (m[0] === etkin ? ' aria-current="page"' : '') + '>' + m[1] + '</a>';
     }).join('')
-    + '</nav><a class="d ikincil" href="/baglan">MetaTrader\'ı bağla</a><a class="d" href="/lab">Laboratuvarı aç</a></div>';
+    + '</nav><a class="d ikincil" href="/tr/connect">MT5\'i bağla</a><a class="d" href="/lab?dil=tr">Laboratuvarı aç</a></div>';
   document.body.insertBefore(ust, document.body.firstChild);
 
   var alt = document.createElement('footer');
   alt.id = 'km-alt';
   alt.innerHTML = '<div class="k">'
-    + '<div><p><b style="font:600 18px \'Source Serif 4\',Georgia,serif;color:#e7ecf2">Kalibre</b></p><p>MetaTrader 5 için strateji laboratuvarı.</p></div>'
-    + '<div><h4>Ürün</h4><a href="/lab">Laboratuvar</a><a href="/lab/panom.html">Panom</a><a href="/prop">Prop kalkanı</a><a href="/forex">Bireysel forex</a><a href="/kurulum">Kurulum</a><a href="/guvenlik">Güvenlik</a><a href="/pro">Abonelik</a></div>'
-    + '<div><h4>Öğren</h4><a href="/egitim">Eğitim</a><a href="/metodoloji">Metodoloji</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>'
-    + '<div><h4>Kalibre</h4><a href="/hakkinda">Hakkında</a><a href="/iletisim">İletişim</a><a href="/kullanim-sartlari">Kullanım şartları</a><a href="/gizlilik">Gizlilik</a><a href="/risk-bildirimi">Risk bildirimi</a></div>'
-    + '<p class="y">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım tavsiyesi değildir.</p>'
+    + '<div><p><b style="font:600 18px \'Source Serif 4\',Georgia,serif;color:#e7ecf2">Kalibre Markets</b></p><p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p></div>'
+    + '<div><h4>Kalibre Lab</h4><a href="/lab?dil=tr">Laboratuvar</a><a href="/lab/panom?dil=tr">Panom</a><a href="/tr/prop">Prop Kalkanı</a><a href="/tr/forex">Bireysel forex</a><a href="/tr/setup">Kurulum</a><a href="/tr/security">Güvenlik</a><a href="/tr/pricing">Fiyat</a></div>'
+    + '<div><h4>Öğren</h4><a href="/egitim">Eğitim</a><a href="/tr/methodology">Metodoloji</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>'
+    + '<div><h4>Kalibre Markets</h4><a href="/tr/about">Hakkında</a><a href="/iletisim">İletişim</a><a href="/tr/terms">Kullanım şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/risk-disclosure">Risk bildirimi</a></div>'
+    + '<p class="y">Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum ya da yatırım danışmanı değildir, yatırım tavsiyesi vermez. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım danışmanlığı kapsamında değildir. &copy; 2026 Kalibre Markets</p>'
     + '</div>';
   document.body.appendChild(alt);
 

@@ -1,19 +1,20 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Bireysel forex: hesabını patlatma</title>
-<meta name="description" content="Kaldıraçlı işlemde kaybın en güçlü nedeni pozisyon büyüklüğü. Kalibre Lab risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzeltir.">
+<title>Retail forex: risk tools in Kalibre Lab</title>
+<meta name="description" content="Risk-based position sizing, volatility scaling and a daily loss limit, backtested on your broker's MetaTrader 5 data.">
 <link rel="canonical" href="https://kalibremarkets.com/forex">
-<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/forex">
-<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/forex">
-<meta property="og:title" content="Bireysel forex: hesabını patlatma">
-<meta property="og:description" content="Kaldıraçlı işlemde kaybın en güçlü nedeni pozisyon büyüklüğü. Kalibre Lab risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzeltir.">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/forex">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/forex">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/forex">
+<meta property="og:title" content="Retail forex: risk tools in Kalibre Lab">
+<meta property="og:description" content="Risk-based position sizing, volatility scaling and a daily loss limit, backtested on your broker's MetaTrader 5 data.">
 <meta property="og:site_name" content="Kalibre Markets">
-<meta property="og:locale" content="tr_TR">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +22,10 @@
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
-<meta name="kalibre:yol:signIn" content="/giris">
-<meta name="kalibre:yol:account" content="/hesap">
-<meta name="kalibre:yol:pricing" content="/pro">
-<meta name="kalibre:yol:connect" content="/baglan">
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
 <meta name="kalibre:yol:lab" content="/lab">
 <meta name="kalibre:yol:home" content="/">
 <script src="/static/kalibre-auth.js" defer></script>
@@ -44,19 +45,18 @@
 
 <header class="ust">
   <div class="kap">
-    <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
-    <nav aria-label="Ana menü">
-      <a href="/lab">Laboratuvar</a>
-      <a href="/lab/panom.html">Panom</a>
-      <a href="/prop">Prop kalkanı</a>
-      <a href="/kurulum">Kurulum</a>
-      <a href="/guvenlik">Güvenlik</a>
-      <a href="/egitim">Eğitim</a>
-      <a href="/pro">Abonelik</a>
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Main menu">
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </nav>
-    <a class="dil" href="/en/forex" hreflang="en" lang="en">EN</a>
-    <a class="dugme ikincil kucuk baglan" href="/baglan">MetaTrader'ı bağla</a>
-    <a class="dugme kucuk" href="/lab">Laboratuvarı aç</a>
+    <a class="dil" href="/tr/forex" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
+    <a class="dugme kucuk" href="/lab">Open the lab</a>
   </div>
 </header>
 
@@ -64,67 +64,65 @@
   <div class="kap belge-izgara">
     <article class="belge-govde">
 
-<h1>Hesabını patlatma.</h1>
-<p class="giris">Bireysel kaldıraçlı işlem hesaplarının büyük çoğunluğu para kaybeder. Kaybın en güçlü nedeni kaldıraç ve pozisyon büyüklüğüdür; strateji ikinci sırada gelir. Kalibre Lab önce bu ikisini düzeltir.</p>
-<div class="eylem-satir"><a class="dugme" href="/lab">Laboratuvarı aç</a><a class="dugme ikincil" href="/kurulum">Kurulumu oku</a></div>
+<h1>Risk tools for retail forex traders</h1>
+<p class="giris">Set a risk per trade, scale lot size to volatility and add a daily loss limit. Then backtest the rule with those settings on your broker's data.</p>
+<div class="eylem-satir"><a class="dugme" href="/lab">Open the lab</a><a class="dugme ikincil" href="/setup">View setup guide</a></div>
 
-<h2 id="neden">Neden önce risk?</h2>
+<h2 id="why">Why position size matters</h2>
 <ul>
-  <li><b>Kayıp oranları yüksek.</b> Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK 2015'te yatırımcıların yaklaşık %87-88'inin zarar ettiğini açıkladı ve 2017'de kaldıracı 1:10'a indirdi.</li>
-  <li><b>Kaldıraç kaybı büyütür.</b> ABD'de 2010'daki kaldıraç sınırının etkisini ölçen bir akademik çalışma (Heimer ve Simsek, Journal of Financial Economics, 2019), sınırın yüksek kaldıraçlı yatırımcıların kayıplarını yaklaşık %40 azalttığını buldu.</li>
-  <li><b>Oynaklık değişir, lot da değişmeli.</b> Oynaklık yükseldiğinde aynı lot daha büyük bir risk demektir. Oynaklığa göre pozisyon küçültmenin döviz piyasasında getiriyi belirgin artırmadığı, ama aşırı kayıpları azalttığı gösterildi (Harvey ve diğerleri, 2018). Vaadimiz bu yüzden "daha çok kazan" değil, "daha az patla".</li>
+  <li><b>Most retail CFD accounts lose money.</b> In 2018 the European Securities and Markets Authority (ESMA) reported that 74-89% of retail CFD accounts lose money.</li>
+  <li><b>Leverage increases losses.</b> After the US capped retail forex leverage in 2010, losses of high-leverage traders fell by 40% (Heimer and Simsek, Journal of Financial Economics, 2019).</li>
+  <li><b>Volatility changes the risk of a fixed lot.</b> In currencies, scaling positions to volatility did not meaningfully raise returns but reduced extreme losses (Harvey et al., 2018).</li>
 </ul>
 
-<h2 id="araclar">Kalibre Lab'de</h2>
+<h2 id="tools">In Kalibre Lab</h2>
 <ul>
-  <li><b>Risk bütçesi:</b> her işlemde bakiyenin yüzde kaçını riske attığını sen belirlersin; lot stop mesafesinden hesaplanır.</li>
-  <li><b>Oynaklığa göre ölçek:</b> oynaklık olağanın üstüne çıkınca risk kendiliğinden küçülür (EWMA, Yang-Zhang, GARCH).</li>
-  <li><b>Günlük kayıp sınırı ve haber filtresi:</b> kötü bir günde durmak ve yüksek önemli veri çevresinde işlem açmamak için.</li>
-  <li><b>Kendi verin:</b> kuralını kendi aracı kurumunun fiyatlarıyla sınarsın; son sınav MT5 Strategy Tester'da, kendi maliyet ayarlarınla.</li>
+  <li><b>Risk-based position sizing:</b> set the share of balance each trade risks. The lot is calculated from the stop distance.</li>
+  <li><b>Volatility scaling:</b> risk per trade is reduced when volatility rises above its normal level (EWMA, Yang-Zhang, GARCH).</li>
+  <li><b>Daily loss limit and news filter:</b> stop trading after a set daily loss and stay out around high-impact releases.</li>
+  <li><b>Your broker's data:</b> backtest on your broker's prices, then confirm in MT5 Strategy Tester with your broker's costs.</li>
 </ul>
 
-<h2 id="turkiye">Türkiye'deki hesaplar için</h2>
-<p>Türkiye'de kaldıraçlı işlemler yalnız SPK yetkili aracı kurumlar üzerinden yapılabilir; azami kaldıraç 1:10'dur. Kalibre Lab aracı kurum değildir, hesabını açmaz ve emrini iletmez; MetaTrader 5 sunan aracı kurumundaki kendi hesabında çalışır. Yetkisiz yurt dışı sitelere erişim SPK kararlarıyla engellenmektedir; hesabını yetkili bir kurumda tut.</p>
+<h2 id="broker">Your broker</h2>
+<p>Kalibre Lab is not a broker. It does not open accounts or route orders. It works with any broker that offers MetaTrader 5. Use a broker authorised by the regulator in your country.</p>
 
-<div class="kutu">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı sunmaz ve getiri vaat etmez. Kaldıraçlı işlemler yatırdığın tutarın tamamını kaybetmene yol açabilir.</div>
+<div class="kutu">Kalibre Lab is software and does not provide investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit.</div>
 
     </article>
-    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#neden">Neden önce risk?</a><a href="#araclar">Kalibre Lab'de</a><a href="#turkiye">Türkiye'deki hesaplar için</a></aside>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#why">Why position size matters</a><a href="#tools">In Kalibre Lab</a><a href="#broker">Your broker</a></aside>
   </div>
 </main>
 
 <footer class="alt">
   <div class="kap">
     <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
-      <p>MetaTrader 5 için strateji laboratuvarı.</p>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
     </div>
     <div>
-      <h4>Ürün</h4>
-      <a href="/lab">Laboratuvar</a>
-      <a href="/lab/panom.html">Panom</a>
-      <a href="/prop">Prop kalkanı</a>
-      <a href="/forex">Bireysel forex</a>
-      <a href="/kurulum">Kurulum</a>
-      <a href="/guvenlik">Güvenlik</a>
-      <a href="/pro">Abonelik</a>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </div>
     <div>
-      <h4>Öğren</h4>
-      <a href="/egitim">Eğitim</a>
-      <a href="/metodoloji">Metodoloji</a>
-      <a href="/grafik-oku">Grafik okuma testi</a>
-      <a href="/trading/onyargi-testi">Önyargı testi</a>
+      <h4>Learn</h4>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
     </div>
     <div>
-      <h4>Kalibre</h4>
-      <a href="/hakkinda">Hakkında</a>
-      <a href="/iletisim">İletişim</a>
-      <a href="/kullanim-sartlari">Kullanım şartları</a>
-      <a href="/gizlilik">Gizlilik</a>
-      <a href="/risk-bildirimi">Risk bildirimi</a>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of use</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>
 

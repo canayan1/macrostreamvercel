@@ -83,9 +83,9 @@ async function baslat() {
 }
 
 const METIN = {
-  sinama_dusuk: { tr: 'Eğitimde en yüksek puanı alan ayar, sınama döneminde yarıdan fazla geriledi.', en: 'The top setting in training lost more than half its score in the test period.' },
-  sinama_zarar: { tr: 'Aynı ayar sınama döneminde zarar etti.', en: 'The same setting lost money in the test period.' },
-  sivri_tepe: { tr: 'Komşu ayarlar çok daha zayıf: sonuç tek bir sivri tepeye dayanıyor olabilir.', en: 'Neighbouring settings are much weaker: the result may rest on a single sharp peak.' },
+  sinama_dusuk: { tr: 'Eğitimde en yüksek puanı alan ayar, test döneminde puanının yarısından fazlasını kaybetti.', en: 'The top setting in training lost more than half its score in the test period.' },
+  sinama_zarar: { tr: 'Aynı ayar test döneminde zarar etti.', en: 'The same setting lost money in the test period.' },
+  sivri_tepe: { tr: 'Komşu ayarların puanı çok daha düşük. Sonuç tek bir sivri tepeye dayanıyor olabilir.', en: 'Neighboring settings score much lower. The result may rest on a single sharp peak.' },
   sans_olabilir: { tr: 'Bu kadar denemede şans eseri olmama olasılığı {dsr}: sonuç şans olabilir.', en: 'Probability this is not luck, given the number of trials: {dsr}. The result may be luck.' },
 };
 

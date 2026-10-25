@@ -3,33 +3,183 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/baglan",
-      "destination": "/lab/baglan.html",
-      "statusCode": 302
+      "source": "/pro",
+      "destination": "/tr/pricing",
+      "statusCode": 308
     },
     {
-      "source": "/en/connect",
-      "destination": "/lab/baglan.html?dil=en",
-      "statusCode": 302
+      "source": "/guvenlik",
+      "destination": "/tr/security",
+      "statusCode": 308
     },
     {
-      "source": "/panom",
-      "destination": "/lab/panom.html",
-      "statusCode": 302
+      "source": "/kurulum",
+      "destination": "/tr/setup",
+      "statusCode": 308
     },
     {
-      "source": "/en/dashboard",
-      "destination": "/lab/panom.html?dil=en",
-      "statusCode": 302
+      "source": "/metodoloji",
+      "destination": "/tr/methodology",
+      "statusCode": 308
     },
     {
-      "source": "/en/lab",
-      "destination": "/lab/?dil=en",
-      "statusCode": 302
+      "source": "/hakkinda",
+      "destination": "/tr/about",
+      "statusCode": 308
+    },
+    {
+      "source": "/hesap",
+      "destination": "/tr/account",
+      "statusCode": 308
+    },
+    {
+      "source": "/giris",
+      "destination": "/tr/sign-in",
+      "statusCode": 308
+    },
+    {
+      "source": "/risk-bildirimi",
+      "destination": "/tr/risk-disclosure",
+      "statusCode": 308
+    },
+    {
+      "source": "/kullanim-sartlari",
+      "destination": "/tr/terms",
+      "statusCode": 308
+    },
+    {
+      "source": "/gizlilik",
+      "destination": "/tr/privacy",
+      "statusCode": 308
+    },
+    {
+      "source": "/hakkinda.html",
+      "destination": "/tr/about",
+      "statusCode": 308
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/license",
+      "destination": "/account",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/setup",
+      "destination": "/setup",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/security",
+      "destination": "/security",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/methodology",
+      "destination": "/methodology",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/about",
+      "destination": "/about",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/pricing",
+      "destination": "/pricing",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/prop",
+      "destination": "/prop",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/forex",
+      "destination": "/forex",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/beta",
+      "destination": "/beta",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/risk-disclosure",
+      "destination": "/risk-disclosure",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/terms",
+      "destination": "/terms",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/privacy",
+      "destination": "/privacy",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/sign-in",
+      "destination": "/sign-in",
+      "statusCode": 308
     },
     {
       "source": "/en/lab/:path*",
-      "destination": "/lab/:path*?dil=en",
+      "destination": "/lab/:path*",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/lab",
+      "destination": "/lab",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/connect",
+      "destination": "/connect",
+      "statusCode": 308
+    },
+    {
+      "source": "/en/dashboard",
+      "destination": "/dashboard",
+      "statusCode": 308
+    },
+    {
+      "source": "/connect",
+      "destination": "/lab/baglan",
+      "statusCode": 302
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/lab/panom",
+      "statusCode": 302
+    },
+    {
+      "source": "/tr/connect",
+      "destination": "/lab/baglan?dil=tr",
+      "statusCode": 302
+    },
+    {
+      "source": "/tr/dashboard",
+      "destination": "/lab/panom?dil=tr",
+      "statusCode": 302
+    },
+    {
+      "source": "/baglan",
+      "destination": "/lab/baglan?dil=tr",
+      "statusCode": 308
+    },
+    {
+      "source": "/panom",
+      "destination": "/lab/panom?dil=tr",
+      "statusCode": 308
+    },
+    {
+      "source": "/tr/lab",
+      "destination": "/lab?dil=tr",
       "statusCode": 302
     },
     {
@@ -39,17 +189,17 @@
     },
     {
       "source": "/kurumsal/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/kurumsal",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/pilot-basvuru/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
@@ -74,22 +224,22 @@
     },
     {
       "source": "/arastirma/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/arastirma",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/editor/:path*",
-      "destination": "/metodoloji",
+      "destination": "/tr/methodology",
       "statusCode": 301
     },
     {
       "source": "/editor",
-      "destination": "/metodoloji",
+      "destination": "/tr/methodology",
       "statusCode": 301
     },
     {
@@ -104,17 +254,17 @@
     },
     {
       "source": "/tradermind/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/tradermind",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/trading",
-      "destination": "/lab",
+      "destination": "/lab?dil=tr",
       "statusCode": 301
     },
     {
@@ -164,27 +314,27 @@
     },
     {
       "source": "/terminal/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/canli/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/haftanin-haberleri/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/haftanin-grafikleri/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/community_pulse/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
@@ -209,12 +359,12 @@
     },
     {
       "source": "/rss.xml",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     },
     {
       "source": "/static/weekly/:path*",
-      "destination": "/",
+      "destination": "/tr",
       "statusCode": 301
     }
   ]

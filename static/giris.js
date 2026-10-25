@@ -1,4 +1,4 @@
-/* Giriş sayfası (/giris, /en/sign-in): Google ya da e-postayla bağlantı + 6 haneli kod.
+/* Giriş sayfası (/sign-in, /tr/sign-in): Google ya da e-postayla bağlantı + 6 haneli kod.
  * Giriş ilk kez yapılıyorsa hesap o anda oluşturulur (Supabase). Dönüşte ?sonra= yoluna gidilir. */
 (function () {
   'use strict';
@@ -44,9 +44,20 @@
   }
 
   // Hesap açılışı: şartların kabul anı ve arayüz dili ilk girişte profile yazılır.
+  // Ürün güncellemesi e-postaları hesaplarda varsayılan açıktır; kayıtta kutu işaretlendiyse kapatılır.
+  var ret = $('giris-pazarlama-ret');
+  function retOku() { try { return localStorage.getItem('kalibre-pazarlama-ret') === '1'; } catch (e) { return false; } }
+  if (ret) {
+    ret.checked = retOku();
+    ret.addEventListener('change', function () { try { localStorage.setItem('kalibre-pazarlama-ret', ret.checked ? '1' : '0'); } catch (e) {} });
+  }
   function ilkGiris() {
     return A.profile().then(function (p) {
-      if (p && !p.terms_accepted_at) return A.updateProfile({ terms_accepted_at: new Date().toISOString(), terms_version: SARTLAR_SURUMU, locale: A.lang });
+      if (p && !p.terms_accepted_at) {
+        var g = { terms_accepted_at: new Date().toISOString(), terms_version: SARTLAR_SURUMU, locale: A.lang };
+        if (retOku()) g.marketing_consent = false;
+        return A.updateProfile(g);
+      }
     }).catch(function () {});
   }
   var bitti = false;

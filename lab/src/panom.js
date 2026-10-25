@@ -32,7 +32,7 @@ const depo = {
   oku(k) { try { return localStorage.getItem(k); } catch { return null; } },
 };
 
-const dilEki = dil === 'en' ? '&dil=en' : '';
+const dilEki = dil === 'tr' ? '&dil=tr' : '';
 const KAYNAK = etkinKaynak();
 const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${araciMi(KAYNAK) ? `&kaynak=${KAYNAK}` : ''}${dilEki}`;
 let yenidenYokla = () => {}; // canlı kipte kota listesini hemen yeniler (sembol eklenince)
@@ -297,7 +297,7 @@ $('#sembol-ekle').addEventListener('submit', e => {
   $('#sembol-durum').textContent = ceviri('Eklendi. Semboller yalnız bu tarayıcıda saklanır.');
   yenidenYokla();
 });
-$('#baglan-git').href = `baglan.html${dilEki ? '?dil=en' : ''}`;
+$('#baglan-git').href = `baglan.html${dilEki ? '?dil=tr' : ''}`;
 window.addEventListener('resize', () => { if (sonIslemler) islemlerYaz(sonIslemler, Date.now() / 1000); });
 
 const kod = depo.oku(KOD_ANAHTARI);

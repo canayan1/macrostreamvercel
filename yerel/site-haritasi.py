@@ -14,12 +14,12 @@ DISARI = {'404.html', 'google96988813a828bfb8.html'}
 DISARI_DIZIN = ('yeni-ana/', 'static/', 'yerel/', 'test/', 'docs/', 'api/', 'node_modules/', 'lab/')
 # Laboratuvarın yalnız giriş sayfası haritada; bağlan/panom gibi uygulama ekranları değil.
 EK = ['lab/index.html']
-ESLER = {'/': '/en', '/lab': '/en/lab', '/beta': '/en/beta', '/hesap': '/en/license', '/prop': '/en/prop', '/forex': '/en/forex', '/kurulum': '/en/setup',
-         '/guvenlik': '/en/security', '/metodoloji': '/en/methodology', '/hakkinda': '/en/about',
-         '/pro': '/en/pricing', '/risk-bildirimi': '/en/risk-disclosure',
-         '/kullanim-sartlari': '/en/terms', '/gizlilik': '/en/privacy'}
-ONCELIK = {'/': '1.0', '/en': '1.0', '/lab': '0.9', '/pro': '0.9', '/en/pricing': '0.9',
-           '/prop': '0.8', '/en/prop': '0.8', '/forex': '0.8', '/en/forex': '0.8'}
+# Türkçe sayfa -> İngilizce eşi (site kökü İngilizce, Türkçe /tr altında; sayfa-uret.py ESLER ile aynı).
+ESLER = {'/tr': '/', '/tr/beta': '/beta', '/tr/account': '/account', '/tr/sign-in': '/sign-in', '/tr/prop': '/prop', '/tr/forex': '/forex',
+         '/tr/setup': '/setup', '/tr/security': '/security', '/tr/methodology': '/methodology', '/tr/about': '/about',
+         '/tr/pricing': '/pricing', '/tr/risk-disclosure': '/risk-disclosure', '/tr/terms': '/terms', '/tr/privacy': '/privacy'}
+ONCELIK = {'/': '1.0', '/tr': '0.9', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
+           '/prop': '0.8', '/tr/prop': '0.7', '/forex': '0.8', '/tr/forex': '0.7'}
 
 yonlenen = [r['source'] for r in json.load(open('vercel.json')).get('redirects', [])]
 def yonleniyor(yol):
@@ -60,15 +60,15 @@ ters = {v: k for k, v in ESLER.items()}
 satir = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
 def adres(y): return KOK + ('/' if y == '/' else y)
-for y in sorted(kayitlar, key=lambda y: (y.startswith('/en'), y != '/', y)):
+for y in sorted(kayitlar, key=lambda y: (y.startswith('/'), y != '/', y)):
     satir.append('  <url>')
     satir.append(f'    <loc>{adres(y)}</loc>')
     satir.append(f'    <lastmod>{kayitlar[y]}</lastmod>')
     tr, en = (y, ESLER.get(y)) if y in ESLER else (ters.get(y), y) if y in ters else (None, None)
     if tr in kayitlar and en in kayitlar:
-        satir.append(f'    <xhtml:link rel="alternate" hreflang="tr" href="{adres(tr)}"/>')
         satir.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{adres(en)}"/>')
-        satir.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{adres(tr)}"/>')
+        satir.append(f'    <xhtml:link rel="alternate" hreflang="tr" href="{adres(tr)}"/>')
+        satir.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{adres(en)}"/>')
     satir.append(f'    <priority>{ONCELIK.get(y, "0.6")}</priority>')
     satir.append('  </url>')
 satir.append('</urlset>')

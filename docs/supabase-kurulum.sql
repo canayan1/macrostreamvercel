@@ -14,7 +14,7 @@ create table if not exists public.profiles (
   email                 text,
   display_name          text check (display_name is null or char_length(display_name) <= 80),
   locale                text not null default 'en' check (locale in ('en', 'tr')),
-  marketing_consent     boolean not null default false,
+  marketing_consent     boolean not null default true,
   marketing_consent_at  timestamptz,
   terms_accepted_at     timestamptz,
   terms_version         text check (terms_version is null or char_length(terms_version) <= 20),
@@ -22,6 +22,9 @@ create table if not exists public.profiles (
   updated_at            timestamptz not null default now()
 );
 create index if not exists profiles_email_idx on public.profiles (lower(email));
+-- Ürün güncellemesi e-postaları hesap sahipleri için varsayılan açıktır (soft opt-in, rakiplerin
+-- çoğunluğu gibi); kullanıcı kayıtta ya da Hesabım sayfasında kapatabilir. Eski kurulumlar için:
+alter table public.profiles alter column marketing_consent set default true;
 
 alter table public.profiles enable row level security;
 drop policy if exists "profiles_select_own" on public.profiles;
@@ -41,12 +44,14 @@ returns trigger language plpgsql security definer set search_path = public as $$
 declare
   dil text := coalesce(new.raw_user_meta_data->>'locale', 'en');
 begin
-  insert into public.profiles (id, email, display_name, locale)
+  insert into public.profiles (id, email, display_name, locale, marketing_consent, marketing_consent_at)
   values (
     new.id,
     new.email,
     left(coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name'), 80),
-    case when dil in ('en', 'tr') then dil else 'en' end
+    case when dil in ('en', 'tr') then dil else 'en' end,
+    coalesce(new.raw_user_meta_data->>'marketing_opt_out', '') <> 'true',
+    now()
   )
   on conflict (id) do nothing;
   return new;

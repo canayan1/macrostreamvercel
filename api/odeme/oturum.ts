@@ -1,4 +1,4 @@
-// Ödeme sonrası sayfa (/hesap/?oturum=cs_...) lisans anahtarını buradan alır.
+// Ödeme sonrası sayfa (/tr/account?oturum=cs_...) lisans anahtarını buradan alır.
 // GET /api/odeme/oturum?oturum=cs_...  → { anahtar, durum, bitis, hesaplar, hesapSiniri, eposta }
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';

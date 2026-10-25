@@ -1,4 +1,4 @@
-/* Hesap sayfası (/hesap, /en/license): profil, lisanslar, bu cihazdaki bağlantılar,
+/* Hesap sayfası (/account, /tr/account): profil, lisanslar, bu cihazdaki bağlantılar,
  * kayıtlı stratejiler ve hesabı silme. Veriler: Supabase (profil, stratejiler) ve
  * /api/hesap (lisanslar; tam anahtar yalnız sahibine). */
 (function () {
@@ -36,7 +36,7 @@
   } : {
     durum: { active: 'Etkin', trialing: 'Deneme', past_due: 'Ödeme bekleniyor', canceled: 'İptal edildi', unpaid: 'Ödenmedi', incomplete: 'Tamamlanmadı', incomplete_expired: 'Süresi doldu' },
     tarih: 'tr-TR', validUntil: 'Geçerlilik', endedOn: 'Bitiş', mt5: 'MT5 hesapları', products: 'Kapsam',
-    urun: { motor: 'Kalibre Motor', kopru: 'Kalibre Köprü' }, beta: 'Beta lisansı',
+    urun: { motor: 'Kalibre Engine', kopru: 'Kalibre Bridge' }, beta: 'Beta lisansı',
     copy: 'Anahtarı kopyala', copied: 'Kopyalandı', selected: 'Seçildi, Ctrl+C', manage: 'Aboneliği yönet',
     dl: 'İndir:', downloaded: function (f, v) { return f + ' indirildi' + (v ? ' (sürüm ' + v + ')' : '') + '. MT5 veri klasöründe MQL5\\Experts altına kopyala.'; },
     noLic: 'Henüz bir lisansın yok.', seePricing: 'Aboneliği incele',
@@ -184,7 +184,7 @@
     var satir = function (ad, iyi, ek) { return '<tr><th>' + esc(ad) + '</th><td><span class="rozet ' + (iyi ? 'iyi' : '') + '">' + esc(ek) + '</span></td></tr>'; };
     var alpBagli = !!(alp && alp.anahtar && alp.sir), traBagli = !!(tra && tra.token);
     $('cihaz-tablo').innerHTML =
-      satir('MetaTrader 5 (Kalibre ' + (EN ? 'Bridge' : 'Köprü') + ')', kod, kod ? M.paired + (son ? ', ' + M.lastSeen + ' ' + new Date(son).toLocaleString(M.tarih) : '') : M.notPaired) +
+      satir('MetaTrader 5 (Kalibre Bridge)', kod, kod ? M.paired + (son ? ', ' + M.lastSeen + ' ' + new Date(son).toLocaleString(M.tarih) : '') : M.notPaired) +
       satir('Alpaca', alpBagli, alpBagli ? M.connected + (' (' + (alp.ortam === 'canli' ? M.live : M.paper) + ')') : M.notConnected) +
       satir('Tradier', traBagli, traBagli ? M.connected : M.notConnected);
     $('cihaz-baglan').href = BAGLAN;

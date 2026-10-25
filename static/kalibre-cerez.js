@@ -82,14 +82,14 @@
     d.innerHTML = en
       ? '<p>We use Google Analytics cookies for visit statistics only if you allow them. If you do, ' +
         'your usage data is transferred to Google\'s servers outside Turkey. Details in the ' +
-        '<a href="/en/privacy/">Privacy Policy</a>.</p>' +
+        '<a href="/privacy">Privacy Policy</a>.</p>' +
         '<div class="km-btns">' +
         '<button type="button" class="km-red">Decline</button>' +
         '<button type="button" class="km-kabul">Accept</button>' +
         '</div>'
       : '<p>Ziyaret istatistikleri için Google Analytics çerezlerini yalnızca izin verirseniz ' +
         'kullanırız. İzin verirseniz kullanım verileriniz Google\'ın yurt dışındaki sunucularına ' +
-        'aktarılır. Ayrıntılar <a href="/gizlilik/">Gizlilik Politikası</a>\'nda.</p>' +
+        'aktarılır. Ayrıntılar <a href="/tr/privacy">Gizlilik Politikası</a>\'nda.</p>' +
         '<div class="km-btns">' +
         '<button type="button" class="km-red">Reddet</button>' +
         '<button type="button" class="km-kabul">Kabul et</button>' +

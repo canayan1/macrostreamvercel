@@ -1,4 +1,4 @@
-# Hesap sayfaları (TR + EN): giriş (/giris, /en/sign-in) ve hesap (/hesap, /en/license).
+# Hesap sayfaları (EN + TR): giriş (/sign-in, /tr/sign-in) ve hesap (/account, /tr/account).
 # Ortak üst bar ve alt bilgi sayfa-uret.py'den gelir. Davranış static/giris.js ve static/hesap-sayfa.js'te.
 import os
 _d = os.path.dirname(os.path.abspath(__file__))
@@ -21,6 +21,7 @@ STIL = """
 .giris-durum:empty { display: none; }
 .iyi { color: var(--yesil); } .kotu { color: var(--kehribar); }
 .ince { font-size: 13px; color: var(--silik); margin: 18px 0 0; }
+.ince-onay { font-size: 13px; margin: 8px 0 0; }
 .bolum { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 28px; }
 .bolum h2 { font-size: 22px; margin: 0 0 6px; }
 .bolum .ust-not { margin: 0 0 16px; }
@@ -56,17 +57,17 @@ GOOGLE_SVG = ('<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true
 
 T = {
   "tr": dict(
-    giris_yol="giris/index.html", giris_baslik="Giriş yap: Kalibre Markets", giris_aciklama="Kalibre Markets hesabına Google ya da e-postayla giriş yap.",
+    giris_yol="tr/sign-in/index.html", giris_baslik="Giriş yap: Kalibre Markets", giris_aciklama="Kalibre Markets hesabına Google ya da e-postayla giriş yap.",
     h1="Kalibre Markets hesabına giriş yap", alt="Tek hesap, tüm Kalibre Markets ürünleri. İlk kez giriş yapıyorsan hesabın bu adımda oluşturulur.",
     google="Google ile devam et", veya="veya", eposta="E-posta", gonder="Giriş bağlantısı gönder",
     kod="E-postadaki 6 haneli kod", kod_dugme="Kodla giriş yap",
-    ince='Devam ederek <a href="/kullanim-sartlari">Kullanım Şartları</a>\'nı kabul etmiş ve <a href="/gizlilik">Gizlilik Politikası</a>\'nı okumuş olursun.',
-    hesap_yol="hesap/index.html", hesap_baslik="Hesabım: Kalibre Markets", hesap_aciklama="Kalibre Markets hesabın: profil, lisanslar, eklenti indirme, abonelik ve kayıtlı stratejiler.",
+    ince='Devam ederek <a href="/tr/terms">Kullanım Şartları</a>\'nı kabul etmiş ve <a href="/tr/privacy">Gizlilik Politikası</a>\'nı okumuş olursun.',
+    hesap_yol="tr/account/index.html", hesap_baslik="Hesabım: Kalibre Markets", hesap_aciklama="Kalibre Markets hesabın: profil, lisanslar, eklenti indirme, abonelik ve kayıtlı stratejiler.",
     hesap_h1="Hesabım", cikis_dugme="Giriş yap",
     odeme="",
     profil="Profil", profil_not="Hesabın giriş yaptığın e-posta adresine bağlıdır.", eposta_et="E-posta", katilim="Kayıt tarihi",
-    ad="Ad (isteğe bağlı)", dil="Arayüz dili", izin="Ürün haberleri ve yeni özellikler için e-posta almak istiyorum. İstediğin zaman kapatabilirsin.", kaydet="Kaydet",
-    lisanslar="Ürünler ve lisanslar", lisans_not='Lisans anahtarını Kalibre Köprü ve Kalibre Motor\'un ayarlarına bir kez girersin. Bir anahtar en çok 2 MT5 hesabında kullanılır. Kurulum adımları <a href="/kurulum">kurulum sayfasında</a>.',
+    ad="Ad (isteğe bağlı)", dil="Arayüz dili", izin="Ürün güncellemesi e-postaları", pazarlama="Sana ürün güncellemeleri hakkında e-posta göndeririz. İstediğin zaman vazgeçebilirsin.", pazarlama_ret="Ürün güncellemesi e-postası istemiyorum", kaydet="Kaydet",
+    lisanslar="Ürünler ve lisanslar", lisans_not='Lisans anahtarını Kalibre Bridge ve Kalibre Engine ayarlarına bir kez girersin. Bir anahtar en çok 2 MT5 hesabında kullanılır. Kurulum adımları <a href="/tr/setup">kurulum sayfasında</a>.',
     bagla="Anahtarın mı var?", bagla_not="Davetle ya da hesap açılmadan önce aldığın bir anahtarı hesabına bağla.", bagla_dugme="Hesabıma bağla",
     cihaz="Bu cihazdaki bağlantılar", cihaz_not="MT5 eşleştirme kodu ve aracı kurum anahtarları yalnız bu tarayıcıda saklanır; hesabına yazılmaz ve başka cihaza taşınmaz. Yeni bir cihazda bağlantıyı yeniden kurman gerekir.", cihaz_dugme="Bağlantıları yönet",
     stratejiler="Kayıtlı stratejiler", strateji_not="Giriş yapmışken laboratuvardaki taslağın hesabına kaydedilir ve diğer cihazlarında açılabilir.",
@@ -74,17 +75,17 @@ T = {
     sil_etiket="Onaylamak için SİL yaz", sil_dugme="Hesabımı sil",
   ),
   "en": dict(
-    giris_yol="en/sign-in/index.html", giris_baslik="Sign in: Kalibre Markets", giris_aciklama="Sign in to your Kalibre Markets account with Google or email.",
+    giris_yol="sign-in/index.html", giris_baslik="Sign in: Kalibre Markets", giris_aciklama="Sign in to your Kalibre Markets account with Google or email.",
     h1="Sign in to your Kalibre Markets account", alt="One account for all Kalibre Markets products. New here? Signing in for the first time creates your account.",
     google="Continue with Google", veya="or", eposta="Email", gonder="Email me a sign-in link",
     kod="6-digit code from the email", kod_dugme="Sign in with code",
-    ince='By continuing, you agree to the <a href="/en/terms">Terms of Use</a> and acknowledge the <a href="/en/privacy">Privacy Policy</a>.',
-    hesap_yol="en/license/index.html", hesap_baslik="Account: Kalibre Markets", hesap_aciklama="Your Kalibre Markets account: profile, licenses, add-on downloads, subscription and saved strategies.",
+    ince='By continuing, you agree to the <a href="/terms">Terms of Use</a> and acknowledge the <a href="/privacy">Privacy Policy</a>.',
+    hesap_yol="account/index.html", hesap_baslik="Account: Kalibre Markets", hesap_aciklama="Your Kalibre Markets account: profile, licenses, add-on downloads, subscription and saved strategies.",
     hesap_h1="Account", cikis_dugme="Sign in",
     odeme="",
     profil="Profile", profil_not="Your account is tied to the email address you sign in with.", eposta_et="Email", katilim="Member since",
-    ad="Name (optional)", dil="Language", izin="Email me about product updates and new features. You can turn this off at any time.", kaydet="Save",
-    lisanslar="Products and licenses", lisans_not='Enter your license key once in the Kalibre Bridge and Kalibre Engine settings. Each key works on up to 2 MT5 accounts. Setup steps are on the <a href="/en/setup">setup page</a>.',
+    ad="Name (optional)", dil="Language", izin="Product update emails", pazarlama="We'll email you product updates. You can opt out anytime.", pazarlama_ret="Don't send me product update emails", kaydet="Save",
+    lisanslar="Products and licenses", lisans_not='Enter your license key once in the Kalibre Bridge and Kalibre Engine settings. Each key works on up to 2 MT5 accounts. Setup steps are on the <a href="/setup">setup page</a>.',
     bagla="Have a key?", bagla_not="Link a key you received by invitation or before accounts existed.", bagla_dugme="Link to my account",
     cihaz="Connections on this device", cihaz_not="Your MT5 pairing code and broker keys are stored only in this browser. They are not saved to your account and do not move to other devices. On a new device, set the connection up again.", cihaz_dugme="Manage connections",
     stratejiler="Saved strategies", strateji_not="While you are signed in, your lab draft is saved to your account so you can open it on your other devices.",
@@ -113,6 +114,8 @@ for dil, t in T.items():
     </div>
   </form>
   <p class="giris-durum" id="giris-durum" role="status" aria-live="polite"></p>
+  <p class="ince">{t['pazarlama']}</p>
+  <label class="onay ince-onay"><input type="checkbox" id="giris-pazarlama-ret"> <span>{t['pazarlama_ret']}</span></label>
   <p class="ince">{t['ince']}</p>
 </div>
 """
@@ -123,7 +126,7 @@ for dil, t in T.items():
 <h1>{t['hesap_h1']}</h1>
 <div id="hesap-cikis">
   <p class="giris" id="hesap-cikis-metin"></p>
-  <p><a class="dugme" id="hesap-giris-dugme" href="{'/en/sign-in' if dil == 'en' else '/giris'}">{t['cikis_dugme']}</a></p>
+  <p><a class="dugme" id="hesap-giris-dugme" href="{'/sign-in' if dil == 'en' else '/tr/sign-in'}">{t['cikis_dugme']}</a></p>
 </div>
 <div id="hesap-icerik" hidden>
   <p class="not durum" id="odeme-durum" role="status"></p>
@@ -161,7 +164,7 @@ for dil, t in T.items():
     <h2>{t['cihaz']}</h2>
     <p class="not ust-not">{t['cihaz_not']}</p>
     <table class="tablo"><tbody id="cihaz-tablo"></tbody></table>
-    <a class="dugme ikincil kucuk" id="cihaz-baglan" href="{'/en/connect' if dil == 'en' else '/baglan'}">{t['cihaz_dugme']}</a>
+    <a class="dugme ikincil kucuk" id="cihaz-baglan" href="{'/connect' if dil == 'en' else '/tr/connect'}">{t['cihaz_dugme']}</a>
   </section>
 
   <section class="bolum" id="stratejiler">

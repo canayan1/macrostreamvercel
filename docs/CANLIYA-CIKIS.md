@@ -1,6 +1,13 @@
 # Canlıya çıkış: kalibremarkets.com, Kalibre Lab (beta)
 
-Hazırlandı: 25 Ekim 2026. Hedef: bu hafta, beta olarak, ödemeler açık.
+Hazırlandı: 25 Ekim 2026. Hedef: bu hafta, beta olarak.
+
+**Güncelleme 25.10.2026 (Can):** şirket kurulana kadar ödemeler KAPALI. Çıkış = bekleme listesi +
+davetli demo/beta kullanıcıları (ücretsiz beta lisansı, hesaba "Hesabıma bağla" ile). Fiyat
+sayfaları planlanan lansman fiyatını (19 USD/ay, 17 EUR) gösterir, birincil düğme "Join the
+waitlist" / "Request beta access". `yerel/sayfa-uret.py` içinde `ODEME_ACIK = False`; Stripe kod
+yolu duruyor. Site kökü İngilizce, Türkçe `/tr` altında (adres haritası `yerel/kok-ingilizce-tasi.py`).
+Ürün adları iki dilde de çevrilmez: Kalibre Bridge, Kalibre Engine.
 Ayrı bir beta adresi yok: canlı site beta etiketiyle yayına girer. Her sayfada beta bandı var
 (`static/beta.js`): "Kalibre Lab beta sürümünde. Sonuçlar simülasyondur; gerçek parayla karar
 vermeden önce riskleri oku." Bant risk bildirimine ve beta rehberine götürür.
@@ -13,7 +20,7 @@ vermeden önce riskleri oku." Bant risk bildirimine ve beta rehberine götürür
 - Fiyat sayfaları `/pro/` ve `/en/pricing/`: gerçek "Abone ol" akışı, "beta" etiketi. Sunucuda
   Stripe yapılandırılmamışsa (`/api/odeme/baslat` 503 dönerse) sayfa kendiliğinden "Ödemeler yakında"
   kartına düşer. Derleme anındaki anahtar: `yerel/sayfa-uret.py` içinde `ODEME_ACIK = True`.
-- Ana sayfa CTA'sı: "Kalibre Lab (beta): aylık 399 TL / 19 USD / 17 EUR." (yalnız metin değişti).
+- Ana sayfa CTA'sı: "Kalibre Lab is in beta. Planned price at launch: $19 per month." + bekleme listesi ve beta erişimi.
 - Risk bildirimi: `/risk-bildirimi/` ve `/en/risk-disclosure/` (beta, simülasyon uyarısı CFTC 4.41
   tarzında, kaldıraç kayıp oranları ESMA 2018 ve SPK 2015, Motor'un gerçek hesap riskleri,
   tavsiye değildir, veri). Alt bilgide ve kurulum/prop sayfalarında bağlantı.
@@ -59,7 +66,7 @@ Aynı adımları önce **test modunda** yap, Preview ortamına test anahtarları
 "Uçtan uca deneme"yi Claude ile bitir. Sorunsuzsa canlı modda tekrarla.
 
 - [ ] **Ürün ve fiyat**: Product catalog → Add product "Kalibre Lab". Tek fiyat: Recurring, Monthly,
-      **399 TRY**. Aynı fiyatın içinde "Add currency" (currency options) ile **19 USD** ve **17 EUR**.
+      **19 USD** (ana para birimi). Aynı fiyatın içinde "Add currency" (currency options) ile **17 EUR**. TRY yok.
       Fiyatın kimliği (`price_...`) → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre para
       birimini kendisi seçer.
 - [ ] **Webhook**: Developers → Webhooks → Add endpoint

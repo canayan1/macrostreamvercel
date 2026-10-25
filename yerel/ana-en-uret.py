@@ -1,20 +1,20 @@
-# English homepage (/en/): same styles as the Turkish homepage, English content.
+# English homepage (/): same styles as the Turkish homepage, English content.
 import os, re
 _d = os.path.dirname(os.path.abspath(__file__))
 exec(open(os.path.join(_d, "sayfa-uret.py")).read().split("# ------------------------------------------------------------------ kurulum")[0])
-tr = open(os.path.join(KOK, "index.html")).read()
+tr = open(os.path.join(KOK, "tr/index.html")).read()
 stil = tr[tr.index("<style>"):tr.index("</style>") + 8]
 GOVDE = '''<main>
 <section class="acilis">
   <div class="kap">
     <div>
-      <h1>Test your strategy on your own data before you put money behind it.</h1>
-      <p class="giris">Kalibre Lab is a strategy lab for MetaTrader 5. Your price history is encrypted on your own computer and your strategy is tested in your browser. You write the assumption, test it on data, measure the risk. The decision stays yours.</p>
+      <h1>Backtest your MetaTrader 5 strategies on your broker's data.</h1>
+      <p class="giris">Build entry and exit rules, backtest them with spread and commission, and run the same rule file in MT5. Data from MT5 is end-to-end encrypted.</p>
       <div class="eylem">
-        <a class="dugme" href="/en/lab/">Open the lab</a>
-        <a class="dugme ikincil" href="/en/setup/">Read the setup guide</a>
+        <a class="dugme" href="/lab">Open the lab</a>
+        <a class="dugme ikincil" href="/setup">View setup guide</a>
       </div>
-      <p class="not">For MetaTrader 5. No signals, no custody of funds. Not investment advice.</p>
+      <p class="not">Software only. No signals. No client funds held. Not investment advice.</p>
     </div>
 
     <article class="notu" id="karar-notu" aria-label="Sample decision memo">
@@ -53,7 +53,7 @@ GOVDE = '''<main>
         </tbody>
       </table>
       <p class="cumle" data-s="cumle"></p>
-      <p class="dipnot">Unleveraged, full position. The lab's quick test is also cost-free; the final test is in MT5 Strategy Tester with your own broker's spread and commission.</p>
+      <p class="dipnot">Simulated results on SYNTHETIC data. Unleveraged, full position. Hypothetical performance has inherent limitations and does not represent actual trading.</p>
     </article>
   </div>
 </section>
@@ -61,15 +61,15 @@ GOVDE = '''<main>
 <section class="bolum">
   <div class="kap">
     <div class="kimin">
-      <a href="/en/prop/">
-        <h3>If you are taking a prop firm challenge</h3>
-        <p>Most accounts are lost to one bad day. The shield watches daily and total loss limits on every tick, sizes lots to the limit and stops near the floor. FTMO and The5ers presets are ready.</p>
-        <span>See the prop shield</span>
+      <a href="/prop">
+        <h3>Prop firm challenges</h3>
+        <p>Prop Shield checks daily and total loss limits on every tick and sizes lots to the remaining room. Presets for FTMO and The5ers.</p>
+        <span>See Prop Shield</span>
       </a>
-      <a href="/en/forex/">
-        <h3>If you trade your own account</h3>
-        <p>The strongest driver of losses is leverage and position size. Fix risk first with a risk budget, volatility-scaled lots and a daily loss limit, then test the strategy.</p>
-        <span>For retail forex</span>
+      <a href="/forex">
+        <h3>Your own trading account</h3>
+        <p>Set a risk per trade, volatility-scaled lot size and a daily loss limit, then backtest the rule with them.</p>
+        <span>Risk tools for retail forex</span>
       </a>
     </div>
   </div>
@@ -78,21 +78,21 @@ GOVDE = '''<main>
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Risk is asked about before return.</h2>
-      <p>On a bank's treasury desk, a position is judged not by what it could earn but by what it could lose on its worst day. An economist, likewise, looks less at one period's result and more at whether the conditions behind it will repeat. Kalibre Lab puts those two questions at the start of every test.</p>
+      <h2>Risk metrics in every backtest</h2>
+      <p>Max drawdown, position size and volatility regime are shown next to return in every test.</p>
     </div>
     <div class="ilkeler">
       <div>
-        <h3>Worst period first</h3>
-        <p>The largest drawdown sits on the same line as the return. You size a strategy by what you could carry through its worst stretch.</p>
+        <h3>Max drawdown</h3>
+        <p>The largest peak-to-trough fall is reported on the same line as total return.</p>
       </div>
       <div>
-        <h3>Size from a risk budget</h3>
-        <p>Position size comes not from a feeling but from the share of balance you risk, the stop distance and how volatile the market is right now.</p>
+        <h3>Risk-based position sizing</h3>
+        <p>Lot size is calculated from the share of balance you risk, the stop distance and current volatility.</p>
       </div>
       <div>
-        <h3>Regimes change</h3>
-        <p>A rule that works in a calm market may fail when volatility jumps. Volatility models show which conditions a strategy was tested in.</p>
+        <h3>Volatility regimes</h3>
+        <p>EWMA, Yang-Zhang and GARCH models show the volatility conditions in each test period.</p>
       </div>
     </div>
   </div>
@@ -101,21 +101,21 @@ GOVDE = '''<main>
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Setup takes three steps.</h2>
-      <p>Your data leaves MetaTrader 5 and reaches the lab encrypted. The details, screen by screen, are on the <a href="/en/setup/">setup page</a>.</p>
+      <h2>Set up in 3 steps</h2>
+      <p>Kalibre Bridge encrypts your data in MT5 before sending it. The <a href="/setup">setup guide</a> shows each screen.</p>
     </div>
     <ol class="adimlar">
       <li>
-        <h3>Install the add-on</h3>
-        <p>Add the Kalibre Bridge add-on to MetaTrader 5. It places no trades; it only reads price history and your open positions.</p>
+        <h3>Install Kalibre Bridge</h3>
+        <p>Add Kalibre Bridge to MetaTrader 5. The add-on is read-only. It cannot place, modify or close orders.</p>
       </li>
       <li>
-        <h3>Paste the code, allow the address</h3>
-        <p>Paste the pairing code the lab creates into the add-on. In MT5's options, allow the Kalibre address once.</p>
+        <h3>Paste the pairing code</h3>
+        <p>Copy the pairing code from the lab into the add-on. In MT5 options, allow WebRequest for the Kalibre address.</p>
       </li>
       <li>
-        <h3>Test your strategy</h3>
-        <p>Your own broker's candles arrive in the lab. Build your rule, run the quick test, then test the one you like in MT5.</p>
+        <h3>Backtest a rule</h3>
+        <p>Your broker's candles load into the lab. Build a rule, run Quick Backtest, then confirm it in MT5 Strategy Tester.</p>
       </li>
     </ol>
   </div>
@@ -124,33 +124,33 @@ GOVDE = '''<main>
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>What is in the lab?</h2>
-      <p>A strategy is a rule file. It is built in the lab, rehearsed in the browser and run in MetaTrader 5 with the same file. Nothing is rewritten in between.</p>
+      <h2>Features</h2>
+      <p>One rule file runs in the lab, in your browser and in MetaTrader 5.</p>
     </div>
     <div class="araclar">
       <div>
-        <h3>Rule file</h3>
-        <p>Entry, exit, stop and target rules with SMA, EMA, RSI, ATR, ADX, Bollinger, MACD and volatility indicators. The rule you build is also written out as a plain sentence.</p>
+        <h3>Strategy Builder</h3>
+        <p>Entry, exit, stop and target rules with SMA, EMA, RSI, ATR, ADX, Bollinger Bands, MACD and volatility indicators. Each rule is shown as a plain-language summary.</p>
       </div>
       <div>
-        <h3>Quick test</h3>
-        <p>Tries the rule on your own candles in seconds. It runs in the browser and leaves out costs; it is for ruling ideas out, not for confirming them.</p>
+        <h3>Quick Backtest</h3>
+        <p>Runs a rule on your candles in seconds, in your browser. Add spread, commission and slippage to see net results.</p>
       </div>
       <div>
-        <h3>Volatility lab</h3>
-        <p>EWMA, Yang-Zhang and GARCH models. Shows when volatility clusters and which regime a strategy was tested in.</p>
+        <h3>Volatility Lab</h3>
+        <p>EWMA, Yang-Zhang and GARCH models for the series you test.</p>
       </div>
       <div>
-        <h3>The final test in MetaTrader 5</h3>
-        <p>The same rule file is tested in MT5 Strategy Tester with your broker's spread, commission and trading hours settings.</p>
+        <h3>MT5 Strategy Tester</h3>
+        <p>Kalibre Engine runs the same rule file in Strategy Tester with your broker's spread, commission and trading hours.</p>
       </div>
       <div>
-        <h3>Live bridge</h3>
-        <p>While the add-on runs, each newly closed candle and your open positions reach the lab encrypted. You can always see how fresh the connection is.</p>
+        <h3>Dashboard</h3>
+        <p>Balance, open positions, Market Watch quotes and the last 90 days of closed trades from your MT5, Alpaca or Tradier account.</p>
       </div>
       <div>
-        <h3>Your own file</h3>
-        <p>You can also work without the add-on: just drag and drop a CSV or JSON file exported from MT5.</p>
+        <h3>CSV import</h3>
+        <p>Drag a CSV or JSON candle file into the lab. Your browser reads it locally.</p>
       </div>
     </div>
   </div>
@@ -159,50 +159,39 @@ GOVDE = '''<main>
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Your data. Your key.</h2>
-      <p>Your prices leave your computer encrypted and are opened only in your browser. The key is the pairing code; we have no copy. Details are on the <a href="/en/security/">security page</a>.</p>
+      <h2>End-to-end encryption</h2>
+      <p>Data is encrypted with AES-256 in MT5 and decrypted only in your browser. The keys are derived from your pairing code, and we do not have a copy. Read the <a href="/security">security details</a>.</p>
     </div>
     <div class="gorur">
       <div class="evet">
-        <h3>What our server sees</h3>
+        <h3>What our relay server sees</h3>
         <ul>
-          <li>Unreadable, encrypted packets</li>
+          <li>Encrypted packets</li>
           <li>Packet size and arrival time</li>
-          <li>A random-looking channel number</li>
+          <li>A channel ID derived from your code</li>
         </ul>
       </div>
       <div class="hayir">
-        <h3>What our server cannot see</h3>
+        <h3>What it cannot see</h3>
         <ul>
-          <li>Which symbols you follow, and the prices</li>
-          <li>Your positions, balance, profit and loss</li>
-          <li>Your account number and password</li>
-          <li>Your pairing code, the key itself</li>
+          <li>Symbols and prices</li>
+          <li>Positions, balance and trade history</li>
+          <li>Your pairing code</li>
+          <li>Your MT5 password, which is never requested</li>
         </ul>
       </div>
     </div>
-    <p class="not" style="margin-top:20px">Packets are deleted on their own after two hours at most.</p>
+    <p class="not" style="margin-top:20px">The relay server deletes each packet within 2 hours. The encrypted data does not include your account number. The license check sends your license key and MT5 account number to our license server.</p>
   </div>
 </section>
 
-<section class="bolum">
-  <div class="kap degil">
-    <h2>What Kalibre Lab is not</h2>
-    <ul>
-      <li><b>Not investment advice.</b> You decide which rule to build and when to trade which symbol.</li>
-      <li><b>It does not decide for you.</b> The bridge add-on only reads. Kalibre Engine trades only with the rule file you built, on your account, when you start it.</li>
-      <li><b>It does not sell market data.</b> Prices come from your broker, through your account. We publish no prices.</li>
-      <li><b>It does not promise returns.</b> A rule that worked in the past may not work in the future. The lab exists to make that easier to see.</li>
-    </ul>
-  </div>
-</section>
 
 <section class="bolum son">
   <div class="kap">
-    <h2>Kalibre Lab (beta): $19 / €17 / 399 TL a month.</h2>
+    <h2>Kalibre Lab is in beta. Planned price at launch: $19 per month.</h2>
     <div class="eylem" style="margin:0">
-      <a class="dugme" href="/en/pricing/">See pricing</a>
-      <a class="dugme ikincil" href="/en/lab/">Try it on sample data</a>
+      <a class="dugme" href="/pricing#waitlist">Join the waitlist</a>
+      <a class="dugme ikincil" href="mailto:markets@kalibrefin.com?subject=Kalibre%20Lab%20beta%20access">Request beta access</a>
     </div>
   </div>
 </section>
@@ -215,14 +204,15 @@ html = f'''<!doctype html>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Kalibre Lab: test your strategy on your own MetaTrader 5 data</title>
-<meta name="description" content="Kalibre Lab is a strategy lab for MetaTrader 5. Your price history is encrypted on your computer, your strategy is tested in your browser, and the final test runs in MT5 Strategy Tester. Not investment advice.">
-<link rel="canonical" href="https://kalibremarkets.com/en/">
-<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/">
-<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/">
-<meta property="og:title" content="Kalibre Lab: test your strategy on your own MetaTrader 5 data">
-<meta property="og:description" content="Write the assumption, test it on your own data, measure the risk. Your data is encrypted on your computer; only you hold the key.">
-<meta property="og:url" content="https://kalibremarkets.com/en/">
+<title>Kalibre Lab: backtesting and risk tools for MetaTrader 5</title>
+<meta name="description" content="Build trading rules, backtest them on your broker's MetaTrader 5 data with spread and commission, and run the same rule file in MT5. End-to-end encrypted. Not investment advice.">
+<link rel="canonical" href="https://kalibremarkets.com/">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/">
+<meta property="og:title" content="Kalibre Lab: backtesting and risk tools for MetaTrader 5">
+<meta property="og:description" content="Build trading rules, backtest them on your broker's data and run the same rule file in MT5. End-to-end encrypted.">
+<meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
@@ -240,7 +230,7 @@ html = f'''<!doctype html>
 </head>
 <body>
 
-{ust("/en/", "en", "/")}
+{ust("/", "en", "/tr")}
 
 {GOVDE}
 
@@ -251,6 +241,5 @@ html = f'''<!doctype html>
 </html>
 '''
 assert "—" not in html
-os.makedirs(os.path.join(KOK, "en"), exist_ok=True)
-open(os.path.join(KOK, "en/index.html"), "w").write(re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html))
-print("yazıldı en/index.html")
+open(os.path.join(KOK, "index.html"), "w").write(re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html))
+print("yazıldı index.html")

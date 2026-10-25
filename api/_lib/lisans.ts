@@ -230,7 +230,7 @@ export async function lisansIsle(d: Depo, sir: string, anahtar: string, hesapMet
   if (!URUNLER.includes(urun)) return { durum: 400, govde: 'Bilinmeyen ürün.' };
   if (!/^\d{1,20}$/.test(hesapMetni)) return { durum: 400, govde: 'Hesap numarası okunamadı.' };
   const a = anahtar.trim().toUpperCase();
-  if (!ANAHTAR_RE.test(a)) return { durum: 400, govde: 'Lisans anahtarı hatalı. kalibremarkets.com/hesap sayfasından kopyalayın.' };
+  if (!ANAHTAR_RE.test(a)) return { durum: 400, govde: 'Lisans anahtarı hatalı. kalibremarkets.com/tr/account sayfasından kopyalayın.' };
   // Anahtar denemesine karşı: hesap numarası başına dakikada 20 istek.
   const dk = Math.floor(simdi / 60000);
   if ((await d.say(`lisans-sinir:${hesapMetni}:${dk}`, 120)) > 20) return { durum: 429, govde: 'Çok sık deneme. Bir dakika sonra yeniden deneyin.' };

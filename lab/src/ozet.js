@@ -102,7 +102,7 @@ function ozetTr(s) {
     satirlar.push({ baslik: 'Risk', metin: `Stop olursa bakiyenin %${ondalik(r.islem_basi_yuzde)}'i kaybedilecek şekilde lot; ${ek.join('; ')}.` });
   }
   const f = s.filtre ?? {};
-  if (f.saat) satirlar.push({ baslik: 'Saat', metin: `Yeni giriş yalnız sunucu saatiyle ${f.saat.bas}:00–${f.saat.bit}:00 arası.` });
+  if (f.saat) satirlar.push({ baslik: 'Saat', metin: `Yeni giriş yalnız sunucu saatiyle ${f.saat.bas}:00-${f.saat.bit}:00 arası.` });
   if (f.haber) satirlar.push({ baslik: 'Haber', metin: `${f.haber.onem === 'orta' ? 'Orta ve yüksek' : 'Yüksek'} önemli verilerden ${f.haber.once_dk ?? 30} dk önce ile ${f.haber.sonra_dk ?? 30} dk sonra arasında yeni giriş yok.` });
   return satirlar;
 }

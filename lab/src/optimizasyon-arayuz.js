@@ -18,7 +18,7 @@ const $ = s => document.querySelector(s);
 import { kacis, stratejiyiTemizle } from './guvenlik.js';
 import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
 const sayiOku = v => Number(String(v).trim().replace(',', '.'));
-const dilEki = dil === 'en' ? '?dil=en' : '';
+const dilEki = dil === 'tr' ? '?dil=tr' : '';
 
 let s = null;            // strateji
 let params = [];         // parametreler(s) + seçim ve aralıklar
@@ -200,7 +200,7 @@ async function mt5Hazirla() {
   const kod = depo.oku(KOD_ANAHTARI) ?? '';
   if (!KOD_RE.test(kod)) {
     $('#veri-rozet').textContent = ceviri('MT5 BAĞLI DEĞİL');
-    $('#veri-durum').innerHTML = kacis(ceviri('MetaTrader bağlı değil.')) + ` <a href="baglan.html${dilEki}">${kacis(ceviri("MetaTrader'ı bağla"))}</a>`;
+    $('#veri-durum').innerHTML = kacis(ceviri('MetaTrader bağlı değil.')) + ` <a href="baglan.html${dilEki}">${kacis(ceviri("MetaTrader 5'i bağla"))}</a>`;
     return;
   }
   mt5 ??= istemci(kod, roleAdresi('', depo.oku(ROLE_ANAHTARI)));
@@ -280,8 +280,8 @@ $('#baslat').addEventListener('click', baslat);
 $('#iptal').addEventListener('click', () => { iptalIstendi = true; });
 
 // ---------------------------------------------------------------- sonuçlar
-const puanMetni = v => (Number.isFinite(v) ? sayiMetni(v, 2) : '–');
-const yuzdeYaz = v => (Number.isFinite(v) ? isaretliYuzde(v, 1) : '–');
+const puanMetni = v => (Number.isFinite(v) ? sayiMetni(v, 2) : '-');
+const yuzdeYaz = v => (Number.isFinite(v) ? isaretliYuzde(v, 1) : '-');
 
 function uyariMetni(u) {
   switch (u.kod) {
@@ -330,7 +330,7 @@ function tabloCiz() {
     <td>${i + 1}</td>${x.degerler.map(v => `<td>${kacis(dil === 'en' ? String(v) : String(v).replace('.', ','))}</td>`).join('')}
     <td>${puanMetni(x.puan)}</td><td>${puanMetni(x.sinamaPuan)}</td>
     <td>${yuzdeYaz(x.egitim.getiriYuzde)}</td><td>${yuzdeYaz(x.sinama?.getiriYuzde)}</td>
-    <td>${x.egitim.islem} / ${x.sinama?.islem ?? '–'}</td><td>${yuzdeMetni(sayiMetni(x.egitim.maxDususYuzde, 1))}</td>
+    <td>${x.egitim.islem} / ${x.sinama?.islem ?? '-'}</td><td>${yuzdeMetni(sayiMetni(x.egitim.maxDususYuzde, 1))}</td>
     ${propVar ? `<td>${kacis(x.sinamaPropIhlal ? ceviri('sınamada ihlal') : ceviri('uygun'))}</td>` : ''}
     <td class="opt-eylem"><button type="button" class="kucuk" data-ac="${kacis(i)}">${kacis(ceviri('Bu ayarla kurucuda aç'))}</button>
       <button type="button" class="kucuk" data-indir="${kacis(i)}">${kacis(ceviri('Kural dosyasını indir'))}</button></td>

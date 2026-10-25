@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Kurulum: MetaTrader 5'i Kalibre Lab'e bağla</title>
+<meta name="description" content="Kalibre Bridge eklentisini MetaTrader 5'e kurma, eşleştirme kodunu ve lisans anahtarını girme, WebRequest iznini verme adımları.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/setup">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/setup">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/setup">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/setup">
+<meta property="og:title" content="Kurulum: MetaTrader 5'i Kalibre Lab'e bağla">
+<meta property="og:description" content="Kalibre Bridge eklentisini MetaTrader 5'e kurma, eşleştirme kodunu ve lisans anahtarını girme, WebRequest iznini verme adımları.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup" aria-current="page">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/setup" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Kurulum</h1>
+<p class="giris">MetaTrader 5'i Kalibre Lab'e Kalibre Bridge eklentisi, bir eşleştirme kodu ve tek bir MT5 ayarıyla bağlarsın. Kurulum bir kez yapılır. Sonrasında eklenti, MT5 açık olduğu sürece laboratuvara veri gönderir.</p>
+<div class="kutu yesil">İlk kurulumu bir <b>demo hesapta</b> yap. Kalibre Bridge salt okunurdur ve demo hesapta aracı parayı riske atmadan tanırsın.</div>
+
+<h2 id="gerekenler">Gerekenler</h2>
+<ul>
+  <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
+  <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
+  <li>Kalibre Bridge eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/tr/account">Hesabım</a> sayfasındadır.</li>
+</ul>
+
+<h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
+<ol>
+  <li>MT5'te <b>File &gt; Open Data Folder</b> menüsünü aç (Türkçe menüde <b>Dosya &gt; Veri Klasörünü Aç</b>).</li>
+  <li><code>MQL5\Experts</code> klasörüne gir ve <code>KalibreKopru.ex5</code> dosyasını buraya kopyala.</li>
+  <li>MT5'e dön. <b>Navigator</b> penceresinde <b>Expert Advisors</b> başlığına sağ tıklayıp <b>Refresh</b> de. Listede <b>KalibreKopru</b> görünür.</li>
+</ol>
+
+<h2 id="kod">2. Laboratuvarda eşleştirme kodunu üret</h2>
+<ol>
+  <li><a href="/tr/connect">MetaTrader 5'i bağla</a> sayfasını aç. Adımlar orada sırayla gösterilir.</li>
+  <li>Tarayıcın bir eşleştirme kodu üretir. <b>Kopyala</b> düğmesiyle kopyala.</li>
+</ol>
+<p>Kod <code>KLB1</code> ile başlar. Kalibre Bridge şifreleme anahtarını bu koddan türetir. Kod bu tarayıcıda ve eklentinin ayarlarında saklanır, sunucularımıza gönderilmez. Kodu kimseyle paylaşma.</p>
+
+<h2 id="grafik">3. Eklentiyi bir grafiğe ekle</h2>
+<ol>
+  <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
+  <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
+  <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/tr/account">Hesabım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
+  <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan eklenti Market Watch'taki ilk 12 sembolü kullanır.</li>
+  <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
+</ol>
+<p>Kalibre Bridge emir açamaz, değiştiremez, kapatamaz. Bu yüzden MT5'te <b>Algo Trading</b> kapalı kalabilir.</p>
+
+<h2 id="izin">4. MetaTrader 5'te Kalibre adresine izin ver</h2>
+<p>MT5, eklentilerin sadece izin verdiğin adreslere bağlanmasına izin verir. Kalibre adresini bir kez eklersin.</p>
+<ol>
+  <li><b>Tools &gt; Options</b> menüsünü aç (Türkçe menüde <b>Araçlar &gt; Seçenekler</b>).</li>
+  <li><b>Expert Advisors</b> sekmesine geç (<b>Uzman Danışmanlar</b>).</li>
+  <li><b>Allow WebRequest for listed URL</b> kutusunu işaretle.</li>
+  <li>Listeye <code>https://kalibremarkets.com</code> adresini ekle.</li>
+  <li><b>OK</b> düğmesine bas. Pencereyi çarpıyla kapatırsan izin kaydedilmez.</li>
+</ol>
+
+<h2 id="dogrula">5. Bağlantıyı doğrula</h2>
+<p>Grafiğin sol üst köşesinde <b>Kalibre Bridge</b> satırı görünür. Eklenti önce lisansı kontrol eder, bu birkaç saniye sürer. Sonra veri göndermeye başlar. Durum <b>bağlı</b> olduğunda gönderilen belge sayısı artar. Laboratuvar bağlantı durumunu, aracı kurumunun adını ve son kalp atışının zamanını gösterir.</p>
+<p>Seriler yeni bir mum kapandığında güncellenir. H1 seçtiysen saatte bir, D1 seçtiysen günde bir.</p>
+
+<h2 id="sorunlar">Sık karşılaşılan durumlar</h2>
+<table class="tablo">
+  <thead><tr><th>Grafikte görünen</th><th>Ne yapmalı</th></tr></thead>
+  <tbody>
+    <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
+    <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
+    <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/tr/account">Hesabım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
+    <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
+    <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Kalibre Bridge, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="tradier">Tradier (ABD) ile bağlanmak</h2>
+<p>ABD'deki aracı kurum Tradier'de hesabın varsa MetaTrader 5 yerine onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Tradier'e doğrudan senin tarayıcından bağlanır.</p>
+<ol>
+  <li>Tradier hesabında bir API erişim token'ı oluştur. İlk deneme için <b>Sandbox</b> token'ı öneririz; Sandbox fiyatları 15 dakika gecikmelidir.</li>
+  <li><a href="/lab/baglan?kaynak=tradier&dil=tr">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li>Birden çok hesabın varsa birini seç. Panom, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
+</ol>
+<div class="kutu">Tradier token'ı hesabına tam erişim verir. Kalibre bu token'la sadece okuma isteği yapar, emir göndermez. Token bu tarayıcıda saklanır ve sadece Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
+
+<h2 id="alpaca">Alpaca (ABD) ile bağlanmak</h2>
+<p>ABD'deki aracı kurum Alpaca'da hesabın varsa onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Alpaca'ya doğrudan senin tarayıcından bağlanır.</p>
+<ol>
+  <li>Alpaca panelinde bir API anahtar çifti oluştur (Key ID ve Secret). İlk deneme için <b>Paper</b> (sanal) hesabı öneririz.</li>
+  <li><a href="/lab/baglan?kaynak=alpaca&dil=tr">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li>Panom, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Panom'da eklediğin semboller gösterilir.</li>
+</ol>
+<div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar sadece IEX borsasından gelir. Bu, toplam piyasa hacminin küçük bir kısmıdır. Kalibre anahtarlarınla sadece okuma isteği yapar, emir göndermez. Anahtarlar bu tarayıcıda saklanır ve sadece Alpaca'ya gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Kendi kişisel API anahtarlarını kullan.</div>
+
+<div class="kutu">Kalibre Lab beta sürümündedir. Kurulumdan önce <a href="/tr/risk-disclosure">risk bildirimini</a> oku ve önce demo hesap kullan.</div>
+
+<h2 id="eklentisiz">Eklentisiz çalışmak</h2>
+<p>MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara da sürükleyebilirsin. Tarayıcın dosyayı yerelde okur, dosya yüklenmez.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#gerekenler">Gerekenler</a><a href="#eklenti">1. Eklentiyi MetaTrader 5'e ekle</a><a href="#kod">2. Laboratuvarda eşleştirme kodunu üret</a><a href="#grafik">3. Eklentiyi bir grafiğe ekle</a><a href="#izin">4. MetaTrader 5'te Kalibre adresine izin ver</a><a href="#dogrula">5. Bağlantıyı doğrula</a><a href="#sorunlar">Sık karşılaşılan durumlar</a><a href="#tradier">Tradier (ABD) ile bağlanmak</a><a href="#alpaca">Alpaca (ABD) ile bağlanmak</a><a href="#eklentisiz">Eklentisiz çalışmak</a><p>Takıldığın bir adım olursa <a href="/iletisim" style="display:inline">bize yaz</a>.</p></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+
+</body>
+</html>

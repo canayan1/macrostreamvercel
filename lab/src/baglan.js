@@ -1,4 +1,4 @@
-// "MetaTrader'ı bağla" sayfası: ürünün girişi. Şifre yoktur; giriş, bu tarayıcının ürettiği
+// "MetaTrader 5'i bağla" sayfası: ürünün girişi. Şifre yoktur; giriş, bu tarayıcının ürettiği
 // eşleştirme kodudur (aynı depo anahtarları: baglanti-arayuz.js, panom.js). Dört adım tek
 // sayfadadır; bağlantı yoklaması baştan çalışır, kalp atışı gelince hangi adımda olunursa
 // olunsun "Bağlandı" denir ve Panom'a geçilir.
@@ -15,7 +15,7 @@ const LISANS_RE = /^KLM(-[0-9A-HJKMNP-TV-Z]{5}){4}$/;
 
 const $ = s => document.querySelector(s);
 const en = dil === 'en';
-const ek = en ? '?dil=en' : '';
+const ek = en ? '' : '?dil=tr';
 
 // ---------------------------------------------------------------- durum
 const parametre = new URLSearchParams(location.search).get('role');
@@ -228,13 +228,11 @@ if (LISANS_RE.test(lisans ?? '')) {
   });
 }
 
-// Bağlantılar dile göre.
-if (en) {
-  $('#abone-baglanti').href = '/en/pricing/';
-  $('#lisans-baglanti').href = '/en/license/';
-  for (const id of ['#zaten-panom', '#panoma-git', '#git-panom']) $(id).href = `panom.html${ek}`;
-  $('#git-kurucu').href = `./${ek}`;
-}
+// Bağlantılar dile göre (site kökü İngilizce, Türkçe /tr altında).
+$('#abone-baglanti').href = en ? '/pricing' : '/tr/pricing';
+$('#lisans-baglanti').href = en ? '/account' : '/tr/account';
+for (const id of ['#zaten-panom', '#panoma-git', '#git-panom']) $(id).href = `panom.html${ek}`;
+$('#git-kurucu').href = `./${ek}`;
 
 // ---------------------------------------------------------------- başlat
 sayfayiCevir();

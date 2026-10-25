@@ -3,51 +3,52 @@ import os, re
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # site kökü
 MAIL = '<a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>'
 
-MENU = [("/en/lab/", "Lab"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"),
-        ("/egitim/", "Education (Turkish)"), ("/en/pricing/", "Pricing")]
+MENU = [("/lab", "Lab"), ("/lab/panom", "Dashboard"), ("/prop", "Prop Shield"), ("/setup", "Setup"), ("/security", "Security"),
+        ("/pricing", "Pricing")]
 
 def ust(tr_yol):
     a = "\n".join(f'      <a href="{h}">{t}</a>' for h, t in MENU)
     return f'''<header class="ust">
   <div class="kap">
-    <a class="marka" href="/en/"><b>Kalibre</b><span>Lab</span></a>
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
     <nav aria-label="Main menu">
 {a}
       <a href="{tr_yol}" hreflang="tr" lang="tr">TR</a>
     </nav>
-    <a class="dugme kucuk" href="/en/lab/">Open the lab</a>
+    <a class="dugme kucuk" href="/lab">Open the lab</a>
   </div>
 </header>'''
 
 ALT = '''<footer class="alt">
   <div class="kap">
     <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
-      <p>A strategy lab for MetaTrader 5.</p>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
     </div>
     <div>
-      <h4>Product</h4>
-      <a href="/en/lab/">Lab</a>
-      <a href="/en/prop/">Prop shield</a>
-      <a href="/en/forex/">Retail forex</a>
-      <a href="/en/setup/">Setup</a>
-      <a href="/en/security/">Security</a>
-      <a href="/en/pricing/">Pricing</a>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </div>
     <div>
       <h4>Learn</h4>
-      <a href="/en/methodology/">Methodology</a>
-      <a href="/egitim/" hreflang="tr">Education (Turkish)</a>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
     </div>
     <div>
-      <h4>Kalibre</h4>
-      <a href="/en/about/">About</a>
-      <a href="/iletisim/" hreflang="tr">Contact</a>
-      <a href="/en/terms/">Terms of use</a>
-      <a href="/en/privacy/">Privacy</a>
-      <a href="/en/risk-disclosure/">Risk disclosure</a>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of use</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past data and are not an indication of future results. Leveraged trading can lead to the loss of your entire deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>'''
 
@@ -65,8 +66,9 @@ def sayfa(yol, tr_yol, baslik, aciklama, govde):
 <title>{baslik}</title>
 <meta name="description" content="{aciklama}">
 <link rel="canonical" href="{kanon}">
-<link rel="alternate" hreflang="tr" href="{tr_kanon}">
 <link rel="alternate" hreflang="en" href="{kanon}">
+<link rel="alternate" hreflang="tr" href="{tr_kanon}">
+<link rel="alternate" hreflang="x-default" href="{kanon}">
 <meta property="og:title" content="{baslik}">
 <meta property="og:description" content="{aciklama}">
 <meta property="og:site_name" content="Kalibre Markets">
@@ -109,7 +111,7 @@ CEVIRI = '<p class="not">This is a translation. If the English and Turkish versi
 GIZLILIK = f'''
 <h1>Privacy Policy and Information Notice</h1>
 <p class="not">Effective date: 25 October 2026</p>
-{CEVIRI.format(tr="/gizlilik/")}
+{CEVIRI.format(tr="/tr/privacy")}
 <p class="giris">This notice explains, under Turkish Law No. 6698 on the Protection of Personal Data ("KVKK"), which personal data is processed through kalibremarkets.com (the "Site"), for what purposes and on what legal grounds, to whom it is transferred, and what your rights are.</p>
 
 <h2 id="controller">1. Data controller</h2>
@@ -156,7 +158,7 @@ GIZLILIK = f'''
   <li>the name of your broker, the name of the trading server and whether the account is a demo or a live account.</li>
 </ul>
 <p>The add-on does not read your account number, password, identity details or trade history; it does not open trades and makes no changes to your account.</p>
-<p><strong>End-to-end encryption.</strong> This information is encrypted (AES-256) and sealed (HMAC-SHA256) on your computer with keys derived from the pairing code that Kalibre Lab generates in your browser. The pairing code exists only in your browser and in the add-on's settings; it is never transmitted to Kalibre Markets. Kalibre Markets therefore cannot access the content of the encrypted packets. Symbol names are also part of the encrypted content. Technical details are on the <a href="/en/security/">Security</a> page.</p>
+<p><strong>End-to-end encryption.</strong> This information is encrypted (AES-256) and sealed (HMAC-SHA256) on your computer with keys derived from the pairing code that Kalibre Lab generates in your browser. The pairing code exists only in your browser and in the add-on's settings; it is never transmitted to Kalibre Markets. Kalibre Markets therefore cannot access the content of the encrypted packets. Symbol names are also part of the encrypted content. Technical details are on the <a href="/security">Security</a> page.</p>
 <p><strong>What is processed on the server.</strong> For the bridge, the Site's server processes only: the encrypted packets; the size of the packets and the time they are received; a channel number derived from the pairing code that cannot be used to recover the code; and a counter kept to limit the number of writes per channel. The encrypted packets are held in a store provided by [STORAGE PROVIDER]; a packet is replaced when a new packet of the same type arrives and is in any case deleted automatically no later than two hours after it is received. Counters are deleted after about two minutes. The content of the packets is not written to server logs. During the connection your IP address is processed by the hosting provider to deliver the transmission (see 3(a)); Kalibre Markets does not store IP addresses in connection with the bridge.</p>
 <p><strong>Legal assessment.</strong> Because Kalibre Markets does not hold the key needed to decrypt the encrypted packets, it is debatable whether these packets constitute personal data from Kalibre Markets' perspective. For transparency, this processing is described here on the assumption that it is personal data. Legal ground: provision of the service you request (KVKK art. 5(2)(c)).</p>
 <p>Using the bridge is optional. When you remove the add-on from the chart or close MetaTrader 5, data transmission stops; the last packets on the server are deleted within two hours at most.</p>
@@ -243,10 +245,10 @@ GIZLILIK = f'''
 SARTLAR = f'''
 <h1>Terms of Use</h1>
 <p class="not">Effective date: 25 October 2026</p>
-{CEVIRI.format(tr="/kullanim-sartlari/")}
+{CEVIRI.format(tr="/tr/terms")}
 
 <h2 id="parties">1. Parties and scope</h2>
-<p>These Terms of Use (the "Terms") govern the use of the content and tools offered through the kalibremarkets.com domain and its subpages, (the "Site"), the Kalibre Lab strategy lab and the Kalibre Bridge, Kalibre Engine and other add-ons offered for MetaTrader 5 (together, the "Service"). The <a href="/en/risk-disclosure">Risk Disclosure</a> forms an integral part of these Terms. The Service is operated by [COMPANY NAME] ("Kalibre Markets"). Address: [ADDRESS]. E-mail: {MAIL}.</p>
+<p>These Terms of Use (the "Terms") govern the use of the content and tools offered through the kalibremarkets.com domain and its subpages, (the "Site"), the Kalibre Lab strategy lab and the Kalibre Bridge, Kalibre Engine and other add-ons offered for MetaTrader 5 (together, the "Service"). The <a href="/risk-disclosure">Risk Disclosure</a> forms an integral part of these Terms. The Service is operated by [COMPANY NAME] ("Kalibre Markets"). Address: [ADDRESS]. E-mail: {MAIL}.</p>
 <p>The simulation game at oyun.kalibremarkets.com is a separate service; it is outside the scope of these Terms and is subject to its own conditions.</p>
 
 <h2 id="acceptance">2. Acceptance and changes</h2>
@@ -274,21 +276,21 @@ SARTLAR = f'''
 
 <h2 id="simulations">5. Simulations and past performance</h2>
 <p>Backtests, simulations and example results on the Site are hypothetical. They do not fully reflect real trading conditions such as commissions, taxes, slippage and liquidity. Results obtained with synthetic data do not show the result that would be obtained in a real market. Past performance is not an indication or guarantee of future performance.</p>
-<p>The quick test in Kalibre Lab is an approximate calculation: it does not include spread, commission, swap or slippage, and it determines the order of prices within a candle by assumption. The method and its limits are explained on the <a href="/en/methodology/">Methodology</a> page. MetaTrader 5 Strategy Tester results also depend on your broker and on the test settings you choose.</p>
+<p>The quick test in Kalibre Lab is an approximate calculation: it does not include spread, commission, swap or slippage, and it determines the order of prices within a candle by assumption. The method and its limits are explained on the <a href="/methodology">Methodology</a> page. MetaTrader 5 Strategy Tester results also depend on your broker and on the test settings you choose.</p>
 
 <h2 id="assistant">6. AI assistant</h2>
-<p>The assistant on the Site works using a third-party artificial intelligence service. The assistant's replies are generated automatically; they may contain incorrect, incomplete or outdated information and do not constitute investment advice. Messages you write to the assistant are sent to that service provider to generate a reply. Do not write identity details, account details or other personal or sensitive data to the assistant. Details are in the <a href="/en/privacy/">Privacy Policy</a>.</p>
+<p>The assistant on the Site works using a third-party artificial intelligence service. The assistant's replies are generated automatically; they may contain incorrect, incomplete or outdated information and do not constitute investment advice. Messages you write to the assistant are sent to that service provider to generate a reply. Do not write identity details, account details or other personal or sensitive data to the assistant. Details are in the <a href="/privacy">Privacy Policy</a>.</p>
 
 <h2 id="your-data">7. Your account, data you enter and your licence key</h2>
 <p>Entries you make in tools such as the decision journal and Kalibre Lab are, unless stated otherwise, stored only in your own browser. If you are signed in to your account, your Kalibre Lab strategy drafts are also saved to your account (section 10a). Clearing browser data will cause entries kept only in the browser to be lost; backing them up is your responsibility.</p>
 <p><strong>Account.</strong> A Kalibre Markets account is required to subscribe to paid services; one account covers all Kalibre Markets products. You must sign in with an e-mail address that belongs to you and that you control, and keep access to that e-mail address and to your Google account secure. An account is personal: do not share it or let others use it. You are responsible for activity carried out through your account. You may delete your account at any time on the Account page. We may suspend or close an account used in breach of these Terms; where possible, we will tell you first and give our reasons.</p>
-<p><strong>Licence key.</strong> Paid and beta services are activated with a licence key shown on your Account page. You are responsible for keeping your licence key confidential and for use made with your key. Your personal data is processed in accordance with Law No. 6698 on the Protection of Personal Data; details are in the <a href="/en/privacy/">Privacy Policy</a>.</p>
+<p><strong>Licence key.</strong> Paid and beta services are activated with a licence key shown on your Account page. You are responsible for keeping your licence key confidential and for use made with your key. Your personal data is processed in accordance with Law No. 6698 on the Protection of Personal Data; details are in the <a href="/privacy">Privacy Policy</a>.</p>
 
 <h2 id="software">8. Kalibre Lab and the MetaTrader 5 add-ons</h2>
 <p><strong>License.</strong> Kalibre Markets permits you to use Kalibre Lab and the add-ons it offers for MetaTrader 5 (including Kalibre Bridge and Kalibre Engine) for your own personal use in accordance with these Terms. This permission is personal, non-transferable, non-sublicensable and non-exclusive. Ownership of the software remains with Kalibre Markets; for paid versions the conditions in section 12 also apply.</p>
 <p><strong>What Kalibre Bridge does.</strong> The Kalibre Bridge add-on only reads: it encrypts the price history of the symbols you select, your open positions and your account summary, and transmits them to Kalibre Lab. It does not send orders, close positions or make changes to your account. You decide on which account and with which settings to run the add-on.</p>
 <p><strong>What Kalibre Engine does.</strong> Unlike Kalibre Bridge, Kalibre Engine sends orders: it runs the rule file you build on your account and opens, manages and closes trades only according to those rules. It does not choose or recommend strategies on its own. Additional conditions for its use on a real account are in section 8b.</p>
-<p><strong>MetaTrader 5 permission.</strong> For the add-on to connect to the internet you must allow the Kalibre address in the MetaTrader 5 settings. You grant this permission yourself and may withdraw it at any time. The setup steps are on the <a href="/en/setup/">Setup</a> page.</p>
+<p><strong>MetaTrader 5 permission.</strong> For the add-on to connect to the internet you must allow the Kalibre address in the MetaTrader 5 settings. You grant this permission yourself and may withdraw it at any time. The setup steps are on the <a href="/setup">Setup</a> page.</p>
 <p><strong>Broker terms.</strong> Prices passing through the bridge come from your broker, through your account. You are responsible for complying with the terms of use of your broker and of MetaQuotes when using this data. This data is for your own use only; you agree not to distribute, publish or sell to others price data obtained through Kalibre Lab.</p>
 <p><strong>Pairing code.</strong> The pairing code is the key that encrypts your data and is held only by you. Keeping the code confidential is your responsibility. If you suspect that your code has fallen into someone else's hands, you must generate a new code in Kalibre Lab. Because Kalibre Markets does not know your code, it cannot recover a lost code and cannot access data encrypted with it.</p>
 <p><strong>Continuity.</strong> The bridge depends on MetaTrader 5 being open, on your internet connection, on your broker's server and on the Site's relay server. Kalibre Markets does not guarantee that the bridge will operate without interruption, that every piece of data will be transmitted or that data will arrive within a particular time. The bridge is not a trading or risk management system; rely on your broker's platform to monitor your open positions.</p>
@@ -306,7 +308,7 @@ SARTLAR = f'''
   <li><strong>Explicit acceptance.</strong> On a real account, the Engine opens no new trades unless you yourself tick "I accept the beta risk on a real account" in the add-on's settings.</li>
   <li><strong>Mandatory loss limit.</strong> On a real account, the Engine opens no new trades unless the prop shield or a daily loss limit in the rule file is set.</li>
   <li><strong>The shield is not a guarantee.</strong> The prop shield and loss limits can be exceeded because of price gaps, slippage, lost connections or differences in your broker's trading rules.</li>
-  <li><strong>Responsibility.</strong> The results of all trades the Engine opens with your rules are yours. Before using the Engine on a real account, you must test the same rule file in MT5 Strategy Tester and on a demo account. Details are in the <a href="/en/risk-disclosure/">Risk Disclosure</a>.</li>
+  <li><strong>Responsibility.</strong> The results of all trades the Engine opens with your rules are yours. Before using the Engine on a real account, you must test the same rule file in MT5 Strategy Tester and on a demo account. Details are in the <a href="/risk-disclosure">Risk Disclosure</a>.</li>
 </ul>
 <!-- FOR COUNSEL: offering the Engine on real accounts as part of a paid plan should be reassessed under SPK (III-37.1 art. 37 and 45), CFTC 4.14(a)(9) and FCA PERG 8.30; explicit acceptance and the mandatory loss limit are enforced in the software. -->
 
@@ -399,7 +401,7 @@ SARTLAR = f'''
 <p>For questions about these Terms: {MAIL}</p>
 '''
 
-sayfa("en/privacy/index.html", "/gizlilik/", "Privacy Policy | Kalibre Lab",
+sayfa("privacy/index.html", "/tr/privacy", "Privacy Policy | Kalibre Lab",
       "How Kalibre Markets processes personal data under Turkish Law No. 6698 (KVKK): site visits, analytics, subscriptions, the encrypted MetaTrader 5 bridge, retention and your rights.", GIZLILIK)
-sayfa("en/terms/index.html", "/kullanim-sartlari/", "Terms of Use | Kalibre Lab",
+sayfa("terms/index.html", "/tr/terms", "Terms of Use | Kalibre Lab",
       "Terms of use for kalibremarkets.com, Kalibre Lab and the Kalibre Bridge add-on: not investment advice, data policy, software license, subscriptions and liability.", SARTLAR)

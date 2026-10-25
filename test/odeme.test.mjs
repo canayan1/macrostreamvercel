@@ -38,7 +38,7 @@ test.after(() => { globalThis.fetch = eskiFetch; });
 
 test('cayma onayı yoksa 400 ve Stripe çağrılmaz (TR ve EN mesaj)', async () => {
   gonderilen.length = 0;
-  let r = await cagir({ sartlar: true });
+  let r = await cagir({ sartlar: true, dil: 'tr' });
   assert.equal(r.statusCode, 400);
   assert.match(r.govde.hata, /cayma hakkına ilişkin onay/);
   r = await cagir({ sartlar: true, cayma_onay: 'true', dil: 'en' });
@@ -51,7 +51,7 @@ test('cayma onayı yoksa 400 ve Stripe çağrılmaz (TR ve EN mesaj)', async () 
 
 test('iki onayla Checkout açılır; onay ve şart sürümü oturum ve abonelik metadata\'sında', async () => {
   gonderilen.length = 0;
-  const r = await cagir(JSON.stringify({ sartlar: true, cayma_onay: true }));
+  const r = await cagir(JSON.stringify({ sartlar: true, cayma_onay: true, dil: 'tr' }));
   assert.equal(r.statusCode, 200);
   assert.equal(r.govde.url, 'https://checkout.stripe.com/c/pay/cs_test_1');
   assert.equal(gonderilen.length, 1);
@@ -61,12 +61,12 @@ test('iki onayla Checkout açılır; onay ve şart sürümü oturum ve abonelik 
   assert.ok(g.includes('subscription_data[metadata][cayma_onay]=evet'));
   assert.ok(g.includes(`metadata[sartlar_onay]=${SARTLAR_SURUMU}`));
   assert.match(g, /metadata\[cayma_onay_zamani\]=\d{4}-\d{2}-\d{2}T/);
-  assert.ok(g.includes('success_url=https://kalibremarkets.com/hesap?oturum='));
+  assert.ok(g.includes('success_url=https://kalibremarkets.com/tr/account?oturum='));
 });
 
 test('giriş yoksa ya da belirteç geçersizse 401 ve Stripe çağrılmaz', async () => {
   gonderilen.length = 0;
-  let r = await cagir({ sartlar: true, cayma_onay: true }, {}, null);
+  let r = await cagir({ sartlar: true, cayma_onay: true, dil: 'tr' }, {}, null);
   assert.equal(r.statusCode, 401);
   assert.match(r.govde.hata, /önce giriş yap/);
   r = await cagir({ sartlar: true, cayma_onay: true, dil: 'en' }, {}, 'Bearer sahte-belirtec-xxxxxxxxxxxxxxxx');

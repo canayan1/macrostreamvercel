@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<base href="/lab/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MetaTrader'ı bağla · Kalibre Lab</title>
+<title>MetaTrader 5'i bağla · Kalibre Lab</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +13,7 @@
 </head>
 <body>
 <header class="ust">
-  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>MetaTrader'ı bağla</span></a>
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>MetaTrader 5'i bağla</span></a>
   <div class="ust-eylem">
     <a class="dugme ikincil" href="./" id="git-kurucu" data-t>Strateji Kurucu</a>
     <a class="dugme ikincil" href="panom.html" id="git-panom" data-t>Panom</a>
@@ -32,8 +33,8 @@
 
   <section class="kart" id="tradier">
     <h2 data-t>Tradier hesabını bağla</h2>
-    <p data-t>Token yalnız bu tarayıcıda saklanır ve yalnız Tradier'e gönderilir; Kalibre sunucusuna hiç gelmez. Tradier kullanıcı adını ya da şifreni hiçbir zaman istemeyiz.</p>
-    <p class="dipnot uyari" data-t>Tradier token'ı hesabına tam erişim verir (emir dahil). Kalibre yalnız okur, hiçbir emir göndermez. Önce <b>Sandbox</b> token'ıyla dene.</p>
+    <p data-t>Token bu tarayıcıda saklanır ve sadece Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Tradier şifren istenmez.</p>
+    <p class="dipnot uyari" data-t>Tradier token'ı hesabına emir dahil tam erişim verir. Kalibre bu token'la sadece okuma isteği yapar. Denemek için <b>Sandbox</b> token'ı kullan.</p>
     <ol class="adim-liste">
       <li data-t><b>web.tradier.com</b> → <b>API Settings</b> (API Access) sayfasını aç.</li>
       <li data-t>Sandbox ya da canlı token'ını kopyala.</li>
@@ -68,8 +69,8 @@
 
   <section class="kart" id="alpaca">
     <h2 data-t>Alpaca hesabını bağla</h2>
-    <p data-t>Anahtarların yalnız bu tarayıcıda saklanır ve yalnız Alpaca'ya gönderilir; Kalibre sunucusuna hiç gelmez. Alpaca kullanıcı adını ya da şifreni hiçbir zaman istemeyiz.</p>
-    <p class="dipnot uyari" data-t>Alpaca API anahtarları hesabında emir verebilir. Kalibre yalnız okur, hiçbir emir göndermez. Aracı denemek için <b>Paper</b> (sanal para) anahtarı kullan.</p>
+    <p data-t>API anahtarların bu tarayıcıda saklanır ve sadece Alpaca'ya gönderilir. Kalibre sunucularına gönderilmez. Alpaca şifren istenmez.</p>
+    <p class="dipnot uyari" data-t>Alpaca API anahtarları hesabında emir verebilir. Kalibre bu anahtarlarla sadece okuma isteği yapar. Denemek için <b>Paper</b> hesap anahtarı kullan.</p>
     <ol class="adim-liste">
       <li data-t><b>app.alpaca.markets</b> adresinde sol üstten <b>Paper Trading</b> hesabını seç.</li>
       <li data-t>Ana sayfadaki <b>API Keys</b> kartında <b>Generate New Keys</b>'e bas; anahtar kimliği ve gizli anahtar bir kez gösterilir.</li>
@@ -103,8 +104,8 @@
   </section>
 
   <section class="kart" id="mt5-giris">
-    <h2 data-t>MetaTrader'ı bağla</h2>
-    <p data-t>MT5 şifren hiçbir yere girilmez; giriş, senin MT5'indeki eklentiyle tarayıcın arasındaki eşleştirme kodudur. Verin şifreli gelir, anahtar yalnız sende.</p>
+    <h2 data-t>MetaTrader 5'i bağla</h2>
+    <p data-t>MT5 şifren gerekmez. Bağlantı, eklentiye yapıştıracağın bir eşleştirme koduyla kurulur. Kod bu tarayıcıda saklanır.</p>
     <div id="zaten" class="baglan-zaten" hidden>
       <p><b data-t>Zaten bağlısın.</b> <span id="zaten-ayrinti"></span></p>
       <div class="satir-dugme">
@@ -117,25 +118,25 @@
 
   <ol class="adimlar" id="adimlar">
     <li class="kart adim" data-adim="1">
-      <h3><span class="adim-no">1</span><span data-t>Eklentiyi indir ve kur</span></h3>
+      <h3><span class="adim-no">1</span><span data-t>Kalibre Bridge'i kur</span></h3>
       <div id="lisans-var" hidden>
-        <p data-t>Lisansın bu tarayıcıda kayıtlı. Kalibre Köprü eklentisini indir:</p>
+        <p data-t>Lisansın bu tarayıcıda kayıtlı. Kalibre Bridge eklentisini indir:</p>
         <div class="satir-dugme"><button type="button" class="dugme" id="eklenti-indir" data-t>KalibreKopru.ex5 indir</button></div>
         <p class="dipnot" id="indir-durum" role="status"></p>
       </div>
       <div id="lisans-yok">
-        <p><span data-t>Eklenti, Kalibre Lab aboneliğiyle gelir.</span> <a id="abone-baglanti" href="/pro/" data-t>Aboneliği incele</a>. <span data-t>Abone olduysan lisans anahtarını</span> <a id="lisans-baglanti" href="/hesap/" data-t>Lisansım</a> <span data-t>sayfasından bu tarayıcıya kaydet.</span></p>
+        <p><span data-t>Eklenti, Kalibre Lab aboneliğiyle gelir.</span> <a id="abone-baglanti" href="/pricing" data-t>Aboneliği incele</a>. <span data-t>Abone olduysan lisans anahtarını</span> <a id="lisans-baglanti" href="/account" data-t>Lisansım</a> <span data-t>sayfasından bu tarayıcıya kaydet.</span></p>
       </div>
       <ol class="adim-liste">
         <li data-t>MT5'te <b>File → Open Data Folder</b> menüsünü aç; dosyayı <code>MQL5\Experts</code> klasörüne kopyala.</li>
         <li data-t><b>Navigator</b> penceresinde <b>Expert Advisors</b> başlığına sağ tıkla, <b>Refresh</b> de.</li>
         <li data-t><b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle; açılan pencereyi kapatma, 2. adımda kullanacağız.</li>
       </ol>
-      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="1" data-t>Kurdum, devam</button></div>
+      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="1" data-t>Devam</button></div>
     </li>
 
     <li class="kart adim" data-adim="2">
-      <h3><span class="adim-no">2</span><span data-t>Kodunu kopyala ve eklentiye yapıştır</span></h3>
+      <h3><span class="adim-no">2</span><span data-t>Eşleştirme kodunu yapıştır</span></h3>
       <p data-t>Eklenti penceresinde <b>Inputs</b> sekmesine geç ve aşağıdakileri yapıştır.</p>
       <label class="baglan-etiket" for="kod" data-t>Eşleştirme kodu</label>
       <div class="mt5-kod">
@@ -151,7 +152,7 @@
           <button type="button" class="kucuk" id="lisans-kopyala" data-t>Kopyala</button>
         </div>
       </div>
-      <p class="dipnot" data-t>Semboller satırını boş bırakırsan eklenti MT5'teki Market Watch listeni gönderir. Kod bu tarayıcıda saklanır; kimseyle paylaşma.</p>
+      <p class="dipnot" data-t>Semboller satırını boş bırakırsan eklenti Market Watch'taki ilk 12 sembolü gönderir. Kod bu tarayıcıda saklanır. Kodu kimseyle paylaşma.</p>
       <details class="mt5-kurulum gelismis">
         <summary data-t>Gelişmiş: röle adresi</summary>
         <p class="dipnot" data-t>Yalnız kendi sunucunu kullanıyorsan değiştir. Boş bırakılırsa bu sitenin rölesi kullanılır.</p>
@@ -160,7 +161,7 @@
     </li>
 
     <li class="kart adim" data-adim="3">
-      <h3><span class="adim-no">3</span><span data-t>MetaTrader 5'te izin ver</span></h3>
+      <h3><span class="adim-no">3</span><span data-t>WebRequest iznini ver</span></h3>
       <ol class="adim-liste">
         <li data-t><b>Tools → Options</b> menüsünü aç, <b>Expert Advisors</b> sekmesine geç.</li>
         <li data-t><b>Allow WebRequest for listed URL</b> kutusunu işaretle.</li>
@@ -171,14 +172,14 @@
         <button type="button" class="kucuk" id="izin-kopyala" data-t>Kopyala</button>
       </div>
       <p class="dipnot uyari" data-t>Adresi tam böyle yaz: boşluk yok, port numarasından önce iki nokta (:) var. Sonra <b>OK</b>'e bas; pencereyi çarpıyla kapatırsan izin kaydedilmez.</p>
-      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="3" data-t>İzni verdim, OK'e bastım</button></div>
+      <div class="satir-dugme"><button type="button" class="dugme ikincil" data-ilerle="3" data-t>Devam</button></div>
     </li>
 
     <li class="kart adim" data-adim="4">
-      <h3><span class="adim-no">4</span><span data-t>Bağlantı bekleniyor</span></h3>
+      <h3><span class="adim-no">4</span><span data-t>Bağlantı kontrolü</span></h3>
       <div class="mt5-durum" id="durum" data-sinif="bekleniyor">
         <i></i><div><b id="durum-baslik" data-t>Eklenti bekleniyor</b> <span class="rozet ikincil" id="durum-hesap" hidden></span>
-        <p id="durum-ayrinti" data-t>Henüz MT5'ten kalp atışı gelmedi.</p>
+        <p id="durum-ayrinti" data-t>MT5'ten henüz bağlantı yok. Eklentinin bir grafikte çalıştığını kontrol et.</p>
         <p id="durum-cozum" class="dipnot"></p></div>
       </div>
       <div id="bagli-kutu" hidden>

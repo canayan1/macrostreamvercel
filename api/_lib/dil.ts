@@ -1,5 +1,6 @@
-// Uçların kullanıcıya gösterilen mesajları Türkçe yazılır; ?dil=en ya da gövdede dil:'en' gelirse
-// burada İngilizceye çevrilir. Çevirisi olmayan mesaj Türkçe kalır (testler bunu yakalar).
+// Uçların kullanıcıya gösterilen mesajları kaynakta Türkçe yazılır ve burada İngilizceye çevrilir.
+// Varsayılan dil İngilizcedir (site küresel pazara İngilizce çıkar); ?dil=tr ya da gövdede dil:'tr'
+// gelirse Türkçe kalır. Çevirisi olmayan mesaj Türkçe kalır (testler bunu yakalar).
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const EN: Record<string, string> = {
@@ -12,7 +13,7 @@ export const EN: Record<string, string> = {
   'oturum hatalı': 'invalid session',
   'Lisans anahtarı hatalı.': 'The license key is invalid.',
   'Bu anahtara bağlı bir abonelik bulunamadı.': 'No subscription was found for this key.',
-  'Bu bir kapalı beta lisansı; yönetilecek bir ödeme ya da abonelik yok. Süre uzatma için bize yaz.': 'This is a closed beta licence; there is no payment or subscription to manage. Write to us to extend it.',
+  'Bu bir kapalı beta lisansı; yönetilecek bir ödeme ya da abonelik yok. Süre uzatma için bize yaz.': 'This is a closed beta license. There is no payment or subscription to manage. Email us to extend it.',
   'Abonelik sayfası açılamadı. Biraz sonra yeniden dene.': 'The subscription page could not be opened. Please try again shortly.',
   'İndirme henüz açılmadı.': 'Downloads are not open yet.',
   'İndirme geçici olarak kullanılamıyor.': 'Downloads are temporarily unavailable.',
@@ -22,9 +23,9 @@ export const EN: Record<string, string> = {
   'Aboneliğin sona ermiş. Eklentileri indirmek için aboneliğini yenile.': 'Your subscription has ended. Renew it to download the add-ons.',
   'Eklenti dosyası henüz yüklenmedi. Biraz sonra yeniden dene ya da bize yaz.': 'The add-on file has not been uploaded yet. Try again shortly or write to us.',
   'Bilinmeyen ürün.': 'Unknown product.',
-  'Bu lisans bu eklentiyi kapsamıyor. Davetli beta lisansı yalnız Kalibre Köprü\'yü kapsar; Kalibre Motor için tam abonelik gerekir.': 'This licence does not cover this add-on. An invited beta licence covers Kalibre Bridge only; Kalibre Engine needs a full subscription.',
+  'Bu lisans bu eklentiyi kapsamıyor. Davetli beta lisansı yalnız Kalibre Köprü\'yü kapsar; Kalibre Motor için tam abonelik gerekir.': 'This license does not cover this add-on. An invited beta license covers Kalibre Bridge only. Kalibre Engine needs a full subscription.',
   'Hesap numarası okunamadı.': 'The account number could not be read.',
-  'Lisans anahtarı hatalı. kalibremarkets.com/hesap sayfasından kopyalayın.': 'The license key is invalid. Copy it from kalibremarkets.com/en/license.',
+  'Lisans anahtarı hatalı. kalibremarkets.com/tr/account sayfasından kopyalayın.': 'The license key is invalid. Copy it from kalibremarkets.com/account.',
   'Çok sık deneme. Bir dakika sonra yeniden deneyin.': 'Too many attempts. Try again in a minute.',
   'Lisans sunucusu yapılandırılmamış.': 'The license server is not configured.',
   'Lisans sunucusu geçici olarak kullanılamıyor.': 'The license server is temporarily unavailable.',
@@ -45,10 +46,11 @@ export function cevir(metin: string, dil: string): string {
 }
 
 export function istekDili(req: VercelRequest): 'tr' | 'en' {
-  if (String(req.query?.dil ?? '') === 'en') return 'en';
+  const q = String(req.query?.dil ?? '');
+  if (q === 'tr' || q === 'en') return q;
   let g: any = req.body;
   if (typeof g === 'string') { try { g = JSON.parse(g); } catch { g = null; } }
-  return g && typeof g === 'object' && g.dil === 'en' ? 'en' : 'tr';
+  return g && typeof g === 'object' && g.dil === 'tr' ? 'tr' : 'en';
 }
 
 // res.json ({ hata }) ve düz metin res.send yanıtlarını istek diline çevirir.

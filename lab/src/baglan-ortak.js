@@ -51,7 +51,7 @@ export function cozumMetni(sinif) {
 export function baglanDugmesi(yer) {
   if (!yer || !globalThis.document) return { guncelle() {} };
   const a = globalThis.document.createElement('a');
-  a.href = `baglan.html${dil === 'en' ? '?dil=en' : ''}`;
+  a.href = `baglan.html${dil === 'tr' ? '?dil=tr' : ''}`;
   function guncelle() {
     // Aracı kurum (Tradier, Alpaca) etkin kaynaksa ayarın kayıtlı olması yeter (yoklama doğrudan kuruma
     // gider, kalp atışı yoktur).
@@ -62,7 +62,7 @@ export function baglanDugmesi(yer) {
     a.textContent = bagli ? ceviri('Bağlı') : ceviri('Bağlan');
     a.title = k === 'tradier' ? ceviri('Tradier bağlı. Bağlantı ayarları için tıkla.')
       : k === 'alpaca' ? ceviri('Alpaca bağlı. Bağlantı ayarları için tıkla.')
-      : bagli ? ceviri('MetaTrader bağlı. Bağlantı ayarları için tıkla.') : ceviri("MetaTrader'ı bağla");
+      : bagli ? ceviri('MetaTrader bağlı. Bağlantı ayarları için tıkla.') : ceviri("MetaTrader 5'i bağla");
   }
   guncelle();
   yer.prepend(a);

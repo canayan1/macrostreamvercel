@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Güvenlik: Kalibre Lab</title>
+<meta name="description" content="Kalibre Bridge MetaTrader 5 verisini nasıl şifreler, röle ve lisans sunucularımız neyi alır, korumanın sınırları nelerdir.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/security">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/security">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/security">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/security">
+<meta property="og:title" content="Güvenlik: Kalibre Lab">
+<meta property="og:description" content="Kalibre Bridge MetaTrader 5 verisini nasıl şifreler, röle ve lisans sunucularımız neyi alır, korumanın sınırları nelerdir.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security" aria-current="page">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/security" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Güvenlik</h1>
+<p class="giris">Kalibre Bridge, MetaTrader 5 verini göndermeden önce bilgisayarında şifreler. Röle sunucumuz sadece şifreli paketleri saklar ve bunları çözemez. Bu sayfa kullandığımız yöntemleri ve sınırlarını listeler.</p>
+
+<h2 id="kisaca">Özet</h2>
+<ul>
+  <li>Kalibre Bridge salt okunurdur. Emir açamaz, değiştiremez, kapatamaz.</li>
+  <li>Her paket AES-256-CTR ile şifrelenir ve HMAC-SHA256 ile imzalanır.</li>
+  <li>Anahtarlar eşleştirme kodundan türetilir. Kod sunucularımıza gönderilmez.</li>
+  <li>Röle sunucusu her paketi en geç 2 saat içinde siler.</li>
+  <li>Kalibre MT5 şifreni hiçbir zaman istemez.</li>
+  <li>Lisans kontrolü, lisans anahtarını ve MT5 hesap numaranı lisans sunucumuza gönderir.</li>
+</ul>
+
+<h2 id="kod">Eşleştirme kodu</h2>
+<p>Eşleştirme kodu, tarayıcının kriptografik rastgele sayı üreteciyle oluşturulan 32 baytlık bir sırdır. <code>KLB1</code> ile başlar. Kod iki yerde saklanır: bu tarayıcının yerel deposunda ve MT5'te eklentinin ayarlarında.</p>
+<p>Koddan HMAC-SHA256 ile üç anahtar türetilir: paketleri bulmaya yarayan bir <b>kanal kimliği</b>, bir <b>şifreleme anahtarı</b> ve bir <b>imza anahtarı</b>. Sunucu sadece kanal kimliğini görür. Kod ve diğer iki anahtar kanal kimliğinden hesaplanamaz.</p>
+
+<h2 id="sifreleme">Şifreleme ve imza</h2>
+<ul>
+  <li>İçerik CTR kipinde AES-256 ile şifrelenir. Her paket yeni bir başlangıç değeri (nonce) kullanır.</li>
+  <li>Her paket HMAC-SHA256 ile imzalanır. İmza kanal kimliğini, paketin yuvasını ve şifreli içeriği kapsar.</li>
+  <li>Tarayıcın şifreyi çözmeden önce imzayı doğrular. Değiştirilmiş, başka yuvaya taşınmış ya da başka bir kodla imzalanmış paketi reddeder.</li>
+  <li>Sembol adları şifrelenir. Paket adları hangi sembolleri izlediğini göstermez.</li>
+</ul>
+<p>Protokol üç ayrı yerde uygulanır: MT5 eklentisinde, laboratuvarda ve bağımsız bir referans uygulamasında. Otomatik testler, üçünün aynı girdiden aynı paketi ürettiğini kontrol eder.</p>
+
+<h2 id="sunucu">Röle sunucusu</h2>
+<table class="tablo">
+  <thead><tr><th>Röle sunucusunun gördüğü</th><th>Göremediği</th></tr></thead>
+  <tbody>
+    <tr><td>Şifreli paketler</td><td>Semboller, fiyatlar, mumlar</td></tr>
+    <tr><td>Paket boyutu ve geliş zamanı</td><td>Pozisyonlar, bakiye, işlem geçmişi</td></tr>
+    <tr><td>Kanal kimliği</td><td>Aracı kurum ve sunucu adı</td></tr>
+    <tr><td>İletim sırasında bağlantının IP adresi</td><td>Eşleştirme kodun</td></tr>
+  </tbody>
+</table>
+<p>Sunucu her paketin biçimini kontrol eder ve kısa ömürlü bir depoda tutar. Aynı türden yeni bir paket eskisinin yerini alır ve her paket en geç 2 saat içinde silinir. Paket içerikleri günlüklere yazılmaz. Kanal başına yazma sayısı sınırlıdır.</p>
+
+<h2 id="eklenti">Kalibre Bridge'in okuduğu veriler</h2>
+<p>Kalibre Bridge aşağıdaki bilgileri MT5'ten okur, şifreler ve gönderir. Pozisyonları, fiyatları ve işlem geçmişini eklentinin ayarlarından kapatabilirsin.</p>
+<ul>
+  <li>Sembollerinin kapanmış mumları: zaman, açılış, en yüksek, en düşük, kapanış ve tik hacmi. Semboller ayarı boşsa Market Watch'taki ilk 12 sembol kullanılır.</li>
+  <li>En çok 40 sembol için Market Watch fiyatları: alış, satış, zaman ve açıklama.</li>
+  <li>Açık pozisyonlar: sembol, yön, lot, açılış zamanı ve fiyatı, güncel fiyat, stop, hedef, kâr ve sihirli numara (magic number).</li>
+  <li>Son 90 günün kapanmış işlemleri (süre ayarlanabilir): sembol, yön, lot, açılış ve kapanış zamanı ile fiyatı, kâr, swap, komisyon, ücretler, sihirli numara ve yorum.</li>
+  <li>Aynı dönemdeki para yatırma, çekme ve diğer bakiye işlemleri, tutar ve zamanıyla.</li>
+  <li>Hesabın para birimi, bakiyesi ve varlığı (equity).</li>
+  <li>Aracı kurum adı, sunucu adı ve hesap türü (demo, gerçek ya da yarışma).</li>
+</ul>
+<p>Kalibre Bridge MT5 şifreni ve kişisel bilgilerini okumaz. Şifreli veri hesap numaranı içermez.</p>
+
+<h2 id="lisans">Lisans kontrolü</h2>
+<p>Kalibre Bridge ve Kalibre Engine lisansını lisans sunucumuzla kontrol eder. İstek lisans anahtarını, MT5 hesap numaranı, ürün adını ve eklentinin dilini içerir. Her lisansa bağlı MT5 hesap numaralarını, lisans başına en çok 2 tane olmak üzere saklarız. Bu istek şifreli veri kanalından ayrıdır.</p>
+
+<h2 id="araci">Alpaca ve Tradier</h2>
+<p>Alpaca ve Tradier API anahtarların ve token'ların bu tarayıcıda saklanır ve sadece Alpaca'ya ya da Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Kalibre bunlarla sadece okuma isteği yapar.</p>
+
+<h2 id="sinirlar">Sınırlar</h2>
+<ul>
+  <li><b>Eşleştirme kodunu bilen herkes verini okuyabilir.</b> Kodu paylaşma. Değiştirmek için laboratuvarda yeni kod üret ve eklentiye yapıştır. Eklenti bundan sonra eski kodu kullanmaz.</li>
+  <li><b>Cihaz güvenliği senin sorumluluğundadır.</b> Bilgisayarına ya da tarayıcına erişen biri çözülmüş veriyi görebilir.</li>
+  <li><b>Trafik üst verisi görünür.</b> Sunucu her kanalın paket boyutunu ve zamanını görür.</li>
+</ul>
+<p>Bir güvenlik açığı bildirmek için <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yaz.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#kisaca">Özet</a><a href="#kod">Eşleştirme kodu</a><a href="#sifreleme">Şifreleme ve imza</a><a href="#sunucu">Röle sunucusu</a><a href="#eklenti">Kalibre Bridge'in okuduğu veriler</a><a href="#lisans">Lisans kontrolü</a><a href="#araci">Alpaca ve Tradier</a><a href="#sinirlar">Sınırlar</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+
+</body>
+</html>

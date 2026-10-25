@@ -1,26 +1,26 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Kalibre Lab: stratejini kendi MetaTrader 5 verinle sına</title>
-<meta name="description" content="Kalibre Lab, MetaTrader 5 için bir strateji laboratuvarı. Fiyat geçmişin bilgisayarında şifrelenir, stratejin tarayıcında sınanır, son sınav MT5 Strategy Tester'da yapılır. Yatırım tavsiyesi değildir.">
+<title>Kalibre Lab: backtesting and risk tools for MetaTrader 5</title>
+<meta name="description" content="Build trading rules, backtest them on your broker's MetaTrader 5 data with spread and commission, and run the same rule file in MT5. End-to-end encrypted. Not investment advice.">
 <link rel="canonical" href="https://kalibremarkets.com/">
-<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/">
-<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en">
-<meta property="og:title" content="Kalibre Lab: stratejini kendi MetaTrader 5 verinle sına">
-<meta property="og:description" content="Varsayımı yaz, kendi verinle sına, riski ölç. Veri senin bilgisayarında şifrelenir; anahtar yalnız sende kalır.">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/">
+<meta property="og:title" content="Kalibre Lab: backtesting and risk tools for MetaTrader 5">
+<meta property="og:description" content="Build trading rules, backtest them on your broker's data and run the same rule file in MT5. End-to-end encrypted.">
 <meta property="og:url" content="https://kalibremarkets.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
-<meta property="og:locale" content="tr_TR">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kalibre Lab","applicationCategory":"FinanceApplication","operatingSystem":"Windows, macOS (MetaTrader 5)","url":"https://kalibremarkets.com","description":"MetaTrader 5 için strateji laboratuvarı: kullanıcının kendi fiyat verisiyle, uçtan uca şifreli."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -113,19 +113,18 @@
 
 <header class="ust">
   <div class="kap">
-    <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
-    <nav aria-label="Ana menü">
-      <a href="/lab">Laboratuvar</a>
-      <a href="/lab/panom.html">Panom</a>
-      <a href="/prop">Prop kalkanı</a>
-      <a href="/kurulum">Kurulum</a>
-      <a href="/guvenlik">Güvenlik</a>
-      <a href="/egitim">Eğitim</a>
-      <a href="/pro">Abonelik</a>
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Main menu">
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </nav>
-    <a class="dil" href="/en" hreflang="en" lang="en">EN</a>
-    <a class="dugme ikincil kucuk baglan" href="/baglan">MetaTrader'ı bağla</a>
-    <a class="dugme kucuk" href="/lab">Laboratuvarı aç</a>
+    <a class="dil" href="/tr" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
+    <a class="dugme kucuk" href="/lab">Open the lab</a>
   </div>
 </header>
 
@@ -133,52 +132,52 @@
 <section class="acilis">
   <div class="kap">
     <div>
-      <h1>Stratejine para bağlamadan önce onu kendi verinle sına.</h1>
-      <p class="giris">Kalibre Lab, MetaTrader 5 için bir strateji laboratuvarıdır. Fiyat geçmişin kendi bilgisayarında şifrelenir, stratejin tarayıcında sınanır. Varsayımı yazarsın, veriyle sınarsın, riski ölçersin. Karar yine senindir.</p>
+      <h1>Backtest your MetaTrader 5 strategies on your broker's data.</h1>
+      <p class="giris">Build entry and exit rules, backtest them with spread and commission, and run the same rule file in MT5. Data from MT5 is end-to-end encrypted.</p>
       <div class="eylem">
-        <a class="dugme" href="/lab">Laboratuvarı aç</a>
-        <a class="dugme ikincil" href="/kurulum">Kurulumu oku</a>
+        <a class="dugme" href="/lab">Open the lab</a>
+        <a class="dugme ikincil" href="/setup">View setup guide</a>
       </div>
-      <p class="not">MetaTrader 5 için. Sinyal satmaz, para tutmaz. Yatırım tavsiyesi değildir.</p>
+      <p class="not">Software only. No signals. No client funds held. Not investment advice.</p>
     </div>
 
-    <article class="notu" id="karar-notu" aria-label="Örnek karar notu">
+    <article class="notu" id="karar-notu" aria-label="Sample decision memo">
       <div class="notu-bas">
-        <h2>Karar notu</h2>
-        <span>Bu sayfada hesaplanır</span>
+        <h2>Decision memo</h2>
+        <span>Calculated on this page</span>
       </div>
       <dl>
-        <dt>Varsayım</dt>
-        <dd>Hızlı ortalama yavaşın üstündeyken al, altındayken sat.</dd>
-        <dt>Veri</dt>
-        <dd><span class="sentetik">SENTETİK</span>3.000 saatlik örnek seri, no. <span data-s="serino" class="sayi">1</span>. Gerçek bir piyasayı göstermez.<br><button type="button" class="seri-dugme" data-eylem="yeni-seri">Başka bir örnek seri üret</button></dd>
+        <dt>Assumption</dt>
+        <dd>Buy while the fast average is above the slow one, sell while it is below.</dd>
+        <dt>Data</dt>
+        <dd><span class="sentetik">SYNTHETIC</span>3,000 hourly sample candles, series no. <span data-s="serino" class="sayi">1</span>. Not a real market.<br><button type="button" class="seri-dugme" data-eylem="yeni-seri">Generate another sample series</button></dd>
       </dl>
       <div class="ayar">
-        <label>Hızlı ortalama <output data-deger="hizli">20</output>
+        <label>Fast average <output data-deger="hizli">20</output>
           <input type="range" name="hizli" min="5" max="60" step="1" value="20"></label>
-        <label>Yavaş ortalama <output data-deger="yavas">100</output>
+        <label>Slow average <output data-deger="yavas">100</output>
           <input type="range" name="yavas" min="30" max="250" step="5" value="100"></label>
       </div>
-      <svg viewBox="0 0 560 180" role="img" aria-label="Maliyetsiz ve maliyetli sermaye eğrileri">
+      <svg viewBox="0 0 560 180" role="img" aria-label="Equity curves before and after costs">
         <line data-cizgi="taban" x1="0" x2="560" y1="90" y2="90" stroke="#c4ccd6" stroke-dasharray="3 4"/>
         <path data-cizgi="maliyetsiz" fill="none" stroke="#7d8a99" stroke-width="1.6"/>
         <path data-cizgi="maliyetli" fill="none" stroke="#1f7a5c" stroke-width="2"/>
       </svg>
       <div class="lejant">
-        <span><i style="background:#7d8a99"></i>Maliyetsiz</span>
-        <span><i style="background:#1f7a5c"></i>İşlem başına 1 pip maliyetle</span>
-        <span><i style="background:#c4ccd6"></i>Başlangıç sermayesi</span>
+        <span><i style="background:#7d8a99"></i>Before costs</span>
+        <span><i style="background:#1f7a5c"></i>With 1 pip cost per trade</span>
+        <span><i style="background:#c4ccd6"></i>Starting capital</span>
       </div>
       <table>
-        <thead><tr><th></th><th>Maliyetsiz</th><th>1 pip maliyetle</th></tr></thead>
+        <thead><tr><th></th><th>Before costs</th><th>With 1 pip cost</th></tr></thead>
         <tbody>
-          <tr><td>Toplam getiri</td><td data-s="getiri0" class="sayi"></td><td data-s="getiri1" class="sayi"></td></tr>
-          <tr><td>En büyük düşüş</td><td data-s="dusus0" class="sayi"></td><td data-s="dusus1" class="sayi"></td></tr>
-          <tr><td>İşlem sayısı</td><td data-s="islem" class="sayi" colspan="2"></td></tr>
+          <tr><td>Total return</td><td data-s="getiri0" class="sayi"></td><td data-s="getiri1" class="sayi"></td></tr>
+          <tr><td>Largest drawdown</td><td data-s="dusus0" class="sayi"></td><td data-s="dusus1" class="sayi"></td></tr>
+          <tr><td>Number of trades</td><td data-s="islem" class="sayi" colspan="2"></td></tr>
         </tbody>
       </table>
       <p class="cumle" data-s="cumle"></p>
-      <p class="dipnot">Kaldıraçsız, tam pozisyon. Laboratuvardaki hızlı prova da maliyetsizdir; son sınav MT5 Strategy Tester'da kendi aracı kurumunun spread ve komisyonuyla yapılır.</p>
+      <p class="dipnot">Simulated results on SYNTHETIC data. Unleveraged, full position. Hypothetical performance has inherent limitations and does not represent actual trading.</p>
     </article>
   </div>
 </section>
@@ -187,14 +186,14 @@
   <div class="kap">
     <div class="kimin">
       <a href="/prop">
-        <h3>Prop firması sınavındaysan</h3>
-        <p>Hesapların çoğu tek bir kötü günden kaybedilir. Kalkan günlük ve toplam kayıp sınırlarını her tikte izler, lotu sınıra göre küçültür ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları hazır.</p>
-        <span>Prop kalkanını incele</span>
+        <h3>Prop firm challenges</h3>
+        <p>Prop Shield checks daily and total loss limits on every tick and sizes lots to the remaining room. Presets for FTMO and The5ers.</p>
+        <span>See Prop Shield</span>
       </a>
       <a href="/forex">
-        <h3>Kendi hesabınla işlem yapıyorsan</h3>
-        <p>Kaybın en güçlü nedeni kaldıraç ve pozisyon büyüklüğü. Risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzelt, sonra stratejiyi sına.</p>
-        <span>Bireysel forex için</span>
+        <h3>Your own trading account</h3>
+        <p>Set a risk per trade, volatility-scaled lot size and a daily loss limit, then backtest the rule with them.</p>
+        <span>Risk tools for retail forex</span>
       </a>
     </div>
   </div>
@@ -203,21 +202,21 @@
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Getiriden önce risk sorulur.</h2>
-      <p>Bir bankanın hazine masasında pozisyon, kazandırabileceği paraya göre değil, en kötü gününde ne kaybettirebileceğine göre değerlendirilir. Bir ekonomist de tek bir dönemin sonucuna değil, o sonucun hangi koşullarda tekrar edeceğine bakar. Kalibre Lab bu iki soruyu her testin başına koyar.</p>
+      <h2>Risk metrics in every backtest</h2>
+      <p>Max drawdown, position size and volatility regime are shown next to return in every test.</p>
     </div>
     <div class="ilkeler">
       <div>
-        <h3>Önce en kötü dönem</h3>
-        <p>En büyük düşüş getiriyle aynı satırda durur. Bir stratejiyi, en kötü döneminde taşıyabileceğin kadar büyüklükle düşünürsün.</p>
+        <h3>Max drawdown</h3>
+        <p>The largest peak-to-trough fall is reported on the same line as total return.</p>
       </div>
       <div>
-        <h3>Risk bütçesiyle büyüklük</h3>
-        <p>Pozisyon büyüklüğü bir histen değil, bakiyenin yüzde kaçını riske attığından, stop mesafesinden ve piyasanın o anki oynaklığından hesaplanır.</p>
+        <h3>Risk-based position sizing</h3>
+        <p>Lot size is calculated from the share of balance you risk, the stop distance and current volatility.</p>
       </div>
       <div>
-        <h3>Rejim değişir</h3>
-        <p>Sakin dönemde işleyen kural, oynaklık sıçradığında çalışmayabilir. Oynaklık modelleri, stratejinin hangi koşulda test edildiğini görünür kılar.</p>
+        <h3>Volatility regimes</h3>
+        <p>EWMA, Yang-Zhang and GARCH models show the volatility conditions in each test period.</p>
       </div>
     </div>
   </div>
@@ -226,21 +225,21 @@
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Kurulum üç adımdır.</h2>
-      <p>Verin MetaTrader 5'ten çıkar, laboratuvara şifreli gelir. Kurulumun ayrıntısı ekran ekran <a href="/kurulum">kurulum sayfasında</a>.</p>
+      <h2>Set up in 3 steps</h2>
+      <p>Kalibre Bridge encrypts your data in MT5 before sending it. The <a href="/setup">setup guide</a> shows each screen.</p>
     </div>
     <ol class="adimlar">
       <li>
-        <h3>Eklentiyi kur</h3>
-        <p>Kalibre Köprü eklentisini MetaTrader 5'e ekle. Eklenti işlem açmaz; yalnız fiyat geçmişini ve açık pozisyonlarını okur.</p>
+        <h3>Install Kalibre Bridge</h3>
+        <p>Add Kalibre Bridge to MetaTrader 5. The add-on is read-only. It cannot place, modify or close orders.</p>
       </li>
       <li>
-        <h3>Kodu yapıştır, izni ver</h3>
-        <p>Laboratuvarın ürettiği eşleştirme kodunu eklentiye yapıştır. MT5 ayarlarında Kalibre adresine bir kez izin ver.</p>
+        <h3>Paste the pairing code</h3>
+        <p>Copy the pairing code from the lab into the add-on. In MT5 options, allow WebRequest for the Kalibre address.</p>
       </li>
       <li>
-        <h3>Stratejini sına</h3>
-        <p>Kendi aracı kurumunun mumları laboratuvara düşer. Kuralını kur, hızlı provayı çalıştır, beğendiğini MT5'te test et.</p>
+        <h3>Backtest a rule</h3>
+        <p>Your broker's candles load into the lab. Build a rule, run Quick Backtest, then confirm it in MT5 Strategy Tester.</p>
       </li>
     </ol>
   </div>
@@ -249,33 +248,33 @@
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Laboratuvarda ne var?</h2>
-      <p>Strateji bir kural dosyasıdır. Laboratuvarda kurulur, tarayıcıda prova edilir, MetaTrader 5'te aynı dosyayla çalıştırılır. Arada yeniden yazılan bir şey yoktur.</p>
+      <h2>Features</h2>
+      <p>One rule file runs in the lab, in your browser and in MetaTrader 5.</p>
     </div>
     <div class="araclar">
       <div>
-        <h3>Kural dosyası</h3>
-        <p>SMA, EMA, RSI, ATR, ADX, Bollinger, MACD ve oynaklık göstergeleriyle giriş, çıkış, stop ve hedef kuralları. Kurduğun kural düz Türkçe cümle olarak da yazılır.</p>
+        <h3>Strategy Builder</h3>
+        <p>Entry, exit, stop and target rules with SMA, EMA, RSI, ATR, ADX, Bollinger Bands, MACD and volatility indicators. Each rule is shown as a plain-language summary.</p>
       </div>
       <div>
-        <h3>Hızlı prova</h3>
-        <p>Kuralı saniyeler içinde kendi mumlarında dener. Tarayıcıda çalışır, maliyetleri içermez; fikri elemek için vardır, onaylamak için değil.</p>
+        <h3>Quick Backtest</h3>
+        <p>Runs a rule on your candles in seconds, in your browser. Add spread, commission and slippage to see net results.</p>
       </div>
       <div>
-        <h3>Oynaklık laboratuvarı</h3>
-        <p>EWMA, Yang-Zhang ve GARCH modelleri. Oynaklığın ne zaman kümelendiğini ve stratejinin hangi rejimde test edildiğini gösterir.</p>
+        <h3>Volatility Lab</h3>
+        <p>EWMA, Yang-Zhang and GARCH models for the series you test.</p>
       </div>
       <div>
-        <h3>MetaTrader 5'te son sınav</h3>
-        <p>Aynı kural dosyası MT5 Strategy Tester'da, aracı kurumunun spread, komisyon ve işlem saatleri ayarlarıyla sınanır.</p>
+        <h3>MT5 Strategy Tester</h3>
+        <p>Kalibre Engine runs the same rule file in Strategy Tester with your broker's spread, commission and trading hours.</p>
       </div>
       <div>
-        <h3>Canlı bağlantı</h3>
-        <p>Eklenti açıkken yeni kapanan her mum ve açık pozisyonların laboratuvara şifreli olarak gelir. Bağlantının ne kadar taze olduğu her an görünür.</p>
+        <h3>Dashboard</h3>
+        <p>Balance, open positions, Market Watch quotes and the last 90 days of closed trades from your MT5, Alpaca or Tradier account.</p>
       </div>
       <div>
-        <h3>Kendi dosyan</h3>
-        <p>Eklentiyi kurmadan da çalışabilirsin: MT5'ten dışa aktardığın bir CSV ya da JSON dosyasını sürükleyip bırakman yeter.</p>
+        <h3>CSV import</h3>
+        <p>Drag a CSV or JSON candle file into the lab. Your browser reads it locally.</p>
       </div>
     </div>
   </div>
@@ -284,50 +283,39 @@
 <section class="bolum">
   <div class="kap">
     <div class="bolum-bas">
-      <h2>Verin senin. Anahtar da.</h2>
-      <p>Fiyatların bilgisayarından şifrelenmiş olarak çıkar ve yalnız senin tarayıcında açılır. Anahtar eşleştirme kodudur; bizde bir kopyası yoktur. Ayrıntılar <a href="/guvenlik">güvenlik sayfasında</a>.</p>
+      <h2>End-to-end encryption</h2>
+      <p>Data is encrypted with AES-256 in MT5 and decrypted only in your browser. The keys are derived from your pairing code, and we do not have a copy. Read the <a href="/security">security details</a>.</p>
     </div>
     <div class="gorur">
       <div class="evet">
-        <h3>Sunucumuzun gördüğü</h3>
+        <h3>What our relay server sees</h3>
         <ul>
-          <li>Okunamayan, şifreli paketler</li>
-          <li>Paketlerin boyutu ve geliş zamanı</li>
-          <li>Rastgele görünen bir kanal numarası</li>
+          <li>Encrypted packets</li>
+          <li>Packet size and arrival time</li>
+          <li>A channel ID derived from your code</li>
         </ul>
       </div>
       <div class="hayir">
-        <h3>Sunucumuzun göremediği</h3>
+        <h3>What it cannot see</h3>
         <ul>
-          <li>Hangi sembolü izlediğin ve fiyatlar</li>
-          <li>Pozisyonların, bakiyen, kâr ve zararın</li>
-          <li>Hesap numaran ve şifren</li>
-          <li>Eşleştirme kodun, yani anahtar</li>
+          <li>Symbols and prices</li>
+          <li>Positions, balance and trade history</li>
+          <li>Your pairing code</li>
+          <li>Your MT5 password, which is never requested</li>
         </ul>
       </div>
     </div>
-    <p class="not" style="margin-top:20px">Paketler en geç iki saat sonra kendiliğinden silinir.</p>
+    <p class="not" style="margin-top:20px">The relay server deletes each packet within 2 hours. The encrypted data does not include your account number. The license check sends your license key and MT5 account number to our license server.</p>
   </div>
 </section>
 
-<section class="bolum">
-  <div class="kap degil">
-    <h2>Kalibre Lab ne değildir?</h2>
-    <ul>
-      <li><b>Yatırım tavsiyesi değildir.</b> Hangi kuralı kuracağına, hangi sembolde ne zaman işlem yapacağına sen karar verirsin.</li>
-      <li><b>Senin yerine karar vermez.</b> Köprü eklentisi yalnız okur. Kalibre Motor yalnız senin kurduğun kural dosyasıyla, senin hesabında ve senin başlattığın an işlem açar.</li>
-      <li><b>Piyasa verisi satmaz.</b> Fiyatlar senin aracı kurumundan, senin hesabından gelir. Biz hiçbir fiyat yayınlamayız.</li>
-      <li><b>Getiri vaat etmez.</b> Geçmişte işleyen bir kural gelecekte işlemeyebilir. Laboratuvar bunu görmeni kolaylaştırmak için vardır.</li>
-    </ul>
-  </div>
-</section>
 
 <section class="bolum son">
   <div class="kap">
-    <h2>Kalibre Lab (beta): aylık 399 TL / 19 USD / 17 EUR.</h2>
+    <h2>Kalibre Lab is in beta. Planned price at launch: $19 per month.</h2>
     <div class="eylem" style="margin:0">
-      <a class="dugme" href="/pro">Aboneliği incele</a>
-      <a class="dugme ikincil" href="/lab">Örnek veriyle dene</a>
+      <a class="dugme" href="/pricing#waitlist">Join the waitlist</a>
+      <a class="dugme ikincil" href="mailto:markets@kalibrefin.com?subject=Kalibre%20Lab%20beta%20access">Request beta access</a>
     </div>
   </div>
 </section>
@@ -336,35 +324,33 @@
 <footer class="alt">
   <div class="kap">
     <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
-      <p>MetaTrader 5 için strateji laboratuvarı.</p>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
     </div>
     <div>
-      <h4>Ürün</h4>
-      <a href="/lab">Laboratuvar</a>
-      <a href="/lab/panom.html">Panom</a>
-      <a href="/prop">Prop kalkanı</a>
-      <a href="/forex">Bireysel forex</a>
-      <a href="/kurulum">Kurulum</a>
-      <a href="/guvenlik">Güvenlik</a>
-      <a href="/pro">Abonelik</a>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </div>
     <div>
-      <h4>Öğren</h4>
-      <a href="/egitim">Eğitim</a>
-      <a href="/metodoloji">Metodoloji</a>
-      <a href="/grafik-oku">Grafik okuma testi</a>
-      <a href="/trading/onyargi-testi">Önyargı testi</a>
+      <h4>Learn</h4>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
     </div>
     <div>
-      <h4>Kalibre</h4>
-      <a href="/hakkinda">Hakkında</a>
-      <a href="/iletisim">İletişim</a>
-      <a href="/kullanim-sartlari">Kullanım şartları</a>
-      <a href="/gizlilik">Gizlilik</a>
-      <a href="/risk-bildirimi">Risk bildirimi</a>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of use</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>
 

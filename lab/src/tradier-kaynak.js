@@ -13,7 +13,7 @@ export const SEMBOL_RE = /^[A-Z0-9.\-/]{1,16}$/;
 export function araciSecici(kok, kaynak, { yukle, hata, istenenSembol = '', zamanDilimi = 'D1' } = {}) {
   const t = ARACI[kaynak];
   const ayar = t.oku();
-  const ek = dil === 'en' ? '&dil=en' : '';
+  const ek = dil === 'tr' ? '&dil=tr' : '';
   const on = kaynak === 'tradier' ? 'tr' : 'ap';
   if (!ayar) {
     const m = ceviri('{a} bağlı değil.', { a: t.ad });

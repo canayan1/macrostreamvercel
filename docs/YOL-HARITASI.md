@@ -10,7 +10,7 @@ açık onayla yapılır.
 ## 1. Canlıya hazırlık (bu hafta)
 
 Can:
-- Stripe test modu, sonra canlı mod: ürün, tek aylık fiyat 399 TRY + para birimi seçenekleri
+- Stripe test modu, sonra canlı mod: ürün, tek aylık fiyat 19 USD + para birimi seçeneği 17 EUR (TRY yok; ödemeler şirket kurulana kadar kapalı)
   19 USD / 17 EUR, webhook, müşteri portalı, "Kalibre ilk testçiler" kuponu → anahtarlar Vercel'e
 - Upstash Redis (Vercel Storage)
 - Lisans sırrı (`openssl rand -hex 32`) → Vercel + LisansSirri.mqh
@@ -93,7 +93,7 @@ Stripe değil Taxually gibi bir hizmet gerekir.
 
 - Segment: prop sınavı + bireysel forex, iki tanıtım sayfası
 - Kurucu kimliği tanıtımda yok
-- İki dil baştan; 399 TL / 19 USD / 17 EUR
+- Küresel pazar, İngilizce kök (Türkçe /tr); 19 USD / 17 EUR (25.10.2026, TL kaldırıldı)
 - Ödeme Stripe (kurucu yurt dışında); MQL5 Market yalnız vitrin
 - Hazır stratejiler eğitim örneği; risk parametreleri kullanıcıda (SPK)
 

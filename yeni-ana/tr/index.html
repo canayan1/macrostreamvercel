@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kalibre Lab (beta): MetaTrader 5, Alpaca ve Tradier için strateji testi</title>
+<meta name="description" content="MetaTrader 5, Alpaca ya da Tradier hesabını bağla, kural kur, maliyetlerle backtest yap ve ayrı eğitim ve test dönemleriyle optimize et. Yatırım tavsiyesi değildir.">
+<link rel="canonical" href="https://kalibremarkets.com/yeni-ana/tr">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/yeni-ana">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/yeni-ana/tr">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/yeni-ana">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Kalibre Lab (beta): MetaTrader 5, Alpaca ve Tradier için strateji testi">
+<meta property="og:description" content="MetaTrader 5, Alpaca ya da Tradier hesabını bağla, kural kur, maliyetlerle backtest yap ve ayrı eğitim ve test dönemleriyle optimize et. Yatırım tavsiyesi değildir.">
+<meta property="og:url" content="https://kalibremarkets.com/yeni-ana/tr">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kalibre Lab","applicationCategory":"FinanceApplication","operatingSystem":"Web, MetaTrader 5","url":"https://kalibremarkets.com","offers":{"@type":"Offer","price":"19","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<link rel="stylesheet" href="/static/ana/ana.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/yeni-ana" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main>
+<section class="giris-bolum">
+  <div class="kap">
+    <div>
+      <h1>MetaTrader 5, Alpaca ve Tradier hesapları için strateji testi</h1>
+      <p class="giris">Hesabını bağla, kuralını kur, brüt ve net sonucu ayrı eğitim ve test dönemlerinde gör. Kalibre sinyal satmaz.</p>
+      <div class="eylem"><a class="dugme" href="/tr/connect">MetaTrader 5'i bağla</a><a class="dugme ikincil" href="mailto:markets@kalibrefin.com?subject=Kalibre%20Lab%20beta%20erisimi">Beta erişimi iste</a></div>
+      <p class="not">Kalibre Lab beta sürümündedir. Yalnızca yazılım. Yatırım tavsiyesi değildir.</p>
+    </div>
+    <figure style="margin:0">
+      <svg class="akis" viewBox="0 0 730 480" role="img" aria-labelledby="akis-baslik akis-aciklama"><title id="akis-baslik">Veri akışı</title><desc id="akis-aciklama">MetaTrader 5 verisi Kalibre röle sunucusundan şifreli geçer ve şifresi sadece tarayıcında çözülür. Alpaca ve Tradier verisini tarayıcın doğrudan ister. CSV dosyaları yerelde okunur.</desc><path class="yol role" d="M180 60 C 230 60, 230 432, 300 432"/><path class="yol role" d="M420 432 C 470 432, 470 205, 470 205"/><path class="yol" d="M180 150 C 300 150, 360 175, 470 175"/><path class="yol" d="M180 240 C 300 240, 360 230, 470 230"/><path class="yol" d="M180 330 C 300 330, 380 280, 470 280"/><g class="kaynak"><rect x="10" y="30" width="170" height="60" rx="8"/><text x="26" y="56">MetaTrader 5</text><text class="alt" x="26" y="75">Kalibre Bridge eklentisi</text></g><g class="kaynak"><rect x="10" y="120" width="170" height="60" rx="8"/><text x="26" y="146">Alpaca</text><text class="alt" x="26" y="165">ABD hisse ve kripto</text></g><g class="kaynak"><rect x="10" y="210" width="170" height="60" rx="8"/><text x="26" y="236">Tradier</text><text class="alt" x="26" y="255">ABD hisse, kişisel kullanım</text></g><g class="kaynak"><rect x="10" y="300" width="170" height="60" rx="8"/><text x="26" y="326">CSV</text><text class="alt" x="26" y="345">mum dosyası</text></g><g class="tarayici"><rect class="dis" x="470" y="110" width="250" height="230" rx="10"/><g transform="translate(492 136)"><rect x="0" y="6" width="16" height="12" rx="2" fill="#1f7a5c"/><path d="M3 6 V3 a5 5 0 0 1 10 0 V6" fill="none" stroke="#1f7a5c" stroke-width="2"/></g><text x="518" y="150">Tarayıcın</text><text class="satir" x="492" y="186">Panom</text><text class="satir" x="492" y="212">Strateji Kurucu</text><text class="satir" x="492" y="238">Backtest ve optimizasyon</text><text class="satir" x="492" y="264">API anahtarları burada saklanır</text></g><g class="sunucu"><rect x="300" y="400" width="120" height="64" rx="8"/><text class="baslik" x="312" y="424">Kalibre röle sunucusu</text><text x="312" y="444">sadece şifreli paket</text></g><text class="etiket" x="196" y="390">MT5: uçtan uca AES-256</text></svg>
+      <ul class="akis-liste"><li><b>MetaTrader 5</b> Kalibre Bridge eklentisi; MT5: uçtan uca AES-256</li><li><b>Alpaca</b> ABD hisse ve kripto</li><li><b>Tradier</b> ABD hisse, kişisel kullanım</li><li><b>CSV</b> mum dosyası</li><li><b>Tarayıcın</b> Panom, Strateji Kurucu, Backtest ve optimizasyon, API anahtarları burada saklanır</li><li><b>Kalibre röle sunucusu</b> sadece şifreli paket</li></ul>
+      <figcaption class="akis-not">Röle sunucusu MT5 paketlerini çözemez ve en geç 2 saat içinde siler. Alpaca ve Tradier istekleri Kalibre sunucularından geçmez.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="bolum" id="entegrasyonlar">
+  <div class="kap">
+    <div class="bolum-bas"><h2>Entegrasyonlar</h2><p>Kalibre Lab 4 kaynağa bağlanır. Veri hesabından ya da dosyalarından gelir. Kalibre piyasa verisi yayınlamaz.</p></div>
+    <table class="entegrasyon">
+      <thead><tr><th scope="col">Platform</th><th scope="col">Veri</th><th scope="col">Bağlantı</th><th scope="col">Kimlik bilgisi</th><th scope="col">Durum</th></tr></thead>
+      <tbody><tr><th scope="row"><span class="marka-ad">MetaTrader 5</span></th><td data-baslik="Veri">Hesap, açık pozisyonlar, son 90 günün kapanmış işlemleri, Market Watch fiyatları, mumlar. Kalibre Engine kural dosyanı terminalinde çalıştırır.</td><td data-baslik="Bağlantı">Kalibre Bridge eklentisi ve eşleştirme kodu</td><td data-baslik="Kimlik bilgisi">Eşleştirme kodu tarayıcında ve eklentide. Veri uçtan uca şifreli.</td><td data-baslik="Durum"><span class="durum-rozet beta">Beta</span></td></tr><tr><th scope="row"><span class="marka-ad">Alpaca</span></th><td data-baslik="Veri">Hesap, pozisyonlar, kapanmış işlemler, izleme listesi, ABD hisse ve kripto mumları (ücretsiz planda IEX verisi). Paper ya da canlı hesap.</td><td data-baslik="Bağlantı">API anahtarın</td><td data-baslik="Kimlik bilgisi">Tarayıcında saklanır. İstekler doğrudan Alpaca'ya gider.</td><td data-baslik="Durum"><span class="durum-rozet beta">Beta</span></td></tr><tr><th scope="row"><span class="marka-ad">Tradier</span></th><td data-baslik="Veri">Hesap, pozisyonlar, kapanmış işlemler, izleme listesi, ABD hisse mumları. Tradier'in koşullarına göre kişisel kullanım.</td><td data-baslik="Bağlantı">Erişim token'ın</td><td data-baslik="Kimlik bilgisi">Tarayıcında saklanır. İstekler doğrudan Tradier'e gider.</td><td data-baslik="Durum"><span class="durum-rozet beta">Beta</span></td></tr><tr><th scope="row"><span class="marka-ad">CSV</span></th><td data-baslik="Veri">MT5'ten ya da başka bir kaynaktan dışa aktarılan mum dosyaları.</td><td data-baslik="Bağlantı">Sürükle bırak</td><td data-baslik="Kimlik bilgisi">Tarayıcında yerel olarak okunur</td><td data-baslik="Durum"><span class="durum-rozet beta">Beta</span></td></tr></tbody>
+    </table>
+    <p class="marka-not">MetaTrader, Alpaca ve Tradier sahiplerinin markalarıdır. Kalibre Markets; MetaQuotes, Alpaca ya da Tradier ile bağlantılı değildir.</p>
+  </div>
+</section>
+
+<section class="bolum" id="gosterim">
+  <div class="kap">
+    <div class="bolum-bas"><h2>Canlı gösterim</h2><p>Bu iki pano laboratuvarın modüllerini tarayıcında çalıştırır. Veri SENTETİK, gerçek bir hesap ya da piyasa değildir.</p></div>
+    <p data-hata hidden class="kutu">Gösterim yüklenemedi. Laboratuvarı doğrudan aç.</p>
+    <div class="gosterim">
+      <section aria-labelledby="g-panom">
+        <h3 id="g-panom">Panom<span class="sentetik-rozet">SENTETİK</span></h3>
+        <p class="alt-baslik">Bağlı bir hesabın özeti: bakiye, fiyatlar ve kapanmış işlemler.</p>
+        <div class="hesap-ozet">
+          <div><b data-p="bakiye">-</b><span>Bakiye</span></div>
+          <div><b data-p="varlik">-</b><span>Varlık</span></div>
+          <div><b data-p="net">-</b><span>Kapanan işlemler, net</span></div>
+        </div>
+        <ul class="kur-listesi" data-p="kurlar"></ul>
+        <div class="egri-kutu"><p class="egri-baslik">Bakiye eğrisi</p><canvas data-p="egri" aria-label="Bakiye eğrisi"></canvas></div>
+        <p class="gosterim-dipnot" data-p="ozet"></p>
+        <a class="dugme ikincil kucuk" href="/lab/panom?dil=tr">Panom'u örnek veriyle aç</a>
+      </section>
+      <section aria-labelledby="g-opt">
+        <h3 id="g-opt">Optimizasyon<span class="sentetik-rozet">SENTETİK</span></h3>
+        <p class="alt-baslik">EMA trend örneği: 1.500 mumda hızlı ve yavaş ortalamanın 36 bileşimi. Hücre rengi eğitim döneminin puanını gösterir.</p>
+        <div class="ayarlar">
+          <label>Örnek seri <output data-deger="seri">1</output><input type="range" name="seri" min="1" max="12" step="1" value="3"></label>
+          <label>İşlem başına spread <output data-deger="spread">-</output><input type="range" name="spread" min="0" max="3" step="1" value="0"></label>
+        </div>
+        <div class="isi-kutu"><canvas data-p="isi" aria-label="Optimizasyon"></canvas></div>
+        <div class="isi-eksen"><span>Hızlı ortalama</span><span>satırlar: yavaş ortalama</span></div>
+        <div class="sonuc-satiri">
+          <div><b data-p="ayar">-</b><span>En yüksek eğitim puanı</span></div>
+          <div><b data-p="egitim">-</b><span>Eğitim getirisi</span></div>
+          <div><b data-p="sinama">-</b><span>Test getirisi</span></div>
+        </div>
+        <p class="alt-baslik" data-p="etiket"></p>
+        <ul class="gosterim-uyari" data-p="uyarilar" aria-live="polite"></ul>
+        <a class="dugme ikincil kucuk" href="/lab/optimizasyon?dil=tr">Optimizasyonu laboratuvarda aç</a>
+      </section>
+    </div>
+    <p class="gosterim-dipnot">Simülasyon sonucu. Varsayımsal performansın doğal sınırları vardır, geçmişe bakılarak seçilir ve gerçek işlemleri temsil etmez. Hiçbir hesabın benzer sonuç elde edeceği iddia edilmez. Ayarı sen seçersin. Kalibre ayar önermez.</p>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas"><h2>Nasıl çalışır</h2></div>
+    <ol class="adim-cizgisi"><li><h3>Bağlan</h3><p>MetaTrader 5, Alpaca ya da Tradier hesabını bağla. Şifre gerekmez.</p><a href="/tr/connect">Bağlan</a></li><li><h3>Hesabını incele</h3><p>Panom'da bakiye, fiyatlar, açık pozisyonlar ve kapanmış işlemler.</p><a href="/lab/panom?dil=tr">Panom</a></li><li><h3>Kural kur</h3><p>Basit modda blokları, İleri modda formu kullan.</p><a href="/lab?dil=tr">Strateji Kurucu</a></li><li><h3>Maliyetle backtest</h3><p>Hızlı Backtest brüt ve net sonucu gösterir.</p><a href="/lab?dil=tr">Hızlı Backtest</a></li><li><h3>Optimize et</h3><p>Ayrı eğitim ve test dönemleri, komşuluk kontrolü ve düzeltilmiş (deflated) Sharpe oranı.</p><a href="/lab/optimizasyon?dil=tr">Optimizasyon</a></li><li><h3>Demoda çalıştır</h3><p>Kalibre Engine'i Prop Kalkanı ile önce demo hesapta çalıştır.</p><a href="/tr/prop">Prop Kalkanı</a></li></ol>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas"><h2>Özellikler</h2></div>
+    <dl class="moduller"><div><a href="/lab/panom?dil=tr"><dt>Panom</dt><dd>Hesap, fiyatlar, açık pozisyonlar ve kapanmış işlemler; kâr faktörü, kazanma oranı ve gerçekleşmiş düşüşle.</dd></a></div><div><a href="/lab?dil=tr"><dt>Strateji Kurucu</dt><dd>Basit modda bloklar, İleri modda tam form. İkisi aynı kuralı düzenler.</dd></a></div><div><a href="/lab?dil=tr"><dt>Hızlı Backtest</dt><dd>Kuralı mumlarında saniyeler içinde çalıştırır. Spread, komisyon ve kayma ekleyebilirsin.</dd></a></div><div><a href="/lab/optimizasyon?dil=tr"><dt>Optimizasyon</dt><dd>Eğitim ve test dönemleri, komşu ayarlar, düzeltilmiş Sharpe oranı ve prop kural filtresi.</dd></a></div><div><a href="/tr/prop"><dt>Prop Kalkanı</dt><dd>Günlük ve toplam kayıp sınırlarını her tikte kontrol eder, lotu kalan paya göre ayarlar.</dd></a></div><div><a href="/lab/oynaklik?dil=tr"><dt>Oynaklık Laboratuvarı</dt><dd>EWMA, Yang-Zhang ve GARCH oynaklık modelleri.</dd></a></div></dl>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap">
+    <div class="bolum-bas"><h2>Güvenlik</h2><p>Kalibre Bridge MT5 verisini göndermeden önce AES-256 ile şifreler. Şifreyi sadece tarayıcın çözebilir. <a href="/tr/security">Güvenlik ayrıntıları</a></p></div>
+    <div class="gorur">
+      <div class="evet"><h3>Röle sunucumuzun gördüğü</h3><ul><li>Şifreli paketler</li><li>Paket boyutu ve geliş zamanı</li><li>Eşleştirme kodundan türetilen bir kanal kimliği</li></ul></div>
+      <div class="hayir"><h3>Göremediği</h3><ul><li>Semboller ve fiyatlar</li><li>Pozisyonlar, bakiye ve işlem geçmişi</li><li>Eşleştirme kodun, Alpaca ve Tradier anahtarların</li><li>MT5 şifren (hiç istenmez)</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="bolum">
+  <div class="kap fiyat-bant">
+    <div>
+      <h2>Fiyat</h2>
+      <p class="fiyat-sayi">19 USD <span>/ ay lansmanda, euro ile 17 EUR</span></p>
+      <p class="not">Beta süresince abonelikler açık değildir. Davetli testçiler ücretsiz beta lisansı alır.</p>
+      <a class="dugme" href="/tr/pricing#bekleme">Listeye katıl</a>
+    </div>
+    <div class="beta-kutu">
+      <h3>Beta ve risk</h3>
+      <p>Kalibre Lab beta sürümündedir. Özellikler değişebilir ve hata içerebilir. Backtestler simülasyondur. Kaldıraçlı işlemler yüksek risk içerir ve yatırılan paranın tamamı kaybedilebilir. Kalibre Engine'i gerçek hesapta kullanmadan önce demo hesapta dene.</p>
+      <p><a href="/tr/risk-disclosure">Risk bildirimini oku</a>. <a href="/tr/beta">Beta hakkında</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+
+<script type="module" src="/static/ana/gosterim.js"></script>
+</body>
+</html>

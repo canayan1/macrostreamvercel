@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Metodoloji: Kalibre Lab</title>
+<meta name="description" content="Kalibre Lab'deki verinin kaynağı, Hızlı Backtest'in çalışma biçimi, oynaklık modelleri ve sonuçların okunması.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/methodology">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/methodology">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/methodology">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/methodology">
+<meta property="og:title" content="Metodoloji: Kalibre Lab">
+<meta property="og:description" content="Kalibre Lab'deki verinin kaynağı, Hızlı Backtest'in çalışma biçimi, oynaklık modelleri ve sonuçların okunması.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/methodology" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Metodoloji</h1>
+<p class="giris">Bu sayfa laboratuvarın verisinin nereden geldiğini, Hızlı Backtest'in sonuçları nasıl hesapladığını ve neyi hesaba katmadığını anlatır.</p>
+
+<h2 id="veri">Veri nereden gelir?</h2>
+<p>Kalibre piyasa verisi yayınlamaz. Laboratuvardaki her seri aşağıdaki kaynaklardan birinden gelir ve kaynak serinin üzerinde yazar:</p>
+<table class="tablo">
+  <thead><tr><th>Kaynak</th><th>Etiket</th><th>Açıklama</th></tr></thead>
+  <tbody>
+    <tr><td>Örnek seri</td><td>SENTETİK</td><td>Tohumlu bir rastgele süreçle üretilir. Gerçek bir piyasayı göstermez; laboratuvarı tanımak içindir.</td></tr>
+    <tr><td>Kendi dosyan</td><td>KENDİ VERİN</td><td>MT5'ten ya da başka bir yerden dışa aktardığın dosya. Tarayıcın dosyayı yerelde okur.</td></tr>
+    <tr><td>Kalibre Bridge</td><td>MT5 ve aracı kurum adı</td><td>MT5 hesabının fiyat geçmişi, uçtan uca şifreli (<a href="/tr/security">güvenlik</a>).</td></tr>
+    <tr><td>Alpaca, Tradier</td><td>Aracı kurum adı</td><td>Tarayıcının kendi API anahtarınla istediği fiyat geçmişi.</td></tr>
+  </tbody>
+</table>
+<p>Eğitim yazılarındaki rakamlar kamuya açık kaynaklardan bir kez alınır. Kaynak ve tarih yazıda belirtilir, rakamlar güncellenmez.</p>
+
+<h2 id="zaman">Mum zamanları</h2>
+<p>MT5'ten gelen mum zamanları aracı kurumunun sunucu saatidir, yani MT5 grafiğinde gördüğün saat. Bunları UTC'ye çevirmeyiz: geçmiş mumları bugünkü saat farkıyla çevirmek, yaz saati geçişlerinde bir saatlik kaymaya yol açar. Laboratuvar sunucu saatinin UTC'ye göre farkını ayrıca gösterir.</p>
+
+<h2 id="prova">Hızlı Backtest nasıl çalışır?</h2>
+<p>Hızlı Backtest kuralını tarayıcında, MetaTrader 5'teki Kalibre Engine ile aynı kurallarla çalıştırır:</p>
+<ul>
+  <li>Kurallar yeni mumun açılışında, son kapanmış mumla değerlendirilir. Kesişme kuralları son iki mumu kullanır. Gelecekteki bir mum hiçbir zaman kullanılmaz.</li>
+  <li>Önce çıkış kuralları, sonra giriş kuralları değerlendirilir. Ters yönde bir sinyal, açık pozisyonu kapatır.</li>
+  <li>Aynı mumda iki yönde de sinyal varsa işlem açılmaz.</li>
+  <li>Lot, bakiye, işlem başına risk yüzdesi, oynaklık ölçeği ve stop mesafesinden hesaplanır.</li>
+</ul>
+<p>Yaklaşık olanlar:</p>
+<ul>
+  <li>Bir mumun içinde fiyatın hangi sırayla hareket ettiği bilinmez. Aynı mumda hem stop hem hedef görülürse stop sayılır; bu ihtiyatlı bir varsayımdır.</li>
+  <li>İz süren stop mum kapanışında güncellenir.</li>
+  <li>Spread, komisyon ve kayma isteğe bağlıdır, varsayılan değerleri sıfırdır. Swap hesaba katılmaz. Haber filtresi yoktur.</li>
+</ul>
+<div class="kutu">Hızlı Backtest'i fikir elemek için kullan. Bir kuralı aynı kural dosyasıyla, aracı kurumunun maliyetleriyle MT5 Strategy Tester'da doğrula.</div>
+
+<h2 id="oynaklik">Oynaklık modelleri</h2>
+<p>Oynaklık laboratuvarı üç ölçü sunar. EWMA, son getirilere üstel ağırlık verir (RiskMetrics yaklaşımı). Yang-Zhang, açılış, kapanış ve mum içi aralığı birlikte kullanır. GARCH, oynaklığın kümelenmesini ve uzun dönem düzeyine dönüşünü modeller; parametreler kendi verinde en çok olabilirlikle tahmin edilir.</p>
+
+<h2 id="yorum">Sonuçları nasıl okumalı?</h2>
+<ul>
+  <li>Getiriyi en büyük düşüşle (max drawdown) birlikte oku.</li>
+  <li>Az sayıda işlemden çıkan sonuç tesadüf olabilir.</li>
+  <li>Çok sayıda ayar deneyip en iyisini seçmek kuralı geçmişe uydurur. Seçtiğin ayarı kullanmadığın bir dönemde test et.</li>
+  <li>Geçmiş sonuçlar gelecekteki sonuçları göstermez.</li>
+</ul>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#veri">Veri nereden gelir?</a><a href="#zaman">Mum zamanları</a><a href="#prova">Hızlı Backtest nasıl çalışır?</a><a href="#oynaklik">Oynaklık modelleri</a><a href="#yorum">Sonuçları nasıl okumalı?</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+
+</body>
+</html>

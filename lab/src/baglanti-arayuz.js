@@ -1,4 +1,4 @@
-// "MetaTrader'ı bağla" paneli: eşleştirme kodu, bağlantı durumu, seri seçimi, pozisyonlar.
+// "MetaTrader 5'i bağla" paneli: eşleştirme kodu, bağlantı durumu, seri seçimi, pozisyonlar.
 // Mantık lab/src/veri/baglanti.js'tedir; burası yalnız DOM'u yönetir.
 // Yoklama yalnız prova kaynağı "MetaTrader'ım" seçiliyken çalışır: kullanıcı istemeden ağa çıkılmaz.
 

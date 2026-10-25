@@ -10,12 +10,12 @@
 
   var en = document.documentElement.lang === 'en';
   var metin = en
-    ? 'Kalibre Lab is in beta. Results are simulations; read the risks before making real-money decisions.'
-    : 'Kalibre Lab beta sürümünde. Sonuçlar simülasyondur; gerçek parayla karar vermeden önce riskleri oku.';
+    ? 'Kalibre Lab is in beta. Results are simulations. Read the risk disclosure before trading with real money.'
+    : 'Kalibre Lab beta sürümündedir. Sonuçlar simülasyondur. Gerçek parayla işlem yapmadan önce risk bildirimini oku.';
   var baglanti = en ? 'Risk disclosure' : 'Risk bildirimi';
-  var adres = en ? '/en/risk-disclosure/' : '/risk-bildirimi/';
+  var adres = en ? '/risk-disclosure' : '/tr/risk-disclosure';
   var baglanti2 = en ? 'Beta programme' : 'Beta programı';
-  var adres2 = en ? '/en/beta/' : '/beta/';
+  var adres2 = en ? '/beta' : '/tr/beta';
   var kapat = en ? 'Close' : 'Kapat';
 
   var st = document.createElement('style');

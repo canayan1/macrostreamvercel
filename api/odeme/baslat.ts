@@ -59,8 +59,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       client_reference_id: kullanici.id,
       ...(musteri ? { customer: musteri } : kullanici.eposta ? { customer_email: kullanici.eposta } : {}),
       line_items: [{ price: fiyat, quantity: 1 }],
-      success_url: `${kok}${dil === 'en' ? '/en/license' : '/hesap'}?oturum={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${kok}${dil === 'en' ? '/en/pricing' : '/pro'}?iptal=1`,
+      success_url: `${kok}${dil === 'en' ? '/account' : '/tr/account'}?oturum={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${kok}${dil === 'en' ? '/pricing' : '/tr/pricing'}?iptal=1`,
       allow_promotion_codes: 'true',
       // %100 indirimli davet kodunda kart istenmez; ilk ücretli faturadan önce Stripe kart ister.
       payment_method_collection: 'if_required',

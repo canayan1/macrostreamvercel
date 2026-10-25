@@ -18,8 +18,8 @@ Son önizleme: https://macrostreamvercel-ecylm9qpq-canayan1s-projects.vercel.app
 - [ ] **Hesaplar (Supabase)**: `docs/HESAP-KURULUMU.md` adım 1-6 (proje, SQL, adresler, SMTP,
       Google, anahtarlar). Bunlar olmadan "Abone ol" çalışmaz: ödeme hesap ister.
 - [ ] **Stripe (önce test modu)**
-  - [ ] Ürün "Kalibre Lab", aylık yinelenen tek fiyat: 399 TRY, aynı fiyata para birimi seçenekleri
-        (currency options) 19 USD ve 17 EUR → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre
+  - [ ] Ürün "Kalibre Lab", aylık yinelenen tek fiyat: 19 USD, aynı fiyata para birimi seçeneği
+        (currency options) 17 EUR; TRY yok. Ödemeler şirket kurulana kadar kapalı (`ODEME_ACIK = False`) → `STRIPE_PRICE_ID`. Ödeme sayfası müşterinin konumuna göre
         para birimini kendisi seçer.
   - [ ] Webhook: `https://kalibremarkets.com/api/odeme/webhook`, olaylar:
         `checkout.session.completed`, `customer.subscription.created|updated|deleted`,

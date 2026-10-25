@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Risk bildirimi: Kalibre Lab</title>
+<meta name="description" content="Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/risk-disclosure">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/risk-disclosure">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/risk-disclosure">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/risk-disclosure">
+<meta property="og:title" content="Risk bildirimi: Kalibre Lab">
+<meta property="og:description" content="Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/risk-disclosure" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Risk bildirimi</h1>
+<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce lütfen bu sayfayı okuyun. Bu Risk Bildirimi, <a href="/tr/terms">Kullanım Şartları</a>'nın ayrılmaz bir parçasıdır.</p>
+
+<h2 id="beta">Beta sürümü</h2>
+<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta deneyin. Yanlış gördüğünüz her sayıyı <a href="/tr/beta">geri bildirim formuyla</a> bildirin.</p>
+
+<h2 id="simulasyon">Simülasyon ve varsayımsal sonuçlar</h2>
+<p>Laboratuvar, hızlı prova, optimizasyon ve sayfalardaki örnekler varsayımsal (simüle edilmiş) sonuçlardır ve doğal sınırları vardır:</p>
+<ul>
+  <li>Gerçek bir işlem kaydının aksine, simüle edilmiş sonuçlar gerçek işlemleri göstermez.</li>
+  <li>İşlemler gerçekten yapılmadığı için sonuçlar, likidite eksikliği gibi bazı piyasa etkilerini olduğundan az ya da çok yansıtmış olabilir.</li>
+  <li>Hızlı prova spread, komisyon, swap ve kaymayı içermez; gerçek sonuç genellikle daha düşüktür.</li>
+  <li>Optimizasyon, geçmiş veri üzerinde ve geriye dönük bilgiyle yapılır; en iyi görünen ayar çoğu zaman geçmişe uydurulmuştur.</li>
+  <li>Herhangi bir hesabın gösterilenlere benzer kâr ya da zarar elde edeceği ya da etmesinin muhtemel olduğu yönünde hiçbir beyanda bulunulmamaktadır.</li>
+</ul>
+
+<h2 id="kaldirac">Kaldıraçlı işlemlerin riski</h2>
+<p>Kaldıraçlı işlemler (forex, CFD ve benzerleri) yatırdığınız tutarın tamamını kaybetmenize yol açabilir. Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK, 2015'te forex yatırımcılarının yaklaşık %87-88'inin zarar ettiğini açıkladı. Kaybetmeyi göze alamayacağınız parayla işlem yapmayın.</p>
+
+<h2 id="motor">Kalibre Motor'un gerçek hesapta kullanımı</h2>
+<p>Kalibre Motor, sizin kurduğunuz kural dosyasını sizin hesabınızda çalıştırır ve emir gönderir. Gerçek hesapta beta aşamasında şu riskler vardır:</p>
+<ul>
+  <li><b>Yazılım hataları:</b> kural dosyası ya da Motor beklenmeyen bir şekilde davranabilir.</li>
+  <li><b>Bağlantı:</b> MetaTrader 5 kapanırsa, bilgisayar uykuya geçerse ya da internet koparsa Motor pozisyonları yönetemez.</li>
+  <li><b>Kayma ve boşluklar:</b> hızlı piyasada, haber anlarında ve hafta sonu açılışlarında emirler stop ya da hedef fiyatından farklı gerçekleşebilir.</li>
+  <li><b>Kalkan garanti değildir:</b> prop kalkanı ve kayıp sınırları boşluklar, kayma ve aracı kurum kuralları nedeniyle aşılabilir.</li>
+</ul>
+<p>Bu yüzden Motor gerçek hesapta, eklenti ayarlarında "Gerçek hesapta beta riskini kabul ediyorum" seçeneğini siz işaretlemedikçe ve bir kayıp sınırı (prop kalkanı ya da günlük kayıp sınırı) tanımlı olmadıkça yeni işlem açmaz.</p>
+
+<h2 id="tavsiye">Yatırım tavsiyesi değildir</h2>
+<p>Kalibre Markets yatırım danışmanlığı, portföy yöneticiliği ya da aracılık hizmeti sunmaz ve SPK lisanslı bir kurum değildir. Hangi kuralı kuracağınıza, hangi sembolde ne zaman ve ne büyüklükte işlem yapacağınıza siz karar verirsiniz; sonuçların sorumluluğu size aittir. Eğitim örnekleri birer başlangıç noktasıdır, öneri değildir.</p>
+<p>Kalibre Markets hiçbir zaman paranızı, menkul kıymetlerinizi veya kripto varlıklarınızı tutmaz, bunlara erişim yetkisi istemez ve sizin adınıza hesap açmaz. Size ait varlıklar yalnızca seçtiğiniz aracı kurumda bulunur.</p>
+
+<h2 id="veri">Veri ve gizlilik</h2>
+<p>Köprüden gelen verileriniz uçtan uca şifrelidir; Alpaca ve Tradier verileriniz doğrudan tarayıcınıza gelir. Hangi verinin nerede işlendiği <a href="/tr/privacy">Gizlilik Politikası</a>'nda ve <a href="/tr/security">Güvenlik</a> sayfasında açıklanır.</p>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#beta">Beta sürümü</a><a href="#simulasyon">Simülasyon ve varsayımsal sonuçlar</a><a href="#kaldirac">Kaldıraçlı işlemlerin riski</a><a href="#motor">Kalibre Motor'un gerçek hesapta kullanımı</a><a href="#tavsiye">Yatırım tavsiyesi değildir</a><a href="#veri">Veri ve gizlilik</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+
+</body>
+</html>

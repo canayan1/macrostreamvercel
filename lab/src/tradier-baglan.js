@@ -9,7 +9,7 @@ import {
 const $ = s => document.querySelector(s);
 import { kacis } from './guvenlik.js';
 const main = document.querySelector('main.baglan');
-const ek = dil === 'en' ? '?dil=en' : '';
+const ek = dil === 'tr' ? '?dil=tr' : '';
 let profil = null, bekleyen = null;
 
 function sekme(k) {

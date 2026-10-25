@@ -4,7 +4,8 @@
 //
 // Dil sırası: ?dil=en|tr > sayfanın <html lang> özniteliği (lab sayfalarında yoktur; başka bir
 // sayfa laboratuvarı kendi diliyle gömdüğünde kullanılır) > tarayıcıda kayıtlı seçim
-// ('kalibre-dil') > tarayıcının dili. Node'da (testler) varsayılan Türkçedir.
+// ('kalibre-dil') > İngilizce. Site küresel pazara İngilizce çıkar; Türkçe yalnız açıkça
+// seçilince (?dil=tr ya da kayıtlı seçim) gelir. Node'da (testler) varsayılan Türkçedir.
 
 import { EN } from './dil-en.js';
 
@@ -23,12 +24,14 @@ function belirle() {
   if (gecerli(h)) return h;
   const k = oku();
   if (gecerli(k)) return k;
-  return String(globalThis.navigator?.language ?? '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+  return 'en';
 }
 
 export let dil = belirle();
 export let yerel = dil === 'en' ? 'en-US' : 'tr-TR';
 if (globalThis.document?.documentElement) globalThis.document.documentElement.lang = dil;
+// Logo site ana sayfasına gider: İngilizce kök "/", Türkçe "/tr".
+if (dil === 'tr') for (const a of globalThis.document?.querySelectorAll?.('a.logo[href="/"]') ?? []) a.setAttribute('href', '/tr');
 
 // Testler için: dili değiştirir (canlı bağlama: içe aktaranlar yeni değeri görür).
 export function dilAyarla(d) {

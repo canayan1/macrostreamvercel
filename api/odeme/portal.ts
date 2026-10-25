@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const musteri = kayit?.musteri ?? null;
     if (!musteri) return res.status(404).json({ hata: 'Bu anahtara bağlı bir abonelik bulunamadı.' });
     const kok = kokAdres(req.headers['x-forwarded-host'] ?? req.headers.host);
-    const p = await stripe('billing_portal/sessions', { customer: musteri, return_url: `${kok}${dil === 'en' ? '/en/license/' : '/hesap/'}`, locale: dil === 'en' ? 'auto' : 'tr' });
+    const p = await stripe('billing_portal/sessions', { customer: musteri, return_url: `${kok}${dil === 'en' ? '/account' : '/tr/account'}`, locale: dil === 'en' ? 'auto' : 'tr' });
     return res.status(200).json({ url: p.url });
   } catch {
     return res.status(502).json({ hata: 'Abonelik sayfası açılamadı. Biraz sonra yeniden dene.' });

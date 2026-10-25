@@ -19,7 +19,7 @@
  *   profile() → Promise<profil>    updateProfile(alanlar) → Promise<{error}>
  *   client() → Supabase istemcisi  paths → {signIn, account, pricing, connect, lab, home}  lang
  *
- * Dil <html lang>'den (yoksa ?dil=, kayıtlı seçim, tarayıcı dili) okunur. Yollar dile göre varsayılandır;
+ * Dil <html lang>'den (yoksa ?dil=, kayıtlı seçim; hiçbiri yoksa İngilizce) okunur. Yollar dile göre varsayılandır;
  * sayfa <meta name="kalibre:yol:signIn" content="/..."> gibi etiketlerle değiştirebilir (site köküne
  * İngilizce taşındığında betik değişmez, yalnız üretilen etiketler değişir).
  * window.KalibreStore: list(kind), save(kind, name, payload, id?), remove(kind, id)
@@ -42,9 +42,11 @@
     var h = (document.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase();
     if (h === 'en' || h === 'tr') return h;
     try { var k = localStorage.getItem('kalibre-dil'); if (k === 'en' || k === 'tr') return k; } catch (e) {}
-    return String(navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+    return 'en'; // site İngilizce; Türkçe yalnız açıkça seçilince
   }
   var DIL = dilBul();
+  // Kayıtta "ürün güncellemesi e-postası istemiyorum" seçimi (giriş sayfası yazar).
+  function pazarlamaRet() { try { return localStorage.getItem('kalibre-pazarlama-ret') === '1'; } catch (e) { return false; } }
   var EN = DIL === 'en';
   var M = EN ? {
     signIn: 'Sign in', account: 'Account', license: 'License', strategies: 'Saved strategies', signOut: 'Sign out',
@@ -54,8 +56,8 @@
     notConfigured: 'Giriş yapılandırılmadı', menu: 'Hesap menüsü'
   };
   var PATHS = EN
-    ? { signIn: '/en/sign-in', account: '/en/license', pricing: '/en/pricing', connect: '/en/connect', lab: '/lab/?dil=en', home: '/en' }
-    : { signIn: '/giris', account: '/hesap', pricing: '/pro', connect: '/baglan', lab: '/lab/', home: '/' };
+    ? { signIn: '/sign-in', account: '/account', pricing: '/pricing', connect: '/connect', lab: '/lab', home: '/' }
+    : { signIn: '/tr/sign-in', account: '/tr/account', pricing: '/tr/pricing', connect: '/tr/connect', lab: '/lab?dil=tr', home: '/tr' };
   Object.keys(PATHS).forEach(function (k) {
     var m = document.querySelector('meta[name="kalibre:yol:' + k + '"]');
     if (m && /^\/(?!\/)/.test(m.content)) PATHS[k] = m.content;
@@ -178,7 +180,7 @@
     if (!sb) return kapali();
     return sb.auth.signInWithOtp({
       email: String(email || '').trim(),
-      options: { emailRedirectTo: donusAdresi(o && o.next), shouldCreateUser: true, data: { locale: DIL } }
+      options: { emailRedirectTo: donusAdresi(o && o.next), shouldCreateUser: true, data: { locale: DIL, marketing_opt_out: pazarlamaRet() ? 'true' : 'false' } }
     });
   }
   function verifyCode(email, code) {

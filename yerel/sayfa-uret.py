@@ -3,15 +3,15 @@ import os, re
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # site kökü
 
 # Ödemeler açıldığında True yap ve üç üreticiyi yeniden çalıştır (sayfa-uret.py, sayfa-uret-en.py, ana-en-uret.py).
-ODEME_ACIK = True  # açıkken de sunucu 503 dönerse sayfa "ödemeler yakında" kartına düşer
+ODEME_ACIK = False  # 25.10.2026: ödemeler şirket kurulana kadar kapalı (bekleme listesi + davetli beta). Açıkken de sunucu 503 dönerse sayfa "ödemeler yakında" kartına düşer
 
-MENU = [("/lab/", "Laboratuvar"), ("/lab/panom.html", "Panom"), ("/prop/", "Prop kalkanı"), ("/kurulum/", "Kurulum"), ("/guvenlik/", "Güvenlik"), ("/egitim/", "Eğitim"), ("/pro/", "Abonelik")]
-MENU_EN = [("/en/lab/", "Lab"), ("/lab/panom.html?dil=en", "Dashboard"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"), ("/egitim/", "Education (Turkish)"), ("/en/pricing/", "Pricing")]
+MENU = [("/lab?dil=tr", "Laboratuvar"), ("/lab/panom?dil=tr", "Panom"), ("/tr/prop", "Prop Kalkanı"), ("/tr/setup", "Kurulum"), ("/tr/security", "Güvenlik"), ("/tr/pricing", "Fiyat")]
+MENU_EN = [("/lab", "Lab"), ("/lab/panom", "Dashboard"), ("/prop", "Prop Shield"), ("/setup", "Setup"), ("/security", "Security"), ("/pricing", "Pricing")]
 
-# Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için).
-ESLER = {"/": "/en", "/lab": "/en/lab", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop": "/en/prop", "/forex": "/en/forex", "/kurulum": "/en/setup",
-         "/guvenlik": "/en/security", "/metodoloji": "/en/methodology", "/hakkinda": "/en/about", "/pro": "/en/pricing",
-         "/hesap": "/en/license", "/giris": "/en/sign-in", "/risk-bildirimi": "/en/risk-disclosure", "/kullanim-sartlari": "/en/terms", "/gizlilik": "/en/privacy", "/beta": "/en/beta"}
+# Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için). Site kökü İngilizce, Türkçe /tr altında.
+ESLER = {"/tr": "/", "/tr/prop": "/prop", "/tr/forex": "/forex", "/tr/setup": "/setup",
+         "/tr/security": "/security", "/tr/methodology": "/methodology", "/tr/about": "/about", "/tr/pricing": "/pricing",
+         "/tr/account": "/account", "/tr/sign-in": "/sign-in", "/tr/risk-disclosure": "/risk-disclosure", "/tr/terms": "/terms", "/tr/privacy": "/privacy", "/tr/beta": "/beta"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -30,58 +30,58 @@ def ust(aktif, dil="tr", diger=None):
     if diger:
         dil_baglanti = (f'<a class="dil" href="{diger}" hreflang="tr" lang="tr">TR</a>' if dil == "en"
                         else f'<a class="dil" href="{diger}" hreflang="en" lang="en">EN</a>')
-    ana, ac, etiket = ("/en/", "Open the lab", "Main menu") if dil == "en" else ("/", "Laboratuvarı aç", "Ana menü")
-    baglan_url, baglan = ("/en/connect", "Connect MetaTrader") if dil == "en" else ("/baglan", "MetaTrader'ı bağla")
+    ana, ac, etiket = ("/", "Open the lab", "Main menu") if dil == "en" else ("/tr", "Laboratuvarı aç", "Ana menü")
+    baglan_url, baglan = ("/connect", "Connect MetaTrader 5") if dil == "en" else ("/tr/connect", "MT5'i bağla")
     return f'''<header class="ust">
   <div class="kap">
-    <a class="marka" href="{ana}"><b>Kalibre</b><span>Lab</span></a>
+    <a class="marka" href="{ana}"><b>Kalibre</b><span>Markets</span></a>
     <nav aria-label="{etiket}">
 {a}
     </nav>
     {dil_baglanti}
     <a class="dugme ikincil kucuk baglan" href="{baglan_url}">{baglan}</a>
-    <a class="dugme kucuk" href="{"/en/lab/" if dil == "en" else "/lab/"}">{ac}</a>
+    <a class="dugme kucuk" href="{"/lab" if dil == "en" else "/lab?dil=tr"}">{ac}</a>
   </div>
 </header>'''
 
-ALT = open(os.path.join(KOK, "index.html")).read()
+ALT = open(os.path.join(KOK, "tr/index.html")).read()
 ALT = ALT[ALT.index('<footer class="alt">'):ALT.index('</footer>') + 9]
 ALT_EN = '''<footer class="alt">
   <div class="kap">
     <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre</b></p>
-      <p>A strategy lab for MetaTrader 5.</p>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
     </div>
     <div>
-      <h4>Product</h4>
-      <a href="/en/lab/">Lab</a>
-      <a href="/lab/panom.html?dil=en">Dashboard</a>
-      <a href="/en/prop/">Prop shield</a>
-      <a href="/en/forex/">Retail forex</a>
-      <a href="/en/setup/">Setup</a>
-      <a href="/en/security/">Security</a>
-      <a href="/en/pricing/">Pricing</a>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
     </div>
     <div>
       <h4>Learn</h4>
-      <a href="/en/methodology/">Methodology</a>
-      <a href="/egitim/">Education (Turkish)</a>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
     </div>
     <div>
-      <h4>Kalibre</h4>
-      <a href="/en/about/">About</a>
-      <a href="/iletisim/">Contact</a>
-      <a href="/en/terms/">Terms of use</a>
-      <a href="/en/privacy/">Privacy</a>
-      <a href="/en/risk-disclosure/">Risk disclosure</a>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of use</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
     </div>
-    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is a software tool; it does not provide investment advice or brokerage services. Results shown in the lab are based on past or synthetic data and are not an indication of future results. Leveraged trading can lose you all of the money you deposit. MetaTrader is a trademark of MetaQuotes Ltd.; Kalibre is not affiliated with MetaQuotes.</p>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>'''
 
 # Hesap betiği (static/kalibre-auth.js) bu yolları okur; site köküne İngilizce taşınınca yalnız burası değişir.
-YOLLAR = {"tr": {"signIn": "/giris", "account": "/hesap", "pricing": "/pro", "connect": "/baglan", "lab": "/lab/", "home": "/"},
-          "en": {"signIn": "/en/sign-in", "account": "/en/license", "pricing": "/en/pricing", "connect": "/en/connect", "lab": "/lab/?dil=en", "home": "/en"}}
+YOLLAR = {"tr": {"signIn": "/tr/sign-in", "account": "/tr/account", "pricing": "/tr/pricing", "connect": "/tr/connect", "lab": "/lab?dil=tr", "home": "/tr"},
+          "en": {"signIn": "/sign-in", "account": "/account", "pricing": "/pricing", "connect": "/connect", "lab": "/lab", "home": "/"}}
 def yol_etiketleri(dil):
     return "".join(f'<meta name="kalibre:yol:{k}" content="{v}">\n' for k, v in YOLLAR[dil].items())
 
@@ -92,8 +92,9 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
     alternatif = ""
     if diger:
         tr_url, en_url = (diger, url) if dil == "en" else (url, diger)
-        alternatif = (f'\n<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com{tr_url}">'
-                      f'\n<link rel="alternate" hreflang="en" href="https://kalibremarkets.com{en_url}">')
+        alternatif = (f'\n<link rel="alternate" hreflang="en" href="https://kalibremarkets.com{en_url}">'
+                      f'\n<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com{tr_url}">'
+                      f'\n<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com{en_url}">')
     kenar_etiket = "On this page" if dil == "en" else "Bu sayfada"
     html = f'''<!doctype html>
 <html lang="{dil}">
@@ -149,14 +150,14 @@ def icindekiler(govde):
 # ------------------------------------------------------------------ kurulum
 KURULUM = '''
 <h1>Kurulum</h1>
-<p class="giris">MetaTrader 5'i Kalibre Lab'e bağlamak için bir eklenti, bir kod ve bir izin gerekir. Bir kez yapılır; sonra MT5 açık olduğu sürece verin laboratuvara kendiliğinden gelir.</p>
-<div class="kutu yesil">İlk kurulumu bir <b>demo hesapla</b> yapmanı öneririz. Köprü işlem açmaz, ama yeni bir aracı önce risksiz bir hesapta tanımak iyi bir alışkanlıktır.</div>
+<p class="giris">MetaTrader 5'i Kalibre Lab'e Kalibre Bridge eklentisi, bir eşleştirme kodu ve tek bir MT5 ayarıyla bağlarsın. Kurulum bir kez yapılır. Sonrasında eklenti, MT5 açık olduğu sürece laboratuvara veri gönderir.</p>
+<div class="kutu yesil">İlk kurulumu bir <b>demo hesapta</b> yap. Kalibre Bridge salt okunurdur ve demo hesapta aracı parayı riske atmadan tanırsın.</div>
 
 <h2 id="gerekenler">Gerekenler</h2>
 <ul>
   <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
   <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
-  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap/">Hesabım</a> sayfasındadır.</li>
+  <li>Kalibre Bridge eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/tr/account">Hesabım</a> sayfasındadır.</li>
 </ul>
 
 <h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
@@ -168,24 +169,24 @@ KURULUM = '''
 
 <h2 id="kod">2. Laboratuvarda eşleştirme kodunu üret</h2>
 <ol>
-  <li><a href="/baglan">MetaTrader'ı bağla</a> sayfasını aç; adımlar orada sırayla gösterilir.</li>
-  <li>Tarayıcın senin için bir eşleştirme kodu üretir. <b>Kopyala</b> düğmesiyle kopyala.</li>
+  <li><a href="/tr/connect">MetaTrader 5'i bağla</a> sayfasını aç. Adımlar orada sırayla gösterilir.</li>
+  <li>Tarayıcın bir eşleştirme kodu üretir. <b>Kopyala</b> düğmesiyle kopyala.</li>
 </ol>
-<p>Kod <code>KLB1</code> ile başlar ve verini şifreleyen anahtardır. Yalnız bu tarayıcıda ve eklentinin ayarında durur; bizde bir kopyası yoktur. Kimseyle paylaşma.</p>
+<p>Kod <code>KLB1</code> ile başlar. Kalibre Bridge şifreleme anahtarını bu koddan türetir. Kod bu tarayıcıda ve eklentinin ayarlarında saklanır, sunucularımıza gönderilmez. Kodu kimseyle paylaşma.</p>
 
 <h2 id="grafik">3. Eklentiyi bir grafiğe ekle</h2>
 <ol>
   <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
   <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
   <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
-  <li><b>Lisans anahtarı</b> satırına <a href="/hesap/">Hesabım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
-  <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan yalnız eklendiği grafiğin sembolü gönderilir.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/tr/account">Hesabım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
+  <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan eklenti Market Watch'taki ilk 12 sembolü kullanır.</li>
   <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
 </ol>
-<p>Eklenti emir göndermediği için MT5'teki <b>Algo Trading</b> düğmesini açman gerekmez.</p>
+<p>Kalibre Bridge emir açamaz, değiştiremez, kapatamaz. Bu yüzden MT5'te <b>Algo Trading</b> kapalı kalabilir.</p>
 
 <h2 id="izin">4. MetaTrader 5'te Kalibre adresine izin ver</h2>
-<p>MT5, eklentilerin internete bağlanmasına yalnız senin izin verdiğin adreslerle izin verir. Bu adım güvenliğin için vardır ve bir kez yapılır.</p>
+<p>MT5, eklentilerin sadece izin verdiğin adreslere bağlanmasına izin verir. Kalibre adresini bir kez eklersin.</p>
 <ol>
   <li><b>Tools &gt; Options</b> menüsünü aç (Türkçe menüde <b>Araçlar &gt; Seçenekler</b>).</li>
   <li><b>Expert Advisors</b> sekmesine geç (<b>Uzman Danışmanlar</b>).</li>
@@ -195,7 +196,7 @@ KURULUM = '''
 </ol>
 
 <h2 id="dogrula">5. Bağlantıyı doğrula</h2>
-<p>Grafiğin sol üst köşesinde <b>Kalibre Köprü</b> satırı görünür. Eklenti önce lisansı denetler (birkaç saniye), sonra veri göndermeye başlar. Durum <b>bağlı</b> olduğunda gönderilen belge sayısı artmaya başlar. Laboratuvarda da bağlantı durumu, aracı kurumunun adı ve son sinyalin kaç saniye önce geldiği görünür.</p>
+<p>Grafiğin sol üst köşesinde <b>Kalibre Bridge</b> satırı görünür. Eklenti önce lisansı kontrol eder, bu birkaç saniye sürer. Sonra veri göndermeye başlar. Durum <b>bağlı</b> olduğunda gönderilen belge sayısı artar. Laboratuvar bağlantı durumunu, aracı kurumunun adını ve son kalp atışının zamanını gösterir.</p>
 <p>Seriler yeni bir mum kapandığında güncellenir. H1 seçtiysen saatte bir, D1 seçtiysen günde bir.</p>
 
 <h2 id="sorunlar">Sık karşılaşılan durumlar</h2>
@@ -205,9 +206,9 @@ KURULUM = '''
     <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
     <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
     <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
-    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap/">Hesabım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/tr/account">Hesabım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
     <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
-    <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Köprü, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
+    <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Kalibre Bridge, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
   </tbody>
 </table>
 
@@ -215,109 +216,120 @@ KURULUM = '''
 <p>ABD'deki aracı kurum Tradier'de hesabın varsa MetaTrader 5 yerine onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Tradier'e doğrudan senin tarayıcından bağlanır.</p>
 <ol>
   <li>Tradier hesabında bir API erişim token'ı oluştur. İlk deneme için <b>Sandbox</b> token'ı öneririz; Sandbox fiyatları 15 dakika gecikmelidir.</li>
-  <li><a href="/lab/baglan.html?kaynak=tradier">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li><a href="/lab/baglan?kaynak=tradier&dil=tr">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
   <li>Birden çok hesabın varsa birini seç. Panom, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
 </ol>
-<div class="kutu">Tradier token'ı hesabına tam erişim verir. Laboratuvar onu yalnız okumak için kullanır, emir göndermez. Token yalnız bu tarayıcıda saklanır ve yalnız Tradier'e gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde token tarayıcından silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
+<div class="kutu">Tradier token'ı hesabına tam erişim verir. Kalibre bu token'la sadece okuma isteği yapar, emir göndermez. Token bu tarayıcıda saklanır ve sadece Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
 
 <h2 id="alpaca">Alpaca (ABD) ile bağlanmak</h2>
 <p>ABD'deki aracı kurum Alpaca'da hesabın varsa onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Alpaca'ya doğrudan senin tarayıcından bağlanır.</p>
 <ol>
   <li>Alpaca panelinde bir API anahtar çifti oluştur (Key ID ve Secret). İlk deneme için <b>Paper</b> (sanal) hesabı öneririz.</li>
-  <li><a href="/lab/baglan.html?kaynak=alpaca">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li><a href="/lab/baglan?kaynak=alpaca&dil=tr">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
   <li>Panom, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Panom'da eklediğin semboller gösterilir.</li>
 </ol>
-<div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar yalnız IEX borsasından gelir; bu, tüm piyasa hacminin küçük bir kısmıdır. Laboratuvar anahtarları yalnız okumak için kullanır, emir göndermez. Anahtarlar yalnız bu tarayıcıda saklanır ve yalnız Alpaca'ya gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde tarayıcından silinir. Bu bağlantı kendi kişisel anahtarlarınla çalışır.</div>
+<div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar sadece IEX borsasından gelir. Bu, toplam piyasa hacminin küçük bir kısmıdır. Kalibre anahtarlarınla sadece okuma isteği yapar, emir göndermez. Anahtarlar bu tarayıcıda saklanır ve sadece Alpaca'ya gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Kendi kişisel API anahtarlarını kullan.</div>
 
-<div class="kutu">Kalibre Lab beta sürümündedir. Kurmadan önce <a href="/risk-bildirimi/">risk bildirimini</a> oku; ilk kurulumu demo hesapta yap.</div>
+<div class="kutu">Kalibre Lab beta sürümündedir. Kurulumdan önce <a href="/tr/risk-disclosure">risk bildirimini</a> oku ve önce demo hesap kullan.</div>
 
 <h2 id="eklentisiz">Eklentisiz çalışmak</h2>
-<p>Eklenti kurmak istemiyorsan, MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara sürükleyip bırakabilirsin. Dosya bilgisayarından hiç çıkmaz; tarayıcında okunur.</p>
+<p>MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara da sürükleyebilirsin. Tarayıcın dosyayı yerelde okur, dosya yüklenmez.</p>
 '''
-sayfa("kurulum/index.html", "Kurulum: MetaTrader 5'i Kalibre Lab'e bağla", "Kalibre Köprü eklentisini MetaTrader 5'e kurma, eşleştirme kodunu girme ve WebRequest iznini verme adımları.", "/kurulum/", KURULUM,
+sayfa("tr/setup/index.html", "Kurulum: MetaTrader 5'i Kalibre Lab'e bağla", "Kalibre Bridge eklentisini MetaTrader 5'e kurma, eşleştirme kodunu ve lisans anahtarını girme, WebRequest iznini verme adımları.", "/tr/setup", KURULUM,
       icindekiler(KURULUM) + '<p>Takıldığın bir adım olursa <a href="/iletisim/" style="display:inline">bize yaz</a>.</p>')
 
 # ------------------------------------------------------------------ güvenlik
 GUVENLIK = '''
 <h1>Güvenlik</h1>
-<p class="giris">Fiyat geçmişin ve pozisyonların senin bilgisayarında şifrelenir ve yalnız senin tarayıcında açılır. Aradaki sunucu, yani biz, içeriği okuyamayız. Bu sayfa bunun nasıl sağlandığını ve nerede bittiğini anlatır.</p>
+<p class="giris">Kalibre Bridge, MetaTrader 5 verini göndermeden önce bilgisayarında şifreler. Röle sunucumuz sadece şifreli paketleri saklar ve bunları çözemez. Bu sayfa kullandığımız yöntemleri ve sınırlarını listeler.</p>
 
-<h2 id="kisaca">Kısaca</h2>
+<h2 id="kisaca">Özet</h2>
 <ul>
-  <li>Anahtar, laboratuvarın tarayıcında ürettiği eşleştirme kodudur. Bizde bir kopyası yoktur.</li>
-  <li>Eklenti her paketi göndermeden önce şifreler ve mühürler. Mührü tutmayan paket açılmaz.</li>
-  <li>Sunucu yalnız şifreli paketi kısa süre saklar ve en geç iki saat sonra siler.</li>
-  <li>Eklenti işlem açmaz, hesap numaranı ve şifreni okumaz.</li>
+  <li>Kalibre Bridge salt okunurdur. Emir açamaz, değiştiremez, kapatamaz.</li>
+  <li>Her paket AES-256-CTR ile şifrelenir ve HMAC-SHA256 ile imzalanır.</li>
+  <li>Anahtarlar eşleştirme kodundan türetilir. Kod sunucularımıza gönderilmez.</li>
+  <li>Röle sunucusu her paketi en geç 2 saat içinde siler.</li>
+  <li>Kalibre MT5 şifreni hiçbir zaman istemez.</li>
+  <li>Lisans kontrolü, lisans anahtarını ve MT5 hesap numaranı lisans sunucumuza gönderir.</li>
 </ul>
 
 <h2 id="kod">Eşleştirme kodu</h2>
-<p>Kod, tarayıcının güvenli rastgele sayı üreteciyle oluşturulan 32 baytlık bir sırdır ve <code>KLB1</code> ile başlar. Kod iki yerde durur: bu tarayıcının yerel deposunda ve MT5'te eklentinin ayarında. Hiçbir zaman sunucuya gönderilmez.</p>
-<p>Koddan üç ayrı anahtar türetilir (HMAC-SHA256 ile): paketleri bulmaya yarayan bir <b>kanal numarası</b>, içeriği şifreleyen bir <b>şifreleme anahtarı</b> ve paketi mühürleyen bir <b>mühür anahtarı</b>. Sunucu yalnız kanal numarasını görür; kanal numarasından kod ya da diğer anahtarlar geri hesaplanamaz.</p>
+<p>Eşleştirme kodu, tarayıcının kriptografik rastgele sayı üreteciyle oluşturulan 32 baytlık bir sırdır. <code>KLB1</code> ile başlar. Kod iki yerde saklanır: bu tarayıcının yerel deposunda ve MT5'te eklentinin ayarlarında.</p>
+<p>Koddan HMAC-SHA256 ile üç anahtar türetilir: paketleri bulmaya yarayan bir <b>kanal kimliği</b>, bir <b>şifreleme anahtarı</b> ve bir <b>imza anahtarı</b>. Sunucu sadece kanal kimliğini görür. Kod ve diğer iki anahtar kanal kimliğinden hesaplanamaz.</p>
 
-<h2 id="sifreleme">Şifreleme ve mühür</h2>
+<h2 id="sifreleme">Şifreleme ve imza</h2>
 <ul>
-  <li>İçerik AES-256 ile şifrelenir (CTR kipi). Her paket, bir daha kullanılmayan bir başlangıç değeri alır.</li>
-  <li>Her paket HMAC-SHA256 ile mühürlenir. Mühür, kanal numarasını, paketin hangi yuvaya ait olduğunu ve şifreli içeriği birlikte kapsar.</li>
-  <li>Tarayıcı önce mührü doğrular, sonra açar. İçeriği değiştirilmiş, başka bir yuvaya taşınmış ya da başka bir kodla mühürlenmiş paket reddedilir.</li>
-  <li>Sembol adları da şifrelidir. Sunucu, hangi sembolü izlediğini paketin adından çıkaramaz.</li>
+  <li>İçerik CTR kipinde AES-256 ile şifrelenir. Her paket yeni bir başlangıç değeri (nonce) kullanır.</li>
+  <li>Her paket HMAC-SHA256 ile imzalanır. İmza kanal kimliğini, paketin yuvasını ve şifreli içeriği kapsar.</li>
+  <li>Tarayıcın şifreyi çözmeden önce imzayı doğrular. Değiştirilmiş, başka yuvaya taşınmış ya da başka bir kodla imzalanmış paketi reddeder.</li>
+  <li>Sembol adları şifrelenir. Paket adları hangi sembolleri izlediğini göstermez.</li>
 </ul>
-<p>Aynı protokol üç ayrı uygulamada yazıldı: MetaTrader 5 eklentisi, laboratuvar ve bağımsız bir referans uygulaması. Aynı girdiyle üçü bayt bayt aynı şifreli paketi üretiyor; bu karşılaştırma her sürümde otomatik testle tekrarlanır.</p>
+<p>Protokol üç ayrı yerde uygulanır: MT5 eklentisinde, laboratuvarda ve bağımsız bir referans uygulamasında. Otomatik testler, üçünün aynı girdiden aynı paketi ürettiğini kontrol eder.</p>
 
-<h2 id="sunucu">Sunucu ne yapar?</h2>
+<h2 id="sunucu">Röle sunucusu</h2>
 <table class="tablo">
-  <thead><tr><th>Sunucunun gördüğü</th><th>Sunucunun göremediği</th></tr></thead>
+  <thead><tr><th>Röle sunucusunun gördüğü</th><th>Göremediği</th></tr></thead>
   <tbody>
     <tr><td>Şifreli paketler</td><td>Semboller, fiyatlar, mumlar</td></tr>
-    <tr><td>Paketlerin boyutu ve geliş zamanı</td><td>Pozisyonlar, bakiye, kâr ve zarar</td></tr>
-    <tr><td>Kanal numarası</td><td>Aracı kurumun ve sunucu adın</td></tr>
-    <tr><td>Bağlantının IP adresi (iletim sırasında)</td><td>Eşleştirme kodu</td></tr>
+    <tr><td>Paket boyutu ve geliş zamanı</td><td>Pozisyonlar, bakiye, işlem geçmişi</td></tr>
+    <tr><td>Kanal kimliği</td><td>Aracı kurum ve sunucu adı</td></tr>
+    <tr><td>İletim sırasında bağlantının IP adresi</td><td>Eşleştirme kodun</td></tr>
   </tbody>
 </table>
-<p>Sunucu, paketin biçimini denetler ve kısa ömürlü bir depoda saklar. Her paket en geç iki saat sonra kendiliğinden silinir; yerine yenisi gelirse eskisi hemen silinir. Paketlerin içeriği günlüklere yazılmaz. Kanal başına dakikada yazılabilecek paket sayısı sınırlıdır.</p>
+<p>Sunucu her paketin biçimini kontrol eder ve kısa ömürlü bir depoda tutar. Aynı türden yeni bir paket eskisinin yerini alır ve her paket en geç 2 saat içinde silinir. Paket içerikleri günlüklere yazılmaz. Kanal başına yazma sayısı sınırlıdır.</p>
 
-<h2 id="eklenti">Eklenti neyi okur?</h2>
-<p>Kalibre Köprü yalnız okur; emir göndermez, pozisyon kapatmaz, ayar değiştirmez. Okuduğu ve şifreleyip gönderdiği bilgiler:</p>
+<h2 id="eklenti">Kalibre Bridge'in okuduğu veriler</h2>
+<p>Kalibre Bridge aşağıdaki bilgileri MT5'ten okur, şifreler ve gönderir. Pozisyonları, fiyatları ve işlem geçmişini eklentinin ayarlarından kapatabilirsin.</p>
 <ul>
-  <li>Seçtiğin sembollerin kapanmış mumları: zaman, açılış, en yüksek, en düşük, kapanış, tik hacmi.</li>
-  <li>Açık pozisyonlar: sembol, yön, lot, açılış zamanı ve fiyatı, güncel fiyat, stop, hedef, kâr ve pozisyonun eklenti numarası.</li>
-  <li>Hesabın para birimi, bakiyesi ve varlığı.</li>
-  <li>Aracı kurumun adı, sunucu adı ve hesabın demo mu gerçek mi olduğu.</li>
+  <li>Sembollerinin kapanmış mumları: zaman, açılış, en yüksek, en düşük, kapanış ve tik hacmi. Semboller ayarı boşsa Market Watch'taki ilk 12 sembol kullanılır.</li>
+  <li>En çok 40 sembol için Market Watch fiyatları: alış, satış, zaman ve açıklama.</li>
+  <li>Açık pozisyonlar: sembol, yön, lot, açılış zamanı ve fiyatı, güncel fiyat, stop, hedef, kâr ve sihirli numara (magic number).</li>
+  <li>Son 90 günün kapanmış işlemleri (süre ayarlanabilir): sembol, yön, lot, açılış ve kapanış zamanı ile fiyatı, kâr, swap, komisyon, ücretler, sihirli numara ve yorum.</li>
+  <li>Aynı dönemdeki para yatırma, çekme ve diğer bakiye işlemleri, tutar ve zamanıyla.</li>
+  <li>Hesabın para birimi, bakiyesi ve varlığı (equity).</li>
+  <li>Aracı kurum adı, sunucu adı ve hesap türü (demo, gerçek ya da yarışma).</li>
 </ul>
-<p>Okumadıkları: hesap numaran, şifren, kişisel bilgilerin, geçmiş işlem kayıtların.</p>
+<p>Kalibre Bridge MT5 şifreni ve kişisel bilgilerini okumaz. Şifreli veri hesap numaranı içermez.</p>
 
-<h2 id="sinirlar">Korumanın sınırları</h2>
-<p>Hiçbir sistem her şeye karşı korumaz. Bu sistemin dayandığı varsayımlar şunlar:</p>
+<h2 id="lisans">Lisans kontrolü</h2>
+<p>Kalibre Bridge ve Kalibre Engine lisansını lisans sunucumuzla kontrol eder. İstek lisans anahtarını, MT5 hesap numaranı, ürün adını ve eklentinin dilini içerir. Her lisansa bağlı MT5 hesap numaralarını, lisans başına en çok 2 tane olmak üzere saklarız. Bu istek şifreli veri kanalından ayrıdır.</p>
+
+<h2 id="araci">Alpaca ve Tradier</h2>
+<p>Alpaca ve Tradier API anahtarların ve token'ların bu tarayıcıda saklanır ve sadece Alpaca'ya ya da Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Kalibre bunlarla sadece okuma isteği yapar.</p>
+
+<h2 id="sinirlar">Sınırlar</h2>
 <ul>
-  <li><b>Kodu ele geçiren, verini okuyabilir.</b> Kodu kimseyle paylaşma. Şüphelenirsen laboratuvarda yeni kod üret ve eklentiye yenisini yapıştır; eski kod o andan sonra işe yaramaz.</li>
-  <li><b>Cihazının güvenliği sana aittir.</b> Bilgisayarına ya da tarayıcına erişen biri, açılmış veriyi de görebilir.</li>
-  <li><b>Trafiğin varlığı gizli değildir.</b> Sunucu, bir kanalın ne sıklıkla ve ne büyüklükte paket gönderdiğini görür. Bu, içeriği değil yalnız kullanım biçimini gösterir.</li>
+  <li><b>Eşleştirme kodunu bilen herkes verini okuyabilir.</b> Kodu paylaşma. Değiştirmek için laboratuvarda yeni kod üret ve eklentiye yapıştır. Eklenti bundan sonra eski kodu kullanmaz.</li>
+  <li><b>Cihaz güvenliği senin sorumluluğundadır.</b> Bilgisayarına ya da tarayıcına erişen biri çözülmüş veriyi görebilir.</li>
+  <li><b>Trafik üst verisi görünür.</b> Sunucu her kanalın paket boyutunu ve zamanını görür.</li>
 </ul>
-<p>Bir güvenlik açığı bulduğunu düşünüyorsan lütfen <a href="/iletisim/">bize yaz</a>.</p>
+<p>Bir güvenlik açığı bildirmek için <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yaz.</p>
 '''
-sayfa("guvenlik/index.html", "Güvenlik: verin senin, anahtar da", "Kalibre Lab'in MetaTrader 5 köprüsü nasıl şifreler, sunucu neyi görür ve neyi göremez, korumanın sınırları nelerdir.", "/guvenlik/", GUVENLIK, icindekiler(GUVENLIK))
+sayfa("tr/security/index.html", "Güvenlik: Kalibre Lab", "Kalibre Bridge MetaTrader 5 verisini nasıl şifreler, röle ve lisans sunucularımız neyi alır, korumanın sınırları nelerdir.", "/tr/security", GUVENLIK, icindekiler(GUVENLIK))
 
 # ------------------------------------------------------------------ metodoloji
 METODOLOJI = '''
 <h1>Metodoloji</h1>
-<p class="giris">Laboratuvarda gördüğün her rakamın nereden geldiğini ve nasıl hesaplandığını bilmen gerekir. Bu sayfa veriyi, hızlı provanın kurallarını ve bilinen sınırları anlatır.</p>
+<p class="giris">Bu sayfa laboratuvarın verisinin nereden geldiğini, Hızlı Backtest'in sonuçları nasıl hesapladığını ve neyi hesaba katmadığını anlatır.</p>
 
 <h2 id="veri">Veri nereden gelir?</h2>
-<p>Kalibre piyasa verisi yayınlamaz. Laboratuvardaki her seri üç kaynaktan birinden gelir ve kaynağı serinin adında yazar:</p>
+<p>Kalibre piyasa verisi yayınlamaz. Laboratuvardaki her seri aşağıdaki kaynaklardan birinden gelir ve kaynak serinin üzerinde yazar:</p>
 <table class="tablo">
   <thead><tr><th>Kaynak</th><th>Etiket</th><th>Açıklama</th></tr></thead>
   <tbody>
     <tr><td>Örnek seri</td><td>SENTETİK</td><td>Tohumlu bir rastgele süreçle üretilir. Gerçek bir piyasayı göstermez; laboratuvarı tanımak içindir.</td></tr>
-    <tr><td>Kendi dosyan</td><td>KENDİ VERİN</td><td>MT5'ten ya da başka bir yerden dışa aktardığın dosya. Tarayıcında okunur, bilgisayarından çıkmaz.</td></tr>
-    <tr><td>Canlı köprü</td><td>MT5 ve aracı kurum adı</td><td>Kendi MT5 hesabının fiyat geçmişi, uçtan uca şifreli olarak (<a href="/guvenlik/">güvenlik</a>).</td></tr>
+    <tr><td>Kendi dosyan</td><td>KENDİ VERİN</td><td>MT5'ten ya da başka bir yerden dışa aktardığın dosya. Tarayıcın dosyayı yerelde okur.</td></tr>
+    <tr><td>Kalibre Bridge</td><td>MT5 ve aracı kurum adı</td><td>MT5 hesabının fiyat geçmişi, uçtan uca şifreli (<a href="/tr/security">güvenlik</a>).</td></tr>
+    <tr><td>Alpaca, Tradier</td><td>Aracı kurum adı</td><td>Tarayıcının kendi API anahtarınla istediği fiyat geçmişi.</td></tr>
   </tbody>
 </table>
-<p>Eğitim yazılarında geçen rakamlar kamuya açık kaynaklardan bir kez alınır, kaynağı ve tarihi yazının içinde belirtilir ve güncellenmez.</p>
+<p>Eğitim yazılarındaki rakamlar kamuya açık kaynaklardan bir kez alınır. Kaynak ve tarih yazıda belirtilir, rakamlar güncellenmez.</p>
 
 <h2 id="zaman">Mum zamanları</h2>
 <p>MT5'ten gelen mum zamanları aracı kurumunun sunucu saatidir, yani MT5 grafiğinde gördüğün saat. Bunları UTC'ye çevirmeyiz: geçmiş mumları bugünkü saat farkıyla çevirmek, yaz saati geçişlerinde bir saatlik kaymaya yol açar. Laboratuvar sunucu saatinin UTC'ye göre farkını ayrıca gösterir.</p>
 
-<h2 id="prova">Hızlı prova nasıl çalışır?</h2>
-<p>Hızlı prova, MetaTrader 5'teki Kalibre motorunun kurallarını tarayıcıda taklit eder. Motorla aynı olanlar:</p>
+<h2 id="prova">Hızlı Backtest nasıl çalışır?</h2>
+<p>Hızlı Backtest kuralını tarayıcında, MetaTrader 5'teki Kalibre Engine ile aynı kurallarla çalıştırır:</p>
 <ul>
   <li>Kurallar yeni mumun açılışında, son kapanmış mumla değerlendirilir. Kesişme kuralları son iki mumu kullanır. Gelecekteki bir mum hiçbir zaman kullanılmaz.</li>
   <li>Önce çıkış kuralları, sonra giriş kuralları değerlendirilir. Ters yönde bir sinyal, açık pozisyonu kapatır.</li>
@@ -328,107 +340,114 @@ METODOLOJI = '''
 <ul>
   <li>Bir mumun içinde fiyatın hangi sırayla hareket ettiği bilinmez. Aynı mumda hem stop hem hedef görülürse stop sayılır; bu ihtiyatlı bir varsayımdır.</li>
   <li>İz süren stop mum kapanışında güncellenir.</li>
-  <li>Spread, komisyon, swap ve kayma yoktur. Haber filtresi uygulanmaz.</li>
+  <li>Spread, komisyon ve kayma isteğe bağlıdır, varsayılan değerleri sıfırdır. Swap hesaba katılmaz. Haber filtresi yoktur.</li>
 </ul>
-<div class="kutu">Bu yüzden hızlı prova bir fikri elemek içindir, onaylamak için değil. Son sınav, aynı kural dosyasıyla MT5 Strategy Tester'da, aracı kurumunun maliyet ayarlarıyla yapılır.</div>
+<div class="kutu">Hızlı Backtest'i fikir elemek için kullan. Bir kuralı aynı kural dosyasıyla, aracı kurumunun maliyetleriyle MT5 Strategy Tester'da doğrula.</div>
 
 <h2 id="oynaklik">Oynaklık modelleri</h2>
 <p>Oynaklık laboratuvarı üç ölçü sunar. EWMA, son getirilere üstel ağırlık verir (RiskMetrics yaklaşımı). Yang-Zhang, açılış, kapanış ve mum içi aralığı birlikte kullanır. GARCH, oynaklığın kümelenmesini ve uzun dönem düzeyine dönüşünü modeller; parametreler kendi verinde en çok olabilirlikle tahmin edilir.</p>
 
 <h2 id="yorum">Sonuçları nasıl okumalı?</h2>
 <ul>
-  <li>Getiriyi her zaman en büyük düşüşle birlikte oku. Aynı getiriyi yarı düşüşle sağlayan kural daha sağlamdır.</li>
-  <li>İşlem sayısı azsa sonuç tesadüf olabilir. Birkaç işlemle kazanan bir kural, kanıt sayılmaz.</li>
-  <li>Bir kuralı çok sayıda ayarla deneyip en iyisini seçmek, geçmişe uydurmadır. Beğendiğin ayarı, test etmediğin bir dönemde tekrar sına.</li>
-  <li>Geçmişte işleyen bir kural gelecekte işlemeyebilir.</li>
+  <li>Getiriyi en büyük düşüşle (max drawdown) birlikte oku.</li>
+  <li>Az sayıda işlemden çıkan sonuç tesadüf olabilir.</li>
+  <li>Çok sayıda ayar deneyip en iyisini seçmek kuralı geçmişe uydurur. Seçtiğin ayarı kullanmadığın bir dönemde test et.</li>
+  <li>Geçmiş sonuçlar gelecekteki sonuçları göstermez.</li>
 </ul>
 '''
-sayfa("metodoloji/index.html", "Metodoloji: veri, hızlı prova ve sınırlar", "Kalibre Lab'deki verinin kaynağı, hızlı provanın kuralları, oynaklık modelleri ve sonuçları okurken dikkat edilecekler.", "", METODOLOJI, icindekiler(METODOLOJI))
+sayfa("tr/methodology/index.html", "Metodoloji: Kalibre Lab", "Kalibre Lab'deki verinin kaynağı, Hızlı Backtest'in çalışma biçimi, oynaklık modelleri ve sonuçların okunması.", "", METODOLOJI, icindekiler(METODOLOJI))
 
 # ------------------------------------------------------------------ hakkında
 HAKKINDA = '''
-<h1>Hakkında</h1>
-<p class="giris">Kalibre, bir stratejiye para bağlamadan önce onu dürüstçe sınamak isteyenler için yazılım yapar.</p>
+<h1>Kalibre Markets hakkında</h1>
+<p class="giris">Kalibre Markets yatırımcılar için yazılım geliştirir. İlk ürünümüz Kalibre Lab; MetaTrader 5, Alpaca ve Tradier hesapları için bir backtest ve risk aracıdır.</p>
 
-<h2 id="neden">Neden?</h2>
-<p>Bireysel yatırımcının elindeki araçlar çoğu zaman getiriyi gösterir, riski saklar. Bir bankanın hazine masasında ise ilk soru ne kazandıracağı değil, en kötü gününde ne kaybettireceğidir. Bir ekonomist de tek bir dönemin sonucuna değil, o sonucu üreten koşulların tekrar edip etmeyeceğine bakar.</p>
-<p>Kalibre Lab bu iki bakışı bireysel yatırımcının kendi verisine getirmek için var: varsayımı açıkça yaz, kendi aracı kurumunun fiyatlarıyla sına, riski getiriyle aynı satırda gör.</p>
+<h2 id="urun">Kalibre Lab</h2>
+<ul>
+  <li><b>Strateji Kurucu ve Hızlı Backtest:</b> giriş ve çıkış kurallarını kur, verinde tarayıcıda test et.</li>
+  <li><b>Optimizasyon:</b> parametreleri ayrı eğitim ve test dönemleriyle tara.</li>
+  <li><b>Panom:</b> bağlı hesabının bakiyesi, pozisyonları, fiyatları ve kapanmış işlemleri.</li>
+  <li><b>Kalibre Bridge ve Kalibre Engine:</b> şifreli veri eşitleme ve kural dosyasını çalıştırma için MT5 eklentileri.</li>
+  <li><b>Prop Kalkanı:</b> prop firması sınavları için günlük ve toplam kayıp sınırları.</li>
+</ul>
 
 <h2 id="ilkeler">Nasıl çalışırız?</h2>
 <ul>
-  <li><b>Veri senindir.</b> Fiyat yayınlamayız. Laboratuvar senin MT5 hesabının verisiyle ya da açıkça SENTETİK etiketli örneklerle çalışır.</li>
-  <li><b>Anahtar sendedir.</b> Köprüden geçen veriyi biz okuyamayız. Bunu bir söz olarak değil, protokolün kendisiyle sağlarız (<a href="/guvenlik/">güvenlik</a>).</li>
-  <li><b>Yöntem açıktır.</b> Bir rakamın nasıl hesaplandığını ve neyi hesaba katmadığını yazarız (<a href="/metodoloji/">metodoloji</a>).</li>
-  <li><b>Tavsiye vermeyiz.</b> Hangi kuralı kuracağına ve ne zaman işlem yapacağına sen karar verirsin.</li>
+  <li><b>Piyasa verisi yayınlamayız.</b> Laboratuvar hesabının verisini, kendi dosyalarını ya da SENTETİK etiketli örnekleri kullanır.</li>
+  <li><b>Kalibre Bridge verisi uçtan uca şifrelidir.</b> Sunucularımız bu veriyi çözemez (<a href="/tr/security">güvenlik</a>).</li>
+  <li><b>Yöntem belgelenir.</b> Her rakamın nasıl hesaplandığını ve neyi dışarıda bıraktığını yazarız (<a href="/tr/methodology">metodoloji</a>).</li>
+  <li><b>Sinyal satmayız, tavsiye vermeyiz.</b> Kuralları ve işlemleri sen seçersin.</li>
 </ul>
 
-<h2 id="yasal">Yasal çerçeve</h2>
-<p>Kalibre Markets bir yazılım sağlayıcısıdır. Sermaye Piyasası Kurulu'ndan yatırım danışmanlığı ya da aracılık izni yoktur ve bu hizmetleri sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir.</p>
+<h2 id="yasal">Yasal</h2>
+<p>Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir. Müşteri parası tutmaz ve yatırım tavsiyesi vermez. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir.</p>
 
 <h2 id="iletisim">İletişim</h2>
-<p>Soru, öneri ya da hata bildirimi için <a href="/iletisim/">iletişim sayfası</a>.</p>
+<p>Soru, öneri ya da hata bildirimi için <a href="/iletisim">iletişim sayfası</a>.</p>
 '''
-sayfa("hakkinda.html", "Hakkında: Kalibre", "Kalibre neden var, nasıl çalışır ve neyi yapmaz.", "", HAKKINDA)
+sayfa("tr/about/index.html", "Hakkında: Kalibre Markets", "Kalibre Markets yatırımcılar için yazılım geliştirir. Kalibre Lab; MetaTrader 5, Alpaca ve Tradier hesapları için backtest ve risk aracıdır.", "", HAKKINDA)
 
 # ------------------------------------------------------------------ abonelik
-PRO_MOTOR_TR = '<li>Kalibre Motor: kural dosyanı MT5\'te çalıştıran eklenti. Gerçek hesapta kullanımı <b>beta</b>dır; açık kabul ve kayıp sınırı ister, <a href="/risk-bildirimi/">risk bildirimini</a> oku.</li>'
-PRO_ACIK_TR = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span><a href="/kullanim-sartlari/">Kullanım şartlarını</a> ve <a href="/gizlilik/">gizlilik politikasını</a> okudum, kabul ediyorum.</span></label>
-  <label class="onay"><input type="checkbox" id="cayma" required> <span>Lisans anahtarımın teslim edilip bir MetaTrader 5 hesabında etkinleştirilmesiyle hizmetin ifasına hemen başlanacağını ve etkinleştirmeden sonra 14 günlük cayma hakkımı kaybedeceğimi kabul ediyorum (<a href="/kullanim-sartlari#cayma">şartlar, bölüm 12a</a>).</span></label>
+PRO_MOTOR_TR = '<li>Demo ve gerçek hesapta Kalibre Engine. Gerçek hesapta kullanım <b>beta</b>dır; açık kabul ve kayıp sınırı ister (<a href="/tr/risk-disclosure">risk bildirimi</a>).</li>'
+PRO_ACIK_TR = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span><a href="/tr/terms">Kullanım şartlarını</a> ve <a href="/tr/privacy">gizlilik politikasını</a> okudum, kabul ediyorum.</span></label>
+  <label class="onay"><input type="checkbox" id="cayma" required> <span>Lisans anahtarımın teslim edilip bir MetaTrader 5 hesabında etkinleştirilmesiyle hizmetin ifasına hemen başlanacağını ve etkinleştirmeden sonra 14 günlük cayma hakkımı kaybedeceğimi kabul ediyorum (<a href="/tr/terms#cayma">şartlar, bölüm 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Abone ol</button>
   <p class="not" id="odeme-durum" role="status"></p>
-  <p class="not">Abonelik Kalibre Markets hesabına bağlanır: önce giriş yaparsın, hesabın yoksa bu adımda oluşturulur. Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap/">Hesabım</a> sayfasından iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>"""
+  <p class="not">Ödemeden önce Kalibre Markets hesabına giriş yaparsın. Hesabın yoksa bu adımda oluşturulur. Ödemeler Stripe tarafından işlenir, kart bilgilerin bize ulaşmaz. İstediğin zaman <a href="/tr/account">Hesabım</a> sayfasından iptal et. Erişim dönem sonuna kadar sürer.</p>"""
 PRO_KAPALI_TR = """  <div class="yakinda">
-    <h3>Ödemeler yakında açılıyor</h3>
-    <p>Kalibre Lab şu an beta sürümünde. Abonelikler açıldığında haber almak için aşağıdaki listeye yazıl.</p>
-    <p><b>Davetli misin?</b> Giriş yap ve sana gönderilen beta lisansını <a href="/hesap/">Hesabım</a> sayfasında hesabına bağla.</p>
+    <h3>Abonelikler yakında açılıyor</h3>
+    <p>Kalibre Lab beta sürümündedir. Planlanan lansman fiyatı aylık 19 USD. Abonelikler açıldığında haber almak için bekleme listesine katıl.</p>
+    <div class="eylem-satir"><a class="dugme" href="#bekleme">Listeye katıl</a><a class="dugme ikincil" href="mailto:markets@kalibrefin.com?subject=Kalibre%20Lab%20beta%20erisimi">Beta erişimi iste</a></div>
+    <p><b>Davetli misin?</b> Giriş yap ve sana gönderilen beta lisansını <a href="/tr/account">Hesabım</a> sayfasında hesabına bağla.</p>
   </div>"""
 PLAN_SECIM = ('<div id="odeme-acik">\n' + PRO_ACIK_TR + '\n</div>\n' + PRO_KAPALI_TR.replace('<div class="yakinda">', '<div class="yakinda" id="odeme-yakinda" hidden>')) if ODEME_ACIK else PRO_KAPALI_TR
 PRO = f"""
-<h1>Abonelik</h1>
-<p class="giris">Laboratuvarın ücretsiz kısmıyla bir fikri eleyebilirsin. Abonelik, beğendiğin kuralı kendi MetaTrader 5 hesabında çalıştırman ve verini canlı taşıman içindir.</p>
+<h1>Fiyat</h1>
+<p class="giris">Backtest ücretsizdir. Lansmanda abonelik; Kalibre Engine, Prop Kalkanı ve MetaTrader 5 canlı veri köprüsünü ekleyecek.</p>
 
 <div class="plan" id="plan">
   <div class="plan-bas">
     <h2>Kalibre Lab <span class="rozet-beta">beta</span></h2>
-    <p class="fiyat"><span class="sayi">399 TL</span> / ay</p>
+    <p class="fiyat"><span class="sayi">19 USD</span> / ay, lansmanda <span class="not">Euro ile de: 17 EUR / ay. Ödeme sayfası fiyatı senin para biriminde gösterir.</span></p>
   </div>
   <ul>
+    <li>Lisans başına 2 MT5 hesabı</li>
     {PRO_MOTOR_TR}
-    <li>Prop kalkanı: günlük ve toplam kayıp sınırları, FTMO ve The5ers ön ayarları</li>
-    <li>MetaTrader 5'ten canlı, şifreli veri köprüsü (Kalibre Köprü)</li>
-    <li>En çok 2 MT5 hesabı</li>
-    <li>Ücretsiz kısmın tamamı</li>
+    <li>FTMO ve The5ers ön ayarlı Prop Kalkanı</li>
+    <li>Kalibre Bridge: MT5'ten Panom'a ve laboratuvara şifreli canlı veri</li>
+    <li>Ücretsiz plandaki her şey</li>
   </ul>
 {PLAN_SECIM}
 </div>
 
-<h2 id="ucretsiz">Ücretsiz kalanlar</h2>
+<h2 id="ucretsiz">Ücretsiz</h2>
 <ul>
-  <li>Laboratuvar, SENTETİK örnek serilerle ve kendi yüklediğin dosyalarla.</li>
-  <li>Kural dosyası oluşturma, hızlı prova ve oynaklık laboratuvarı.</li>
-  <li>Kalibre Motor'un MT5 Strategy Tester'da çalışması: geçmiş testler lisans istemez.</li>
-  <li>Eğitim yazıları, grafik okuma testi ve önyargı testi.</li>
+  <li>SENTETİK örnek serilerle ve kendi dosyalarınla laboratuvar</li>
+  <li>Strateji Kurucu, Hızlı Backtest ve Oynaklık Laboratuvarı</li>
+  <li>MT5 Strategy Tester'da Kalibre Engine, lisans gerekmeden</li>
+  <li>Eğitim yazıları, grafik okuma testi ve önyargı testi</li>
 </ul>
 
-<h2 id="bekleme">{"Henüz karar vermedin mi?" if ODEME_ACIK else "Ödemeler açılınca haber al"}</h2>
+<h2 id="bekleme">{"Henüz karar vermedin mi?" if ODEME_ACIK else "Bekleme listesi"}</h2>
 <p>{"Yeni özellikler çıktığında haber almak için e-postanı bırakabilirsin." if ODEME_ACIK else "Abonelikler açıldığında ve yeni özellikler çıktığında sana e-posta göndeririz."}</p>
 <div class="bekleme">
   <p id="ok-msg" hidden><b>Listedesin.</b> {"Yeni özellikler çıktığında" if ODEME_ACIK else "Abonelikler açıldığında"} sana e-posta göndereceğiz.</p>
   <form action="https://formsubmit.co/markets@kalibrefin.com" method="POST" id="wl-form">
     <input type="hidden" name="_subject" value="Kalibre Lab bekleme listesi: yeni kayıt">
-    <input type="hidden" name="_next" value="https://kalibremarkets.com/pro/?ok=1">
+    <input type="hidden" name="_next" value="https://kalibremarkets.com/tr/pricing?ok=1">
     <input type="hidden" name="_captcha" value="false">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <label for="eposta">E-posta adresin</label>
     <div class="satir">
       <input type="email" id="eposta" name="email" required autocomplete="email">
-      <button type="submit" class="dugme{" ikincil" if ODEME_ACIK else ""}">Listeye yazıl</button>
+      <button type="submit" class="dugme{" ikincil" if ODEME_ACIK else ""}">Listeye katıl</button>
     </div>
+    <label class="onay"><input type="checkbox" name="onay" value="evet" required> <span>Kalibre Markets'in Kalibre Lab hakkında e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
   </form>
   <p class="not">E-postan yalnız bunun için kullanılır ve FormSubmit hizmeti aracılığıyla bize iletilir. Listeden çıkmak için <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazman yeterli.</p>
 </div>
 
-<div class="kutu">Kalibre Markets SPK lisanslı bir kurum değildir ve yatırım danışmanlığı vermez. Abonelik, kendi kurduğun kurallar ve testler için bir yazılım aracıdır; yatırım tavsiyesi değildir. Kalibre Motor senin onayınla, senin kurduğun kurallara göre işlem açar; sonuçların sorumluluğu sana aittir. Ayrıntılar <a href="/risk-bildirimi/">risk bildiriminde</a>.</div>
+<div class="kutu">Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum ya da yatırım danışmanı değildir ve yatırım tavsiyesi vermez. Kalibre Engine yalnızca sizin kurduğunuz kural dosyasıyla, seçtiğiniz hesapta ve siz başlattıktan sonra emir gönderir. Önce demo hesapta deneyin. Tüm işlemlerin sorumluluğu size aittir. Ayrıntılar <a href="/tr/risk-disclosure">risk bildiriminde</a>.</div>
 """
 PRO_STIL = """
 .plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
@@ -450,6 +469,7 @@ PRO_STIL = """
 .bekleme .satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
 .bekleme input[type=email] { flex: 1 1 240px; min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
 .bekleme #ok-msg { color: var(--yesil); }
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 12px; }
 """
 PRO_BETIK_KAPALI = """<script>
 if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }
@@ -490,23 +510,23 @@ PRO_ODEME_YEDEK = """<script>
 })();
 </script>"""
 PRO_BETIK = (PRO_BETIK_ACIK + PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else PRO_BETIK_KAPALI
-sayfa("pro/index.html", "Abonelik: Kalibre Lab", ("Kalibre Lab aboneliği: Kalibre Motor'u MT5 hesabında çalıştır, verini şifreli köprüyle taşı. Aylık 399 TL, istediğin zaman iptal." if ODEME_ACIK else "Kalibre Lab (beta) aboneliği: aylık 399 TL. Ödemeler yakında açılıyor; bekleme listesine yazıl."), "/pro/", PRO, ek_stil=PRO_STIL, ek_betik=PRO_BETIK)
+sayfa("tr/pricing/index.html", "Fiyat: Kalibre Lab", ("Kalibre Lab aboneliği: Kalibre Engine, Prop Kalkanı ve şifreli MT5 veri köprüsü. Aylık 19 USD, istediğin zaman iptal." if ODEME_ACIK else "Kalibre Lab (beta): planlanan lansman fiyatı aylık 19 USD. Bekleme listesine katıl ya da beta erişimi iste."), "/tr/pricing", PRO, ek_stil=PRO_STIL, ek_betik=PRO_BETIK)
 
 # ------------------------------------------------------------------ hesap
-# Giriş (/giris) ve Hesabım (/hesap) sayfaları: yerel/hesap-uret.py (TR + EN).
+# Giriş (/tr/sign-in) ve Hesabım (/tr/account) sayfaları: yerel/hesap-uret.py (TR + EN).
 
 # ------------------------------------------------------------------ prop trader
 PROP = """
-<h1>Sınavı kural ihlalinden kaybetme.</h1>
-<p class="giris">Prop firması sınavlarında hesapların çoğu kötü bir stratejiden değil, tek bir kötü günden kaybedilir: günlük kayıp ya da toplam düşüş sınırı aşılır ve hesap kapanır. Kalibre Motor'un kalkanı bu sınırları her tikte izler ve sen fark etmeden önce devreye girer.</p>
-<div class="eylem-satir"><a class="dugme" href="/pro/">Aboneliği incele</a><a class="dugme ikincil" href="#hesapla">Kendi hesabını hesapla</a></div>
+<h1>Prop Kalkanı: prop firması sınavları için kayıp sınırları</h1>
+<p class="giris">Kalibre Engine günlük ve toplam kayıp sınırını her tikte kontrol eder. Sınıra yaklaşınca yeni işlem açmaz, güvenlik payında kendi pozisyonlarını kapatır.</p>
+<div class="eylem-satir"><a class="dugme" href="/tr/pricing#bekleme">Listeye katıl</a><a class="dugme ikincil" href="#hesapla">Hesabını kontrol et</a></div>
 
-<h2 id="nasil">Kalkan ne yapar?</h2>
+<h2 id="nasil">Prop Kalkanı nasıl çalışır?</h2>
 <ul>
-  <li><b>İki tabanı birlikte izler.</b> Günlük taban gün başı bakiyesinden, toplam taban başlangıç ya da tepe bakiyeden hesaplanır; hangisi yüksekse o geçerlidir. Günün sıfırlanma saati firmaya göre ayarlıdır (FTMO'da Orta Avrupa saatiyle 00:00, yaz saati dahil).</li>
-  <li><b>Lotu sınıra göre küçültür.</b> Yeni işlemin stop olursa kaybı, açık pozisyonların stoplarına kalan riskle birlikte tabana kalan mesafeyi aşamaz. Hesaptaki elle açtığın pozisyonlar da sayılır.</li>
-  <li><b>Önce durur, sonra kapatır.</b> Tabana güvenlik payının iki katı kalınca yeni işlem açılmaz. Bir katı kalınca Motor kendi pozisyonlarını kapatır ve gün sıfırlanana kadar işlem açmaz.</li>
-  <li><b>Haber kuralını uygular.</b> Firma yüksek önemli haber çevresinde işlemi yasaklıyorsa, o pencerede yeni işlem açılmaz.</li>
+  <li><b>Günlük ve toplam taban.</b> Günlük taban gün başı bakiyesine, toplam taban başlangıç ya da tepe bakiyeye göre hesaplanır. Yüksek olan geçerlidir. Gün firmanın saatiyle sıfırlanır, FTMO'da bu saat 00:00 CE(S)T'dir.</li>
+  <li><b>Lot hesabı.</b> Yeni işlemin stoptaki kaybı ile açık pozisyonların stoplarına kalan risk, tabana olan mesafeyi aşamaz. Elle açtığın pozisyonlar da hesaba katılır.</li>
+  <li><b>Önce durdurur, sonra kapatır.</b> Tabana güvenlik payının iki katı kalınca yeni işlem açılmaz. Bir kat kalınca Kalibre Engine kendi pozisyonlarını kapatır ve gün sıfırlanana kadar işlem açmaz.</li>
+  <li><b>Haber kuralı.</b> Firma yüksek önemli haberler çevresinde işlemi kısıtlıyorsa o pencerede yeni işlem açılmaz.</li>
 </ul>
 
 <h2 id="on-ayarlar">Hazır kurallar</h2>
@@ -520,10 +540,10 @@ PROP = """
     <tr><td>Özel</td><td colspan="3">Başka bir firmadaysan kendi sınırlarını girersin.</td></tr>
   </tbody>
 </table>
-<p class="not">Firma kuralları değişebilir. Kalkanı açmadan önce ön ayarı kendi hesabının koşullarıyla karşılaştır. "En iyi gün" gibi tutarlılık kuralları kalkanın kapsamında değildir.</p>
+<p class="not">Firma kuralları değişebilir. Prop Kalkanı'nı açmadan önce ön ayarı hesabının koşullarıyla karşılaştır. "En iyi gün" gibi tutarlılık kuralları kapsanmaz.</p>
 
-<h2 id="hesapla">Kendi hesabını hesapla</h2>
-<p>Kalkanın bir an için yaptığı hesabın aynısı. Değerleri sen girersin; hiçbir yere gönderilmez.</p>
+<h2 id="hesapla">Hesabını kontrol et</h2>
+<p>Bu hesaplayıcı, Prop Kalkanı'nın yaptığı hesabı tek bir an için yapar. Değerler tarayıcında kalır.</p>
 <div class="hesap" id="kalkan-hesap">
   <div class="alanlar">
     <label>Program<select name="program"><option value="ftmo2">FTMO 2-Step</option><option value="ftmo1">FTMO 1-Step</option><option value="ftmoi">FTMO Instant</option><option value="the5ers">The5ers High Stakes</option></select></label>
@@ -548,24 +568,24 @@ PROP = """
   </div>
 </div>
 
-<h2 id="deneme">Bir deneme</h2>
-<p>Kalkanı Strategy Tester'da bilerek aşırı riskli bir stratejiyle sınadık: EURUSD 15 dakikalık, 1 Ocak - 1 Ekim 2026, 100.000 USD başlangıç, işlem başına bakiyenin %5'i risk.</p>
+<h2 id="deneme">Strategy Tester örneği</h2>
+<p>Test düzeni: MT5 Strategy Tester'da bilerek yüksek riskli bir strateji. EURUSD M15, 1 Ocak - 1 Ekim 2026, 100.000 USD başlangıç bakiyesi, işlem başına bakiyenin %5'i risk.</p>
 <table class="tablo">
-  <thead><tr><th></th><th>Kalkansız</th><th>FTMO 2-Step kalkanıyla</th></tr></thead>
+  <thead><tr><th></th><th>Prop Kalkanı olmadan</th><th>Prop Kalkanı ile (FTMO 2-Step)</th></tr></thead>
   <tbody>
     <tr><td>En kötü günün kapanan kaybı</td><td class="sayi">18.900</td><td class="sayi">4.009</td></tr>
     <tr><td>Günlük sınır (5.000) aşıldı mı?</td><td>Evet, sınav kaybedilirdi</td><td>Hayır</td></tr>
     <tr><td>En düşük bakiye (toplam taban 90.000)</td><td class="sayi">94.432</td><td class="sayi">90.999</td></tr>
   </tbody>
 </table>
-<div class="kutu">Bu bir geçmiş simülasyondur ve kalkanın kurallara nasıl uyduğunu gösterir; kâr gösterdiği iddia edilmez. Kalkanlı hesap bu dönemi zararla kapattı, ama kural ihlal etmedi. Kalkan kötü bir stratejiyi iyi yapmaz; kötü bir günün hesabı kapatmasını önler.</div>
+<div class="kutu">Tarihsel simülasyon. Varsayımsal performansın doğal sınırları vardır, gerçek işlemleri temsil etmez. Prop Kalkanı'nın açık olduğu hesap dönemi zararla kapattı ve hiçbir sınırı aşmadı. Prop Kalkanı kaybı sınırlar, stratejiyi iyileştirmez.</div>
 
 <h2 id="kapsam">Kapsam ve sınırlar</h2>
 <ul>
-  <li>Kalkan Kalibre Motor'un bir parçasıdır. Motor, Kalibre Lab'de kendi kurduğun kural dosyasını kendi hesabında çalıştırır; sinyal satmayız ve senin yerine karar vermeyiz.</li>
-  <li>Kalibre bir prop firması değildir ve hiçbir firmayla bağlantılı değildir. Firmaların adları yalnız kurallarını tanımlamak için geçer.</li>
-  <li>Kayma ve boşluklu açılışlar (gap) stopun ötesinde kayba yol açabilir; güvenlik payı bunun için vardır.</li>
-  <li>Kalkan beta sürümündedir ve bir garanti değildir. Gerçek hesapta kullanmadan önce <a href="/risk-bildirimi/">risk bildirimini</a> oku.</li>
+  <li>Prop Kalkanı, Kalibre Engine'in bir parçasıdır. Kalibre Engine, Kalibre Lab'de kurduğun kural dosyasını hesabında çalıştırır. Kalibre sinyal satmaz.</li>
+  <li>Kalibre bir prop firması değildir ve hiçbir prop firmasıyla bağlantılı değildir. Firma adları sadece kurallarını tanımlamak için kullanılır.</li>
+  <li>Kayma ve boşluklu açılışlar (gap) stopun ötesinde kayba yol açabilir. Güvenlik payı bunun içindir.</li>
+  <li>Prop Kalkanı beta sürümündedir ve garanti değildir. Gerçek hesapta kullanmadan önce <a href="/tr/risk-disclosure">risk bildirimini</a> oku.</li>
 </ul>
 """
 PROP_STIL = """
@@ -579,35 +599,35 @@ PROP_STIL = """
 .durum { margin: 4px 0 0; font-weight: 600; }
 .durum.iyi { color: var(--yesil); } .durum.uyari { color: var(--kehribar); } .durum.kotu { color: var(--kirmizi); }
 """
-sayfa("prop/index.html", "Prop firması kalkanı: sınavı kural ihlalinden kaybetme", "Kalibre Motor'un kalkanı günlük ve toplam kayıp sınırlarını her tikte izler, lotu sınıra göre küçültür ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları.", "/prop/", PROP, icindekiler(PROP), ek_stil=PROP_STIL, ek_betik='<script src="/static/kalkan-hesap.js" defer></script>')
+sayfa("tr/prop/index.html", "Prop Kalkanı: prop firması sınavları için kayıp sınırları", "Kalibre Engine günlük ve toplam kayıp sınırlarını her tikte kontrol eder, lotu kalan paya göre ayarlar ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları.", "/tr/prop", PROP, icindekiler(PROP), ek_stil=PROP_STIL, ek_betik='<script src="/static/kalkan-hesap.js" defer></script>')
 
 # ------------------------------------------------------------------ bireysel forex
 FOREX = """
-<h1>Hesabını patlatma.</h1>
-<p class="giris">Bireysel kaldıraçlı işlem hesaplarının büyük çoğunluğu para kaybeder. Kaybın en güçlü nedeni kaldıraç ve pozisyon büyüklüğüdür; strateji ikinci sırada gelir. Kalibre Lab önce bu ikisini düzeltir.</p>
-<div class="eylem-satir"><a class="dugme" href="/lab/">Laboratuvarı aç</a><a class="dugme ikincil" href="/kurulum/">Kurulumu oku</a></div>
+<h1>Bireysel forex yatırımcıları için risk araçları</h1>
+<p class="giris">İşlem başına risk belirle, lotu oynaklığa göre ayarla ve günlük kayıp sınırı ekle. Sonra kuralı bu ayarlarla aracı kurumunun verisinde test et.</p>
+<div class="eylem-satir"><a class="dugme" href="/lab?dil=tr">Laboratuvarı aç</a><a class="dugme ikincil" href="/tr/setup">Kurulum rehberi</a></div>
 
-<h2 id="neden">Neden önce risk?</h2>
+<h2 id="neden">Pozisyon büyüklüğü neden önemli?</h2>
 <ul>
-  <li><b>Kayıp oranları yüksek.</b> Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK 2015'te yatırımcıların yaklaşık %87-88'inin zarar ettiğini açıkladı ve 2017'de kaldıracı 1:10'a indirdi.</li>
-  <li><b>Kaldıraç kaybı büyütür.</b> ABD'de 2010'daki kaldıraç sınırının etkisini ölçen bir akademik çalışma (Heimer ve Simsek, Journal of Financial Economics, 2019), sınırın yüksek kaldıraçlı yatırımcıların kayıplarını yaklaşık %40 azalttığını buldu.</li>
-  <li><b>Oynaklık değişir, lot da değişmeli.</b> Oynaklık yükseldiğinde aynı lot daha büyük bir risk demektir. Oynaklığa göre pozisyon küçültmenin döviz piyasasında getiriyi belirgin artırmadığı, ama aşırı kayıpları azalttığı gösterildi (Harvey ve diğerleri, 2018). Vaadimiz bu yüzden "daha çok kazan" değil, "daha az patla".</li>
+  <li><b>Bireysel CFD hesaplarının çoğu para kaybeder.</b> Avrupa Menkul Kıymetler ve Piyasalar Otoritesi (ESMA) 2018'de bireysel CFD hesaplarının %74-89'unun para kaybettiğini açıkladı.</li>
+  <li><b>Kaldıraç kaybı artırır.</b> ABD 2010'da bireysel forex kaldıracını sınırladıktan sonra yüksek kaldıraçlı yatırımcıların kayıpları %40 azaldı (Heimer ve Simsek, Journal of Financial Economics, 2019).</li>
+  <li><b>Oynaklık sabit lotun riskini değiştirir.</b> Döviz piyasasında pozisyonu oynaklığa göre ayarlamak getiriyi belirgin artırmadı, ama aşırı kayıpları azalttı (Harvey ve diğerleri, 2018).</li>
 </ul>
 
 <h2 id="araclar">Kalibre Lab'de</h2>
 <ul>
-  <li><b>Risk bütçesi:</b> her işlemde bakiyenin yüzde kaçını riske attığını sen belirlersin; lot stop mesafesinden hesaplanır.</li>
-  <li><b>Oynaklığa göre ölçek:</b> oynaklık olağanın üstüne çıkınca risk kendiliğinden küçülür (EWMA, Yang-Zhang, GARCH).</li>
-  <li><b>Günlük kayıp sınırı ve haber filtresi:</b> kötü bir günde durmak ve yüksek önemli veri çevresinde işlem açmamak için.</li>
-  <li><b>Kendi verin:</b> kuralını kendi aracı kurumunun fiyatlarıyla sınarsın; son sınav MT5 Strategy Tester'da, kendi maliyet ayarlarınla.</li>
+  <li><b>Riske göre lot hesabı:</b> her işlemde bakiyenin ne kadarını riske atacağını belirle. Lot stop mesafesinden hesaplanır.</li>
+  <li><b>Oynaklığa göre ölçek:</b> oynaklık normal düzeyinin üstüne çıkınca işlem başına risk azaltılır (EWMA, Yang-Zhang, GARCH).</li>
+  <li><b>Günlük kayıp sınırı ve haber filtresi:</b> belirlediğin günlük kayıptan sonra işlem açılmaz, yüksek önemli veriler çevresinde işlem açılmaz.</li>
+  <li><b>Aracı kurumunun verisi:</b> aracı kurumunun fiyatlarıyla backtest yap, sonra MT5 Strategy Tester'da aracı kurumunun maliyetleriyle doğrula.</li>
 </ul>
 
-<h2 id="turkiye">Türkiye'deki hesaplar için</h2>
-<p>Türkiye'de kaldıraçlı işlemler yalnız SPK yetkili aracı kurumlar üzerinden yapılabilir; azami kaldıraç 1:10'dur. Kalibre Lab aracı kurum değildir, hesabını açmaz ve emrini iletmez; MetaTrader 5 sunan aracı kurumundaki kendi hesabında çalışır. Yetkisiz yurt dışı sitelere erişim SPK kararlarıyla engellenmektedir; hesabını yetkili bir kurumda tut.</p>
+<h2 id="turkiye">Aracı kurumun</h2>
+<p>Kalibre Lab aracı kurum değildir. Hesap açmaz ve emir iletmez. MetaTrader 5 sunan herhangi bir aracı kurumla çalışır. Ülkendeki düzenleyicinin yetkilendirdiği bir aracı kurum kullan. Türkiye'de kaldıraçlı işlemler SPK yetkili aracı kurumlar üzerinden yapılır.</p>
 
-<div class="kutu">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı sunmaz ve getiri vaat etmez. Kaldıraçlı işlemler yatırdığın tutarın tamamını kaybetmene yol açabilir.</div>
+<div class="kutu">Kalibre Lab bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir. Yatırılan paranın tamamı kaybedilebilir.</div>
 """
-sayfa("forex/index.html", "Bireysel forex: hesabını patlatma", "Kaldıraçlı işlemde kaybın en güçlü nedeni pozisyon büyüklüğü. Kalibre Lab risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzeltir.", "", FOREX, icindekiler(FOREX), ek_stil=PROP_STIL)
+sayfa("tr/forex/index.html", "Bireysel forex: Kalibre Lab risk araçları", "Riske göre lot hesabı, oynaklığa göre ölçek ve günlük kayıp sınırı; aracı kurumunun MetaTrader 5 verisiyle backtest.", "", FOREX, icindekiler(FOREX), ek_stil=PROP_STIL)
 
 # ------------------------------------------------------------------ kapalı beta rehberi
 BETA_FORM_STIL = """
@@ -623,11 +643,11 @@ BETA_FORM_STIL = """
 def beta_form(dil):
     en = dil == "en"
     t = (lambda tr, e: e) if en else (lambda tr, e: tr)
-    sonraki = "https://kalibremarkets.com/en/beta/?ok=1" if en else "https://kalibremarkets.com/beta/?ok=1"
+    sonraki = "https://kalibremarkets.com/beta?ok=1" if en else "https://kalibremarkets.com/tr/beta?ok=1"
     secenek = lambda deger, etiket: f'<option value="{deger}">{etiket}</option>'
     sayfalar = [("baglan", t("Bağlanma sayfası", "Connect page")), ("panom", t("Panom", "Dashboard")), ("kurucu", t("Strateji kurucu", "Strategy builder")),
                 ("optimizasyon", t("Optimizasyon", "Optimization")),
-                ("kopru", t("Köprü eklentisi (MT5)", "Bridge add-on (MT5)")), ("alpaca", "Alpaca"), ("tradier", "Tradier"), ("site", t("Sitenin diğer sayfaları", "Other site pages"))]
+                ("kopru", t("Kalibre Bridge (MT5)", "Kalibre Bridge (MT5)")), ("alpaca", "Alpaca"), ("tradier", "Tradier"), ("site", t("Sitenin diğer sayfaları", "Other site pages"))]
     ciddiyet = [("P0", t("P0: yanlış sayı ya da veri sızıntısı", "P0: wrong numbers or a data leak")),
                 ("P1", t("P1: kurulum ya da kullanım engellendi", "P1: setup or use is blocked")),
                 ("P2", t("P2: kafa karıştırıcı ya da küçük hata", "P2: confusing or a minor bug")),
@@ -650,17 +670,17 @@ def beta_form(dil):
       <label class="genis">{t("Ne oldu? Hata mesajını aynen yaz", "What happened? Copy any error message exactly")}<textarea name="olan" required></textarea></label>
     </div>
     <p class="not">{t("Kod, lisans anahtarı, API anahtarı ya da şifre yazma. Ekran görüntüsü göndermek istersen hesap numaranı ve bakiyeni kapatıp e-postayla gönder.",
-                     "Do not include pairing codes, licence keys, API keys or passwords. If you want to send a screenshot, cover your account number and balance and email it.")}</p>
+                     "Do not include pairing codes, license keys, API keys or passwords. If you want to send a screenshot, cover your account number and balance and email it.")}</p>
     <button type="submit" class="dugme">{t("Gönder", "Send")}</button>
   </form>
-  <p class="not">{t("Form, FormSubmit hizmeti aracılığıyla bize iletilir ve yalnız ürünü düzeltmek için kullanılır. Ayrıntılar ", "The form is delivered to us through the FormSubmit service and is used only to fix the product. Details are in the ")}<a href="{"/en/privacy/" if en else "/gizlilik/"}">{t("gizlilik politikasında", "privacy policy")}</a>.</p>
+  <p class="not">{t("Form, FormSubmit hizmeti aracılığıyla bize iletilir ve yalnız ürünü düzeltmek için kullanılır. Ayrıntılar ", "The form is delivered to us through the FormSubmit service and is used only to fix the product. Details are in the ")}<a href="{"/privacy" if en else "/tr/privacy"}">{t("gizlilik politikasında", "privacy policy")}</a>.</p>
 </div>'''
 
 def beta_mailto(dil):
     import urllib.parse
     en = dil == "en"
     konu = "Kalibre beta geri bildirim"
-    govde = ("Section / page:\nBrowser and OS:\nSteps:\n1.\n2.\n3.\nExpected:\nActual (exact error message):\n\nDo not include pairing codes, licence keys, API keys or passwords."
+    govde = ("Section / page:\nBrowser and OS:\nSteps:\n1.\n2.\n3.\nExpected:\nActual (exact error message):\n\nDo not include pairing codes, license keys, API keys or passwords."
              if en else
              "Bölüm / sayfa:\nTarayıcı ve işletim sistemi:\nAdımlar:\n1.\n2.\n3.\nBeklenen:\nOlan (hata mesajı aynen):\n\nKod, lisans anahtarı, API anahtarı ya da şifre yazma.")
     return "mailto:markets@kalibrefin.com?subject=" + urllib.parse.quote(konu) + "&body=" + urllib.parse.quote(govde)
@@ -675,29 +695,29 @@ if (new URLSearchParams(location.search).get('ok') === '1') {
 BETA = f"""
 <h1>Beta programı rehberi</h1>
 <p class="giris">Kalibre Lab'i denediğin için teşekkürler. Bu sayfa betada ne olduğunu, ilk oturumda ne yapacağını, nelerden kaçınacağını ve geri bildirimi nasıl göndereceğini anlatır.</p>
-<div class="kutu"><b>Beta programında demo hesap kullan.</b> Davetle verilen beta lisansıyla gerçek parayla çalışan bir hesap bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme. Ayrıntılar <a href="/risk-bildirimi/">risk bildiriminde</a>.</div>
+<div class="kutu"><b>Beta programında demo hesap kullan.</b> Davetle verilen beta lisansıyla gerçek parayla çalışan bir hesap bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme. Ayrıntılar <a href="/tr/risk-disclosure">risk bildiriminde</a>.</div>
 
 <h2 id="lisans">Beta lisansını nasıl alırım?</h2>
-<p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro/">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas, Kalibre Markets hesabınla giriş yap (hesabın yoksa bu adımda açılır); ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap/">Hesabım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse aynı sayfada "Hesabıma bağla" ile hesabına bağla.</p>
-<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap/">Hesabım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
+<p>Davetinle birlikte bir <b>beta lisans anahtarı</b> gelir. Kalibre Markets hesabına giriş yap (hesabın ilk girişte oluşturulur) ve <a href="/tr/account">Hesabım</a> sayfasında "Hesabıma bağla"yı kullan. Anahtar Ürünler ve lisanslar bölümünde görünür. Ödeme bilgisi gerekmez.</p>
+<div class="kutu"><b>Beta lisansı ne kadar geçerli?</b> Beta lisansı ücretsiz ve kişiseldir. Sadece Kalibre Bridge'i kapsar ve Hesabım sayfasında gösterilen tarihte sona erer. Beta süresince abonelikler açık değildir.</div>
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
   <li><b>MetaTrader 5 köprüsü ve Panom:</b> demo MT5 hesabının bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
   <li><b>Strateji kurucu:</b> Basit mod (bloklar) ve İleri mod (form); ikisi aynı stratejiyi düzenler.</li>
-  <li><b>Hızlı prova:</b> kuralı kendi mumlarında saniyeler içinde dener. Maliyetleri içermez.</li>
+  <li><b>Hızlı Backtest:</b> kuralı mumlarında saniyeler içinde çalıştırır. Maliyetler isteğe bağlıdır, varsayılanı sıfırdır.</li>
   <li><b>Optimizasyon:</b> parametre taraması, eğitim ve sınama dönemi, ısı haritası, şans eseri olup olmadığı ölçüsü.</li>
   <li><b>Alpaca (paper) ve Tradier (sandbox):</b> ABD aracı kurumlarına tarayıcıdan doğrudan bağlantı.</li>
 </ul>
-<div class="kutu"><b>Otomatik işlem beta programının parçası değildir.</b> Kalibre Motor (kural dosyasını MT5'te çalıştıran eklenti) ve prop kalkanı beta lisansına dahil değildir; beta lisansın yalnız Kalibre Köprü'yü (okuma) kapsar. Beta programında hiçbir hesapta emir açılmaz.</div>
+<div class="kutu"><b>Otomatik işlem beta programının parçası değildir.</b> Kalibre Engine (kural dosyasını MT5'te çalıştıran eklenti) ve Prop Kalkanı beta lisansına dahil değildir; beta lisansın yalnız Kalibre Bridge'i (okuma) kapsar. Beta programında hiçbir hesapta emir açılmaz.</div>
 
 <h2 id="ilk-oturum">İlk oturum (yaklaşık 30 dakika)</h2>
 <ol>
-  <li><a href="/baglan">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
-  <li><a href="/panom">Panom'u</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
-  <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; hızlı provayı çalıştır.</li>
-  <li><a href="/lab/optimizasyon.html">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
-  <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/baglan">bağlanma sayfasından</a> bağla ve Panom'u onunla dene.</li>
+  <li><a href="/tr/connect">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
+  <li><a href="/tr/dashboard">Panom'u</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
+  <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; Hızlı Backtest'i çalıştır.</li>
+  <li><a href="/lab/optimizasyon?dil=tr">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
+  <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/tr/connect">bağlanma sayfasından</a> bağla ve Panom'u onunla dene.</li>
 </ol>
 
 <h2 id="yapma">Bunları yapma</h2>
@@ -723,15 +743,15 @@ BETA = f"""
 <p>Formu doldur ya da <a href="{beta_mailto("tr")}">e-postayla gönder</a> (hazır şablon açılır).</p>
 {beta_form("tr")}
 """
-sayfa("beta/index.html", "Beta programı rehberi: Kalibre Lab", "Kalibre Lab beta programı: neler var, ilk oturum, yapılmaması gerekenler ve geri bildirim.", "", BETA, icindekiler(BETA), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True)
+sayfa("tr/beta/index.html", "Beta programı rehberi: Kalibre Lab", "Kalibre Lab beta programı: neler var, ilk oturum, yapılmaması gerekenler ve geri bildirim.", "", BETA, icindekiler(BETA), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True)
 
 # ------------------------------------------------------------------ risk bildirimi
 RISK = """
 <h1>Risk bildirimi</h1>
-<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce lütfen bu sayfayı okuyun. Bu Risk Bildirimi, <a href="/kullanim-sartlari">Kullanım Şartları</a>'nın ayrılmaz bir parçasıdır.</p>
+<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce lütfen bu sayfayı okuyun. Bu Risk Bildirimi, <a href="/tr/terms">Kullanım Şartları</a>'nın ayrılmaz bir parçasıdır.</p>
 
 <h2 id="beta">Beta sürümü</h2>
-<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta deneyin. Yanlış gördüğünüz her sayıyı <a href="/beta">geri bildirim formuyla</a> bildirin.</p>
+<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta deneyin. Yanlış gördüğünüz her sayıyı <a href="/tr/beta">geri bildirim formuyla</a> bildirin.</p>
 
 <h2 id="simulasyon">Simülasyon ve varsayımsal sonuçlar</h2>
 <p>Laboratuvar, hızlı prova, optimizasyon ve sayfalardaki örnekler varsayımsal (simüle edilmiş) sonuçlardır ve doğal sınırları vardır:</p>
@@ -761,6 +781,6 @@ RISK = """
 <p>Kalibre Markets hiçbir zaman paranızı, menkul kıymetlerinizi veya kripto varlıklarınızı tutmaz, bunlara erişim yetkisi istemez ve sizin adınıza hesap açmaz. Size ait varlıklar yalnızca seçtiğiniz aracı kurumda bulunur.</p>
 
 <h2 id="veri">Veri ve gizlilik</h2>
-<p>Köprüden gelen verileriniz uçtan uca şifrelidir; Alpaca ve Tradier verileriniz doğrudan tarayıcınıza gelir. Hangi verinin nerede işlendiği <a href="/gizlilik">Gizlilik Politikası</a>'nda ve <a href="/guvenlik">Güvenlik</a> sayfasında açıklanır.</p>
+<p>Köprüden gelen verileriniz uçtan uca şifrelidir; Alpaca ve Tradier verileriniz doğrudan tarayıcınıza gelir. Hangi verinin nerede işlendiği <a href="/tr/privacy">Gizlilik Politikası</a>'nda ve <a href="/tr/security">Güvenlik</a> sayfasında açıklanır.</p>
 """
-sayfa("risk-bildirimi/index.html", "Risk bildirimi: Kalibre Lab", "Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.", "", RISK, icindekiler(RISK))
+sayfa("tr/risk-disclosure/index.html", "Risk bildirimi: Kalibre Lab", "Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.", "", RISK, icindekiler(RISK))

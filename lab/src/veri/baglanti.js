@@ -1,4 +1,4 @@
-// "MetaTrader'ı bağla": röleden belge okuyan istemci ve bağlantı durumunun sınıflanması.
+// "MetaTrader 5'i bağla": röleden belge okuyan istemci ve bağlantı durumunun sınıflanması.
 // DOM'a dokunmaz; arayüz lab/src/baglanti-arayuz.js'tedir. Ağ erişimi verilen fetch ile yapılır,
 // böylece Node testlerinde sahte bir röle kullanılabilir.
 //
@@ -106,7 +106,7 @@ export function sinifla({ durum, hata } = {}) {
     return { sinif: 'bozuk', baslik: ceviri('Okunamayan veri'), ayrinti: hata.message };
   }
   if (!durum) {
-    return { sinif: 'bekleniyor', baslik: ceviri('Eklenti bekleniyor'), ayrinti: ceviri("Henüz MT5'ten kalp atışı gelmedi.") };
+    return { sinif: 'bekleniyor', baslik: ceviri('Eklenti bekleniyor'), ayrinti: ceviri("MT5'ten henüz bağlantı yok. Eklentinin bir grafikte çalıştığını kontrol et.") };
   }
   const yer = [durum.terminal.sirket, durum.terminal.sunucu].filter(Boolean).join(' · ');
   const yas = sureMetni(durum.yas);

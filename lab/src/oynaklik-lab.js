@@ -13,7 +13,7 @@ import { kacis } from './guvenlik.js';
 
 const $ = s => document.querySelector(s);
 const renk = ad => getComputedStyle(document.documentElement).getPropertyValue(ad).trim();
-const sayi = (v, b = 2) => (Number.isFinite(v) ? sayiMetni(v, b) : '—');
+const sayi = (v, b = 2) => (Number.isFinite(v) ? sayiMetni(v, b) : '-');
 const yz = (v, b = 1) => yuzdeMetni(sayi(v, b));
 const PALET = ['--accent', '--blue', '--green', '--violet', '--red', '--text-dim'];
 

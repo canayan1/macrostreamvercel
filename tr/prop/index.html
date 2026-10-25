@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Prop Kalkanı: prop firması sınavları için kayıp sınırları</title>
+<meta name="description" content="Kalibre Engine günlük ve toplam kayıp sınırlarını her tikte kontrol eder, lotu kalan paya göre ayarlar ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/prop">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/prop">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/prop">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/prop">
+<meta property="og:title" content="Prop Kalkanı: prop firması sınavları için kayıp sınırları">
+<meta property="og:description" content="Kalibre Engine günlük ve toplam kayıp sınırlarını her tikte kontrol eder, lotu kalan paya göre ayarlar ve tabana yaklaşınca durur. FTMO ve The5ers ön ayarları.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 8px; }
+.hesap { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.hesap .alanlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px 18px; margin-bottom: 14px; }
+.hesap label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+.hesap input, .hesap select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--mono); }
+.hesap select { font-family: var(--sans); }
+.hesap .tablo th { width: 55%; }
+.durum { margin: 4px 0 0; font-weight: 600; }
+.durum.iyi { color: var(--yesil); } .durum.uyari { color: var(--kehribar); } .durum.kotu { color: var(--kirmizi); }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop" aria-current="page">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/prop" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Prop Kalkanı: prop firması sınavları için kayıp sınırları</h1>
+<p class="giris">Kalibre Engine günlük ve toplam kayıp sınırını her tikte kontrol eder. Sınıra yaklaşınca yeni işlem açmaz, güvenlik payında kendi pozisyonlarını kapatır.</p>
+<div class="eylem-satir"><a class="dugme" href="/tr/pricing#bekleme">Listeye katıl</a><a class="dugme ikincil" href="#hesapla">Hesabını kontrol et</a></div>
+
+<h2 id="nasil">Prop Kalkanı nasıl çalışır?</h2>
+<ul>
+  <li><b>Günlük ve toplam taban.</b> Günlük taban gün başı bakiyesine, toplam taban başlangıç ya da tepe bakiyeye göre hesaplanır. Yüksek olan geçerlidir. Gün firmanın saatiyle sıfırlanır, FTMO'da bu saat 00:00 CE(S)T'dir.</li>
+  <li><b>Lot hesabı.</b> Yeni işlemin stoptaki kaybı ile açık pozisyonların stoplarına kalan risk, tabana olan mesafeyi aşamaz. Elle açtığın pozisyonlar da hesaba katılır.</li>
+  <li><b>Önce durdurur, sonra kapatır.</b> Tabana güvenlik payının iki katı kalınca yeni işlem açılmaz. Bir kat kalınca Kalibre Engine kendi pozisyonlarını kapatır ve gün sıfırlanana kadar işlem açmaz.</li>
+  <li><b>Haber kuralı.</b> Firma yüksek önemli haberler çevresinde işlemi kısıtlıyorsa o pencerede yeni işlem açılmaz.</li>
+</ul>
+
+<h2 id="on-ayarlar">Hazır kurallar</h2>
+<table class="tablo">
+  <thead><tr><th>Program</th><th>Günlük kayıp</th><th>Toplam kayıp</th><th>Kaynak</th></tr></thead>
+  <tbody>
+    <tr><td>FTMO 2-Step</td><td>%5</td><td>%10, sabit</td><td>Firma sayfası, 23.10.2026</td></tr>
+    <tr><td>FTMO 1-Step</td><td>%3</td><td>%10, gün sonu bakiye tepesini izler</td><td>Firma sayfası, 23.10.2026</td></tr>
+    <tr><td>FTMO Instant</td><td>%3</td><td>%10, bakiye tepesini gün içinde izler</td><td>Firma sayfası, 23.10.2026</td></tr>
+    <tr><td>The5ers High Stakes</td><td>%5</td><td>%10</td><td>Firma sayfası, 23.10.2026; günlük hesap yöntemi yazmadığı için ihtiyatlı ayar</td></tr>
+    <tr><td>Özel</td><td colspan="3">Başka bir firmadaysan kendi sınırlarını girersin.</td></tr>
+  </tbody>
+</table>
+<p class="not">Firma kuralları değişebilir. Prop Kalkanı'nı açmadan önce ön ayarı hesabının koşullarıyla karşılaştır. "En iyi gün" gibi tutarlılık kuralları kapsanmaz.</p>
+
+<h2 id="hesapla">Hesabını kontrol et</h2>
+<p>Bu hesaplayıcı, Prop Kalkanı'nın yaptığı hesabı tek bir an için yapar. Değerler tarayıcında kalır.</p>
+<div class="hesap" id="kalkan-hesap">
+  <div class="alanlar">
+    <label>Program<select name="program"><option value="ftmo2">FTMO 2-Step</option><option value="ftmo1">FTMO 1-Step</option><option value="ftmoi">FTMO Instant</option><option value="the5ers">The5ers High Stakes</option></select></label>
+    <label>Başlangıç sermayesi<input name="baslangic" inputmode="decimal" value="100000"></label>
+    <label>Bugünün başındaki bakiye<input name="gunbasi" inputmode="decimal" value="101200"></label>
+    <label>Şu anki varlık (equity)<input name="varlik" inputmode="decimal" value="98400"></label>
+    <label data-tepe hidden>En yüksek bakiye<input name="tepe" inputmode="decimal" value="102000"></label>
+    <label>Açık pozisyonların stoplarına kalan risk<input name="acik" inputmode="decimal" value="0"></label>
+    <label>Güvenlik payı (başlangıcın %)<input name="pay" inputmode="decimal" value="0.5"></label>
+  </div>
+  <div data-sonuc>
+    <table class="tablo">
+      <tbody>
+        <tr><th>Günlük taban</th><td class="sayi" data-s="gunluk"></td></tr>
+        <tr><th>Toplam kayıp tabanı</th><td class="sayi" data-s="azami"></td></tr>
+        <tr><th>Geçerli taban</th><td class="sayi" data-s="taban"></td></tr>
+        <tr><th>Tabana mesafe</th><td class="sayi" data-s="oda"></td></tr>
+        <tr><th>Yeni işlemin taşıyabileceği en büyük risk</th><td class="sayi" data-s="risk"></td></tr>
+      </tbody>
+    </table>
+    <p class="durum" data-s="durum"></p>
+  </div>
+</div>
+
+<h2 id="deneme">Strategy Tester örneği</h2>
+<p>Test düzeni: MT5 Strategy Tester'da bilerek yüksek riskli bir strateji. EURUSD M15, 1 Ocak - 1 Ekim 2026, 100.000 USD başlangıç bakiyesi, işlem başına bakiyenin %5'i risk.</p>
+<table class="tablo">
+  <thead><tr><th></th><th>Prop Kalkanı olmadan</th><th>Prop Kalkanı ile (FTMO 2-Step)</th></tr></thead>
+  <tbody>
+    <tr><td>En kötü günün kapanan kaybı</td><td class="sayi">18.900</td><td class="sayi">4.009</td></tr>
+    <tr><td>Günlük sınır (5.000) aşıldı mı?</td><td>Evet, sınav kaybedilirdi</td><td>Hayır</td></tr>
+    <tr><td>En düşük bakiye (toplam taban 90.000)</td><td class="sayi">94.432</td><td class="sayi">90.999</td></tr>
+  </tbody>
+</table>
+<div class="kutu">Tarihsel simülasyon. Varsayımsal performansın doğal sınırları vardır, gerçek işlemleri temsil etmez. Prop Kalkanı'nın açık olduğu hesap dönemi zararla kapattı ve hiçbir sınırı aşmadı. Prop Kalkanı kaybı sınırlar, stratejiyi iyileştirmez.</div>
+
+<h2 id="kapsam">Kapsam ve sınırlar</h2>
+<ul>
+  <li>Prop Kalkanı, Kalibre Engine'in bir parçasıdır. Kalibre Engine, Kalibre Lab'de kurduğun kural dosyasını hesabında çalıştırır. Kalibre sinyal satmaz.</li>
+  <li>Kalibre bir prop firması değildir ve hiçbir prop firmasıyla bağlantılı değildir. Firma adları sadece kurallarını tanımlamak için kullanılır.</li>
+  <li>Kayma ve boşluklu açılışlar (gap) stopun ötesinde kayba yol açabilir. Güvenlik payı bunun içindir.</li>
+  <li>Prop Kalkanı beta sürümündedir ve garanti değildir. Gerçek hesapta kullanmadan önce <a href="/tr/risk-disclosure">risk bildirimini</a> oku.</li>
+</ul>
+
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#nasil">Prop Kalkanı nasıl çalışır?</a><a href="#on-ayarlar">Hazır kurallar</a><a href="#hesapla">Hesabını kontrol et</a><a href="#deneme">Strategy Tester örneği</a><a href="#kapsam">Kapsam ve sınırlar</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/kalkan-hesap.js" defer></script>
+</body>
+</html>

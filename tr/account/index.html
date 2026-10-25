@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Hesabım: Kalibre Markets</title>
+<meta name="description" content="Kalibre Markets hesabın: profil, lisanslar, eklenti indirme, abonelik ve kayıtlı stratejiler.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/account">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/account">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/account">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/account">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Hesabım: Kalibre Markets">
+<meta property="og:description" content="Kalibre Markets hesabın: profil, lisanslar, eklenti indirme, abonelik ve kayıtlı stratejiler.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.giris-kart { max-width: 440px; background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 8px; padding: 28px 28px 24px; margin: 8px 0 28px; }
+.giris-kart h1 { font-size: 30px; margin: 0 0 6px; }
+.giris-kart .alt-baslik { color: var(--soluk); margin: 0 0 22px; font-size: 16px; }
+.google { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: #fff; color: #1f1f1f; font: 500 15px var(--sans); cursor: pointer; }
+.google:hover { background: #f2f2f2; }
+.ayrac { display: flex; align-items: center; gap: 12px; color: var(--silik); font-size: 13px; margin: 18px 0; }
+.ayrac::before, .ayrac::after { content: ""; flex: 1; height: 1px; background: var(--cizgi); }
+.alan-etiket { display: block; font-size: 14px; color: var(--soluk); margin: 0 0 6px; }
+.metin-alan { width: 100%; min-height: 46px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
+.metin-alan:focus { outline: none; border-color: var(--yesil); }
+.genis { width: 100%; margin-top: 12px; }
+.kod { font: 500 22px var(--mono); letter-spacing: .3em; text-align: center; }
+.giris-durum { font-size: 14px; margin: 14px 0 0; line-height: 1.5; }
+.giris-durum:empty { display: none; }
+.iyi { color: var(--yesil); } .kotu { color: var(--kehribar); }
+.ince { font-size: 13px; color: var(--silik); margin: 18px 0 0; }
+.ince-onay { font-size: 13px; margin: 8px 0 0; }
+.bolum { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 28px; }
+.bolum h2 { font-size: 22px; margin: 0 0 6px; }
+.bolum .ust-not { margin: 0 0 16px; }
+.izgara-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px 18px; }
+.izgara-2 label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+.izgara-2 select { min-height: 46px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
+.onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin: 16px 0; cursor: pointer; }
+.onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
+.urun-baslik { font: 600 17px var(--sans); margin: 18px 0 10px; color: var(--metin); }
+.lisans-kart { border: 1px solid var(--cizgi); border-radius: 6px; padding: 16px 18px; margin: 0 0 14px; background: var(--zemin); }
+.lisans-bas { display: flex; gap: 8px; margin-bottom: 10px; }
+.rozet { font: 600 12px var(--sans); border-radius: 4px; padding: 2px 8px; border: 1px solid var(--cizgi-2); color: var(--soluk); }
+.rozet.iyi { color: #08130f; background: var(--yesil); border-color: var(--yesil); }
+.rozet.kotu { color: #08130f; background: var(--kehribar); border-color: var(--kehribar); }
+.satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.satir input { flex: 1 1 300px; min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin-2); color: var(--metin); font: 500 16px var(--mono); letter-spacing: .04em; }
+.lisans-bilgi { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; font-size: 15px; margin: 6px 0 10px; }
+.lisans-bilgi dt { color: var(--silik); } .lisans-bilgi dd { margin: 0; }
+.eylem-satir { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.durum:empty { display: none; }
+td.sag { text-align: right; white-space: nowrap; }
+.tehlike { border-color: color-mix(in srgb, var(--kirmizi) 50%, var(--cizgi-2)); }
+.tehlike h2 { color: var(--kirmizi); }
+.dugme.kirmizi { background: var(--kirmizi); border-color: var(--kirmizi); color: #1a0806; }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/account" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<h1>Hesabım</h1>
+<div id="hesap-cikis">
+  <p class="giris" id="hesap-cikis-metin"></p>
+  <p><a class="dugme" id="hesap-giris-dugme" href="/tr/sign-in">Giriş yap</a></p>
+</div>
+<div id="hesap-icerik" hidden>
+  <p class="not durum" id="odeme-durum" role="status"></p>
+
+  <section class="bolum" id="lisanslar">
+    <h2>Ürünler ve lisanslar</h2>
+    <p class="not ust-not">Lisans anahtarını Kalibre Bridge ve Kalibre Engine ayarlarına bir kez girersin. Bir anahtar en çok 2 MT5 hesabında kullanılır. Kurulum adımları <a href="/tr/setup">kurulum sayfasında</a>.</p>
+    <div id="lisans-liste"></div>
+    <form id="bagla-form" novalidate>
+      <label class="alan-etiket" for="bagla-anahtar"><b>Anahtarın mı var?</b> Davetle ya da hesap açılmadan önce aldığın bir anahtarı hesabına bağla.</label>
+      <div class="satir">
+        <input id="bagla-anahtar" placeholder="KLM-XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off">
+        <button type="submit" class="dugme ikincil">Hesabıma bağla</button>
+      </div>
+      <p class="not durum" id="bagla-durum" role="status"></p>
+    </form>
+  </section>
+
+  <section class="bolum" id="profil">
+    <h2>Profil</h2>
+    <p class="not ust-not">Hesabın giriş yaptığın e-posta adresine bağlıdır.</p>
+    <form id="profil-form">
+      <dl class="lisans-bilgi"><dt>E-posta</dt><dd id="profil-eposta"></dd><dt>Kayıt tarihi</dt><dd id="profil-tarih"></dd></dl>
+      <div class="izgara-2">
+        <label>Ad (isteğe bağlı)<input class="metin-alan" id="profil-ad" maxlength="80" autocomplete="name"></label>
+        <label>Arayüz dili<select id="profil-dil"><option value="en">English</option><option value="tr">Türkçe</option></select></label>
+      </div>
+      <label class="onay"><input type="checkbox" id="profil-izin"> <span>Ürün güncellemesi e-postaları</span></label>
+      <button type="submit" class="dugme ikincil">Kaydet</button>
+      <p class="not durum" id="profil-durum" role="status"></p>
+    </form>
+  </section>
+
+  <section class="bolum" id="cihaz">
+    <h2>Bu cihazdaki bağlantılar</h2>
+    <p class="not ust-not">MT5 eşleştirme kodu ve aracı kurum anahtarları yalnız bu tarayıcıda saklanır; hesabına yazılmaz ve başka cihaza taşınmaz. Yeni bir cihazda bağlantıyı yeniden kurman gerekir.</p>
+    <table class="tablo"><tbody id="cihaz-tablo"></tbody></table>
+    <a class="dugme ikincil kucuk" id="cihaz-baglan" href="/tr/connect">Bağlantıları yönet</a>
+  </section>
+
+  <section class="bolum" id="stratejiler">
+    <h2>Kayıtlı stratejiler</h2>
+    <p class="not ust-not">Giriş yapmışken laboratuvardaki taslağın hesabına kaydedilir ve diğer cihazlarında açılabilir.</p>
+    <div id="strateji-liste"></div>
+  </section>
+
+  <section class="bolum tehlike" id="sil">
+    <h2>Hesabı sil</h2>
+    <p class="not ust-not">Hesabın, profilin ve kayıtlı stratejilerin kalıcı olarak silinir. Etkin bir aboneliğin varsa dönem sonunda biter ve yeniden ücret alınmaz; lisans anahtarın o tarihe kadar MT5'te çalışır. Anahtarı saklamak istiyorsan önce kopyala. Faturalar yasal saklama süresi boyunca Stripe'ta kalır.</p>
+    <form id="sil-form" novalidate>
+      <label class="alan-etiket" for="sil-onay">Onaylamak için SİL yaz</label>
+      <div class="satir">
+        <input id="sil-onay" autocomplete="off" spellcheck="false" style="font-family:var(--sans)">
+        <button type="submit" class="dugme kirmizi" id="sil-dugme">Hesabımı sil</button>
+      </div>
+      <p class="not durum" id="sil-durum" role="status"></p>
+    </form>
+  </section>
+</div>
+
+    </article>
+    
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Panom</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Kullanım şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/hesap-sayfa.js" defer></script>
+</body>
+</html>

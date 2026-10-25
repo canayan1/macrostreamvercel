@@ -106,15 +106,15 @@
 
     var c, pay = yuzdeSade.format(a.getiri > 0 ? (a.getiri - b.getiri) / a.getiri : 0);
     if (EN) {
-      if (a.getiri > 0 && b.getiri <= 0) c = 'The rule that wins before costs loses with a 1 pip cost per trade.';
-      else if (a.getiri > 0) c = 'A 1 pip cost per trade takes ' + pay + ' of the return.';
-      else c = 'With these settings the rule does not win even before costs.';
-      c += ' A result on one series does not prove the rule works; try the same rule on another series.';
+      if (a.getiri > 0 && b.getiri <= 0) c = 'Profitable before costs, loss-making with a 1 pip cost per trade.';
+      else if (a.getiri > 0) c = 'A 1 pip cost per trade reduces the return by ' + pay + '.';
+      else c = 'With these settings the rule loses money before costs.';
+      c += ' One series is not enough. Test the same rule on another series.';
     } else {
-      if (a.getiri > 0 && b.getiri <= 0) c = 'Maliyetsiz kazandıran kural, işlem başına 1 pip maliyetle kaybettiriyor.';
-      else if (a.getiri > 0) c = 'İşlem başına 1 pip maliyet, getirinin ' + pay + ' kadarını götürüyor.';
-      else c = 'Bu ayarla kural maliyetten önce de kazandırmıyor.';
-      c += ' Tek bir seride görülen sonuç, kuralın işe yaradığını kanıtlamaz; aynı kuralı başka bir seride dene.';
+      if (a.getiri > 0 && b.getiri <= 0) c = 'Maliyet öncesi kârlı, işlem başına 1 pip maliyetle zararda.';
+      else if (a.getiri > 0) c = 'İşlem başına 1 pip maliyet getiriyi ' + pay + ' azaltıyor.';
+      else c = 'Bu ayarlarla kural maliyet öncesinde de zararda.';
+      c += ' Tek seri yeterli değil. Aynı kuralı başka bir seride test et.';
     }
     el('[data-s=cumle]').textContent = c;
     el('[data-s=serino]').textContent = tam.format(seriNo);
