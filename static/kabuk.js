@@ -75,4 +75,12 @@
     + '<p class="y">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım tavsiyesi değildir.</p>'
     + '</div>';
   document.body.appendChild(alt);
+
+  // Kapalı beta bandı (static/beta.js); sayfa kendi eklemediyse.
+  if (!document.querySelector('script[src="/static/beta.js"]')) {
+    var bt = document.createElement('script');
+    bt.src = '/static/beta.js';
+    bt.defer = true;
+    document.body.appendChild(bt);
+  }
 })();

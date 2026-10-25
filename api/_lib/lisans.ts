@@ -26,7 +26,12 @@ export interface Kayit {
   bitis: number;   // aboneliğin ödendiği son an (UTC, sn)
   hesaplar: number[];
   olusturma: number;
+  urunler?: string[]; // yoksa tüm ürünler (ücretli abonelik); kapalı beta yalnız ['kopru']
 }
+
+// Lisansın kapsadığı ürünler. Alan yoksa abonelik bütün ürünleri kapsar.
+export const urunKapsar = (k: { urunler?: unknown }, urun: string) => !Array.isArray(k.urunler) || k.urunler.includes(urun);
+const KAPSAM_DISI = 'Bu lisans bu eklentiyi kapsamıyor. Kapalı betada yalnız Kalibre Köprü kullanılabilir; otomatik işlem betanın parçası değildir.';
 
 // ------------------------------------------------------------------ belirteç
 export function belirtecImzala(sir: string, urun: string, hesap: number | string, bitis: number): string {
@@ -166,6 +171,7 @@ export async function lisansIsle(d: Depo, sir: string, anahtar: string, hesapMet
   if ((await d.say(`lisans-sinir:${hesapMetni}:${dk}`, 120)) > 20) return { durum: 429, govde: 'Çok sık deneme. Bir dakika sonra yeniden deneyin.' };
   const k = await oku(d, a);
   if (!k) return { durum: 404, govde: 'Lisans anahtarı bulunamadı.' };
+  if (!urunKapsar(k, urun)) return { durum: 403, govde: KAPSAM_DISI };
   const hesap = Number(hesapMetni);
   if (!k.hesaplar.includes(hesap)) {
     if (k.hesaplar.length >= HESAP_SINIRI) {
@@ -192,6 +198,7 @@ export async function eklentiIndir(d: Depo, anahtarMetni: string, ad: string, si
   if ((await d.say(`indir-sinir:${a}:${Math.floor(simdi / 60000)}`, 120)) > 10) return { durum: 429, hata: 'Çok sık deneme. Bir dakika sonra yeniden dene.' };
   const k = await oku(d, a);
   if (!k) return { durum: 404, hata: 'Lisans anahtarı bulunamadı.' };
+  if (!urunKapsar(k, ad)) return { durum: 403, hata: KAPSAM_DISI };
   if (k.bitis * 1000 <= simdi) return { durum: 403, hata: 'Aboneliğin sona ermiş. Eklentileri indirmek için aboneliğini yenile.' };
   const v = await d.oku(`eklenti:${ad}`);
   if (!v) return { durum: 503, hata: 'Eklenti dosyası henüz yüklenmedi. Biraz sonra yeniden dene ya da bize yaz.' };

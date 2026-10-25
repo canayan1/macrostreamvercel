@@ -8,7 +8,7 @@ MENU_EN = [("/en/lab/", "Lab"), ("/lab/panom.html?dil=en", "Dashboard"), ("/en/p
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için).
 ESLER = {"/": "/en/", "/lab/": "/en/lab/", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop/": "/en/prop/", "/forex/": "/en/forex/", "/kurulum/": "/en/setup/",
          "/guvenlik/": "/en/security/", "/metodoloji/": "/en/methodology/", "/hakkinda": "/en/about/", "/pro/": "/en/pricing/",
-         "/hesap/": "/en/license/", "/kullanim-sartlari/": "/en/terms/", "/gizlilik/": "/en/privacy/"}
+         "/hesap/": "/en/license/", "/kullanim-sartlari/": "/en/terms/", "/gizlilik/": "/en/privacy/", "/beta/": "/en/beta/"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -100,6 +100,7 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
 {f"<style>{ek_stil}</style>" if ek_stil else ""}
 </head>
 <body>
@@ -709,3 +710,115 @@ FOREX = """
 <div class="kutu">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı sunmaz ve getiri vaat etmez. Kaldıraçlı işlemler yatırdığın tutarın tamamını kaybetmene yol açabilir.</div>
 """
 sayfa("forex/index.html", "Bireysel forex: hesabını patlatma", "Kaldıraçlı işlemde kaybın en güçlü nedeni pozisyon büyüklüğü. Kalibre Lab risk bütçesi, oynaklığa göre lot ve günlük kayıp sınırıyla önce riski düzeltir.", "", FOREX, icindekiler(FOREX), ek_stil=PROP_STIL)
+
+# ------------------------------------------------------------------ kapalı beta rehberi
+BETA_FORM_STIL = """
+.geri { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.geri .alanlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px 18px; margin-bottom: 14px; }
+.geri label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+.geri input, .geri select, .geri textarea { min-height: 42px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 15px var(--sans); }
+.geri textarea { min-height: 96px; resize: vertical; }
+.geri .genis { grid-column: 1 / -1; }
+.geri #ok-msg { color: var(--yesil); }
+"""
+
+def beta_form(dil):
+    en = dil == "en"
+    t = (lambda tr, e: e) if en else (lambda tr, e: tr)
+    sonraki = "https://kalibremarkets.com/en/beta/?ok=1" if en else "https://kalibremarkets.com/beta/?ok=1"
+    secenek = lambda deger, etiket: f'<option value="{deger}">{etiket}</option>'
+    sayfalar = [("baglan", t("Bağlanma sayfası", "Connect page")), ("panom", t("Panom", "Dashboard")), ("kurucu", t("Strateji kurucu", "Strategy builder")),
+                ("optimizasyon", t("Optimizasyon", "Optimization")),
+                ("kopru", t("Köprü eklentisi (MT5)", "Bridge add-on (MT5)")), ("alpaca", "Alpaca"), ("tradier", "Tradier"), ("site", t("Sitenin diğer sayfaları", "Other site pages"))]
+    ciddiyet = [("P0", t("P0: yanlış sayı ya da veri sızıntısı", "P0: wrong numbers or a data leak")),
+                ("P1", t("P1: kurulum ya da kullanım engellendi", "P1: setup or use is blocked")),
+                ("P2", t("P2: kafa karıştırıcı ya da küçük hata", "P2: confusing or a minor bug")),
+                ("oneri", t("Öneri", "Suggestion"))]
+    return f'''<div class="geri" id="geri-bildirim-formu">
+  <p id="ok-msg" hidden><b>{t("Teşekkürler, geri bildirimin bize ulaştı.", "Thank you, your feedback reached us.")}</b></p>
+  <form action="https://formsubmit.co/markets@kalibrefin.com" method="POST" id="geri-form">
+    <input type="hidden" name="_subject" value="Kalibre beta geri bildirim">
+    <input type="hidden" name="_next" value="{sonraki}">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <div class="alanlar">
+      <label>{t("Hangi bölüm?", "Which part?")}<select name="bolum" required>{"".join(secenek(d, e) for d, e in sayfalar)}</select></label>
+      <label>{t("Önem", "Severity")}<select name="onem" required>{"".join(secenek(d, e) for d, e in ciddiyet)}</select></label>
+      <label>{t("Tarayıcı ve işletim sistemi", "Browser and operating system")}<input name="ortam" placeholder="{t("ör. Chrome 141, Windows 11", "e.g. Chrome 141, Windows 11")}" required></label>
+      <label>{t("E-posta (yanıt istersen)", "Email (if you want a reply)")}<input type="email" name="email" autocomplete="email"></label>
+      <label class="genis">{t("Ne yaptın? Adım adım", "What did you do? Step by step")}<textarea name="adimlar" required></textarea></label>
+      <label class="genis">{t("Ne bekliyordun?", "What did you expect?")}<textarea name="beklenen"></textarea></label>
+      <label class="genis">{t("Ne oldu? Hata mesajını aynen yaz", "What happened? Copy any error message exactly")}<textarea name="olan" required></textarea></label>
+    </div>
+    <p class="not">{t("Kod, lisans anahtarı, API anahtarı ya da şifre yazma. Ekran görüntüsü göndermek istersen hesap numaranı ve bakiyeni kapatıp e-postayla gönder.",
+                     "Do not include pairing codes, licence keys, API keys or passwords. If you want to send a screenshot, cover your account number and balance and email it.")}</p>
+    <button type="submit" class="dugme">{t("Gönder", "Send")}</button>
+  </form>
+  <p class="not">{t("Form, FormSubmit hizmeti aracılığıyla bize iletilir ve yalnız ürünü düzeltmek için kullanılır. Ayrıntılar ", "The form is delivered to us through the FormSubmit service and is used only to fix the product. Details are in the ")}<a href="{"/en/privacy/" if en else "/gizlilik/"}">{t("gizlilik politikasında", "privacy policy")}</a>.</p>
+</div>'''
+
+def beta_mailto(dil):
+    import urllib.parse
+    en = dil == "en"
+    konu = "Kalibre beta geri bildirim"
+    govde = ("Section / page:\nBrowser and OS:\nSteps:\n1.\n2.\n3.\nExpected:\nActual (exact error message):\n\nDo not include pairing codes, licence keys, API keys or passwords."
+             if en else
+             "Bölüm / sayfa:\nTarayıcı ve işletim sistemi:\nAdımlar:\n1.\n2.\n3.\nBeklenen:\nOlan (hata mesajı aynen):\n\nKod, lisans anahtarı, API anahtarı ya da şifre yazma.")
+    return "mailto:markets@kalibrefin.com?subject=" + urllib.parse.quote(konu) + "&body=" + urllib.parse.quote(govde)
+
+BETA_BETIK = """<script>
+if (new URLSearchParams(location.search).get('ok') === '1') {
+  document.getElementById('ok-msg').hidden = false;
+  document.getElementById('geri-form').hidden = true;
+}
+</script>"""
+
+BETA = f"""
+<h1>Kapalı beta rehberi</h1>
+<p class="giris">Kalibre Lab'i denediğin için teşekkürler. Bu sayfa betada ne olduğunu, ilk oturumda ne yapacağını, nelerden kaçınacağını ve geri bildirimi nasıl göndereceğini anlatır.</p>
+<div class="kutu"><b>Yalnız demo hesaplarla.</b> Beta süresince gerçek parayla çalışan hiçbir hesabı bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme.</div>
+
+<h2 id="neler-var">Betada neler var?</h2>
+<ul>
+  <li><b>MetaTrader 5 köprüsü ve Panom:</b> demo MT5 hesabının bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
+  <li><b>Strateji kurucu:</b> Basit mod (bloklar) ve İleri mod (form); ikisi aynı stratejiyi düzenler.</li>
+  <li><b>Hızlı prova:</b> kuralı kendi mumlarında saniyeler içinde dener. Maliyetleri içermez.</li>
+  <li><b>Optimizasyon:</b> parametre taraması, eğitim ve sınama dönemi, ısı haritası, şans eseri olup olmadığı ölçüsü.</li>
+  <li><b>Alpaca (paper) ve Tradier (sandbox):</b> ABD aracı kurumlarına tarayıcıdan doğrudan bağlantı.</li>
+</ul>
+<div class="kutu"><b>Otomatik işlem betanın parçası değildir.</b> Kalibre Motor (kural dosyasını MT5'te çalıştıran eklenti) ve prop kalkanı bu betada yok; beta lisansın yalnız Kalibre Köprü'yü (okuma) kapsar. Betada hiçbir hesapta emir açılmaz.</div>
+
+<h2 id="ilk-oturum">İlk oturum (yaklaşık 30 dakika)</h2>
+<ol>
+  <li><a href="/baglan">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
+  <li><a href="/panom">Panom'u</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
+  <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; hızlı provayı çalıştır.</li>
+  <li><a href="/lab/optimizasyon.html">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
+  <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/baglan">bağlanma sayfasından</a> bağla ve Panom'u onunla dene.</li>
+</ol>
+
+<h2 id="yapma">Bunları yapma</h2>
+<ul>
+  <li>Gerçek hesap bağlama.</li>
+  <li>Kural dosyalarını herhangi bir hesapta otomatik işlem için çalıştırma; betada otomatik işlem yok.</li>
+  <li>Eşleştirme kodunu, lisans anahtarını ya da Alpaca/Tradier anahtarlarını kimseyle paylaşma; bize de gönderme.</li>
+  <li>Simülasyon sonuçlarını yatırım kararı için kullanma.</li>
+</ul>
+
+<h2 id="ne-istiyoruz">Hangi geri bildirimi istiyoruz?</h2>
+<ul>
+  <li><b>Kurulumda takılma:</b> hangi adımda, ekranda ne yazıyordu.</li>
+  <li><b>Yanlış sayılar:</b> MT5 ya da aracı kurumundaki değerle karşılaştırmalı; mümkünse ekran görüntüsüyle (hesap numarasını kapat).</li>
+  <li><b>Kafa karıştıran ifadeler:</b> hangi cümle, ne anladın.</li>
+  <li><b>Çökme ya da donma:</b> tarayıcı, işletim sistemi ve yaptığın adımlar.</li>
+</ul>
+
+<h2 id="gizlilik">Senin hakkında ne görüyoruz?</h2>
+<p>Piyasa verini, pozisyonlarını ve işlemlerini göremeyiz: köprüden gelen veri şifrelidir ve yalnız senin tarayıcında açılır; Alpaca ve Tradier verisi doğrudan tarayıcına gelir. Gördüğümüz tek şey bize gönderdiğin geri bildirim ve beta lisansının kullanıldığı MT5 hesap numarasıdır (lisansı hesaba bağlamak için).</p>
+
+<h2 id="gonder">Geri bildirim gönder</h2>
+<p>Formu doldur ya da <a href="{beta_mailto("tr")}">e-postayla gönder</a> (hazır şablon açılır).</p>
+{beta_form("tr")}
+"""
+sayfa("beta/index.html", "Kapalı beta rehberi: Kalibre Lab", "Kalibre Lab kapalı betası: neler var, ilk oturum, yapılmaması gerekenler ve geri bildirim.", "", BETA, icindekiler(BETA), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True)

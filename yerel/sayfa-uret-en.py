@@ -474,3 +474,55 @@ FOREX = """
 <div class="kutu">Kalibre Lab is a software tool; it does not provide investment advice and does not promise returns. Leveraged trading can lose you all of the money you deposit.</div>
 """
 sayfa("en/forex/index.html", "Retail forex: don't blow up your account", "In leveraged trading, the strongest driver of losses is position size. Kalibre Lab fixes risk first with a risk budget, volatility-scaled lots and a daily loss limit.", "", FOREX, icindekiler(FOREX), ek_stil=PROP_STIL, dil="en")
+
+# ------------------------------------------------------------------ closed beta guide
+_tr2 = open(os.path.join(_d, "sayfa-uret.py")).read()
+exec(_tr2[_tr2.index("# ------------------------------------------------------------------ kapalı beta rehberi"):_tr2.index('BETA = f"""')])
+BETA_EN = f"""
+<h1>Closed beta guide</h1>
+<p class="giris">Thank you for trying Kalibre Lab. This page explains what is in the beta, what to do in your first session, what to avoid and how to send feedback.</p>
+<div class="kutu"><b>Demo accounts only.</b> During the beta, do not connect any account that trades real money. All results are simulations and may not include costs; do not make real-money decisions with them.</div>
+
+<h2 id="whats-in">What is in the beta?</h2>
+<ul>
+  <li><b>MetaTrader 5 bridge and Dashboard:</b> your demo MT5 balance, open positions, the symbols you follow and the last 90 days of closed trades, end-to-end encrypted.</li>
+  <li><b>Strategy builder:</b> Simple mode (blocks) and Advanced mode (form); both edit the same strategy.</li>
+  <li><b>Quick test:</b> tries a rule on your own candles in seconds. It does not include costs.</li>
+  <li><b>Optimization:</b> parameter scan, training and test periods, heat map, a measure of whether a result could be luck.</li>
+  <li><b>Alpaca (paper) and Tradier (sandbox):</b> direct browser connection to US brokers.</li>
+</ul>
+<div class="kutu"><b>Automated trading is not part of the beta.</b> Kalibre Engine (the add-on that runs a rule file in MT5) and the prop shield are not included; your beta licence covers Kalibre Bridge (read-only) only. No orders are placed on any account during the beta.</div>
+
+<h2 id="first-session">First session (about 30 minutes)</h2>
+<ol>
+  <li>Connect your demo MT5 account on the <a href="/en/connect">connect page</a>: download the add-on, paste the code, add the permission address, press <b>OK</b>. Note any step where you get stuck.</li>
+  <li>Open the <a href="/en/dashboard">Dashboard</a>: are balance, quotes and positions right? Compare with what MT5 shows.</li>
+  <li>In the strategy builder, build a strategy in Simple mode (e.g. a moving-average cross) or load an educational example; fill in the risk section yourself; run the quick test.</li>
+  <li>On the <a href="/lab/optimizasyon.html?dil=en">Optimization</a> page, scan two parameters; look at the heat map and the test-period result.</li>
+  <li>If you like, also connect an Alpaca paper or Tradier sandbox account on the <a href="/en/connect">connect page</a> and try the Dashboard with it.</li>
+</ol>
+
+<h2 id="dont">Please don't</h2>
+<ul>
+  <li>Connect a real account.</li>
+  <li>Run rule files for automated trading on any account; there is no automated trading in the beta.</li>
+  <li>Share your pairing code, licence key or Alpaca/Tradier keys with anyone, including us.</li>
+  <li>Use simulation results for investment decisions.</li>
+</ul>
+
+<h2 id="feedback-wanted">What feedback do we want?</h2>
+<ul>
+  <li><b>Setup friction:</b> which step, and what the screen said.</li>
+  <li><b>Wrong numbers:</b> compared with MT5 or your broker; with a screenshot if possible (cover your account number).</li>
+  <li><b>Confusing wording:</b> which sentence, and what you understood.</li>
+  <li><b>Crashes or freezes:</b> browser, operating system and the steps you took.</li>
+</ul>
+
+<h2 id="privacy">What do we see about you?</h2>
+<p>We cannot see your market data, positions or trades: data from the bridge is encrypted and opens only in your browser; Alpaca and Tradier data comes straight to your browser. All we see is the feedback you send us and the MT5 account number your beta licence is used on (to bind the licence to the account).</p>
+
+<h2 id="send">Send feedback</h2>
+<p>Fill in the form or <a href="{beta_mailto("en")}">send it by email</a> (a template opens).</p>
+{beta_form("en")}
+"""
+sayfa("en/beta/index.html", "Closed beta guide: Kalibre Lab", "Kalibre Lab closed beta: what is included, first session, what to avoid and how to send feedback.", "", BETA_EN, icindekiler(BETA_EN), ek_stil=BETA_FORM_STIL, ek_betik=BETA_BETIK, gizli=True, dil="en")

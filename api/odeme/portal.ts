@@ -22,7 +22,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!ANAHTAR_RE.test(anahtar)) return res.status(400).json({ hata: 'Lisans anahtarı hatalı.' });
   try {
     const v = await depo.oku(`lisans:${anahtar}`);
-    const musteri = v ? JSON.parse(v).musteri : null;
+    const kayit = v ? JSON.parse(v) : null;
+    // Beta lisansları ödemesizdir; yönetilecek bir Stripe aboneliği yoktur.
+    if (kayit?.beta) return res.status(404).json({ hata: 'Bu bir kapalı beta lisansı; yönetilecek bir ödeme ya da abonelik yok. Süre uzatma için bize yaz.' });
+    const musteri = kayit?.musteri ?? null;
     if (!musteri) return res.status(404).json({ hata: 'Bu anahtara bağlı bir abonelik bulunamadı.' });
     const kok = kokAdres(req.headers['x-forwarded-host'] ?? req.headers.host);
     const p = await stripe('billing_portal/sessions', { customer: musteri, return_url: `${kok}${dil === 'en' ? '/en/license/' : '/hesap/'}`, locale: dil === 'en' ? 'auto' : 'tr' });
