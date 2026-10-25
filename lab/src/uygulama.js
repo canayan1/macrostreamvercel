@@ -5,6 +5,8 @@
 import { dogrula, v2Ozellikleri, ZAMAN_DILIMLERI, GOSTERGE_TIPLERI, OPERATORLER, HATLAR, OYNAKLIK } from './dogrula.js';
 import { ozet, gostergeTanimi } from './ozet.js';
 import { prova } from './motor.js';
+import { calistir, disaAktar } from '../core/src/calistir.js';
+import { kimlikSatiri } from './calistirma-arayuz.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { mt5Panel } from './baglanti-arayuz.js';
@@ -359,6 +361,7 @@ const DIPNOT = {
 for (const k of Object.keys(DIPNOT)) DIPNOT[k] = ceviri(DIPNOT[k]) + ' ' + ceviri('Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.');
 
 function provaBos(mesaj) {
+  kimlikSatiri($('#calistirma'), {});
   $('#istatistik').innerHTML = `<div style="grid-column:1/-1"><span>${mesaj}</span></div>`;
   $('#maliyet-sonuc').textContent = '';
   $('#saglamlik').innerHTML = '';
@@ -408,12 +411,17 @@ function provaCalistir() {
     $('#rozet').textContent = ceviri('SENTETİK · tohum {n}', { n: tohum });
     ayar = { rejim: $('#rejim').value, adet: Number($('#adet').value), zamanDilimi: s.zaman_dilimi ?? 'H1' };
     mumlar = uret({ ...ayar, tohum });
+    ayar.tohum = tohum;
   }
 
   // Maliyet bölümü boşsa brüt (maliyetsiz) prova; doluysa net. Etiket her sonuçla birlikte görünür.
   const maliyet = maliyetOku();
-  const sonuc = prova(s, mumlar, { maliyet });
+  // Kimlikli prova: aynı strateji, veri ve ayarlar her zaman aynı sonuç kimliğini (resultId) verir.
+  const provaAyar = { maliyet };
+  const sonuc = calistir(s, mumlar, provaAyar, ayar ? { ek: { sentetik: ayar } } : {});
   $('#maliyet-sonuc').textContent = maliyetEtiketi(maliyet);
+  const strateji = JSON.parse(JSON.stringify(s));
+  kimlikSatiri($('#calistirma'), { resultId: sonuc.resultId, paket: () => disaAktar(strateji, provaAyar, sonuc), dosyaAdi: 'kalibre-backtest' });
   fiyatCiz($('#grafik'), mumlar, sonuc.islemler);
   egriCiz($('#egri'), sonuc.ozkaynak);
   istatistikCiz(sonuc.istatistik);

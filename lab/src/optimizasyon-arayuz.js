@@ -11,12 +11,16 @@ import { istemci, sinifla, roleAdresi } from './veri/baglanti.js';
 import { tradierSecici, alpacaSecici } from './tradier-kaynak.js';
 import { baglanDugmesi, depo, KOD_ANAHTARI, ROLE_ANAHTARI, KOD_RE } from './baglan-ortak.js';
 import { parametreler, ayarla, tara } from './optimizasyon.js';
+import { denemeSayaci } from './asiri-uyum.js';
+import { yuruyenIleri, pencereler } from './yuruyen-ileri.js';
+import './dil-dogrulama.js';
 import { plan, isiHaritasi, hucreRengi, dosyaAdi, komsulukSinifi, dsrSinifi, PROP_ON_AYAR, EN_COK_PARAMETRE, VARSAYILAN_ORNEK } from './optimizasyon-yardim.js';
 
 const TASLAK_ANAHTARI = 'kalibre-lab-taslak'; // strateji kurucunun taslağı (uygulama.js ile aynı)
 const $ = s => document.querySelector(s);
 import { kacis, stratejiyiTemizle } from './guvenlik.js';
 import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
+import { kimlikSatiri } from './calistirma-arayuz.js';
 const sayiOku = v => Number(String(v).trim().replace(',', '.'));
 const dilEki = dil === 'tr' ? '?dil=tr' : '';
 
@@ -249,8 +253,10 @@ async function baslat() {
   const propSec = $('#prop').value;
   const egitim = Math.min(90, Math.max(50, sayiOku($('#egitim').value) || 70)) / 100;
   const t0 = performance.now();
+  const sayac = denemeSayaci();
   try {
     sonuc = await tara(s, veri.mumlar, sec, {
+      oncekiDeneme: sayac.oku(s),
       olcut: $('#olcut').value,
       egitimOrani: egitim,
       enAzIslem: Math.max(1, Math.round(sayiOku($('#en-az').value) || 20)),
@@ -263,6 +269,7 @@ async function baslat() {
       $('#calisma-durum').textContent = ceviri('Tarama sürüyor: {i}/{n}', { i: i.toLocaleString(yerel), n: n.toLocaleString(yerel) });
     });
     secilenSon = sec;
+    sayac.ekle(s, sonuc.denenen);
     const sn = ((performance.now() - t0) / 1000).toFixed(1);
     $('#calisma-durum').textContent = sonuc.iptal
       ? ceviri('Tarama iptal edildi; o ana kadar denenen {n} ayar gösteriliyor.', { n: sonuc.denenen })
@@ -290,6 +297,7 @@ function uyariMetni(u) {
     case 'sinama_zarar': return ceviri('Sıralamadaki ilk ayar sınama döneminde zarar etti.');
     case 'sivri_tepe': return ceviri('İlk ayarın tek adım komşuları belirgin biçimde daha kötü: sonuç tek bir noktaya bağlı ve küçük bir değişiklikte bozulabilir.');
     case 'sans_olabilir': return ceviri('Bu kadar ayar denendiğinde, ilk sıradaki sonucun şans eseri olmama olasılığı {p}. Yüzde 95\'in altı, sonucun şansla da açıklanabileceği anlamına gelir.', { p: yuzdeMetni(sayiMetni(u.dsr * 100, 0)) });
+    case 'pbo_yuksek': return ceviri('Eğitimde en iyi görünen ayarlar, görülmemiş dönemlerde çoğunlukla ortanın altında kaldı (PBO {p}). Sıralama büyük olasılıkla geçmişe uyumu yansıtıyor.', { p: yuzdeMetni(sayiMetni(u.pbo * 100, 0)) });
     case 'cok_deneme': return ceviri('{n} ayar denendi. Ne kadar çok ayar denenirse, en iyi görünen sonucun şansa dayanma olasılığı o kadar artar.', { n: u.denenen });
   }
   return '';
@@ -313,8 +321,34 @@ function ozetCiz() {
     const acik = { guclu: ceviri('yüksek: sonuç yalnız şansla zor açıklanır'), belirsiz: ceviri('belirsiz: sonuç şansla da açıklanabilir'), zayif: ceviri('düşük: büyük olasılıkla denenen ayar sayısının yan ürünü') }[ds];
     parca.push(satir(yuzdeMetni(sayiMetni(r.deflatedSharpe * 100, 0)), kacis(ceviri('şans eseri olmama olasılığı (çoklu deneme düzeltmesi); {a}', { a: acik }))));
   }
+  parca.push(satir(r.N.toLocaleString(yerel), `${kacis(ceviri('bu taslakta toplam deneme (önceki taramalar dahil); şans düzeltmesi bu sayıyla yapılır'))} <button type="button" class="dugme ikincil kucuk" id="sayac-sifirla">${kacis(ceviri('Sayacı sıfırla'))}</button>`));
+  if (r.pbo?.pbo != null) {
+    const p = r.pbo.pbo;
+    const acik = p < 0.2 ? ceviri('düşük: seçim görülmemiş dönemlerde de büyük ölçüde tutuyor') : p < 0.5 ? ceviri('orta: seçim görülmemiş dönemlerde kısmen tutuyor') : ceviri('yüksek: seçim büyük olasılıkla geçmişe uyumun ürünü');
+    parca.push(satir(yuzdeMetni(sayiMetni(p * 100, 0)), kacis(ceviri('aşırı uyum olasılığı (PBO, {k} bölme): eğitimde en iyi görünen ayarın sınamada ortanın altında kalma oranı; {a}', { k: r.pbo.kombinasyon.toLocaleString(yerel), a: acik }))));
+  } else if (r.pbo?.neden) {
+    const neden = { ozdes: ceviri('ayarların sonuçları özdeş'), az_gozlem: ceviri('veri bölmeler için kısa'), az_ayar: ceviri('en az iki ayar gerekir') }[r.pbo.neden] ?? r.pbo.neden;
+    parca.push(satir('-', kacis(ceviri('PBO hesaplanamadı: {n}', { n: neden }))));
+  }
+  if (r.kirpma) {
+    parca.push(satir(sayiMetni(r.kirpma.hsr, 3), kacis(ceviri('düzeltilmiş Sharpe (Harvey-Liu, BHY): {n} deneme hesaba katılınca ilk ayarın mum başı Sharpe\'ı {a}, kırpma {k}', { n: r.kirpma.M, a: sayiMetni(r.kirpma.hsr, 3), k: yuzdeMetni(sayiMetni(Math.max(0, Math.min(1, r.kirpma.kirpma)) * 100, 0)) }))));
+  }
   $('#sonuc-ozet').innerHTML = parca.join('');
+  $('#sayac-sifirla')?.addEventListener('click', () => {
+    if (!confirm(ceviri('Bu taslağın deneme sayacı sıfırlansın mı? Sıfırlamak, daha önce denenen ayarları silmez; yalnız şans düzeltmesini zayıflatır.'))) return;
+    denemeSayaci().sifirla(s);
+  });
   $('#sonuc-uyari').innerHTML = r.uyarilar.map(u => `<li>${kacis(uyariMetni(u))}</li>`).join('');
+  // Sonuç kimliği: aynı strateji, veri, aralıklar, seçenekler ve önceki deneme sayısı aynı kimliği verir.
+  const strateji = JSON.parse(JSON.stringify(s)), parametre = secilenSon;
+  kimlikSatiri($('#calistirma'), {
+    resultId: r.resultId, dosyaAdi: 'kalibre-optimizasyon',
+    paket: () => ({
+      format: 'kalibre-optimization', formatVersion: 1, manifest: r.manifest, strategy: strateji, parameters: parametre,
+      summary: { N: r.N, tried: r.denenen, total: r.toplam, sampled: r.ornek, deflatedSharpe: r.deflatedSharpe, pbo: r.pbo, haircut: r.kirpma, neighbourhood: r.komsuluk, cost: r.maliyet },
+      best: r.enIyiler, results: r.sonuclar, warnings: r.uyarilar,
+    }),
+  });
 }
 
 function tabloCiz() {
@@ -391,9 +425,61 @@ function isiCiz() {
   x.save(); x.translate(12, ust + 4); x.rotate(Math.PI / 2); x.textBaseline = 'bottom'; x.fillText(secilenSon[1].etiket + ' →', 0, 0); x.restore();
 }
 
+// ---------------------------------------------------------------- yürüyen ileri
+function yuruyenKutusu() {
+  let k = $('#yuruyen');
+  if (k) return k;
+  k = document.createElement('div');
+  k.id = 'yuruyen';
+  k.className = 'opt-yuruyen';
+  k.innerHTML = `<h3>${kacis(ceviri('Yürüyen ileri analiz'))}</h3>
+    <p class="not">${kacis(ceviri('Ayar her pencerede yalnız o güne kadarki veriyle yeniden seçilir ve hemen sonraki dönemde sınanır. Sınama dönemleri uç uca eklenir.'))}</p>
+    <label>${kacis(ceviri('Pencere'))} <select id="yuruyen-tur"><option value="kayan">${kacis(ceviri('Kayan'))}</option><option value="capali">${kacis(ceviri('Çapalı (büyüyen)'))}</option></select></label>
+    <button type="button" class="dugme ikincil" id="yuruyen-baslat">${kacis(ceviri('Çalıştır'))}</button>
+    <span class="durum" id="yuruyen-durum" role="status"></span>
+    <div class="opt-ozet" id="yuruyen-ozet"></div>
+    <div class="opt-tablo-kap"><table class="pozisyon" id="yuruyen-tablo"></table></div>`;
+  $('#sonuc-uyari').after(k);
+  $('#yuruyen-baslat').addEventListener('click', yuruyenCalistir);
+  return k;
+}
+
+async function yuruyenCalistir() {
+  if (!s || !veri || !secilenSon || calisiyor) return;
+  const T = veri.mumlar.length, egitim = Math.floor(T * 0.4), sinama = Math.floor(T * 0.15);
+  const tur = $('#yuruyen-tur').value;
+  if (pencereler(T, { egitim, sinama, embargo: 5, tur }).length < 2) { $('#yuruyen-durum').textContent = ceviri('Yürüyen ileri için veri kısa: en az iki pencere gerekir.'); return; }
+  calisiyor = true; baslatDurumu();
+  $('#yuruyen-baslat').disabled = true;
+  try {
+    const k = await yuruyenIleri(s, veri.mumlar, secilenSon, {
+      egitim, sinama, embargo: 5, tur, olcut: $('#olcut').value,
+      enAzIslem: Math.max(1, Math.round((sayiOku($('#en-az').value) || 20) * 0.4)),
+      sinir: Math.min(200, sonuc?.planlanan ?? 200), maliyet: maliyetOku(), iptal: () => iptalIstendi,
+    }, (i, n) => { $('#yuruyen-durum').textContent = ceviri('Yürüyen ileri analiz sürüyor: {i}/{n}', { i, n }); });
+    $('#yuruyen-durum').textContent = '';
+    const satir = (b, m) => `<div><b>${b}</b><span>${m}</span></div>`;
+    $('#yuruyen-ozet').innerHTML = [
+      satir(k.wfe === null ? '-' : sayiMetni(k.wfe, 2), kacis(ceviri('yürüyen ileri verimliliği (WFE): sınamadaki ortalama getirinin eğitimdekine oranı; 1\'e yakınsa seçim tutmuş, 0 ya da altıysa tutmamış'))),
+      satir(isaretliYuzde(k.oosGetiriYuzde, 1), kacis(ceviri('birleştirilmiş sınama getirisi, {n} pencere', { n: k.katlar.length }))),
+      satir(yuzdeMetni(sayiMetni(k.ayarDegisimOrani * 100, 0)), kacis(ceviri('ardışık pencerelerde seçilen ayarın değişme oranı'))),
+    ].join('');
+    const bas = `<tr><th>${kacis(ceviri('Eğitim'))}</th><th>${kacis(ceviri('Sınama'))}</th><th>${kacis(ceviri('Seçilen ayar'))}</th><th>${kacis(ceviri('Sınama getirisi'))}</th></tr>`;
+    $('#yuruyen-tablo').innerHTML = bas + k.katlar.map(p => `<tr><td>${kacis(ceviri('mum {a}-{b}', { a: p.isBas, b: p.isSon }))}</td><td>${kacis(ceviri('mum {a}-{b}', { a: p.oosBas, b: p.oosSon }))}</td><td>${p.secim ? kacis(p.secim.map(v => ondalikYaz(v)).join(' · ')) : kacis(ceviri('uygun ayar yok'))}</td><td>${p.oos ? kacis(isaretliYuzde(p.oos.getiriYuzde, 1)) : '-'}</td></tr>`).join('');
+  } catch (err) {
+    $('#yuruyen-durum').textContent = ceviri('Yürüyen ileri analiz tamamlanamadı: {m}', { m: err.message });
+  } finally {
+    calisiyor = false; baslatDurumu();
+    $('#yuruyen-baslat').disabled = false;
+  }
+}
+const ondalikYaz = v => (Number.isInteger(v) ? String(v) : sayiMetni(v, 2));
+
 function sonucCiz() {
   $('#sonuc-kart').hidden = false;
   ozetCiz();
+  yuruyenKutusu();
+  $('#yuruyen-ozet').innerHTML = ''; $('#yuruyen-tablo').innerHTML = ''; $('#yuruyen-durum').textContent = '';
   tabloCiz();
   isiCiz();
 }

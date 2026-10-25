@@ -802,4 +802,8 @@ export const EN = {
   'Mumlar bid fiyatıdır; ask = bid + spread. Long ask fiyatından girer, bid fiyatından çıkar. Short bid fiyatından girer, ask fiyatından çıkar; stopu ve hedefi de ask fiyatına göre tetiklenir. Kayma her piyasa emrinde (giriş, stop, kural çıkışı) aleyhe eklenir; hedef limit emir sayılır. Komisyon giriş ve çıkışta ayrı ayrı işlem değerinin yüzdesidir. Swap yoktur.':
     'Candles are bid prices; ask = bid + spread. A long enters at the ask and exits at the bid. A short enters at the bid and exits at the ask, and its stop and target trigger on the ask. Slippage is added against you on every market order (entry, stop, rule exit); the target counts as a limit order. Commission is a percent of trade value, charged on entry and on exit. There is no swap.',
   'En yüksek spread filtresi provada uygulanmaz: spread sabit kabul edilir.': 'The maximum spread filter is not applied in Quick Backtest: the spread is assumed constant.',
+  'Sonuç kimliği': 'Result ID',
+  'Kimliği kopyala': 'Copy ID',
+  'Çalıştırmayı indir': 'Export run',
+  'Aynı motor sürümü, strateji, veri ve ayarlar her zaman aynı kimliği verir.': 'The same engine version, strategy, data and settings always give the same ID.',
 };

@@ -137,6 +137,8 @@ canvas{width:100%;display:block;background:var(--bg-1);border:1px solid var(--bo
 .maliyet .prova-ayar{margin:10px 0 0}
 .maliyet .prova-ayar input{width:9em}
 .maliyet-sonuc{font-size:12px;color:var(--text-dim);margin:10px 0 0;font-weight:600}
+.calistirma{font-size:12px;color:var(--text-dim);margin:6px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.calistirma code{font:500 12px var(--mono, ui-monospace, monospace);color:var(--text);background:var(--bg-1);border:1px solid var(--border-2);border-radius:4px;padding:2px 6px}
 .mt5-gelismis input{width:100%;font:12px var(--mono);margin-top:4px}
 .pozisyon{width:100%;border-collapse:collapse;font-size:12px}
 .pozisyon th{font:500 11px var(--mono);color:var(--muted);text-align:right;padding:4px 6px;border-bottom:1px solid var(--border)}

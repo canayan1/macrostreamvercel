@@ -1,0 +1,24 @@
+{
+  "name": "@kalibre/core",
+  "version": "0.1.0",
+  "description": "Kalibre Lab headless backtest engine: deterministic, browser and Node",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": { "types": "./index.d.ts", "default": "./src/index.js" },
+    "./motor": "./src/motor.js",
+    "./manifest": "./src/manifest.js",
+    "./enstruman": "./src/enstruman.js",
+    "./dolum": "./src/dolum.js",
+    "./optimizasyon": "./src/optimizasyon.js",
+    "./asiri-uyum": "./src/asiri-uyum.js",
+    "./yuruyen-ileri": "./src/yuruyen-ileri.js",
+    "./package.json": "./package.json"
+  },
+  "bin": { "kalibre-core": "./bin/kalibre-core.mjs" },
+  "files": ["src", "bin", "index.d.ts", "README.md"],
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED",
+  "private": true
+}
