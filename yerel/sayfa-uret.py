@@ -9,13 +9,18 @@ MENU = [("/lab/", "Laboratuvar"), ("/lab/panom.html", "Panom"), ("/prop/", "Prop
 MENU_EN = [("/en/lab/", "Lab"), ("/lab/panom.html?dil=en", "Dashboard"), ("/en/prop/", "Prop shield"), ("/en/setup/", "Setup"), ("/en/security/", "Security"), ("/egitim/", "Education (Turkish)"), ("/en/pricing/", "Pricing")]
 
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için).
-ESLER = {"/": "/en/", "/lab/": "/en/lab/", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop/": "/en/prop/", "/forex/": "/en/forex/", "/kurulum/": "/en/setup/",
-         "/guvenlik/": "/en/security/", "/metodoloji/": "/en/methodology/", "/hakkinda": "/en/about/", "/pro/": "/en/pricing/",
-         "/hesap/": "/en/license/", "/risk-bildirimi/": "/en/risk-disclosure/", "/kullanim-sartlari/": "/en/terms/", "/gizlilik/": "/en/privacy/", "/beta/": "/en/beta/"}
+ESLER = {"/": "/en", "/lab": "/en/lab", "/lab/panom.html": "/lab/panom.html?dil=en", "/prop": "/en/prop", "/forex": "/en/forex", "/kurulum": "/en/setup",
+         "/guvenlik": "/en/security", "/metodoloji": "/en/methodology", "/hakkinda": "/en/about", "/pro": "/en/pricing",
+         "/hesap": "/en/license", "/risk-bildirimi": "/en/risk-disclosure", "/kullanim-sartlari": "/en/terms", "/gizlilik": "/en/privacy", "/beta": "/en/beta"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
-    return ("/" + yol.replace("index.html", "").replace(".html", "")).replace("//", "/")
+    # vercel.json trailingSlash:false: kanonik adresler sondaki eğik çizgisiz (kök "/" hariç).
+    return ("/" + yol.replace("index.html", "").replace(".html", "")).replace("//", "/").rstrip("/") or "/"
+
+def egik_cizgisiz(html):
+    # İç bağlantılardaki ve kanonik/og adreslerindeki sondaki eğik çizgiyi kaldırır ("/" kök hariç).
+    return re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html)
 
 def ust(aktif, dil="tr", diger=None):
     AK = ' aria-current="page"'
@@ -128,7 +133,7 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
     assert "—" not in html, yol + ": uzun tire"
     p = os.path.join(KOK, yol)
     os.makedirs(os.path.dirname(p), exist_ok=True)
-    open(p, "w").write(html)
+    open(p, "w").write(egik_cizgisiz(html))
     print("yazıldı", yol)
 
 def icindekiler(govde):
@@ -360,7 +365,8 @@ sayfa("hakkinda.html", "Hakkında: Kalibre", "Kalibre neden var, nasıl çalış
 
 # ------------------------------------------------------------------ abonelik
 PRO_MOTOR_TR = '<li>Kalibre Motor: kural dosyanı MT5\'te çalıştıran eklenti. Gerçek hesapta kullanımı <b>beta</b>dır; açık kabul ve kayıp sınırı ister, <a href="/risk-bildirimi/">risk bildirimini</a> oku.</li>'
-PRO_ACIK_TR = """  <label class="onay"><input type="checkbox" id="sartlar"> <span><a href="/kullanim-sartlari/">Kullanım şartlarını</a> ve <a href="/gizlilik/">gizlilik politikasını</a> okudum, kabul ediyorum.</span></label>
+PRO_ACIK_TR = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span><a href="/kullanim-sartlari/">Kullanım şartlarını</a> ve <a href="/gizlilik/">gizlilik politikasını</a> okudum, kabul ediyorum.</span></label>
+  <label class="onay"><input type="checkbox" id="cayma" required> <span>Lisans anahtarımın teslim edilip bir MetaTrader 5 hesabında etkinleştirilmesiyle hizmetin ifasına hemen başlanacağını ve etkinleştirmeden sonra 14 günlük cayma hakkımı kaybedeceğimi kabul ediyorum (<a href="/kullanim-sartlari#cayma">şartlar, bölüm 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Abone ol</button>
   <p class="not" id="odeme-durum" role="status"></p>
   <p class="not">Ödeme Stripe ile alınır; kart bilgilerin bize ulaşmaz. Aboneliğini istediğin zaman <a href="/hesap/">hesap sayfasından</a> iptal edebilirsin; dönem sonuna kadar kullanmaya devam edersin.</p>"""
@@ -450,10 +456,11 @@ PRO_BETIK_ACIK = """<script>
   var d = document.getElementById('abone-ol');
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'Devam etmek için kullanım şartlarını ve gizlilik politikasını onaylamalısın.'; return; }
+    if (!document.getElementById('cayma').checked) { durum.textContent = 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.'; return; }
     d.disabled = true; d.textContent = 'Ödeme sayfası açılıyor';
     durum.textContent = '';
     try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true }) });
+      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true }) });
       var j = await r.json().catch(function () { return {}; });
       if (r.ok && j.url) { location.href = j.url; return; }
       durum.textContent = j.hata || 'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.';
@@ -815,7 +822,7 @@ BETA = f"""
 
 <h2 id="lisans">Beta lisansını nasıl alırım?</h2>
 <p>Davetle sana bir <b>davet kodu</b> gelir. <a href="/pro/">Fiyatlar</a> sayfasında şartları onaylayıp "Abone ol"a bas; ödeme sayfasında "Promosyon kodu ekle"ye kodunu yaz. Kod ilk 3 ayı ücretsiz yapar ve kart istenmez. Ödemeden sonra lisans anahtarın <a href="/hesap/">Lisansım</a> sayfasında görünür. Sana doğrudan bir lisans anahtarı geldiyse onu aynı sayfada "Kaydet" ile kaydet.</p>
-<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap/">Lisansım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet koduyla açılan lisans yalnız Kalibre Köprü'yü kapsar.</div>
+<div class="kutu"><b>3 ay sonra ne olur?</b> Ücretsiz dönem bitince abonelik aylık ücretli plana döner ve Stripe senden ödeme ister. Devam etmek istemiyorsan dönem bitmeden <a href="/hesap/">Lisansım</a> sayfasından iptal et; ödeme yapılmazsa lisans birkaç gün içinde kapanır. Davet kodu etkin olduğu sürece lisans yalnız Kalibre Köprü'yü kapsar; ücretsiz dönem bitip ücretli plana geçtiğinde lisans Kalibre Motor dahil tam ürünü kapsar.</div>
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
@@ -864,10 +871,10 @@ sayfa("beta/index.html", "Beta programı rehberi: Kalibre Lab", "Kalibre Lab bet
 # ------------------------------------------------------------------ risk bildirimi
 RISK = """
 <h1>Risk bildirimi</h1>
-<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce bu sayfayı oku. Burada yazanlar <a href="/kullanim-sartlari/">kullanım şartlarının</a> bir parçasıdır.</p>
+<p class="giris">Kalibre Lab, Kalibre Köprü ve Kalibre Motor'u kullanmadan önce lütfen bu sayfayı okuyun. Bu Risk Bildirimi, <a href="/kullanim-sartlari">Kullanım Şartları</a>'nın ayrılmaz bir parçasıdır.</p>
 
 <h2 id="beta">Beta sürümü</h2>
-<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta dene. Yanlış gördüğün her sayıyı <a href="/beta/">geri bildirim formuyla</a> bildir.</p>
+<p>Kalibre Lab beta sürümündedir. Özellikler değişebilir, yazılımda hatalar bulunabilir ve hesaplamalar yanlış sonuç verebilir. Bir sonuca güvenmeden önce aynı kuralı kendi MetaTrader 5 Strategy Tester'ında ve demo hesapta deneyin. Yanlış gördüğünüz her sayıyı <a href="/beta">geri bildirim formuyla</a> bildirin.</p>
 
 <h2 id="simulasyon">Simülasyon ve varsayımsal sonuçlar</h2>
 <p>Laboratuvar, hızlı prova, optimizasyon ve sayfalardaki örnekler varsayımsal (simüle edilmiş) sonuçlardır ve doğal sınırları vardır:</p>
@@ -880,22 +887,23 @@ RISK = """
 </ul>
 
 <h2 id="kaldirac">Kaldıraçlı işlemlerin riski</h2>
-<p>Kaldıraçlı işlemler (forex, CFD ve benzerleri) yatırdığın tutarın tamamını kaybetmene yol açabilir. Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK, 2015'te forex yatırımcılarının yaklaşık %87-88'inin zarar ettiğini açıkladı. Kaybetmeyi göze alamayacağın parayla işlem yapma.</p>
+<p>Kaldıraçlı işlemler (forex, CFD ve benzerleri) yatırdığınız tutarın tamamını kaybetmenize yol açabilir. Avrupa'da düzenleyici ESMA'nın 2018 incelemesine göre bireysel CFD hesaplarının %74-89'u para kaybetti. Türkiye'de SPK, 2015'te forex yatırımcılarının yaklaşık %87-88'inin zarar ettiğini açıkladı. Kaybetmeyi göze alamayacağınız parayla işlem yapmayın.</p>
 
 <h2 id="motor">Kalibre Motor'un gerçek hesapta kullanımı</h2>
-<p>Kalibre Motor, senin kurduğun kural dosyasını senin hesabında çalıştırır ve emir gönderir. Gerçek hesapta beta aşamasında şu riskler vardır:</p>
+<p>Kalibre Motor, sizin kurduğunuz kural dosyasını sizin hesabınızda çalıştırır ve emir gönderir. Gerçek hesapta beta aşamasında şu riskler vardır:</p>
 <ul>
   <li><b>Yazılım hataları:</b> kural dosyası ya da Motor beklenmeyen bir şekilde davranabilir.</li>
   <li><b>Bağlantı:</b> MetaTrader 5 kapanırsa, bilgisayar uykuya geçerse ya da internet koparsa Motor pozisyonları yönetemez.</li>
   <li><b>Kayma ve boşluklar:</b> hızlı piyasada, haber anlarında ve hafta sonu açılışlarında emirler stop ya da hedef fiyatından farklı gerçekleşebilir.</li>
   <li><b>Kalkan garanti değildir:</b> prop kalkanı ve kayıp sınırları boşluklar, kayma ve aracı kurum kuralları nedeniyle aşılabilir.</li>
 </ul>
-<p>Bu yüzden Motor gerçek hesapta, eklenti ayarlarında "Gerçek hesapta beta riskini kabul ediyorum" seçeneğini sen işaretlemedikçe ve bir kayıp sınırı (prop kalkanı ya da günlük kayıp sınırı) tanımlı olmadıkça yeni işlem açmaz.</p>
+<p>Bu yüzden Motor gerçek hesapta, eklenti ayarlarında "Gerçek hesapta beta riskini kabul ediyorum" seçeneğini siz işaretlemedikçe ve bir kayıp sınırı (prop kalkanı ya da günlük kayıp sınırı) tanımlı olmadıkça yeni işlem açmaz.</p>
 
 <h2 id="tavsiye">Yatırım tavsiyesi değildir</h2>
-<p>Kalibre Markets yatırım danışmanlığı, portföy yöneticiliği ya da aracılık hizmeti sunmaz ve SPK lisanslı bir kurum değildir. Hangi kuralı kuracağına, hangi sembolde ne zaman ve ne büyüklükte işlem yapacağına sen karar verirsin; sonuçların sorumluluğu sana aittir. Eğitim örnekleri birer başlangıç noktasıdır, öneri değildir.</p>
+<p>Kalibre Markets yatırım danışmanlığı, portföy yöneticiliği ya da aracılık hizmeti sunmaz ve SPK lisanslı bir kurum değildir. Hangi kuralı kuracağınıza, hangi sembolde ne zaman ve ne büyüklükte işlem yapacağınıza siz karar verirsiniz; sonuçların sorumluluğu size aittir. Eğitim örnekleri birer başlangıç noktasıdır, öneri değildir.</p>
+<p>Kalibre Markets hiçbir zaman paranızı, menkul kıymetlerinizi veya kripto varlıklarınızı tutmaz, bunlara erişim yetkisi istemez ve sizin adınıza hesap açmaz. Size ait varlıklar yalnızca seçtiğiniz aracı kurumda bulunur.</p>
 
 <h2 id="veri">Veri ve gizlilik</h2>
-<p>Köprüden gelen verin uçtan uca şifrelidir; Alpaca ve Tradier verin doğrudan tarayıcına gelir. Hangi verinin nerede işlendiği <a href="/gizlilik/">gizlilik politikasında</a> ve <a href="/guvenlik/">güvenlik sayfasında</a> yazar.</p>
+<p>Köprüden gelen verileriniz uçtan uca şifrelidir; Alpaca ve Tradier verileriniz doğrudan tarayıcınıza gelir. Hangi verinin nerede işlendiği <a href="/gizlilik">Gizlilik Politikası</a>'nda ve <a href="/guvenlik">Güvenlik</a> sayfasında açıklanır.</p>
 """
 sayfa("risk-bildirimi/index.html", "Risk bildirimi: Kalibre Lab", "Kalibre Lab beta sürümü, simülasyon sonuçlarının sınırları, kaldıraçlı işlemlerin riski ve Kalibre Motor'un gerçek hesapta kullanımına dair riskler.", "", RISK, icindekiler(RISK))

@@ -35,25 +35,37 @@ export const urunKapsar = (k: { urunler?: unknown }, urun: string) => !Array.isA
 // Kupon kapsamı: Stripe kuponunun metadata'sında `urunler` (virgüllü liste, ör. "kopru") varsa
 // lisans yalnız o ürünleri kapsar. İlk testçilerin %100 indirimli kuponu böyle Köprü'yle sınırlanır.
 // Metadata var ama tanınan ürün yoksa liste boş döner (lisans hiçbir eklentiyi açmaz; kapalı hata).
-// İndirim bittiğinde kapsam kendiliğinden genişlemez: kayıttaki liste korunur (docs/CANLIYA-CIKIS.md, "Kupon kapsamı").
+// Kısıt yalnız kupon etkinken geçerlidir: abonelik kuponsuz geldiğinde (indirim bitti) kayıttaki
+// liste kaldırılır ve lisans tam ürünü kapsar (docs/CANLIYA-CIKIS.md, "Kupon kapsamı").
+// İndirimler açılmamış kimlik olarak gelirse ya da kupon okunamazsa durum "kesin değil" sayılır ve kapsam değişmez.
 const ADLAR: Record<string, string> = { kopru: 'kopru', 'köprü': 'kopru', bridge: 'kopru', motor: 'motor', engine: 'motor' };
 function urunListesi(m: unknown): string[] | null {
   if (typeof m !== 'string' || !m.trim()) return null;
   const l = m.split(',').map(x => ADLAR[x.trim().toLocaleLowerCase('tr')]).filter((x): x is string => !!x);
   return [...new Set(l)];
 }
-export async function kuponUrunleri(sub: any, stripe?: StripeIstek): Promise<string[] | null> {
+export async function kuponKapsami(sub: any, stripe?: StripeIstek): Promise<{ urunler: string[] | null; kesin: boolean }> {
   const indirimler: any[] = [];
-  if (sub?.discount && typeof sub.discount === 'object') indirimler.push(sub.discount); // eski API sürümleri
-  for (const x of Array.isArray(sub?.discounts) ? sub.discounts : []) if (x && typeof x === 'object') indirimler.push(x);
+  let kesin = true;
+  if (typeof sub?.discount === 'string') kesin = false;
+  else if (sub?.discount && typeof sub.discount === 'object') indirimler.push(sub.discount); // eski API sürümleri
+  for (const x of Array.isArray(sub?.discounts) ? sub.discounts : []) {
+    if (x && typeof x === 'object') indirimler.push(x); else kesin = false; // açılmamış indirim kimliği
+  }
   for (const x of indirimler) {
     let kupon = x.coupon ?? x.source?.coupon;
-    if (typeof kupon === 'string') kupon = stripe ? await stripe(`coupons/${encodeURIComponent(kupon)}`) : null;
-    const l = urunListesi(kupon?.metadata?.urunler);
-    if (l) return l;
+    if (typeof kupon === 'string') kupon = stripe ? await stripe(`coupons/${encodeURIComponent(kupon)}`).catch(() => null) : null;
+    if (!kupon || typeof kupon !== 'object') { kesin = false; continue; }
+    const l = urunListesi(kupon.metadata?.urunler);
+    if (l) return { urunler: l, kesin: true };
   }
-  return null;
+  return { urunler: null, kesin };
 }
+export async function kuponUrunleri(sub: any, stripe?: StripeIstek): Promise<string[] | null> {
+  return (await kuponKapsami(sub, stripe)).urunler;
+}
+// Webhook olayındaki abonelik nesnesinde indirimler kimlik olarak gelir; kapsamı okumak için açılmış hâli çekilir.
+const acilmamis = (sub: any) => typeof sub?.discount === 'string' || (Array.isArray(sub?.discounts) && sub.discounts.some((x: any) => typeof x === 'string'));
 // Abonelik, indirimler açılmış (expand) olarak çekilir; kupon kapsamı buradan okunur.
 const aboneYolu = (id: any) => `subscriptions/${encodeURIComponent(typeof id === 'string' ? id : id.id)}?expand[]=discounts`;
 
@@ -122,14 +134,16 @@ export async function aboneligiKaydet(d: Depo, sub: any, eposta: string | null, 
 
 // Yenileme, iptal, ödeme gecikmesi: kayıt varsa günceller. Yoksa (checkout olayı henüz
 // gelmediyse) hiçbir şey yapmaz; checkout olayı kaydı güncel abonelikle zaten açar.
-export async function aboneligiGuncelle(d: Depo, sub: any, urunler?: string[] | null): Promise<Kayit | null> {
+export async function aboneligiGuncelle(d: Depo, sub: any, urunler?: string[] | null, kuponsuzKesin = false): Promise<Kayit | null> {
   const anahtar = await d.oku(`lisans-abone:${sub.id}`);
   if (!anahtar) return null;
   const k = await oku(d, anahtar);
   if (!k) return null;
   k.durum = sub.status;
   k.bitis = bitisHesapla(sub);
-  if (urunler) k.urunler = urunler; // kupon yoksa (ör. indirim bitti) mevcut kapsam korunur
+  if (urunler) k.urunler = urunler;
+  else if (kuponsuzKesin) delete k.urunler; // kupon bitti: kısıt kalkar, tam ürün
+  // Kuponsuz olduğu kesin değilse (açılmamış indirim, okunamayan kupon) mevcut kapsam korunur.
   await yaz(d, k);
   return k;
 }
@@ -155,14 +169,18 @@ export async function olayIsle(d: Depo, olay: any, stripe: StripeIstek): Promise
     }
     case 'customer.subscription.created':
     case 'customer.subscription.updated':
-    case 'customer.subscription.deleted':
-      return (await aboneligiGuncelle(d, o, await kuponUrunleri(o, stripe))) ? 'güncellendi' : 'kayıt yok';
+    case 'customer.subscription.deleted': {
+      const sub = acilmamis(o) && o.id ? ((await stripe(aboneYolu(o.id)).catch(() => null)) ?? o) : o;
+      const kk = await kuponKapsami(sub, stripe);
+      return (await aboneligiGuncelle(d, sub, kk.urunler, kk.kesin)) ? 'güncellendi' : 'kayıt yok';
+    }
     case 'invoice.paid':
     case 'invoice.payment_failed': {
       const id = o.subscription ?? o.parent?.subscription_details?.subscription;
       if (!id) return 'abonelik yok';
       const sub = await stripe(aboneYolu(id));
-      return (await aboneligiGuncelle(d, sub, await kuponUrunleri(sub, stripe))) ? 'güncellendi' : 'kayıt yok';
+      const kk = await kuponKapsami(sub, stripe);
+      return (await aboneligiGuncelle(d, sub, kk.urunler, kk.kesin)) ? 'güncellendi' : 'kayıt yok';
     }
   }
   return 'yok sayıldı';

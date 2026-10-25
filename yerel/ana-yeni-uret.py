@@ -3,7 +3,7 @@
 # Kullanım:
 #   python3 ana-yeni-uret.py            → site-wt/yeni-ana/ (hazırlık önizlemesi, noindex)
 #   python3 ana-yeni-uret.py --canli    → site-wt/index.html ve site-wt/en/index.html (asıl ana sayfa)
-import os, sys
+import os, re, sys
 _d = os.path.dirname(os.path.abspath(__file__))
 exec(open(os.path.join(_d, "sayfa-uret.py")).read().split("# ------------------------------------------------------------------ kurulum")[0])
 
@@ -40,6 +40,13 @@ def akis_svg(t):
     return (f'<svg class="akis" viewBox="0 0 730 480" role="img" aria-labelledby="akis-baslik akis-aciklama">'
             f'<title id="akis-baslik">{t["akis_baslik"]}</title><desc id="akis-aciklama">{t["akis_aciklama"]}</desc>'
             f'{yollar}{k}{tarayici}{sunucu}{etiket}</svg>')
+
+def akis_liste(t):
+    """Dar ekranda şemanın alt etiketleri okunmaz; aynı bilgiyi alt alta liste olarak verir."""
+    m = [("MetaTrader 5", t["mt5_alt"] + "; " + t["role_etiket"]), ("Alpaca", t["alpaca_alt"]),
+         ("Tradier", t["tradier_alt"]), ("CSV", t["csv_alt"]),
+         (t["tarayici"], ", ".join(t["tarayici_satir"])), (t["sunucu"], t["sunucu_alt"])]
+    return '<ul class="akis-liste">' + "".join(f"<li><b>{a}</b> {b}</li>" for a, b in m) + "</ul>"
 
 METIN = {
  "tr": dict(
@@ -174,6 +181,7 @@ def govde(t):
     </div>
     <figure style="margin:0">
       {akis_svg(t)}
+      {akis_liste(t)}
       <figcaption class="akis-not">{t["akis_not"]}</figcaption>
     </figure>
   </div>
@@ -323,7 +331,7 @@ def sayfa_yaz(dil):
     assert "—" not in html and "–" not in html, dil + ": uzun tire"
     hedef = os.path.join(KOK, yol.lstrip("/"), "index.html")
     os.makedirs(os.path.dirname(hedef), exist_ok=True)
-    open(hedef, "w").write(html)
+    open(hedef, "w").write(re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html))
     print("yazıldı", os.path.relpath(hedef, KOK))
 
 for d in ("tr", "en"):

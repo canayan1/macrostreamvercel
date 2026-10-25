@@ -1,5 +1,5 @@
 # English homepage (/en/): same styles as the Turkish homepage, English content.
-import os
+import os, re
 _d = os.path.dirname(os.path.abspath(__file__))
 exec(open(os.path.join(_d, "sayfa-uret.py")).read().split("# ------------------------------------------------------------------ kurulum")[0])
 tr = open(os.path.join(KOK, "index.html")).read()
@@ -251,5 +251,5 @@ html = f'''<!doctype html>
 '''
 assert "—" not in html
 os.makedirs(os.path.join(KOK, "en"), exist_ok=True)
-open(os.path.join(KOK, "en/index.html"), "w").write(html)
+open(os.path.join(KOK, "en/index.html"), "w").write(re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html))
 print("yazıldı en/index.html")

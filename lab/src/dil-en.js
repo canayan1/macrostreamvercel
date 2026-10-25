@@ -739,7 +739,7 @@ export const EN = {
   "Ortam": "Environment",
   "Sandbox (deneme, 15 dk gecikmeli)": "Sandbox (testing, 15 min delayed)",
   "Bu hesabı kullan": "Use this account",
-  "Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik önizleme özelliğidir.": "Under Tradier's terms, the API is for personal use in apps that are not Tradier partners; this connection is a preview feature for now.",
+  "Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik beta aşamasındadır.": "Under Tradier's terms, the API is for personal use in apps that are not Tradier partners; this connection is in beta for now.",
   "Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre düzeltilmemiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick preview on your Tradier account's price history. Daily prices are adjusted for splits but not for dividends. Unless you fill in the Costs section, commission and slippage are not included.",
   "Saat penceresi filtresi günlük ve haftalık mumlarda işlemlerin hepsini engelleyebilir; bu veride filtreyi kapat.": "The time-window filter can block every trade on daily and weekly candles; turn the filter off for this data.",
   // ------------------------------------------------------------ Alpaca (veri/alpaca.js, alpaca-baglan.js, araci.js)
@@ -754,7 +754,7 @@ export const EN = {
   "Gizli anahtar (Secret Key)": "Secret Key",
   "Paper (sanal para)": "Paper (virtual money)",
   "Canlı anahtar gerçek hesabında emir verebilir. Kalibre emir göndermez, ama anahtarı yalnız güvendiğin bir cihazda sakla; aracı denemek için Paper anahtarı yeterli.": "A live key can place orders on your real account. Kalibre sends no orders, but keep the key only on a device you trust; a Paper key is enough to try the tool.",
-  "Ücretsiz Alpaca hesabında hisse fiyatları IEX akışındandır (tek borsa, tüm piyasa değil). Bu bağlantı kişisel anahtarlarla çalışan bir önizleme özelliğidir; ticari kullanım için Alpaca Connect (OAuth) onayı gerekir.": "On a free Alpaca account, stock prices come from the IEX feed (a single exchange, not the whole market). This connection is a preview feature that uses personal keys; commercial use requires Alpaca Connect (OAuth) approval.",
+  "Ücretsiz Alpaca hesabında hisse fiyatları IEX akışındandır (tek borsa, tüm piyasa değil). Bu bağlantı kişisel anahtarlarla çalışır ve beta aşamasındadır; ticari kullanım için Alpaca Connect (OAuth) onayı gerekir.": "On a free Alpaca account, stock prices come from the IEX feed (a single exchange, not the whole market). This connection uses personal keys and is in beta; commercial use requires Alpaca Connect (OAuth) approval.",
   "Önce anahtar kimliğini ve gizli anahtarı yapıştır.": "Paste the key ID and the secret key first.",
   "Alpaca'ya bağlanılıyor…": "Connecting to Alpaca…",
   "Alpaca anahtarları bu tarayıcıdan silinecek. Alpaca hesabın etkilenmez. Devam edilsin mi?": "Your Alpaca keys will be removed from this browser. Your Alpaca account is not affected. Continue?",

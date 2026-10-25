@@ -11,8 +11,14 @@
   'use strict';
   if (document.getElementById('km-ust')) return;
 
-  var yol = location.pathname.replace(/index\.html$/, '');
-  var MENU = [['/lab/', 'Laboratuvar'], ['/lab/panom.html', 'Panom'], ['/prop/', 'Prop kalkanı'], ['/kurulum/', 'Kurulum'], ['/guvenlik/', 'Güvenlik'], ['/egitim/', 'Eğitim'], ['/pro/', 'Abonelik']];
+  var yol = location.pathname.replace(/index\.html$/, '').replace(/(.)\/$/, '$1');
+  var MENU = [['/lab', 'Laboratuvar'], ['/lab/panom.html', 'Panom'], ['/prop', 'Prop kalkanı'], ['/kurulum', 'Kurulum'], ['/guvenlik', 'Güvenlik'], ['/egitim', 'Eğitim'], ['/pro', 'Abonelik']];
+  // Etkin menü: yolla eşleşen en uzun öğe (/lab/panom.html'de yalnız Panom, /prop'ta /pro değil).
+  var etkin = MENU.reduce(function (en, m) {
+    var y = m[0].replace(/\.html$/, '');
+    var uyar = yol === m[0] || yol === y || yol.indexOf(y + '/') === 0;
+    return uyar && (!en || m[0].length > en.length) ? m[0] : en;
+  }, null);
 
   var css = ''
     + '#km-ust{position:sticky;top:0;z-index:60;border-bottom:1px solid #24344c;background:rgba(14,23,36,.94);'
@@ -22,17 +28,19 @@
     + '#km-ust .m b{font:600 22px/1 "Source Serif 4",Georgia,serif;letter-spacing:-.01em}'
     + '#km-ust .m span{font-size:13px;color:#73839a}'
     + '#km-ust nav{display:flex;gap:22px;margin-left:auto}'
-    + '#km-ust nav a{text-decoration:none;color:#a3b0c2;padding:6px 0}'
+    + '#km-ust nav a{text-decoration:none;color:#a3b0c2;padding:6px 0;white-space:nowrap}'
     + '#km-ust nav a:hover,#km-ust nav a[aria-current]{color:#e7ecf2}'
     + '#km-ust nav a[aria-current]{box-shadow:inset 0 -2px 0 #5fb89a}'
     + '#km-ust .d{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:6px;background:#5fb89a;'
-    + 'color:#08130f;font-weight:600;font-size:14px;text-decoration:none}'
+    + 'color:#08130f;font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap;flex-shrink:0}'
     + '#km-ust .d:hover{background:#74c8ab}'
     + '#km-ust .d.ikincil{background:transparent;color:#e7ecf2;border:1px solid #33465f;margin-left:4px}'
     + '#km-ust .d.ikincil:hover{border-color:#a3b0c2;background:transparent}'
     + '#km-ust .d.ikincil + .d{margin-left:-16px}'
     + '#km-ust a:focus-visible,#km-alt a:focus-visible{outline:2px solid #8fc7ff;outline-offset:3px}'
-    + '@media(max-width:860px){#km-ust .k{flex-wrap:wrap;gap:6px 18px;padding-top:10px;padding-bottom:10px}'
+    // Menü ve düğmeler tek satırda kalır; 1081-1260px aralıklar daralır, 1080px ve altında menü ikinci satıra iner.
+    + '@media(min-width:1081px) and (max-width:1260px){#km-ust .k{gap:16px}#km-ust nav{gap:14px;font-size:14px}#km-ust .d{padding:0 12px}}'
+    + '@media(max-width:1080px){#km-ust .k{flex-wrap:wrap;gap:6px 18px;padding-top:10px;padding-bottom:10px}'
     + '#km-ust nav{order:3;width:100%;margin:0;overflow-x:auto;gap:18px;font-size:14px;scrollbar-width:none}#km-ust .d{margin-left:auto}#km-ust .d.ikincil{margin-left:auto}#km-ust .d.ikincil + .d{margin-left:0}}'
     + '@media(max-width:560px){#km-ust .d:not(.ikincil){display:none}}'
     + '#km-alt{border-top:1px solid #24344c;padding:48px 0 56px;margin-top:64px;color:#73839a;font:400 14px/1.6 "IBM Plex Sans",system-ui,sans-serif;background:#0e1724}'
@@ -60,18 +68,18 @@
   ust.id = 'km-ust';
   ust.innerHTML = '<div class="k"><a class="m" href="/"><b>Kalibre</b><span>Lab</span></a><nav aria-label="Ana menü">'
     + MENU.map(function (m) {
-      return '<a href="' + m[0] + '"' + (yol.indexOf(m[0]) === 0 ? ' aria-current="page"' : '') + '>' + m[1] + '</a>';
+      return '<a href="' + m[0] + '"' + (m[0] === etkin ? ' aria-current="page"' : '') + '>' + m[1] + '</a>';
     }).join('')
-    + '</nav><a class="d ikincil" href="/baglan">MetaTrader\'ı bağla</a><a class="d" href="/lab/">Laboratuvarı aç</a></div>';
+    + '</nav><a class="d ikincil" href="/baglan">MetaTrader\'ı bağla</a><a class="d" href="/lab">Laboratuvarı aç</a></div>';
   document.body.insertBefore(ust, document.body.firstChild);
 
   var alt = document.createElement('footer');
   alt.id = 'km-alt';
   alt.innerHTML = '<div class="k">'
     + '<div><p><b style="font:600 18px \'Source Serif 4\',Georgia,serif;color:#e7ecf2">Kalibre</b></p><p>MetaTrader 5 için strateji laboratuvarı.</p></div>'
-    + '<div><h4>Ürün</h4><a href="/lab/">Laboratuvar</a><a href="/lab/panom.html">Panom</a><a href="/prop/">Prop kalkanı</a><a href="/forex/">Bireysel forex</a><a href="/kurulum/">Kurulum</a><a href="/guvenlik/">Güvenlik</a><a href="/pro/">Abonelik</a></div>'
-    + '<div><h4>Öğren</h4><a href="/egitim/">Eğitim</a><a href="/metodoloji/">Metodoloji</a><a href="/grafik-oku/">Grafik okuma testi</a><a href="/trading/onyargi-testi/">Önyargı testi</a></div>'
-    + '<div><h4>Kalibre</h4><a href="/hakkinda">Hakkında</a><a href="/iletisim/">İletişim</a><a href="/kullanim-sartlari/">Kullanım şartları</a><a href="/gizlilik/">Gizlilik</a><a href="/risk-bildirimi/">Risk bildirimi</a></div>'
+    + '<div><h4>Ürün</h4><a href="/lab">Laboratuvar</a><a href="/lab/panom.html">Panom</a><a href="/prop">Prop kalkanı</a><a href="/forex">Bireysel forex</a><a href="/kurulum">Kurulum</a><a href="/guvenlik">Güvenlik</a><a href="/pro">Abonelik</a></div>'
+    + '<div><h4>Öğren</h4><a href="/egitim">Eğitim</a><a href="/metodoloji">Metodoloji</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>'
+    + '<div><h4>Kalibre</h4><a href="/hakkinda">Hakkında</a><a href="/iletisim">İletişim</a><a href="/kullanim-sartlari">Kullanım şartları</a><a href="/gizlilik">Gizlilik</a><a href="/risk-bildirimi">Risk bildirimi</a></div>'
     + '<p class="y">Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım tavsiyesi değildir.</p>'
     + '</div>';
   document.body.appendChild(alt);

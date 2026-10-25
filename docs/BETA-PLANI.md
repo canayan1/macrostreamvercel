@@ -16,8 +16,8 @@ Motor ve prop kalkanı testerlara verilmez. Testçi lisansları yalnız `kopru` 
 Testçi lisansı iki yoldan açılır:
 - **Promosyon kodu (önerilen):** "Kalibre ilk testçiler" kuponu (%100, 3 ay, metadata
   `urunler=kopru`), testçi başına tek kullanımlık kod. Testçi `/pro/` sayfasında abone olur, kart
-  sorulmaz, lisans otomatik açılır. 3 ay sonunda iptal etmezse abonelik ücretliye döner; kapsam
-  yine yalnız Köprü kalır (Can'ın kararı bekleniyor, `CANLIYA-CIKIS.md`).
+  sorulmaz, lisans otomatik açılır. 3 ay sonunda iptal etmezse abonelik ücretliye döner; kupon
+  bitince kısıt kalkar ve lisans Motor dahil tam ürünü kapsar (`CANLIYA-CIKIS.md`, "Kupon kapsamı").
 - **Doğrudan beta lisansı:** Stripe'sız, `yerel/beta-lisans.mjs` ile (aşağıda).
 
 ## 1. Kimleri davet edelim

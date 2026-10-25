@@ -7,9 +7,9 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Kurulum: MetaTrader 5'i Kalibre Lab'e bağla</title>
 <meta name="description" content="Kalibre Köprü eklentisini MetaTrader 5'e kurma, eşleştirme kodunu girme ve WebRequest iznini verme adımları.">
-<link rel="canonical" href="https://kalibremarkets.com/kurulum/">
-<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/kurulum/">
-<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/setup/">
+<link rel="canonical" href="https://kalibremarkets.com/kurulum">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/kurulum">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/en/setup">
 <meta property="og:title" content="Kurulum: MetaTrader 5'i Kalibre Lab'e bağla">
 <meta property="og:description" content="Kalibre Köprü eklentisini MetaTrader 5'e kurma, eşleştirme kodunu girme ve WebRequest iznini verme adımları.">
 <meta property="og:site_name" content="Kalibre Markets">
@@ -29,17 +29,17 @@
   <div class="kap">
     <a class="marka" href="/"><b>Kalibre</b><span>Lab</span></a>
     <nav aria-label="Ana menü">
-      <a href="/lab/">Laboratuvar</a>
+      <a href="/lab">Laboratuvar</a>
       <a href="/lab/panom.html">Panom</a>
-      <a href="/prop/">Prop kalkanı</a>
-      <a href="/kurulum/" aria-current="page">Kurulum</a>
-      <a href="/guvenlik/">Güvenlik</a>
-      <a href="/egitim/">Eğitim</a>
-      <a href="/pro/">Abonelik</a>
+      <a href="/prop">Prop kalkanı</a>
+      <a href="/kurulum" aria-current="page">Kurulum</a>
+      <a href="/guvenlik">Güvenlik</a>
+      <a href="/egitim">Eğitim</a>
+      <a href="/pro">Abonelik</a>
     </nav>
-    <a class="dil" href="/en/setup/" hreflang="en" lang="en">EN</a>
+    <a class="dil" href="/en/setup" hreflang="en" lang="en">EN</a>
     <a class="dugme ikincil kucuk baglan" href="/baglan">MetaTrader'ı bağla</a>
-    <a class="dugme kucuk" href="/lab/">Laboratuvarı aç</a>
+    <a class="dugme kucuk" href="/lab">Laboratuvarı aç</a>
   </div>
 </header>
 
@@ -55,7 +55,7 @@
 <ul>
   <li>MetaTrader 5. Windows'ta aracı kurumunun kurulum dosyası, macOS'ta MetaQuotes'un resmi uygulaması yeterli.</li>
   <li>Herhangi bir aracı kurumda demo ya da gerçek bir MT5 hesabı.</li>
-  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap/">Lisansım</a> sayfasındadır.</li>
+  <li>Kalibre Köprü eklentisi (<code>KalibreKopru.ex5</code>) ve lisans anahtarın. İkisi de abone olduktan sonra <a href="/hesap">Lisansım</a> sayfasındadır.</li>
 </ul>
 
 <h2 id="eklenti">1. Eklentiyi MetaTrader 5'e ekle</h2>
@@ -77,7 +77,7 @@
   <li>Navigator'da <b>KalibreKopru</b>'yu herhangi bir grafiğin üzerine sürükle.</li>
   <li>Açılan pencerede <b>Inputs</b> sekmesine geç.</li>
   <li><b>Eşleştirme kodu</b> satırına laboratuvardaki kodu yapıştır.</li>
-  <li><b>Lisans anahtarı</b> satırına <a href="/hesap/">Lisansım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
+  <li><b>Lisans anahtarı</b> satırına <a href="/hesap">Lisansım</a> sayfasındaki <code>KLM-</code> ile başlayan anahtarı yapıştır.</li>
   <li><b>Semboller</b> satırına izlemek istediklerini virgülle yaz, ör. <code>EURUSD,GBPUSD,XAUUSD</code>. Boş bırakırsan yalnız eklendiği grafiğin sembolü gönderilir.</li>
   <li><b>Zaman dilimi</b> olarak M1, M5, M15, M30, H1, H4, D1 ya da W1 seç ve <b>OK</b> de.</li>
 </ol>
@@ -104,7 +104,7 @@
     <tr><td>WebRequest izni yok</td><td>4. adımı tekrarla. Adresin tam olarak <code>https://kalibremarkets.com</code> yazıldığından ve <b>OK</b>'e basıldığından emin ol.</td></tr>
     <tr><td>Eklenti grafiğe eklenmiyor, kod hatası uyarısı çıkıyor</td><td>Kodu laboratuvardan yeniden kopyala. Başında ya da sonunda eksik karakter kalmış olabilir.</td></tr>
     <tr><td>Röleye ulaşılamadı</td><td>İnternet bağlantını kontrol et. Eklenti birkaç saniyede bir yeniden dener.</td></tr>
-    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap/">Lisansım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
+    <tr><td>Lisans geçersiz</td><td>Anahtarı <a href="/hesap">Lisansım</a> sayfasından yeniden kopyala. Aboneliğin bittiyse ya da anahtar zaten iki MT5 hesabında kullanılıyorsa bu uyarıyı görürsün. Eklenti dakikada bir yeniden dener.</td></tr>
     <tr><td>Laboratuvar "kod eşleşmiyor" diyor</td><td>Eklentideki kod ile laboratuvardaki kod farklı. Laboratuvarda yeni kod ürettiysen eklentiye de yenisini yapıştır.</td></tr>
     <tr><td>Bağlantı bir süre sonra kopuyor</td><td>Köprü, MT5 açık ve bilgisayar uyanıkken çalışır. Bilgisayar uykuya geçince veri akışı durur, MT5 yeniden açılınca kendiliğinden devam eder.</td></tr>
   </tbody>
@@ -128,13 +128,13 @@
 </ol>
 <div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar yalnız IEX borsasından gelir; bu, tüm piyasa hacminin küçük bir kısmıdır. Laboratuvar anahtarları yalnız okumak için kullanır, emir göndermez. Anahtarlar yalnız bu tarayıcıda saklanır ve yalnız Alpaca'ya gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde tarayıcından silinir. Bu bağlantı kendi kişisel anahtarlarınla çalışır.</div>
 
-<div class="kutu">Kalibre Lab beta sürümündedir. Kurmadan önce <a href="/risk-bildirimi/">risk bildirimini</a> oku; ilk kurulumu demo hesapta yap.</div>
+<div class="kutu">Kalibre Lab beta sürümündedir. Kurmadan önce <a href="/risk-bildirimi">risk bildirimini</a> oku; ilk kurulumu demo hesapta yap.</div>
 
 <h2 id="eklentisiz">Eklentisiz çalışmak</h2>
 <p>Eklenti kurmak istemiyorsan, MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara sürükleyip bırakabilirsin. Dosya bilgisayarından hiç çıkmaz; tarayıcında okunur.</p>
 
     </article>
-    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#gerekenler">Gerekenler</a><a href="#eklenti">1. Eklentiyi MetaTrader 5'e ekle</a><a href="#kod">2. Laboratuvarda eşleştirme kodunu üret</a><a href="#grafik">3. Eklentiyi bir grafiğe ekle</a><a href="#izin">4. MetaTrader 5'te Kalibre adresine izin ver</a><a href="#dogrula">5. Bağlantıyı doğrula</a><a href="#sorunlar">Sık karşılaşılan durumlar</a><a href="#tradier">Tradier (ABD) ile bağlanmak</a><a href="#alpaca">Alpaca (ABD) ile bağlanmak</a><a href="#eklentisiz">Eklentisiz çalışmak</a><p>Takıldığın bir adım olursa <a href="/iletisim/" style="display:inline">bize yaz</a>.</p></aside>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#gerekenler">Gerekenler</a><a href="#eklenti">1. Eklentiyi MetaTrader 5'e ekle</a><a href="#kod">2. Laboratuvarda eşleştirme kodunu üret</a><a href="#grafik">3. Eklentiyi bir grafiğe ekle</a><a href="#izin">4. MetaTrader 5'te Kalibre adresine izin ver</a><a href="#dogrula">5. Bağlantıyı doğrula</a><a href="#sorunlar">Sık karşılaşılan durumlar</a><a href="#tradier">Tradier (ABD) ile bağlanmak</a><a href="#alpaca">Alpaca (ABD) ile bağlanmak</a><a href="#eklentisiz">Eklentisiz çalışmak</a><p>Takıldığın bir adım olursa <a href="/iletisim" style="display:inline">bize yaz</a>.</p></aside>
   </div>
 </main>
 
@@ -146,28 +146,28 @@
     </div>
     <div>
       <h4>Ürün</h4>
-      <a href="/lab/">Laboratuvar</a>
+      <a href="/lab">Laboratuvar</a>
       <a href="/lab/panom.html">Panom</a>
-      <a href="/prop/">Prop kalkanı</a>
-      <a href="/forex/">Bireysel forex</a>
-      <a href="/kurulum/">Kurulum</a>
-      <a href="/guvenlik/">Güvenlik</a>
-      <a href="/pro/">Abonelik</a>
+      <a href="/prop">Prop kalkanı</a>
+      <a href="/forex">Bireysel forex</a>
+      <a href="/kurulum">Kurulum</a>
+      <a href="/guvenlik">Güvenlik</a>
+      <a href="/pro">Abonelik</a>
     </div>
     <div>
       <h4>Öğren</h4>
-      <a href="/egitim/">Eğitim</a>
-      <a href="/metodoloji/">Metodoloji</a>
-      <a href="/grafik-oku/">Grafik okuma testi</a>
-      <a href="/trading/onyargi-testi/">Önyargı testi</a>
+      <a href="/egitim">Eğitim</a>
+      <a href="/metodoloji">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
     </div>
     <div>
       <h4>Kalibre</h4>
       <a href="/hakkinda">Hakkında</a>
-      <a href="/iletisim/">İletişim</a>
-      <a href="/kullanim-sartlari/">Kullanım şartları</a>
-      <a href="/gizlilik/">Gizlilik</a>
-      <a href="/risk-bildirimi/">Risk bildirimi</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/kullanim-sartlari">Kullanım şartları</a>
+      <a href="/gizlilik">Gizlilik</a>
+      <a href="/risk-bildirimi">Risk bildirimi</a>
     </div>
     <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılım aracıdır; yatırım danışmanlığı ya da aracılık hizmeti sunmaz. Laboratuvarda gösterilen sonuçlar geçmiş veriye dayanır ve gelecekteki sonuçların göstergesi değildir. Kaldıraçlı işlemler, yatırdığın tutarın tamamını kaybetmene yol açabilir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre, MetaQuotes ile bağlantılı değildir.</p>
   </div>

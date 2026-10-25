@@ -24,8 +24,20 @@ vermeden önce riskleri oku." Bant risk bildirimine ve beta rehberine götürür
   Strategy Tester etkilenmez. Ayrıntı: kalibre-lab `docs/kalkan.md`.
 - Ödeme: `payment_method_collection: 'if_required'` (%100 indirimli davet kodunda kart istenmez),
   promosyon kodları açık.
-- Kupon kapsamı: kupon metadata'sında `urunler=kopru` varsa açılan lisans yalnız Köprü'yü kapsar
-  (Motor lisans ve indirme istekleri 403). Testler: `test/lisans.test.mjs`.
+- Kupon kapsamı: kupon metadata'sında `urunler=kopru` varsa açılan lisans, kupon etkin olduğu
+  sürece yalnız Köprü'yü kapsar (Motor lisans ve indirme istekleri 403). Kupon bitip
+  `customer.subscription.updated` ya da `invoice.paid` kuponsuz gelince kayıttaki `urunler` silinir
+  ve lisans tam ürünü kapsar. İndirim açılmamış kimlik olarak gelirse abonelik açılmış hâliyle
+  yeniden çekilir; kupon okunamazsa kapsam değişmez. Testler: `test/lisans.test.mjs`.
+- Ödeme onayı: `/pro` ve `/en/pricing` sayfalarında şartlar kutusuna ek olarak zorunlu cayma onayı
+  kutusu var (lisans etkinleşince ifaya başlanır, cayma hakkı sona erer; şartlar 12a).
+  `/api/odeme/baslat` `cayma_onay: true` olmadan 400 döner; onay, zamanı ve şart sürümü
+  (`2026-10-25`) Checkout ve abonelik metadata'sına yazılır. Testler: `test/odeme.test.mjs`.
+- Şartlar 25 Ekim 2026 sürümü: ehliyet ve yaptırımlar (2a), aracı kurum bağlantıları ve anahtarlar
+  (8c), stratejiler kullanıcının (10a), cayma, fiyat değişikliği, deneme ve kodlar, vergiler
+  (12a-12d), azami sorumluluk ve mücbir sebep (13), üçüncü kişi talepleri (13a), askıya alma ve
+  fesih (14), genel hükümler ve bildirimler (16, 16a). Taslak ve rakip karşılaştırması avukata
+  ayrıca verilecek.
 - Site haritası: `sitemap.xml` (55 adres, TR/EN eşleri hreflang ile), `yerel/site-haritasi.py` ile
   yeniden üretilir. `robots.txt` `/api/` yolunu taramaya kapatır.
 
@@ -83,10 +95,10 @@ Aynı adımları önce **test modunda** yap, Preview ortamına test anahtarları
 - [ ] Avukata: şartlardaki `AVUKAT İÇİN` ve `FOR COUNSEL` notları; özellikle 8a (6502 sayılı kanun,
       "olduğu gibi" sınırları) ve 8b (SPK, ABD CFTC 4.14(a)(9), İngiltere FCA PERG 8.30). Canlıya
       çıkmadan önce en azından 8b ve risk bildirimi okunmalı.
-- [ ] Kararın gerekiyor: **kupon bittiğinde kapsam**. Şu an davet koduyla açılan lisans 3 ay sonra
-      ücretli olsa da yalnız Köprü'yü kapsar (bilinçli olarak kendiliğinden genişlemiyor). Ücretli
-      devam eden testçiye Motor açılacaksa kayıttan `urunler` alanı elle silinir ya da kural kodda
-      değiştirilir.
+- [x] Karar verildi: **kupon bittiğinde kapsam** tam ürüne genişler. Kısıt yalnız kupon etkinken
+      geçerli; 3 ay sonra ücretli devam eden testçinin lisansı Motor'u da kapsar.
+- [ ] Stripe yenileme ve deneme bitiş e-postalarının açık olduğunu doğrula: şartlar 12c "ücret
+      alınmadan önce e-postayla bildirim" diyor.
 - [ ] Canlıya alma onayı: "canlıya al" demeden Claude `vercel --prod` yapmaz.
 
 ## Claude'un yapacakları

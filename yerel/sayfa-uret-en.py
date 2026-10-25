@@ -230,7 +230,8 @@ sayfa("en/about/index.html", "About: Kalibre", "Why Kalibre exists, how it works
 
 # ------------------------------------------------------------------ pricing
 EN_MOTOR = '<li>Kalibre Engine: the add-on that runs your rule file in MT5. Use on a real account is <b>beta</b>; it requires explicit acceptance and a loss limit, read the <a href="/en/risk-disclosure/">risk disclosure</a>.</li>'
-EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar"> <span>I have read and accept the <a href="/en/terms/">terms of use</a> and the <a href="/en/privacy/">privacy policy</a>.</span></label>
+EN_ACIK = """  <label class="onay"><input type="checkbox" id="sartlar" required> <span>I have read and accept the <a href="/en/terms/">terms of use</a> and the <a href="/en/privacy/">privacy policy</a>.</span></label>
+  <label class="onay"><input type="checkbox" id="cayma" required> <span>I agree that performance of the service begins as soon as my licence key is delivered and activated on a MetaTrader 5 account, and that I lose my 14-day right of withdrawal once it is activated (<a href="/en/terms#withdrawal">terms, section 12a</a>).</span></label>
   <button type="button" class="dugme" id="abone-ol">Subscribe</button>
   <p class="not" id="odeme-durum" role="status"></p>
   <p class="not">Payment is handled by Stripe; your card details never reach us. Your currency is shown on the checkout page. You can cancel at any time from the <a href="/en/license/">License</a> page and keep using the service until the end of the period.</p>"""
@@ -298,10 +299,11 @@ EN_PRO_BETIK_ACIK = """<script>
   var d = document.getElementById('abone-ol');
   d.addEventListener('click', async function () {
     if (!document.getElementById('sartlar').checked) { durum.textContent = 'To continue, please accept the terms of use and the privacy policy.'; return; }
+    if (!document.getElementById('cayma').checked) { durum.textContent = 'To continue, please tick the box about the right of withdrawal.'; return; }
     d.disabled = true; d.textContent = 'Opening checkout';
     durum.textContent = '';
     try {
-      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, dil: 'en' }) });
+      var r = await fetch('/api/odeme/baslat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sartlar: true, cayma_onay: true, dil: 'en' }) });
       var j = await r.json().catch(function () { return {}; });
       if (r.ok && j.url) { location.href = j.url; return; }
       durum.textContent = j.hata || 'Checkout could not be opened. Please try again shortly.';
@@ -520,7 +522,7 @@ BETA_EN = f"""
 
 <h2 id="licence">How do I get my beta licence?</h2>
 <p>Your invitation comes with an <b>invite code</b>. On the <a href="/en/pricing/">Pricing</a> page, accept the terms and press "Subscribe"; on the checkout page choose "Add promotion code" and enter your code. The code makes the first 3 months free and no card is needed. After checkout your licence key appears on the <a href="/en/license/">License</a> page. If you were sent a licence key directly, save it on the same page.</p>
-<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license/">License</a> page before the period ends; if no payment is made the licence closes within a few days. A licence opened with an invite code covers Kalibre Bridge only.</div>
+<div class="kutu"><b>What happens after 3 months?</b> When the free period ends, the subscription moves to the paid monthly plan and Stripe asks you for payment. If you do not want to continue, cancel on the <a href="/en/license/">License</a> page before the period ends; if no payment is made the licence closes within a few days. While the invite code is active the licence covers Kalibre Bridge only; once the free period ends and the paid plan starts, the licence covers the full product, including Kalibre Engine.</div>
 
 <h2 id="whats-in">What is in the beta?</h2>
 <ul>
@@ -569,7 +571,7 @@ sayfa("en/beta/index.html", "Beta programme guide: Kalibre Lab", "Kalibre Lab be
 # ------------------------------------------------------------------ risk disclosure
 RISK = """
 <h1>Risk disclosure</h1>
-<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. It forms part of the <a href="/en/terms/">terms of use</a>.</p>
+<p class="giris">Read this page before using Kalibre Lab, Kalibre Bridge and Kalibre Engine. This risk disclosure forms an integral part of the <a href="/en/terms">terms of use</a>.</p>
 
 <h2 id="beta">Beta version</h2>
 <p>Kalibre Lab is in beta. Features may change, the software may contain errors and calculations may produce incorrect results. Before relying on a result, test the same rule in your own MetaTrader 5 Strategy Tester and on a demo account. Report any number that looks wrong through the <a href="/en/beta/">feedback form</a>.</p>
@@ -599,6 +601,7 @@ RISK = """
 
 <h2 id="no-advice">Not investment advice</h2>
 <p>Kalibre Markets does not provide investment advice, portfolio management or brokerage services and is not a licensed investment firm. You decide which rule to build and when, in which symbol and at what size to trade; you are responsible for the results. Educational examples are starting points, not recommendations.</p>
+<p>Kalibre Markets never holds your money, securities or crypto assets, never asks for access to them and never opens an account in your name. Your assets are held only at the broker you choose.</p>
 
 <h2 id="data">Data and privacy</h2>
 <p>Your data from the bridge is end-to-end encrypted; your Alpaca and Tradier data comes directly to your browser. Which data is processed where is described in the <a href="/en/privacy/">privacy policy</a> and on the <a href="/en/security/">security page</a>.</p>

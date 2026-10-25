@@ -14,7 +14,7 @@ DISARI = {'404.html', 'google96988813a828bfb8.html'}
 DISARI_DIZIN = ('yeni-ana/', 'static/', 'yerel/', 'test/', 'docs/', 'api/', 'node_modules/', 'lab/')
 # Laboratuvarın yalnız giriş sayfası haritada; bağlan/panom gibi uygulama ekranları değil.
 EK = ['lab/index.html']
-ESLER = {'/': '/en', '/prop': '/en/prop', '/forex': '/en/forex', '/kurulum': '/en/setup',
+ESLER = {'/': '/en', '/lab': '/en/lab', '/beta': '/en/beta', '/hesap': '/en/license', '/prop': '/en/prop', '/forex': '/en/forex', '/kurulum': '/en/setup',
          '/guvenlik': '/en/security', '/metodoloji': '/en/methodology', '/hakkinda': '/en/about',
          '/pro': '/en/pricing', '/risk-bildirimi': '/en/risk-disclosure',
          '/kullanim-sartlari': '/en/terms', '/gizlilik': '/en/privacy'}

@@ -1,11 +1,15 @@
 // Abonelik ödemesini başlatır: Stripe Checkout oturumu açar ve ödeme sayfasının adresini döner.
-// POST /api/odeme/baslat  { sartlar: true }  → { url }
+// POST /api/odeme/baslat  { sartlar: true, cayma_onay: true }  → { url }
+// cayma_onay: lisans etkinleştirilince ifaya başlanacağını ve cayma hakkının sona ereceğini kabul
+// (Mesafeli Sözleşmeler Yönetmeliği m.15/1-ğ; şartlar bölüm 12a). Onay Checkout metadata'sında saklanır.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { dilUygula } from '../_lib/dil.ts';
 import { kokAdres, stripeIstemci } from '../_lib/stripe.ts';
 
 export const config = { maxDuration: 10 };
+// Onaylanan kullanım şartlarının yürürlük tarihi (kullanim-sartlari sayfasındaki tarihle aynı tutulmalı).
+export const SARTLAR_SURUMU = '2026-10-25';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const dil = dilUygula(req, res);
@@ -18,22 +22,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   let g: any = req.body;
   if (typeof g === 'string') { try { g = JSON.parse(g); } catch { g = {}; } }
   if (g?.sartlar !== true) return res.status(400).json({ hata: 'Devam etmek için kullanım şartlarını onaylamalısın.' });
+  if (g?.cayma_onay !== true) return res.status(400).json({ hata: 'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.' });
+  const onay = { sartlar_onay: SARTLAR_SURUMU, cayma_onay: 'evet', cayma_onay_zamani: new Date().toISOString() };
 
   const kok = kokAdres(req.headers['x-forwarded-host'] ?? req.headers.host);
   try {
     const s = await stripe('checkout/sessions', {
       mode: 'subscription',
       line_items: [{ price: fiyat, quantity: 1 }],
-      success_url: `${kok}${dil === 'en' ? '/en/license/' : '/hesap/'}?oturum={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${kok}${dil === 'en' ? '/en/pricing/' : '/pro/'}?iptal=1`,
+      success_url: `${kok}${dil === 'en' ? '/en/license' : '/hesap'}?oturum={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${kok}${dil === 'en' ? '/en/pricing' : '/pro'}?iptal=1`,
       allow_promotion_codes: 'true',
       // %100 indirimli davet kodunda kart istenmez; ilk ücretli faturadan önce Stripe kart ister.
       payment_method_collection: 'if_required',
       billing_address_collection: 'auto',
       locale: dil === 'en' ? 'auto' : 'tr',
-      // Şartların hangi sürümünün onaylandığı ödeme kaydında da dursun.
-      metadata: { sartlar_onay: '2026-10-21' },
-      subscription_data: { metadata: { sartlar_onay: '2026-10-21' } },
+      // Şartların hangi sürümünün ve cayma onayının ne zaman verildiği ödeme kaydında da dursun.
+      metadata: onay,
+      subscription_data: { metadata: onay },
     });
     return res.status(200).json({ url: s.url });
   } catch {

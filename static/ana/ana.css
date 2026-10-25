@@ -23,6 +23,16 @@
 .akis .sunucu text { fill: var(--soluk); font: 400 12.5px var(--sans); }
 .akis .sunucu .baslik { fill: var(--metin); font: 600 13.5px var(--sans); }
 .akis-not { font-size: 13px; color: var(--silik); margin-top: 10px; }
+.akis-liste { display: none; list-style: none; margin: 12px 0 0; padding: 0; font-size: 14px; line-height: 1.45; color: var(--soluk); }
+.akis-liste li { padding: 6px 0; border-top: 1px solid var(--cizgi); }
+.akis-liste b { color: var(--metin); font-weight: 600; margin-right: 6px; }
+/* Dar ekranda şema ~%47 ölçeklenir; alt etiketler okunmaz hâle gelir. Şemada yalnız adlar kalır, ayrıntı listeye geçer. */
+@media (max-width: 600px) {
+  .akis .kaynak .alt, .akis .tarayici .satir, .akis .etiket, .akis .sunucu text { display: none; }
+  .akis .kaynak text { font-size: 20px; }
+  .akis .tarayici text { font-size: 22px; }
+  .akis-liste { display: block; }
+}
 
 /* ---------------------------------------------------------------- entegrasyon tablosu */
 .entegrasyon { width: 100%; border-collapse: collapse; }

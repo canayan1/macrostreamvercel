@@ -177,7 +177,7 @@ test('İngilizce mesajlar: uçların ve lisans ucunun her Türkçe mesajının �
   assert.ok(Object.keys(EN).length > 15);
 });
 
-test('kupon kapsamı: metadata urunler=kopru lisansı Köprü ile sınırlar, indirim bitince korunur', async () => {
+test('kupon kapsamı: metadata urunler=kopru lisansı Köprü ile sınırlar; kupon bitince tam ürün', async () => {
   const d = bellekDepo();
   const simdi = T0 * 1000;
   const kupon = { id: 'ilk-testciler', percent_off: 100, duration: 'repeating', duration_in_months: 3, metadata: { urunler: 'kopru' } };
@@ -189,10 +189,31 @@ test('kupon kapsamı: metadata urunler=kopru lisansı Köprü ile sınırlar, in
   assert.deepEqual(k.urunler, ['kopru']);
   assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'motor', simdi)).durum, 403);
   assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'kopru', simdi)).durum, 200);
-  // İndirim bitti: abonelikte kupon yok, kapsam kayıttaki gibi kalır.
-  await olayIsle(d, { type: 'customer.subscription.updated', data: { object: sub({ discounts: [] }) } }, stripe);
+  // Olayda indirim açılmamış kimlik olarak gelir: abonelik açılmış hâliyle çekilir, kupon hâlâ etkin.
+  await olayIsle(d, { type: 'customer.subscription.updated', data: { object: sub({ discounts: ['di_1'] }) } }, stripe);
   assert.deepEqual((await oturumKaydi(d, k.anahtar)).urunler, ['kopru']);
-  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'motor', simdi)).durum, 403);
+  // Kupon okunamıyorsa (Stripe hatası) kapsam değişmez.
+  const bozuk = sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': indirimli });
+  await olayIsle(d, { type: 'customer.subscription.updated', data: { object: sub({ discounts: ['di_1'] }) } }, bozuk);
+  assert.deepEqual((await oturumKaydi(d, k.anahtar)).urunler, ['kopru']);
+  // İndirim bitti: abonelikte kupon yok, kısıt kalkar ve lisans Motor'u da kapsar.
+  await olayIsle(d, { type: 'customer.subscription.updated', data: { object: sub({ discounts: [] }) } }, stripe);
+  assert.equal((await oturumKaydi(d, k.anahtar)).urunler, undefined);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5551', 'motor', simdi)).durum, 200);
+});
+
+test('kupon kapsamı: invoice.paid kuponla gelirse kısıt kalır, kuponsuz gelirse kalkar', async () => {
+  const d = bellekDepo();
+  const simdi = T0 * 1000;
+  const kupon = { id: 'ilk-testciler', metadata: { urunler: 'kopru' } };
+  const indirimli = sub({ discounts: [{ id: 'di_1', source: { type: 'coupon', coupon: kupon } }] });
+  const k = await aboneligiKaydet(d, indirimli, 't@ornek.com', null, simdi, ['kopru']);
+  const fatura = { type: 'invoice.paid', data: { object: { subscription: 'sub_1' } } };
+  await olayIsle(d, fatura, sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': indirimli }));
+  assert.deepEqual((await oturumKaydi(d, k.anahtar)).urunler, ['kopru']);
+  await olayIsle(d, fatura, sahteStripe({ 'subscriptions/sub_1?expand[]=discounts': sub({ discounts: [] }) }));
+  assert.equal((await oturumKaydi(d, k.anahtar)).urunler, undefined);
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '5553', 'motor', simdi)).durum, 200);
 });
 
 test('kupon kapsamı: eski biçim, açılmış kupon, tanınmayan ad ve kuponsuz abonelik', async () => {
