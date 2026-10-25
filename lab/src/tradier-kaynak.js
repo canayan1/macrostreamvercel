@@ -4,7 +4,7 @@
 import { t as ceviri, dil } from './dil.js';
 import { ARACI } from './veri/araci.js';
 
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis } from './guvenlik.js';
 const TD_ADI = () => ({ D1: ceviri('Günlük'), W1: ceviri('Haftalık'), H1: ceviri('Saatlik'), M15: ceviri('15 dakika'), M5: ceviri('5 dakika'), M1: ceviri('1 dakika') });
 export const SEMBOL_RE = /^[A-Z0-9.\-/]{1,16}$/;
 
@@ -26,7 +26,7 @@ export function araciSecici(kok, kaynak, { yukle, hata, istenenSembol = '', zama
   kok.innerHTML = `
     <div class="tradier-secim">
       <label><span>${kacis(ceviri('Sembol'))}</span><input id="${on}-sembol" list="${on}-semboller" spellcheck="false" autocomplete="off" value="${kacis(istenenSembol)}"><datalist id="${on}-semboller"></datalist></label>
-      <label><span>${kacis(ceviri('Zaman dilimi'))}</span><select id="${on}-td">${t.zamanDilimleri.map(z => `<option value="${z}"${z === td ? ' selected' : ''}>${kacis(TD_ADI()[z])}</option>`).join('')}</select></label>
+      <label><span>${kacis(ceviri('Zaman dilimi'))}</span><select id="${on}-td">${t.zamanDilimleri.map(z => `<option value="${kacis(z)}"${z === td ? ' selected' : ''}>${kacis(TD_ADI()[z])}</option>`).join('')}</select></label>
       <button type="button" class="kucuk" id="${on}-yukle">${kacis(ceviri('Yükle'))}</button>
     </div>
     <p class="dipnot" id="${on}-not" role="status">${kacis(t.not(ortamAdi))}</p>`;

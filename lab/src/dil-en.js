@@ -172,10 +172,10 @@ export const EN = {
   '✓ Geçerli. Kalibre Motor bu dosyayı yürütebilir.': '✓ Valid. Kalibre Engine can run this file.',
   "Gerçek bir piyasa değildir. Sentetik prova kuralların nasıl davrandığını görmek içindir; gerçek backtest, kendi aracı kurum verinle MT5 Strategy Tester'da Kalibre Motor ile yapılır.":
     'This is not a real market. The synthetic test shows how your rules behave; the real backtest is done with Kalibre Engine in the MT5 Strategy Tester, on your own broker\'s data.',
-  "Kendi verinle hızlı ön izleme. Makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
-    'A quick preview on your own data. Spread, commission and slippage are not included, so real results will be lower. For a definitive result, run the same strategy with Kalibre Engine in the MT5 Strategy Tester.',
-  "Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
-    'A quick preview on your own MT5 data; it refreshes as new bars close. Spread, commission and slippage are not included, so real results will be lower. For a definitive result, run it with Kalibre Engine in the MT5 Strategy Tester.',
+  "Kendi verinle hızlı ön izleme. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
+    'A quick preview on your own data. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run the same strategy with Kalibre Engine in the MT5 Strategy Tester.',
+  "Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester'da Kalibre Motor ile çalıştır.":
+    'A quick preview on your own MT5 data; it refreshes as new bars close. Unless you fill in the Costs section, spread, commission and slippage are not included, so real results will be lower. For a definitive result, run it with Kalibre Engine in the MT5 Strategy Tester.',
   'Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.': 'This is a simulation on historical or synthetic data; it is not real performance or investment advice.',
   'Provayı görmek için Risk bölümünde işlem başına riski kendin belirle.': 'To see the test, set your own risk per trade in the Risk section.',
   'Prova için önce sorunları giderin.': 'Fix the problems first to run the test.',
@@ -554,7 +554,7 @@ export const EN = {
   "Isı haritası (eğitim puanı)": "Heatmap (training score)",
   "Isı haritası": "Heatmap",
   "Yeşil yüksek, kırmızı düşük puan. Çerçeveli hücre sıralamadaki ilk ayar. Gri taralı hücreler yetersiz işlem ya da prop ihlali nedeniyle elendi; boş hücreler denenmedi.": "Green is a high score, red a low one. The outlined cell is the first setting in the ranking. Grey hatched cells were dropped for too few trades or a prop breach; empty cells were not tried.",
-  "Varsayımsal ve simülasyon sonuçlarının doğası gereği sınırları vardır. Bu sonuçlar gerçek işlemleri temsil etmez. Hızlı prova spread, komisyon, swap ve kaymayı içermez. Ayarlar geçmiş veride, sonradan bakmanın avantajıyla sıralanmıştır. Herhangi bir hesabın benzer kâr ya da zarar elde edeceğine dair hiçbir beyanda bulunulmamaktadır.": "Hypothetical or simulated results have inherent limitations. These results do not represent actual trading. The quick test does not include spread, commission, swap or slippage. The settings were ranked on past data, with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.",
+  "Varsayımsal ve simülasyon sonuçlarının doğası gereği sınırları vardır. Bu sonuçlar gerçek işlemleri temsil etmez. Maliyet bölümü doldurulmadıkça hızlı prova spread, komisyon ve kaymayı içermez; swap hiçbir durumda içerilmez. Ayarlar geçmiş veride, sonradan bakmanın avantajıyla sıralanmıştır. Herhangi bir hesabın benzer kâr ya da zarar elde edeceğine dair hiçbir beyanda bulunulmamaktadır.": "Hypothetical or simulated results have inherent limitations. These results do not represent actual trading. Unless the Costs section is filled in, the quick test does not include spread, commission or slippage; swap is never included. The settings were ranked on past data, with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.",
   "<b>Ayarı sen seçersin; Kalibre bir ayar önermez.</b> Seçtiğin ayarın kesin sınavı MT5 Strategy Tester'da, aracı kurumunun maliyet ayarlarıyla yapılır.": "<b>You choose the setting; Kalibre does not recommend one.</b> The final test of the setting you choose is in MT5 Strategy Tester, with your broker's cost settings.",
   "Strateji kurucuda kayıtlı bir taslak yok. Önce kurucuda bir strateji kur ya da bir kural dosyasını içe aktar.": "There is no saved draft in the strategy builder. Build a strategy there first, or import a rule file.",
   "Strateji kurucuya git": "Go to the strategy builder",
@@ -740,7 +740,7 @@ export const EN = {
   "Sandbox (deneme, 15 dk gecikmeli)": "Sandbox (testing, 15 min delayed)",
   "Bu hesabı kullan": "Use this account",
   "Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik önizleme özelliğidir.": "Under Tradier's terms, the API is for personal use in apps that are not Tradier partners; this connection is a preview feature for now.",
-  "Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre düzeltilmemiştir. Komisyon ve kayma hesaba katılmaz.": "Quick preview on your Tradier account's price history. Daily prices are adjusted for splits but not for dividends. Commission and slippage are not included.",
+  "Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre düzeltilmemiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick preview on your Tradier account's price history. Daily prices are adjusted for splits but not for dividends. Unless you fill in the Costs section, commission and slippage are not included.",
   "Saat penceresi filtresi günlük ve haftalık mumlarda işlemlerin hepsini engelleyebilir; bu veride filtreyi kapat.": "The time-window filter can block every trade on daily and weekly candles; turn the filter off for this data.",
   // ------------------------------------------------------------ Alpaca (veri/alpaca.js, alpaca-baglan.js, araci.js)
   "Alpaca (ABD)": "Alpaca (US)",
@@ -777,7 +777,7 @@ export const EN = {
   "ALPACA BEKLENİYOR": "WAITING FOR ALPACA",
   "Alpaca bağlandığında seçtiğin sembolün serisi burada çalışır.": "Once Alpaca is connected, the series of the symbol you pick runs here.",
   "ALPACA VERİSİ YOK": "NO ALPACA DATA",
-  "Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre düzeltilmiştir. Komisyon ve kayma hesaba katılmaz.": "Quick preview on your Alpaca account's price history. Stock prices come from the free IEX feed (a single exchange) and are split-adjusted. Commission and slippage are not included.",
+  "Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre düzeltilmiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.": "Quick preview on your Alpaca account's price history. Stock prices come from the free IEX feed (a single exchange) and are split-adjusted. Unless you fill in the Costs section, commission and slippage are not included.",
   "Alpaca izleme listen ve açık pozisyonun yok; aşağıdan sembol ekle.": "You have no Alpaca watchlist and no open positions; add symbols below.",
   "{n} sembol, Alpaca izleme listenden (yoksa açık pozisyonlarından ya da eklediğin sembollerden). Hisse fiyatları IEX akışındandır.": "{n} symbols, from your Alpaca watchlist (otherwise your open positions or the symbols you added). Stock prices come from the IEX feed.",
   "Sembol ekle": "Add symbols",
@@ -785,4 +785,21 @@ export const EN = {
   "Geçerli semboller yaz (ör. AAPL, SPY, BTC/USD).": "Type valid symbols (e.g. AAPL, SPY, BTC/USD).",
   "Eklendi. Semboller yalnız bu tarayıcıda saklanır.": "Added. The symbols are stored only in this browser.",
   "Alpaca bağlı. Bağlantı ayarları için tıkla.": "Alpaca connected. Click for connection settings.",
+  // ------------------------------------------------------------ güvenlik (içe aktarma temizliği)
+  'Geçersiz {n} alan atıldı.': '{n} invalid fields were dropped.',
+  'Dosyadaki {n} geçersiz alan atıldı: {liste}': '{n} invalid fields in the file were dropped: {liste}',
+  // ------------------------------------------------------------ maliyet (hızlı prova)
+  'Maliyet': 'Costs',
+  'Spread': 'Spread',
+  'Kayma': 'Slippage',
+  'Komisyon (%)': 'Commission (%)',
+  'fiyat birimi': 'price units',
+  'işlem değerinin yüzdesi, giriş ve çıkışta ayrı ayrı': 'percent of trade value, charged on entry and on exit',
+  'fiyat birimi, piyasa emirlerinde': 'price units, on market orders',
+  'Brüt (maliyetsiz)': 'Gross (no costs)',
+  'Net (maliyetli: spread {s}, komisyon %{k}, kayma {y})': 'Net (with costs: spread {s}, commission {k}%, slippage {y})',
+  'tüm puanlar bu maliyetle hesaplandı': 'all scores were computed with these costs',
+  'Mumlar bid fiyatıdır; ask = bid + spread. Long ask fiyatından girer, bid fiyatından çıkar. Short bid fiyatından girer, ask fiyatından çıkar; stopu ve hedefi de ask fiyatına göre tetiklenir. Kayma her piyasa emrinde (giriş, stop, kural çıkışı) aleyhe eklenir; hedef limit emir sayılır. Komisyon giriş ve çıkışta ayrı ayrı işlem değerinin yüzdesidir. Swap yoktur.':
+    'Candles are bid prices; ask = bid + spread. A long enters at the ask and exits at the bid. A short enters at the bid and exits at the ask, and its stop and target trigger on the ask. Slippage is added against you on every market order (entry, stop, rule exit); the target counts as a limit order. Commission is a percent of trade value, charged on entry and on exit. There is no swap.',
+  'En yüksek spread filtresi provada uygulanmaz: spread sabit kabul edilir.': 'The maximum spread filter is not applied in the quick test: the spread is assumed constant.',
 };

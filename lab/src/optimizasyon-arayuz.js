@@ -15,7 +15,8 @@ import { plan, isiHaritasi, hucreRengi, dosyaAdi, komsulukSinifi, dsrSinifi, PRO
 
 const TASLAK_ANAHTARI = 'kalibre-lab-taslak'; // strateji kurucunun taslağı (uygulama.js ile aynı)
 const $ = s => document.querySelector(s);
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis, stratejiyiTemizle } from './guvenlik.js';
+import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
 const sayiOku = v => Number(String(v).trim().replace(',', '.'));
 const dilEki = dil === 'en' ? '?dil=en' : '';
 
@@ -47,7 +48,10 @@ function etiket(p) {
 
 // ---------------------------------------------------------------- strateji
 function stratejiYukle(yeni, kaynakMetni) {
-  s = yeni;
+  // Dışarıdan gelen her strateji önce temizlenir (guvenlik.js), sonra doğrulanır.
+  const temiz = yeni ? stratejiyiTemizle(yeni) : null;
+  s = temiz?.strateji ?? null;
+  if (temiz?.atilanlar.length) kaynakMetni += ' ' + ceviri('Geçersiz {n} alan atıldı.', { n: temiz.atilanlar.length });
   $('#strateji-kaynak').textContent = kaynakMetni;
   const hatalar = s ? dogrula(s) : [];
   const hataKutu = $('#strateji-hata');
@@ -67,6 +71,8 @@ function stratejiYukle(yeni, kaynakMetni) {
         : ceviri('Kural dosyasında {n} sorun var; tarama başlamaz.', { n: hatalar.length })) +
         ` <a href="./${dilEki}">${kacis(ceviri('Strateji kurucuda düzelt'))}</a>`;
     }
+    // Yapısı bozuk bir dosyanın parametreleri çizilmez; yalnız hata gösterilir.
+    if (hatalar.length && !hatalar.every(h => h.yol.startsWith('risk'))) { params = []; paramCiz(); return; }
     params = parametreler(s).map(p => ({ ...p, etiket: etiket(p), secili: false }));
     // İlk iki gösterge periyodu varsayılan seçim: kullanıcı değiştirebilir.
     params.filter(p => /^gostergeler\..+\.(periyot|hizli|yavas)$/.test(p.yol)).slice(0, 2).forEach(p => { p.secili = true; });
@@ -75,7 +81,7 @@ function stratejiYukle(yeni, kaynakMetni) {
 }
 
 function taslakOku() {
-  try { const v = localStorage.getItem(TASLAK_ANAHTARI); return v ? JSON.parse(v) : null; } catch { return null; }
+  try { const v = localStorage.getItem(TASLAK_ANAHTARI); return v ? stratejiyiTemizle(JSON.parse(v)).strateji : null; } catch { return null; }
 }
 
 // ---------------------------------------------------------------- parametre tablosu
@@ -89,12 +95,12 @@ function paramCiz() {
   const secSayisi = params.filter(p => p.secili).length;
   tablo.innerHTML = `<thead><tr><th></th><th>${kacis(ceviri('Parametre'))}</th><th>${kacis(ceviri('Şu anki'))}</th><th>${kacis(ceviri('En küçük'))}</th><th>${kacis(ceviri('En büyük'))}</th><th>${kacis(ceviri('Adım'))}</th></tr></thead><tbody>` +
     params.map((p, i) => `<tr>
-      <td><input type="checkbox" data-i="${i}" data-alan="secili" ${p.secili ? 'checked' : ''} ${!p.secili && secSayisi >= EN_COK_PARAMETRE ? 'disabled' : ''} aria-label="${kacis(p.etiket)}"></td>
+      <td><input type="checkbox" data-i="${kacis(i)}" data-alan="secili" ${p.secili ? 'checked' : ''} ${!p.secili && secSayisi >= EN_COK_PARAMETRE ? 'disabled' : ''} aria-label="${kacis(p.etiket)}"></td>
       <td>${kacis(p.etiket)}<br><code>${kacis(p.yol)}</code></td>
       <td>${kacis(String(p.deger))}</td>
-      <td><input type="text" inputmode="decimal" data-i="${i}" data-alan="min" value="${p.min}" ${p.secili ? '' : 'disabled'}></td>
-      <td><input type="text" inputmode="decimal" data-i="${i}" data-alan="max" value="${p.max}" ${p.secili ? '' : 'disabled'}></td>
-      <td><input type="text" inputmode="decimal" data-i="${i}" data-alan="adim" value="${p.adim}" ${p.secili ? '' : 'disabled'}></td>
+      <td><input type="text" inputmode="decimal" data-i="${kacis(i)}" data-alan="min" value="${kacis(p.min)}" ${p.secili ? '' : 'disabled'}></td>
+      <td><input type="text" inputmode="decimal" data-i="${kacis(i)}" data-alan="max" value="${kacis(p.max)}" ${p.secili ? '' : 'disabled'}></td>
+      <td><input type="text" inputmode="decimal" data-i="${kacis(i)}" data-alan="adim" value="${kacis(p.adim)}" ${p.secili ? '' : 'disabled'}></td>
     </tr>`).join('') + '</tbody>';
   planCiz();
 }
@@ -250,6 +256,7 @@ async function baslat() {
       enAzIslem: Math.max(1, Math.round(sayiOku($('#en-az').value) || 20)),
       sinir: p.sinir,
       prop: propSec ? PROP_ON_AYAR[propSec] : null,
+      maliyet: maliyetOku(),
       iptal: () => iptalIstendi,
     }, (i, n) => {
       ilerleme.max = n; ilerleme.value = i;
@@ -292,6 +299,7 @@ function ozetCiz() {
   const r = sonuc;
   const satir = (b, m) => `<div><b>${b}</b><span>${m}</span></div>`;
   const parca = [
+    satir(kacis(maliyetEtiketi(r.maliyet)), kacis(ceviri('tüm puanlar bu maliyetle hesaplandı'))),
     satir(`${r.denenen.toLocaleString(yerel)} / ${r.toplam.toLocaleString(yerel)}`, kacis(r.ornek ? ceviri('denenen / toplam (örneklem)') : ceviri('denenen / toplam'))),
     satir(String(r.yetersiz + r.propElenen + r.gecersiz), kacis(ceviri('elenen: {a} yetersiz işlem, {b} prop ihlali, {c} geçersiz', { a: r.yetersiz, b: r.propElenen, c: r.gecersiz }))),
   ];
@@ -324,8 +332,8 @@ function tabloCiz() {
     <td>${yuzdeYaz(x.egitim.getiriYuzde)}</td><td>${yuzdeYaz(x.sinama?.getiriYuzde)}</td>
     <td>${x.egitim.islem} / ${x.sinama?.islem ?? '–'}</td><td>${yuzdeMetni(sayiMetni(x.egitim.maxDususYuzde, 1))}</td>
     ${propVar ? `<td>${kacis(x.sinamaPropIhlal ? ceviri('sınamada ihlal') : ceviri('uygun'))}</td>` : ''}
-    <td class="opt-eylem"><button type="button" class="kucuk" data-ac="${i}">${kacis(ceviri('Bu ayarla kurucuda aç'))}</button>
-      <button type="button" class="kucuk" data-indir="${i}">${kacis(ceviri('Kural dosyasını indir'))}</button></td>
+    <td class="opt-eylem"><button type="button" class="kucuk" data-ac="${kacis(i)}">${kacis(ceviri('Bu ayarla kurucuda aç'))}</button>
+      <button type="button" class="kucuk" data-indir="${kacis(i)}">${kacis(ceviri('Kural dosyasını indir'))}</button></td>
   </tr>`).join('');
   $('#sonuc-tablo').innerHTML = bas + `<tbody>${govde}</tbody>`;
 }
@@ -429,7 +437,8 @@ $('#ice-aktar').addEventListener('change', async e => {
   } catch { alert(ceviri('Dosya geçerli bir JSON değil.')); }
 });
 
-$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${kacis(ceviri(r.ad))}</option>`).join('');
+$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${kacis(k)}">${kacis(ceviri(r.ad))}</option>`).join('');
+maliyetAlani($('#maliyet-alan'));
 for (const o of $('#olcut').options) o.textContent = OLCUT_ADI()[o.value] ?? o.textContent;
 sayfayiCevir();
 baglanDugmesi(document.querySelector('.ust-eylem'));

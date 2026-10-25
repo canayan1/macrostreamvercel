@@ -7,15 +7,32 @@
 // lot = bakiye × risk% × volatilite ölçeği / stop mesafesi.
 // Yaklaşık olanlar: mum içi sıra bilinmediği için aynı mumda hem stop hem hedef
 // görülürse stop sayılır (ihtiyatlı); iz süren stop mum kapanışında güncellenir;
-// spread, komisyon ve kayma yok; haber filtresi uygulanmaz.
+// haber filtresi uygulanmaz. Kurallar ayrıntılı olarak docs/motor-kurallari.md'de.
+//
+// Maliyet (isteğe bağlı, varsayılan sıfır = brüt sonuç). Mumlar bid fiyatıdır (MT5 gibi); ask = bid + spread:
+//   spread : fiyat biriminde. Long ask'tan (alış + spread) açılır, bid'den kapanır; short bid'den
+//            açılır, ask'tan kapanır. Short'un stop ve hedefi ask'a (fiyat + spread) göre tetiklenir.
+//   kayma  : fiyat biriminde; piyasa emirlerine (giriş, kural ve süre çıkışı, stop, boşluk, prova
+//            sonu) aleyhte uygulanır. Hedef (limit) emirleri kaymaz.
+//   komisyonYuzde: işlem hacminin yüzdesi, giriş ve çıkışta ayrı ayrı (tur başına iki kez);
+//            işlem kapanırken kârdan düşülür.
 
 import { hesapla } from './gostergeler.js';
 
 const FIYAT = { acilis: 'a', yuksek: 'y', dusuk: 'd', kapanis: 'k' };
 export const NOKTA = 0.001; // sentetik enstrümanın "puan" büyüklüğü
 
-export function prova(s, mumlar, { baslangic = 10000 } = {}) {
+export const MALIYETSIZ = Object.freeze({ spread: 0, kayma: 0, komisyonYuzde: 0 });
+
+export function maliyetVar(m) {
+  return !!m && (m.spread > 0 || m.kayma > 0 || m.komisyonYuzde > 0);
+}
+
+export function prova(s, mumlar, { baslangic = 10000, maliyet = MALIYETSIZ } = {}) {
   const g = hesapla(s.gostergeler, mumlar);
+  const sp = Math.max(0, Number(maliyet?.spread) || 0);
+  const ky = Math.max(0, Number(maliyet?.kayma) || 0);
+  const kom = Math.max(0, Number(maliyet?.komisyonYuzde) || 0) / 100;
   const uyarilar = [];
 
   const deger = (o, i) => {
@@ -70,25 +87,37 @@ export function prova(s, mumlar, { baslangic = 10000 } = {}) {
   };
 
   if (s.filtre?.haber) uyarilar.push('Haber filtresi provada uygulanmaz (MT5 takvimi gerekir).');
-  if (s.risk?.max_spread_puan) uyarilar.push('Spread provada sıfır kabul edilir.');
+  if (s.risk?.max_spread_puan) {
+    if (sp > 0) uyarilar.push('En yüksek spread filtresi provada uygulanmaz: spread sabit kabul edilir.');
+    else uyarilar.push('Spread provada sıfır kabul edilir.');
+  }
 
   const yon = s.yon ?? 'iki_yon';
   const maxAcik = s.risk.max_acik_pozisyon ?? 1;
   let bakiye = baslangic, gun = '', gunBasi = baslangic;
   const acik = [], islemler = [], ozkaynak = [];
 
+  // Bir pozisyonun kapanış fiyatı: long bid'den (fiyat), short ask'tan (fiyat + spread);
+  // piyasa emirlerinde kayma aleyhte eklenir. Hedef (limit) için piyasa = false.
+  const cikisFiyati = (p, fiyat, piyasa) => p.yon > 0 ? fiyat - (piyasa ? ky : 0) : fiyat + sp + (piyasa ? ky : 0);
+  // Stop ve hedef fiyatları doğrudan seviyedir (short için ask seviyesi); seviyeden çıkışta spread
+  // tekrar eklenmez, yalnız stoplarda kayma eklenir.
+  const seviyedenCikis = (p, seviye, kaymali) => seviye - p.yon * (kaymali ? ky : 0);
   const kapat = (p, t, fiyat, neden) => {
-    const kar = (fiyat - p.giris) * p.miktar * p.yon;
+    const komisyon = (p.giris + fiyat) * p.miktar * kom;
+    const kar = (fiyat - p.giris) * p.miktar * p.yon - komisyon;
     bakiye += kar;
     islemler.push({
       yon: p.yon > 0 ? 'long' : 'short', girisI: p.girisI, giris: p.giris, cikisI: t, cikis: fiyat,
-      neden, kar, r: (fiyat - p.giris) * p.yon / p.stopM,
+      neden, kar, r: kar / (p.stopM * p.miktar), komisyon,
     });
     acik.splice(acik.indexOf(p), 1);
   };
   const kapatHepsi = (yonu, t, fiyat, neden) => {
-    for (const p of [...acik]) if (p.yon === yonu) kapat(p, t, fiyat, neden);
+    for (const p of [...acik]) if (p.yon === yonu) kapat(p, t, cikisFiyati(p, fiyat, true), neden);
   };
+  // Açık pozisyonun anlık değeri: long bid'den, short ask'tan.
+  const deger_ = (p, fiyat) => ((p.yon > 0 ? fiyat : fiyat + sp) - p.giris) * p.miktar * p.yon;
 
   for (let t = 0; t < mumlar.length; t++) {
     const m = mumlar[t];
@@ -96,16 +125,17 @@ export function prova(s, mumlar, { baslangic = 10000 } = {}) {
     if (gunAnahtari !== gun) { gun = gunAnahtari; gunBasi = bakiye; }
 
     if (t >= 2) {
-      // 1) açılışta boşlukla stop/hedef
+      // 1) açılışta boşlukla stop/hedef (short seviyeleri ask = açılış + spread ile karşılaştırılır)
       for (const p of [...acik]) {
-        if (p.yon > 0 ? m.a <= p.sl : m.a >= p.sl) kapat(p, t, m.a, 'stop (boşluk)');
-        else if (p.tp && (p.yon > 0 ? m.a >= p.tp : m.a <= p.tp)) kapat(p, t, m.a, 'hedef (boşluk)');
+        const acilis = p.yon > 0 ? m.a : m.a + sp;
+        if (p.yon > 0 ? acilis <= p.sl : acilis >= p.sl) kapat(p, t, seviyedenCikis(p, acilis, true), 'stop (boşluk)');
+        else if (p.tp && (p.yon > 0 ? acilis >= p.tp : acilis <= p.tp)) kapat(p, t, acilis, 'hedef (boşluk)');
       }
       // 2) çıkış kuralları ve süre
       if (acik.some(p => p.yon > 0) && grupDogru(s.cikis.kosul?.long, t)) kapatHepsi(1, t, m.a, 'çıkış kuralı');
       if (acik.some(p => p.yon < 0) && grupDogru(s.cikis.kosul?.short, t)) kapatHepsi(-1, t, m.a, 'çıkış kuralı');
       if (s.cikis.max_bar)
-        for (const p of [...acik]) if (t - p.girisI >= s.cikis.max_bar) kapat(p, t, m.a, 'süre doldu');
+        for (const p of [...acik]) if (t - p.girisI >= s.cikis.max_bar) kapat(p, t, cikisFiyati(p, m.a, true), 'süre doldu');
 
       // 3) giriş
       const L = yon !== 'sadece_short' && grupDogru(s.giris.long, t);
@@ -113,26 +143,28 @@ export function prova(s, mumlar, { baslangic = 10000 } = {}) {
       if (L !== S) {
         const y = L ? 1 : -1;
         kapatHepsi(-y, t, m.a, 'ters sinyal');
-        const ozk = bakiye + acik.reduce((a, p) => a + (m.a - p.giris) * p.miktar * p.yon, 0);
+        const ozk = bakiye + acik.reduce((a, p) => a + deger_(p, m.a), 0);
         const kayipYuzde = (gunBasi - ozk) / gunBasi * 100;
         const izin = acik.length < maxAcik && saatUygun(t) &&
           !(s.risk.gunluk_max_kayip_yuzde && kayipYuzde >= s.risk.gunluk_max_kayip_yuzde);
-        const stopM = mesafe(s.cikis.stop, m.a, 0, t);
+        // Giriş fiyatı: long ask'tan (açılış + spread), short bid'den (açılış); kayma aleyhte.
+        const giris = y > 0 ? m.a + sp + ky : m.a - ky;
+        const stopM = mesafe(s.cikis.stop, giris, 0, t);
         if (izin && stopM > 0 && olcek(t) > 0) {
-          const hedefM = mesafe(s.cikis.hedef, m.a, stopM, t);
+          const hedefM = mesafe(s.cikis.hedef, giris, stopM, t);
           acik.push({
-            yon: y, girisI: t, giris: m.a, stopM,
+            yon: y, girisI: t, giris, stopM,
             miktar: bakiye * s.risk.islem_basi_yuzde * olcek(t) / 100 / stopM,
-            sl: m.a - y * stopM, tp: hedefM > 0 ? m.a + y * hedefM : 0,
+            sl: giris - y * stopM, tp: hedefM > 0 ? giris + y * hedefM : 0,
           });
         }
       }
 
-      // 4) mum içinde stop/hedef (ikisi birden görülürse stop)
+      // 4) mum içinde stop/hedef (ikisi birden görülürse stop); short ask (fiyat + spread) ile
       for (const p of [...acik]) {
-        const stopVurdu = p.yon > 0 ? m.d <= p.sl : m.y >= p.sl;
-        const hedefVurdu = p.tp && (p.yon > 0 ? m.y >= p.tp : m.d <= p.tp);
-        if (stopVurdu) kapat(p, t, p.sl, p.izTasindi ? 'iz süren stop' : 'stop');
+        const stopVurdu = p.yon > 0 ? m.d <= p.sl : m.y + sp >= p.sl;
+        const hedefVurdu = p.tp && (p.yon > 0 ? m.y >= p.tp : m.d + sp <= p.tp);
+        if (stopVurdu) kapat(p, t, seviyedenCikis(p, p.sl, true), p.izTasindi ? 'iz süren stop' : 'stop');
         else if (hedefVurdu) kapat(p, t, p.tp, 'hedef');
       }
 
@@ -141,16 +173,23 @@ export function prova(s, mumlar, { baslangic = 10000 } = {}) {
         for (const p of acik) {
           const d = mesafe(s.cikis.iz_suren_stop, p.giris, 0, t);
           if (d <= 0) continue;
-          const yeni = m.k - p.yon * d;
+          const yeni = (p.yon > 0 ? m.k : m.k + sp) - p.yon * d;
           if (p.yon > 0 ? yeni > p.sl + d * 0.1 : yeni < p.sl - d * 0.1) { p.sl = yeni; p.izTasindi = true; }
         }
     }
-    ozkaynak.push(bakiye + acik.reduce((a, p) => a + (m.k - p.giris) * p.miktar * p.yon, 0));
+    ozkaynak.push(bakiye + acik.reduce((a, p) => a + deger_(p, m.k), 0));
   }
   const son = mumlar.length - 1;
-  for (const p of [...acik]) kapat(p, son, mumlar[son].k, 'prova sonu');
+  for (const p of [...acik]) kapat(p, son, cikisFiyati(p, mumlar[son].k, true), 'prova sonu');
+  // Prova sonu kapanışı maliyetliyse (kayma, komisyon) son özkaynak gerçek bakiyeye eşitlenir;
+  // böylece son özkaynak = başlangıç + işlem sonuçları toplamı.
+  if (ozkaynak.length) ozkaynak[ozkaynak.length - 1] = bakiye;
 
-  return { islemler, ozkaynak, uyarilar, istatistik: istatistik(islemler, ozkaynak, baslangic) };
+  return {
+    islemler, ozkaynak, uyarilar,
+    maliyet: { spread: sp, kayma: ky, komisyonYuzde: kom * 100 }, maliyetli: sp > 0 || ky > 0 || kom > 0,
+    istatistik: istatistik(islemler, ozkaynak, baslangic),
+  };
 }
 
 export function istatistik(islemler, ozkaynak, baslangic) {

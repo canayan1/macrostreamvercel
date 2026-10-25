@@ -7,7 +7,7 @@ import {
 } from './veri/tradier.js';
 
 const $ = s => document.querySelector(s);
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis } from './guvenlik.js';
 const main = document.querySelector('main.baglan');
 const ek = dil === 'en' ? '?dil=en' : '';
 let profil = null, bekleyen = null;

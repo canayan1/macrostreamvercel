@@ -11,12 +11,13 @@ import { mt5Panel } from './baglanti-arayuz.js';
 import { tradierSecici, alpacaSecici } from './tradier-kaynak.js';
 import { blokFormu, blokDinle, modAnahtari, modOku } from './blok-arayuz.js';
 import { baglanDugmesi } from './baglan-ortak.js';
+import { maliyetAlani, maliyetOku, maliyetEtiketi } from './maliyet-arayuz.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 
 const TASLAK_ANAHTARI = 'kalibre-lab-taslak';
 const $ = s => document.querySelector(s);
 const sayi = (v, b = 1) => sayiMetni(v, b);
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis, stratejiyiTemizle } from './guvenlik.js';
 
 const BOS = () => ({
   kalibre: 1,
@@ -60,7 +61,7 @@ function koy(yol, deger) {
 
 // ---------------------------------------------------------------- taslak
 function taslakOku() {
-  try { const v = localStorage.getItem(TASLAK_ANAHTARI); return v ? JSON.parse(v) : null; } catch { return null; }
+  try { const v = localStorage.getItem(TASLAK_ANAHTARI); return v ? stratejiyiTemizle(JSON.parse(v)).strateji : null; } catch { return null; }
 }
 function taslakYaz() {
   try { localStorage.setItem(TASLAK_ANAHTARI, JSON.stringify(s)); } catch { /* özel pencere vb. */ }
@@ -102,12 +103,12 @@ function operandSelect(yol, deger, sayiIzinli) {
   const sayiMi = typeof deger === 'number';
   const n = normalOperand(deger);
   const bilinen = sayiMi || sec.some(o => o.deger === n);
-  let html = `<select data-eylem="operand" data-yol="${yol}" aria-label="${ceviri(yol.endsWith('.sol') ? 'Sol taraf' : 'Sağ taraf')}">`;
+  let html = `<select data-eylem="operand" data-yol="${kacis(yol)}" aria-label="${kacis(ceviri(yol.endsWith('.sol') ? 'Sol taraf' : 'Sağ taraf'))}">`;
   if (!bilinen) html += `<option value="${kacis(deger)}" selected>${kacis(deger)} (${ceviri('tanımsız')})</option>`;
   for (const o of sec) html += `<option value="${kacis(o.deger)}"${o.deger === n ? ' selected' : ''}>${kacis(o.etiket)}</option>`;
   if (sayiIzinli) html += `<option value="#sayi"${sayiMi ? ' selected' : ''}>${ceviri('Sayı…')}</option>`;
   html += '</select>';
-  if (sayiMi) html += `<input type="number" step="any" data-yol="${yol}" data-tur="sayi" value="${deger}" aria-label="${ceviri('Karşılaştırılan sayı')}">`;
+  if (sayiMi) html += `<input type="number" step="any" data-yol="${kacis(yol)}" data-tur="sayi" value="${kacis(deger)}" aria-label="${kacis(ceviri('Karşılaştırılan sayı'))}">`;
   return html;
 }
 
@@ -117,7 +118,7 @@ function alan(etiket, ic, sinif = '') {
 }
 function sayiAlani(yol, etiket, { min = '', max = '', adim = 'any', yer = '' } = {}) {
   const v = al(yol);
-  return alan(etiket, `<input type="number" data-yol="${yol}" data-tur="sayi" min="${min}" max="${max}" step="${adim}" placeholder="${ceviri(yer)}" value="${v ?? ''}">`);
+  return alan(etiket, `<input type="number" data-yol="${kacis(yol)}" data-tur="sayi" min="${kacis(min)}" max="${kacis(max)}" step="${kacis(adim)}" placeholder="${kacis(ceviri(yer))}" value="${kacis(v ?? '')}">`);
 }
 
 function gostergeHtml(ad, t) {
@@ -130,8 +131,8 @@ function gostergeHtml(ad, t) {
   } else if (t.tip === 'EWMA_VOL') {
     p = sayiAlani(`${y}.lambda`, 'λ (bozunma)', { min: 0.8, max: 0.999, adim: 0.01, yer: '0,94' });
   } else if (t.tip === 'GARCH_VOL') {
-    const sec = (alanAd, etiket, secenekler, vars) => alan(etiket, `<select data-yol="${y}.${alanAd}" data-eylem="secim">${secenekler
-      .map(([v, e]) => `<option value="${v}"${(t[alanAd] ?? vars) === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('')}</select>`);
+    const sec = (alanAd, etiket, secenekler, vars) => alan(etiket, `<select data-yol="${kacis(`${y}.${alanAd}`)}" data-eylem="secim">${secenekler
+      .map(([v, e]) => `<option value="${kacis(v)}"${(t[alanAd] ?? vars) === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('')}</select>`);
     p = sec('model', 'Model', [['garch', 'GARCH'], ['gjr', 'GJR (asimetrik)'], ['egarch', 'EGARCH']], 'garch') +
         sec('dagilim', 'Dağılım', [['normal', 'Normal'], ['t', 'Student-t (kalın kuyruk)']], 'normal') +
         sayiAlani(`${y}.pencere`, 'Pencere (mum)', { min: 250, max: 5000, adim: 1, yer: '1000' }) +
@@ -141,7 +142,7 @@ function gostergeHtml(ad, t) {
     if (t.tip === 'BB') p += sayiAlani(`${y}.sapma`, 'Sapma (σ)', { min: 0.1, max: 10, adim: 0.1 });
   }
   const tipler = GOSTERGE_TIPLERI.map(x => `<option${x === t.tip ? ' selected' : ''}>${x}</option>`).join('');
-  return `<div class="gosterge" data-hata-yol="${y}">
+  return `<div class="gosterge" data-hata-yol="${kacis(y)}">
     ${alan('Ad', `<input data-eylem="gosterge-ad" data-ad="${kacis(ad)}" value="${kacis(ad)}" spellcheck="false">`, 'ad')}
     ${alan('Tip', `<select data-eylem="gosterge-tip" data-ad="${kacis(ad)}">${tipler}</select>`)}
     ${p}
@@ -159,26 +160,26 @@ function grupHtml(yol, baslik, ipucu) {
   ipucu = ceviri(ipucu);
   const satirlar = liste.map((k, i) => {
     const ky = `${yol}.${tur}.${i}`;
-    const ops = OPERATORLER.map(o => `<option value="${o}"${o === k.op ? ' selected' : ''}>${ceviri(OP_ETIKET[o])}</option>`).join('');
-    return (i ? `<div class="baglac">${baglac}</div>` : '') + `<div class="kosul" data-hata-yol="${ky}">
+    const ops = OPERATORLER.map(o => `<option value="${kacis(o)}"${o === k.op ? ' selected' : ''}>${ceviri(OP_ETIKET[o])}</option>`).join('');
+    return (i ? `<div class="baglac">${baglac}</div>` : '') + `<div class="kosul" data-hata-yol="${kacis(ky)}">
       ${operandSelect(`${ky}.sol`, k.sol, false)}
-      <select data-yol="${ky}.op" data-eylem="secim" aria-label="${ceviri('Karşılaştırma')}">${ops}</select>
+      <select data-yol="${kacis(`${ky}.op`)}" data-eylem="secim" aria-label="${kacis(ceviri('Karşılaştırma'))}">${ops}</select>
       <span class="sag">${operandSelect(`${ky}.sag`, k.sag, true)}</span>
-      <button type="button" class="kucuk sil" data-eylem="kosul-sil" data-yol="${ky}" title="${ceviri('Koşulu sil')}">✕</button>
+      <button type="button" class="kucuk sil" data-eylem="kosul-sil" data-yol="${kacis(ky)}" title="${kacis(ceviri('Koşulu sil'))}">✕</button>
     </div>`;
   }).join('');
-  return `<div class="grup${acik ? '' : ' kapali'}" data-hata-yol="${yol}">
+  return `<div class="grup${acik ? '' : ' kapali'}" data-hata-yol="${kacis(yol)}">
     <div class="grup-bas">
-      <input type="checkbox" data-eylem="grup-ac" data-yol="${yol}"${acik ? ' checked' : ''} aria-label="${ceviri('{b} kuralını aç', { b: baslik })}">
+      <input type="checkbox" data-eylem="grup-ac" data-yol="${kacis(yol)}"${acik ? ' checked' : ''} aria-label="${kacis(ceviri('{b} kuralını aç', { b: baslik }))}">
       <span class="ad">${baslik}</span>
-      <select class="grup-tur" data-eylem="grup-tur" data-yol="${yol}" aria-label="${ceviri('{b}: koşulların nasıl birleşeceği', { b: baslik })}">
+      <select class="grup-tur" data-eylem="grup-tur" data-yol="${kacis(yol)}" aria-label="${kacis(ceviri('{b}: koşulların nasıl birleşeceği', { b: baslik }))}">
         <option value="hepsi"${tur === 'hepsi' ? ' selected' : ''}>${ceviri('koşulların hepsi (VE)')}</option>
         <option value="herhangi"${tur === 'herhangi' ? ' selected' : ''}>${ceviri('herhangi biri (VEYA)')}</option>
       </select>
     </div>
     ${acik ? '' : `<p class="ipucu">${ipucu}</p>`}
     <div class="kosullar">${satirlar}</div>
-    <button type="button" class="kucuk ekle" data-eylem="kosul-ekle" data-yol="${yol}">${ceviri('+ Koşul ekle')}</button>
+    <button type="button" class="kucuk ekle" data-eylem="kosul-ekle" data-yol="${kacis(yol)}">${ceviri('+ Koşul ekle')}</button>
   </div>`;
 }
 
@@ -189,21 +190,21 @@ function mesafeHtml(yol, baslik, { zorunlu = false, rIzinli = false } = {}) {
     ['atr', 'ATR katı'], ['oynaklik', 'Oynaklık katı (v2)'], ['puan', 'Puan'], ['yuzde', 'Fiyatın yüzdesi'],
     ...(rIzinli ? [['r', 'Stopun katı (R)']] : []),
   ];
-  const sec = tipler.map(([v, e]) => `<option value="${v}"${(m?.tip ?? '') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
+  const sec = tipler.map(([v, e]) => `<option value="${kacis(v)}"${(m?.tip ?? '') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
   let ic = '';
   if (m?.tip === 'atr' || m?.tip === 'oynaklik') {
     const uygun = m.tip === 'atr' ? t => t.tip === 'ATR' : t => OYNAKLIK.includes(t.tip);
     const atrlar = Object.entries(s.gostergeler ?? {}).filter(([, t]) => uygun(t));
     const op = atrlar.map(([ad]) => `<option${ad === m.gosterge ? ' selected' : ''}>${kacis(ad)}</option>`).join('');
-    ic = alan(m.tip === 'atr' ? 'ATR göstergesi' : 'Oynaklık göstergesi', `<select data-yol="${yol}.gosterge" data-eylem="secim">${atrlar.some(([a]) => a === m.gosterge) ? '' : `<option value="" selected>${ceviri('Seçin')}</option>`}${op}</select>`) +
+    ic = alan(m.tip === 'atr' ? 'ATR göstergesi' : 'Oynaklık göstergesi', `<select data-yol="${kacis(`${yol}.gosterge`)}" data-eylem="secim">${atrlar.some(([a]) => a === m.gosterge) ? '' : `<option value="" selected>${ceviri('Seçin')}</option>`}${op}</select>`) +
          sayiAlani(`${yol}.carpan`, 'Çarpan', { min: 0.1, adim: 0.1 });
   } else if (m) {
     const etiket = { puan: 'Puan', yuzde: 'Yüzde', r: 'Kat (R)' }[m.tip] ?? 'Değer';
     ic = sayiAlani(`${yol}.deger`, etiket, { min: 0, adim: 'any' });
   }
-  return `<div class="mesafe" data-hata-yol="${yol}">
+  return `<div class="mesafe" data-hata-yol="${kacis(yol)}">
     <span class="etiket">${ceviri(baslik)}</span>
-    ${alan('Tip', `<select data-eylem="mesafe-tip" data-yol="${yol}">${sec}</select>`)}
+    ${alan('Tip', `<select data-eylem="mesafe-tip" data-yol="${kacis(yol)}">${sec}</select>`)}
     ${ic}
   </div>`;
 }
@@ -218,7 +219,7 @@ function formCiz() {
   }
   const zd = ZAMAN_DILIMLERI.map(z => `<option${z === s.zaman_dilimi ? ' selected' : ''}>${z}</option>`).join('');
   const yon = [['iki_yon', 'İki yön'], ['sadece_long', 'Sadece long'], ['sadece_short', 'Sadece short']]
-    .map(([v, e]) => `<option value="${v}"${(s.yon ?? 'iki_yon') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
+    .map(([v, e]) => `<option value="${kacis(v)}"${(s.yon ?? 'iki_yon') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
   const f = s.filtre ?? {};
   const r = s.risk ?? {};
 
@@ -268,7 +269,7 @@ function formCiz() {
     </div>
     <p class="ipucu">${ceviri('Lot, stop olursa bu yüzdeyi kaybedecek şekilde hesaplanır. Aracı kurumun asgari lotu bu riski aşıyorsa Motor işlemi atlar.')}</p>
     <div class="grup${r.volatilite_hedefi ? '' : ' kapali'}" data-hata-yol="risk.volatilite_hedefi" style="margin-top:12px">
-      <div class="grup-bas"><input type="checkbox" data-eylem="vh-ac"${r.volatilite_hedefi ? ' checked' : ''} aria-label="${ceviri('Oynaklığa göre ölçekle')}"><span class="ad">${ceviri('Oynaklığa göre ölçekle (v2)')}</span></div>
+      <div class="grup-bas"><input type="checkbox" data-eylem="vh-ac"${r.volatilite_hedefi ? ' checked' : ''} aria-label="${kacis(ceviri('Oynaklığa göre ölçekle'))}"><span class="ad">${ceviri('Oynaklığa göre ölçekle (v2)')}</span></div>
       ${r.volatilite_hedefi ? `<div class="alanlar" style="margin-top:10px">
         ${alan('Oynaklık göstergesi', `<select data-yol="risk.volatilite_hedefi.gosterge" data-eylem="secim">${Object.entries(s.gostergeler ?? {}).filter(([, t]) => OYNAKLIK.includes(t.tip))
           .map(([ad]) => `<option${ad === r.volatilite_hedefi.gosterge ? ' selected' : ''}>${kacis(ad)}</option>`).join('')}</select>`)}
@@ -282,14 +283,14 @@ function formCiz() {
   <section class="kart">
     <h2><span class="bolum-no">06</span>${ceviri('Filtreler')}</h2>
     <div class="grup${f.saat ? '' : ' kapali'}">
-      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="saat"${f.saat ? ' checked' : ''} aria-label="${ceviri('Saat penceresi')}"><span class="ad">${ceviri('Saat penceresi')}</span></div>
+      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="saat"${f.saat ? ' checked' : ''} aria-label="${kacis(ceviri('Saat penceresi'))}"><span class="ad">${ceviri('Saat penceresi')}</span></div>
       ${f.saat ? `<div class="alanlar" style="margin-top:10px">
         ${sayiAlani('filtre.saat.bas', 'Başlangıç saati', { min: 0, max: 23, adim: 1 })}
         ${sayiAlani('filtre.saat.bit', 'Bitiş saati', { min: 0, max: 24, adim: 1 })}
       </div><p class="ipucu">${ceviri('Aracı kurumun sunucu saatine göre. Bitiş başlangıçtan küçükse gece yarısını aşar.')}</p>` : ''}
     </div>
     <div class="grup${f.haber ? '' : ' kapali'}">
-      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="haber"${f.haber ? ' checked' : ''} aria-label="${ceviri('Haber filtresi')}"><span class="ad">${ceviri('Haber filtresi')}</span></div>
+      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="haber"${f.haber ? ' checked' : ''} aria-label="${kacis(ceviri('Haber filtresi'))}"><span class="ad">${ceviri('Haber filtresi')}</span></div>
       ${f.haber ? `<div class="alanlar" style="margin-top:10px">
         ${sayiAlani('filtre.haber.once_dk', 'Önce (dk)', { min: 0, max: 1440, adim: 1, yer: '30' })}
         ${sayiAlani('filtre.haber.sonra_dk', 'Sonra (dk)', { min: 0, max: 1440, adim: 1, yer: '30' })}
@@ -333,20 +334,21 @@ function panelCiz() {
 const DIPNOT = {
   sentetik: 'Gerçek bir piyasa değildir. Sentetik prova kuralların nasıl davrandığını görmek içindir; ' +
     'gerçek backtest, kendi aracı kurum verinle MT5 Strategy Tester\'da Kalibre Motor ile yapılır.',
-  dosya: 'Kendi verinle hızlı ön izleme. Makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç ' +
+  dosya: 'Kendi verinle hızlı ön izleme. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç ' +
     'daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
-  mt5: 'Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Makas, komisyon ve kayma ' +
+  mt5: 'Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Maliyet bölümü boşsa makas, komisyon ve kayma ' +
     'hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
   tradier: 'Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre ' +
-    'düzeltilmemiştir. Komisyon ve kayma hesaba katılmaz.',
+    'düzeltilmemiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.',
   alpaca: 'Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre ' +
-    'düzeltilmiştir. Komisyon ve kayma hesaba katılmaz.',
+    'düzeltilmiştir. Maliyet bölümü boşsa komisyon ve kayma hesaba katılmaz.',
 };
 // Her kaynakta aynı uyarı: sonuç bir simülasyondur, öneri değildir.
 for (const k of Object.keys(DIPNOT)) DIPNOT[k] = ceviri(DIPNOT[k]) + ' ' + ceviri('Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.');
 
 function provaBos(mesaj) {
   $('#istatistik').innerHTML = `<div style="grid-column:1/-1"><span>${mesaj}</span></div>`;
+  $('#maliyet-sonuc').textContent = '';
   $('#saglamlik').innerHTML = '';
   $('#uyarilar').innerHTML = '';
   for (const c of ['#grafik', '#egri']) temizle($(c));
@@ -396,13 +398,16 @@ function provaCalistir() {
     mumlar = uret({ ...ayar, tohum });
   }
 
-  const sonuc = prova(s, mumlar);
+  // Maliyet bölümü boşsa brüt (maliyetsiz) prova; doluysa net. Etiket her sonuçla birlikte görünür.
+  const maliyet = maliyetOku();
+  const sonuc = prova(s, mumlar, { maliyet });
+  $('#maliyet-sonuc').textContent = maliyetEtiketi(maliyet);
   fiyatCiz($('#grafik'), mumlar, sonuc.islemler);
   egriCiz($('#egri'), sonuc.ozkaynak);
   istatistikCiz(sonuc.istatistik);
   $('#uyarilar').innerHTML = [...veriUyarilari, ...sonuc.uyarilar].map(u => `<li>${kacis(ceviri(u))}</li>`).join('');
   // Sağlamlık testi sentetik piyasalarla çalışır; kendi verinle yapılan provada karışıklık yaratmasın.
-  if (ayar) saglamlikCiz(ayar); else $('#saglamlik').innerHTML = '';
+  if (ayar) saglamlikCiz(ayar, maliyet); else $('#saglamlik').innerHTML = '';
 }
 
 function provaKaynakGoster() {
@@ -475,7 +480,7 @@ async function provaDosyaYukle(f) {
 // Parça parça çalışır, arayüzü kilitlemez; yeni bir değişiklik eski hesabı iptal eder.
 // GARCH_VOL her piyasada yeniden kestirildiği için o durumda 10 piyasa kullanılır.
 let saglamlikNo = 0;
-function saglamlikCiz(ayar) {
+function saglamlikCiz(ayar, maliyet) {
   const no = ++saglamlikNo;
   const N = Object.values(s.gostergeler ?? {}).some(t => t.tip === 'GARCH_VOL') ? 10 : 50;
   const getiriler = [], beklentiler = [];
@@ -483,7 +488,7 @@ function saglamlikCiz(ayar) {
     if (no !== saglamlikNo) return;
     if (i <= N) {
       $('#saglamlik').innerHTML = ceviri('<b>Sağlamlık:</b> {N} sentetik piyasa çalıştırılıyor… {i}/{N}', { N, i: i - 1 });
-      const st = prova(s, uret({ ...ayar, tohum: 100000 + i * 7919 })).istatistik;
+      const st = prova(s, uret({ ...ayar, tohum: 100000 + i * 7919 }), { maliyet }).istatistik;
       getiriler.push(st.getiriYuzde);
       if (st.islem) beklentiler.push(st.beklentiR);
       setTimeout(() => adim(i + 1), 0);
@@ -491,22 +496,23 @@ function saglamlikCiz(ayar) {
     }
     bitir();
   };
-  const bitir = () => saglamlikYaz(N, getiriler, beklentiler);
+  const bitir = () => saglamlikYaz(N, getiriler, beklentiler, maliyet);
   adim(1);
 }
 
-function saglamlikYaz(N, getiriler, beklentiler) {
+function saglamlikYaz(N, getiriler, beklentiler, maliyet) {
   getiriler.sort((a, b) => a - b);
   const karli = getiriler.filter(g => g > 0).length;
   const yuzde = v => isaretliYuzde(v);
   const ortB = beklentiler.length ? beklentiler.reduce((a, b) => a + b, 0) / beklentiler.length : 0;
   $('#saglamlik').innerHTML = ceviri('<b>Sağlamlık:</b> aynı kurallar {N} farklı sentetik piyasada çalıştırıldı. Kârlı biten: <b>{k}/{N}</b>. Getiri dağılımı: en kötü <b>{kotu}</b>, ortanca <b>{orta}</b>, en iyi <b>{iyi}</b>. Ortalama beklenti <b>{b}R</b>.',
-    { N, k: karli, kotu: yuzde(getiriler[0]), orta: yuzde(getiriler[Math.floor(N / 2)]), iyi: yuzde(getiriler[N - 1]), b: sayi(ortB, 2) });
+    { N, k: karli, kotu: yuzde(getiriler[0]), orta: yuzde(getiriler[Math.floor(N / 2)]), iyi: yuzde(getiriler[N - 1]), b: sayi(ortB, 2) }) +
+    ` <span class="rozet ikincil">${kacis(maliyetEtiketi(maliyet))}</span>`;
 }
 
 function istatistikCiz(st) {
   const isaret = v => (v > 0 ? 'pozitif' : v < 0 ? 'negatif' : '');
-  const kutu = (deger, etiket, sinif = '') => `<div><b class="${sinif}">${deger}</b><span>${ceviri(etiket)}</span></div>`;
+  const kutu = (deger, etiket, sinif = '') => `<div><b class="${kacis(sinif)}">${deger}</b><span>${ceviri(etiket)}</span></div>`;
   $('#istatistik').innerHTML =
     kutu(st.islem, 'işlem') +
     kutu(yuzdeMetni((st.kazanmaOrani * 100).toFixed(0)), 'kazanma oranı') +
@@ -767,7 +773,10 @@ $('#ice-aktar').addEventListener('change', async e => {
   try {
     const v = JSON.parse(await dosya.text());
     if (typeof v !== 'object' || v === null || Array.isArray(v)) throw new Error();
-    s = v;
+    // Dışarıdan gelen dosya forma çizilmeden önce temizlenir (guvenlik.js); kalan sorunları dogrula gösterir.
+    const temiz = stratejiyiTemizle(v);
+    s = temiz.strateji;
+    if (temiz.atilanlar.length) alert(ceviri('Dosyadaki {n} geçersiz alan atıldı: {liste}', { n: temiz.atilanlar.length, liste: temiz.atilanlar.join(', ') }));
     s.gostergeler ??= {};
     ornektenAd = null; ornekUyarisi();
     formCiz(); panelCiz();
@@ -807,7 +816,7 @@ fetch('../paketler/sablonlar.json').then(y => y.json()).then(k => {
   }
 }).catch(() => { /* katalog yoksa yalnız boş şablon */ });
 
-$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${ceviri(r.ad)}</option>`).join('');
+$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${kacis(k)}">${ceviri(r.ad)}</option>`).join('');
 $('#tohum').value = 4821;
 $('#zar').addEventListener('click', () => { $('#tohum').value = 1 + Math.floor(Math.random() * 999999); provaCalistir(); });
 for (const id of ['#rejim', '#adet', '#tohum']) $(id).addEventListener('change', provaCalistir);
@@ -826,6 +835,7 @@ $('#prova-kart').addEventListener('drop', e => {
 sayfayiCevir();
 baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
+maliyetAlani($('#maliyet-alan'), () => { clearTimeout(provaZamanlayici); provaZamanlayici = setTimeout(provaCalistir, 250); });
 // Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {
   const istenenKaynak = new URLSearchParams(location.search).get('kaynak');

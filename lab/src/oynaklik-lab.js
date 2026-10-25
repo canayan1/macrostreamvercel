@@ -9,6 +9,7 @@ import { garchKestir } from './modeller/garch.js';
 import { sarimaKestir } from './modeller/sarima.js';
 import { t as ceviri, sayiMetni, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
 import { baglanDugmesi } from './baglan-ortak.js';
+import { kacis } from './guvenlik.js';
 
 const $ = s => document.querySelector(s);
 const renk = ad => getComputedStyle(document.documentElement).getPropertyValue(ad).trim();
@@ -45,9 +46,9 @@ function cizgi(c, seriler, { yuzde = false, dikey = null } = {}) {
     x.stroke();
   });
 }
-const lejant = (el, seriler) => { el.innerHTML = seriler.map((s, k) => `<span><i style="background:var(${s.renk ?? PALET[k % PALET.length]})"></i>${s.ad}</span>`).join(''); };
+const lejant = (el, seriler) => { el.innerHTML = seriler.map((s, k) => `<span><i style="background:var(${s.renk ?? PALET[k % PALET.length]})"></i>${kacis(s.ad)}</span>`).join(''); };
 const tablo = (el, baslik, satirlar, secili = -1) => {
-  el.innerHTML = `<thead><tr>${baslik.map(b => `<th>${b}</th>`).join('')}</tr></thead><tbody>${satirlar.map((s, i) => `<tr${i === secili ? ' class="secili"' : ''}>${s.map(v => `<td>${v}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  el.innerHTML = `<thead><tr>${baslik.map(b => `<th>${kacis(b)}</th>`).join('')}</tr></thead><tbody>${satirlar.map((s, i) => `<tr${i === secili ? ' class="secili"' : ''}>${s.map(v => `<td>${kacis(v)}</td>`).join('')}</tr>`).join('')}</tbody>`;
 };
 
 // ------------------------------------------------------------------ veri
@@ -81,7 +82,7 @@ function analizEt() {
   const { mumlar } = veri, n = Number($('#pencere').value), takvim = $('#takvim').value;
   const yd = yillikDonem(veri.zamanDilimi, takvim), olcek = Math.sqrt(yd);
   const ilk = new Date(mumlar[0].t * 1000).toISOString().slice(0, 10), son = new Date(mumlar.at(-1).t * 1000).toISOString().slice(0, 10);
-  $('#meta').innerHTML = `<span>${ceviri('{n} mum', { n: mumlar.length })}</span><span>${veri.zamanDilimi}</span><span>${ilk} → ${son}</span><span>${ceviri('{takvim}: yılda {n} dönem', { takvim: ceviri(TAKVIMLER[takvim].ad), n: yd })}</span>${veri.atlanan ? `<span>${ceviri('{n} satır atlandı', { n: veri.atlanan })}</span>` : ''}`;
+  $('#meta').innerHTML = `<span>${kacis(ceviri('{n} mum', { n: mumlar.length }))}</span><span>${kacis(veri.zamanDilimi)}</span><span>${ilk} → ${son}</span><span>${ceviri('{takvim}: yılda {n} dönem', { takvim: ceviri(TAKVIMLER[takvim].ad), n: yd })}</span>${veri.atlanan ? `<span>${ceviri('{n} satır atlandı', { n: veri.atlanan })}</span>` : ''}`;
 
   // 1) gerçekleşen oynaklık
   const tahminciler = [
@@ -188,7 +189,7 @@ function sarimaKestirCiz() {
 sayfayiCevir();
 baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
-$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${k}">${ceviri(r.ad)}</option>`).join('');
+$('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${kacis(k)}">${ceviri(r.ad)}</option>`).join('');
 $('#kaynak').addEventListener('change', () => {
   const csv = $('#kaynak').value === 'csv';
   $('#csv-alan').hidden = !csv; $('#tohum-alan').hidden = csv; $('#rejim-alan').hidden = csv;

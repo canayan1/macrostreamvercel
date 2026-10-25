@@ -12,7 +12,7 @@ const ROLE_ANAHTARI = 'kalibre-kopru-role';
 const HESAP = { demo: ['DEMO', ''], gercek: ['GERÇEK HESAP', 'gercek'], yarisma: ['YARIŞMA', ''] }; // etiketler t() ile çevrilir
 
 const $ = s => document.querySelector(s);
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis } from './guvenlik.js';
 const para = x => (typeof x === 'number' ? x.toLocaleString(yerel, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '');
 
 // Tarayıcı deposu yoksa (gizli pencere, engellenmiş site verisi) panel yine çalışır; kod yalnız bu oturumda kalır.
@@ -95,7 +95,7 @@ export function mt5Panel({ yukle, hata, istenenSembol = '' }) {
     const hesap = `<p class="dipnot">${ceviri('Bakiye {b} {p} · varlık {v} {p}', { b: para(p.bakiye), v: para(p.varlik), p: kacis(p.para) })}</p>`;
     kutu.innerHTML = p.pozisyonlar.length
       ? `${bas}<table class="pozisyon"><thead><tr>${['Sembol', 'Yön', 'Lot', 'Açılış', 'Güncel', 'Kâr'].map(b => `<th>${ceviri(b)}</th>`).join('')}</tr></thead><tbody>${
-        p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}</td><td>${ceviri(x.yon === 'al' ? 'Al' : 'Sat')}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td class="${x.kar >= 0 ? 'pozitif' : 'negatif'}">${para(x.kar)}</td></tr>`).join('')
+        p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}</td><td>${ceviri(x.yon === 'al' ? 'Al' : 'Sat')}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td class="${kacis(x.kar >= 0 ? 'pozitif' : 'negatif')}">${para(x.kar)}</td></tr>`).join('')
       }</tbody></table>${hesap}`
       : `${bas}<p class="dipnot">${ceviri('Açık pozisyon yok.')}</p>${hesap}`;
     kutu.hidden = false;

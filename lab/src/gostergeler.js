@@ -1,7 +1,9 @@
 // Gösterge hesapları. MT5'in yerleşik göstergeleriyle aynı formüller:
 //   EMA ilk fiyatla tohumlanır; RSI Wilder yumuşatması; ATR = TR'nin SMA'sı;
-//   ADX, +DI/-DI ve DX için üstel ortalama; BB nüfus standart sapması;
-//   MACD sinyal hattı ana hattın SMA'sı.
+//   ADX, +DI/-DI ve DX için üstel ortalama (MT5 gibi sıfırdan tohumlanır); BB nüfus standart
+//   sapması; MACD sinyal hattı ana hattın SMA'sı.
+// Doğrulama: lab/test/motor-dogrulama.test.mjs, MT5'in kendi çıktısıyla (EURUSD H1, geçmişin en
+// eski 600 mumu, ısınma dahil) karşılaştırır; fark 1e-9 göreli düzeyinin altında.
 // Dizi uzunluğu mum sayısına eşittir; ısınma dönemindeki değerler NaN.
 //
 // Oynaklık göstergeleri (şema v2): EWMA_VOL, YZ_VOL, GARCH_VOL. Değerler dönemlik oynaklık
@@ -69,7 +71,9 @@ export function adx(m, p) {
   const n = m.length;
   const ana = new Array(n).fill(NaN), arti = new Array(n).fill(NaN), eksi = new Array(n).fill(NaN);
   const k = 2 / (p + 1);
-  let pd = NaN, md = NaN, ax = NaN;
+  // MT5 ADX.mq5 gibi: +DI, -DI ve ADX üstel ortalamaları sıfırdan başlar (ilk değerle değil).
+  // 25.10.2026'ya kadar ilk değerle tohumlanıyordu; ısınma döneminde MT5'ten %44'e varan fark vardı.
+  let pd = 0, md = 0, ax = 0;
   for (let i = 1; i < n; i++) {
     let pdm = m[i].y - m[i - 1].y, mdm = m[i - 1].d - m[i].d;
     if (pdm < 0) pdm = 0;
@@ -77,10 +81,10 @@ export function adx(m, p) {
     if (pdm === mdm) { pdm = 0; mdm = 0; } else if (pdm < mdm) pdm = 0; else mdm = 0;
     const tr = Math.max(m[i].y - m[i].d, Math.abs(m[i].y - m[i - 1].k), Math.abs(m[i].d - m[i - 1].k));
     const tp = tr === 0 ? 0 : 100 * pdm / tr, tm = tr === 0 ? 0 : 100 * mdm / tr;
-    pd = Number.isNaN(pd) ? tp : tp * k + pd * (1 - k);
-    md = Number.isNaN(md) ? tm : tm * k + md * (1 - k);
+    pd = tp * k + pd * (1 - k);
+    md = tm * k + md * (1 - k);
     const dx = pd + md === 0 ? 0 : 100 * Math.abs(pd - md) / (pd + md);
-    ax = Number.isNaN(ax) ? dx : dx * k + ax * (1 - k);
+    ax = dx * k + ax * (1 - k);
     if (i >= p) { arti[i] = pd; eksi[i] = md; }
     if (i >= 2 * p) ana[i] = ax;
   }

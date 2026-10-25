@@ -10,9 +10,10 @@
 //     denendiğinde en iyinin Sharpe'ı şansla da yüksek çıkar; bu düzeltme o olasılığı hesaba katar.
 //   - Risk parametreleri (işlem başı risk, günlük kayıp sınırı) taranmaz: onlar kullanıcının kararıdır.
 //
-// Hızlı prova maliyetsizdir; sonuçlar yaklaşık. Kesin sınav MT5 Strategy Tester'dadır.
+// Hızlı prova varsayılan olarak maliyetsizdir (brüt); secenek.maliyet verilirse spread, komisyon ve kayma
+// motor.js maliyet modeliyle düşülür (net). Sonuçlar yaklaşıktır; kesin sınav MT5 Strategy Tester'dadır.
 
-import { prova, istatistik } from './motor.js';
+import { prova, istatistik, MALIYETSIZ } from './motor.js';
 import { dogrula } from './dogrula.js';
 
 // ------------------------------------------------------------------ parametreler
@@ -119,9 +120,9 @@ function momentler(x) {
 }
 
 // Bir aralık için prova: [bas, son) mumları değerlendirilir; öncesinden ısınma payı göstergeler için kullanılır.
-export function provaAralik(s, mumlar, bas, son, isinma = 300) {
+export function provaAralik(s, mumlar, bas, son, isinma = 300, maliyet = MALIYETSIZ) {
   const k = Math.max(0, bas - isinma);
-  const p = prova(s, mumlar.slice(k, son));
+  const p = prova(s, mumlar.slice(k, son), { maliyet });
   const ofset = bas - k;
   const islemler = p.islemler.filter(i => i.girisI >= ofset);
   const ozk = p.ozkaynak.slice(Math.max(0, ofset - 1));
@@ -185,11 +186,11 @@ export function deflatedSharpe(sharpeler, en) {
 
 // ------------------------------------------------------------------ tarama
 // secilen: parametreler()'den seçilenler (min/max/adim kullanıcı değiştirebilir).
-// secenek: { olcut, egitimOrani, enAzIslem, sinir, prop: {gunluk, azami, tur} | null, enIyiSayisi, iptal }
+// secenek: { olcut, egitimOrani, enAzIslem, sinir, prop: {gunluk, azami, tur} | null, enIyiSayisi, iptal, maliyet }
 // iptal: isteğe bağlı () => boolean; true dönerse tarama o ana kadarki sonuçlarla biter (iptal: true).
 // ilerleme(i, toplam): isteğe bağlı; arayüz çubuk çizer. Dönen sözü arayüz bekler.
 export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}) {
-  const { olcut = 'getiri_dusus', egitimOrani = 0.7, enAzIslem = 20, sinir = 500, prop = null, enIyiSayisi = 10, bolum = 25, iptal = null } = secenek;
+  const { olcut = 'getiri_dusus', egitimOrani = 0.7, enAzIslem = 20, sinir = 500, prop = null, enIyiSayisi = 10, bolum = 25, iptal = null, maliyet = MALIYETSIZ } = secenek;
   const O = OLCUTLER[olcut] ?? OLCUTLER.getiri_dusus;
   const kesim = Math.floor(mumlar.length * egitimOrani);
   const { ayarlar, toplam, ornek } = izgara(secilen, { sinir });
@@ -200,7 +201,7 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
     let aday = s;
     ayarlar[i].forEach((v, j) => { aday = ayarla(aday, secilen[j].yol, v); });
     if (dogrula(aday).length) { gecersiz++; continue; }
-    const e = provaAralik(aday, mumlar, 0, kesim, 0);
+    const e = provaAralik(aday, mumlar, 0, kesim, 0, maliyet);
     const satir = { degerler: ayarlar[i], egitim: e.istatistik, puan: O.deger(e.istatistik) };
     satir.yetersiz = e.istatistik.islem < enAzIslem;
     if (prop) satir.propIhlal = propIhlali(e.ozkaynak, e.mumlar, prop).ihlal;
@@ -216,7 +217,7 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
   for (const r of enIyiler) {
     let aday = s;
     r.degerler.forEach((v, j) => { aday = ayarla(aday, secilen[j].yol, v); });
-    const t = provaAralik(aday, mumlar, kesim, mumlar.length);
+    const t = provaAralik(aday, mumlar, kesim, mumlar.length, 300, maliyet);
     r.sinama = t.istatistik;
     r.sinamaPuan = O.deger(t.istatistik);
     if (prop) r.sinamaPropIhlal = propIhlali(t.ozkaynak, t.mumlar, prop).ihlal;
@@ -240,7 +241,7 @@ export async function tara(s, mumlar, secilen, secenek = {}, ilerleme = () => {}
   }
   const dsr = en ? deflatedSharpe(sonuclar.map(r => r.egitim.sharpe), en.egitim) : null;
   return {
-    toplam, denenen: sonuclar.length, ornek, gecersiz, kesim, iptal: iptalEdildi, planlanan: ayarlar.length,
+    toplam, denenen: sonuclar.length, ornek, gecersiz, kesim, iptal: iptalEdildi, planlanan: ayarlar.length, maliyet,
     yetersiz: sonuclar.filter(r => r.yetersiz).length,
     propElenen: prop ? sonuclar.filter(r => r.propIhlal).length : 0,
     sonuclar, enIyiler, komsuluk, deflatedSharpe: dsr,

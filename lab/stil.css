@@ -131,6 +131,12 @@ canvas{width:100%;display:block;background:var(--bg-1);border:1px solid var(--bo
 .mt5-kod input{flex:1;font:12px var(--mono)}
 .mt5-gelismis{margin-top:8px;font-size:12px;color:var(--muted)}
 .mt5-gelismis summary{font-weight:500}
+/* Maliyet bölümü (maliyet-arayuz.js): hızlı provaya isteğe bağlı spread, komisyon, kayma */
+.maliyet{background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin:0 0 10px;font-size:13px}
+.maliyet summary{cursor:pointer;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.maliyet .prova-ayar{margin:10px 0 0}
+.maliyet .prova-ayar input{width:9em}
+.maliyet-sonuc{font-size:12px;color:var(--text-dim);margin:10px 0 0;font-weight:600}
 .mt5-gelismis input{width:100%;font:12px var(--mono);margin-top:4px}
 .pozisyon{width:100%;border-collapse:collapse;font-size:12px}
 .pozisyon th{font:500 11px var(--mono);color:var(--muted);text-align:right;padding:4px 6px;border-bottom:1px solid var(--border)}

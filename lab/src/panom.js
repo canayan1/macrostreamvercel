@@ -18,7 +18,7 @@ const HESAP = { demo: ['DEMO', ''], gercek: ['GERÇEK HESAP', 'gercek'], yarisma
 const ISLEM_YENILE_SN = 60;
 
 const $ = s => document.querySelector(s);
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { kacis } from './guvenlik.js';
 const para = (x, b = 2) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString(yerel, { minimumFractionDigits: b, maximumFractionDigits: b }) : '');
 const yuzde = (x, b = 1) => (typeof x === 'number' && Number.isFinite(x) ? (x * 100).toLocaleString(yerel, { minimumFractionDigits: b, maximumFractionDigits: b }) + '%' : '');
 const isaretli = (x, b = 2) => (x > 0 ? '+' : '') + para(x, b);
@@ -83,7 +83,7 @@ function hesapYaz(durum, poz) {
     [ceviri('Açık kâr/zarar'), isaretli(fark), sinif(fark)],
     [ceviri('Para birimi'), kacis(poz.para ?? ''), ''],
   ];
-  kutu.innerHTML = karolar.map(([e, v, s]) => `<div><b class="${s}">${v}</b><span>${e}</span></div>`).join('');
+  kutu.innerHTML = karolar.map(([e, v, s]) => `<div><b class="${kacis(s)}">${v}</b><span>${e}</span></div>`).join('');
   kutu.hidden = false;
 }
 
@@ -119,7 +119,7 @@ function kotalarYaz(k) {
       : ceviri('{n} sembol, MT5 Market Watch listesinden', { n: k.kotalar.length });
   $('#kota-izgara').innerHTML = k.kotalar.map(q => {
     const d = q.gunlukDegisim;
-    const dMetin = d === null ? '' : `<span class="${sinif(d)}">${d > 0 ? '+' : ''}${yuzde(d, 2)}</span>`;
+    const dMetin = d === null ? '' : `<span class="${kacis(sinif(d))}">${d > 0 ? '+' : ''}${yuzde(d, 2)}</span>`;
     let aralik = '';
     if (q.gunDusuk && q.gunYuksek && q.gunYuksek > q.gunDusuk) {
       const oran = Math.max(0, Math.min(1, (q.alis - q.gunDusuk) / (q.gunYuksek - q.gunDusuk)));
@@ -131,7 +131,7 @@ function kotalarYaz(k) {
       <div class="kota-fiyat"><span>${fiyat(q.alis, q.basamak)}</span><span class="kota-satis">${fiyat(q.satis, q.basamak)}</span></div>
       ${aralik}
       <div class="kota-alt"><span>${araciMi(KAYNAK) ? ceviri('makas {n}', { n: fiyat(q.satis - q.alis, 2) }) : q.makas !== null ? ceviri('makas {n} puan', { n: q.makas }) : ''}</span>
-        <a class="kucuk" href="${backtestBaglantisi(q.sembol)}">${ceviri('Backtest')}</a></div>
+        <a class="kucuk" href="${kacis(backtestBaglantisi(q.sembol))}">${ceviri('Backtest')}</a></div>
     </div>`;
   }).join('');
   kart.hidden = false;
@@ -143,7 +143,7 @@ function pozisyonYaz(p) {
   $('#pozisyon-not').textContent = p.pozisyonlar.length ? ceviri('{n} pozisyon', { n: p.pozisyonlar.length }) : '';
   $('#pozisyon-kutu').innerHTML = p.pozisyonlar.length
     ? `<div class="tablo-kutu"><table class="pozisyon"><thead><tr>${['Sembol', 'Yön', 'Lot', 'Açılış', 'Güncel', 'Stop', 'Hedef', 'Kâr'].map(b => `<th>${ceviri(b)}</th>`).join('')}</tr></thead><tbody>${
-      p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}${x.sihirli === 20261020 ? ` <span class="rozet mini">${ceviri('Motor')}</span>` : ''}</td><td>${ceviri(x.yon === 'al' ? 'Al' : 'Sat')}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td>${x.stop ?? ''}</td><td>${x.hedef ?? ''}</td><td class="${sinif(x.kar)}">${isaretli(x.kar)}</td></tr>`).join('')
+      p.pozisyonlar.map(x => `<tr><td>${kacis(x.sembol)}${x.sihirli === 20261020 ? ` <span class="rozet mini">${ceviri('Motor')}</span>` : ''}</td><td>${ceviri(x.yon === 'al' ? 'Al' : 'Sat')}</td><td>${x.lot}</td><td>${x.acilisFiyati}</td><td>${x.guncelFiyat}</td><td>${x.stop ?? ''}</td><td>${x.hedef ?? ''}</td><td class="${kacis(sinif(x.kar))}">${isaretli(x.kar)}</td></tr>`).join('')
     }</tbody></table></div>`
     : `<p class="dipnot">${ceviri('Açık pozisyon yok.')}</p>`;
   kart.hidden = false;
@@ -171,7 +171,7 @@ function islemlerYaz(h, simdi) {
     [ceviri('Gerçekleşmiş azami düşüş'), o.adet ? `${para(o.azamiDusus)}${p} (${yuzde(o.azamiDususYuzde)})` : '', 'negatif'],
     [ceviri('Ortalama süre'), o.ortSureSn !== null ? sureMetni(Math.round(o.ortSureSn)) : '', ''],
   ];
-  $('#islem-istatistik').innerHTML = karolar.map(([e, v, s]) => `<div><b class="${v ? s : ''}">${v || '·'}</b><span>${e}</span></div>`).join('');
+  $('#islem-istatistik').innerHTML = karolar.map(([e, v, s]) => `<div><b class="${kacis(v ? s : '')}">${v || '·'}</b><span>${e}</span></div>`).join('');
   bakiyeCiz($('#bakiye-egri'), o.egri, o.yatirilan - o.cekilen);
 
   // Takvim şeridi: son 42 gün, günlük net.
@@ -181,7 +181,7 @@ function islemlerYaz(h, simdi) {
     const v = gunler.get(g);
     const yogunluk = v ? (0.25 + 0.75 * Math.abs(v.net) / enBuyuk).toFixed(2) : '';
     const s = v ? (v.net > 0 ? 'pozitif' : v.net < 0 ? 'negatif' : 'notr') : 'bos';
-    return `<i class="${s}" style="${v ? `opacity:${yogunluk}` : ''}" title="${gunMetni(g)}${v ? `: ${isaretli(v.net)}${p}, ${ceviri('{n} işlem', { n: v.adet })}` : ''}"></i>`;
+    return `<i class="${kacis(s)}" style="${kacis(v ? `opacity:${yogunluk}` : '')}" title="${gunMetni(g)}${v ? `: ${isaretli(v.net)}${p}, ${ceviri('{n} işlem', { n: v.adet })}` : ''}"></i>`;
   }).join('');
   $('#takvim-not').textContent = o.enIyiGun ? ceviri('en iyi gün {i}, en kötü gün {k}', { i: isaretli(o.enIyiGun.net) + p, k: isaretli(o.enKotuGun.net) + p }) : '';
 
@@ -196,7 +196,7 @@ function islemlerYaz(h, simdi) {
   islemTablosuYaz(h, p);
 
   $('#sembol-tablo').innerHTML = `<thead><tr>${['Sembol', 'İşlem', 'Kazanan', 'Lot', 'Net', ''].map(b => `<th>${ceviri(b)}</th>`).join('')}</tr></thead><tbody>${
-    o.sembolBazinda.map(s => `<tr><td>${kacis(s.sembol)}</td><td>${s.adet}</td><td>${yuzde(s.kazanan / s.adet, 0)}</td><td>${para(s.lot)}</td><td class="${sinif(s.net)}">${isaretli(s.net)}${p}</td><td><a class="kucuk" href="${backtestBaglantisi(s.sembol)}">${ceviri('Backtest')}</a></td></tr>`).join('')
+    o.sembolBazinda.map(s => `<tr><td>${kacis(s.sembol)}</td><td>${s.adet}</td><td>${yuzde(s.kazanan / s.adet, 0)}</td><td>${para(s.lot)}</td><td class="${kacis(sinif(s.net))}">${isaretli(s.net)}${p}</td><td><a class="kucuk" href="${kacis(backtestBaglantisi(s.sembol))}">${ceviri('Backtest')}</a></td></tr>`).join('')
   }</tbody>`;
   kart.hidden = false;
 }
@@ -205,7 +205,7 @@ function islemTablosuYaz(h, p) {
   const liste = [...h.islemler].reverse().filter(i => !secilenSembol || i.sembol === secilenSembol).slice(0, 300);
   $('#islem-tablo').innerHTML = liste.length
     ? `<thead><tr>${['Kapanış', 'Sembol', 'Yön', 'Lot', 'Giriş', 'Çıkış', 'Süre', 'Kâr'].map(b => `<th>${ceviri(b)}</th>`).join('')}</tr></thead><tbody>${
-      liste.map(i => `<tr><td>${tarih(i.kapanisZamani)}</td><td>${kacis(i.sembol)}${i.sihirli === 20261020 ? ` <span class="rozet mini">${ceviri('Motor')}</span>` : ''}</td><td>${ceviri(i.yon === 'al' ? 'Al' : 'Sat')}</td><td>${i.lot}</td><td>${i.acilisFiyati}</td><td>${i.kapanisFiyati}</td><td>${sureMetni(i.kapanisZamani - i.acilisZamani)}</td><td class="${sinif(i.kar)}">${isaretli(i.kar)}${p}</td></tr>`).join('')
+      liste.map(i => `<tr><td>${tarih(i.kapanisZamani)}</td><td>${kacis(i.sembol)}${i.sihirli === 20261020 ? ` <span class="rozet mini">${ceviri('Motor')}</span>` : ''}</td><td>${ceviri(i.yon === 'al' ? 'Al' : 'Sat')}</td><td>${i.lot}</td><td>${i.acilisFiyati}</td><td>${i.kapanisFiyati}</td><td>${sureMetni(i.kapanisZamani - i.acilisZamani)}</td><td class="${kacis(sinif(i.kar))}">${isaretli(i.kar)}${p}</td></tr>`).join('')
     }</tbody>`
     : `<tbody><tr><td>${ceviri('Bu aralıkta kapanmış işlem yok.')}</td></tr></tbody>`;
 }

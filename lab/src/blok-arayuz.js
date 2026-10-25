@@ -9,6 +9,7 @@ import {
 } from './bloklar.js';
 import { ZAMAN_DILIMLERI, HATLAR } from './dogrula.js';
 import { t as ceviri, dil } from './dil.js';
+import { kacis } from './guvenlik.js';
 
 const MOD_ANAHTARI = 'kalibre-lab-mod';
 
@@ -18,7 +19,6 @@ if (globalThis.document && !document.querySelector('link[data-blok-stil]')) {
   l.rel = 'stylesheet'; l.href = new URL('../blok.css', import.meta.url).href; l.dataset.blokStil = '';
   document.head.append(l);
 }
-const kacis = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 export function modOku() {
   try { return localStorage.getItem(MOD_ANAHTARI) === 'ileri' ? 'ileri' : 'basit'; } catch { return 'basit'; }
@@ -26,9 +26,9 @@ export function modOku() {
 function modYaz(m) { try { localStorage.setItem(MOD_ANAHTARI, m); } catch { /* depo yok */ } }
 
 export function modAnahtari(mod) {
-  const b = (m, ad) => `<button type="button" data-blok="mod" data-mod="${m}" aria-pressed="${mod === m}">${ceviri(ad)}</button>`;
+  const b = (m, ad) => `<button type="button" data-blok="mod" data-mod="${kacis(m)}" aria-pressed="${kacis(mod === m)}">${ceviri(ad)}</button>`;
   return `<div class="mod-satiri">
-    <span class="dil-anahtari mod-anahtari" role="group" aria-label="${ceviri('Kurucu modu')}">${b('basit', 'Basit')}${b('ileri', 'İleri')}</span>
+    <span class="dil-anahtari mod-anahtari" role="group" aria-label="${kacis(ceviri('Kurucu modu'))}">${b('basit', 'Basit')}${b('ileri', 'İleri')}</span>
     <span class="ipucu">${ceviri('Basit: hazır kalıplarla kur. İleri: her ayrıntıyı elle düzenle. İkisi aynı stratejiyi düzenler.')}</span>
   </div>`;
 }
@@ -60,8 +60,8 @@ function gostergeEtiketi(ad, t) {
 function operandSecici(s, konum, deger, { sayiYok = true } = {}) {
   const g = s.gostergeler ?? {};
   const op = operandCoz(deger, g);
-  let html = `<select data-blok="operand" data-konum="${konum}" aria-label="${ceviri('Değer')}">`;
-  for (const [v, e] of FIYATLAR) html += `<option value="${v}"${v === deger ? ' selected' : ''}>${ceviri(e)}</option>`;
+  let html = `<select data-blok="operand" data-konum="${kacis(konum)}" aria-label="${kacis(ceviri('Değer'))}">`;
+  for (const [v, e] of FIYATLAR) html += `<option value="${kacis(v)}"${v === deger ? ' selected' : ''}>${ceviri(e)}</option>`;
   for (const [ad, t] of Object.entries(g)) {
     const hatlar = (HATLAR[t.tip] ?? ['']).filter(h => h !== 'ana' && !(t.tip === 'BB' && h === ''));
     for (const h of hatlar) {
@@ -80,14 +80,14 @@ function periyotAlani(s, konum, deger) {
   const op = operandCoz(deger, s.gostergeler ?? {});
   const t = op && op.tip !== 'fiyat' ? s.gostergeler?.[op.ad] : null;
   if (!t || t.periyot === undefined) return '';
-  let html = `<label class="mini" data-hata-yol="gostergeler.${kacis(op.ad)}">${ceviri('periyot')}<input type="number" min="1" max="1000" step="1" data-blok="periyot" data-konum="${konum}" value="${t.periyot}"></label>`;
-  if (t.tip === 'BB') html += `<label class="mini">σ<input type="number" min="0.1" max="10" step="0.1" data-blok="sapma" data-konum="${konum}" value="${t.sapma}"></label>`;
+  let html = `<label class="mini" data-hata-yol="gostergeler.${kacis(op.ad)}">${ceviri('periyot')}<input type="number" min="1" max="1000" step="1" data-blok="periyot" data-konum="${kacis(konum)}" value="${kacis(t.periyot)}"></label>`;
+  if (t.tip === 'BB') html += `<label class="mini">σ<input type="number" min="0.1" max="10" step="0.1" data-blok="sapma" data-konum="${kacis(konum)}" value="${kacis(t.sapma)}"></label>`;
   return html;
 }
 
-const opSecici = (yol, op, liste) => `<select data-blok="op" data-byol="${yol}" aria-label="${ceviri('Karşılaştırma')}">${liste
-  .map(o => `<option value="${o}"${o === op ? ' selected' : ''}>${ceviri(OP_AD[o])}</option>`).join('')}</select>`;
-const sayiGirdisi = (yol, v, etiket) => `<input type="number" step="any" data-blok="sayi" data-byol="${yol}" value="${v}" aria-label="${ceviri(etiket)}">`;
+const opSecici = (yol, op, liste) => `<select data-blok="op" data-byol="${kacis(yol)}" aria-label="${kacis(ceviri('Karşılaştırma'))}">${liste
+  .map(o => `<option value="${kacis(o)}"${o === op ? ' selected' : ''}>${ceviri(OP_AD[o])}</option>`).join('')}</select>`;
+const sayiGirdisi = (yol, v, etiket) => `<input type="number" step="any" data-blok="sayi" data-byol="${kacis(yol)}" value="${kacis(v)}" aria-label="${kacis(ceviri(etiket))}">`;
 
 // ---------------------------------------------------------------- kartlar
 const cumle = (a, baglac, b, yuklem) => dil === 'en'
@@ -105,7 +105,7 @@ function blokGovdesi(s, b) {
     case 'esik':
       return cumle(operandSecici(s, `${y}.sol`, b.sol), ', şu sayıdan', sayiGirdisi(y, b.sag, 'Eşik'), opSecici(y, b.op, ['>', '<', '>=', '<=']));
     case 'rsi': {
-      const sec = `<select data-blok="op" data-byol="${y}" aria-label="${ceviri('Bölge')}">
+      const sec = `<select data-blok="op" data-byol="${kacis(y)}" aria-label="${kacis(ceviri('Bölge'))}">
         <option value="<"${b.op === '<' ? ' selected' : ''}>${ceviri('aşırı satımda: şu sayının altında')}</option>
         <option value=">"${b.op === '>' ? ' selected' : ''}>${ceviri('aşırı alımda: şu sayının üstünde')}</option></select>`;
       return `<div class="cumle"><span>RSI</span>${periyotAlani(s, `${y}.sol`, b.sol)}${sec}${sayiGirdisi(y, b.sag, 'Eşik')}</div>`;
@@ -114,7 +114,7 @@ function blokGovdesi(s, b) {
       return `<div class="cumle"><span>ADX</span>${periyotAlani(s, `${y}.sol`, b.sol)}<span>${ceviri('şu sayının üstünde (trend güçlü)')}</span>${sayiGirdisi(y, b.sag, 'Eşik')}</div>`;
     case 'bant': {
       const hat = operandCoz(b.sag, s.gostergeler ?? {})?.hat;
-      const sec = `<select data-blok="bant" data-byol="${y}" aria-label="${ceviri('Bant')}">
+      const sec = `<select data-blok="bant" data-byol="${kacis(y)}" aria-label="${kacis(ceviri('Bant'))}">
         <option value="alt"${hat === 'alt' ? ' selected' : ''}>${ceviri('alt bandın altına inerse')}</option>
         <option value="ust"${hat === 'ust' ? ' selected' : ''}>${ceviri('üst bandın üstüne çıkarsa')}</option></select>`;
       return `<div class="cumle">${operandSecici(s, `${y}.sol`, b.sol)}<span>${ceviri(', Bollinger')}</span>${periyotAlani(s, `${y}.sag`, b.sag)}${sec}</div>`;
@@ -128,23 +128,23 @@ function grupKarti(s, m, yol, baslik) {
   const gr = m.gruplar[yol];
   const bloklar = gr?.bloklar ?? [];
   const baglac = ceviri(gr?.tur === 'herhangi' ? 'VEYA' : 'VE');
-  const kartlar = bloklar.map((b, i) => (i ? `<div class="baglac">${baglac}</div>` : '') + `<div class="blok" data-hata-yol="${b.yol}">
+  const kartlar = bloklar.map((b, i) => (i ? `<div class="baglac">${baglac}</div>` : '') + `<div class="blok" data-hata-yol="${kacis(b.yol)}">
       <div class="blok-bas">
         <span class="ad">${ceviri(SABLON_AD[b.sablon])}</span>
         <span class="blok-eylem">
-          <button type="button" class="kucuk" data-blok="yukari" data-byol="${yol}" data-i="${i}"${i === 0 ? ' disabled' : ''} aria-label="${ceviri('Yukarı taşı')}">↑</button>
-          <button type="button" class="kucuk" data-blok="asagi" data-byol="${yol}" data-i="${i}"${i === bloklar.length - 1 ? ' disabled' : ''} aria-label="${ceviri('Aşağı taşı')}">↓</button>
-          <button type="button" class="kucuk sil" data-blok="sil" data-byol="${yol}" data-i="${i}" aria-label="${ceviri('Koşulu sil')}">✕</button>
+          <button type="button" class="kucuk" data-blok="yukari" data-byol="${kacis(yol)}" data-i="${kacis(i)}"${i === 0 ? ' disabled' : ''} aria-label="${kacis(ceviri('Yukarı taşı'))}">↑</button>
+          <button type="button" class="kucuk" data-blok="asagi" data-byol="${kacis(yol)}" data-i="${kacis(i)}"${i === bloklar.length - 1 ? ' disabled' : ''} aria-label="${kacis(ceviri('Aşağı taşı'))}">↓</button>
+          <button type="button" class="kucuk sil" data-blok="sil" data-byol="${kacis(yol)}" data-i="${kacis(i)}" aria-label="${kacis(ceviri('Koşulu sil'))}">✕</button>
         </span>
       </div>
       ${blokGovdesi(s, b)}
     </div>`).join('');
-  const tur = bloklar.length > 1 ? `<select class="grup-tur" data-blok="tur" data-byol="${yol}" aria-label="${ceviri('Koşulların nasıl birleşeceği')}">
+  const tur = bloklar.length > 1 ? `<select class="grup-tur" data-blok="tur" data-byol="${kacis(yol)}" aria-label="${kacis(ceviri('Koşulların nasıl birleşeceği'))}">
       <option value="hepsi"${gr.tur === 'hepsi' ? ' selected' : ''}>${ceviri('hepsi birden (VE)')}</option>
       <option value="herhangi"${gr.tur === 'herhangi' ? ' selected' : ''}>${ceviri('herhangi biri (VEYA)')}</option></select>` : '';
   const palet = `<details class="palet"><summary class="kucuk ekle">${ceviri('+ Koşul ekle')}</summary><div class="palet-liste">${SABLONLAR
-    .map(k => `<button type="button" class="kucuk" data-blok="ekle" data-byol="${yol}" data-sablon="${k}">${ceviri(SABLON_AD[k])}</button>`).join('')}</div></details>`;
-  return `<div class="grup blok-grup" data-hata-yol="${yol}">
+    .map(k => `<button type="button" class="kucuk" data-blok="ekle" data-byol="${kacis(yol)}" data-sablon="${kacis(k)}">${ceviri(SABLON_AD[k])}</button>`).join('')}</div></details>`;
+  return `<div class="grup blok-grup" data-hata-yol="${kacis(yol)}">
     <div class="grup-bas"><span class="ad">${ceviri(baslik)}</span>${tur}</div>
     ${bloklar.length ? `<div class="kosullar">${kartlar}</div>` : `<p class="ipucu">${ceviri('Henüz koşul yok.')}</p>`}
     ${gr?.bozuk !== undefined ? `<p class="ipucu">${ceviri('Bu grup okunamadı; İleri modda düzelt.')}</p>` : palet}
@@ -158,28 +158,28 @@ function mesafeKarti(s, yol, baslik, tipler) {
   let ic = '';
   if (tip === 'atr') {
     const p = s.gostergeler?.[mm.gosterge]?.periyot ?? 14;
-    ic = `<label class="mini">${ceviri('ATR periyodu')}<input type="number" min="1" max="1000" step="1" data-blok="mesafe-periyot" data-byol="${yol}" value="${p}"></label>
-          <label class="mini">${ceviri('kaç katı')}<input type="number" min="0.1" step="0.1" data-blok="mesafe-alan" data-alan="carpan" data-byol="${yol}" value="${mm.carpan}"></label>`;
+    ic = `<label class="mini">${ceviri('ATR periyodu')}<input type="number" min="1" max="1000" step="1" data-blok="mesafe-periyot" data-byol="${kacis(yol)}" value="${kacis(p)}"></label>
+          <label class="mini">${ceviri('kaç katı')}<input type="number" min="0.1" step="0.1" data-blok="mesafe-alan" data-alan="carpan" data-byol="${kacis(yol)}" value="${kacis(mm.carpan)}"></label>`;
   } else if (tip === 'oynaklik') {
-    ic = `<label class="mini">${ceviri('kaç katı')}<input type="number" min="0.1" step="0.1" data-blok="mesafe-alan" data-alan="carpan" data-byol="${yol}" value="${mm.carpan}"></label>`;
+    ic = `<label class="mini">${ceviri('kaç katı')}<input type="number" min="0.1" step="0.1" data-blok="mesafe-alan" data-alan="carpan" data-byol="${kacis(yol)}" value="${kacis(mm.carpan)}"></label>`;
   } else if (tip) {
     const e = { yuzde: 'yüzde', puan: 'puan', r: 'stopun kaç katı' }[tip];
-    ic = `<label class="mini">${ceviri(e)}<input type="number" min="0" step="any" data-blok="mesafe-alan" data-alan="deger" data-byol="${yol}" value="${mm.deger}"></label>`;
+    ic = `<label class="mini">${ceviri(e)}<input type="number" min="0" step="any" data-blok="mesafe-alan" data-alan="deger" data-byol="${kacis(yol)}" value="${kacis(mm.deger)}"></label>`;
   }
-  const sec = `<select data-blok="mesafe-tip" data-byol="${yol}" aria-label="${ceviri(baslik)}">${liste
-    .map(([v, e]) => `<option value="${v}"${v === tip ? ' selected' : ''}>${ceviri(e)}</option>`).join('')}</select>`;
-  return `<div class="mesafe" data-hata-yol="${yol}"><span class="etiket">${ceviri(baslik)}</span><div class="cumle">${sec}${ic}</div></div>`;
+  const sec = `<select data-blok="mesafe-tip" data-byol="${kacis(yol)}" aria-label="${kacis(ceviri(baslik))}">${liste
+    .map(([v, e]) => `<option value="${kacis(v)}"${v === tip ? ' selected' : ''}>${ceviri(e)}</option>`).join('')}</select>`;
+  return `<div class="mesafe" data-hata-yol="${kacis(yol)}"><span class="etiket">${ceviri(baslik)}</span><div class="cumle">${sec}${ic}</div></div>`;
 }
 
 const sayiAlani = (s, yol, etiket, { min = '', max = '', adim = 'any', yer = '' } = {}) =>
-  `<label class="alan">${ceviri(etiket)}<input type="number" data-yol="${yol}" data-tur="sayi" min="${min}" max="${max}" step="${adim}" placeholder="${ceviri(yer)}" value="${oku(s, yol) ?? ''}"></label>`;
+  `<label class="alan">${ceviri(etiket)}<input type="number" data-yol="${kacis(yol)}" data-tur="sayi" min="${kacis(min)}" max="${kacis(max)}" step="${kacis(adim)}" placeholder="${kacis(ceviri(yer))}" value="${kacis(oku(s, yol) ?? '')}"></label>`;
 
 // ---------------------------------------------------------------- form
 export function blokFormu(s) {
   const m = stratejidenBloklar(s);
   const zd = ZAMAN_DILIMLERI.map(z => `<option${z === s.zaman_dilimi ? ' selected' : ''}>${z}</option>`).join('');
   const yon = [['iki_yon', 'İki yön'], ['sadece_long', 'Sadece long'], ['sadece_short', 'Sadece short']]
-    .map(([v, e]) => `<option value="${v}"${(s.yon ?? 'iki_yon') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
+    .map(([v, e]) => `<option value="${kacis(v)}"${(s.yon ?? 'iki_yon') === v ? ' selected' : ''}>${ceviri(e)}</option>`).join('');
   const f = s.filtre ?? {};
   const r = s.risk ?? {};
   return `
@@ -222,13 +222,13 @@ export function blokFormu(s) {
   <section class="kart">
     <h2><span class="bolum-no">4</span>${ceviri('Ne zaman işlem yapmayayım?')}</h2>
     <div class="grup${f.saat ? '' : ' kapali'}">
-      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="saat"${f.saat ? ' checked' : ''} aria-label="${ceviri('Saat penceresi')}"><span class="ad">${ceviri('Yalnız şu saatler arasında işlem aç')}</span></div>
+      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="saat"${f.saat ? ' checked' : ''} aria-label="${kacis(ceviri('Saat penceresi'))}"><span class="ad">${ceviri('Yalnız şu saatler arasında işlem aç')}</span></div>
       ${f.saat ? `<div class="alanlar" style="margin-top:10px">
         ${sayiAlani(s, 'filtre.saat.bas', 'Başlangıç saati', { min: 0, max: 23, adim: 1 })}
         ${sayiAlani(s, 'filtre.saat.bit', 'Bitiş saati', { min: 0, max: 24, adim: 1 })}</div>` : ''}
     </div>
     <div class="grup${f.haber ? '' : ' kapali'}">
-      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="haber"${f.haber ? ' checked' : ''} aria-label="${ceviri('Haber filtresi')}"><span class="ad">${ceviri('Önemli haberlerin çevresinde işlem açma')}</span></div>
+      <div class="grup-bas"><input type="checkbox" data-eylem="filtre-ac" data-ad="haber"${f.haber ? ' checked' : ''} aria-label="${kacis(ceviri('Haber filtresi'))}"><span class="ad">${ceviri('Önemli haberlerin çevresinde işlem açma')}</span></div>
       ${f.haber ? `<div class="alanlar" style="margin-top:10px">
         ${sayiAlani(s, 'filtre.haber.once_dk', 'Önce (dk)', { min: 0, max: 1440, adim: 1, yer: '30' })}
         ${sayiAlani(s, 'filtre.haber.sonra_dk', 'Sonra (dk)', { min: 0, max: 1440, adim: 1, yer: '30' })}</div>` : ''}
