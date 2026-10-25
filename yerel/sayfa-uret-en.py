@@ -77,6 +77,15 @@ SETUP = '''
 </ol>
 <div class="kutu">A Tradier token gives full access to your account. The lab only uses it to read and never sends orders. The token is stored only in this browser and sent only to Tradier; it never reaches Kalibre. Disconnecting deletes it from your browser. Under Tradier's terms this connection is for personal use.</div>
 
+<h2 id="alpaca">Connecting with Alpaca (US)</h2>
+<p>If you have an account with the US broker Alpaca, you can connect it too. No add-on is needed; the lab talks to Alpaca directly from your browser.</p>
+<ol>
+  <li>Create an API key pair in your Alpaca dashboard (Key ID and Secret). We suggest a <b>Paper</b> (simulated) account for your first try.</li>
+  <li>On the <a href="/lab/baglan.html?kaynak=alpaca&amp;dil=en">connect page</a>, choose the <b>Alpaca</b> tab, paste both keys, pick the environment and press <b>Connect</b>.</li>
+  <li>The Dashboard, the strategy builder and the optimizer now use Alpaca data. If your watchlist is empty, your open positions are shown; if there are none, the symbols you add on the Dashboard.</li>
+</ol>
+<div class="kutu">On the free Alpaca plan, live prices come from the IEX exchange only, which is a small share of total market volume. The lab only uses the keys to read and never sends orders. The keys are stored only in this browser and sent only to Alpaca; they never reach Kalibre. Disconnecting deletes them from your browser. This connection works with your own personal keys.</div>
+
 <h2 id="without">Working without the add-on</h2>
 <p>If you prefer not to install the add-on, drag and drop a candle file exported from MT5 (CSV or JSON) into the lab. The file never leaves your computer; it is read in your browser.</p>
 <p class="not">The add-ons show their messages in English, or in Turkish if your MetaTrader 5 is set to Turkish.</p>

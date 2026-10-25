@@ -238,10 +238,16 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 .sekme+.sekme{border-left:1px solid var(--border-2)}
 .sekme[aria-selected="true"]{background:var(--surface-2);color:var(--text)}
 .sekme:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
-.baglan[data-kaynak="tradier"] #mt5-giris,.baglan[data-kaynak="tradier"] #adimlar{display:none !important}
+.baglan[data-kaynak="tradier"] #mt5-giris,.baglan[data-kaynak="tradier"] #adimlar,.baglan[data-kaynak="alpaca"] #mt5-giris,.baglan[data-kaynak="alpaca"] #adimlar{display:none !important}
 .baglan:not([data-kaynak="tradier"]) #tradier{display:none !important}
+.baglan:not([data-kaynak="alpaca"]) #alpaca{display:none !important}
 #t-ortam,#t-hesap{min-height:36px;margin-bottom:10px}
 /* Kurucu ve optimizasyon: Tradier sembol/zaman dilimi seçimi */
 .tradier-secim{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-end}
 .tradier-secim label{display:grid;gap:4px;font-size:12px;color:var(--text-dim)}
 .tradier-secim input{width:120px;text-transform:uppercase}
+
+/* Panom: Alpaca'da izleme listesi boşsa sembol ekleme satırı */
+.sembol-ekle{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.sembol-ekle label{font-size:13px;color:var(--text-dim)}
+.sembol-ekle input{flex:1 1 180px;min-width:0}

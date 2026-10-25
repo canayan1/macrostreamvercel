@@ -203,6 +203,15 @@ KURULUM = '''
 </ol>
 <div class="kutu">Tradier token'ı hesabına tam erişim verir. Laboratuvar onu yalnız okumak için kullanır, emir göndermez. Token yalnız bu tarayıcıda saklanır ve yalnız Tradier'e gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde token tarayıcından silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
 
+<h2 id="alpaca">Alpaca (ABD) ile bağlanmak</h2>
+<p>ABD'deki aracı kurum Alpaca'da hesabın varsa onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Alpaca'ya doğrudan senin tarayıcından bağlanır.</p>
+<ol>
+  <li>Alpaca panelinde bir API anahtar çifti oluştur (Key ID ve Secret). İlk deneme için <b>Paper</b> (sanal) hesabı öneririz.</li>
+  <li><a href="/lab/baglan.html?kaynak=alpaca">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li>Panom, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Panom'da eklediğin semboller gösterilir.</li>
+</ol>
+<div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar yalnız IEX borsasından gelir; bu, tüm piyasa hacminin küçük bir kısmıdır. Laboratuvar anahtarları yalnız okumak için kullanır, emir göndermez. Anahtarlar yalnız bu tarayıcıda saklanır ve yalnız Alpaca'ya gönderilir; Kalibre'ye hiç ulaşmaz. Bağlantıyı kestiğinde tarayıcından silinir. Bu bağlantı kendi kişisel anahtarlarınla çalışır.</div>
+
 <h2 id="eklentisiz">Eklentisiz çalışmak</h2>
 <p>Eklenti kurmak istemiyorsan, MT5'ten dışa aktardığın bir mum dosyasını (CSV ya da JSON) laboratuvara sürükleyip bırakabilirsin. Dosya bilgisayarından hiç çıkmaz; tarayıcında okunur.</p>
 '''

@@ -53,12 +53,15 @@ export function baglanDugmesi(yer) {
   const a = globalThis.document.createElement('a');
   a.href = `baglan.html${dil === 'en' ? '?dil=en' : ''}`;
   function guncelle() {
-    // Tradier etkin kaynaksa token kayıtlı olması yeter (yoklama Tradier'e gider, kalp atışı yoktur).
-    const tradierMi = etkinKaynak() === 'tradier';
-    const bagli = tradierMi || bagliMi(KOD_RE.test(depo.oku(KOD_ANAHTARI) ?? ''), depo.oku(SON_ANAHTARI));
+    // Aracı kurum (Tradier, Alpaca) etkin kaynaksa ayarın kayıtlı olması yeter (yoklama doğrudan kuruma
+    // gider, kalp atışı yoktur).
+    const k = etkinKaynak();
+    const araci = k === 'tradier' || k === 'alpaca';
+    const bagli = araci || bagliMi(KOD_RE.test(depo.oku(KOD_ANAHTARI) ?? ''), depo.oku(SON_ANAHTARI));
     a.className = bagli ? 'baglan-hap' : 'dugme ikincil';
     a.textContent = bagli ? ceviri('Bağlı') : ceviri('Bağlan');
-    a.title = tradierMi ? ceviri('Tradier bağlı. Bağlantı ayarları için tıkla.')
+    a.title = k === 'tradier' ? ceviri('Tradier bağlı. Bağlantı ayarları için tıkla.')
+      : k === 'alpaca' ? ceviri('Alpaca bağlı. Bağlantı ayarları için tıkla.')
       : bagli ? ceviri('MetaTrader bağlı. Bağlantı ayarları için tıkla.') : ceviri("MetaTrader'ı bağla");
   }
   guncelle();

@@ -8,7 +8,9 @@ import { kotaCoz, islemCoz, pozisyonCoz, durumCoz } from './veri/kopru.js';
 import { hesapOzeti, sonGunler, gunAnahtari } from './panom/ozet.js';
 import { panomOrnek } from './panom/ornek.js';
 import { baglanDugmesi, tazeGoruldu } from './baglan-ortak.js';
-import { etkinKaynak, kayitliTradierIstemci } from './veri/tradier.js';
+import { etkinKaynak, araciMi, kayitliAraciIstemci } from './veri/araci.js';
+import { sembolleriOku, sembolleriYaz } from './veri/alpaca.js';
+import { SEMBOL_RE } from './tradier-kaynak.js';
 
 const KOD_ANAHTARI = 'kalibre-kopru-kod';
 const ROLE_ANAHTARI = 'kalibre-kopru-role';
@@ -32,7 +34,8 @@ const depo = {
 
 const dilEki = dil === 'en' ? '&dil=en' : '';
 const KAYNAK = etkinKaynak();
-const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${KAYNAK === 'tradier' ? '&kaynak=tradier' : ''}${dilEki}`;
+const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${araciMi(KAYNAK) ? `&kaynak=${KAYNAK}` : ''}${dilEki}`;
+let yenidenYokla = () => {}; // canlı kipte kota listesini hemen yeniler (sembol eklenince)
 // Tradier hız sınırı dakikada 60 (sandbox) / 120 (canlı): yoklama seyrek tutulur.
 const TRADIER_YOKLAMA_SN = { gorunur: 15, gizli: 60 };
 
@@ -89,7 +92,7 @@ function durumYaz(d, durum) {
   kutu.dataset.sinif = d.sinif;
   $('#mt5-baslik').textContent = d.baslik;
   let ayrinti = d.ayrinti;
-  if (durum?.kaynak === 'tradier') ayrinti += ' ' + ceviri('Zamanlar UTC; günlük mumlar ABD seans günüdür.');
+  if (araciMi(durum?.kaynak)) ayrinti += ' ' + ceviri('Zamanlar UTC; günlük mumlar ABD seans günüdür.');
   else if (durum && durum.sunucuUtcFarkiSn !== null) ayrinti += ' ' + ceviri('Zamanlar sunucu saatidir, {utc}.', { utc: utcEtiket(durum.sunucuUtcFarkiSn) });
   $('#mt5-ayrinti').textContent = ayrinti;
   const h = durum && HESAP[durum.terminal.hesapTuru];
@@ -99,10 +102,21 @@ function durumYaz(d, durum) {
 
 function kotalarYaz(k) {
   const kart = $('#kota-kart');
-  if (!k || !k.kotalar.length) { kart.hidden = true; return; }
+  // Alpaca'da izleme listesi ve pozisyon yoksa kullanıcı bu tarayıcıda sembol ekleyebilir.
+  // Alpaca'da liste boşsa ya da kullanıcı daha önce sembol eklediyse (liste onun sembolleridir) form görünür.
+  $('#sembol-ekle').hidden = KAYNAK !== 'alpaca' || (!!k?.kotalar.length && !sembolleriOku().length);
+  if (!k || !k.kotalar.length) {
+    if (KAYNAK !== 'alpaca') { kart.hidden = true; return; }
+    $('#kota-not').textContent = ceviri('Alpaca izleme listen ve açık pozisyonun yok; aşağıdan sembol ekle.');
+    $('#kota-izgara').innerHTML = '';
+    kart.hidden = false;
+    return;
+  }
   $('#kota-not').textContent = KAYNAK === 'tradier'
     ? ceviri('{n} sembol, Tradier izleme listenden (yoksa açık pozisyonlarından)', { n: k.kotalar.length })
-    : ceviri('{n} sembol, MT5 Market Watch listesinden', { n: k.kotalar.length });
+    : KAYNAK === 'alpaca'
+      ? ceviri('{n} sembol, Alpaca izleme listenden (yoksa açık pozisyonlarından ya da eklediğin sembollerden). Hisse fiyatları IEX akışındandır.', { n: k.kotalar.length })
+      : ceviri('{n} sembol, MT5 Market Watch listesinden', { n: k.kotalar.length });
   $('#kota-izgara').innerHTML = k.kotalar.map(q => {
     const d = q.gunlukDegisim;
     const dMetin = d === null ? '' : `<span class="${sinif(d)}">${d > 0 ? '+' : ''}${yuzde(d, 2)}</span>`;
@@ -116,7 +130,7 @@ function kotalarYaz(k) {
       <div class="kota-tanim">${kacis(q.tanim)}</div>
       <div class="kota-fiyat"><span>${fiyat(q.alis, q.basamak)}</span><span class="kota-satis">${fiyat(q.satis, q.basamak)}</span></div>
       ${aralik}
-      <div class="kota-alt"><span>${KAYNAK === 'tradier' ? ceviri('makas {n}', { n: fiyat(q.satis - q.alis, 2) }) : q.makas !== null ? ceviri('makas {n} puan', { n: q.makas }) : ''}</span>
+      <div class="kota-alt"><span>${araciMi(KAYNAK) ? ceviri('makas {n}', { n: fiyat(q.satis - q.alis, 2) }) : q.makas !== null ? ceviri('makas {n} puan', { n: q.makas }) : ''}</span>
         <a class="kucuk" href="${backtestBaglantisi(q.sembol)}">${ceviri('Backtest')}</a></div>
     </div>`;
   }).join('');
@@ -214,7 +228,7 @@ function ornekGoster() {
 
 // ---------------------------------------------------------------- canlı kip
 function canli(ist) {
-  const tradierMi = ist.kaynak === 'tradier';
+  const tradierMi = araciMi(ist.kaynak); // aracı kurum: Tradier ya da Alpaca
   const yoklama = tradierMi ? TRADIER_YOKLAMA_SN : YOKLAMA_SN;
   let bekle = 0;
   let zamanlayici = 0;
@@ -260,6 +274,7 @@ function canli(ist) {
   }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) { clearTimeout(zamanlayici); yokla(); } });
   window.addEventListener('pagehide', () => clearTimeout(zamanlayici));
+  yenidenYokla = () => { ist.semboluUnut?.(); clearTimeout(zamanlayici); yokla(); };
   yokla();
 }
 
@@ -272,11 +287,21 @@ $('#islem-sembol').addEventListener('change', e => {
   if (sonIslemler) islemTablosuYaz(sonIslemler, sonIslemler.para ? ` ${kacis(sonIslemler.para)}` : '');
 });
 $('#ornek-yukle').addEventListener('click', ornekGoster);
+$('#sembol-ekle').addEventListener('submit', e => {
+  e.preventDefault();
+  const yeni = $('#sembol-gir').value.split(/[\s,]+/).map(x => x.trim().toUpperCase()).filter(Boolean);
+  const gecersiz = yeni.filter(x => !SEMBOL_RE.test(x));
+  if (!yeni.length || gecersiz.length) { $('#sembol-durum').textContent = ceviri('Geçerli semboller yaz (ör. AAPL, SPY, BTC/USD).'); return; }
+  sembolleriYaz([...sembolleriOku(), ...yeni]);
+  $('#sembol-gir').value = '';
+  $('#sembol-durum').textContent = ceviri('Eklendi. Semboller yalnız bu tarayıcıda saklanır.');
+  yenidenYokla();
+});
 $('#baglan-git').href = `baglan.html${dilEki ? '?dil=en' : ''}`;
 window.addEventListener('resize', () => { if (sonIslemler) islemlerYaz(sonIslemler, Date.now() / 1000); });
 
 const kod = depo.oku(KOD_ANAHTARI);
-if (KAYNAK === 'tradier') canli(kayitliTradierIstemci());
+if (araciMi(KAYNAK)) canli(kayitliAraciIstemci(KAYNAK));
 else if (/^KLB1[0-9a-f]{64}$/i.test(kod ?? '')) canli(istemci(kod, roleAdresi(location.search, depo.oku(ROLE_ANAHTARI))));
 else {
   durumYaz({ sinif: 'bekleniyor', baslik: ceviri('Bağlı MetaTrader yok'), ayrinti: ceviri('Önce laboratuvarda eşleştirme kodu üret ve eklentiye yapıştır; Panom aynı tarayıcıda kendiliğinden açılır.') }, null);

@@ -26,6 +26,7 @@
     <div class="sekmeler" role="tablist">
       <button type="button" role="tab" class="sekme" data-kaynak="mt5" aria-selected="true" data-t>MetaTrader 5</button>
       <button type="button" role="tab" class="sekme" data-kaynak="tradier" aria-selected="false" data-t>Tradier (ABD)</button>
+      <button type="button" role="tab" class="sekme" data-kaynak="alpaca" aria-selected="false" data-t>Alpaca (ABD)</button>
     </div>
   </section>
 
@@ -63,6 +64,42 @@
       </div>
     </div>
     <p class="dipnot" data-t>Tradier'in koşullarına göre partner olmayan uygulamalarda API kişisel kullanım içindir; bu bağlantı şimdilik önizleme özelliğidir.</p>
+  </section>
+
+  <section class="kart" id="alpaca">
+    <h2 data-t>Alpaca hesabını bağla</h2>
+    <p data-t>Anahtarların yalnız bu tarayıcıda saklanır ve yalnız Alpaca'ya gönderilir; Kalibre sunucusuna hiç gelmez. Alpaca kullanıcı adını ya da şifreni hiçbir zaman istemeyiz.</p>
+    <p class="dipnot uyari" data-t>Alpaca API anahtarları hesabında emir verebilir. Kalibre yalnız okur, hiçbir emir göndermez. Aracı denemek için <b>Paper</b> (sanal para) anahtarı kullan.</p>
+    <ol class="adim-liste">
+      <li data-t><b>app.alpaca.markets</b> adresinde sol üstten <b>Paper Trading</b> hesabını seç.</li>
+      <li data-t>Ana sayfadaki <b>API Keys</b> kartında <b>Generate New Keys</b>'e bas; anahtar kimliği ve gizli anahtar bir kez gösterilir.</li>
+      <li data-t>İkisini aşağıya yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+    </ol>
+    <label class="baglan-etiket" for="a-anahtar" data-t>Anahtar kimliği (API Key ID)</label>
+    <div class="mt5-kod">
+      <input type="password" id="a-anahtar" autocomplete="off" spellcheck="false">
+      <button type="button" class="kucuk" id="a-goster" data-t>Göster</button>
+    </div>
+    <label class="baglan-etiket" for="a-sir" data-t>Gizli anahtar (Secret Key)</label>
+    <div class="mt5-kod">
+      <input type="password" id="a-sir" autocomplete="off" spellcheck="false">
+    </div>
+    <label class="baglan-etiket" for="a-ortam" data-t>Ortam</label>
+    <select id="a-ortam">
+      <option value="paper" data-t>Paper (sanal para)</option>
+      <option value="canli" data-t>Canlı</option>
+    </select>
+    <p class="dipnot uyari" id="a-canli-uyari" hidden data-t>Canlı anahtar gerçek hesabında emir verebilir. Kalibre emir göndermez, ama anahtarı yalnız güvendiğin bir cihazda sakla; aracı denemek için Paper anahtarı yeterli.</p>
+    <div class="satir-dugme"><button type="button" class="dugme" id="a-baglan" data-t>Bağlan</button></div>
+    <p class="dipnot" id="a-durum" role="status"></p>
+    <div id="a-bagli" hidden>
+      <p class="baglan-basari"><b id="a-bagli-metin"></b></p>
+      <div class="satir-dugme">
+        <a class="dugme" id="a-panom" href="panom.html" data-t>Panoma git</a>
+        <button type="button" class="dugme ikincil" id="a-kes" data-t>Bağlantıyı kes</button>
+      </div>
+    </div>
+    <p class="dipnot" data-t>Ücretsiz Alpaca hesabında hisse fiyatları IEX akışındandır (tek borsa, tüm piyasa değil). Bu bağlantı kişisel anahtarlarla çalışan bir önizleme özelliğidir; ticari kullanım için Alpaca Connect (OAuth) onayı gerekir.</p>
   </section>
 
   <section class="kart" id="mt5-giris">
@@ -158,5 +195,6 @@
 
 <script type="module" src="src/baglan.js"></script>
 <script type="module" src="src/tradier-baglan.js"></script>
+<script type="module" src="src/alpaca-baglan.js"></script>
 </body>
 </html>

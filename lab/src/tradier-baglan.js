@@ -87,5 +87,7 @@ $('#t-kes').addEventListener('click', kes);
 $('#t-panom').href = `panom.html${ek}`;
 
 const istenen = new URLSearchParams(location.search).get('kaynak');
-sekme(istenen === 'tradier' || (!istenen && etkinKaynak() === 'tradier') ? 'tradier' : 'mt5');
+// Sekmeler (MT5, Tradier, Alpaca) burada yönetilir; Alpaca sekmesinin alanları alpaca-baglan.js'tedir.
+const etkin = etkinKaynak();
+sekme(['tradier', 'alpaca'].includes(istenen) ? istenen : !istenen && etkin !== 'mt5' ? etkin : 'mt5');
 bagliGoster(tradierOku());

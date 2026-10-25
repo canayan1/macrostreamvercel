@@ -66,9 +66,16 @@ Claude:
 
 Sıra (Can'ın istediği: önce ABD'ye satış, sonra Robinhood benzeri aracı kurumlar, sonra tahmin piyasaları):
 1. İngilizce arayüz (bitti) + CSV içe aktarma + tarayıcıda backtest; performans iddiası yok.
-2. Aracı kurum bağlantısı: önce Tradier (tarayıcıdan doğrudan, kişisel anahtar), sonra Alpaca ve
-   tastytrade (CORS denemesiyle). Robinhood'un hisse API'si yok; kripto API'si ve Mayıs 2026'daki
-   ajan MCP'si izlenir. Schwab/IBKR onay süreçleri uzun.
+2. Aracı kurum bağlantısı (tarayıcıdan doğrudan, yalnız okuma, emir yok):
+   - Tradier: bitti (24.10.2026). Yalnız kişisel kullanım; ticari sunum için Tradier ile ortaklık
+     anlaşması gerekir.
+   - Alpaca: bitti, kişisel API anahtarlarıyla (25.10.2026; paper ve canlı). Ücretsiz planda anlık
+     veri yalnız IEX; ayrıntılar kalibre-lab/docs/alpaca.md. Can'ın paper anahtarlarıyla gerçek
+     deneme bekliyor.
+   - Sıradaki: Alpaca Connect (OAuth 2.0). Kod değişimi için küçük bir sunucu uç noktası gerekir
+     (sır sunucuda kalır). Alpaca'nın uyum onayı şart; ücretli uygulamalar için yazılı onay gerekir.
+   - Sonra tastytrade (CORS denemesiyle). Robinhood'un hisse API'si yok; kripto API'si ve Mayıs
+     2026'daki ajan MCP'si izlenir. Schwab/IBKR onay süreçleri uzun.
 3. ABD avukatı görüşü gelmeden: MT5 eklentisinin ABD sürümü ve hazır örneklerin ABD'de sunumu yok.
    MT5'in ABD sürümü netting + FIFO desteği ister.
 4. Tahmin piyasası analitiği (Kalshi, Polymarket US): veri kullanım izni yazılı alınınca.

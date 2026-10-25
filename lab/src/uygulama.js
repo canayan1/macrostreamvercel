@@ -8,7 +8,7 @@ import { prova } from './motor.js';
 import { uret, REJIMLER } from './sentetik.js';
 import { dosyaCoz } from './veri/dosya.js';
 import { mt5Panel } from './baglanti-arayuz.js';
-import { tradierSecici } from './tradier-kaynak.js';
+import { tradierSecici, alpacaSecici } from './tradier-kaynak.js';
 import { blokFormu, blokDinle, modAnahtari, modOku } from './blok-arayuz.js';
 import { baglanDugmesi } from './baglan-ortak.js';
 import { dil, t as ceviri, sayiMetni, isaretliYuzde, yuzdeMetni, sayfayiCevir, dilAnahtari } from './dil.js';
@@ -36,6 +36,8 @@ let provaVeri = null; // kullanıcının bıraktığı dosya (dosyaCoz sonucu)
 let mt5Veri = null;   // MetaTrader köprüsünden gelen seri (aynı biçim)
 let tradierVeri = null; // Tradier'den gelen seri (aynı biçim)
 let tradier = null;
+let alpacaVeri = null;  // Alpaca'dan gelen seri (aynı biçim)
+let alpaca = null;
 let mt5 = null;
 
 // ---------------------------------------------------------------- yol yardımcıları
@@ -337,6 +339,8 @@ const DIPNOT = {
     'hesaba katılmaz, bu yüzden gerçek sonuç daha düşük olur. Kesin sonuç için MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
   tradier: 'Tradier hesabının fiyat geçmişiyle hızlı ön izleme. Günlük fiyatlar bölünmelere göre düzeltilmiştir, temettülere göre ' +
     'düzeltilmemiştir. Komisyon ve kayma hesaba katılmaz.',
+  alpaca: 'Alpaca hesabının fiyat geçmişiyle hızlı ön izleme. Hisse fiyatları ücretsiz IEX akışındandır (tek borsa) ve bölünmelere göre ' +
+    'düzeltilmiştir. Komisyon ve kayma hesaba katılmaz.',
 };
 // Her kaynakta aynı uyarı: sonuç bir simülasyondur, öneri değildir.
 for (const k of Object.keys(DIPNOT)) DIPNOT[k] = ceviri(DIPNOT[k]) + ' ' + ceviri('Bu bir geçmiş ya da sentetik veri simülasyonudur; gerçek performans ya da yatırım önerisi değildir.');
@@ -350,7 +354,7 @@ function provaBos(mesaj) {
 
 function provaCalistir() {
   const kaynak = $('#prova-kaynak').value;
-  const veri = kaynak === 'mt5' ? mt5Veri : kaynak === 'tradier' ? tradierVeri : kaynak === 'dosya' ? provaVeri : null;
+  const veri = kaynak === 'mt5' ? mt5Veri : kaynak === 'tradier' ? tradierVeri : kaynak === 'alpaca' ? alpacaVeri : kaynak === 'dosya' ? provaVeri : null;
   if (hatalar.length && hatalar.every(h => h.yol.startsWith('risk'))) return provaBos(ceviri('Provayı görmek için Risk bölümünde işlem başına riski kendin belirle.'));
   if (hatalar.length) return provaBos(ceviri('Prova için önce sorunları giderin.'));
   if (kaynak === 'dosya' && !veri) {
@@ -360,6 +364,10 @@ function provaCalistir() {
   if (kaynak === 'tradier' && !veri) {
     $('#rozet').textContent = ceviri('TRADIER BEKLENİYOR');
     return provaBos(ceviri('Tradier bağlandığında seçtiğin sembolün serisi burada çalışır.'));
+  }
+  if (kaynak === 'alpaca' && !veri) {
+    $('#rozet').textContent = ceviri('ALPACA BEKLENİYOR');
+    return provaBos(ceviri('Alpaca bağlandığında seçtiğin sembolün serisi burada çalışır.'));
   }
   if (kaynak === 'mt5' && !veri) {
     $('#rozet').textContent = ceviri('MT5 BEKLENİYOR');
@@ -403,7 +411,9 @@ function provaKaynakGoster() {
   $('#prova-ipucu').hidden = kaynak !== 'dosya';
   $('#mt5-alan').hidden = kaynak !== 'mt5';
   $('#tradier-alan').hidden = kaynak !== 'tradier';
+  $('#alpaca-alan').hidden = kaynak !== 'alpaca';
   if (kaynak === 'tradier') (tradier ??= tradierSecici($('#tradier-alan'), { yukle: tradierYukle, hata: tradierHata, istenenSembol: ISTENEN_SEMBOL, zamanDilimi: s.zaman_dilimi })).baslat();
+  if (kaynak === 'alpaca') (alpaca ??= alpacaSecici($('#alpaca-alan'), { yukle: alpacaYukle, hata: alpacaHata, istenenSembol: ISTENEN_SEMBOL, zamanDilimi: s.zaman_dilimi })).baslat();
   for (const id of ['#rejim-alan', '#tohum-alan', '#adet-alan']) $(id).hidden = kaynak !== 'sentetik';
   $('#prova-dipnot').textContent = DIPNOT[kaynak];
   // Röle yalnız kullanıcı MetaTrader kaynağını seçtiğinde yoklanır.
@@ -414,6 +424,17 @@ function provaKaynakGoster() {
 function tradierYukle(veri) {
   tradierVeri = veri;
   if ($('#prova-kaynak').value === 'tradier') provaCalistir();
+}
+
+function alpacaYukle(veri) {
+  alpacaVeri = veri;
+  if ($('#prova-kaynak').value === 'alpaca') provaCalistir();
+}
+
+function alpacaHata(mesaj) {
+  if ($('#prova-kaynak').value !== 'alpaca' || alpacaVeri) return;
+  $('#rozet').textContent = ceviri('ALPACA VERİSİ YOK');
+  provaBos(`<span style="color:var(--red)">${kacis(mesaj)}</span>`);
 }
 
 function tradierHata(mesaj) {
@@ -807,7 +828,8 @@ baglanDugmesi(document.querySelector('.ust-eylem'));
 dilAnahtari(document.querySelector('.ust-eylem'));
 // Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {
-  $('#prova-kaynak').value = new URLSearchParams(location.search).get('kaynak') === 'tradier' ? 'tradier' : 'mt5';
+  const istenenKaynak = new URLSearchParams(location.search).get('kaynak');
+  $('#prova-kaynak').value = /^(tradier|alpaca)$/.test(istenenKaynak ?? '') ? istenenKaynak : 'mt5';
   provaKaynakGoster();
   provaCalistir();
   $('#prova-kart').scrollIntoView({ behavior: 'smooth', block: 'start' });

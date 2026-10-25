@@ -301,8 +301,15 @@ export function tradierOku(depo = globalThis.localStorage) {
 export function tradierYaz(ayar, depo = globalThis.localStorage) {
   try { ayar ? depo.setItem(TRADIER_ANAHTARI, JSON.stringify(ayar)) : depo.removeItem(TRADIER_ANAHTARI); } catch { /* tarayıcı deposu kapalı */ }
 }
+// Etkin veri kaynağı: 'tradier', 'alpaca' ya da 'mt5'. Seçilen kaynağın ayarı kayıtlı değilse MT5'e düşülür.
+// (Alpaca ayarı burada doğrudan okunur; veri/alpaca.js bu dosyayı içe aktardığı için döngü kurulmaz.)
 export function etkinKaynak(depo = globalThis.localStorage) {
-  try { return depo?.getItem(KAYNAK_ANAHTARI) === 'tradier' && tradierOku(depo) ? 'tradier' : 'mt5'; } catch { return 'mt5'; }
+  try {
+    const k = depo?.getItem(KAYNAK_ANAHTARI);
+    if (k === 'tradier' && tradierOku(depo)) return 'tradier';
+    if (k === 'alpaca') { const a = JSON.parse(depo?.getItem('kalibre-alpaca') ?? 'null'); if (a && a.anahtar && a.sir) return 'alpaca'; }
+    return 'mt5';
+  } catch { return 'mt5'; }
 }
 export function kaynakYaz(k, depo = globalThis.localStorage) {
   try { depo.setItem(KAYNAK_ANAHTARI, k); } catch { /* yok */ }

@@ -29,8 +29,8 @@ export const SINIFLAR = {
 };
 
 const YON = ['al', 'sat'];
-// Belgeyi üreten: MT5 köprüsü, sentetik örnek ya da Tradier istemcisi (veri/tradier.js).
-export const KAYNAKLAR = ['mt5', 'ornek', 'tradier'];
+// Belgeyi üreten: MT5 köprüsü, sentetik örnek ya da aracı kurum istemcileri (veri/tradier.js, veri/alpaca.js).
+export const KAYNAKLAR = ['mt5', 'ornek', 'tradier', 'alpaca'];
 const VARSAYILAN_ARALIK = 5; // sn; motor yazmaAraligiSn bildirmezse
 
 function surumDenetle(n, tur) {
