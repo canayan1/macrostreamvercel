@@ -176,7 +176,7 @@
   <li><strong>Hukuki dayanak:</strong> hizmet e-postaları için sözleşme; ürün güncellemesi e-postaları için, müşterilerimizi kendi benzer ürünlerimiz hakkında bilgilendirme konusundaki ve her zaman itiraz hakkınız saklı olan meşru menfaatimiz; hesabı olmayan kişiler için onay.</li>
 </ul>
 
-<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Our code stores an explicit opt-in (profiles.marketing_consent, default false), so the policy describes opt-in. Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Code must store opt-out (marketing_consent true by default for account holders, set false on opt-out). -->
+<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Implemented: profiles.marketing_consent defaults to true with marketing_consent_at recorded; the sign-in page offers opt-out at sign-up; the Account page toggle turns it off. -->
 
 <h3>2.10 Bekleme listeleri, iletişim ve destek</h3>
 

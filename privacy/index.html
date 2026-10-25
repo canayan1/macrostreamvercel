@@ -175,7 +175,7 @@
   <li><strong>Legal basis:</strong> contract for service emails; our legitimate interest in telling customers about similar products of our own, with the right to object at any time, for product update emails; consent for people without an account.</li>
 </ul>
 
-<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Our code stores an explicit opt-in (profiles.marketing_consent, default false), so the policy describes opt-in. Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Code must store opt-out (marketing_consent true by default for account holders, set false on opt-out). -->
+<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Implemented: profiles.marketing_consent defaults to true with marketing_consent_at recorded; the sign-in page offers opt-out at sign-up; the Account page toggle turns it off. -->
 
 <h3>2.10 Waitlists, contact and support</h3>
 
