@@ -87,3 +87,12 @@ test('uç: GET boş gövdeyle çalışır, POST metin gövdeyi ayrıştırır, O
   assert.equal(o.statusCode, 204);
   assert.equal(o.bas['access-control-allow-methods'], 'GET');
 });
+
+test('Redis bilgisi: bilinen adlar ve Vercel önekli adlar bulunur; salt okuma jetonu seçilmez', async () => {
+  const { redisBilgisi } = await import('../api/_lib/depo.ts');
+  assert.deepEqual(redisBilgisi({ KV_REST_API_URL: 'u1', KV_REST_API_TOKEN: 't1' }), { url: 'u1', token: 't1' });
+  assert.deepEqual(redisBilgisi({ UPSTASH_REDIS_REST_KV_REST_API_URL: 'u2', UPSTASH_REDIS_REST_KV_REST_API_TOKEN: 't2', UPSTASH_REDIS_REST_KV_REST_API_READ_ONLY_TOKEN: 'ro' }), { url: 'u2', token: 't2' });
+  assert.deepEqual(redisBilgisi({ UPSTASH_REDIS_REST_URL: 'u3', UPSTASH_REDIS_REST_TOKEN: 't3', KV_REST_API_URL: 'x', KV_REST_API_TOKEN: 'y' }), { url: 'u3', token: 't3' });
+  assert.equal(redisBilgisi({ FOO_KV_REST_API_URL: 'u' }), null, 'jeton yoksa yok');
+  assert.equal(redisBilgisi({}), null);
+});

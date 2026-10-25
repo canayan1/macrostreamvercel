@@ -60,10 +60,20 @@ function upstashDepo(url: string, token: string): Depo {
 }
 
 let yerelBellek: Depo | null = null;
+// Vercel'in Upstash entegrasyonu değişken adlarına kullanıcının seçtiği öneki ekler
+// (ör. UPSTASH_REDIS_REST_KV_REST_API_URL). Bilinen adlar önce, sonra aynı önekli herhangi bir
+// "<önek>KV_REST_API_URL" + "<önek>KV_REST_API_TOKEN" çifti aranır. Salt okuma jetonu kullanılmaz.
+export function redisBilgisi(env: Record<string, string | undefined> = process.env): { url: string; token: string } | null {
+  const ciftler: [string, string][] = [['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'], ['KV_REST_API_URL', 'KV_REST_API_TOKEN']];
+  for (const ad of Object.keys(env).sort())
+    if (ad.endsWith('KV_REST_API_URL') && ad !== 'KV_REST_API_URL') ciftler.push([ad, ad.slice(0, -'URL'.length) + 'TOKEN']);
+  for (const [u, t] of ciftler) if (env[u] && env[t]) return { url: env[u]!, token: env[t]! };
+  return null;
+}
+
 export function depoSec(): Depo | null {
-  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
-  if (url && token) return upstashDepo(url, token);
+  const r = redisBilgisi();
+  if (r) return upstashDepo(r.url, r.token);
   if (process.env.KOPRU_BELLEK === '1' && process.env.VERCEL !== '1') return (yerelBellek ??= bellekDepo());
   return null;
 }
