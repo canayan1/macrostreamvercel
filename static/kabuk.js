@@ -77,7 +77,7 @@
   alt.id = 'km-alt';
   alt.innerHTML = '<div class="k">'
     + '<div><p><b style="font:600 18px \'Source Serif 4\',Georgia,serif;color:#e7ecf2">Kalibre Markets</b></p><p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p></div>'
-    + '<div><h4>Kalibre Lab</h4><a href="/lab?dil=tr">Laboratuvar</a><a href="/lab/panom?dil=tr">Pano</a><a href="/tr/prop">Prop Kalkanı</a><a href="/tr/forex">Bireysel forex</a><a href="/tr/setup">Kurulum</a><a href="/tr/security">Güvenlik</a><a href="/tr/pricing">Fiyat</a></div>'
+    + '<div><h4>Kalibre Lab</h4><a href="/lab?dil=tr">Laboratuvar</a><a href="/lab/panom?dil=tr">Pano</a><a href="/tr/prop">Prop Kalkanı</a><a href="/tr/forex">Bireysel forex</a><a href="/tr/rule-guard">Rule Guard (erken erişim)</a><a href="/tr/mt5-analytics">MT5 Analytics (erken erişim)</a><a href="/tr/setup">Kurulum</a><a href="/tr/security">Güvenlik</a><a href="/tr/pricing">Fiyat</a></div>'
     + '<div><h4>Öğren</h4><a href="/egitim">Eğitim</a><a href="/tr/methodology">Metodoloji</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>'
     + '<div><h4>Kalibre Markets</h4><a href="/tr/about">Hakkında</a><a href="/iletisim">İletişim</a><a href="/tr/terms">Hizmet şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/refunds">İade ve iptal</a><a href="/tr/cookies">Çerezler</a><a href="/tr/risk-disclosure">Risk bildirimi</a><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>'
     + '<p class="y">Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum ya da yatırım danışmanı değildir, yatırım tavsiyesi vermez. Bu sayfadaki içerik eğitim amaçlıdır ve yatırım danışmanlığı kapsamında değildir. &copy; 2026 Kalibre Markets</p>'

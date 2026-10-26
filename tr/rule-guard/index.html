@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Kalibre Rule Guard: prop firması sınavları için kural koruması</title>
+<meta name="description" content="MT5'te firmanın günlük ve toplam kayıp sınırlarını izleyen, tabana yakın yeni işlemi durduran ve haftalık kural raporu veren araç. Erken erişim.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/rule-guard">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/rule-guard">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/rule-guard">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/rule-guard">
+<meta property="og:title" content="Kalibre Rule Guard: prop firması sınavları için kural koruması">
+<meta property="og:description" content="MT5'te firmanın günlük ve toplam kayıp sınırlarını izleyen, tabana yakın yeni işlemi durduran ve haftalık kural raporu veren araç. Erken erişim.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
+.plan-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--cizgi); padding-bottom: 14px; margin-bottom: 14px; }
+.plan-bas h2 { margin: 0; font-size: 26px; }
+.fiyat { margin: 0; color: var(--soluk); }
+.fiyat .sayi { font-size: 28px; color: var(--metin); }
+.plan ul { margin: 0 0 20px; }
+.onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin-bottom: 16px; cursor: pointer; }
+.onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
+#odeme-durum:empty { display: none; }
+.yakinda { border-top: 1px solid var(--cizgi); padding-top: 14px; }
+.yakinda h3 { margin: 0 0 6px; font-size: 20px; color: var(--kehribar); }
+.yakinda p { margin: 0 0 8px; color: var(--soluk); }
+.rozet-beta { font: 600 12px var(--sans); color: #08130f; background: var(--kehribar); border-radius: 4px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
+#odeme-durum { color: var(--kehribar); }
+.bekleme { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.bekleme label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
+.bekleme .satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.bekleme input[type=email] { flex: 1 1 240px; min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
+.bekleme #ok-msg { color: var(--yesil); }
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 12px; }
+
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 8px; }
+.ozellik { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 12px; }
+.ozellik li { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 14px 18px; }
+.ozellik b { color: var(--metin); }
+.durum-et { display: inline-block; font: 600 12px var(--sans); border-radius: 4px; padding: 2px 8px; margin-left: 8px; vertical-align: 2px; }
+.durum-et.var { color: #08130f; background: var(--yesil); }
+.durum-et.test { color: #08130f; background: var(--kehribar); }
+.durum-et.plan { color: var(--soluk); border: 1px solid var(--cizgi-2); }
+.plan .yillik { display: block; font-size: 15px; color: var(--soluk); margin-top: 4px; }
+.plan .not-erken { color: var(--soluk); font-size: 15px; margin: 10px 0 0; }
+dialog#erken-erisim { max-width: 560px; width: calc(100% - 32px); background: var(--zemin-2); color: var(--metin); border: 1px solid var(--cizgi-2); border-radius: 8px; padding: 24px; }
+dialog#erken-erisim::backdrop { background: rgba(5, 10, 18, .7); }
+dialog#erken-erisim h2 { margin: 0 0 6px; font-size: 24px; }
+dialog#erken-erisim .alanlar { display: grid; gap: 12px; margin: 14px 0; }
+dialog#erken-erisim label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+dialog#erken-erisim input[type=email], dialog#erken-erisim input[type=text], dialog#erken-erisim select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 15px var(--sans); width: 100%; box-sizing: border-box; }
+dialog#erken-erisim label.onay { display: flex; font-size: 14px; }
+dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.talep-mesaj { margin: 10px 0; font-weight: 600; }
+.talep-mesaj.tamam { color: var(--yesil); } .talep-mesaj.hata { color: var(--kehribar); }
+.gizli-alan { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Ana menü">
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Pano</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </nav>
+    <a class="dil" href="/rule-guard" hreflang="en" lang="en">EN</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/connect">MT5'i bağla</a>
+    <a class="dugme kucuk" href="/lab?dil=tr">Laboratuvarı aç</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<div data-talep-sayfa="rule-guard">
+<h1>Kalibre Rule Guard: MT5'te prop firması sınavları için kural koruması</h1>
+<p class="giris">Rule Guard, firmanın günlük ve toplam kayıp sınırlarını MT5 hesabında izler, tabana yaklaşınca yeni işlemi durdurur ve her hafta kural ihlallerini ve pahalıya mal olan hataları raporlar. Şu an erken erişimde.</p>
+<div class="eylem-satir"><a class="dugme" href="#pricing" data-erken-erisim>Erken erişim al</a><a class="dugme ikincil" href="/tr/prop#hesapla">Hesabını kontrol et</a></div>
+
+<h2 id="ne-yapar">Ne yapar</h2>
+<ul class="ozellik">
+  <li><b>Firma ön ayarları</b> <span class="durum-et test">Demo hesapta testte</span><br>FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes. FundedNext ve FundingPips <span class="durum-et plan">Planlanıyor</span></li>
+  <li><b>Firmanın hesapladığı gibi tabanlar</b> <span class="durum-et test">Demo hesapta testte</span><br>Günlük taban gün başı bakiyeden, toplam taban başlangıç bakiyesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır.</li>
+  <li><b>Tabana yakın yeni işlem yok</b> <span class="durum-et test">Demo hesapta testte</span><br>Güvenlik payının iki katında Kalibre Engine yeni işlem açmaz. Bir güvenlik payında kendi pozisyonlarını kapatır.</li>
+  <li><b>Sınav paneli</b> <span class="durum-et plan">Planlanıyor</span><br>Günlük ve toplam tabana kalan mesafe, kâr hedefine ilerleme ve işlem günleri, tarayıcıda.</li>
+  <li><b>Haftalık kural ve hata raporu</b> <span class="durum-et plan">Planlanıyor</span><br>Hangi işlem bir kuralı çiğnedi ya da yaklaştı, tabana yakın günlerden sonraki kayıplar, fazla büyük lotlar.</li>
+</ul>
+
+<h2 id="baglanti">Nasıl bağlanır</h2>
+<p>Rule Guard, MT5 terminalinde Expert Advisor olarak çalışır. Panel ve rapor için Kalibre Bridge eklentisi hesap verisini şifreli olarak tarayıcına taşır. MT5 şifreni bize vermezsin. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</p>
+
+<h2 id="pricing">Planlanan fiyat</h2>
+<div class="plan">
+  <div class="plan-bas">
+    <h2>Rule Guard <span class="rozet-beta">erken erişim</span></h2>
+    <p class="fiyat"><span class="sayi" data-fiyat-ay>19 $</span> / ay<span class="yillik">ya da yıllık 99 $</span></p>
+  </div>
+  <ul>
+    <li>4 firma ön ayarı ve özel sınırlar</li>
+    <li>Günlük ve toplam taban, firmanın saatinde sıfırlama</li>
+    <li>Sınav paneli ve haftalık rapor (planlanıyor)</li>
+    <li>Lisans başına 2 MT5 hesabı</li>
+  </ul>
+  <a class="dugme" href="#pricing" data-erken-erisim data-fiyat-tik>Erken erişim al</a>
+  <p class="not-erken">Erken erişim ücretsiz. Kart gerekmez. Ücretli bir plan açılmadan önce haber vereceğiz.</p>
+</div>
+<h2 id="sss">Sık sorulanlar</h2>
+<ul>
+  <li><b>Firmam EA kullanımına izin veriyor mu?</b> Firmanın EA kurallarını kontrol et; bazı firmalar EA kullanımını kısıtlıyor. Rule Guard MT5'te Expert Advisor olarak çalışır.</li>
+  <li><b>Elle açtığım işlemleri durdurabilir mi?</b> Hayır. Elle ya da başka bir EA ile açılan pozisyonları kalan payı hesaplarken sayar, ama o emirleri engelleyemez.</li>
+  <li><b>Sınavı geçmemi garanti eder mi?</b> Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları stopun ötesinde kayba yol açabilir.</li>
+  <li><b>Kalibre bir prop firması mı?</b> Hayır. Hiçbir prop firmasıyla bağlantısı yok. Firma adları yalnız kurallarını anlatmak için kullanılır.</li>
+</ul>
+<div class="kutu">Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır. Yatırdığın paranın tamamını kaybedebilirsin. <a href="/tr/risk-disclosure">Risk bildirimi</a></div>
+</div>
+<dialog id="erken-erisim" aria-labelledby="ee-baslik">
+  <h2 id="ee-baslik">Erken erişim</h2>
+  <p>Erken erişim ücretsiz. Kart gerekmez. Ücretli bir plan açılmadan önce haber vereceğiz.</p>
+  <form novalidate>
+    <div class="alanlar">
+      <label for="ee-eposta">E-posta<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
+      <label for="ee-firma">Hangi firmada sınava giriyorsun?<select id="ee-firma" name="firma" data-soru><option value="">Seç</option><option value="ftmo">FTMO</option><option value="fundednext">FundedNext</option><option value="fundingpips">FundingPips</option><option value="the5ers">The5ers</option><option value="topstep">Topstep</option><option value="diger">Başka</option><option value="yok">Henüz girmedim</option></select></label><label for="ee-sinav">Son 12 ayda kaç sınav aldın?<select id="ee-sinav" name="sinav" data-soru><option value="">Seç</option><option value="0">0</option><option value="1">1</option><option value="2-3">2-3</option><option value="4-10">4-10</option><option value="10+">10'dan fazla</option></select></label><label for="ee-simdi">Günlük kayıp sınırını şu an nasıl takip ediyorsun?<input type="text" id="ee-simdi" name="simdi" maxlength="300" data-soru></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>Kalibre Markets'in erken erişim ve ürün güncellemeleri hakkında bana e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
+    <p class="not">E-postanızı, cevaplarınızı ve katılma zamanını saklarız. Ayrıntılar <a href="/tr/privacy#collect-why">gizlilik politikasında</a>.</p>
+    <div class="kapat-satir">
+      <button type="button" class="dugme ikincil" data-kapat>Kapat</button>
+      <button type="submit" class="dugme">Listeye katıl</button>
+    </div>
+  </form>
+  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
+  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
+</dialog>
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#ne-yapar">Ne yapar</a><a href="#baglanti">Nasıl bağlanır</a><a href="#pricing">Planlanan fiyat</a><a href="#sss">Sık sorulanlar</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: MetaTrader 5, Alpaca ve Tradier için backtest ve risk araçları.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab?dil=tr">Laboratuvar</a>
+      <a href="/lab/panom?dil=tr">Pano</a>
+      <a href="/tr/prop">Prop Kalkanı</a>
+      <a href="/tr/forex">Bireysel forex</a>
+      <a href="/tr/rule-guard">Rule Guard (erken erişim)</a>
+      <a href="/tr/mt5-analytics">MT5 Analytics (erken erişim)</a>
+      <a href="/tr/setup">Kurulum</a>
+      <a href="/tr/security">Güvenlik</a>
+      <a href="/tr/pricing">Fiyat</a>
+    </div>
+    <div>
+      <h4>Öğren</h4>
+      <a href="/egitim">Eğitim yazıları</a>
+      <a href="/tr/methodology">Metodoloji</a>
+      <a href="/grafik-oku">Grafik okuma testi</a>
+      <a href="/trading/onyargi-testi">Önyargı testi</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/tr/about">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+      <a href="/tr/terms">Hizmet şartları</a>
+      <a href="/tr/privacy">Gizlilik</a>
+      <a href="/tr/refunds">İade ve iptal</a>
+      <a href="/tr/cookies">Çerezler</a>
+      <a href="/tr/risk-disclosure">Risk bildirimi</a>
+      <a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a>
+    </div>
+    <p class="yasal">Kalibre Lab beta sürümündedir. Kalibre Lab bir yazılımdır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi veya işlem sinyali vermez. Burada yer alan bilgi ve araçlar yatırım danışmanlığı kapsamında değildir. Kaldıraçlı forex ve CFD işlemleri yüksek risk içerir ve herkes için uygun değildir; yatırılan paranın tamamı kaybedilebilir. Gerçek ya da simülasyon olsun, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyon sonuçları varsayımsaldır, gerçek işlemleri yansıtmaz. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets, MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/talep.js" defer></script>
+</body>
+</html>

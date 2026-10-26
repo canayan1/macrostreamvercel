@@ -11,7 +11,8 @@ MENU_EN = [("/lab", "Lab"), ("/lab/panom", "Dashboard"), ("/prop", "Prop Shield"
 # Türkçe sayfa ↔ İngilizce karşılığı (hreflang ve dil bağlantısı için). Site kökü İngilizce, Türkçe /tr altında.
 ESLER = {"/tr": "/", "/tr/prop": "/prop", "/tr/forex": "/forex", "/tr/setup": "/setup",
          "/tr/security": "/security", "/tr/methodology": "/methodology", "/tr/about": "/about", "/tr/pricing": "/pricing",
-         "/tr/account": "/account", "/tr/sign-in": "/sign-in", "/tr/risk-disclosure": "/risk-disclosure", "/tr/terms": "/terms", "/tr/privacy": "/privacy", "/tr/refunds": "/refunds", "/tr/cookies": "/cookies", "/tr/beta": "/beta"}
+         "/tr/account": "/account", "/tr/sign-in": "/sign-in", "/tr/risk-disclosure": "/risk-disclosure", "/tr/terms": "/terms", "/tr/privacy": "/privacy", "/tr/refunds": "/refunds", "/tr/cookies": "/cookies", "/tr/beta": "/beta",
+         "/tr/rule-guard": "/rule-guard", "/tr/mt5-analytics": "/mt5-analytics"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -58,6 +59,8 @@ ALT_EN = '''<footer class="alt">
       <a href="/lab/panom">Dashboard</a>
       <a href="/prop">Prop Shield</a>
       <a href="/forex">Retail forex</a>
+      <a href="/rule-guard">Rule Guard (early access)</a>
+      <a href="/mt5-analytics">MT5 Analytics (early access)</a>
       <a href="/setup">Setup</a>
       <a href="/security">Security</a>
       <a href="/pricing">Pricing</a>

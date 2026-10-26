@@ -91,6 +91,12 @@ Bir bekleme listesine veya beta kaydına katılırsanız, e-posta adresiniz ve g
 
 - **Hukuki dayanak:** onay (bekleme listeleri); size yanıt verme konusundaki meşru menfaat (destek).
 
+**Erken erişim listeleri (Rule Guard ve MT5 Analytics sayfaları).** Bu sayfalarda erken erişim isterseniz e-posta adresinizi, kısa sorulara verdiğiniz cevapları, gördüğünüz sayfayı ve fiyat varyantını, geldiğiniz bağlantıdaki yönlendirme kodunu (örneğin `ref=ff`), dilinizi ve katılma zamanınızı saklarız. Bu bilgiler Upstash veritabanımızda tutulur. E-postanızı yalnız onay kutusunu işaretlerseniz saklarız. Bu bilgileri hangi ürünü geliştireceğimize karar vermek ve size erken erişim ile ürün güncellemeleri hakkında e-posta göndermek için kullanırız.
+
+Aynı sayfalarda sayfa görüntülemelerini, fiyat düğmesine tıklamaları ve kayıtları sayfa, fiyat varyantı, yönlendirme kodu, dil ve gün bazında sayarız. Bu sayımlar kişisel veri içermez. Kötüye kullanımı sınırlamak için IP adresinizin bir saat içinde silinen tuzlu bir özetini kullanırız. IP adresinizi saklamayız. Tarayıcınız size gösterilen fiyat varyantını (yerel depolama) ve o ziyaretteki yönlendirme kodunu (oturum depolaması) tutar.
+
+- **Hukuki dayanak:** açık rıza (erken erişim e-postaları ve cevaplar); ürünlerimize ilginin ölçülmesindeki meşru menfaatimiz (sayımlar).
+
 ### 2.11 Yapay zekâ asistanı (sunulduğu durumlarda)
 
 Asistanı kullanırsanız mesajlarınız, yanıt üretilmesi için bir yapay zekâ sağlayıcısına (Google Gemini veya yedek olarak Groq) gönderilir. Mesajlarınızı sunucularımızda saklamayız; son sohbet geçmişi tarayıcınızda kalır. Kişisel bilgilerinizi veya hesap bilgilerinizi girmeyin.
@@ -110,7 +116,7 @@ Aşağıdaki hizmet sağlayıcıları (veri işleyenler) her biri yalnızca yuka
 | Supabase, Inc. | Kimlik doğrulama, hesap veritabanı, giriş e-postaları | [SUPABASE REGION] |
 | Stripe (bölgeye göre Stripe Payments Europe Ltd veya Stripe, Inc.) | Ödemeler, faturalar, abonelik yönetimi, dolandırıcılığın önlenmesi | ABD ve AB |
 | Vercel Inc. | Barındırma, sunucusuz işlevler, güvenlik | ABD ve küresel uç ağı |
-| Upstash, Inc. | Lisans kayıtları, kısa ömürlü sayaçlar, şifreli Bridge paketleri (en fazla 2 saat) | [UPSTASH REGION] |
+| Upstash, Inc. | Lisans kayıtları, kısa ömürlü sayaçlar, şifreli Bridge paketleri (en fazla 2 saat), erken erişim kayıtları ve sayfa sayımları | [UPSTASH REGION] |
 | Google LLC / Google Ireland Ltd | Google ile giriş (seçerseniz); Google Analytics (yalnızca onayla); Google Fonts; asistan için Gemini (sunulduğu durumlarda) | ABD ve küresel |
 | Groq, Inc. | Yedek asistan yanıtları (sunulduğu durumlarda) | ABD |
 | FormSubmit | Bekleme listesi ve beta kayıt formlarının iletilmesi | [FORMSUBMIT LOCATION] |
@@ -143,6 +149,9 @@ Bazı sağlayıcılar verileri, Amerika Birleşik Devletleri dahil, ülkeniz dı
 | Pazarlama onayı kaydı | Pazarlama e-postalarına kayıtlı olduğunuz sürece ve pazarlama e-postalarından çıktıktan sonra onayı gösterebilmek için 24 ay daha. |
 | Destek e-postaları | Son mesajdan sonra en fazla 3 yıl veya bir uyuşmazlık için gerekirse daha uzun. |
 | Bekleme listesi kayıtları | Lansman hakkında sizinle iletişime geçene veya listeden çıkarılmanızı isteyene kadar. |
+| Erken erişim kayıtları ve cevaplar (Rule Guard, MT5 Analytics) | Silinmesini isteyene kadar; katılmanızdan 13 ay sonra (4 haftalık testin bitişinden yaklaşık 12 ay sonra) otomatik silinir. |
+| Erken erişim sayfa sayımları | En çok 400 gün. Kişisel veri içermez. |
+| Hız sınırı için kullanılan IP özeti | En çok 1 saat. |
 
 <!-- FOR COUNSEL: fill [X] years for [COUNTRY OF RESIDENCE] tax law; confirm the 12-month licence retention (matches previous TR/EN draft) and whether a deletion job exists for expired licence records in Upstash (code keeps them until removed). -->
 

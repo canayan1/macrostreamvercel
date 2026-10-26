@@ -91,6 +91,12 @@ If you join a waitlist or beta sign-up, your email address and any details you e
 
 - **Legal basis:** consent (waitlists); legitimate interest in answering you (support).
 
+**Early access lists (Rule Guard and MT5 Analytics pages).** If you ask for early access on these pages, we store your email address, your answers to the short questions, the page and price variant you saw, the referral code in the link you followed (for example `ref=ff`), your language and the time you joined. This is stored in our Upstash database. We store your email only if you tick the consent box. We use it to decide which product to build and to email you about early access and product updates.
+
+On the same pages we count page views, clicks on the pricing button and sign-ups, by page, price variant, referral code, language and day. The counts contain no personal data. To limit abuse we use a salted hash of your IP address that expires within an hour. We do not store your IP address. Your browser keeps the price variant you were shown (local storage) and the referral code for the current visit (session storage).
+
+- **Legal basis:** consent (early access emails and answers); legitimate interest in measuring interest in our products (counts).
+
 ### 2.11 AI assistant (where offered)
 
 If you use the assistant, your messages are sent to an AI provider (Google Gemini, or Groq as a fallback) to generate a reply. We do not store your messages on our servers; recent chat history stays in your browser. Do not enter personal or account details.
@@ -110,7 +116,7 @@ We use the following service providers (processors), each only for the purposes 
 | Supabase, Inc. | Authentication, account database, sign-in emails | [SUPABASE REGION] |
 | Stripe (Stripe Payments Europe Ltd or Stripe, Inc., depending on region) | Payments, invoices, subscription management, fraud prevention | US and EU |
 | Vercel Inc. | Hosting, serverless functions, security | US and global edge network |
-| Upstash, Inc. | Licence records, short-lived counters, encrypted Bridge packets (max 2 hours) | [UPSTASH REGION] |
+| Upstash, Inc. | Licence records, short-lived counters, encrypted Bridge packets (max 2 hours), early access sign-ups and page counts | [UPSTASH REGION] |
 | Google LLC / Google Ireland Ltd | Google sign-in (if you choose it); Google Analytics (only with consent); Google Fonts; Gemini for the assistant (where offered) | US and global |
 | Groq, Inc. | Fallback assistant replies (where offered) | US |
 | FormSubmit | Delivering waitlist and beta sign-up forms | [FORMSUBMIT LOCATION] |
@@ -143,6 +149,9 @@ Some providers process data outside your country, including in the United States
 | Marketing consent record | While you are subscribed to marketing and for 24 months after you unsubscribe, to show consent. |
 | Support emails | Up to 3 years after the last message, or longer if needed for a dispute. |
 | Waitlist sign-ups | Until we have contacted you about the launch or you ask to be removed. |
+| Early access sign-ups and answers (Rule Guard, MT5 Analytics) | Until you ask us to delete them, and deleted automatically 13 months after you join (about 12 months after the 4-week test ends). |
+| Early access page counts | Up to 400 days. They contain no personal data. |
+| Hashed IP used for rate limiting | Up to 1 hour. |
 
 <!-- FOR COUNSEL: fill [X] years for [COUNTRY OF RESIDENCE] tax law; confirm the 12-month licence retention (matches previous TR/EN draft) and whether a deletion job exists for expired licence records in Upstash (code keeps them until removed). -->
 

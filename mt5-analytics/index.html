@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>MT5 account analytics and backtesting: Kalibre</title>
+<meta name="description" content="Connect your MT5 account read-only, see it in a dashboard and test your own rules on your own MT5 data. Early access.">
+<link rel="canonical" href="https://kalibremarkets.com/mt5-analytics">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/mt5-analytics">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/mt5-analytics">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/mt5-analytics">
+<meta property="og:title" content="MT5 account analytics and backtesting: Kalibre">
+<meta property="og:description" content="Connect your MT5 account read-only, see it in a dashboard and test your own rules on your own MT5 data. Early access.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.plan { background: var(--zemin-2); border: 1px solid var(--cizgi-2); border-top: 3px solid var(--yesil); border-radius: 6px; padding: 26px 28px; margin: 8px 0 32px; }
+.plan-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--cizgi); padding-bottom: 14px; margin-bottom: 14px; }
+.plan-bas h2 { margin: 0; font-size: 26px; }
+.fiyat { margin: 0; color: var(--soluk); }
+.fiyat .sayi { font-size: 28px; color: var(--metin); }
+.plan ul { margin: 0 0 20px; }
+.onay { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--soluk); margin-bottom: 16px; cursor: pointer; }
+.onay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--yesil); }
+#odeme-durum:empty { display: none; }
+.yakinda { border-top: 1px solid var(--cizgi); padding-top: 14px; }
+.yakinda h3 { margin: 0 0 6px; font-size: 20px; color: var(--kehribar); }
+.yakinda p { margin: 0 0 8px; color: var(--soluk); }
+.rozet-beta { font: 600 12px var(--sans); color: #08130f; background: var(--kehribar); border-radius: 4px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
+#odeme-durum { color: var(--kehribar); }
+.bekleme { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 22px 24px; margin: 8px 0 24px; }
+.bekleme label { display: block; font-size: 15px; color: var(--soluk); margin-bottom: 8px; }
+.bekleme .satir { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.bekleme input[type=email] { flex: 1 1 240px; min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
+.bekleme #ok-msg { color: var(--yesil); }
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 12px; }
+
+.eylem-satir { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 8px; }
+.ozellik { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 12px; }
+.ozellik li { background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 14px 18px; }
+.ozellik b { color: var(--metin); }
+.durum-et { display: inline-block; font: 600 12px var(--sans); border-radius: 4px; padding: 2px 8px; margin-left: 8px; vertical-align: 2px; }
+.durum-et.var { color: #08130f; background: var(--yesil); }
+.durum-et.test { color: #08130f; background: var(--kehribar); }
+.durum-et.plan { color: var(--soluk); border: 1px solid var(--cizgi-2); }
+.plan .yillik { display: block; font-size: 15px; color: var(--soluk); margin-top: 4px; }
+.plan .not-erken { color: var(--soluk); font-size: 15px; margin: 10px 0 0; }
+dialog#erken-erisim { max-width: 560px; width: calc(100% - 32px); background: var(--zemin-2); color: var(--metin); border: 1px solid var(--cizgi-2); border-radius: 8px; padding: 24px; }
+dialog#erken-erisim::backdrop { background: rgba(5, 10, 18, .7); }
+dialog#erken-erisim h2 { margin: 0 0 6px; font-size: 24px; }
+dialog#erken-erisim .alanlar { display: grid; gap: 12px; margin: 14px 0; }
+dialog#erken-erisim label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+dialog#erken-erisim input[type=email], dialog#erken-erisim input[type=text], dialog#erken-erisim select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 15px var(--sans); width: 100%; box-sizing: border-box; }
+dialog#erken-erisim label.onay { display: flex; font-size: 14px; }
+dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.talep-mesaj { margin: 10px 0; font-weight: 600; }
+.talep-mesaj.tamam { color: var(--yesil); } .talep-mesaj.hata { color: var(--kehribar); }
+.gizli-alan { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav aria-label="Main menu">
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
+    </nav>
+    <a class="dil" href="/tr/mt5-analytics" hreflang="tr" lang="tr">TR</a>
+    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
+    <a class="dugme kucuk" href="/lab">Open the lab</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+
+<div data-talep-sayfa="mt5-analytics">
+<h1>MT5 account analytics and backtesting in your browser</h1>
+<p class="giris">Connect your MetaTrader 5 account read-only, see your balance, positions and closed trades in one dashboard, and test your own rules on your own MT5 price history. It is in early access.</p>
+<div class="eylem-satir"><a class="dugme" href="#pricing" data-erken-erisim>Get early access</a><a class="dugme ikincil" href="/lab/panom">Open the sample dashboard</a></div>
+
+<h2 id="what-it-does">What it does</h2>
+<ul class="ozellik">
+  <li><b>Account dashboard</b> <span class="durum-et var">In beta</span><br>Balance, equity, open positions, the symbols you follow and the last 90 days of closed trades.</li>
+  <li><b>Backtest on your MT5 data</b> <span class="durum-et var">In beta</span><br>Build a rule with blocks or a form and run Quick Backtest on candles from your terminal.</li>
+  <li><b>Overfitting checks</b> <span class="durum-et var">In beta</span><br>Training and test periods, probability of backtest overfitting (PBO), deflated Sharpe ratio and walk-forward analysis.</li>
+  <li><b>Replay</b> <span class="durum-et plan">Planned</span><br>Step through your own MT5 history candle by candle and practise entries.</li>
+  <li><b>Trade review</b> <span class="durum-et plan">Planned</span><br>Where you lose money, by symbol, hour and setup.</li>
+</ul>
+
+<h2 id="how-it-connects">How it connects</h2>
+<p>The Kalibre Bridge add-on runs in your MT5 terminal and sends your account data to your browser, encrypted. It is read-only and places no orders. You don't give us your MT5 password. Details are on the <a href="/security">security page</a>.</p>
+
+<h2 id="pricing">Planned pricing</h2>
+<div class="plan">
+  <div class="plan-bas">
+    <h2>MT5 Analytics <span class="rozet-beta">early access</span></h2>
+    <p class="fiyat"><span class="sayi" data-fiyat-ay>$19</span> / month</p>
+  </div>
+  <ul>
+    <li>Account dashboard and 90 days of trade history</li>
+    <li>Backtest and optimization on your own MT5 data</li>
+    <li>Replay and trade review (planned)</li>
+    <li>2 MT5 accounts per license</li>
+  </ul>
+  <a class="dugme" href="#pricing" data-erken-erisim data-fiyat-tik>Get early access</a>
+  <p class="not-erken">Early access is free. No card required. We'll tell you before any paid plan.</p>
+</div>
+<h2 id="faq">Questions</h2>
+<ul>
+  <li><b>Which brokers does it work with?</b> Any broker that offers MetaTrader 5. MT4 is not supported.</li>
+  <li><b>Does it place trades on my account?</b> No. Kalibre Bridge only reads.</li>
+  <li><b>Where is my data processed?</b> The dashboard and backtests run in your browser. Our server holds only encrypted packets, for at most 2 hours.</li>
+</ul>
+<div class="kutu">Backtest results are hypothetical and do not reflect actual trading. Kalibre is software and does not provide investment advice. <a href="/risk-disclosure">Risk disclosure</a></div>
+</div>
+<dialog id="erken-erisim" aria-labelledby="ee-baslik">
+  <h2 id="ee-baslik">Get early access</h2>
+  <p>Early access is free. No card required. We'll tell you before any paid plan.</p>
+  <form novalidate>
+    <div class="alanlar">
+      <label for="ee-eposta">Email<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
+      <label for="ee-platform">Which platform do you trade on?<select id="ee-platform" name="platform" data-soru><option value="">Choose</option><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="tradingview">TradingView</option><option value="diger">Other</option></select></label><label for="ee-simdi">What do you use to analyse your account today?<select id="ee-simdi" name="simdi" data-soru><option value="">Choose</option><option value="myfxbook">Myfxbook</option><option value="fxblue">FX Blue</option><option value="gunluk">A trading journal app</option><option value="tablo">A spreadsheet</option><option value="hicbiri">Nothing</option><option value="diger">Other</option></select></label><label for="ee-odeme">What is the one thing you would pay to solve?<input type="text" id="ee-odeme" name="odeme" maxlength="300" data-soru></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>I agree to receive emails from Kalibre Markets about early access and product updates. I can unsubscribe at any time.</span></label>
+    <p class="not">We store your email, your answers and the time you joined. Details are in the <a href="/privacy#collect-why">privacy policy</a>.</p>
+    <div class="kapat-satir">
+      <button type="button" class="dugme ikincil" data-kapat>Close</button>
+      <button type="submit" class="dugme">Join early access</button>
+    </div>
+  </form>
+  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
+  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Close</button></div>
+</dialog>
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#what-it-does">What it does</a><a href="#how-it-connects">How it connects</a><a href="#pricing">Planned pricing</a><a href="#faq">Questions</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
+    </div>
+    <div>
+      <h4>Kalibre Lab</h4>
+      <a href="/lab">Lab</a>
+      <a href="/lab/panom">Dashboard</a>
+      <a href="/prop">Prop Shield</a>
+      <a href="/forex">Retail forex</a>
+      <a href="/rule-guard">Rule Guard (early access)</a>
+      <a href="/mt5-analytics">MT5 Analytics (early access)</a>
+      <a href="/setup">Setup</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/methodology">Methodology</a>
+      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
+    </div>
+    <div>
+      <h4>Kalibre Markets</h4>
+      <a href="/about">About</a>
+      <a href="mailto:markets@kalibrefin.com">Contact</a>
+      <a href="/terms">Terms of service</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/risk-disclosure">Risk disclosure</a>
+      <a href="/cookies#manage" data-cerez-ayar>Cookie settings</a>
+    </div>
+    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/talep.js" defer></script>
+</body>
+</html>
