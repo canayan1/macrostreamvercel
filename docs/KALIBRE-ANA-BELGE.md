@@ -1,8 +1,28 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 25 Ekim 2026 (bağımsız referans ve doğrulama paketi sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 26 Ekim 2026 (talep analizi ve test sayfaları sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
+
+## 0. Güncel yön (26.10.2026)
+
+Kural (Can): talep görülmeden yeni ürün geliştirilmez. Talep analizi: `reports/Talep analizi.md`.
+- Önerilen ürün: prop sınavı trader'ı için **Kalibre Rule Guard**. Üç parça: firma kurallarını firmanın yöntemiyle uygulayan MT5 koruması, sınav paneli ve haftalık hata raporu. Davranışsal ürün bu rapora dönüşür.
+- Lab (backtest, optimizasyon) ücretsiz kalır. Görevi siteye kullanıcı çekmek ve güven kurmak.
+- Duraklatılanlar:
+  - Oynaklık laboratuvarı ve optimizasyona yeni özellik
+  - Alpaca ve Tradier
+  - Kripto
+  - Kurumsal yol haritası
+  - Hazır botlar
+  - Bridge sembol özellikleri (`park/kopru-sembol-ozellik` dalı)
+- Talep testi, iki segment ve reklamsız:
+  - Sayfalar: `/rule-guard` ve `/mt5-analytics` (TR: /tr/...). Fiyat 19 ya da 29 USD/ay, Rule Guard sayfasında ayrıca 99 USD/yıl.
+  - Erken erişim formu ve `/api/talep` ölçümü.
+  - Plan, eşikler ve görüşme metni: `docs/TALEP-TESTI.md`. Özet komutu: `node yerel/talep-ozet.mjs`.
+- Riskler:
+  - Prop firmalarının EA yasakları: firmalara yazılı sorulacak.
+  - Stripe "Funded prop trading" işini yasaklıyor. "Investment services" kısıtlı, yazılı onay alınmalı.
 
 ## 1. Amaç ve konum
 
@@ -216,7 +236,7 @@ Biten (urun-sitesi, canlıda değil):
 - Aşama D
 - Kurumsal araştırma
 
-Son önizleme: https://macrostreamvercel-5dzmjm7vp-canayan1s-projects.vercel.app
+Son önizleme: https://macrostreamvercel-19uhq0wtj-canayan1s-projects.vercel.app
 
 Kurucunun yapacakları:
 1. Supabase: eski projelerden birini duraklat, Frankfurt'ta yeni proje aç. Sonra SQL, giriş ayarları,
