@@ -1,6 +1,6 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 26 Ekim 2026 (talep analizi ve test sayfaları sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 28 Ekim 2026 (İşlem Analizi MVP sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
 
@@ -23,6 +23,10 @@ Kural (Can): talep görülmeden yeni ürün geliştirilmez. Talep analizi: `repo
 - Riskler:
   - Prop firmalarının EA yasakları: firmalara yazılı sorulacak.
   - Stripe "Funded prop trading" işini yasaklıyor. "Investment services" kısıtlı, yazılı onay alınmalı.
+
+MVP (28.10.2026): **İşlem Analizi** (`/analytics`, lab/analiz.html). MT5 geçmiş raporu (HTML/XLSX), Bridge ya da CSV okunur. Gösterilenler: özet, kazanılan ve kaybedilen durumlar, prop sınırları, kaydedilen kendi görünümün. Hepsi tarayıcıda çalışır, hesap gerekmez. Model: kalibre-lab `docs/analiz-modeli.md`. Sırada kurucunun gerçek MT5 raporuyla denemesi var, ardından müşteri bulma.
+Planlar ücretsiz kalır (Vercel Hobby, Supabase free, Resend free, Upstash free). Talep ve çalışan bir değer hattı olmadan genişleme yapılmaz.
+Çalışma klasörleri `/private/tmp` altında tutulmaz, çünkü macOS 3 günden eski dosyaları siliyor.
 
 ## 1. Amaç ve konum
 
@@ -82,8 +86,8 @@ Rehber: `docs/METIN-REHBERI.md`.
 
 | Depo | Dal | İçerik |
 |---|---|---|
-| github.com/canayan1/macrostreamvercel (yerel: site-wt) | `urun-sitesi` (canlıda değil; canlı `main`) | Site, Vercel uçları, yasal metinler, lab kopyası |
-| github.com/canayan1/kalibre-lab | `kopru-sozlesmesi` | Lab kaynakları, MQL5 eklentileri, testler, doğrulama |
+| github.com/canayan1/macrostreamvercel (yerel: `/Users/can/Documents/kalibre/site`) | `urun-sitesi` (canlıda değil; canlı `main`) | Site, Vercel uçları, yasal metinler, lab kopyası |
+| github.com/canayan1/kalibre-lab (yerel: `/Users/can/Documents/kalibre/kalibre-lab`) | `kopru-sozlesmesi` | Lab kaynakları, MQL5 eklentileri, testler, doğrulama |
 
 Site yapısı:
 - İngilizce kökte (/, /pricing, /security, /prop, /forex, /setup, /methodology, /about, /beta,
