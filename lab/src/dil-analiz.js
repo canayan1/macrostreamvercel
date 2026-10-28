@@ -181,3 +181,33 @@ export const ANALIZ_EN = {
 };
 
 for (const [k, v] of Object.entries(ANALIZ_EN)) if (EN[k] === undefined) EN[k] = v;
+
+// 28.10.2026 görsel düzen
+Object.assign(EN, Object.fromEntries(Object.entries({
+  'İşlem Analizi · Beta': 'Trade Analytics · Beta',
+  'Nerede kazanıp nerede kaybettiğini gör.': 'See where you make and lose money.',
+  'MT5 geçmiş raporunu bırak. Sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını gör. Dosya bu tarayıcıda okunur.': 'Drop in your MT5 history report. See your results by symbol, hour, weekday, session, trade size and the trade after a loss. The file is read in this browser.',
+  'Sentetik örnek veri': 'Synthetic sample data',
+  'Bu hesap gerçek değildir. Sayfanın neler gösterdiğini görmen için üretildi.': 'This account is not real. It was generated to show what the page does.',
+  'Kendi raporunu yükle': 'Load your own report',
+  'Net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve bakiye eğrisi.': 'Net result, win rate, profit factor, max drawdown and balance curve.',
+  'Kazandıran ve kaybettiren dilimler': 'Winning and losing segments',
+  'En az 20 işlemli dilimler, sonuca katkısına göre sıralı.': 'Segments with at least 20 trades, ranked by their effect on the result.',
+  'Her gün günlük ve azami tabana ne kadar yaklaşıldığı.': 'How close each day came to the daily and max floors.',
+  'İstediğin alana göre grupla, ölç ve kaydet.': 'Group by any field, pick a measure and save it.',
+  'Kapanan işlemlerle bakiye': 'Balance from closed trades',
+  'Başlangıca göre {y}': '{y} of starting balance',
+  '{n} işlem': '{n} trades',
+  'İşlem başı {x}': '{x} per trade',
+  'Tepeden {y}': '{y} from peak',
+  'Kazanma oranı {w} (tüm işlemler {g})': 'Win rate {w} (all trades {g})',
+  'Ortalama boyut {k} kat': 'Average size {k}x',
+  'Rastlantı olabilir': 'May be noise',
+  'Tabana en yakın 10 gün': 'The 10 days closest to a floor',
+  'Aşıldı': 'Breached',
+  'kapanan bakiye tabanın altına indi': 'closed balance went below the floor',
+  'Yakın': 'Near',
+  "tabana mesafe başlangıç sermayesinin %1'inden az": 'distance to the floor under 1% of starting capital',
+  'Tabana yakın': 'Near the floor',
+  'Sınır içinde': 'Within limits',
+}).filter(([k]) => EN[k] === undefined)));

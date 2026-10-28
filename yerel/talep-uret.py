@@ -107,6 +107,7 @@ def rule_guard(dil):
 
 <h2 id="baglanti">Nasıl bağlanır</h2>
 <p>Rule Guard, MT5 terminalinde Expert Advisor olarak çalışır. Panel ve rapor için Kalibre Bridge eklentisi hesap verisini şifreli olarak tarayıcına taşır. MT5 şifreni bize vermezsin. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</p>
+<p>Geçmiş günlerini firmanın sınırlarıyla şimdi karşılaştırmak için MT5 raporunu <a href="/tr/mt5-analytics">Trade Analytics</a> sayfasına bırakabilirsin.</p>
 '''
         maddeler = ["4 firma ön ayarı ve özel sınırlar", "Günlük ve toplam taban, firmanın saatinde sıfırlama", "Sınav paneli ve haftalık rapor (planlanıyor)", "Lisans başına 2 MT5 hesabı"]
         sss = f'''
@@ -142,6 +143,7 @@ def rule_guard(dil):
 
 <h2 id="how-it-connects">How it connects</h2>
 <p>Rule Guard runs as an Expert Advisor in your MT5 terminal. For the dashboard and report, the Kalibre Bridge add-on sends your account data to your browser, encrypted. You don't give us your MT5 password. Details are on the <a href="/security">security page</a>.</p>
+<p>To check past days against your firm's limits now, drop your MT5 report into <a href="/mt5-analytics">Trade Analytics</a>.</p>
 '''
         maddeler = ["4 firm presets plus custom limits", "Daily and total floors, reset at the firm's time", "Challenge dashboard and weekly report (planned)", "2 MT5 accounts per license"]
         sss = f'''
@@ -160,77 +162,146 @@ def rule_guard(dil):
         govde = bas + fiyat_kutusu(dil, "Rule Guard", maddeler, True) + sss + pencere(dil, sorular)
         sayfa("rule-guard/index.html", "Kalibre Rule Guard: prop firm loss limits on MT5", "Tracks your prop firm's daily and total loss limits on MT5, stops new trades near the floor and reports rule breaks weekly. Early access.", "", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=STIL, ek_betik='<script src="/static/talep.js" defer></script>', dil="en")
 
-# ------------------------------------------------------------------ MT5 Analytics
+# ------------------------------------------------------------------ Trade Analytics (eski adı MT5 Analytics; adres /mt5-analytics, talep ölçümü aynı)
+URUN_STIL = """
+.urun-hero { display: grid; gap: 28px; margin: 8px 0 12px; }
+.urun-gorsel { margin: 0; border: 1px solid var(--cizgi-2); border-radius: 10px; overflow: hidden; background: #0e1724; box-shadow: 0 18px 48px rgba(0,0,0,.35); }
+.urun-gorsel img { display: block; width: 100%; height: auto; }
+.urun-gorsel figcaption { font-size: 14px; color: var(--soluk); padding: 10px 14px; border-top: 1px solid var(--cizgi); }
+.adimlar { list-style: none; counter-reset: adim; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.adimlar li { counter-increment: adim; background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 16px 18px; }
+.adimlar li::before { content: counter(adim, decimal-leading-zero); display: block; font: 600 13px var(--mono, monospace); color: var(--yesil); margin-bottom: 6px; }
+.adimlar b { display: block; color: var(--metin); margin-bottom: 4px; }
+.galeri { display: grid; gap: 28px; margin: 0 0 24px; }
+.gizlilik-gercek { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+.gizlilik-gercek li { padding-left: 22px; position: relative; }
+.gizlilik-gercek li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 2px; background: var(--yesil); }
+.sentetik-not { font-size: 14px; color: var(--kehribar); }
+@media (max-width: 760px) { .adimlar { grid-template-columns: 1fr; } }
+"""
+
+def gorsel(ad, alt, alt_yazi, dil, ilk=False):
+    ek = "-tr" if dil == "tr" else ""
+    yukle = 'fetchpriority="high"' if ilk else 'loading="lazy"'
+    return f'''<figure class="urun-gorsel"><img src="/static/urun/analytics/{ad}{ek}.png" width="1440" height="900" alt="{alt}" {yukle} decoding="async"><figcaption>{alt_yazi}</figcaption></figure>'''
+
 def mt5_analytics(dil):
     tr = dil == "tr"
+    ornek = "/lab/analiz?ornek=1&dil=tr" if tr else "/lab/analiz?ornek=1"
     if tr:
         bas = f'''
 <div data-talep-sayfa="mt5-analytics">
-<h1>Tarayıcıda MT5 hesap analizi ve backtest</h1>
-<p class="giris">MetaTrader 5 hesabını salt okuma olarak bağla, bakiyeni, pozisyonlarını ve kapanmış işlemlerini bir panelde gör, kendi kurallarını kendi MT5 fiyat geçmişinde test et. Şu an erken erişimde.</p>
-<div class="eylem-satir"><a class="dugme" href="#pricing" data-erken-erisim>Erken erişim al</a><a class="dugme ikincil" href="/lab/panom?dil=tr">Örnek paneli aç</a></div>
+<h1>Kalibre Trade Analytics: nerede kazanıp nerede kaybettiğini gör</h1>
+<p class="giris">MT5 geçmiş raporunu bırak. Sonuçlarını sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre gör. Prop hesabında her günün kayıp sınırına ne kadar yaklaştığını kontrol et. Dosya tarayıcında okunur. Şu an beta.</p>
+<div class="eylem-satir"><a class="dugme" href="{ornek}">Örnek veriyle dene</a><a class="dugme ikincil" href="#pricing" data-erken-erisim>Erken erişim al</a></div>
+<div class="urun-hero">{gorsel("hero", "İşlem Analizi sayfası: yükleme alanı ve hesap özeti, sentetik örnek veriyle", "Sentetik örnek veri. Gerçek bir hesap değildir.", dil, True)}</div>
 
-<h2 id="ne-yapar">Ne yapar</h2>
+<h2 id="nasil-calisir">Nasıl çalışır</h2>
+<ol class="adimlar">
+  <li><b>Raporu al</b>MT5'te Geçmiş sekmesinde sağ tıkla, Rapor menüsünden HTML'i seç.</li>
+  <li><b>Sayfaya bırak</b>Dosya tarayıcında okunur. Kurulum ya da hesap gerekmez.</li>
+  <li><b>Kırılımları oku</b>Özet, dilimler, prop sınırları ve kendi kaydettiğin görünümler.</li>
+</ol>
+
+<h2 id="ne-gorursun">Ne görürsün</h2>
+<div class="galeri">
+{gorsel("overview", "Hesap özeti: net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve bakiye eğrisi", "Hesap özeti: net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve kapanan işlemlerle bakiye.", dil)}
+{gorsel("insights", "En çok kazandıran ve kaybettiren dilimler", "Kazandıran ve kaybettiren dilimler: en az 20 işlemli gruplar, sonuca katkısına göre. Küçük farklar &quot;rastlantı olabilir&quot; diye işaretlenir.", dil)}
+{gorsel("prop-limits", "Prop firması sınırları: tabana en yakın günler", "Prop sınırları: her gün günlük ve azami tabana ne kadar yaklaşıldığı. FTMO ve The5ers kural setleri ya da kendi yüzdelerin.", dil)}
+{gorsel("custom-view", "Kendi görünümün: seansa göre net sonuç", "Kendi görünümün: istediğin alana göre grupla, ölçüyü seç, çubuk, çizgi ya da tablo olarak kaydet.", dil)}
+</div>
+<p class="sentetik-not">Görüntülerdeki tüm sayılar sentetik örnek veridir.</p>
+
+<h2 id="ozellikler">Özellikler</h2>
 <ul class="ozellik">
-  <li><b>Hesap paneli</b> {et("var", dil)}<br>Bakiye, varlık, açık pozisyonlar, takip ettiğin semboller ve son 90 günün kapanmış işlemleri.</li>
-  <li><b>MT5 verinde backtest</b> {et("var", dil)}<br>Kuralı bloklarla ya da formla kur, terminalinden gelen mumlarda Hızlı Backtest çalıştır.</li>
-  <li><b>Aşırı uyum kontrolleri</b> {et("var", dil)}<br>Eğitim ve test dönemi, backtest aşırı uyum olasılığı (PBO), düzeltilmiş Sharpe oranı ve yürüyen ileri analiz.</li>
-  <li><b>Replay</b> {et("plan", dil)}<br>Kendi MT5 geçmişinde mum mum ilerle ve girişleri dene.</li>
-  <li><b>İşlem incelemesi</b> {et("plan", dil)}<br>Sembole, saate ve kuruluma göre nerede para kaybettiğin.</li>
+  <li><b>MT5 raporu, CSV ve Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML ve Open XML raporları, sütun eşleştirmeli CSV ve Bridge'in 90 günlük işlem geçmişi.</li>
+  <li><b>Dilimler ve kırılımlar</b> {et("var", dil)}<br>Sembol, açılış saati, gün, seans, yön, pozisyon süresi, işlem boyutu, önceki işlemin sonucu ve kayıp serisi.</li>
+  <li><b>Prop sınırları</b> {et("var", dil)}<br>Kapanan işlemlerle bakiyeye göre günlük ve azami taban. Geçmiş raporu gün içi varlığı içermez.</li>
+  <li><b>Kaydedilen görünümler</b> {et("var", dil)}<br>Görünümler bu tarayıcıda saklanır.</li>
+  <li><b>Replay</b> {et("plan", dil)}<br>Kendi MT5 geçmişinde mum mum ilerle.</li>
+  <li><b>Haftalık rapor</b> {et("plan", dil)}<br>Her hafta en çok kaybettiren dilimler ve kural yakınlığı.</li>
 </ul>
 
-<h2 id="baglanti">Nasıl bağlanır</h2>
-<p>Kalibre Bridge eklentisi MT5 terminalinde çalışır ve hesap verisini şifreli olarak tarayıcına taşır. Salt okumadır, emir göndermez. MT5 şifreni bize vermezsin. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</p>
+<h2 id="gizlilik">Verine ne olur</h2>
+<ul class="gizlilik-gercek">
+  <li>Rapor dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
+  <li>Rapor başlığından yalnız hesap para birimi okunur. Hesap numaran ve adın okunmaz, saklanmaz.</li>
+  <li>Kaydettiğin görünümler bu tarayıcıda saklanır ve işlemlerini içermez.</li>
+  <li>Kalibre Bridge kullanırsan veri MT5'ten tarayıcına şifreli gelir. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</li>
+</ul>
 '''
-        maddeler = ["Hesap paneli ve 90 günlük işlem geçmişi", "Kendi MT5 verinde backtest ve optimizasyon", "Replay ve işlem incelemesi (planlanıyor)", "Lisans başına 2 MT5 hesabı"]
+        maddeler = ["MT5 raporu, CSV ve Kalibre Bridge", "Dilimler, kırılımlar ve prop sınırları", "Kaydedilen görünümler", "Replay ve haftalık rapor (planlanıyor)"]
         sss = '''
 <h2 id="sss">Sık sorulanlar</h2>
 <ul>
-  <li><b>Hangi aracı kurumlarla çalışır?</b> MetaTrader 5 sunan her aracı kurumla. MT4 desteklenmiyor.</li>
-  <li><b>Hesabımda işlem açar mı?</b> Hayır. Kalibre Bridge yalnız okur.</li>
-  <li><b>Verim nerede işlenir?</b> Panel ve backtest tarayıcında çalışır. Sunucu yalnız şifreli paketleri en çok 2 saat tutar.</li>
+  <li><b>Hangi aracı kurumlarla çalışır?</b> MetaTrader 5 raporu veren her aracı kurumla. MT4 raporları henüz desteklenmiyor.</li>
+  <li><b>Prop sınırları gerçek ihlali gösterir mi?</b> Tam değil. Geçmiş raporunda açık pozisyonun gün içi zararı yoktur. Sayfa yalnız kapanan işlemlerle bakiyeyi ölçer. Gerçek ihlal daha erken olmuş olabilir.</li>
+  <li><b>Bu bir tavsiye mi?</b> Hayır. Sayfa geçmiş işlemlerini betimler. Ne yapman gerektiğini söylemez.</li>
 </ul>
-<div class="kutu">Backtest sonuçları varsayımsaldır ve gerçek işlemleri yansıtmaz. Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. <a href="/tr/risk-disclosure">Risk bildirimi</a></div>
+<div class="kutu">Sonuçlar geçmiş işlemlerin betimlemesidir ve gelecekteki sonuçların göstergesi değildir. Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. <a href="/tr/risk-disclosure">Risk bildirimi</a></div>
 </div>'''
         sorular = (secim("platform", "Hangi platformda işlem yapıyorsun?", [("mt5", "MetaTrader 5"), ("mt4", "MetaTrader 4"), ("ctrader", "cTrader"), ("tradingview", "TradingView"), ("diger", "Başka")], "Seç")
                    + secim("simdi", "Hesabını şu an neyle analiz ediyorsun?", [("myfxbook", "Myfxbook"), ("fxblue", "FX Blue"), ("gunluk", "Bir işlem günlüğü uygulaması"), ("tablo", "Tablo"), ("hicbiri", "Hiçbiri"), ("diger", "Başka")], "Seç")
                    + metin("odeme", "Para ödeyerek çözmek istediğin tek şey ne?"))
-        govde = bas + fiyat_kutusu(dil, "MT5 Analytics", maddeler, False) + sss + pencere(dil, sorular)
-        sayfa("tr/mt5-analytics/index.html", "Tarayıcıda MT5 hesap analizi ve backtest: Kalibre", "MT5 hesabını salt okuma bağla, panelde gör ve kendi kurallarını kendi MT5 verinde test et. Erken erişim.", "", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=STIL, ek_betik='<script src="/static/talep.js" defer></script>', dil="tr")
+        govde = bas + fiyat_kutusu(dil, "Trade Analytics", maddeler, False) + sss + pencere(dil, sorular)
+        sayfa("tr/mt5-analytics/index.html", "Kalibre Trade Analytics: MT5 işlemlerinde nerede kazanıp kaybettiğini gör", "MT5 geçmiş raporunu bırak; sembol, saat, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını ve prop sınırlarını gör. Dosya tarayıcında okunur.", "", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=STIL + URUN_STIL, ek_betik='<script src="/static/talep.js" defer></script>', dil="tr")
     else:
         bas = f'''
 <div data-talep-sayfa="mt5-analytics">
-<h1>MT5 account analytics and backtesting in your browser</h1>
-<p class="giris">Connect your MetaTrader 5 account read-only, see your balance, positions and closed trades in one dashboard, and test your own rules on your own MT5 price history. It is in early access.</p>
-<div class="eylem-satir"><a class="dugme" href="#pricing" data-erken-erisim>Get early access</a><a class="dugme ikincil" href="/lab/panom">Open the sample dashboard</a></div>
+<h1>Kalibre Trade Analytics: see where you make and lose money</h1>
+<p class="giris">Drop in your MT5 history report. See your results by symbol, hour, weekday, session, trade size and the trade after a loss. On a prop account, check how close each day came to the loss limits. The file is read in your browser. In beta.</p>
+<div class="eylem-satir"><a class="dugme" href="{ornek}">Try it with sample data</a><a class="dugme ikincil" href="#pricing" data-erken-erisim>Get early access</a></div>
+<div class="urun-hero">{gorsel("hero", "Trade Analytics page: upload area and account overview with synthetic sample data", "Synthetic sample data. Not a real account.", dil, True)}</div>
 
-<h2 id="what-it-does">What it does</h2>
+<h2 id="how-it-works">How it works</h2>
+<ol class="adimlar">
+  <li><b>Export your report</b>In MT5, right-click the History tab and choose Report, then HTML.</li>
+  <li><b>Drop it in</b>The file is read in your browser. No install, no account.</li>
+  <li><b>Read the breakdowns</b>Overview, segments, prop limits and views you save.</li>
+</ol>
+
+<h2 id="what-you-see">What you see</h2>
+<div class="galeri">
+{gorsel("overview", "Account overview: net result, win rate, profit factor, max drawdown and balance curve", "Account overview: net result, win rate, profit factor, max drawdown and balance from closed trades.", dil)}
+{gorsel("insights", "Biggest winning and losing segments", "Winning and losing segments: groups with at least 20 trades, ranked by their effect on the result. Small differences are marked &quot;may be noise&quot;.", dil)}
+{gorsel("prop-limits", "Prop firm limits: the days closest to a floor", "Prop limits: how close each day came to the daily and max floors. FTMO and The5ers rule sets, or your own percentages.", dil)}
+{gorsel("custom-view", "Your own view: net result by session", "Your own view: group by any field, pick a measure, save it as a bar chart, line chart or table.", dil)}
+</div>
+<p class="sentetik-not">All numbers in these screenshots are synthetic sample data.</p>
+
+<h2 id="features">Features</h2>
 <ul class="ozellik">
-  <li><b>Account dashboard</b> {et("var", dil)}<br>Balance, equity, open positions, the symbols you follow and the last 90 days of closed trades.</li>
-  <li><b>Backtest on your MT5 data</b> {et("var", dil)}<br>Build a rule with blocks or a form and run Quick Backtest on candles from your terminal.</li>
-  <li><b>Overfitting checks</b> {et("var", dil)}<br>Training and test periods, probability of backtest overfitting (PBO), deflated Sharpe ratio and walk-forward analysis.</li>
-  <li><b>Replay</b> {et("plan", dil)}<br>Step through your own MT5 history candle by candle and practise entries.</li>
-  <li><b>Trade review</b> {et("plan", dil)}<br>Where you lose money, by symbol, hour and setup.</li>
+  <li><b>MT5 report, CSV and Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML and Open XML reports, CSV with column mapping, and 90 days of trade history from the Bridge.</li>
+  <li><b>Segments and breakdowns</b> {et("var", dil)}<br>Symbol, open hour, weekday, session, direction, holding time, trade size, previous trade result and losing streak.</li>
+  <li><b>Prop limits</b> {et("var", dil)}<br>Daily and max floors from closed-trade balance. A history report has no intraday equity.</li>
+  <li><b>Saved views</b> {et("var", dil)}<br>Views are stored in this browser.</li>
+  <li><b>Replay</b> {et("plan", dil)}<br>Step through your own MT5 history candle by candle.</li>
+  <li><b>Weekly report</b> {et("plan", dil)}<br>Your biggest losing segments and limit proximity, every week.</li>
 </ul>
 
-<h2 id="how-it-connects">How it connects</h2>
-<p>The Kalibre Bridge add-on runs in your MT5 terminal and sends your account data to your browser, encrypted. It is read-only and places no orders. You don't give us your MT5 password. Details are on the <a href="/security">security page</a>.</p>
+<h2 id="your-data">What happens to your data</h2>
+<ul class="gizlilik-gercek">
+  <li>The report file is read in your browser and is not sent to Kalibre servers.</li>
+  <li>Only the account currency is read from the report header. Your account number and name are not read or stored.</li>
+  <li>Saved views stay in this browser and do not contain your trades.</li>
+  <li>If you use Kalibre Bridge, data travels from MT5 to your browser encrypted. Details are on the <a href="/security">security page</a>.</li>
+</ul>
 '''
-        maddeler = ["Account dashboard and 90 days of trade history", "Backtest and optimization on your own MT5 data", "Replay and trade review (planned)", "2 MT5 accounts per license"]
+        maddeler = ["MT5 report, CSV and Kalibre Bridge", "Segments, breakdowns and prop limits", "Saved views", "Replay and weekly report (planned)"]
         sss = '''
 <h2 id="faq">Questions</h2>
 <ul>
-  <li><b>Which brokers does it work with?</b> Any broker that offers MetaTrader 5. MT4 is not supported.</li>
-  <li><b>Does it place trades on my account?</b> No. Kalibre Bridge only reads.</li>
-  <li><b>Where is my data processed?</b> The dashboard and backtests run in your browser. Our server holds only encrypted packets, for at most 2 hours.</li>
+  <li><b>Which brokers does it work with?</b> Any broker whose MetaTrader 5 terminal exports reports. MT4 reports are not supported yet.</li>
+  <li><b>Do the prop limits show a real breach?</b> Not exactly. A history report has no intraday loss on open positions, so the page measures closed-trade balance only. A real breach may have happened earlier.</li>
+  <li><b>Is this advice?</b> No. The page describes your past trades. It does not tell you what to do.</li>
 </ul>
-<div class="kutu">Backtest results are hypothetical and do not reflect actual trading. Kalibre is software and does not provide investment advice. <a href="/risk-disclosure">Risk disclosure</a></div>
+<div class="kutu">Results describe past trades and do not indicate future results. Kalibre is software and does not provide investment advice. <a href="/risk-disclosure">Risk disclosure</a></div>
 </div>'''
         sorular = (secim("platform", "Which platform do you trade on?", [("mt5", "MetaTrader 5"), ("mt4", "MetaTrader 4"), ("ctrader", "cTrader"), ("tradingview", "TradingView"), ("diger", "Other")], "Choose")
                    + secim("simdi", "What do you use to analyse your account today?", [("myfxbook", "Myfxbook"), ("fxblue", "FX Blue"), ("gunluk", "A trading journal app"), ("tablo", "A spreadsheet"), ("hicbiri", "Nothing"), ("diger", "Other")], "Choose")
                    + metin("odeme", "What is the one thing you would pay to solve?"))
-        govde = bas + fiyat_kutusu(dil, "MT5 Analytics", maddeler, False) + sss + pencere(dil, sorular)
-        sayfa("mt5-analytics/index.html", "MT5 account analytics and backtesting: Kalibre", "Connect your MT5 account read-only, see it in a dashboard and test your own rules on your own MT5 data. Early access.", "", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=STIL, ek_betik='<script src="/static/talep.js" defer></script>', dil="en")
+        govde = bas + fiyat_kutusu(dil, "Trade Analytics", maddeler, False) + sss + pencere(dil, sorular)
+        sayfa("mt5-analytics/index.html", "Kalibre Trade Analytics: see where you make and lose money on MT5", "Drop in your MT5 history report and see results by symbol, hour, session, trade size and the trade after a loss, plus prop firm limits. The file is read in your browser.", "", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=STIL + URUN_STIL, ek_betik='<script src="/static/talep.js" defer></script>', dil="en")
 
 for d in ("en", "tr"):
     rule_guard(d)

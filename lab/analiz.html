@@ -15,6 +15,7 @@
 <header class="ust">
   <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>İşlem Analizi</span></a>
   <div class="ust-eylem">
+    <span class="rozet ust-sentetik" id="ust-sentetik" hidden data-t>Sentetik örnek veri</span>
     <a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a>
     <a class="dugme ikincil" href="panom.html" data-t>Panom</a>
     <a class="dugme ikincil" href="optimizasyon.html" data-t>Optimizasyon</a>
@@ -22,13 +23,31 @@
 </header>
 
 <main class="tek-sutun panom analiz">
+  <section class="a-giris">
+    <p class="a-ust" data-t>İşlem Analizi · Beta</p>
+    <h1 data-t>Nerede kazanıp nerede kaybettiğini gör.</h1>
+    <p class="a-alt" data-t>MT5 geçmiş raporunu bırak. Sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını gör. Dosya bu tarayıcıda okunur.</p>
+  </section>
+
+  <div class="a-sentetik" id="sentetik-bant" hidden role="note">
+    <b data-t>Sentetik örnek veri</b>
+    <span data-t>Bu hesap gerçek değildir. Sayfanın neler gösterdiğini görmen için üretildi.</span>
+    <button type="button" class="kucuk" id="ornek-kapat" data-t>Kendi raporunu yükle</button>
+  </div>
+
   <section class="kart" id="yukle-kart">
-    <div class="kart-bas"><h2 data-t>İşlem geçmişini yükle</h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
+    <div class="kart-bas"><h2><span class="bolum-no">01</span><span data-t>İşlem geçmişini yükle</span></h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
     <label class="birak" id="birak" for="dosya">
       <input type="file" id="dosya" accept=".html,.htm,.xlsx,.csv,.txt,text/html,text/csv" hidden>
+      <svg class="birak-ikon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <b data-t>MT5 geçmiş raporunu buraya bırak ya da seç</b>
       <span data-t>HTML, Open XML (XLSX) ya da CSV. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
     </label>
+    <div class="satir-dugme a-yukle-eylem">
+      <button type="button" class="dugme" id="ornek-yukle" data-t>Örnek veriyle dene</button>
+      <button type="button" class="dugme ikincil" id="kopru-yukle" hidden data-t>Kalibre Bridge verisini kullan</button>
+      <label class="secici"><span data-t>Sunucu saati (UTC farkı)</span><select id="utc-fark"></select></label>
+    </div>
     <details class="nasil">
       <summary data-t>MT5'ten rapor nasıl alınır?</summary>
       <ol>
@@ -38,38 +57,43 @@
         <li data-t>Kaydettiğin dosyayı bu kutuya bırak.</li>
       </ol>
     </details>
-    <div class="satir-dugme">
-      <button type="button" class="dugme ikincil" id="ornek-yukle" data-t>Örnek veriyle dene</button>
-      <button type="button" class="dugme ikincil" id="kopru-yukle" hidden data-t>Kalibre Bridge verisini kullan</button>
-      <label class="secici"><span data-t>Sunucu saati (UTC farkı)</span><select id="utc-fark"></select></label>
-    </div>
     <p class="dipnot" id="yukle-durum" role="status"></p>
     <div id="csv-eslesme" hidden></div>
+    <ul class="a-onizleme" id="bos-durum">
+      <li><b data-t>Hesap özeti</b><span data-t>Net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve bakiye eğrisi.</span></li>
+      <li><b data-t>Kazandıran ve kaybettiren dilimler</b><span data-t>En az 20 işlemli dilimler, sonuca katkısına göre sıralı.</span></li>
+      <li><b data-t>Prop firması sınırları</b><span data-t>Her gün günlük ve azami tabana ne kadar yaklaşıldığı.</span></li>
+      <li><b data-t>Kendi görünümün</b><span data-t>İstediğin alana göre grupla, ölç ve kaydet.</span></li>
+    </ul>
   </section>
 
   <section class="kart" id="ozet-kart" hidden>
-    <div class="kart-bas"><h2 data-t>Hesap özeti</h2><span class="dipnot" id="ozet-not"></span></div>
-    <div class="hesap-karolar" id="ozet-karolar"></div>
-    <canvas id="bakiye-egri" height="150"></canvas>
+    <div class="kart-bas"><h2><span class="bolum-no">02</span><span data-t>Hesap özeti</span></h2><span class="dipnot" id="ozet-not"></span></div>
+    <div class="a-ana-karolar" id="ozet-ana"></div>
+    <div class="egri-kutu">
+      <div class="egri-bas"><span data-t>Kapanan işlemlerle bakiye</span><span class="dipnot" id="egri-aralik"></span></div>
+      <canvas id="bakiye-egri" height="190"></canvas>
+    </div>
+    <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
   </section>
 
   <section class="kart" id="icgoru-kart" hidden>
-    <div class="kart-bas"><h2 data-t>Nerede kazanıyorsun, nerede kaybediyorsun</h2></div>
+    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Nerede kazanıyorsun, nerede kaybediyorsun</span></h2></div>
     <div class="icgoru-izgara">
-      <div><h3 data-t>En çok kaybettiren dilimler</h3><ul class="icgoru" id="icgoru-kayip"></ul></div>
-      <div><h3 data-t>En çok kazandıran dilimler</h3><ul class="icgoru" id="icgoru-kazanc"></ul></div>
+      <div><h3 class="a-h3 negatif-baslik" data-t>En çok kaybettiren dilimler</h3><ul class="icgoru" id="icgoru-kayip"></ul></div>
+      <div><h3 class="a-h3 pozitif-baslik" data-t>En çok kazandıran dilimler</h3><ul class="icgoru" id="icgoru-kazanc"></ul></div>
     </div>
     <p class="dipnot" id="icgoru-not"></p>
   </section>
 
   <section class="kart" id="kirilim-kart" hidden>
-    <div class="kart-bas"><h2 data-t>Kırılımlar</h2>
+    <div class="kart-bas"><h2><span class="bolum-no">04</span><span data-t>Kırılımlar</span></h2>
       <label class="secici"><span data-t>Gruplama</span><select id="kirilim-boyut"></select></label></div>
-    <div class="tablo-kutu"><table class="pozisyon" id="kirilim-tablo"></table></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo" id="kirilim-tablo"></table></div>
   </section>
 
   <section class="kart" id="prop-kart" hidden>
-    <div class="kart-bas"><h2 data-t>Prop firması sınırları</h2></div>
+    <div class="kart-bas"><h2><span class="bolum-no">05</span><span data-t>Prop firması sınırları</span></h2></div>
     <div class="satir-dugme prop-ayar">
       <label class="secici"><span data-t>Kural seti</span><select id="prop-on-ayar"></select></label>
       <label class="secici"><span data-t>Başlangıç sermayesi</span><input type="number" id="prop-baslangic" min="0" step="1000"></label>
@@ -81,14 +105,16 @@
       </select></label>
     </div>
     <div class="hesap-karolar" id="prop-karolar"></div>
-    <div class="tablo-kutu"><table class="pozisyon" id="prop-tablo"></table></div>
+    <h3 class="a-h3 a-tablo-baslik" data-t>Tabana en yakın 10 gün</h3>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo" id="prop-tablo"></table></div>
+    <p class="a-lejant"><span class="a-durum asildi" data-t>Aşıldı</span> <span data-t>kapanan bakiye tabanın altına indi</span> <span class="a-durum yakin" data-t>Yakın</span> <span data-t>tabana mesafe başlangıç sermayesinin %1'inden az</span></p>
     <p class="dipnot" id="prop-kaynak"></p>
     <p class="dipnot" data-t>Geçmiş raporunda gün içi varlık (equity) yoktur. Bu tablo yalnız kapanan işlemlerle oluşan bakiyeyi ölçer; açık pozisyonun gün içindeki zararı görünmez, gerçek sınır ihlali daha erken olmuş olabilir. Kural setlerini kendi hesabının koşullarıyla karşılaştır.</p>
   </section>
 
   <section class="kart" id="gorunum-kart" hidden>
-    <div class="kart-bas"><h2 data-t>Kendi görünümün</h2></div>
-    <div class="satir-dugme">
+    <div class="kart-bas"><h2><span class="bolum-no">06</span><span data-t>Kendi görünümün</span></h2></div>
+    <div class="satir-dugme a-gorunum-ayar">
       <label class="secici"><span data-t>Grupla</span><select id="g-boyut"></select></label>
       <label class="secici"><span data-t>Ölçü</span><select id="g-olcu"></select></label>
       <label class="secici"><span data-t>Grafik</span><select id="g-tur">

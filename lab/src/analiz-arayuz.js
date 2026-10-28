@@ -84,6 +84,9 @@ function yukle(h) {
   const r = $('#kaynak-rozet');
   r.textContent = ceviri(KAYNAK_ADI[h.kaynak] ?? h.kaynak); r.hidden = false;
   r.classList.toggle('gercek', h.kaynak === 'ornek');
+  $('#sentetik-bant').hidden = h.kaynak !== 'ornek';
+  $('#ust-sentetik').hidden = h.kaynak !== 'ornek';
+  $('#bos-durum').hidden = true;
   durum(ceviri('{n} kapanmış işlem okundu.', { n: h.islemler.length.toLocaleString(yerel) }) + (h.atlanan ? ' ' + ceviri('{n} satır okunamadı ve atlandı.', { n: h.atlanan }) : ''));
   hesapla();
 }
@@ -99,57 +102,78 @@ function hesapla() {
 function ozetCiz() {
   const o = motor.ozet();
   const karo = (ad, deger, s = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(s)}">${kacis(deger)}</b></div>`;
+  const ana = (ad, deger, s = '', alt = '') => `<div class="${kacis(s)}"><span>${kacis(ceviri(ad))}</span><b>${kacis(deger)}</b>${alt ? `<small>${kacis(alt)}</small>` : ''}</div>`;
+  $('#ozet-ana').innerHTML = [
+    ana('Net kâr/zarar', para(o.net), sinif(o.net), hesap.baslangicBakiye ? ceviri('Başlangıca göre {y}', { y: yuzde(o.net / hesap.baslangicBakiye) }) : ''),
+    ana('Kazanma oranı', yuzde(o.kazanmaOrani), '', ceviri('{n} işlem', { n: sayi(o.adet, 0) })),
+    ana('Kâr faktörü', oran(o.karFaktoru), o.karFaktoru >= 1 ? 'pozitif' : 'negatif', ceviri('İşlem başı {x}', { x: para(o.beklenti) })),
+    ana('Azami düşüş', duzPara(o.azamiDusus, 0), 'negatif', o.azamiDususYuzde !== null ? ceviri('Tepeden {y}', { y: yuzde(o.azamiDususYuzde) }) : ''),
+  ].join('');
   $('#ozet-karolar').innerHTML = [
-    karo('Net kâr/zarar', para(o.net), sinif(o.net)),
-    karo('İşlem sayısı', sayi(o.adet, 0)),
-    karo('Kazanma oranı', yuzde(o.kazanmaOrani)),
-    karo('Kâr faktörü', oran(o.karFaktoru)),
-    karo('İşlem başı ortalama', para(o.beklenti), sinif(o.beklenti)),
     karo('Ortalama kazanç', para(o.ortKazanc), 'pozitif'),
     karo('Ortalama kayıp', para(o.ortKayip), 'negatif'),
-    karo('Azami düşüş', duzPara(o.azamiDusus) + (o.azamiDususYuzde !== null ? ` (${yuzde(o.azamiDususYuzde)})` : '')),
     karo('Komisyon ve swap', para(o.komisyon + o.swap), sinif(o.komisyon + o.swap)),
     karo('En iyi gün', o.enIyiGun ? `${gunMetni(o.enIyiGun.gun)} ${para(o.enIyiGun.net)}` : '–'),
     karo('En kötü gün', o.enKotuGun ? `${gunMetni(o.enKotuGun.gun)} ${para(o.enKotuGun.net)}` : '–'),
     karo('Dönem', `${tarih(o.ilk)} - ${tarih(o.son)}`),
   ].join('');
   $('#ozet-not').textContent = ceviri('{s} sembol, {g} işlem günü', { s: o.sembolSayisi, g: o.gunSayisi });
+  $('#egri-aralik').textContent = `${tarih(o.ilk)} - ${tarih(o.son)}`;
   egriCiz($('#bakiye-egri'), o.egri);
 }
 
 function egriCiz(c, egri) {
   const dpr = window.devicePixelRatio || 1;
-  const w = c.clientWidth || 600, h = 150;
+  const w = c.clientWidth || 600, h = 190;
   c.width = w * dpr; c.height = h * dpr; c.style.height = h + 'px';
   const x = c.getContext('2d');
   x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, w, h);
   if (egri.length < 2) return;
-  const pad = 8;
+  const solPay = 64, ust = 12, alt = 22, sagPay = 10;
   let lo = Infinity, hi = -Infinity;
   for (const e of egri) { if (e.bakiye < lo) lo = e.bakiye; if (e.bakiye > hi) hi = e.bakiye; }
+  const bosluk = (hi - lo) * 0.08 || 1; lo -= bosluk; hi += bosluk;
   const t0 = egri[0].zaman, t1 = egri[egri.length - 1].zaman;
-  const X = t => pad + ((t - t0) / (t1 - t0 || 1)) * (w - 2 * pad);
-  const Y = v => h - pad - ((v - lo) / (hi - lo || 1)) * (h - 2 * pad);
-  x.strokeStyle = '#5fb89a'; x.lineWidth = 1.5; x.beginPath();
+  const X = t => solPay + ((t - t0) / (t1 - t0 || 1)) * (w - solPay - sagPay);
+  const Y = v => ust + (1 - (v - lo) / (hi - lo || 1)) * (h - ust - alt);
+  // yatay ızgara ve eksen etiketleri
+  x.font = '11px "IBM Plex Mono", ui-monospace, monospace'; x.textBaseline = 'middle';
+  for (let k = 0; k <= 3; k++) {
+    const v = lo + ((hi - lo) * k) / 3, py = Y(v);
+    x.strokeStyle = 'rgba(141,156,176,.14)'; x.lineWidth = 1; x.beginPath(); x.moveTo(solPay, py); x.lineTo(w - sagPay, py); x.stroke();
+    x.fillStyle = '#8d9cb0'; x.textAlign = 'right'; x.fillText(sayi(v, 0), solPay - 8, py);
+  }
+  // başlangıç bakiyesi kesikli çizgi
+  const b0 = egri[0].bakiye;
+  x.setLineDash([4, 4]); x.strokeStyle = 'rgba(217,164,65,.55)'; x.beginPath(); x.moveTo(solPay, Y(b0)); x.lineTo(w - sagPay, Y(b0)); x.stroke(); x.setLineDash([]);
+  // alan ve çizgi
   const adim = Math.max(1, Math.floor(egri.length / (w * 2)));
-  egri.forEach((e, i) => { if (i % adim && i !== egri.length - 1) return; const px = X(e.zaman), py = Y(e.bakiye); i ? x.lineTo(px, py) : x.moveTo(px, py); });
-  x.stroke();
-  x.fillStyle = '#8d9cb0'; x.font = '11px ui-monospace, monospace';
-  x.fillText(sayi(hi, 0), pad, 12); x.fillText(sayi(lo, 0), pad, h - 2);
+  const nokta = egri.filter((_, i) => !(i % adim) || i === egri.length - 1).map(e => [X(e.zaman), Y(e.bakiye)]);
+  const grad = x.createLinearGradient(0, ust, 0, h - alt);
+  grad.addColorStop(0, 'rgba(95,184,154,.28)'); grad.addColorStop(1, 'rgba(95,184,154,0)');
+  x.beginPath(); nokta.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py)));
+  x.lineTo(nokta[nokta.length - 1][0], h - alt); x.lineTo(nokta[0][0], h - alt); x.closePath(); x.fillStyle = grad; x.fill();
+  x.beginPath(); nokta.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py)));
+  x.strokeStyle = '#5fb89a'; x.lineWidth = 1.8; x.lineJoin = 'round'; x.stroke();
+  // tarih etiketleri
+  x.fillStyle = '#8d9cb0'; x.textBaseline = 'alphabetic';
+  x.textAlign = 'left'; x.fillText(tarih(t0), solPay, h - 6);
+  x.textAlign = 'right'; x.fillText(tarih(t1), w - sagPay, h - 6);
 }
 
 // ---------------------------------------------------------------- içgörüler
 const BOYUT_AD = Object.fromEntries(BOYUTLAR.map(b => [b.id, b.ad]));
-function icgoruMetni(a) {
-  const parca = [ceviri('{dilim}: {n} işlemde {net}.', { dilim: `${etiket(a.etiket)} (${etiket(BOYUT_AD[a.boyut])})`, n: a.adet, net: para(a.net) })];
-  parca.push(ceviri('Kazanma oranı {w}, tüm işlemlerde {g}.', { w: yuzde(a.kazanmaOrani), g: yuzde(a.genelKazanmaOrani) }));
-  if (a.lotKati && Math.abs(a.lotKati - 1) >= 0.15) parca.push(ceviri('Ortalama boyut, tüm işlemlerin ortalamasının {k} katı.', { k: sayi(a.lotKati, 2) }));
-  if (a.belirsiz) parca.push(ceviri('Bu örneklemde fark küçük; rastlantı olabilir.'));
-  return parca.join(' ');
+function icgoruKart(a) {
+  const detay = [ceviri('{n} işlem', { n: sayi(a.adet, 0) }), ceviri('Kazanma oranı {w} (tüm işlemler {g})', { w: yuzde(a.kazanmaOrani), g: yuzde(a.genelKazanmaOrani) })];
+  if (a.lotKati && Math.abs(a.lotKati - 1) >= 0.15) detay.push(ceviri('Ortalama boyut {k} kat', { k: sayi(a.lotKati, 2) }));
+  return `<li class="ic-kart ${kacis(a.belirsiz ? 'belirsiz' : '')}">
+    <div class="ic-ust"><span class="ic-boyut">${kacis(etiket(BOYUT_AD[a.boyut]))}</span>${a.belirsiz ? `<span class="ic-uyari">${kacis(ceviri('Rastlantı olabilir'))}</span>` : ''}</div>
+    <div class="ic-ana"><b>${kacis(etiket(a.etiket))}</b><span class="ic-net ${kacis(sinif(a.net))}">${kacis(para(a.net, 0))}</span></div>
+    <p>${detay.map(d => kacis(d)).join(' · ')}</p></li>`;
 }
 function icgoruCiz() {
   const ic = motor.icgoruler({ enAz: 20 });
-  const liste = (el, d) => { el.innerHTML = d.length ? d.map(a => `<li class="${kacis(a.belirsiz ? 'belirsiz' : '')}">${kacis(icgoruMetni(a))}</li>`).join('') : `<li class="bos">${kacis(ceviri('Bu ölçütü geçen dilim yok.'))}</li>`; };
+  const liste = (el, d) => { el.innerHTML = d.length ? d.map(icgoruKart).join('') : `<li class="bos">${kacis(ceviri('Bu ölçütü geçen dilim yok.'))}</li>`; };
   liste($('#icgoru-kayip'), ic.kaybettiren);
   liste($('#icgoru-kazanc'), ic.kazandiran);
   $('#icgoru-not').textContent = ic.yeterliVeri
@@ -162,9 +186,11 @@ function secenekler(el, liste, sec) { el.innerHTML = liste.map(x => `<option val
 function kirilimCiz() {
   const boyut = $('#kirilim-boyut').value || 'sembol';
   const satirlar = motor.grupla(boyut);
+  const enBuyuk = Math.max(1, ...satirlar.map(s => Math.abs(s.net)));
+  const cubuk = v => `<span class="a-cubuk ${kacis(v < 0 ? 'neg' : 'poz')}" style="width:${kacis(Math.round((Math.abs(v) / enBuyuk) * 100))}%"></span>`;
   const bas = ['Dilim', 'İşlem', 'Net', 'Kazanma oranı', 'İşlem başı', 'Kâr faktörü', 'Ortalama lot'];
   $('#kirilim-tablo').innerHTML = `<thead><tr>${bas.map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${satirlar.map(s => `<tr>
-    <td>${kacis(etiket(s.etiket))}</td><td>${sayi(s.adet, 0)}</td><td class="${kacis(sinif(s.net))}">${kacis(para(s.net))}</td>
+    <td>${kacis(etiket(s.etiket))}</td><td>${sayi(s.adet, 0)}</td><td class="a-net ${kacis(sinif(s.net))}"><span class="a-net-deger">${kacis(para(s.net))}</span>${cubuk(s.net)}</td>
     <td>${kacis(yuzde(s.kazanmaOrani))}</td><td class="${kacis(sinif(s.beklenti))}">${kacis(para(s.beklenti))}</td><td>${kacis(oran(s.karFaktoru))}</td><td>${kacis(sayi(s.ortLot, 2))}</td></tr>`).join('')}</tbody>`;
 }
 
@@ -193,7 +219,7 @@ function propCiz() {
     karo('Sınırı aşan gün', sayi(s.ihlalSayisi, 0), s.ihlalSayisi ? 'negatif' : 'pozitif'),
     karo('İlk aşım', s.ilkIhlal ? gunMetni(s.ilkIhlal.gun) : '–', s.ilkIhlal ? 'negatif' : ''),
     karo('Tabana en yakın gün', s.enYakin ? gunMetni(s.enYakin.gun) : '–'),
-    karo('O gün tabana mesafe', s.enYakin ? `${duzPara(s.enYakin.mesafe)} (${yuzde(s.enYakin.mesafeYuzde)})` : '–', s.enYakin && s.enYakin.mesafe < 0 ? 'negatif' : ''),
+    karo('O gün tabana mesafe', s.enYakin ? `${duzPara(s.enYakin.mesafe)} (${yuzde(s.enYakin.mesafeYuzde)})` : '–', s.enYakin && s.enYakin.mesafe < 0 ? 'negatif' : s.enYakin && s.enYakin.mesafeYuzde < 0.01 ? 'uyari' : ''),
   ].join('');
   const DURUM = { gunluk: 'Günlük sınır aşıldı', azami: 'Azami sınır aşıldı', ikisi: 'İki sınır da aşıldı' };
   const gunler = [...s.gunler].sort((x, y) => x.mesafe - y.mesafe).slice(0, 10);
@@ -201,8 +227,8 @@ function propCiz() {
   const taban = v => (v === -Infinity || v === null ? '–' : sayi(v, 2));
   $('#prop-tablo').innerHTML = `<thead><tr>${bas.map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${gunler.map(g => `<tr>
     <td>${kacis(gunMetni(g.gun))}</td><td>${sayi(g.gunBasi)}</td><td>${taban(g.gunlukTaban)}</td><td>${taban(g.azamiTaban)}</td>
-    <td>${sayi(g.enDusuk)}</td><td class="${kacis(g.mesafe < 0 ? 'negatif' : '')}">${kacis(`${sayi(g.mesafe)} (${yuzde(g.mesafeYuzde)})`)}</td>
-    <td class="${kacis(g.ihlal ? 'negatif' : '')}">${kacis(g.ihlal ? ceviri(DURUM[g.ihlal]) : '')}</td></tr>`).join('')}</tbody>`;
+    <td>${sayi(g.enDusuk)}</td><td class="${kacis(g.mesafe < 0 ? 'negatif' : g.mesafeYuzde < 0.01 ? 'uyari' : '')}">${kacis(`${sayi(g.mesafe)} (${yuzde(g.mesafeYuzde)})`)}</td>
+    <td>${g.ihlal ? `<span class="a-durum asildi">${kacis(ceviri(DURUM[g.ihlal]))}</span>` : g.mesafeYuzde < 0.01 ? `<span class="a-durum yakin">${kacis(ceviri('Tabana yakın'))}</span>` : `<span class="a-durum">${kacis(ceviri('Sınır içinde'))}</span>`}</td></tr>`).join('')}</tbody>`;
   $('#prop-kaynak').textContent = a
     ? ceviri('{ad}: günlük {g}, azami {z}, {tur}. Kaynak: {kaynak}, {tarih}.', { ad: a.ad, g: yuzde(a.gunluk / 100, 0), z: yuzde(a.azami / 100, 0), tur: ceviri(TUR_AD[a.tur]), kaynak: a.kaynak, tarih: gunMetni(a.tarih) }) + (a.varsayim ? ' ' + ceviri('Firma sayfası günlük sınırın hesap yöntemini yazmıyor; burada sabit taban varsayılır.') : '')
     : ceviri('Özel kural: günlük ve azami yüzdeler başlangıç sermayesine göre, sabit taban.');
@@ -226,24 +252,27 @@ function gorunumCiz() {
   }
   const degerler = satirlar.map(s => s.deger ?? 0);
   const enAz = Math.min(0, ...degerler), enCok = Math.max(0, ...degerler);
-  const W = 640, solEtiket = 170, sag = 90;
+  const W = Math.max(320, Math.round((kutu.clientWidth || 680) - 26));
+  const dar = W < 520;
+  const enUzun = Math.max(...satirlar.map(s => Math.min(26, s.etiket.length)));
+  const solEtiket = Math.min(dar ? 120 : 220, 16 + enUzun * 7), sag = dar ? 92 : 120;
   if (tur === 'cubuk') {
     const yuk = 22, H = satirlar.length * yuk + 8;
     const X = v => solEtiket + ((v - enAz) / (enCok - enAz || 1)) * (W - solEtiket - sag);
     const sifir = X(0);
-    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">${satirlar.map((s, i) => {
+    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" width="${kacis(W)}" height="${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">${satirlar.map((s, i) => {
       const v = s.deger ?? 0, y = 4 + i * yuk, x1 = Math.min(X(v), sifir), x2 = Math.max(X(v), sifir);
-      return `<text x="${kacis(solEtiket - 6)}" y="${kacis(y + 14)}" text-anchor="end" class="g-etiket">${kacis(s.etiket.slice(0, 26))}</text>
+      return `<text x="${kacis(solEtiket - 6)}" y="${kacis(y + 14)}" text-anchor="end" class="g-etiket">${kacis(s.etiket.length > (dar ? 16 : 26) ? s.etiket.slice(0, dar ? 15 : 25) + '…' : s.etiket)}</text>
         <rect x="${kacis(x1)}" y="${kacis(y + 3)}" width="${kacis(Math.max(1, x2 - x1))}" height="${kacis(yuk - 8)}" class="${kacis(olcu.tur === 'para' ? (v < 0 ? 'g-neg' : 'g-poz') : 'g-not')}"></rect>
         <text x="${kacis(x2 + 4)}" y="${kacis(y + 14)}" class="g-deger">${kacis(olcuMetni(olcu.tur, s.deger))}</text>`;
     }).join('')}<line x1="${kacis(sifir)}" x2="${kacis(sifir)}" y1="0" y2="${kacis(H)}" class="g-eksen"></line></svg>`;
   } else {
-    const H = 220, pad = 30;
+    const H = 240, pad = 34;
     const Xi = i => pad + (i / Math.max(1, satirlar.length - 1)) * (W - 2 * pad);
     const Y = v => H - pad - ((v - enAz) / (enCok - enAz || 1)) * (H - 2 * pad);
     const nokta = satirlar.map((s, i) => `${Xi(i)},${Y(s.deger ?? 0)}`).join(' ');
-    const etiketAdim = Math.max(1, Math.ceil(satirlar.length / 8));
-    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">
+    const etiketAdim = Math.max(1, Math.ceil(satirlar.length / (dar ? 4 : 8)));
+    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" width="${kacis(W)}" height="${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">
       <line x1="${kacis(pad)}" x2="${kacis(W - pad)}" y1="${kacis(Y(0))}" y2="${kacis(Y(0))}" class="g-eksen"></line>
       <polyline points="${kacis(nokta)}" class="g-cizgi"></polyline>
       ${satirlar.map((s, i) => `<circle cx="${kacis(Xi(i))}" cy="${kacis(Y(s.deger ?? 0))}" r="3" class="${kacis(olcu.tur === 'para' && (s.deger ?? 0) < 0 ? 'g-neg' : 'g-poz')}"><title>${kacis(`${s.etiket}: ${olcuMetni(olcu.tur, s.deger)}`)}</title></circle>`).join('')}
@@ -277,6 +306,8 @@ function baslat() {
   birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyaOku(e.dataTransfer.files[0]); });
 
   $('#ornek-yukle').onclick = () => yukle(ornekHesap());
+  $('#ornek-kapat').onclick = () => { $('#yukle-kart').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#dosya').click(); };
+  if (new URLSearchParams(location.search).get('ornek') === '1') yukle(ornekHesap());
   const kod = depoOku(DEPO.kod);
   if (kod) {
     const d = $('#kopru-yukle'); d.hidden = false;
@@ -308,7 +339,7 @@ function baslat() {
     if (b.dataset.sil !== undefined) { d.splice(Number(b.dataset.sil), 1); depoYaz(DEPO.gorunum, JSON.stringify(d)); kayitliCiz(); }
   };
   kayitliCiz();
-  window.addEventListener('resize', () => { if (motor) egriCiz($('#bakiye-egri'), motor.ozet().egri); });
+  window.addEventListener('resize', () => { if (motor) { egriCiz($('#bakiye-egri'), motor.ozet().egri); gorunumCiz(); } });
 }
 
 baslat();

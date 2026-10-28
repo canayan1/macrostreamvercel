@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Tarayıcıda MT5 hesap analizi ve backtest: Kalibre</title>
-<meta name="description" content="MT5 hesabını salt okuma bağla, panelde gör ve kendi kurallarını kendi MT5 verinde test et. Erken erişim.">
+<title>Kalibre Trade Analytics: MT5 işlemlerinde nerede kazanıp kaybettiğini gör</title>
+<meta name="description" content="MT5 geçmiş raporunu bırak; sembol, saat, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını ve prop sınırlarını gör. Dosya tarayıcında okunur.">
 <link rel="canonical" href="https://kalibremarkets.com/tr/mt5-analytics">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/mt5-analytics">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/mt5-analytics">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/mt5-analytics">
-<meta property="og:title" content="Tarayıcıda MT5 hesap analizi ve backtest: Kalibre">
-<meta property="og:description" content="MT5 hesabını salt okuma bağla, panelde gör ve kendi kurallarını kendi MT5 verinde test et. Erken erişim.">
+<meta property="og:title" content="Kalibre Trade Analytics: MT5 işlemlerinde nerede kazanıp kaybettiğini gör">
+<meta property="og:description" content="MT5 geçmiş raporunu bırak; sembol, saat, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını ve prop sınırlarını gör. Dosya tarayıcında okunur.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -72,6 +72,21 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 .talep-mesaj { margin: 10px 0; font-weight: 600; }
 .talep-mesaj.tamam { color: var(--yesil); } .talep-mesaj.hata { color: var(--kehribar); }
 .gizli-alan { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.urun-hero { display: grid; gap: 28px; margin: 8px 0 12px; }
+.urun-gorsel { margin: 0; border: 1px solid var(--cizgi-2); border-radius: 10px; overflow: hidden; background: #0e1724; box-shadow: 0 18px 48px rgba(0,0,0,.35); }
+.urun-gorsel img { display: block; width: 100%; height: auto; }
+.urun-gorsel figcaption { font-size: 14px; color: var(--soluk); padding: 10px 14px; border-top: 1px solid var(--cizgi); }
+.adimlar { list-style: none; counter-reset: adim; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.adimlar li { counter-increment: adim; background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 6px; padding: 16px 18px; }
+.adimlar li::before { content: counter(adim, decimal-leading-zero); display: block; font: 600 13px var(--mono, monospace); color: var(--yesil); margin-bottom: 6px; }
+.adimlar b { display: block; color: var(--metin); margin-bottom: 4px; }
+.galeri { display: grid; gap: 28px; margin: 0 0 24px; }
+.gizlilik-gercek { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+.gizlilik-gercek li { padding-left: 22px; position: relative; }
+.gizlilik-gercek li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 2px; background: var(--yesil); }
+.sentetik-not { font-size: 14px; color: var(--kehribar); }
+@media (max-width: 760px) { .adimlar { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -98,44 +113,67 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
     <article class="belge-govde">
 
 <div data-talep-sayfa="mt5-analytics">
-<h1>Tarayıcıda MT5 hesap analizi ve backtest</h1>
-<p class="giris">MetaTrader 5 hesabını salt okuma olarak bağla, bakiyeni, pozisyonlarını ve kapanmış işlemlerini bir panelde gör, kendi kurallarını kendi MT5 fiyat geçmişinde test et. Şu an erken erişimde.</p>
-<div class="eylem-satir"><a class="dugme" href="#pricing" data-erken-erisim>Erken erişim al</a><a class="dugme ikincil" href="/lab/panom?dil=tr">Örnek paneli aç</a></div>
+<h1>Kalibre Trade Analytics: nerede kazanıp nerede kaybettiğini gör</h1>
+<p class="giris">MT5 geçmiş raporunu bırak. Sonuçlarını sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre gör. Prop hesabında her günün kayıp sınırına ne kadar yaklaştığını kontrol et. Dosya tarayıcında okunur. Şu an beta.</p>
+<div class="eylem-satir"><a class="dugme" href="/lab/analiz?ornek=1&dil=tr">Örnek veriyle dene</a><a class="dugme ikincil" href="#pricing" data-erken-erisim>Erken erişim al</a></div>
+<div class="urun-hero"><figure class="urun-gorsel"><img src="/static/urun/analytics/hero-tr.png" width="1440" height="900" alt="İşlem Analizi sayfası: yükleme alanı ve hesap özeti, sentetik örnek veriyle" fetchpriority="high" decoding="async"><figcaption>Sentetik örnek veri. Gerçek bir hesap değildir.</figcaption></figure></div>
 
-<h2 id="ne-yapar">Ne yapar</h2>
+<h2 id="nasil-calisir">Nasıl çalışır</h2>
+<ol class="adimlar">
+  <li><b>Raporu al</b>MT5'te Geçmiş sekmesinde sağ tıkla, Rapor menüsünden HTML'i seç.</li>
+  <li><b>Sayfaya bırak</b>Dosya tarayıcında okunur. Kurulum ya da hesap gerekmez.</li>
+  <li><b>Kırılımları oku</b>Özet, dilimler, prop sınırları ve kendi kaydettiğin görünümler.</li>
+</ol>
+
+<h2 id="ne-gorursun">Ne görürsün</h2>
+<div class="galeri">
+<figure class="urun-gorsel"><img src="/static/urun/analytics/overview-tr.png" width="1440" height="900" alt="Hesap özeti: net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve bakiye eğrisi" loading="lazy" decoding="async"><figcaption>Hesap özeti: net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve kapanan işlemlerle bakiye.</figcaption></figure>
+<figure class="urun-gorsel"><img src="/static/urun/analytics/insights-tr.png" width="1440" height="900" alt="En çok kazandıran ve kaybettiren dilimler" loading="lazy" decoding="async"><figcaption>Kazandıran ve kaybettiren dilimler: en az 20 işlemli gruplar, sonuca katkısına göre. Küçük farklar &quot;rastlantı olabilir&quot; diye işaretlenir.</figcaption></figure>
+<figure class="urun-gorsel"><img src="/static/urun/analytics/prop-limits-tr.png" width="1440" height="900" alt="Prop firması sınırları: tabana en yakın günler" loading="lazy" decoding="async"><figcaption>Prop sınırları: her gün günlük ve azami tabana ne kadar yaklaşıldığı. FTMO ve The5ers kural setleri ya da kendi yüzdelerin.</figcaption></figure>
+<figure class="urun-gorsel"><img src="/static/urun/analytics/custom-view-tr.png" width="1440" height="900" alt="Kendi görünümün: seansa göre net sonuç" loading="lazy" decoding="async"><figcaption>Kendi görünümün: istediğin alana göre grupla, ölçüyü seç, çubuk, çizgi ya da tablo olarak kaydet.</figcaption></figure>
+</div>
+<p class="sentetik-not">Görüntülerdeki tüm sayılar sentetik örnek veridir.</p>
+
+<h2 id="ozellikler">Özellikler</h2>
 <ul class="ozellik">
-  <li><b>Hesap paneli</b> <span class="durum-et var">Beta'da</span><br>Bakiye, varlık, açık pozisyonlar, takip ettiğin semboller ve son 90 günün kapanmış işlemleri.</li>
-  <li><b>MT5 verinde backtest</b> <span class="durum-et var">Beta'da</span><br>Kuralı bloklarla ya da formla kur, terminalinden gelen mumlarda Hızlı Backtest çalıştır.</li>
-  <li><b>Aşırı uyum kontrolleri</b> <span class="durum-et var">Beta'da</span><br>Eğitim ve test dönemi, backtest aşırı uyum olasılığı (PBO), düzeltilmiş Sharpe oranı ve yürüyen ileri analiz.</li>
-  <li><b>Replay</b> <span class="durum-et plan">Planlanıyor</span><br>Kendi MT5 geçmişinde mum mum ilerle ve girişleri dene.</li>
-  <li><b>İşlem incelemesi</b> <span class="durum-et plan">Planlanıyor</span><br>Sembole, saate ve kuruluma göre nerede para kaybettiğin.</li>
+  <li><b>MT5 raporu, CSV ve Kalibre Bridge</b> <span class="durum-et var">Beta'da</span><br>MT5 HTML ve Open XML raporları, sütun eşleştirmeli CSV ve Bridge'in 90 günlük işlem geçmişi.</li>
+  <li><b>Dilimler ve kırılımlar</b> <span class="durum-et var">Beta'da</span><br>Sembol, açılış saati, gün, seans, yön, pozisyon süresi, işlem boyutu, önceki işlemin sonucu ve kayıp serisi.</li>
+  <li><b>Prop sınırları</b> <span class="durum-et var">Beta'da</span><br>Kapanan işlemlerle bakiyeye göre günlük ve azami taban. Geçmiş raporu gün içi varlığı içermez.</li>
+  <li><b>Kaydedilen görünümler</b> <span class="durum-et var">Beta'da</span><br>Görünümler bu tarayıcıda saklanır.</li>
+  <li><b>Replay</b> <span class="durum-et plan">Planlanıyor</span><br>Kendi MT5 geçmişinde mum mum ilerle.</li>
+  <li><b>Haftalık rapor</b> <span class="durum-et plan">Planlanıyor</span><br>Her hafta en çok kaybettiren dilimler ve kural yakınlığı.</li>
 </ul>
 
-<h2 id="baglanti">Nasıl bağlanır</h2>
-<p>Kalibre Bridge eklentisi MT5 terminalinde çalışır ve hesap verisini şifreli olarak tarayıcına taşır. Salt okumadır, emir göndermez. MT5 şifreni bize vermezsin. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</p>
+<h2 id="gizlilik">Verine ne olur</h2>
+<ul class="gizlilik-gercek">
+  <li>Rapor dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
+  <li>Rapor başlığından yalnız hesap para birimi okunur. Hesap numaran ve adın okunmaz, saklanmaz.</li>
+  <li>Kaydettiğin görünümler bu tarayıcıda saklanır ve işlemlerini içermez.</li>
+  <li>Kalibre Bridge kullanırsan veri MT5'ten tarayıcına şifreli gelir. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</li>
+</ul>
 
 <h2 id="pricing">Planlanan fiyat</h2>
 <div class="plan">
   <div class="plan-bas">
-    <h2>MT5 Analytics <span class="rozet-beta">erken erişim</span></h2>
+    <h2>Trade Analytics <span class="rozet-beta">erken erişim</span></h2>
     <p class="fiyat"><span class="sayi" data-fiyat-ay>19 $</span> / ay</p>
   </div>
   <ul>
-    <li>Hesap paneli ve 90 günlük işlem geçmişi</li>
-    <li>Kendi MT5 verinde backtest ve optimizasyon</li>
-    <li>Replay ve işlem incelemesi (planlanıyor)</li>
-    <li>Lisans başına 2 MT5 hesabı</li>
+    <li>MT5 raporu, CSV ve Kalibre Bridge</li>
+    <li>Dilimler, kırılımlar ve prop sınırları</li>
+    <li>Kaydedilen görünümler</li>
+    <li>Replay ve haftalık rapor (planlanıyor)</li>
   </ul>
   <a class="dugme" href="#pricing" data-erken-erisim data-fiyat-tik>Erken erişim al</a>
   <p class="not-erken">Erken erişim ücretsiz. Kart gerekmez. Ücretli bir plan açılmadan önce haber vereceğiz.</p>
 </div>
 <h2 id="sss">Sık sorulanlar</h2>
 <ul>
-  <li><b>Hangi aracı kurumlarla çalışır?</b> MetaTrader 5 sunan her aracı kurumla. MT4 desteklenmiyor.</li>
-  <li><b>Hesabımda işlem açar mı?</b> Hayır. Kalibre Bridge yalnız okur.</li>
-  <li><b>Verim nerede işlenir?</b> Panel ve backtest tarayıcında çalışır. Sunucu yalnız şifreli paketleri en çok 2 saat tutar.</li>
+  <li><b>Hangi aracı kurumlarla çalışır?</b> MetaTrader 5 raporu veren her aracı kurumla. MT4 raporları henüz desteklenmiyor.</li>
+  <li><b>Prop sınırları gerçek ihlali gösterir mi?</b> Tam değil. Geçmiş raporunda açık pozisyonun gün içi zararı yoktur. Sayfa yalnız kapanan işlemlerle bakiyeyi ölçer. Gerçek ihlal daha erken olmuş olabilir.</li>
+  <li><b>Bu bir tavsiye mi?</b> Hayır. Sayfa geçmiş işlemlerini betimler. Ne yapman gerektiğini söylemez.</li>
 </ul>
-<div class="kutu">Backtest sonuçları varsayımsaldır ve gerçek işlemleri yansıtmaz. Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. <a href="/tr/risk-disclosure">Risk bildirimi</a></div>
+<div class="kutu">Sonuçlar geçmiş işlemlerin betimlemesidir ve gelecekteki sonuçların göstergesi değildir. Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. <a href="/tr/risk-disclosure">Risk bildirimi</a></div>
 </div>
 <dialog id="erken-erisim" aria-labelledby="ee-baslik">
   <h2 id="ee-baslik">Erken erişim</h2>
@@ -157,7 +195,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
   <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
 </dialog>
     </article>
-    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#ne-yapar">Ne yapar</a><a href="#baglanti">Nasıl bağlanır</a><a href="#pricing">Planlanan fiyat</a><a href="#sss">Sık sorulanlar</a></aside>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#nasil-calisir">Nasıl çalışır</a><a href="#ne-gorursun">Ne görürsün</a><a href="#ozellikler">Özellikler</a><a href="#gizlilik">Verine ne olur</a><a href="#pricing">Planlanan fiyat</a><a href="#sss">Sık sorulanlar</a></aside>
   </div>
 </main>
 
@@ -174,7 +212,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
       <a href="/tr/prop">Prop Kalkanı</a>
       <a href="/tr/forex">Bireysel forex</a>
       <a href="/tr/rule-guard">Rule Guard (erken erişim)</a>
-      <a href="/tr/mt5-analytics">MT5 Analytics (erken erişim)</a>
+      <a href="/tr/mt5-analytics">Trade Analytics (beta)</a>
       <a href="/tr/setup">Kurulum</a>
       <a href="/tr/security">Güvenlik</a>
       <a href="/tr/pricing">Fiyat</a>
