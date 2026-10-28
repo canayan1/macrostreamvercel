@@ -198,6 +198,16 @@
       "statusCode": 302
     },
     {
+      "source": "/analytics",
+      "destination": "/lab/analiz",
+      "statusCode": 302
+    },
+    {
+      "source": "/tr/analytics",
+      "destination": "/lab/analiz?dil=tr",
+      "statusCode": 302
+    },
+    {
       "source": "/baglan",
       "destination": "/lab/baglan?dil=tr",
       "statusCode": 308

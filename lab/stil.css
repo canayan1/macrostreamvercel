@@ -263,3 +263,40 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 .gercekci .gercekci-ac{display:flex;align-items:center;gap:6px;margin:10px 0 0;font-size:13px}
 .gercekci .prova-ayar input[type=text]{width:6em;text-transform:uppercase}
 .gercekci .prova-ayar input[type=file]{max-width:16em;font-size:12px}
+
+/* İşlem Analizi (analiz.html) */
+.analiz .birak{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;padding:26px 16px;border:1.5px dashed var(--border-2);border-radius:10px;background:var(--bg-1);cursor:pointer}
+.analiz .birak:hover,.analiz .birak.uzerinde{border-color:var(--accent);background:var(--surface-2)}
+.analiz .birak b{font-size:14px}
+.analiz .birak span{font-size:12px;color:var(--muted)}
+.analiz .nasil{margin:10px 0 0;font-size:13px;color:var(--text-dim)}
+.analiz .nasil summary{cursor:pointer;color:var(--text)}
+.analiz .nasil ol{margin:8px 0 0;padding-left:20px}
+.analiz .icgoru-izgara{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.analiz .icgoru{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.analiz .icgoru li{font-size:13px;line-height:1.45;background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.analiz .icgoru li.belirsiz{color:var(--text-dim)}
+.analiz .icgoru li.bos{color:var(--muted)}
+.analiz #icgoru-kayip li:not(.bos){border-left:3px solid var(--red)}
+.analiz #icgoru-kazanc li:not(.bos){border-left:3px solid var(--green)}
+.analiz .csv-izgara{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:10px 0}
+.analiz .csv-izgara select{flex:1}
+.analiz .tablo-kutu{overflow-x:auto}
+.analiz .prop-ayar input[type=number]{width:110px}
+.analiz #prop-tablo,.analiz #kirilim-tablo{margin-top:12px}
+.analiz .g-cizim{margin-top:10px;overflow-x:auto}
+.analiz .g-svg{width:100%;min-width:420px;height:auto;display:block}
+.analiz .g-etiket{fill:var(--text-dim);font:11px var(--mono)}
+.analiz .g-deger{fill:var(--muted);font:11px var(--mono)}
+.analiz .g-poz{fill:var(--green)}
+.analiz .g-neg{fill:var(--red)}
+.analiz .g-not{fill:var(--blue)}
+.analiz .g-eksen{stroke:var(--border-2);stroke-width:1}
+.analiz .g-cizgi{fill:none;stroke:var(--accent);stroke-width:1.5}
+.analiz .kayitli{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.analiz .kayitli li{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.analiz #g-ad{flex:1;min-width:160px;max-width:320px}
+.analiz canvas{width:100%;display:block;margin-top:12px}
+@media (max-width:720px){.analiz .icgoru-izgara{grid-template-columns:1fr}}
+main.analiz{max-width:1180px;margin:0 auto;padding:20px}
+@media (max-width:720px){main.analiz{padding:16px}}

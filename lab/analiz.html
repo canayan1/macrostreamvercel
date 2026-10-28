@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="/lab/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İşlem Analizi · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>İşlem Analizi</span></a>
+  <div class="ust-eylem">
+    <a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a>
+    <a class="dugme ikincil" href="panom.html" data-t>Panom</a>
+    <a class="dugme ikincil" href="optimizasyon.html" data-t>Optimizasyon</a>
+  </div>
+</header>
+
+<main class="tek-sutun panom analiz">
+  <section class="kart" id="yukle-kart">
+    <div class="kart-bas"><h2 data-t>İşlem geçmişini yükle</h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
+    <label class="birak" id="birak" for="dosya">
+      <input type="file" id="dosya" accept=".html,.htm,.xlsx,.csv,.txt,text/html,text/csv" hidden>
+      <b data-t>MT5 geçmiş raporunu buraya bırak ya da seç</b>
+      <span data-t>HTML, Open XML (XLSX) ya da CSV. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
+    </label>
+    <details class="nasil">
+      <summary data-t>MT5'ten rapor nasıl alınır?</summary>
+      <ol>
+        <li data-t>MetaTrader 5'te Araç Kutusu penceresini aç (Ctrl+T) ve <b>Geçmiş</b> sekmesine geç.</li>
+        <li data-t>Listeye sağ tıkla, <b>Pozisyonlar</b> görünümünü ve istediğin dönemi seç (ör. Tüm geçmiş).</li>
+        <li data-t>Yine sağ tıkla, <b>Rapor</b> menüsünden <b>HTML</b>'i seç ve dosyayı kaydet.</li>
+        <li data-t>Kaydettiğin dosyayı bu kutuya bırak.</li>
+      </ol>
+    </details>
+    <div class="satir-dugme">
+      <button type="button" class="dugme ikincil" id="ornek-yukle" data-t>Örnek veriyle dene</button>
+      <button type="button" class="dugme ikincil" id="kopru-yukle" hidden data-t>Kalibre Bridge verisini kullan</button>
+      <label class="secici"><span data-t>Sunucu saati (UTC farkı)</span><select id="utc-fark"></select></label>
+    </div>
+    <p class="dipnot" id="yukle-durum" role="status"></p>
+    <div id="csv-eslesme" hidden></div>
+  </section>
+
+  <section class="kart" id="ozet-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Hesap özeti</h2><span class="dipnot" id="ozet-not"></span></div>
+    <div class="hesap-karolar" id="ozet-karolar"></div>
+    <canvas id="bakiye-egri" height="150"></canvas>
+  </section>
+
+  <section class="kart" id="icgoru-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Nerede kazanıyorsun, nerede kaybediyorsun</h2></div>
+    <div class="icgoru-izgara">
+      <div><h3 data-t>En çok kaybettiren dilimler</h3><ul class="icgoru" id="icgoru-kayip"></ul></div>
+      <div><h3 data-t>En çok kazandıran dilimler</h3><ul class="icgoru" id="icgoru-kazanc"></ul></div>
+    </div>
+    <p class="dipnot" id="icgoru-not"></p>
+  </section>
+
+  <section class="kart" id="kirilim-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Kırılımlar</h2>
+      <label class="secici"><span data-t>Gruplama</span><select id="kirilim-boyut"></select></label></div>
+    <div class="tablo-kutu"><table class="pozisyon" id="kirilim-tablo"></table></div>
+  </section>
+
+  <section class="kart" id="prop-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Prop firması sınırları</h2></div>
+    <div class="satir-dugme prop-ayar">
+      <label class="secici"><span data-t>Kural seti</span><select id="prop-on-ayar"></select></label>
+      <label class="secici"><span data-t>Başlangıç sermayesi</span><input type="number" id="prop-baslangic" min="0" step="1000"></label>
+      <label class="secici" id="prop-ozel-g" hidden><span data-t>Günlük %</span><input type="number" id="prop-gunluk" min="0" max="100" step="0.5" value="5"></label>
+      <label class="secici" id="prop-ozel-a" hidden><span data-t>Azami %</span><input type="number" id="prop-azami" min="0" max="100" step="0.5" value="10"></label>
+      <label class="secici"><span data-t>Gün başlangıcı</span><select id="prop-gun-saati">
+        <option value="orta-avrupa" data-t>00:00 Orta Avrupa saati</option>
+        <option value="sunucu" data-t>00:00 sunucu saati</option>
+      </select></label>
+    </div>
+    <div class="hesap-karolar" id="prop-karolar"></div>
+    <div class="tablo-kutu"><table class="pozisyon" id="prop-tablo"></table></div>
+    <p class="dipnot" id="prop-kaynak"></p>
+    <p class="dipnot" data-t>Geçmiş raporunda gün içi varlık (equity) yoktur. Bu tablo yalnız kapanan işlemlerle oluşan bakiyeyi ölçer; açık pozisyonun gün içindeki zararı görünmez, gerçek sınır ihlali daha erken olmuş olabilir. Kural setlerini kendi hesabının koşullarıyla karşılaştır.</p>
+  </section>
+
+  <section class="kart" id="gorunum-kart" hidden>
+    <div class="kart-bas"><h2 data-t>Kendi görünümün</h2></div>
+    <div class="satir-dugme">
+      <label class="secici"><span data-t>Grupla</span><select id="g-boyut"></select></label>
+      <label class="secici"><span data-t>Ölçü</span><select id="g-olcu"></select></label>
+      <label class="secici"><span data-t>Grafik</span><select id="g-tur">
+        <option value="cubuk" data-t>Çubuk</option>
+        <option value="cizgi" data-t>Çizgi</option>
+        <option value="tablo" data-t>Tablo</option>
+      </select></label>
+    </div>
+    <div id="g-cizim" class="g-cizim"></div>
+    <form class="satir-dugme" id="g-kaydet">
+      <input id="g-ad" maxlength="60" placeholder="Görünüm adı" data-t-attr="placeholder" autocomplete="off">
+      <button type="submit" class="kucuk" data-t>Görünümü kaydet</button>
+      <span class="dipnot" id="g-durum" role="status"></span>
+    </form>
+    <ul class="kayitli" id="g-kayitli"></ul>
+    <p class="dipnot" data-t>Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir.</p>
+  </section>
+
+  <p class="dipnot panom-dipnot" data-t>Bu sayfadaki hesaplar senin tarayıcında yapılır; dosyan ve işlemlerin Kalibre sunucusuna gönderilmez. Sonuçlar geçmiş işlemlerin betimlemesidir; gelecekteki sonuçların göstergesi değildir ve yatırım tavsiyesi değildir.</p>
+</main>
+
+<script src="/static/kalibre-auth.js" defer></script>
+<script type="module" src="src/analiz-arayuz.js"></script>
+</body>
+</html>

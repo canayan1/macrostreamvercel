@@ -23,6 +23,7 @@ export const EN = {
   'Strateji Kurucu · Kalibre Lab': 'Strategy Builder · Kalibre Lab',
   'Oynaklık Laboratuvarı · Kalibre Lab': 'Volatility Lab · Kalibre Lab',
   'Strateji Kurucu': 'Strategy Builder',
+  'İşlem Analizi': 'Trade Analytics',
   'Oynaklık Laboratuvarı': 'Volatility Lab',
   'Kalibre ana sayfa': 'Kalibre home',
   'Eğitim örneği': 'Educational example',
