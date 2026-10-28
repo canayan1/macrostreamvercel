@@ -41,7 +41,7 @@
       <input type="file" id="dosya" accept=".html,.htm,.xlsx,.csv,.txt,text/html,text/csv" hidden>
       <svg class="birak-ikon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <b data-t>MT5 geçmiş raporunu buraya bırak ya da seç</b>
-      <span data-t>HTML, Open XML (XLSX) ya da CSV. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
+      <span data-t>MT5 raporu (HTML ya da XLSX) ya da kendi tablon (XLSX ya da CSV). Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
     </label>
     <div class="satir-dugme a-yukle-eylem">
       <button type="button" class="dugme" id="ornek-yukle" data-t>Örnek veriyle dene</button>
@@ -57,7 +57,26 @@
         <li data-t>Kaydettiğin dosyayı bu kutuya bırak.</li>
       </ol>
     </details>
+    <details class="nasil" id="kendi-tablo">
+      <summary data-t>Kendi tablon (Excel ya da CSV)</summary>
+      <p data-t>İşlemlerini kendin tutuyorsan şablonu indir, her kapanmış işlemi bir satıra yaz ve dosyayı yukarıdaki kutuya bırak. Aynı analizler çalışır.</p>
+      <p class="satir-dugme">
+        <a class="dugme ikincil kucuk" href="sablon/kalibre-trade-log-template.xlsx" download data-t>Şablonu indir (Excel)</a>
+        <a class="dugme ikincil kucuk" href="sablon/kalibre-trade-log-template.csv" download data-t>Şablonu indir (CSV)</a>
+        <a class="kucuk" href="sablon/kalibre-trade-log-example.xlsx" download data-t>Dolu sentetik örnek</a>
+      </p>
+      <ul class="sablon-kurallar">
+        <li data-t><b>Zorunlu sütunlar:</b> open_time, close_time, symbol, side, volume, open_price, close_price, profit.</li>
+        <li data-t><b>Zaman:</b> 2026-04-01 09:15:00 ya da ISO 8601 (2026-04-01T09:15:00+02:00). Excel tarih hücreleri de olur. Saat dilimini utc_offset sütununa ya da bu sayfadaki UTC farkına yaz.</li>
+        <li data-t><b>side:</b> buy ya da sell. long ve short da kabul edilir.</li>
+        <li data-t><b>profit:</b> komisyon ve swap hariç işlem sonucu, kayıp eksi. Komisyon ve swap ayrı sütunlarda, maliyet eksi.</li>
+        <li data-t><b>Sayılar:</b> ondalık nokta ya da virgül. Binlik ayırıcı kullanma.</li>
+        <li data-t><b>Para yatırma ve çekme:</b> row_type sütununa deposit ya da withdrawal yaz, tutarı profit sütununa gir.</li>
+        <li data-t>Okunamayan her satır, satır numarası ve nedeniyle listelenir. Formüller çalıştırılmaz, kayıtlı değerleri okunur.</li>
+      </ul>
+    </details>
     <p class="dipnot" id="yukle-durum" role="status"></p>
+    <div class="satir-rapor" id="satir-rapor" hidden role="status"></div>
     <div id="csv-eslesme" hidden></div>
     <ul class="a-onizleme" id="bos-durum">
       <li><b data-t>Hesap özeti</b><span data-t>Net sonuç, kazanma oranı, kâr faktörü, azami düşüş ve bakiye eğrisi.</span></li>

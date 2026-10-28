@@ -272,6 +272,13 @@ h3.bosluk{margin-top:14px;margin-bottom:6px}
 .analiz .nasil{margin:10px 0 0;font-size:13px;color:var(--text-dim)}
 .analiz .nasil summary{cursor:pointer;color:var(--text)}
 .analiz .nasil ol{margin:8px 0 0;padding-left:20px}
+.analiz .nasil p{margin:8px 0 0}
+.analiz .nasil .satir-dugme{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.analiz .sablon-kurallar{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.analiz .sablon-kurallar code,.analiz .satir-rapor code{font-family:var(--mono);font-size:12px}
+.analiz .satir-rapor{margin:8px 0 0;padding:10px 12px;border:1px solid var(--border-2);border-radius:8px;font-size:13px;max-height:260px;overflow:auto;overflow-wrap:anywhere}
+.analiz .satir-rapor p{margin:0 0 6px}
+.analiz .satir-rapor ul{margin:0;padding-left:18px}
 .analiz .icgoru-izgara{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .analiz .icgoru{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
 .analiz .icgoru li{font-size:13px;line-height:1.45;background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px}

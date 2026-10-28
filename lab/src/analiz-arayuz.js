@@ -4,8 +4,8 @@
 import './dil-analiz.js';
 import { t as ceviri, yerel, sayfayiCevir } from './dil.js';
 import { kacis } from './guvenlik.js';
-import { raporuOku, baytlariMetneCevir } from './analiz/mt5-rapor.js';
-import { csvdenHesap, CSV_ALANLARI } from './analiz/csv-ice.js';
+import { CSV_ALANLARI } from './analiz/csv-ice.js';
+import { dosyadanHesap, tablodan } from './analiz/ice-aktar.js';
 import { koprudenHesap } from './analiz/model.js';
 import { analizMotoru, BOYUTLAR, OLCULER } from './analiz/hesap.js';
 import { propDegerlendir, ON_AYARLAR } from './analiz/prop.js';
@@ -41,40 +41,69 @@ async function dosyaOku(dosya) {
   if (!dosya) return;
   if (dosya.size > EN_BUYUK_DOSYA) { durum(ceviri('Dosya çok büyük (en çok 50 MB).'), true); return; }
   durum(ceviri('Okunuyor…'));
+  satirRaporu(null);
+  let s;
   try {
-    const bayt = new Uint8Array(await dosya.arrayBuffer());
-    let h = await raporuOku(dosya.name, bayt);
-    if (!h) {
-      const r = csvdenHesap(baytlariMetneCevir(bayt));
-      if (!r.hesap) { csvEslesmeGoster(baytlariMetneCevir(bayt), r); durum(ceviri('CSV sütunları tanınamadı. Aşağıdan eşleştir.'), true); return; }
-      h = r.hesap;
-    }
-    yukle(h);
+    s = await dosyadanHesap(dosya.name, new Uint8Array(await dosya.arrayBuffer()));
   } catch {
     durum(ceviri('Dosya okunamadı. MT5 raporunu HTML olarak kaydedip yeniden dene.'), true);
+    return;
   }
+  sonucuIsle(s);
 }
 
-function csvEslesmeGoster(metin, r) {
+function sonucuIsle(s) {
+  if (s.tur === 'eslesme') {
+    csvEslesmeGoster(s.satirlar, s.rapor);
+    durum(ceviri('Sütunlar tanınamadı. Aşağıdan eşleştir ya da şablonu kullan.'), true);
+    return;
+  }
+  if (s.tur === 'bos') {
+    satirRaporu(s.rapor);
+    durum(s.rapor
+      ? ceviri('Okunabilen işlem satırı yok. Aşağıdaki satır hatalarına bak.')
+      : ceviri('Kapanmış pozisyon bulunamadı. MT5 Geçmiş sekmesinde Pozisyonlar görünümünü seçip raporu öyle kaydet.'), true);
+    return;
+  }
+  if (s.rapor?.onerilenUtcFarki !== null && s.rapor?.onerilenUtcFarki !== undefined && Number.isInteger(s.rapor.onerilenUtcFarki)) {
+    utcFark = s.rapor.onerilenUtcFarki;
+    $('#utc-fark').value = String(utcFark);
+    depoYaz(DEPO.utc, String(utcFark));
+  }
+  yukle(s.hesap, s.rapor);
+}
+
+// Tablo içe aktarımının satır raporu: "N satır alındı, M satır atlandı" + atlanan satırlar.
+function satirRaporu(r) {
+  const kutu = $('#satir-rapor');
+  if (!r || (!r.hatalar.length && !r.sentetik)) { kutu.hidden = true; kutu.innerHTML = ''; return; }
+  const ilk = r.hatalar.slice(0, 50);
+  const uyari = r.sentetik ? `<p class="negatif">${kacis(ceviri('{n} satır SYNTHETIC olarak etiketli. Şablondaki örnek satırları silmeyi unutma.', { n: r.sentetik }))}</p>` : '';
+  const liste = ilk.length ? `<p>${kacis(ceviri('Atlanan satırlar:'))}</p><ul>${ilk.map(h => `<li>${kacis(ceviri('Satır {no}', { no: h.satir }))}: <code>${kacis(h.alan)}</code> ${kacis(ceviri(h.neden))}</li>`).join('')}</ul>${r.hatalar.length > ilk.length ? `<p>${kacis(ceviri('ve {n} satır daha.', { n: r.hatalar.length - ilk.length }))}</p>` : ''}` : '';
+  kutu.innerHTML = uyari + liste;
+  kutu.hidden = false;
+}
+
+function csvEslesmeGoster(satirlar, r) {
   const kutu = $('#csv-eslesme');
-  const ADLAR = { acilisZamani: 'Açılış zamanı', kapanisZamani: 'Kapanış zamanı', sembol: 'Sembol', yon: 'Yön', lot: 'Lot', acilisFiyati: 'Açılış fiyatı', kapanisFiyati: 'Kapanış fiyatı', sl: 'S/L', tp: 'T/P', komisyon: 'Komisyon', swap: 'Swap', kar: 'Kâr (brüt)', net: 'Net kâr' };
+  const ADLAR = { acilisZamani: 'Açılış zamanı', kapanisZamani: 'Kapanış zamanı', sembol: 'Sembol', yon: 'Yön', lot: 'Lot', acilisFiyati: 'Açılış fiyatı', kapanisFiyati: 'Kapanış fiyatı', sl: 'S/L', tp: 'T/P', komisyon: 'Komisyon', swap: 'Swap', kar: 'Kâr (brüt)', net: 'Net kâr', ofset: 'UTC farkı', para: 'Hesap para birimi', bilet: 'İşlem no', satirTuru: 'Satır türü', strateji: 'Strateji', etiket: 'Etiket', not: 'Not' };
   const secenek = (sec) => `<option value="-1">${kacis(ceviri('Yok'))}</option>` + r.basliklar.map((b, i) => `<option value="${kacis(i)}"${sec === i ? ' selected' : ''}>${kacis(b || `#${i + 1}`)}</option>`).join('');
   kutu.innerHTML = `<div class="csv-izgara">${CSV_ALANLARI.map(a => `<label class="secici"><span>${kacis(ceviri(ADLAR[a]))}</span><select data-alan="${kacis(a)}">${secenek(r.eslesme[a])}</select></label>`).join('')}</div>
     <button type="button" class="kucuk" id="csv-uygula">${kacis(ceviri('Eşleşmeyi uygula'))}</button>`;
   kutu.hidden = false;
   $('#csv-uygula').onclick = () => {
     const e = {};
-    for (const s of kutu.querySelectorAll('select[data-alan]')) e[s.dataset.alan] = Number(s.value);
-    const r2 = csvdenHesap(metin, e);
-    if (!r2.hesap) { durum(ceviri('Eksik zorunlu sütun: {liste}.', { liste: r2.eksik.map(k => ceviri(ADLAR[k] ?? k)).join(', ') }), true); return; }
+    for (const sec of kutu.querySelectorAll('select[data-alan]')) e[sec.dataset.alan] = Number(sec.value);
+    const s2 = tablodan(satirlar, r.hesap?.kaynak ?? 'csv', e);
+    if (s2.tur === 'eslesme') { durum(ceviri('Eksik zorunlu sütun: {liste}.', { liste: s2.rapor.eksik.map(k => ceviri(ADLAR[k] ?? k)).join(', ') }), true); return; }
     kutu.hidden = true;
-    yukle(r2.hesap);
+    sonucuIsle(s2);
   };
 }
 
-const KAYNAK_ADI = { 'mt5-html': 'MT5 raporu (HTML)', 'mt5-xlsx': 'MT5 raporu (XLSX)', kopru: 'Kalibre Bridge', csv: 'CSV', ornek: 'SENTETİK örnek' };
+const KAYNAK_ADI = { 'mt5-html': 'MT5 raporu (HTML)', 'mt5-xlsx': 'MT5 raporu (XLSX)', kopru: 'Kalibre Bridge', csv: 'Kendi tablon (CSV)', xlsx: 'Kendi tablon (XLSX)', ornek: 'SENTETİK örnek' };
 
-function yukle(h) {
+function yukle(h, rapor = null) {
   if (!h.islemler.length) {
     durum(ceviri('Kapanmış pozisyon bulunamadı. MT5 Geçmiş sekmesinde Pozisyonlar görünümünü seçip raporu öyle kaydet.'), true);
     return;
@@ -87,7 +116,10 @@ function yukle(h) {
   $('#sentetik-bant').hidden = h.kaynak !== 'ornek';
   $('#ust-sentetik').hidden = h.kaynak !== 'ornek';
   $('#bos-durum').hidden = true;
-  durum(ceviri('{n} kapanmış işlem okundu.', { n: h.islemler.length.toLocaleString(yerel) }) + (h.atlanan ? ' ' + ceviri('{n} satır okunamadı ve atlandı.', { n: h.atlanan }) : ''));
+  satirRaporu(rapor);
+  durum(rapor
+    ? ceviri('{n} satır alındı, {m} satır atlandı.', { n: rapor.okunan.toLocaleString(yerel), m: rapor.atlanan.toLocaleString(yerel) })
+    : ceviri('{n} kapanmış işlem okundu.', { n: h.islemler.length.toLocaleString(yerel) }) + (h.atlanan ? ' ' + ceviri('{n} satır okunamadı ve atlandı.', { n: h.atlanan }) : ''));
   hesapla();
 }
 

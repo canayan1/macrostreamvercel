@@ -136,7 +136,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 
 <h2 id="features">Features</h2>
 <ul class="ozellik">
-  <li><b>MT5 report, CSV and Kalibre Bridge</b> <span class="durum-et var">In beta</span><br>MT5 HTML and Open XML reports, CSV with column mapping, and 90 days of trade history from the Bridge.</li>
+  <li><b>MT5 report, your own spreadsheet and Kalibre Bridge</b> <span class="durum-et var">In beta</span><br>MT5 HTML and Open XML reports, Excel and CSV with the template or column mapping, and 90 days of trade history from the Bridge.</li>
   <li><b>Segments and breakdowns</b> <span class="durum-et var">In beta</span><br>Symbol, open hour, weekday, session, direction, holding time, trade size, previous trade result and losing streak.</li>
   <li><b>Prop limits</b> <span class="durum-et var">In beta</span><br>Daily and max floors from closed-trade balance. A history report has no intraday equity.</li>
   <li><b>Saved views</b> <span class="durum-et var">In beta</span><br>Views are stored in this browser.</li>
@@ -146,11 +146,20 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 
 <h2 id="your-data">What happens to your data</h2>
 <ul class="gizlilik-gercek">
-  <li>The report file is read in your browser and is not sent to Kalibre servers.</li>
+  <li>The report or spreadsheet file is read in your browser and is not sent to Kalibre servers.</li>
   <li>Only the account currency is read from the report header. Your account number and name are not read or stored.</li>
   <li>Saved views stay in this browser and do not contain your trades.</li>
   <li>If you use Kalibre Bridge, data travels from MT5 to your browser encrypted. Details are on the <a href="/security">security page</a>.</li>
 </ul>
+
+<h2 id="import-your-log">Import your own trade log</h2>
+<p>If you keep your trades in Excel or another spreadsheet, download the template, write one closed trade per row and drop the file into Trade Analytics. The same analysis runs on it.</p>
+<ul>
+  <li><b>Required columns:</b> open_time, close_time, symbol, side (buy or sell), volume, open_price, close_price, profit (before commission and swap).</li>
+  <li><b>Optional:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
+  <li>Every row that cannot be read is listed with its row number and the reason. Formulas are not run.</li>
+</ul>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Download template (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Download template (CSV)</a></div>
 
 <h2 id="pricing">Planned pricing</h2>
 <div class="plan">
@@ -159,7 +168,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
     <p class="fiyat"><span class="sayi" data-fiyat-ay>$19</span> / month</p>
   </div>
   <ul>
-    <li>MT5 report, CSV and Kalibre Bridge</li>
+    <li>MT5 report, Excel/CSV and Kalibre Bridge</li>
     <li>Segments, breakdowns and prop limits</li>
     <li>Saved views</li>
     <li>Replay and weekly report (planned)</li>
@@ -195,7 +204,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
   <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Close</button></div>
 </dialog>
     </article>
-    <aside class="belge-kenar" aria-label="On this page"><a href="#how-it-works">How it works</a><a href="#what-you-see">What you see</a><a href="#features">Features</a><a href="#your-data">What happens to your data</a><a href="#pricing">Planned pricing</a><a href="#faq">Questions</a></aside>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#how-it-works">How it works</a><a href="#what-you-see">What you see</a><a href="#features">Features</a><a href="#your-data">What happens to your data</a><a href="#import-your-log">Import your own trade log</a><a href="#pricing">Planned pricing</a><a href="#faq">Questions</a></aside>
   </div>
 </main>
 

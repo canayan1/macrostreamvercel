@@ -98,18 +98,25 @@ export async function zipOku(bayt) {
 
 const sutunNo = ref => { let n = 0; for (const c of ref.replace(/\d+/g, '')) n = n * 26 + (c.charCodeAt(0) - 64); return n - 1; };
 
-export async function xlsxSatirlari(bayt) {
-  const z = await zipOku(bayt);
+async function paylasilanOku(z) {
   const paylasilan = [];
   const ss = await z.metin('xl/sharedStrings.xml');
   if (ss) for (const si of ss.matchAll(/<si\b[^>]*>([\s\S]*?)<\/si>/g)) paylasilan.push(varlikCoz([...si[1].matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map(m => m[1]).join('')));
-  const sayfaAdi = z.adlar.filter(a => /^xl\/worksheets\/sheet\d+\.xml$/.test(a)).sort()[0];
-  if (!sayfaAdi) throw new Error('xlsx');
-  const xml = await z.metin(sayfaAdi);
+  return paylasilan;
+}
+
+// Bir çalışma sayfasının satırları. Her satır dizisinin `no` özelliği sayfadaki satır numarasıdır
+// (1'den başlar; boş satırlar atlanır ama numaralar kaymaz). Formül hücrelerinde yalnız
+// kaydedilmiş sonuç (<v>) okunur; formül hesaplanmaz.
+function sayfaSatirlari(xml, paylasilan) {
   const satirlar = [];
-  for (const r of xml.matchAll(/<row\b[^>]*>([\s\S]*?)<\/row>/g)) {
+  let sira = 0;
+  for (const r of xml.matchAll(/<row\b([^>]*)>([\s\S]*?)<\/row>/g)) {
+    sira++;
+    const no = Number((r[1].match(/\br="(\d+)"/) || [])[1]) || sira;
+    sira = no;
     const hucre = [];
-    for (const c of r[1].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
+    for (const c of r[2].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
       const ref = (c[1].match(/\br="([A-Z]+\d+)"/) || [])[1];
       const tip = (c[1].match(/\bt="(\w+)"/) || [])[1];
       const ic = c[2] ?? '';
@@ -118,12 +125,48 @@ export async function xlsxSatirlari(bayt) {
       else if (tip === 'inlineStr') deger = varlikCoz([...ic.matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map(m => m[1]).join(''));
       else deger = varlikCoz((ic.match(/<v>([\s\S]*?)<\/v>/) || [])[1] ?? '');
       const i = ref ? sutunNo(ref) : hucre.length;
-      hucre[i] = deger.replace(/[\s ]+/g, ' ').trim();
+      hucre[i] = deger.replace(/[\s\u00a0]+/g, ' ').trim();
     }
     for (let i = 0; i < hucre.length; i++) if (hucre[i] === undefined) hucre[i] = '';
-    if (hucre.some(Boolean)) satirlar.push(hucre);
+    if (hucre.some(Boolean)) { hucre.no = no; satirlar.push(hucre); }
   }
   return satirlar;
+}
+
+// Çalışma kitabındaki sayfalar, kitaptaki sırayla: [{ ad, yol }].
+async function sayfaListesi(z) {
+  const kitap = await z.metin('xl/workbook.xml');
+  const iliski = await z.metin('xl/_rels/workbook.xml.rels');
+  const hedef = new Map();
+  if (iliski) for (const m of iliski.matchAll(/<Relationship\b([^>]*)\/?>/g)) {
+    const id = (m[1].match(/\bId="([^"]+)"/) || [])[1];
+    const t = (m[1].match(/\bTarget="([^"]+)"/) || [])[1];
+    if (id && t) hedef.set(id, t.replace(/^\/?(xl\/)?/, 'xl/'));
+  }
+  const liste = [];
+  if (kitap) for (const m of kitap.matchAll(/<sheet\b([^>]*)\/?>/g)) {
+    const ad = varlikCoz((m[1].match(/\bname="([^"]*)"/) || [])[1] ?? '');
+    const id = (m[1].match(/\br:id="([^"]+)"/) || [])[1];
+    const yol = hedef.get(id);
+    if (yol && z.adlar.includes(yol)) liste.push({ ad, yol });
+  }
+  if (!liste.length) for (const yol of z.adlar.filter(a => /^xl\/worksheets\/sheet\d+\.xml$/.test(a)).sort()) liste.push({ ad: yol, yol });
+  return liste;
+}
+
+// Tüm sayfalar: [{ ad, satirlar }].
+export async function xlsxSayfalari(bayt) {
+  const z = await zipOku(bayt);
+  const paylasilan = await paylasilanOku(z);
+  const sayfalar = [];
+  for (const { ad, yol } of await sayfaListesi(z)) sayfalar.push({ ad, satirlar: sayfaSatirlari(await z.metin(yol), paylasilan) });
+  if (!sayfalar.length) throw new Error('xlsx');
+  return sayfalar;
+}
+
+// İlk sayfanın satırları (MT5 Open XML raporu tek sayfadır).
+export async function xlsxSatirlari(bayt) {
+  return (await xlsxSayfalari(bayt))[0].satirlar;
 }
 
 // ---------------------------------------------------------------- değer çözme

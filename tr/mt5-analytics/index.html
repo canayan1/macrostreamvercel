@@ -136,7 +136,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 
 <h2 id="ozellikler">Özellikler</h2>
 <ul class="ozellik">
-  <li><b>MT5 raporu, CSV ve Kalibre Bridge</b> <span class="durum-et var">Beta'da</span><br>MT5 HTML ve Open XML raporları, sütun eşleştirmeli CSV ve Bridge'in 90 günlük işlem geçmişi.</li>
+  <li><b>MT5 raporu, kendi tablon ve Kalibre Bridge</b> <span class="durum-et var">Beta'da</span><br>MT5 HTML ve Open XML raporları, şablonlu ya da sütun eşleştirmeli Excel ve CSV, Bridge'in 90 günlük işlem geçmişi.</li>
   <li><b>Dilimler ve kırılımlar</b> <span class="durum-et var">Beta'da</span><br>Sembol, açılış saati, gün, seans, yön, pozisyon süresi, işlem boyutu, önceki işlemin sonucu ve kayıp serisi.</li>
   <li><b>Prop sınırları</b> <span class="durum-et var">Beta'da</span><br>Kapanan işlemlerle bakiyeye göre günlük ve azami taban. Geçmiş raporu gün içi varlığı içermez.</li>
   <li><b>Kaydedilen görünümler</b> <span class="durum-et var">Beta'da</span><br>Görünümler bu tarayıcıda saklanır.</li>
@@ -146,11 +146,20 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 
 <h2 id="gizlilik">Verine ne olur</h2>
 <ul class="gizlilik-gercek">
-  <li>Rapor dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
+  <li>Rapor ya da tablo dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
   <li>Rapor başlığından yalnız hesap para birimi okunur. Hesap numaran ve adın okunmaz, saklanmaz.</li>
   <li>Kaydettiğin görünümler bu tarayıcıda saklanır ve işlemlerini içermez.</li>
   <li>Kalibre Bridge kullanırsan veri MT5'ten tarayıcına şifreli gelir. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</li>
 </ul>
+
+<h2 id="kendi-kaydin">Kendi işlem kaydını içe aktar</h2>
+<p>İşlemlerini Excel'de ya da başka bir tabloda tutuyorsan şablonu indir, her kapanmış işlemi bir satıra yaz ve dosyayı İşlem Analizi sayfasına bırak. Aynı analizler çalışır.</p>
+<ul>
+  <li><b>Zorunlu sütunlar:</b> open_time, close_time, symbol, side (buy ya da sell), volume, open_price, close_price, profit (komisyon ve swap hariç).</li>
+  <li><b>İsteğe bağlı:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
+  <li>Okunamayan her satır, satır numarası ve nedeniyle listelenir. Formüller çalıştırılmaz.</li>
+</ul>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Şablonu indir (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Şablonu indir (CSV)</a></div>
 
 <h2 id="pricing">Planlanan fiyat</h2>
 <div class="plan">
@@ -159,7 +168,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
     <p class="fiyat"><span class="sayi" data-fiyat-ay>19 $</span> / ay</p>
   </div>
   <ul>
-    <li>MT5 raporu, CSV ve Kalibre Bridge</li>
+    <li>MT5 raporu, Excel/CSV ve Kalibre Bridge</li>
     <li>Dilimler, kırılımlar ve prop sınırları</li>
     <li>Kaydedilen görünümler</li>
     <li>Replay ve haftalık rapor (planlanıyor)</li>
@@ -195,7 +204,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
   <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
 </dialog>
     </article>
-    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#nasil-calisir">Nasıl çalışır</a><a href="#ne-gorursun">Ne görürsün</a><a href="#ozellikler">Özellikler</a><a href="#gizlilik">Verine ne olur</a><a href="#pricing">Planlanan fiyat</a><a href="#sss">Sık sorulanlar</a></aside>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#nasil-calisir">Nasıl çalışır</a><a href="#ne-gorursun">Ne görürsün</a><a href="#ozellikler">Özellikler</a><a href="#gizlilik">Verine ne olur</a><a href="#kendi-kaydin">Kendi işlem kaydını içe aktar</a><a href="#pricing">Planlanan fiyat</a><a href="#sss">Sık sorulanlar</a></aside>
   </div>
 </main>
 

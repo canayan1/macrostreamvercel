@@ -214,7 +214,7 @@ def mt5_analytics(dil):
 
 <h2 id="ozellikler">Özellikler</h2>
 <ul class="ozellik">
-  <li><b>MT5 raporu, CSV ve Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML ve Open XML raporları, sütun eşleştirmeli CSV ve Bridge'in 90 günlük işlem geçmişi.</li>
+  <li><b>MT5 raporu, kendi tablon ve Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML ve Open XML raporları, şablonlu ya da sütun eşleştirmeli Excel ve CSV, Bridge'in 90 günlük işlem geçmişi.</li>
   <li><b>Dilimler ve kırılımlar</b> {et("var", dil)}<br>Sembol, açılış saati, gün, seans, yön, pozisyon süresi, işlem boyutu, önceki işlemin sonucu ve kayıp serisi.</li>
   <li><b>Prop sınırları</b> {et("var", dil)}<br>Kapanan işlemlerle bakiyeye göre günlük ve azami taban. Geçmiş raporu gün içi varlığı içermez.</li>
   <li><b>Kaydedilen görünümler</b> {et("var", dil)}<br>Görünümler bu tarayıcıda saklanır.</li>
@@ -224,13 +224,22 @@ def mt5_analytics(dil):
 
 <h2 id="gizlilik">Verine ne olur</h2>
 <ul class="gizlilik-gercek">
-  <li>Rapor dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
+  <li>Rapor ya da tablo dosyası tarayıcında okunur ve Kalibre sunucularına gönderilmez.</li>
   <li>Rapor başlığından yalnız hesap para birimi okunur. Hesap numaran ve adın okunmaz, saklanmaz.</li>
   <li>Kaydettiğin görünümler bu tarayıcıda saklanır ve işlemlerini içermez.</li>
   <li>Kalibre Bridge kullanırsan veri MT5'ten tarayıcına şifreli gelir. Ayrıntılar <a href="/tr/security">güvenlik sayfasında</a>.</li>
 </ul>
+
+<h2 id="kendi-kaydin">Kendi işlem kaydını içe aktar</h2>
+<p>İşlemlerini Excel'de ya da başka bir tabloda tutuyorsan şablonu indir, her kapanmış işlemi bir satıra yaz ve dosyayı İşlem Analizi sayfasına bırak. Aynı analizler çalışır.</p>
+<ul>
+  <li><b>Zorunlu sütunlar:</b> open_time, close_time, symbol, side (buy ya da sell), volume, open_price, close_price, profit (komisyon ve swap hariç).</li>
+  <li><b>İsteğe bağlı:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
+  <li>Okunamayan her satır, satır numarası ve nedeniyle listelenir. Formüller çalıştırılmaz.</li>
+</ul>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Şablonu indir (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Şablonu indir (CSV)</a></div>
 '''
-        maddeler = ["MT5 raporu, CSV ve Kalibre Bridge", "Dilimler, kırılımlar ve prop sınırları", "Kaydedilen görünümler", "Replay ve haftalık rapor (planlanıyor)"]
+        maddeler = ["MT5 raporu, Excel/CSV ve Kalibre Bridge", "Dilimler, kırılımlar ve prop sınırları", "Kaydedilen görünümler", "Replay ve haftalık rapor (planlanıyor)"]
         sss = '''
 <h2 id="sss">Sık sorulanlar</h2>
 <ul>
@@ -271,7 +280,7 @@ def mt5_analytics(dil):
 
 <h2 id="features">Features</h2>
 <ul class="ozellik">
-  <li><b>MT5 report, CSV and Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML and Open XML reports, CSV with column mapping, and 90 days of trade history from the Bridge.</li>
+  <li><b>MT5 report, your own spreadsheet and Kalibre Bridge</b> {et("var", dil)}<br>MT5 HTML and Open XML reports, Excel and CSV with the template or column mapping, and 90 days of trade history from the Bridge.</li>
   <li><b>Segments and breakdowns</b> {et("var", dil)}<br>Symbol, open hour, weekday, session, direction, holding time, trade size, previous trade result and losing streak.</li>
   <li><b>Prop limits</b> {et("var", dil)}<br>Daily and max floors from closed-trade balance. A history report has no intraday equity.</li>
   <li><b>Saved views</b> {et("var", dil)}<br>Views are stored in this browser.</li>
@@ -281,13 +290,22 @@ def mt5_analytics(dil):
 
 <h2 id="your-data">What happens to your data</h2>
 <ul class="gizlilik-gercek">
-  <li>The report file is read in your browser and is not sent to Kalibre servers.</li>
+  <li>The report or spreadsheet file is read in your browser and is not sent to Kalibre servers.</li>
   <li>Only the account currency is read from the report header. Your account number and name are not read or stored.</li>
   <li>Saved views stay in this browser and do not contain your trades.</li>
   <li>If you use Kalibre Bridge, data travels from MT5 to your browser encrypted. Details are on the <a href="/security">security page</a>.</li>
 </ul>
+
+<h2 id="import-your-log">Import your own trade log</h2>
+<p>If you keep your trades in Excel or another spreadsheet, download the template, write one closed trade per row and drop the file into Trade Analytics. The same analysis runs on it.</p>
+<ul>
+  <li><b>Required columns:</b> open_time, close_time, symbol, side (buy or sell), volume, open_price, close_price, profit (before commission and swap).</li>
+  <li><b>Optional:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
+  <li>Every row that cannot be read is listed with its row number and the reason. Formulas are not run.</li>
+</ul>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Download template (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Download template (CSV)</a></div>
 '''
-        maddeler = ["MT5 report, CSV and Kalibre Bridge", "Segments, breakdowns and prop limits", "Saved views", "Replay and weekly report (planned)"]
+        maddeler = ["MT5 report, Excel/CSV and Kalibre Bridge", "Segments, breakdowns and prop limits", "Saved views", "Replay and weekly report (planned)"]
         sss = '''
 <h2 id="faq">Questions</h2>
 <ul>
