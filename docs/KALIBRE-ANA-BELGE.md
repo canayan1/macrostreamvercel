@@ -1,6 +1,6 @@
 # Kalibre Markets ana belge
 
-Son güncelleme: 28 Ekim 2026 (İşlem Analizi MVP sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
+Son güncelleme: 30 Ekim 2026 (yeni site, Excel/CSV şablonu, FX Blotter Analytics sonrası). Bu belge projenin tek özetidir. Her önemli aşamadan sonra
 güncellenir. Ayrıntılar bağlantı verilen belgelerdedir. Bu dosya `docs/` altında olduğu için
 canlı siteye yüklenmez.
 
@@ -25,6 +25,11 @@ Kural (Can): talep görülmeden yeni ürün geliştirilmez. Talep analizi: `repo
   - Stripe "Funded prop trading" işini yasaklıyor. "Investment services" kısıtlı, yazılı onay alınmalı.
 
 MVP (28.10.2026): **İşlem Analizi** (`/analytics`, lab/analiz.html). MT5 geçmiş raporu (HTML/XLSX), Bridge ya da CSV okunur. Gösterilenler: özet, kazanılan ve kaybedilen durumlar, prop sınırları, kaydedilen kendi görünümün. Hepsi tarayıcıda çalışır, hesap gerekmez. Model: kalibre-lab `docs/analiz-modeli.md`. Sırada kurucunun gerçek MT5 raporuyla denemesi var, ardından müşteri bulma.
+Ek (30.10.2026):
+- Excel/CSV işlem kaydı şablonu v1 (`/lab/sablon/`).
+- **FX Blotter Analytics** (`/lab/blotter`, şartname kalibre-lab `docs/fx-blotter-spec.md`; kurucu yanıtları bölüm 9). Blotter olduğu gibi okunur. FIFO ve ortalama maliyet hesaplanır, fiyat ve puan ayrı. Taşıma, MTM, pozisyon, limitler, valör merdiveni, marj, tek tıkla ayrıntı ve 7 kontrollü mutabakat paneli var. 409 lab testi geçiyor. Fırsat maliyeti tanımı kurucu onayını bekliyor.
+- Yeni site tasarımı (Stripe, Linear ve TradingView örneklerinin birleşimi; `yerel/pitch-uret.py`): Products ve Solutions menüleri, /treasury, /company. Önizlemede, "canlıya al" onayı bekliyor.
+- Rakip analizi: `reports/Trade Analytics rakip analizi.md`.
 Planlar ücretsiz kalır (Vercel Hobby, Supabase free, Resend free, Upstash free). Talep ve çalışan bir değer hattı olmadan genişleme yapılmaz.
 Çalışma klasörleri `/private/tmp` altında tutulmaz, çünkü macOS 3 günden eski dosyaları siliyor.
 
@@ -240,7 +245,7 @@ Biten (urun-sitesi, canlıda değil):
 - Aşama D
 - Kurumsal araştırma
 
-Son önizleme: https://macrostreamvercel-19uhq0wtj-canayan1s-projects.vercel.app
+Son önizleme: https://macrostreamvercel-k7npwh9av-canayan1s-projects.vercel.app
 
 Kurucunun yapacakları:
 1. Supabase: eski projelerden birini duraklat, Frankfurt'ta yeni proje aç. Sonra SQL, giriş ayarları,
