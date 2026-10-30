@@ -239,7 +239,7 @@ YOLLAR = {"tr": {"signIn": "/tr/sign-in", "account": "/tr/account", "pricing": "
 def yol_etiketleri(dil):
     return "".join(f'<meta name="kalibre:yol:{k}" content="{v}">\n' for k, v in YOLLAR[dil].items())
 
-def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik="", gizli=False, dil="tr"):
+def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik="", gizli=False, dil="tr", hero=""):
     url = yol_url(yol)
     kanon = "https://kalibremarkets.com" + url
     diger = (ESLER_TERS.get(url) if dil == "en" else ESLER.get(url))
@@ -277,8 +277,8 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 <body>
 
 {gnav(aktif, dil, diger)}
-
-<main class="doc">
+{hero}
+<main class="doc{" after-hero" if hero else ""}">
   <div class="doc-grid">
     <article class="doc-body">
 {govde}
@@ -300,6 +300,91 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 
 def icindekiler(govde):
     return "".join(f'<a href="#{i}">{t}</a>' for i, t in re.findall(r'<h2 id="([^"]+)">([^<]+)</h2>', govde))
+
+# ------------------------------------------------------------------ page hero (shared by every top-level page)
+def page_hero(h1, sub, actions, media, kicker="", media_cls=""):
+    """Short headline, one line of copy, actions, then the page's main visual inside the first screen."""
+    k = f'<span class="kicker">{kicker}</span>' if kicker else ""
+    a = f'<div class="actions">{actions}</div>' if actions else ""
+    return (f'<section class="hero page-hero"><div class="wrap">{k}<h1 class="display">{h1}</h1><p class="sub">{sub}</p>{a}</div>'
+            f'<div class="page-hero-media {media_cls}">{media}</div></section>')
+
+def hero_image(name, lang, alt):
+    """Composited product render from yerel/hero-render.mjs, installed in static/urun/hero."""
+    base = f"/static/urun/hero/{name}-{lang}"
+    return (f'<picture><source type="image/webp" srcset="{base}-1x.webp 1440w, {base}-2x.webp 2880w" sizes="(max-width: 1240px) 100vw, 1240px">'
+            f'<img src="{base}.png" width="2880" height="1720" alt="{alt}" fetchpriority="high" decoding="async"></picture>')
+
+def flow_diagram(columns, label, note=""):
+    """Cards joined by arrows. Two drawings: wide for desktop, stacked for phones (site.css shows one).
+    columns: [{"title", "tag" (optional), "items": [...], "accent": bool}]"""
+    sans, mono = "Inter Tight, Helvetica, sans-serif", "Geist Mono, ui-monospace, monospace"
+    rows = max(len(c["items"]) for c in columns)
+    tagged = any(c.get("tag") for c in columns)
+    head = 78 if tagged else 58
+    ch = head + 42 * rows + 8
+    def card(x, y, w, c):
+        stroke = "#ffa630" if c.get("accent") else "#3a332a"
+        out = f'<rect x="{x:.0f}" y="{y}" width="{w:.0f}" height="{ch}" rx="14" fill="#1a1612" stroke="{stroke}" stroke-width="1.5"/>'
+        out += f'<text x="{x + 22:.0f}" y="{y + 38}" fill="#ebe3d3" font-size="21" font-weight="600" font-family="{sans}">{c["title"]}</text>'
+        if c.get("tag"):
+            out += f'<text x="{x + 22:.0f}" y="{y + 62}" fill="#ffa630" font-size="13" font-family="{mono}">// {c["tag"]}</text>'
+        for i, item in enumerate(c["items"]):
+            iy = y + head + 42 * i
+            out += (f'<rect x="{x + 14:.0f}" y="{iy}" width="{w - 28:.0f}" height="34" rx="8" fill="#100e0c" stroke="#26221d"/>'
+                    f'<circle cx="{x + 30:.0f}" cy="{iy + 17}" r="3.5" fill="{"#ffa630" if c.get("accent") else "#6f6553"}"/>'
+                    f'<text x="{x + 44:.0f}" y="{iy + 22}" fill="#a89c83" font-size="15" font-family="{sans}">{item}</text>')
+        return out
+    arrow = lambda mid: f'<marker id="{mid}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffa630"/></marker>'
+    # wide
+    W, gap, top = 1100, 84, 8
+    cw = (W - gap * (len(columns) - 1)) / len(columns)
+    wide = "".join(card(i * (cw + gap), top, cw, c) for i, c in enumerate(columns))
+    for i in range(len(columns) - 1):
+        x1 = (i + 1) * cw + i * gap + 8
+        wide += f'<line x1="{x1:.0f}" x2="{x1 + gap - 18:.0f}" y1="{top + ch / 2:.0f}" y2="{top + ch / 2:.0f}" stroke="#ffa630" stroke-width="2" marker-end="url(#fa-w)"/>'
+    H = top + ch + 8
+    if note:
+        ny = top + ch + 46
+        x0, x1 = cw / 2, (len(columns) - 1) * (cw + gap) + cw / 2
+        wide += (f'<path d="M{x0:.0f},{top + ch} V{ny} H{x1:.0f} V{top + ch}" fill="none" stroke="#a89c83" stroke-width="1.5" stroke-dasharray="5 5"/>'
+                 f'<rect x="{W / 2 - 330:.0f}" y="{ny - 18}" width="660" height="36" rx="18" fill="#100e0c" stroke="#3a332a"/>'
+                 f'<text x="{W / 2:.0f}" y="{ny + 5}" text-anchor="middle" fill="#ebe3d3" font-size="15" font-family="{sans}">{note}</text>')
+        H = ny + 26
+    # stacked
+    TW, tgap = 360, 52
+    tall = "".join(card(0, i * (ch + tgap) + 2, TW, c) for i, c in enumerate(columns))
+    for i in range(len(columns) - 1):
+        y1 = (i + 1) * ch + i * tgap + 10
+        tall += f'<line x1="{TW // 2}" x2="{TW // 2}" y1="{y1}" y2="{y1 + tgap - 18}" stroke="#ffa630" stroke-width="2" marker-end="url(#fa-t)"/>'
+    TH = len(columns) * (ch + tgap) - tgap + 4
+    if note:
+        TH += 18
+        tall += f'<foreignObject x="0" y="{TH}" width="{TW}" height="80"><p xmlns="http://www.w3.org/1999/xhtml" style="margin:0;padding:10px 14px;border:1.5px dashed #6f6553;border-radius:14px;color:#ebe3d3;font:15px/1.35 {sans}">{note}</p></foreignObject>'
+        TH += 84
+    return (f'<figure class="flow" role="img" aria-label="{label}">'
+            f'<svg class="flow-wide" viewBox="-2 0 {W + 4} {H}" aria-hidden="true"><defs>{arrow("fa-w")}</defs>{wide}</svg>'
+            f'<svg class="flow-tall" viewBox="-2 0 {TW + 4} {TH}" aria-hidden="true"><defs>{arrow("fa-t")}</defs>{tall}</svg></figure>')
+
+def security_flow(lang):
+    tr = lang == "tr"
+    cols = [{"title": "MetaTrader 5", "tag": "Kalibre Bridge", "items": ["Şifreler: AES-256-CTR", "İmzalar: HMAC-SHA256"] if tr else ["Encrypts: AES-256-CTR", "Signs: HMAC-SHA256"]},
+            {"title": "Röle sunucusu" if tr else "Relay server", "tag": "kalibremarkets.com", "items": ["Yalnız şifreli paket tutar", "2 saat içinde siler"] if tr else ["Holds ciphertext only", "Deletes within 2 hours"]},
+            {"title": "Tarayıcın" if tr else "Your browser", "tag": "Kalibre Lab", "items": ["İmzayı doğrular", "Çözer ve gösterir"] if tr else ["Checks the signature", "Decrypts and shows"], "accent": True}]
+    note = ("Eşleştirme kodu: MT5'te ve tarayıcında kalır, sunucularımıza gönderilmez" if tr else
+            "Pairing code: kept in MT5 and your browser, never sent to our servers")
+    label = ("MT5 verisi terminalde şifrelenir, röle yalnız şifreli paketi tutar, tarayıcın doğrulayıp çözer" if tr else
+             "MT5 data is encrypted in the terminal, the relay holds only ciphertext, your browser verifies and decrypts it")
+    return flow_diagram(cols, label, note)
+
+def security_hero(lang):
+    tr = lang == "tr"
+    return page_hero(T_(lang, "Encrypted before it leaves MT5.", "MT5'ten çıkmadan şifreli."),
+                     T_(lang, "Our relay carries your MT5 data. It cannot read it.", "Rölemiz MT5 verini taşır. Okuyamaz."),
+                     "", security_flow(lang), media_cls="diagram")
+
+def T_(lang, en, tr):
+    return tr if lang == "tr" else en
 
 # ------------------------------------------------------------------ kurulum
 KURULUM = '''
@@ -459,7 +544,7 @@ GUVENLIK = '''
 </ul>
 <p>Bir güvenlik açığı bildirmek için <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yaz.</p>
 '''
-sayfa("tr/security/index.html", "Güvenlik: Kalibre Lab", "Kalibre Bridge MetaTrader 5 verisini nasıl şifreler, röle ve lisans sunucularımız neyi alır, korumanın sınırları nelerdir.", "/tr/security", GUVENLIK, icindekiler(GUVENLIK))
+sayfa("tr/security/index.html", "Güvenlik: Kalibre Lab", "Kalibre Bridge MetaTrader 5 verisini nasıl şifreler, röle ve lisans sunucularımız neyi alır, korumanın sınırları nelerdir.", "/tr/security", GUVENLIK.replace("<h1>Güvenlik</h1>\n", "", 1), icindekiler(GUVENLIK), hero=security_hero("tr"))
 
 # ------------------------------------------------------------------ metodoloji
 METODOLOJI = '''
@@ -664,7 +749,8 @@ PRO_ODEME_YEDEK = """<script>
 })();
 </script>"""
 PRO_BETIK = (PRO_BETIK_ACIK + PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else PRO_BETIK_KAPALI
-sayfa("tr/pricing/index.html", "Fiyat: Kalibre Lab", ("Kalibre Lab aboneliği: Kalibre Engine, Prop Kalkanı ve şifreli MT5 veri köprüsü. Aylık 19 USD, istediğin zaman iptal." if ODEME_ACIK else "Kalibre Lab (beta): planlanan lansman fiyatı aylık 19 USD. Bekleme listesine katıl ya da beta erişimi iste."), "/tr/pricing", PRO, ek_stil=PRO_STIL, ek_betik=PRO_BETIK)
+if ODEME_ACIK:  # while payments are closed, yerel/product-pages.py writes the pricing page
+    sayfa("tr/pricing/index.html", "Fiyat: Kalibre Lab", ("Kalibre Lab aboneliği: Kalibre Engine, Prop Kalkanı ve şifreli MT5 veri köprüsü. Aylık 19 USD, istediğin zaman iptal." if ODEME_ACIK else "Kalibre Lab (beta): planlanan lansman fiyatı aylık 19 USD. Bekleme listesine katıl ya da beta erişimi iste."), "/tr/pricing", PRO, ek_stil=PRO_STIL, ek_betik=PRO_BETIK)
 
 # ------------------------------------------------------------------ hesap
 # Giriş (/tr/sign-in) ve Hesabım (/tr/account) sayfaları: yerel/hesap-uret.py (TR + EN).

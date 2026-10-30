@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- Demos hero: three real product screens as overlapping windows (SCREEN_1..3 are replaced by
+     yerel/hero-render.mjs). Rendered at 2x and published as a still image. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; background: #100e0c; }
+  .scene {
+    position: relative; width: 1440px; height: 860px; overflow: hidden;
+    background: radial-gradient(60% 55% at 50% 55%, rgba(255, 166, 48, .24), rgba(255, 122, 0, .07) 58%, transparent 80%), #100e0c;
+  }
+  .win { position: absolute; width: 760px; border-radius: 14px; overflow: hidden; background: #1a1612;
+         box-shadow: 0 0 0 1px #3a332a, 0 40px 90px rgba(0, 0, 0, .7); }
+  .bar { height: 30px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: #221d18; border-bottom: 1px solid #3a332a; }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a332a; }
+  .win img { display: block; width: 100%; aspect-ratio: 1440 / 900; object-fit: cover; object-position: top; }
+  .w1 { left: 70px; top: 150px; transform: rotate(-1.2deg); }
+  .w2 { left: 340px; top: 70px; z-index: 2; width: 800px; }
+  .w3 { right: 70px; top: 200px; z-index: 1; transform: rotate(1.2deg); }
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="win w1"><div class="bar"><i></i><i></i><i></i></div><img src="SCREEN_1" alt=""></div>
+    <div class="win w3"><div class="bar"><i></i><i></i><i></i></div><img src="SCREEN_3" alt=""></div>
+    <div class="win w2"><div class="bar"><i></i><i></i><i></i></div><img src="SCREEN_2" alt=""></div>
+  </div>
+</body>
+</html>

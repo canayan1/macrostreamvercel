@@ -297,3 +297,10 @@ Claude'un yapacakları:
 ### 30.10 ek 6: Ana sayfa girişi
 - Başlık "FX, solved." (TR "FX'i çözüyoruz."), tek satır alt cümle, altında tam genişlik ürün görseli: gerçek FX Blotter ekranı çizilmiş bir dizüstünde (yerel/hero-render.mjs + yerel/hero/hero.html, static/urun/hero/). Yapay zekâ görseli kullanılmadı: uydurma arayüz ve rakam göstermemek için.
 - Ana sayfa metinleri kısaltıldı. Lab'deki "giriş yapılandırılmadı" önizleme notu gizlendi; çerez penceresi orijinal palete alındı.
+
+### 30.10 ek 7: Her sayfada ilk ekranda görsel, ürün sayfaları basitten ayrıntıya
+- Ortak bileşen `page_hero()` (yerel/sayfa-uret.py): kısa başlık, tek satır alt cümle, eylemler ve sayfanın ana görseli ilk ekranda. Üst menüdeki her sayfa bunu kullanır.
+  - Trade Analytics, FX Blotter, Kalibre Lab: gerçek ekranlar dizüstünde (static/urun/hero/<ürün>-<dil>), Demolar: üç ürün penceresi (suite), Rule Guard: prop grafiği.
+  - Security: şifreleme akış diyagramı (MT5 şifreler, röle yalnız şifreli paket tutar, tarayıcı doğrulayıp çözer; eşleştirme kodu sunucuya gitmez). Company: işlem kayıtları, Kalibre Markets, kararlar diyagramı. `flow_diagram()` masaüstü ve telefon için iki çizim üretir.
+  - Pricing yeniden kuruldu (yerel/product-pages.py, ödemeler kapalıyken): dört ürün kartı ilk ekranda, sabit fiyat yok (fiyat testiyle çakışmasın), bekleme listesi formu korunuyor. Ödemeler açılınca (ODEME_ACIK) eski abonelik sayfası yeniden üretilir.
+- Ürün sayfalarının sırası: görsel, üç adım, öne çıkanlar, ayrıntılar (mutabakat, şablon, doğrulama), fiyat ve SSS.

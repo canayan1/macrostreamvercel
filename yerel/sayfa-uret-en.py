@@ -162,7 +162,7 @@ SECURITY = '''
 </ul>
 <p>To report a security issue, email <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>.</p>
 '''
-sayfa("security/index.html", "Security: Kalibre Lab", "How Kalibre Bridge encrypts MetaTrader 5 data, what our relay and license servers receive, and the limits of the protection.", "/security", SECURITY, icindekiler(SECURITY), dil="en")
+sayfa("security/index.html", "Security: Kalibre Lab", "How Kalibre Bridge encrypts MetaTrader 5 data, what our relay and license servers receive, and the limits of the protection.", "/security", SECURITY.replace("<h1>Security</h1>\n", "", 1), icindekiler(SECURITY), dil="en", hero=security_hero("en"))
 
 # ------------------------------------------------------------------ methodology
 METHOD = '''
@@ -336,7 +336,8 @@ PRO_STIL = _tr.split('PRO_STIL = """')[1].split('"""')[0]
 PROP_STIL = _tr.split('PROP_STIL = """')[1].split('"""')[0]
 PRO_ODEME_YEDEK = _tr.split('PRO_ODEME_YEDEK = """')[1].split('"""')[0]
 EN_PRO_BETIK = (EN_PRO_BETIK_ACIK + EN_PRO_BETIK_KAPALI + PRO_ODEME_YEDEK) if ODEME_ACIK else EN_PRO_BETIK_KAPALI
-sayfa("pricing/index.html", "Pricing: Kalibre Lab", ("Kalibre Lab subscription: Kalibre Engine, Prop Shield and the encrypted MT5 data bridge. $19 per month, cancel anytime." if ODEME_ACIK else "Kalibre Lab (beta): planned launch price $19 per month. Join the waitlist or request beta access."), "/pricing", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
+if ODEME_ACIK:  # while payments are closed, yerel/product-pages.py writes the pricing page
+    sayfa("pricing/index.html", "Pricing: Kalibre Lab", ("Kalibre Lab subscription: Kalibre Engine, Prop Shield and the encrypted MT5 data bridge. $19 per month, cancel anytime." if ODEME_ACIK else "Kalibre Lab (beta): planned launch price $19 per month. Join the waitlist or request beta access."), "/pricing", PRICING, ek_stil=PRO_STIL, ek_betik=EN_PRO_BETIK, dil="en")
 
 # ------------------------------------------------------------------ account
 # Sign-in (/sign-in) and Account (/account) pages: yerel/hesap-uret.py (EN + TR).
