@@ -11,7 +11,7 @@ ODEME_ACIK = False  # 25.10.2026: ödemeler şirket kurulana kadar kapalı (bekl
 DURUM = {"beta": ("Beta", "Beta"), "test": ("In testing", "Testte"), "gelis": ("In development", "Geliştiriliyor"), "plan": ("Planned", "Planlanıyor")}
 URUNLER = {
  "en": [
-  ("Analyze", [("Trade Analytics", "beta", "See where your trading makes and loses money.", "/trade-analytics"),
+  ("Analyze", [("Trade Analytics", "beta", "Find what works in your trading.", "/trade-analytics"),
                ("FX Blotter Analytics", "beta", "Realized P&amp;L and positions from your desk's own blotter.", "/fx-blotter")]),
   ("Protect", [("Rule Guard", "test", "Prop firm loss limits, checked on every tick in MT5.", "/rule-guard")]),
   ("Research", [("Kalibre Lab", "beta", "Build rules, backtest them and check settings for overfitting.", "/lab"),
@@ -21,7 +21,7 @@ URUNLER = {
                ("Alpaca and Tradier", "beta", "US brokerage accounts, read-only, with your own keys.", "/lab/connect")]),
  ],
  "tr": [
-  ("Analiz", [("Trade Analytics", "beta", "İşlemlerinin nerede kazandırıp kaybettirdiğini gör.", "/tr/trade-analytics"),
+  ("Analiz", [("Trade Analytics", "beta", "İşlemlerinde neyin işe yaradığını bul.", "/tr/trade-analytics"),
               ("FX Blotter Analytics", "beta", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/fx-blotter")]),
   ("Koru", [("Rule Guard", "test", "Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.", "/tr/rule-guard")]),
   ("Araştır", [("Kalibre Lab", "beta", "Kural kur, backtest et, ayarları aşırı uyuma karşı sına.", "/lab?lang=tr"),
@@ -33,11 +33,11 @@ URUNLER = {
 }
 COZUMLER = {
  "en": [("Prop traders", "Stay inside the firm's daily and total loss limits.", "/rule-guard"),
-        ("Active MT5 traders", "Find the hours, symbols and habits that cost you.", "/trade-analytics"),
+        ("Active MT5 traders", "Find the hours, symbols and habits that work for you.", "/trade-analytics"),
         ("Treasury and dealing desks", "Analyze the FX blotter your desk already keeps.", "/fx-blotter"),
         ("Brokers and prop firms", "Analytics across many accounts. Talk to us.", "/company#partners")],
  "tr": [("Prop trader'lar", "Firmanın günlük ve toplam kayıp sınırları içinde kal.", "/tr/rule-guard"),
-        ("Aktif MT5 trader'ları", "Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.", "/tr/trade-analytics"),
+        ("Aktif MT5 trader'ları", "Sana kazandıran saatleri, sembolleri ve alışkanlıkları bul.", "/tr/trade-analytics"),
         ("Hazine ve dealing masaları", "Masanın zaten tuttuğu FX blotter'ını analiz et.", "/tr/fx-blotter"),
         ("Aracı kurumlar ve prop firmaları", "Çok hesaplı analiz. Bizimle konuşun.", "/tr/company#partners")],
 }

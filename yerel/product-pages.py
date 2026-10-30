@@ -217,7 +217,7 @@ def home(lang):
 <section class="hero home-hero">
   <div class="wrap">
     <h1 class="display">{T(lang, "FX, solved.", "FX'i çözüyoruz.")}</h1>
-    <p class="sub">{T(lang, "See where every trade made or lost money.", "Her işlemin nerede kazandırıp kaybettirdiğini gör.")}</p>
+    <p class="sub">{T(lang, "Every trade explained, in seconds.", "Her işlem, saniyeler içinde açıklanmış.")}</p>
     <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/fx-blotter") + "#demo", T(lang, "Request a desk demo", "Masa demosu iste"), "")}</div>
   </div>
   <figure class="home-hero-media"><picture><source type="image/webp" srcset="/static/urun/hero/home-{lang}-1x.webp 1440w, /static/urun/hero/home-{lang}-2x.webp 2880w" sizes="(max-width: 1440px) 100vw, 1440px"><img src="/static/urun/hero/home-{lang}.png" width="2880" height="1720" alt="{T(lang, "FX Blotter Analytics on a laptop: total P&amp;L split into price, points, carry and MTM, and seven reconciliation checks passed", "Dizüstünde FX Blotter Analytics: fiyat, puan, taşıma ve MTM olarak ayrılmış toplam K/Z ve geçen yedi mutabakat kontrolü")}" fetchpriority="high" decoding="async"></picture></figure>
@@ -225,7 +225,7 @@ def home(lang):
 
 <section class="panel mist" style="margin-top:72px">
   <h2 class="title">Trade Analytics</h2>
-  <p class="sub">{T(lang, "Find what costs you money.", "Sana neyin kaybettirdiğini bul.")}</p>
+  <p class="sub">{T(lang, "Find what works.", "Neyin işe yaradığını bul.")}</p>
   <div class="actions">{more(P(lang, "/trade-analytics"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene"))}</div>
   <div class="panel-media">{shot("analytics-overview", T(lang, "Trade Analytics account overview with an example account", "Örnek bir hesapla Trade Analytics hesap özeti"), lang, eager=True, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
 </section>
@@ -285,8 +285,8 @@ def home(lang):
 </section>'''
     path = "tr/index.html" if tr else "index.html"
     page(path, lang, T(lang, "Kalibre Markets: FX, solved", "Kalibre Markets: FX'i çözüyoruz"),
-         T(lang, "Trade Analytics, FX Blotter, Rule Guard and Kalibre Lab read the trading records you already keep and show where the money was made and lost. Files are processed in your browser.",
-           "Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve paranın nerede kazanılıp kaybedildiğini gösterir. Dosyalar tarayıcında işlenir."),
+         T(lang, "Trade Analytics, FX Blotter, Rule Guard and Kalibre Lab read the trading records you already keep and show what every trade earned, in seconds. Files are processed in your browser.",
+           "Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve her işlemin ne kazandırdığını saniyeler içinde gösterir. Dosyalar tarayıcında işlenir."),
          body, P(lang, "/"), "/" if tr else "/tr")
 
 # ================================================================== Trade Analytics
@@ -311,7 +311,7 @@ def trade_analytics(lang):
 <section class="hero">
   <div class="wrap">
     <span class="kicker">Trade Analytics{status_tag("beta", lang)}</span>
-    <h1 class="display">{T(lang, "See where you make and lose money.", "Nerede kazanıp nerede kaybettiğini gör.")}</h1>
+    <h1 class="display">{T(lang, "Find your edge.", "Avantajını bul.")}</h1>
     <p class="sub">{T(lang, "Drop in an MT5 report or a trading log. Results by symbol, hour, session and habit, worked out in your browser.", "Bir MT5 raporu ya da işlem kaydı bırak. Sembol, saat, seans ve alışkanlığa göre sonuçlar, tarayıcında hesaplanır.")}</p>
     <div class="actions">{btn(sample, T(lang, "Try it with a sample file", "Örnek dosyayla dene"))}{more("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim")}</div>
   </div>
@@ -324,7 +324,7 @@ def trade_analytics(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "Get the highlights.", "Öne çıkanlar.")}</h2>
     <div class="tiles">
-      {tile(T(lang, "Ranked by what each habit costs.", "Her alışkanlık neye mal oluyor, sıralı."), T(lang, "Segments with at least 20 trades, ordered by their effect on net P&amp;L: hours, symbols, holding times and the trade after a loss. Small differences are flagged as possible noise.", "En az 20 işlemli dilimler, net K/Z'ye etkisine göre sıralı: saatler, semboller, pozisyon süreleri ve kayıptan sonraki işlem. Küçük farklar rastlantı olabilir diye işaretlenir."), shot("analytics-segments", T(lang, "Losing and winning segments of the example account", "Örnek hesabın kaybettiren ve kazandıran dilimleri"), lang, sizes="(max-width: 860px) 100vw, 1180px"), "full dark")}
+      {tile(T(lang, "Ranked by what each habit is worth.", "Her alışkanlığın değeri, sıralı."), T(lang, "Segments with at least 20 trades, ordered by their effect on net P&amp;L: hours, symbols, holding times and streaks. Small differences are flagged as possible noise.", "En az 20 işlemli dilimler, net K/Z'ye etkisine göre sıralı: saatler, semboller, pozisyon süreleri ve seriler. Küçük farklar rastlantı olabilir diye işaretlenir."), shot("analytics-segments", T(lang, "Segments of the example account ranked by their effect on the result", "Örnek hesabın sonuca etkisine göre sıralı dilimleri"), lang, sizes="(max-width: 860px) 100vw, 1180px"), "full dark")}
       {tile(T(lang, "Prop limits, day by day.", "Prop sınırları, gün gün."), T(lang, "FTMO and The5ers presets or your own percentages. Each day shows how close it came to the daily and total floor.", "FTMO ve The5ers ön ayarları ya da kendi yüzdelerin. Her gün günlük ve toplam tabana ne kadar yaklaştığını gösterir."), shot("analytics-prop", T(lang, "Daily prop limit table of the example account", "Örnek hesabın günlük prop sınırı tablosu"), lang, sizes="(max-width: 860px) 100vw, 580px"))}
       {tile(T(lang, "Your own views.", "Kendi görünümlerin."), T(lang, "Group by any field, pick a measure and a chart. Views are saved in your browser and open on your next visit.", "Herhangi bir alana göre grupla, ölçü ve grafik seç. Görünümler tarayıcında saklanır ve sonraki ziyaretinde açılır."), shot("analytics-view", T(lang, "Custom view grouping the example account", "Örnek hesabı gruplayan görünüm"), lang, sizes="(max-width: 860px) 100vw, 580px"))}
       {tile(T(lang, "MT5 reports", "MT5 raporları"), T(lang, "HTML and Open XML history reports from any MT5 broker.", "Her MT5 aracı kurumundan HTML ve Open XML geçmiş raporları."), "", "third")}
@@ -373,7 +373,7 @@ def trade_analytics(lang):
 {signup_dialog(lang, questions)}
 </div>'''
     page("tr/trade-analytics/index.html" if tr else "trade-analytics/index.html", lang,
-         T(lang, "Trade Analytics: see where you make and lose money", "Trade Analytics: nerede kazanıp nerede kaybettiğini gör"),
+         T(lang, "Trade Analytics: find your edge", "Trade Analytics: avantajını bul"),
          T(lang, "Drop in an MT5 report or a trading log and see results by symbol, hour, session and habit, plus prop firm limits day by day. Files are read in your browser.", "Bir MT5 raporu ya da işlem kaydı bırak; sembol, saat, seans ve alışkanlığa göre sonuçları ve prop sınırlarını gün gün gör. Dosyalar tarayıcında okunur."),
          body, P(lang, "/trade-analytics"), "/trade-analytics" if tr else "/tr/trade-analytics", '<script src="/static/talep.js" defer></script>')
 
@@ -483,7 +483,7 @@ def rule_guard(lang):
   <div class="wrap">
     <span class="kicker">Rule Guard{status_tag("test", lang)}</span>
     <h1 class="display">{T(lang, "Stay inside the limits.", "Sınırların içinde kal.")}</h1>
-    <p class="sub">{T(lang, "An MT5 add-on that tracks the firm's daily and total loss floors and stops new trades near the floor.", "Firmanın günlük ve toplam kayıp tabanlarını izleyen ve tabana yakın yeni işlemi durduran bir MT5 eklentisi.")}</p>
+    <p class="sub">{T(lang, "An MT5 add-on that watches the firm's daily and total limits on every tick and pauses new trades near the floor.", "Firmanın günlük ve toplam sınırlarını her tick'te izleyen ve tabana yakın yeni işlemi bekleten bir MT5 eklentisi.")}</p>
     <div class="actions">{btn("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim")}{more(LAB(lang, TA_SAMPLE), T(lang, "Check past days on a sample", "Geçmiş günleri bir örnekte kontrol et"))}</div>
   </div>
   <div class="stage">
@@ -518,8 +518,8 @@ def rule_guard(lang):
 {signup_dialog(lang, questions)}
 </div>'''
     page("tr/rule-guard/index.html" if tr else "rule-guard/index.html", lang,
-         T(lang, "Rule Guard: stay inside your prop firm's loss limits on MT5", "Rule Guard: MT5'te prop firmasının kayıp sınırları içinde kal"),
-         T(lang, "An MT5 add-on that tracks your firm's daily and total loss floors and stops new trades near the floor. In early access.", "Firmanın günlük ve toplam kayıp tabanlarını MT5'te izleyen ve tabana yakın yeni işlemi durduran eklenti. Erken erişimde."),
+         T(lang, "Rule Guard: trade inside your prop firm's limits on MT5", "Rule Guard: MT5'te prop firmasının sınırları içinde işlem yap"),
+         T(lang, "An MT5 add-on that watches your firm's daily and total limits and pauses new trades near the floor. In early access.", "Firmanın günlük ve toplam sınırlarını MT5'te izleyen ve tabana yakın yeni işlemi bekleten eklenti. Erken erişimde."),
          body, P(lang, "/rule-guard"), "/rule-guard" if tr else "/tr/rule-guard", '<script src="/static/talep.js" defer></script>')
 
 # ================================================================== Kalibre Lab
@@ -610,7 +610,7 @@ def demos(lang):
          [(fmt(ta["trades"], lang), T(lang, "closed trades", "kapanmış işlem")), (fmt(ta["netUsd"], lang, 0, True), T(lang, "net P&amp;L, USD", "net K/Z, USD")), (pct(ta["winRatePct"], lang), T(lang, "win rate", "kazanma oranı")), (fmt(ta["profitFactor"], lang, 2), T(lang, "profit factor", "kâr faktörü"))],
          files(more("/lab/templates/kalibre-trade-log-example.xlsx", "kalibre-trade-log-example.xlsx", " download") + more("/lab/templates/kalibre-trade-log-example.csv", T(lang, "CSV version", "CSV sürümü"), " download"),
                LAB(lang, TA_SAMPLE), more(f"/lab/samples/{ta_res}.xlsx", f"{ta_res}.xlsx", " download"), T(lang, "The same file opens in Trade Analytics.", "Aynı dosya Trade Analytics'te açılır.")),
-         shot_tile("analytics-overview", T(lang, "Account overview of the example log", "Örnek kaydın hesap özeti")) + shot_tile("analytics-segments", T(lang, "Losing and winning segments", "Kaybettiren ve kazandıran dilimler")), "paper")}
+         shot_tile("analytics-overview", T(lang, "Account overview of the example log", "Örnek kaydın hesap özeti")) + shot_tile("analytics-segments", T(lang, "Segments ranked by their effect on the result", "Sonuca etkisine göre sıralı dilimler")), "paper")}
 {section("fx-blotter", "FX Blotter Analytics", "beta", T(lang, "One week of a bank FX desk.", "Bir banka FX masasının bir haftası."),
          [(fmt(fx["legs"], lang), T(lang, "legs imported", "bacak aktarıldı")), (fmt(fx["totalUsd"], lang, 0, True), T(lang, "total P&amp;L, USD", "toplam K/Z, USD")), (fmt(fx["priceUsd"], lang, 0, True), T(lang, "price P&amp;L, USD", "fiyat K/Z, USD")), (f'{fx["checksPassed"]}/{fx["checks"]}', T(lang, "reconciliation checks passed", "mutabakat kontrolü geçti"))],
          files(more(f"/lab/samples/{fx_in}.xlsx", f"{fx_in}.xlsx", " download") + more(f"/lab/samples/{fx_in}.csv", T(lang, "CSV version", "CSV sürümü"), " download"),
@@ -624,7 +624,7 @@ def demos(lang):
 <section class="sec mist center">
   <div class="wrap">
     <h2 class="title-s">Rule Guard{status_tag("test", lang)}</h2>
-    <p class="lede">{T(lang, "Rule Guard runs inside MT5, so there is no web demo. The same daily and total loss rules appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard MT5 içinde çalışır, bu yüzden web demosu yok. Aynı günlük ve toplam kayıp kuralları Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
+    <p class="lede">{T(lang, "Rule Guard runs inside MT5, so there is no web demo. The same daily and total limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard MT5 içinde çalışır, bu yüzden web demosu yok. Aynı günlük ve toplam sınırlar Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
     <div class="actions">{more(LAB(lang, TA_SAMPLE), T(lang, "Open the sample", "Örneği aç"))}{more(P(lang, "/rule-guard"), T(lang, "About Rule Guard", "Rule Guard hakkında"))}</div>
   </div>
 </section>'''
