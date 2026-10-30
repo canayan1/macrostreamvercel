@@ -9,7 +9,7 @@ import { dosyadanSatirlar, iceAktar, GEREKCE_SINIF } from './ice-aktar.js';
 import { SOZLUK, ZORUNLU_ALANLAR } from './tespit.js';
 import { blotterAnaliz, grupla, BOYUTLAR, KOVALAR, limitleriCoz, FIRSAT_MALIYETI_ONAYLI } from './analiz.js';
 import { mutabakat } from './mutabakat.js';
-import { kurTablosuCoz, tasimaGirdiCoz } from './kur.js';
+import { kurTablosuCoz, tasimaGirdiCoz, lastTradedRates } from './kur.js';
 import { ornekBlotter, ORNEK_KURLAR, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
 import { rastgeleTuz } from './model.js';
 import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
@@ -22,8 +22,10 @@ const DEPO = { kur: 'kalibre-blotter-kur', tasima: 'kalibre-blotter-tasima', lim
 const depoOku = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const depoYaz = (k, v) => { try { localStorage.setItem(k, v); } catch { /* depo yok */ } };
 const TUZ = rastgeleTuz();
+// First line of a rate table filled from the dropped file; a later file replaces such a table, never one the desk typed.
+const RATES_FROM_FILE = '# last traded rate per pair in the file';
 
-let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null, kaynakDosya = '';
+let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null, kaynakDosya = '', ratesFromFile = false;
 
 // ---------------------------------------------------------------- biçim
 const sayi = (x, b = 0) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString(yerel, { minimumFractionDigits: b, maximumFractionDigits: b }) : '–');
@@ -46,6 +48,9 @@ async function dosyaOku(dosya) {
     const r = await dosyadanSatirlar(dosya.name, new Uint8Array(await dosya.arrayBuffer()));
     sentetikAyarla(false);
     yeniSatirlar(r.satirlar, `${dosya.name}${r.sayfa ? ' · ' + r.sayfa : ''} · ${r.kodlama}`);
+    // Results first: bring the summary into view, or the column matching when a required field is missing.
+    const target = analiz && !aktarim.eksik.length ? '#ozet-kart' : '#eslesme-kart';
+    setTimeout(() => $(target)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }));
   } catch (h) {
     durum(ceviri(h?.message === 'xls' ? 'Eski Excel (.xls) okunamıyor. Dosyayı XLSX ya da CSV olarak kaydedip yeniden dene.' : 'Dosya okunamadı. XLSX ya da CSV olarak kaydedip yeniden dene.'), true);
   }
@@ -93,6 +98,15 @@ function yeniSatirlar(s, kaynakAdi, { tarih } = {}) {
   $('#kaynak-rozet').textContent = kaynakAdi;
   $('#bos-durum').hidden = true;
   aktar();
+  ratesFromFile = false;
+  const current = $('#kur-tablo').value.trim();
+  if (aktarim && !aktarim.eksik.length && !sentetik && (!current || current.startsWith(RATES_FROM_FILE))) {
+    const rates = lastTradedRates(aktarim.bacaklar);
+    if (rates.length) {
+      $('#kur-tablo').value = [RATES_FROM_FILE, ...rates.map(r => `${r.pair} ${r.rate}`)].join('\n');
+      ratesFromFile = true;
+    }
+  }
   if (aktarim && !aktarim.eksik.length) {
     if (!$('#analiz-gunu').value || !tarih) $('#analiz-gunu').value = tarih ?? aktarim.bacaklar.reduce((m, b) => (b.islemTarihi > m ? b.islemTarihi : m), '');
     hesapla();
@@ -117,9 +131,19 @@ const ALAN_AD = {
   portfoy: 'Portföy', trader: 'Trader', fixingTarihi: 'Fixing tarihi', fixingKaynagi: 'Fixing kaynağı', fixingKur: 'Fixing kuru', odemeDovizi: 'Ödeme dövizi',
   karsiTarafTipi: 'Karşı taraf tipi', opsiyonIz: 'Opsiyon alanı (dışlama için)',
 };
+// Column matching and settings fold away once the file is read cleanly, so results come first.
+function fold(card, folded) {
+  const k = $(card), b = k.querySelector('.katla');
+  k.classList.toggle('katli', folded);
+  b.setAttribute('aria-expanded', String(!folded));
+  b.textContent = ceviri(folded ? 'Göster' : 'Gizle');
+}
+
 function eslesmeGoster() {
   const k = $('#eslesme-kart');
   k.hidden = false;
+  const clean = !aktarim.eksik.length && Object.values(aktarim.tespit.guven).every(g => g >= 0.6);
+  if (!k.dataset.elle) fold('#eslesme-kart', clean);
   const t = aktarim.tespit, e = aktarim.eslesme;
   const basliklar = t.basliklar.length ? t.basliklar : (satirlar[0] ?? []).map((_, i) => `#${i + 1}`);
   const secenek = sec => `<option value="-1">${kacis(ceviri('(yok)'))}</option>` + basliklar.map((b, i) => `<option value="${kacis(i)}"${sec === i ? ' selected' : ''}>${kacis(`${String.fromCharCode(65 + (i % 26))}${i >= 26 ? Math.floor(i / 26) : ''} · ${b || '–'}`)}</option>`).join('');
@@ -173,6 +197,9 @@ function hesapla() {
   analiz.mutabakat = mutabakat(aktarim, analiz, aktarim.bacaklar, ayar);
   analiz.ayar = ayar;
   for (const id of ['girdi-kart', 'ozet-kart', 'mutabakat-kart', 'kz-kart', 'pozisyon-kart', 'merdiven-kart', 'swap-kart', 'marj-kart', 'atlanan-kart']) $('#' + id).hidden = false;
+  if (!$('#girdi-kart').dataset.elle) fold('#girdi-kart', true);
+  const rateCount = Object.keys(ayar.kurTablosu ?? {}).length, limitCount = (ayar.limitler ?? []).length;
+  $('#girdi-ozet').textContent = ceviri('{y} · {k} kur · {l} limit', { y: ceviri(ayar.yontem === 'fifo' ? 'FIFO' : 'Ortalama maliyet'), k: rateCount, l: limitCount });
   ozetGoster(); mutabakatGoster(); kzGoster(); pozisyonGoster(); merdivenGoster(); swapGoster(); marjGoster(); atlananGoster();
   if (detayAnahtar) detayKapat();
 }
@@ -197,7 +224,7 @@ function downloadReport() {
 // ---------------------------------------------------------------- guided tour (?tour=1 or the button on the example banner)
 const TOUR = [
   ['#yukle-kart', 'Masanın kendi dökümü', 'Dosya olduğu gibi bırakıldı: rapor başlığı, toplam satırı, yerel biçimler. Tarayıcıda okunur, hiçbir yere yüklenmez.'],
-  ['#eslesme-kart', 'Sütunlar kendiliğinden eşleşir', 'Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzeltilir.'],
+  ['#eslesme-kart', 'Sütunlar kendiliğinden eşleşir', 'Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzeltilir.', () => fold('#eslesme-kart', false)],
   ['#ozet-kart', "Haftanın K/Z'si, parçalarına ayrılmış", 'Toplam K/Z fiyat, vadeli puan, taşıma ve MTM olarak ayrılır; yerel para karşılığıyla.'],
   ['#mutabakat-kart', 'Her toplam dosyaya bağlanır', 'Yedi kontrol: satır sayıları, alt toplamlar, tutar çarpı kur, nominaller, TL karşılığı, açık lotlar ve iki maliyet yöntemi.'],
   ['#kz-kart', 'İstediğin gibi grupla', 'Parite, portföy, dealer, kalem türü, büyüklük, saat ya da güne göre.'],
@@ -235,6 +262,7 @@ function ozetGoster() {
   const eksik = analiz.eksikKur;
   $('#ozet-eksik').textContent = eksik.length ? ceviri('Eksik girdi (bu kalemler toplama katılmadı): {e}', { e: eksik.map(eksikMetni).join('; ') }) : '';
   $('#ozet-eksik').classList.toggle('negatif', eksik.length > 0);
+  $('#ozet-kurlar').hidden = !ratesFromFile;
 }
 
 function eksikMetni(x) {
@@ -374,9 +402,12 @@ function baslat() {
   for (const id of ['#bakis', '#saat-dilimi']) $(id).addEventListener('change', () => { depoYaz(DEPO.saat, $('#saat-dilimi').value); if (satirlar) { aktar(); hesapla(); } });
   $('#eslesme-onay').addEventListener('click', hesapla);
   for (const id of ['#analiz-gunu', '#yontem', '#kapsam', '#yerel-doviz', '#marj-yuzde']) $(id).addEventListener('change', hesapla);
+  $('#kur-tablo').addEventListener('change', () => { ratesFromFile = false; });
   for (const id of ['#kur-tablo', '#tasima-tablo', '#limit-tablo']) $(id).addEventListener('change', hesapla);
+  $('#ozet-kurlar-ac').addEventListener('click', () => { fold('#girdi-kart', false); $('#girdi-kart').scrollIntoView({ block: 'start' }); $('#kur-tablo').focus({ preventScroll: true }); });
   $('#kz-boyut').addEventListener('change', kzGoster);
   $('#rapor-indir').addEventListener('click', downloadReport);
+  for (const b of document.querySelectorAll('.katla')) b.addEventListener('click', () => { const k = $(b.dataset.katla); k.dataset.elle = '1'; fold(b.dataset.katla, !k.classList.contains('katli')); });
   $('#tur-baslat').addEventListener('click', tour);
   $('#detay-kapat').addEventListener('click', detayKapat);
   for (const id of ['#kz-tablo', '#pozisyon-tablo', '#merdiven-tablo', '#swap-tablo', '#marj-tablo']) {

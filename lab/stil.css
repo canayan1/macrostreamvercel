@@ -411,3 +411,7 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 .rg-cagri p{margin:0;max-width:72ch;color:var(--text-dim)}
 .rg-cagri b{color:var(--text)}
 .rg-cagri a.dugme{text-decoration:none}
+.kart.katli>:not(.kart-bas){display:none}
+.kart.katli .kart-bas{margin-bottom:0}
+.kart-bas .katla{margin-left:auto}
+.kart{scroll-margin-top:96px}

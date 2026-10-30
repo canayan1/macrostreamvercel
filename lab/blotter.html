@@ -62,7 +62,7 @@
   </section>
 
   <section class="kart" id="eslesme-kart" hidden>
-    <div class="kart-bas"><h2><span class="bolum-no">02</span><span data-t>Algılanan sütunlar</span></h2><span class="dipnot" id="eslesme-ozet"></span></div>
+    <div class="kart-bas"><h2><span class="bolum-no">02</span><span data-t>Algılanan sütunlar</span></h2><span class="dipnot" id="eslesme-ozet"></span><button type="button" class="kucuk katla" data-katla="#eslesme-kart" aria-expanded="true" data-t>Gizle</button></div>
     <p class="dipnot" data-t>Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzelt. Sarı satırların güveni düşük; kırmızı satır zorunlu ve eksik.</p>
     <div class="tablo-kutu"><table class="pozisyon a-tablo" id="eslesme-tablo"></table></div>
     <div class="satir-dugme">
@@ -72,7 +72,7 @@
   </section>
 
   <section class="kart" id="girdi-kart" hidden>
-    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Analiz ayarları</span></h2></div>
+    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Analiz ayarları</span></h2><span class="dipnot" id="girdi-ozet"></span><button type="button" class="kucuk katla" data-katla="#girdi-kart" aria-expanded="true" data-t>Gizle</button></div>
     <div class="satir-dugme b-ayar">
       <label class="secici"><span data-t>Analiz günü</span><input type="date" id="analiz-gunu"></label>
       <label class="secici"><span data-t>Yöntem</span><select id="yontem">
@@ -108,6 +108,7 @@
     <div class="a-ana-karolar" id="ozet-ana"></div>
     <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
     <p class="dipnot" id="ozet-eksik"></p>
+    <p class="dipnot" id="ozet-kurlar" hidden><span data-t>USD karşılıkları ve MTM, dosyadaki her paritenin son işlem kurunu kullanır.</span> <button type="button" class="kucuk" id="ozet-kurlar-ac" data-t>Kurları değiştir</button></p>
   </section>
 
   <section class="kart" id="mutabakat-kart" hidden>

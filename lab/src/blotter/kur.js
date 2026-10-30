@@ -76,3 +76,19 @@ export function tasimaGirdiCoz(metin) {
   });
   return { faiz, tnPuan, hatalar };
 }
+
+// Starting rate table taken from the file itself: the last traded spot rate for each pair (spot deals
+// first, then the spot rate on forwards and swaps). Lets a desk see USD equivalents and MTM the moment
+// the file is dropped; the desk can replace any line with its own snapshot.
+export function lastTradedRates(legs) {
+  const best = new Map();
+  for (const b of legs) {
+    const rate = b.urun === 'spot' ? b.kur ?? b.spotKur : b.spotKur;
+    if (!(rate > 0) || b.ndf) continue;
+    const key = b.islemZamani ?? Date.parse(b.islemTarihi + 'T00:00:00Z') / 1000;
+    const rank = b.urun === 'spot' ? 1 : 0;
+    const cur = best.get(b.parite);
+    if (!cur || rank > cur.rank || (rank === cur.rank && key >= cur.key)) best.set(b.parite, { rate, key, rank, day: b.islemTarihi });
+  }
+  return [...best.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([pair, x]) => ({ pair, rate: x.rate, day: x.day }));
+}
