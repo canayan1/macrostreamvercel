@@ -293,3 +293,7 @@ Claude'un yapacakları:
 - Apple yerleşim kuralları korunarak orijinal kimliğe dönüldü: sıcak siyah #100e0c, yüzey #1a1612, çizgi #26221d, krem metin #ebe3d3, amber eylem #ffa630 (sıcak ton #ff7a00), kazanç #4ade80, kayıp #ef4444; Inter Tight ve Geist Mono. Logo: amber çerçeveli K + "KALIBRE // MARKETS".
 - Terminal dokunuşları: ürün adları "// Ürün" amber monospace, rakamlar ve durum etiketleri monospace, adım numaraları 01/02/03.
 - Lab uygulaması aynı palete geçti (stil.css değişkenleri canlı sitenin değerleri); bütün ekran görüntüleri yeniden çekildi.
+
+### 30.10 ek 6: Ana sayfa girişi
+- Başlık "FX, solved." (TR "FX'i çözüyoruz."), tek satır alt cümle, altında tam genişlik ürün görseli: gerçek FX Blotter ekranı çizilmiş bir dizüstünde (yerel/hero-render.mjs + yerel/hero/hero.html, static/urun/hero/). Yapay zekâ görseli kullanılmadı: uydurma arayüz ve rakam göstermemek için.
+- Ana sayfa metinleri kısaltıldı. Lab'deki "giriş yapılandırılmadı" önizleme notu gizlendi; çerez penceresi orijinal palete alındı.
