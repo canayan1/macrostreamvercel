@@ -260,3 +260,12 @@ Claude'un yapacakları:
 2. Motor 0.22'yi sırla derle ve yükle.
 3. Eklentileri sırla derle ve yükle, önizlemede uçtan uca dene.
 5. Canlıya çıkış listesini tamamla, ardından kurucunun "canlıya al" onayı.
+
+### 30.10 ek 2: Demolar sayfası ve örnek dosyalar
+- `/demo` ve `/tr/demo`: her ürün için 1) örnek girdi (indir), 2) üründe tek tıkla aç, 3) sonuç dosyası (indir). Menüde "Demos / Demolar", ana sayfa birinci düğmesi ve lab üst barı buraya gider.
+- Dosyalar kalibre-lab `araclar/ornek-dosya-uret.mjs` ile üretilir (`lab/ornek/`), hepsi sentetik. Sonuçlar sayfaların motoru ve sayfanın örnek ayarlarıyla hesaplanır. Demo sayfasındaki rakamlar `lab/ornek/ozet.json`'dan okunur, elle yazılmaz. `lab/test/ornek-dosya.test.mjs` dosyaların güncel olduğunu, XLSX/CSV (TR ve EN) okununca aynı toplamın çıktığını ve Lab resultId'nin tuttuğunu denetler.
+- Tek tık bağlantıları: `/lab/analiz?dosya=sablon/kalibre-trade-log-example.xlsx`, `/lab/blotter?dosya=ornek/fx-blotter-sample.xlsx` (TR: `fx-blotter-ornek.xlsx`), `/lab?demo=1`. `?dosya=` yalnız yayımlanmış örnek listesini açar.
+- Örnek blotter artık iki dilde: İngilizce sayfa İngilizce başlıklı ve İngilizce sayı biçimli sürümü açar (EN arayüzde Türkçe sütun adları görünmesinin nedeni buydu). Limit tablosu İngilizce anahtar kelimeleri kabul eder (OVERNIGHT, INTRADAY, VALUE, desk, book, "≤ 1 month").
+- Bağımsız denetim (Python/openpyxl): pozisyonlar USD −20.635.889, EUR 610.000, TRY 873.817.070 ve swap roll −43.750 USD motorla birebir; işlem kaydı 343 işlem, net 15.839,03 USD birebir.
+- FX Blotter Analytics durumu "Beta"ya alındı; /treasury'de fırsat maliyeti iddiası kaldırıldı (tanım bekleniyor).
+- Önizleme: https://macrostreamvercel-cmscyadmq-canayan1s-projects.vercel.app/demo (canlıya alınmadı).
