@@ -470,54 +470,215 @@ def hazine(dil):
         sayfa("treasury/index.html", "FX Blotter Analytics for treasury and dealing desks (beta)", "Reads your desk's own FX blotter as it is: realized P&L with FIFO, price and swap points apart, carry, MTM, a value-date ladder and client margin. Try it with a sample Excel blotter or request a demo.", "/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="en")
 
 # ------------------------------------------------------------------ /company
+# Şirket sayfası: ana sayfa gibi tam genişlik (pitch.css), belge düzeni değil.
+# Ürün ya da özellik listesi yok (o iş Products ve Solutions menüsünde). Misyon, sorun, kiminle çalıştığımız,
+# ilkeler, kurumlarla çalışma biçimi ve iletişim. Rakamlar yalnız doğrulama raporlarından (ana sayfadaki sayilar ile aynı).
+# Uydurma bilgi yok: isim, ekip büyüklüğü, ofis, yatırım, müşteri, tarih yazılmaz.
+S = {
+ "en": dict(
+  title="Company: Kalibre Markets",
+  desc="Kalibre Markets builds analytics software for trading data, for treasury and dealing desks, brokers, prop firms and traders. Founded by a former bank treasurer and economist.",
+  ust="Company",
+  h1="Make trading data explainable.",
+  giris="Kalibre Markets builds analytics software for trading data. We want every desk, firm and trader to see where a result came from, and to be able to show it.",
+  kunye=[("Origin", "Founded by a former bank treasurer and economist"), ("Stage", "Early stage and independent. Products in beta."), ("Model", "Software only. No advice, no client funds.")],
+  neden_bas="Why trading data needs an analytics layer",
+  neden_giris="Every trade is recorded somewhere. Yet simple questions about those records still take a day of spreadsheet work.",
+  sorunlar=[("Blotters live in spreadsheets", "A dealing desk keeps its deals in an Excel blotter exported from another system. Reports are rebuilt by hand, and every rebuild can break."),
+            ("P&amp;L that cannot be traced", "A daily figure gets reported, but the split between spot, swap points and carry is hard to show. When someone questions a number, finding the deals behind it is slow."),
+            ("Limits checked by hand", "Position and loss limits are often checked after the fact, by someone reading a sheet. A breach can be found late.")],
+  katman=(("Trade records", ["Blotters", "Platform reports", "Trade logs"]),
+          ("Analytics layer", ["One trade model", "Checked against a reference"]),
+          ("Decisions", ["P&amp;L traced to deals", "Limits watched", "Rules tested"])),
+  katman_not="We sit between the trade record and the decision. We do not sit between a client and the market.",
+  kim_bas="Who we work with",
+  kim_giris="We start with traders, because they can test software on their own history today. Our long-term work is with institutions.",
+  kimler=[("Where we start", "Active and prop traders", "People who trade their own or a funded account and want to know which habits cost them money. They are the first to test our engine, on their own files."),
+          ("Where we grow", "Brokers and prop firms", "Firms that run many accounts and need the same rules applied to each one. They need analytics and rule monitoring per account, not one trader at a time."),
+          ("Where we are going", "Bank and corporate treasury desks", "Desks that run FX positions and report P&amp;L to a treasurer and a risk team. They need numbers that trace back to each deal.")],
+  ilke_bas="What we believe",
+  ilke_giris="Four principles decide what we build and what we leave out.",
+  ilkeler=[("Check the number before you show it", "Our engine is compared trade by trade against the MetaTrader 5 Strategy Tester. A separate reference implementation, written without access to the engine code, recomputes the same rules. Neither check left an unexplained difference.", "/methodology", "Read the methodology"),
+           ("Data stays on your side", "Files are processed in your browser and are not uploaded. Live MT5 data is encrypted end to end with AES-256, and the relay deletes it within 2 hours. We never ask for a password.", "/security", "Read the security details"),
+           ("Software, not a broker", "We do not give investment advice or trading signals. We do not hold client funds, and our servers do not send orders.", "", ""),
+           ("Say what is ready", "Every product carries a status label: Beta, In testing, In development or Planned. We do not publish performance claims.", "", "")],
+  sayilar=[("97", "MT5 Strategy Tester runs"), ("44,015", "MT5 trades compared"), ("87,315", "trades recomputed"), ("0", "unexplained differences")],
+  kurum_bas="How we work with institutions",
+  kurum_giris="A desk should be able to judge the software before any client data leaves the building. Our pilots are designed around that.",
+  kurum=[("Start on sample or anonymized data", "We begin with our sample files or an anonymized export of your own. No real client data is needed to judge the fit."),
+         ("Your data stays with you", "Files are read in the browser on your own machine. We do not receive or store your blotter."),
+         ("Bring your own rate files", "Valuation uses the rates you already have. We do not supply market data, so there is no new market data licence to sign."),
+         ("Talk to the founder", "Questions and requests go to the founder, not a sales team. What we learn in a pilot shapes what we build next.")],
+  son_bas="Talk to us about your desk or firm",
+  son_giris="We are looking for treasury desks, brokers and prop firms to run early pilots with. Tell us your role and the system your data comes from.",
+  b1="Propose a pilot", b1_konu="Kalibre%20pilot",
+  b2="Email markets@kalibrefin.com",
+ ),
+ "tr": dict(
+  title="Şirket: Kalibre Markets",
+  desc="Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor: hazine ve dealing masaları, aracı kurumlar, prop firmaları ve trader'lar için. Kurucusu eski bir banka hazinecisi ve ekonomist.",
+  ust="Şirket",
+  h1="Alım satım verisini açıklanabilir kılmak.",
+  giris="Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. Her masanın, firmanın ve trader'ın bir sonucun nereden geldiğini görmesini ve bunu gösterebilmesini istiyoruz.",
+  kunye=[("Köken", "Kurucusu eski bir banka hazinecisi ve ekonomist"), ("Aşama", "Erken aşama ve bağımsız. Ürünler beta aşamasında."), ("Model", "Yalnız yazılım. Tavsiye yok, müşteri parası yok.")],
+  neden_bas="Alım satım verisinin neden bir analiz katmanına ihtiyacı var",
+  neden_giris="Her işlem bir yerde kayıtlı. Yine de bu kayıtlarla ilgili basit sorular hâlâ bir günlük tablo işi gerektiriyor.",
+  sorunlar=[("Blotter'lar tablolarda yaşıyor", "Bir dealing masası deal'lerini başka bir sistemden dışa aktarılmış bir Excel blotter'ında tutar. Raporlar elle yeniden kurulur ve her yeniden kurulum bozulabilir."),
+            ("İzi sürülemeyen kâr/zarar", "Günlük bir rakam raporlanır ama spot, swap puanı ve taşıma maliyeti ayrımını göstermek zordur. Bir rakam sorgulandığında arkasındaki deal'leri bulmak yavaştır."),
+            ("Elle denetlenen sınırlar", "Pozisyon ve kayıp sınırları çoğu zaman sonradan, bir tabloyu okuyan biri tarafından denetlenir. Bir ihlal geç fark edilebilir.")],
+  katman=(("İşlem kayıtları", ["Blotter'lar", "Platform raporları", "İşlem kayıtları"]),
+          ("Analiz katmanı", ["Tek bir işlem modeli", "Bir referansa karşı sınanmış"]),
+          ("Kararlar", ["Deal'e kadar izlenen kâr/zarar", "İzlenen sınırlar", "Sınanan kurallar"])),
+  katman_not="İşlem kaydı ile karar arasında dururuz. Müşteri ile piyasa arasında durmayız.",
+  kim_bas="Kimlerle çalışıyoruz",
+  kim_giris="Trader'larla başlıyoruz, çünkü yazılımı bugün kendi geçmişlerinde sınayabilirler. Uzun vadeli işimiz kurumlarla.",
+  kimler=[("Başladığımız yer", "Aktif ve prop trader'lar", "Kendi hesabıyla ya da fonlanmış bir hesapla işlem yapan ve hangi alışkanlıklarının para kaybettirdiğini bilmek isteyen kişiler. Motorumuzu kendi dosyalarında ilk onlar sınar."),
+          ("Büyüdüğümüz yer", "Aracı kurumlar ve prop firmaları", "Çok sayıda hesap yöneten ve aynı kuralları her birine uygulaması gereken firmalar. Tek tek trader değil, hesap bazında analiz ve kural izleme gerekir."),
+          ("Gittiğimiz yer", "Banka ve şirket hazine masaları", "FX pozisyonu yöneten ve kâr/zararı hazine yöneticisine ve risk ekibine raporlayan masalar. Her deal'e kadar izlenebilen rakamlara ihtiyaç duyarlar.")],
+  ilke_bas="Neye inanıyoruz",
+  ilke_giris="Neyi geliştirip neyi dışarıda bırakacağımıza dört ilke karar verir.",
+  ilkeler=[("Sayıyı göstermeden önce sına", "Motorumuz MetaTrader 5 Strategy Tester'a karşı işlem işlem karşılaştırılır. Motor koduna bakılmadan yazılmış ayrı bir referans uygulaması aynı kuralları yeniden hesaplar. İki denetimde de açıklanamayan fark kalmadı.", "/tr/methodology", "Metodolojiyi oku"),
+           ("Veri kullanıcının tarafında kalır", "Dosyalar tarayıcıda işlenir ve yüklenmez. Canlı MT5 verisi AES-256 ile uçtan uca şifrelenir ve röle onu 2 saat içinde siler. Hiçbir zaman şifre istemeyiz.", "/tr/security", "Güvenlik ayrıntılarını oku"),
+           ("Aracı kurum değil, yazılım", "Yatırım tavsiyesi ya da işlem sinyali vermeyiz. Müşteri parası tutmayız ve sunucularımız emir göndermez.", "", ""),
+           ("Neyin hazır olduğunu söyle", "Her ürün bir durum etiketi taşır: Beta, Testte, Geliştiriliyor ya da Planlanıyor. Performans iddiası yayımlamayız.", "", "")],
+  sayilar=[("97", "MT5 Strategy Tester koşusu"), ("44.015", "karşılaştırılan MT5 işlemi"), ("87.315", "yeniden hesaplanan işlem"), ("0", "açıklanamayan fark")],
+  kurum_bas="Kurumlarla nasıl çalışıyoruz",
+  kurum_giris="Bir masa, binadan tek bir müşteri verisi çıkmadan yazılımı değerlendirebilmeli. Pilotlarımızı buna göre kurarız.",
+  kurum=[("Örnek ya da anonim veriyle başlayın", "Örnek dosyalarımızla ya da sizin anonimleştirilmiş bir dışa aktarımınızla başlarız. Uygunluğu görmek için gerçek müşteri verisi gerekmez."),
+         ("Veriniz sizde kalır", "Dosyalar kendi bilgisayarınızda, tarayıcıda okunur. Blotter'ınızı almayız ve saklamayız."),
+         ("Kendi kur dosyanızı getirin", "Değerleme zaten elinizdeki kurlarla yapılır. Piyasa verisi sağlamadığımız için yeni bir piyasa verisi lisansı imzalamanız gerekmez."),
+         ("Kurucuyla konuşun", "Sorular ve talepler bir satış ekibine değil, kurucuya gider. Pilotta öğrendiğimiz şey sıradaki geliştirmeyi belirler.")],
+  son_bas="Masanız ya da firmanız için bizimle konuşun",
+  son_giris="Erken pilotlar için hazine masaları, aracı kurumlar ve prop firmaları arıyoruz. Görevinizi ve verinizin geldiği sistemi yazın.",
+  b1="Pilot önerin", b1_konu="Kalibre%20pilot",
+  b2="markets@kalibrefin.com adresine yazın",
+ ),
+}
+
+def sirket_govde(dil):
+    t = S[dil]
+    kunye = "".join(f'<div><dt>{a}</dt><dd>{b}</dd></div>' for a, b in t["kunye"])
+    sorun = "".join(f'<li><span class="no">0{i}</span><h3>{b}</h3><p>{a}</p></li>' for i, (b, a) in enumerate(t["sorunlar"], 1))
+    katman = ""
+    for i, (b, og) in enumerate(t["katman"]):
+        katman += (f'<div class="s-katman-sutun{" orta" if i == 1 else ""}"><p class="s-katman-bas">{b}</p>'
+                   + "".join(f'<span>{o}</span>' for o in og) + '</div>')
+        if i < 2:
+            katman += '<div class="s-ok" aria-hidden="true"></div>'
+    kim = "".join(f'<article class="s-kim"><span class="s-asama"><i></i>{e}</span><h3>{b}</h3><p>{a}</p></article>' for e, b, a in t["kimler"])
+    sayilar = "".join(f'<div><b>{s}</b><span>{a}</span></div>' for s, a in t["sayilar"])
+    ilke = ""
+    for i, (b, a, h, e) in enumerate(t["ilkeler"], 1):
+        ek = f'<div class="s-sayilar">{sayilar}</div>' if i == 1 else ""
+        bag = f' <a href="{h}">{e}</a>' if h else ""
+        ilke += f'<li><div class="s-ilke-bas"><span class="no">0{i}</span><h3>{b}</h3></div><div><p>{a}{bag}</p>{ek}</div></li>'
+    kurum = "".join(f'<div class="p-adim"><span class="no">0{i}</span><h3>{b}</h3><p>{a}</p></div>' for i, (b, a) in enumerate(t["kurum"], 1))
+    return f'''<main class="s-sayfa">
+<section class="p-hero p-ust-bosluk s-hero" aria-labelledby="s-h1">
+  <div class="kap">
+    <p class="p-is">{t["ust"]}</p>
+    <h1 id="s-h1">{t["h1"]}</h1>
+    <p class="giris">{t["giris"]}</p>
+    <dl class="s-kunye">{kunye}</dl>
+  </div>
+</section>
+
+<section class="bolum" id="why" aria-labelledby="neden-bas">
+  <div class="kap">
+    <div class="bolum-bas"><h2 id="neden-bas">{t["neden_bas"]}</h2><p>{t["neden_giris"]}</p></div>
+    <ol class="s-sorunlar">{sorun}</ol>
+    <figure class="s-katman">
+      <div class="s-katman-akis">{katman}</div>
+      <figcaption>{t["katman_not"]}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="bolum" id="who" aria-labelledby="kim-bas">
+  <div class="kap">
+    <div class="bolum-bas"><h2 id="kim-bas">{t["kim_bas"]}</h2><p>{t["kim_giris"]}</p></div>
+    <div class="s-kimler">{kim}</div>
+  </div>
+</section>
+
+<section class="bolum" id="principles" aria-labelledby="ilke-bas">
+  <div class="kap">
+    <div class="bolum-bas"><h2 id="ilke-bas">{t["ilke_bas"]}</h2><p>{t["ilke_giris"]}</p></div>
+    <ol class="s-ilkeler">{ilke}</ol>
+  </div>
+</section>
+
+<section class="p-kagit s-kurum" id="partners" aria-labelledby="kurum-bas">
+  <div class="kap">
+    <div class="bolum-bas"><h2 id="kurum-bas">{t["kurum_bas"]}</h2><p>{t["kurum_giris"]}</p></div>
+    <div class="p-adimlar s-kurum-adim">{kurum}</div>
+  </div>
+</section>
+
+<section class="bolum p-son" id="contact" aria-labelledby="son-bas" style="border-top:0">
+  <div class="kap">
+    <h2 id="son-bas">{t["son_bas"]}</h2>
+    <p class="giris">{t["son_giris"]}</p>
+    <div class="p-eylem">
+      <a class="dugme" href="mailto:markets@kalibrefin.com?subject={t["b1_konu"]}">{t["b1"]}</a>
+      <a class="dugme ikincil" href="mailto:markets@kalibrefin.com">{t["b2"]}</a>
+    </div>
+  </div>
+</section>
+</main>'''
+
 def sirket(dil):
-    tr = dil == "tr"
-    if tr:
-        urunler = "".join(f'<li><b>{ad}</b> {durum_et(d, dil)}: {ac}</li>' for _, og in URUNLER["tr"] for ad, d, ac, h in og if d)
-        govde = f'''<h1>Kalibre Markets</h1>
-<p class="giris">Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor: bireysel trader'lar, prop trader'lar ve işlem masaları için.</p>
-<p>Erken aşamada bir fintech girişimiyiz. Ürünlerimiz beta aşamasında.</p>
+    t = S[dil]
+    yol = "/tr/company" if dil == "tr" else "/company"
+    diger = "/company" if dil == "tr" else "/tr/company"
+    kanon = "https://kalibremarkets.com" + yol
+    html = f'''<!doctype html>
+<html lang="{dil}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>{t["title"]}</title>
+<meta name="description" content="{t["desc"]}">
+<link rel="canonical" href="{kanon}">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/company">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/company">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/company">
+<meta property="og:title" content="{t["title"]}">
+<meta property="og:description" content="{t["desc"]}">
+<meta property="og:url" content="{kanon}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="{"en_US" if dil == "en" else "tr_TR"}">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Kalibre Markets","url":"https://kalibremarkets.com","email":"markets@kalibrefin.com"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<link rel="stylesheet" href="/static/ana/pitch.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+{yol_etiketleri(dil)}<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
 
-<h2 id="building">Ne geliştiriyoruz</h2>
-<ul>{urunler}</ul>
+{ust(yol, dil, diger)}
 
-<h2 id="principles">İlkeler</h2>
-<div class="p-sutun2">
-  <div><h3>Doğrulanmış motor</h3><p>Bir sayıyı göstermeden önce nasıl hesaplandığını sınarız. Motor MetaTrader 5 Strategy Tester'a ve ayrı bir referans uygulamasına karşı karşılaştırıldı. <a href="/tr/methodology">Metodoloji</a></p></div>
-  <div><h3>Önce yerel gizlilik</h3><p>Dosyalar tarayıcında işlenir. Canlı MT5 verisi uçtan uca şifrelidir. Şifre istemeyiz. <a href="/tr/security">Güvenlik</a></p></div>
-  <div><h3>Yalnız yazılım</h3><p>Yatırım tavsiyesi, işlem sinyali ya da kopya işlem sunmayız. Müşteri parası tutmayız ve sunucularımızdan emir göndermeyiz.</p></div>
-  <div><h3>Dürüst durum etiketleri</h3><p>Her ürün durumunu gösterir: Beta, Testte, Geliştiriliyor ya da Planlanıyor. Performans iddiasında bulunmayız.</p></div>
-</div>
+{sirket_govde(dil)}
 
-<h2 id="partners">Aracı kurumlar ve prop firmaları</h2>
-<p>Çok sayıda hesap için analiz, kural izleme ve kendi markanızla trader panelleri üzerinde çalışıyoruz. Bu alan keşif aşamasında. İhtiyacınızı anlatmak isterseniz <a href="mailto:markets@kalibrefin.com?subject=Kalibre%20partners">markets@kalibrefin.com</a> adresine yazın.</p>
-
-<h2 id="contact">İletişim</h2>
-<p>E-posta: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>'''
-        sayfa("tr/company/index.html", "Şirket: Kalibre Markets", "Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. İlkeler: doğrulanmış motor, önce yerel gizlilik, yalnız yazılım.", "/tr/company", govde, icindekiler(govde), ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css">', dil="tr")
-    else:
-        urunler = "".join(f'<li><b>{ad}</b> {durum_et(d, dil)}: {ac}</li>' for _, og in URUNLER["en"] for ad, d, ac, h in og if d)
-        govde = f'''<h1>Kalibre Markets</h1>
-<p class="giris">Kalibre Markets builds analytics software for trading data: for individual traders, prop traders and trading desks.</p>
-<p>We are an early-stage fintech venture. Our products are in beta.</p>
-
-<h2 id="building">What we are building</h2>
-<ul>{urunler}</ul>
-
-<h2 id="principles">Principles</h2>
-<div class="p-sutun2">
-  <div><h3>A verified engine</h3><p>We check how a number is computed before we show it. The engine is compared against the MetaTrader 5 Strategy Tester and a separate reference implementation. <a href="/methodology">Methodology</a></p></div>
-  <div><h3>Local-first privacy</h3><p>Files are processed in your browser. Live MT5 data is encrypted end to end. We never ask for passwords. <a href="/security">Security</a></p></div>
-  <div><h3>Software only</h3><p>We do not provide investment advice, trading signals or copy trading. We do not hold client funds and do not send orders from our servers.</p></div>
-  <div><h3>Honest status labels</h3><p>Every product shows its status: Beta, In testing, In development or Planned. We make no performance claims.</p></div>
-</div>
-
-<h2 id="partners">Brokers and prop firms</h2>
-<p>We are working on analytics and rule monitoring across many accounts, and on trader dashboards under your own brand. This area is in discovery. To tell us what you need, email <a href="mailto:markets@kalibrefin.com?subject=Kalibre%20partners">markets@kalibrefin.com</a>.</p>
-
-<h2 id="contact">Contact</h2>
-<p>Email: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>'''
-        sayfa("company/index.html", "Company: Kalibre Markets", "Kalibre Markets builds analytics software for trading data. Principles: a verified engine, local-first privacy, software only.", "/company", govde, icindekiler(govde), ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css">', dil="en")
+{ALT_EN if dil == "en" else ALT}
+</body>
+</html>
+'''
+    assert "—" not in html and "–" not in html, dil + ": uzun tire"
+    assert "!" not in re.sub(r"<!doctype html>|<!--.*?-->", "", sirket_govde(dil)), dil + ": ünlem"
+    hedef = os.path.join(KOK, yol.lstrip("/"), "index.html")
+    os.makedirs(os.path.dirname(hedef), exist_ok=True)
+    open(hedef, "w").write(egik_cizgisiz(html))
+    print("yazıldı", os.path.relpath(hedef, KOK))
 
 # ------------------------------------------------------------------ /demo
 # Her ürün için örnek girdi, tek tıkla sonuç ve indirilebilir sonuç dosyası. Rakamlar elle yazılmaz:

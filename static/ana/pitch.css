@@ -160,3 +160,83 @@
 .p-kart .p-baslik-ornek { white-space: normal; margin: 4px 0 0; font-size: 12.5px; line-height: 1.6; }
 .belge-govde { min-width: 0; }
 .p-hero { overflow-x: clip; }
+
+/* ------------------------------------------------------------------ /company (s- önekli)
+ * Tam genişlik şirket sayfası: misyon, sorun ve analiz katmanı şeması, kimlerle çalıştığımız,
+ * ilkeler (Linear "method" gibi numaralı satırlar), kurumlarla çalışma (kâğıt bant), iletişim.
+ * Yalnız mevcut belirteçler; yeni renk yok. */
+.s-hero h1 { max-width: 16ch; }
+.s-hero .p-is { margin: 0; color: var(--yesil); }
+.s-kunye { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: clamp(40px, 6vw, 64px) 0 0; border-top: 1px solid var(--cizgi-2); }
+.s-kunye > div { padding: 18px 20px 0 0; min-width: 0; }
+.s-kunye > div + div { border-left: 1px solid var(--cizgi); padding-left: 20px; }
+.s-kunye dt { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silik); margin-bottom: 10px; }
+.s-kunye dd { margin: 0; font-size: 16px; color: var(--metin); }
+
+/* Sorunlar: numaralı üç sütun */
+.s-sorunlar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.s-sorunlar li { border-top: 1px solid var(--cizgi-2); padding-top: 18px; min-width: 0; }
+.s-sorunlar .no, .s-ilkeler .no { font: 500 12px/1 var(--mono); color: var(--kehribar); letter-spacing: .08em; }
+.s-sorunlar h3 { margin: 10px 0 8px; font-size: 21px; }
+.s-sorunlar p { color: var(--soluk); margin: 0; font-size: 15.5px; }
+
+/* Analiz katmanı şeması: kayıt -> katman -> karar */
+.s-katman { margin: clamp(40px, 6vw, 64px) 0 0; position: relative; }
+.s-katman::before { content: ""; position: absolute; inset: -40px 10% auto; height: 260px; background: var(--parilti); pointer-events: none; }
+.s-katman-akis { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1.15fr) 48px minmax(0, 1fr); align-items: stretch; }
+.s-katman-sutun { border: 1px solid var(--cizgi); border-radius: 12px; background: var(--zemin-2); padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.s-katman-sutun.orta { border-color: color-mix(in srgb, var(--yesil) 55%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--yesil) 10%, var(--zemin-2)), var(--zemin-2)); box-shadow: 0 20px 50px rgba(3, 8, 16, .45); }
+.s-katman-bas { margin: 0 0 4px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silik); }
+.s-katman-sutun.orta .s-katman-bas { color: var(--yesil); }
+.s-katman-sutun span { display: block; padding: 9px 12px; border: 1px solid var(--cizgi); border-radius: 8px; background: var(--zemin); font-size: 15px; color: #cdd6e1; }
+.s-ok { position: relative; }
+.s-ok::before { content: ""; position: absolute; left: 6px; right: 10px; top: 50%; border-top: 1px dashed var(--cizgi-2); }
+.s-ok::after { content: ""; position: absolute; right: 6px; top: calc(50% - 4px); border: 4px solid transparent; border-left: 6px solid var(--cizgi-2); border-right: 0; }
+.s-katman figcaption { position: relative; margin-top: 16px; font-size: 14.5px; color: var(--silik); text-align: center; }
+
+/* Kimlerle çalışıyoruz: aşama çizgisi üstünde üç kart */
+.s-kimler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.s-kim { border: 1px solid var(--cizgi); border-radius: 12px; padding: 24px; background: linear-gradient(180deg, var(--zemin-2), var(--zemin)); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.s-kim h3 { font-size: 22px; }
+.s-kim p { color: var(--soluk); margin: 0; font-size: 15.5px; }
+.s-asama { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silik); }
+.s-asama i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--cizgi-2); flex: none; }
+.s-kim:first-child .s-asama { color: var(--yesil); }
+.s-kim:first-child .s-asama i { background: var(--yesil); border-color: var(--yesil); }
+.s-kim:nth-child(2) .s-asama i { border-color: var(--yesil); }
+
+/* İlkeler: numaralı satırlar */
+.s-ilkeler { list-style: none; margin: 0; padding: 0; }
+.s-ilkeler li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px 64px; padding: 32px 0; border-top: 1px solid var(--cizgi); }
+.s-ilkeler li:last-child { border-bottom: 1px solid var(--cizgi); }
+.s-ilke-bas { display: flex; gap: 18px; align-items: baseline; }
+.s-ilkeler .no { color: var(--yesil); flex: none; }
+.s-ilkeler h3 { font-size: clamp(22px, 2.4vw, 28px); }
+.s-ilkeler p { color: var(--soluk); margin: 0; max-width: 62ch; }
+.s-ilkeler p a { color: var(--metin); font-weight: 600; white-space: nowrap; }
+.s-sayilar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.s-sayilar > div { border-top: 1px solid var(--cizgi-2); padding-top: 10px; min-width: 0; }
+.s-sayilar b { display: block; font: 600 clamp(24px, 2.6vw, 32px)/1 var(--serif); letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.s-sayilar span { display: block; margin-top: 6px; font-size: 13.5px; color: var(--silik); }
+
+/* Kurumlarla çalışma: kâğıt bant üstünde dört adım */
+.s-kurum-adim { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.p-kagit .p-adim { border-top-color: var(--kagit-cizgi); }
+.p-kagit .p-adim .no { color: #2f7f64; }
+.p-kagit .p-adim h3 { color: var(--kagit-metin); font-size: 20px; }
+.p-kagit .p-adim p { color: var(--kagit-soluk); font-size: 15.5px; }
+
+@media (max-width: 1000px) {
+  .s-kurum-adim { grid-template-columns: 1fr 1fr; }
+  .s-katman-akis { grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1.15fr) 32px minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .s-kunye, .s-sorunlar, .s-kimler, .s-kurum-adim { grid-template-columns: 1fr; }
+  .s-kunye > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--cizgi); margin-top: 16px; }
+  .s-ilkeler li { grid-template-columns: 1fr; padding: 26px 0; }
+  .s-sayilar { grid-template-columns: 1fr 1fr; }
+  .s-katman-akis { grid-template-columns: 1fr; grid-template-rows: auto 36px auto 36px auto; }
+  .s-ok::before { left: 50%; right: auto; top: 6px; bottom: 10px; border-top: 0; border-left: 1px dashed var(--cizgi-2); }
+  .s-ok::after { left: calc(50% - 4px); right: auto; top: auto; bottom: 4px; border: 4px solid transparent; border-top: 6px solid var(--cizgi-2); border-bottom: 0; }
+  .s-katman::before { inset: -20px -16px auto; }
+}
