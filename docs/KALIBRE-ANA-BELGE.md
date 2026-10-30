@@ -304,3 +304,12 @@ Claude'un yapacakları:
   - Security: şifreleme akış diyagramı (MT5 şifreler, röle yalnız şifreli paket tutar, tarayıcı doğrulayıp çözer; eşleştirme kodu sunucuya gitmez). Company: işlem kayıtları, Kalibre Markets, kararlar diyagramı. `flow_diagram()` masaüstü ve telefon için iki çizim üretir.
   - Pricing yeniden kuruldu (yerel/product-pages.py, ödemeler kapalıyken): dört ürün kartı ilk ekranda, sabit fiyat yok (fiyat testiyle çakışmasın), bekleme listesi formu korunuyor. Ödemeler açılınca (ODEME_ACIK) eski abonelik sayfası yeniden üretilir.
 - Ürün sayfalarının sırası: görsel, üç adım, öne çıkanlar, ayrıntılar (mutabakat, şablon, doğrulama), fiyat ve SSS.
+
+### 30.10 ek 8: Şimdilik yalnız İngilizce; MVP önceliği
+- Türkçe kamuya kapalı: İngilizce sayfalarda Türkçe bağlantısı, hreflang ve "Articles (Turkish)" yok, /tr site haritasından çıktı, hesap sayfasında dil seçeneği yalnız English. Lab varsayılan İngilizce; Türkçe yalnız açık ?lang=tr ile, kaydedilmez, TR|EN anahtarı gizli. /tr sayfaları üretilmeye devam ediyor. Anahtar: TURKISH_PUBLIC (yerel/sayfa-uret.py, yerel/site-haritasi.py, kalibre-lab lab/src/dil.js).
+- Para kazandırma ihtimaline göre öncelik:
+  1. FX Blotter Analytics (hazine ve dealing masaları): en yüksek ödeme isteği, kurucunun alanı ve ağı, az sayıda anlaşma yeter; örnek blotter uçtan uca çalışıyor. Demo için eksik: rehberli demo modu, masa günlük raporu (Excel/PDF), gerçek döküm biçimleriyle (anonim) eşleştirme sınavı.
+  2. Rule Guard: parası olan net acı (sınav ücreti), abonelik ve prop firma/aracı kurum B2B yolu. Demo için eksik: web üzerinde örnek hesabın tekrar oynatımı (nerede işlem bekletilirdi), derlenmiş EA (Can derler).
+  3. Trade Analytics: ücretsiz rakipler var; ücretsiz giriş kapısı, Rule Guard'a yönlendirir.
+  4. Kalibre Lab: backtest ücretsiz kalır; para otomasyonda ve o alan kısıtlı. Şimdilik yatırım yok.
+  5. Kalibre Bridge: altyapı, tek başına satılmaz. Aracı kurum/prop firma çözümü Rule Guard kullanıcı kazanınca.
