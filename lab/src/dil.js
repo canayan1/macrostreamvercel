@@ -11,6 +11,9 @@ import { EN } from './dil-en.js';
 import { trGoster } from './dil-tr.js';
 
 const DEPO = 'kalibre-dil';
+// English only for now (30.10.2026): Turkish opens only with an explicit ?lang=tr, is not remembered,
+// and the TR | EN switch is hidden. Set true to offer Turkish again (same switch as the site's TURKISH_PUBLIC).
+export const TURKISH_PUBLIC = false;
 const gecerli = d => d === 'tr' || d === 'en';
 
 function oku() { try { return globalThis.localStorage?.getItem(DEPO) ?? null; } catch { return null; } }
@@ -20,10 +23,10 @@ function belirle() {
   const loc = globalThis.location;
   if (!loc) return 'tr';
   const q = new URLSearchParams(loc.search ?? '').get('lang') ?? new URLSearchParams(loc.search ?? '').get('dil');
-  if (gecerli(q)) { yaz(q); return q; }
+  if (gecerli(q)) { if (TURKISH_PUBLIC) yaz(q); return q; }
   const h = (globalThis.document?.documentElement?.getAttribute('lang') ?? '').slice(0, 2).toLowerCase();
   if (gecerli(h)) return h;
-  const k = oku();
+  const k = TURKISH_PUBLIC ? oku() : null;
   if (gecerli(k)) return k;
   return 'en';
 }
@@ -93,7 +96,7 @@ function trSayfa(kok) {
 
 // Başlıktaki TR | EN anahtarı: seçimi kaydeder ve sayfayı o dilde yeniden açar.
 export function dilAnahtari(yer) {
-  if (!yer) return;
+  if (!yer || (!TURKISH_PUBLIC && dil !== 'tr')) return;
   const kutu = globalThis.document.createElement('span');
   kutu.className = 'dil-anahtari';
   kutu.setAttribute('role', 'group');

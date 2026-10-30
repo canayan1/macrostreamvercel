@@ -24,6 +24,7 @@ ESLER = {'/tr': '/', '/tr/beta': '/beta', '/tr/account': '/account', '/tr/sign-i
 ONCELIK = {'/': '1.0', '/tr': '0.9', '/trade-analytics': '0.9', '/fx-blotter': '0.9', '/kalibre-lab': '0.8', '/demo': '0.8', '/rule-guard': '0.8', '/company': '0.7', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
            '/prop': '0.8', '/tr/prop': '0.7', '/forex': '0.8', '/tr/forex': '0.7'}
 
+TURKISH_PUBLIC = False  # same switch as yerel/sayfa-uret.py
 yonlenen = [r['source'] for r in json.load(open('vercel.json')).get('redirects', [])]
 def yonleniyor(yol):
     for k in yonlenen:
@@ -57,6 +58,7 @@ for f in sorted(dosyalar):
     if re.search(r'<meta[^>]+noindex', s, re.I): continue
     y = yol_of(f)
     if yonleniyor(y): continue
+    if not TURKISH_PUBLIC and (y == '/tr' or y.startswith('/tr/')): continue  # English only for now
     kayitlar[y] = tarih(f)
 
 ters = {v: k for k, v in ESLER.items()}

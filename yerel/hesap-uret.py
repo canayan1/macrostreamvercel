@@ -152,7 +152,7 @@ for dil, t in T.items():
       <dl class="lisans-bilgi"><dt>{t['eposta_et']}</dt><dd id="profil-eposta"></dd><dt>{t['katilim']}</dt><dd id="profil-tarih"></dd></dl>
       <div class="izgara-2">
         <label>{t['ad']}<input class="metin-alan" id="profil-ad" maxlength="80" autocomplete="name"></label>
-        <label>{t['dil']}<select id="profil-dil"><option value="en">English</option><option value="tr">Türkçe</option></select></label>
+        <label>{t['dil']}<select id="profil-dil"><option value="en">English</option>{'<option value="tr">Türkçe</option>' if TURKISH_PUBLIC or dil == "tr" else ""}</select></label>
       </div>
       <label class="onay"><input type="checkbox" id="profil-izin"> <span>{t['izin']}</span></label>
       <button type="submit" class="dugme ikincil">{t['kaydet']}</button>

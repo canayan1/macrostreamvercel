@@ -57,8 +57,18 @@ def yol_url(yol):
     # vercel.json trailingSlash:false: kanonik adresler sondaki eğik çizgisiz (kök "/" hariç).
     return ("/" + yol.replace("index.html", "").replace(".html", "")).replace("//", "/").rstrip("/") or "/"
 
+# English only for now (Can, 30.10.2026): English pages carry no link or hreflang to the Turkish pages.
+# The /tr pages are still generated; set True to offer Turkish again.
+TURKISH_PUBLIC = False
+
+def english_only(html):
+    if TURKISH_PUBLIC or '<html lang="en">' not in html:
+        return html
+    return re.sub(r'\n?<link rel="alternate" hreflang="(tr|x-default)"[^>]*>', '', html)
+
 def egik_cizgisiz(html):
     # İç bağlantılardaki ve kanonik/og adreslerindeki sondaki eğik çizgiyi kaldırır ("/" kök hariç).
+    html = english_only(html)
     return re.sub(r'(href|content)="((?:https://kalibremarkets\.com)?/[^"?#]*?[^/"])/"', r'\1="\2"', html)
 
 def durum_et(d, dil):
@@ -162,7 +172,7 @@ def gnav(active, lang, other=None):
     items = [(n, h) for n, h, _ in PRODUCTS[lang]] + NAV_MORE[lang]
     current = ' aria-current="page"'
     links = "".join(f'<li><a href="{h}"{current if h == active else ""}>{n}</a></li>' for n, h in items)
-    lang_link = (f'<a class="gnav-lang" href="{other}" hreflang="{"en" if tr else "tr"}" lang="{"en" if tr else "tr"}">{"English" if tr else "Türkçe"}</a>' if other else "")
+    lang_link = (f'<a class="gnav-lang" href="{other}" hreflang="{"en" if tr else "tr"}" lang="{"en" if tr else "tr"}">{"English" if tr else "Türkçe"}</a>' if other and (tr or TURKISH_PUBLIC) else "")
     return (f'<header class="gnav">\n  <div class="wrap">\n'
             f'    <a class="gnav-brand" href="{home}" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>\n'
             f'    <nav aria-label="{"Ana menü" if tr else "Main menu"}"><ul class="gnav-links" id="gnav-links">{links}</ul></nav>\n'
@@ -186,7 +196,7 @@ def gfoot(lang):
     solutions = ([("Prop trader'lar", "/tr/rule-guard"), ("Aktif MT5 trader'ları", "/tr/trade-analytics"), ("Hazine ve dealing masaları", "/tr/fx-blotter"), ("Aracı kurumlar ve prop firmaları", "/tr/company#partners")] if tr else
                  [("Prop traders", "/rule-guard"), ("Active MT5 traders", "/trade-analytics"), ("Treasury and dealing desks", "/fx-blotter"), ("Brokers and prop firms", "/company#partners")])
     resources = ([("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Metodoloji", "/tr/methodology"), ("Kurulum", "/tr/setup"), ("Fiyat", "/tr/pricing"), ("Eğitim yazıları", "/egitim")] if tr else
-                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Setup", "/setup"), ("Pricing", "/pricing"), ("Articles (Turkish)", "/egitim")])
+                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Setup", "/setup"), ("Pricing", "/pricing")] + ([("Articles (Turkish)", "/egitim")] if TURKISH_PUBLIC else []))
     company = ([("Şirket", "/tr/company"), ("İletişim", "mailto:markets@kalibrefin.com"), ("Hizmet şartları", "/tr/terms"), ("Gizlilik", "/tr/privacy"), ("İade ve iptal", "/tr/refunds"), ("Çerezler", "/tr/cookies"), ("Risk bildirimi", "/tr/risk-disclosure")] if tr else
                [("Company", "/company"), ("Contact", "mailto:markets@kalibrefin.com"), ("Terms of service", "/terms"), ("Privacy", "/privacy"), ("Refunds", "/refunds"), ("Cookies", "/cookies"), ("Risk disclosure", "/risk-disclosure")])
     col = lambda head, items: f'<div><h4>{head}</h4><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for n, h in items) + '</ul></div>'
