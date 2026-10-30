@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kalibre Lab: işlem kurallarını kur, backtest et, sına</title>
+<meta name="description" content="Bloklarla ya da formla kural kur, maliyetlerle backtest et; ayarları eğitim ve test dönemleri, deflated Sharpe ve aşırı uyum olasılığıyla sına.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/kalibre-lab">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/kalibre-lab">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/kalibre-lab">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/kalibre-lab">
+<meta property="og:title" content="Kalibre Lab: işlem kurallarını kur, backtest et, sına">
+<meta property="og:description" content="Bloklarla ya da formla kural kur, maliyetlerle backtest et; ayarları eğitim ve test dönemleri, deflated Sharpe ve aşırı uyum olasılığıyla sına.">
+<meta property="og:url" content="https://kalibremarkets.com/tr/kalibre-lab">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?lang=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab" aria-current="page">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
+    <a class="gnav-lang" href="/kalibre-lab" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+
+<nav class="lnav" aria-label="Kalibre Lab">
+  <div class="wrap">
+    <a class="lnav-title" href="#top">Kalibre Lab</a>
+    <ul class="lnav-links"><li><a href="#top">Genel bakış</a></li><li><a href="#highlights">Öne çıkanlar</a></li><li><a href="#validation">Doğrulama</a></li></ul>
+    <a class="btn" href="/lab?lang=tr">Laboratuvarı aç</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">Kalibre Lab<span class="status status-beta">Beta</span></span>
+    <h1 class="display">Kuralı işlem yapmadan önce sına.</h1>
+    <p class="sub">Bloklarla ya da formla kural kur, maliyetlerle backtest et ve en iyi ayarların dayanıp dayanmayacağını sına.</p>
+    <div class="actions"><a class="btn" href="/lab?demo=1&amp;lang=tr">Örnek backtest'i çalıştır</a><a class="more" href="/lab?lang=tr">Laboratuvarı aç</a></div>
+  </div>
+  <div class="stage">
+    <div class="wrap" style="max-width:820px"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-tr-1x.webp 640w, /static/urun/demo/lab-backtest-tr-2x.webp 1280w" sizes="(max-width: 820px) 100vw, 820px"><img src="/static/urun/demo/lab-backtest-tr.png" width="1280" height="1132" alt="Örnek backtest: fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler" fetchpriority="high" decoding="async"></picture></figure></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="row">
+      <div class="row-text"><h2 class="title-s">Okuyabildiğin kurallar.</h2><p class="lede">Giriş, çıkış, stop, hedef ve risk için bloklar. Laboratuvar kuralı düz bir dille geri yazar; ne kurduğunu kontrol edebilirsin.</p>
+      <div class="actions left"><a class="more" href="/lab?lang=tr">Bir şablondan başla</a></div></div>
+      <div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-builder-tr-1x.webp 770w, /static/urun/demo/lab-builder-tr-2x.webp 1540w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/lab-builder-tr.png" width="1540" height="1500" alt="Giriş ve çıkış bloklarıyla kural kurucu" loading="lazy" decoding="async"></picture></figure></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mist" id="highlights">
+  <div class="wrap">
+    <h2 class="title">Öne çıkanlar.</h2>
+    <div class="tiles">
+      <div class="tile "><h3>Seçtiğin maliyet ve dolumlar.</h3><p>Spread, komisyon ve kayma. Sözleşme büyüklüğü, lot adımı, swap ve teminat. Aynı mumda hem stopa hem hedefe değen durum için dört dolum modeli.</p></div>
+      <div class="tile dark"><h3>Dayanan ayarlar, ya da dayanmayanlar.</h3><p>Eğitim ve test dönemleri, yürüyen ileri analiz, deflated Sharpe oranı ve backtest aşırı uyum olasılığı.</p></div>
+      <div class="tile "><h3>Aynı girdi, aynı sonuç kimliği.</h3><p>Her çalıştırma kural, veri ve ayarlardan bir kimlik alır. Çalıştırmayı dışa aktar, herkes kontrol edebilir.</p><p class="big" style="font-size:clamp(24px,3vw,34px);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:0">kr1-d75fe88a3f8370a5</p></div>
+      <div class="tile "><h3>On üç şablon.</h3><p>Başlangıç için trend, geri çekilme, kırılım ve oynaklık hedefli kurallar; her biri kaynaklarıyla.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec night" id="validation">
+  <div class="wrap">
+    <h2 class="title">MetaTrader 5'e karşı sınandı.</h2>
+    <p class="lede">Motor MT5 Strategy Tester ile işlem işlem karşılaştırılır ve yalnız kural şartnamesinden yazılmış ayrı bir referans uygulamayla yeniden hesaplanır.</p>
+    <div class="numbers">
+      <div><b>97</b><span>Strategy Tester koşusu</span></div>
+      <div><b>44.015</b><span>karşılaştırılan MT5 işlemi</span></div>
+      <div><b>87.315</b><span>yeniden hesaplanan işlem</span></div>
+      <div><b>0</b><span>açıklanamayan fark</span></div>
+    </div>
+    <div class="actions left"><a class="more" href="/tr/methodology">Metodolojiyi oku</a></div>
+    <p class="legal-note" style="color:#86868b;margin-left:0">Backtest ve simülasyonlar varsayımsaldır ve gerçek işlemleri yansıtmaz. Geçmiş performans gelecekteki sonuçların göstergesi değildir.</p>
+  </div>
+</section>
+</main>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.</p><p>Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.</p><p>MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir.</p></div>
+    <div class="gfoot-cols"><div><h4>Ürünler</h4><ul><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/setup">Kalibre Bridge</a></li></ul></div><div><h4>Çözümler</h4><ul><li><a href="/tr/rule-guard">Prop trader'lar</a></li><li><a href="/tr/trade-analytics">Aktif MT5 trader'ları</a></li><li><a href="/tr/fx-blotter">Hazine ve dealing masaları</a></li><li><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></li></ul></div><div><h4>Kaynaklar</h4><ul><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/methodology">Metodoloji</a></li><li><a href="/tr/setup">Kurulum</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/egitim">Eğitim yazıları</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/tr/company">Şirket</a></li><li><a href="mailto:markets@kalibrefin.com">İletişim</a></li><li><a href="/tr/terms">Hizmet şartları</a></li><li><a href="/tr/privacy">Gizlilik</a></li><li><a href="/tr/refunds">İade ve iptal</a></li><li><a href="/tr/cookies">Çerezler</a></li><li><a href="/tr/risk-disclosure">Risk bildirimi</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
+  </div>
+</footer>
+<script src="/static/nav.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
+
+</body>
+</html>

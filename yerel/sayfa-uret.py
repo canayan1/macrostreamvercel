@@ -11,34 +11,34 @@ ODEME_ACIK = False  # 25.10.2026: ödemeler şirket kurulana kadar kapalı (bekl
 DURUM = {"beta": ("Beta", "Beta"), "test": ("In testing", "Testte"), "gelis": ("In development", "Geliştiriliyor"), "plan": ("Planned", "Planlanıyor")}
 URUNLER = {
  "en": [
-  ("Analyze", [("Trade Analytics", "beta", "See where your trading makes and loses money.", "/mt5-analytics"),
-               ("FX Blotter Analytics", "beta", "Realized P&amp;L and positions from your desk's own blotter.", "/treasury")]),
+  ("Analyze", [("Trade Analytics", "beta", "See where your trading makes and loses money.", "/trade-analytics"),
+               ("FX Blotter Analytics", "beta", "Realized P&amp;L and positions from your desk's own blotter.", "/fx-blotter")]),
   ("Protect", [("Rule Guard", "test", "Prop firm loss limits, checked on every tick in MT5.", "/rule-guard")]),
   ("Research", [("Kalibre Lab", "beta", "Build rules, backtest them and check settings for overfitting.", "/lab"),
                 ("Methodology", None, "How the engine is validated.", "/methodology")]),
   ("Connect", [("Kalibre Bridge for MT5", "beta", "Encrypted, read-only link from MetaTrader 5.", "/setup"),
-               ("CSV and Excel trade logs", "beta", "Bring trades from any platform or spreadsheet.", "/mt5-analytics#import-your-log"),
+               ("CSV and Excel trade logs", "beta", "Bring trades from any platform or spreadsheet.", "/trade-analytics#import-your-log"),
                ("Alpaca and Tradier", "beta", "US brokerage accounts, read-only, with your own keys.", "/lab/connect")]),
  ],
  "tr": [
-  ("Analiz", [("Trade Analytics", "beta", "İşlemlerinin nerede kazandırıp kaybettirdiğini gör.", "/tr/mt5-analytics"),
-              ("FX Blotter Analytics", "beta", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/treasury")]),
+  ("Analiz", [("Trade Analytics", "beta", "İşlemlerinin nerede kazandırıp kaybettirdiğini gör.", "/tr/trade-analytics"),
+              ("FX Blotter Analytics", "beta", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/fx-blotter")]),
   ("Koru", [("Rule Guard", "test", "Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.", "/tr/rule-guard")]),
   ("Araştır", [("Kalibre Lab", "beta", "Kural kur, backtest et, ayarları aşırı uyuma karşı sına.", "/lab?lang=tr"),
                ("Metodoloji", None, "Motorun nasıl doğrulandığı.", "/tr/methodology")]),
   ("Bağla", [("MT5 için Kalibre Bridge", "beta", "MetaTrader 5'ten şifreli, salt okunur bağlantı.", "/tr/setup"),
-             ("CSV ve Excel işlem kayıtları", "beta", "Her platformdan ya da tablodan işlem getir.", "/tr/mt5-analytics#kendi-kaydin"),
+             ("CSV ve Excel işlem kayıtları", "beta", "Her platformdan ya da tablodan işlem getir.", "/tr/trade-analytics#kendi-kaydin"),
              ("Alpaca ve Tradier", "beta", "ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.", "/lab/connect?lang=tr")]),
  ],
 }
 COZUMLER = {
  "en": [("Prop traders", "Stay inside the firm's daily and total loss limits.", "/rule-guard"),
-        ("Active MT5 traders", "Find the hours, symbols and habits that cost you.", "/mt5-analytics"),
-        ("Treasury and dealing desks", "Analyze the FX blotter your desk already keeps.", "/treasury"),
+        ("Active MT5 traders", "Find the hours, symbols and habits that cost you.", "/trade-analytics"),
+        ("Treasury and dealing desks", "Analyze the FX blotter your desk already keeps.", "/fx-blotter"),
         ("Brokers and prop firms", "Analytics across many accounts. Talk to us.", "/company#partners")],
  "tr": [("Prop trader'lar", "Firmanın günlük ve toplam kayıp sınırları içinde kal.", "/tr/rule-guard"),
-        ("Aktif MT5 trader'ları", "Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.", "/tr/mt5-analytics"),
-        ("Hazine ve dealing masaları", "Masanın zaten tuttuğu FX blotter'ını analiz et.", "/tr/treasury"),
+        ("Aktif MT5 trader'ları", "Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.", "/tr/trade-analytics"),
+        ("Hazine ve dealing masaları", "Masanın zaten tuttuğu FX blotter'ını analiz et.", "/tr/fx-blotter"),
         ("Aracı kurumlar ve prop firmaları", "Çok hesaplı analiz. Bizimle konuşun.", "/tr/company#partners")],
 }
 DUZ = {"en": [("/demo", "Demos"), ("/security", "Security"), ("/pricing", "Pricing"), ("/company", "Company")],
@@ -50,7 +50,7 @@ MENU = DUZ["tr"]; MENU_EN = DUZ["en"]
 ESLER = {"/tr": "/", "/tr/prop": "/prop", "/tr/forex": "/forex", "/tr/setup": "/setup",
          "/tr/security": "/security", "/tr/methodology": "/methodology", "/tr/about": "/about", "/tr/pricing": "/pricing",
          "/tr/account": "/account", "/tr/sign-in": "/sign-in", "/tr/risk-disclosure": "/risk-disclosure", "/tr/terms": "/terms", "/tr/privacy": "/privacy", "/tr/refunds": "/refunds", "/tr/cookies": "/cookies", "/tr/beta": "/beta",
-         "/tr/rule-guard": "/rule-guard", "/tr/mt5-analytics": "/mt5-analytics", "/tr/treasury": "/treasury", "/tr/company": "/company", "/tr/demo": "/demo"}
+         "/tr/rule-guard": "/rule-guard", "/tr/company": "/company", "/tr/demo": "/demo", "/tr/trade-analytics": "/trade-analytics", "/tr/fx-blotter": "/fx-blotter", "/tr/kalibre-lab": "/kalibre-lab"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -84,7 +84,7 @@ def ust(aktif, dil="tr", diger=None):
                else "All products are software. No advice, no signals. Your data is processed on your device.")
     guv = "/tr/security" if tr else "/security"
     ornek = "/tr/demo" if tr else "/demo"
-    erken = "/tr/mt5-analytics#pricing" if tr else "/mt5-analytics#pricing"
+    erken = "/tr/trade-analytics#pricing" if tr else "/trade-analytics#pricing"
     return ("<script>document.documentElement.classList.add('js')</script>\n"
             f'<header class="ust">\n  <div class="kap">\n'
             f'    <a class="marka" href="{ana}"><b>Kalibre</b><span>Markets</span></a>\n'
@@ -140,6 +140,96 @@ def _alt(dil):
 ALT = _alt("tr")
 ALT_EN = _alt("en")
 
+# ------------------------------------------------------------------ site shell (current design)
+# Global nav, product local nav and footer for the current pages. ust()/ALT above stay for the
+# older Turkish content pages, whose header comes from static/kabuk.js.
+PRODUCTS = {
+ "en": [("Trade Analytics", "/trade-analytics", "beta"), ("FX Blotter", "/fx-blotter", "beta"), ("Rule Guard", "/rule-guard", "test"), ("Kalibre Lab", "/kalibre-lab", "beta")],
+ "tr": [("Trade Analytics", "/tr/trade-analytics", "beta"), ("FX Blotter", "/tr/fx-blotter", "beta"), ("Rule Guard", "/tr/rule-guard", "test"), ("Kalibre Lab", "/tr/kalibre-lab", "beta")],
+}
+NAV_MORE = {
+ "en": [("Demos", "/demo"), ("Security", "/security"), ("Pricing", "/pricing"), ("Company", "/company")],
+ "tr": [("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Fiyat", "/tr/pricing"), ("Şirket", "/tr/company")],
+}
+STATUS_TEXT = {"beta": ("Beta", "Beta"), "test": ("In testing", "Testte"), "plan": ("Planned", "Planlanıyor")}
+
+def status_tag(code, lang):
+    return f'<span class="status status-{code}">{STATUS_TEXT[code][1 if lang == "tr" else 0]}</span>' if code else ""
+
+def gnav(active, lang, other=None):
+    tr = lang == "tr"
+    home = "/tr" if tr else "/"
+    items = [(n, h) for n, h, _ in PRODUCTS[lang]] + NAV_MORE[lang]
+    current = ' aria-current="page"'
+    links = "".join(f'<li><a href="{h}"{current if h == active else ""}>{n}</a></li>' for n, h in items)
+    lang_link = (f'<a class="gnav-lang" href="{other}" hreflang="{"en" if tr else "tr"}" lang="{"en" if tr else "tr"}">{"English" if tr else "Türkçe"}</a>' if other else "")
+    return (f'<header class="gnav">\n  <div class="wrap">\n'
+            f'    <a class="gnav-brand" href="{home}">Kalibre Markets</a>\n'
+            f'    <nav aria-label="{"Ana menü" if tr else "Main menu"}"><ul class="gnav-links" id="gnav-links">{links}</ul></nav>\n'
+            f'    {lang_link}<span data-kalibre-auth></span>\n'
+            f'    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="{"Menü" if tr else "Menu"}"><span></span><span></span></button>\n'
+            f'  </div>\n</header>')
+
+def lnav(title, lang, links, action_label, action_href, action_attr="", status=None):
+    tr = lang == "tr"
+    items = "".join(f'<li><a href="{h}">{n}</a></li>' for n, h in links)
+    return (f'<nav class="lnav" aria-label="{title}">\n  <div class="wrap">\n'
+            f'    <a class="lnav-title" href="#top">{title}</a>\n'
+            f'    <ul class="lnav-links">{items}</ul>\n'
+            f'    <a class="btn" href="{action_href}"{action_attr}>{action_label}</a>\n'
+            f'  </div>\n</nav>')
+
+def gfoot(lang):
+    tr = lang == "tr"
+    p = "/tr" if tr else ""
+    products = [(n, h) for n, h, _ in PRODUCTS[lang]] + [("Kalibre Bridge", f"{p}/setup")]
+    solutions = ([("Prop trader'lar", "/tr/rule-guard"), ("Aktif MT5 trader'ları", "/tr/trade-analytics"), ("Hazine ve dealing masaları", "/tr/fx-blotter"), ("Aracı kurumlar ve prop firmaları", "/tr/company#partners")] if tr else
+                 [("Prop traders", "/rule-guard"), ("Active MT5 traders", "/trade-analytics"), ("Treasury and dealing desks", "/fx-blotter"), ("Brokers and prop firms", "/company#partners")])
+    resources = ([("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Metodoloji", "/tr/methodology"), ("Kurulum", "/tr/setup"), ("Fiyat", "/tr/pricing"), ("Eğitim yazıları", "/egitim")] if tr else
+                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Setup", "/setup"), ("Pricing", "/pricing"), ("Articles (Turkish)", "/egitim")])
+    company = ([("Şirket", "/tr/company"), ("İletişim", "mailto:markets@kalibrefin.com"), ("Hizmet şartları", "/tr/terms"), ("Gizlilik", "/tr/privacy"), ("İade ve iptal", "/tr/refunds"), ("Çerezler", "/tr/cookies"), ("Risk bildirimi", "/tr/risk-disclosure")] if tr else
+               [("Company", "/company"), ("Contact", "mailto:markets@kalibrefin.com"), ("Terms of service", "/terms"), ("Privacy", "/privacy"), ("Refunds", "/refunds"), ("Cookies", "/cookies"), ("Risk disclosure", "/risk-disclosure")])
+    col = lambda head, items: f'<div><h4>{head}</h4><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for n, h in items) + '</ul></div>'
+    legal = (["Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.",
+              "Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.",
+              "MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir."] if tr else
+             ["Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.",
+              "Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.",
+              "MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes."])
+    cookie = ("/tr/cookies#manage", "Çerez ayarları") if tr else ("/cookies#manage", "Cookie settings")
+    return ('<footer class="gfoot">\n  <div class="wrap">\n'
+            f'    <div class="gfoot-legal">{"".join(f"<p>{x}</p>" for x in legal)}</div>\n'
+            f'    <div class="gfoot-cols">{col("Ürünler" if tr else "Products", products)}{col("Çözümler" if tr else "Solutions", solutions)}{col("Kaynaklar" if tr else "Resources", resources)}{col("Kalibre Markets", company)}</div>\n'
+            f'    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="{cookie[0]}" data-cerez-ayar>{cookie[1]}</a></div>\n'
+            '  </div>\n</footer>\n'
+            '<script src="/static/nav.js" defer></script>\n<script src="/static/lightbox.js" defer></script>')
+
+def head(lang, title, description, canonical_path, alternates="", extra=""):
+    """<head> contents shared by the current pages."""
+    url = "https://kalibremarkets.com" + canonical_path
+    return f"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>{title}</title>
+<meta name="description" content="{description}">
+<link rel="canonical" href="{url}">{alternates}
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:url" content="{url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="{"tr_TR" if lang == "tr" else "en_US"}">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+{yol_etiketleri(lang)}<script src="/static/kalibre-auth.js" defer></script>
+{extra}"""
+
 # Hesap betiği (static/kalibre-auth.js) bu yolları okur; site köküne İngilizce taşınınca yalnız burası değişir.
 YOLLAR = {"tr": {"signIn": "/tr/sign-in", "account": "/tr/account", "pricing": "/tr/pricing", "connect": "/tr/connect", "lab": "/lab?lang=tr", "home": "/tr"},
           "en": {"signIn": "/sign-in", "account": "/account", "pricing": "/pricing", "connect": "/connect", "lab": "/lab", "home": "/"}}
@@ -172,9 +262,6 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="{"en_US" if dil == "en" else "tr_TR"}">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -183,18 +270,18 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 </head>
 <body>
 
-{ust(aktif, dil, diger)}
+{gnav(aktif, dil, diger)}
 
-<main class="belge">
-  <div class="kap belge-izgara">
-    <article class="belge-govde">
+<main class="doc">
+  <div class="doc-grid">
+    <article class="doc-body">
 {govde}
     </article>
-    {f'<aside class="belge-kenar" aria-label="{kenar_etiket}">{kenar}</aside>' if kenar else ""}
+    {f'<aside class="doc-side" aria-label="{kenar_etiket}"><p>{kenar_etiket}</p>{kenar}</aside>' if kenar else ""}
   </div>
 </main>
 
-{ALT_EN if dil == "en" else ALT}
+{gfoot(dil)}
 {ek_betik}
 </body>
 </html>

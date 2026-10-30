@@ -3,6 +3,26 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/mt5-analytics",
+      "destination": "/trade-analytics",
+      "statusCode": 308
+    },
+    {
+      "source": "/tr/mt5-analytics",
+      "destination": "/tr/trade-analytics",
+      "statusCode": 308
+    },
+    {
+      "source": "/treasury",
+      "destination": "/fx-blotter",
+      "statusCode": 308
+    },
+    {
+      "source": "/tr/treasury",
+      "destination": "/tr/fx-blotter",
+      "statusCode": 308
+    },
+    {
       "source": "/lab/analiz",
       "destination": "/lab/analytics",
       "statusCode": 308

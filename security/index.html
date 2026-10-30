@@ -16,9 +16,6 @@
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -33,30 +30,18 @@
 </head>
 <body>
 
-<script>document.documentElement.classList.add('js')</script>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
-    <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
-      <details class="mgrup"><summary>Products</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/connect"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
-      </details>
-      <details class="mgrup mgrup-dar"><summary>Solutions</summary>
-        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
-      </details>
-      <a class="mduz" href="/demo">Demos</a><a class="mduz" href="/security" aria-current="page">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
-      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/demo">Try the demos</a></div>
-    </nav>
-    <a class="dil" href="/tr/security" hreflang="tr" lang="tr">TR</a>
-    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
-    <a class="dugme ikincil kucuk baglan" href="/demo">Try the demos</a>
-    <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/">Kalibre Markets</a>
+    <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/demo">Demos</a></li><li><a href="/security" aria-current="page">Security</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/company">Company</a></li></ul></nav>
+    <a class="gnav-lang" href="/tr/security" hreflang="tr" lang="tr">Türkçe</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
 
-<main class="belge">
-  <div class="kap belge-izgara">
-    <article class="belge-govde">
+<main class="doc">
+  <div class="doc-grid">
+    <article class="doc-body">
 
 <h1>Security</h1>
 <p class="giris">Kalibre Bridge encrypts your MetaTrader 5 data on your computer before sending it. Our relay server stores only encrypted packets and cannot decrypt them. This page lists the methods we use and their limits.</p>
@@ -124,25 +109,18 @@
 <p>To report a security issue, email <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a>.</p>
 
     </article>
-    <aside class="belge-kenar" aria-label="On this page"><a href="#summary">Summary</a><a href="#code">Pairing code</a><a href="#encryption">Encryption and signatures</a><a href="#server">Relay server</a><a href="#add-on">Data Kalibre Bridge reads</a><a href="#license">License check</a><a href="#brokers">Alpaca and Tradier</a><a href="#limits">Limits</a></aside>
+    <aside class="doc-side" aria-label="On this page"><p>On this page</p><a href="#summary">Summary</a><a href="#code">Pairing code</a><a href="#encryption">Encryption and signatures</a><a href="#server">Relay server</a><a href="#add-on">Data Kalibre Bridge reads</a><a href="#license">License check</a><a href="#brokers">Alpaca and Tradier</a><a href="#limits">Limits</a></aside>
   </div>
 </main>
 
-<footer class="alt">
-  <div class="kap">
-    <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Analytics for trading data. Products are in beta.</p>
-      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-    </div>
-    <div><h4>Products</h4><a href="/mt5-analytics">Trade Analytics</a><a href="/treasury">FX Blotter Analytics</a><a href="/rule-guard">Rule Guard</a><a href="/lab">Kalibre Lab</a><a href="/setup">Kalibre Bridge for MT5</a><a href="/mt5-analytics#import-your-log">CSV and Excel trade logs</a><a href="/lab/connect">Alpaca and Tradier</a></div>
-    <div><h4>Solutions</h4><a href="/rule-guard">Prop traders</a><a href="/mt5-analytics">Active MT5 traders</a><a href="/treasury">Treasury and dealing desks</a><a href="/company#partners">Brokers and prop firms</a></div>
-    <div><h4>Resources</h4><a href="/security">Security</a><a href="/methodology">Methodology</a><a href="/setup">Setup</a><a href="/pricing">Pricing</a><a href="/egitim">Articles (Turkish)</a></div>
-    <div><h4>Kalibre Markets</h4><a href="/company">Company</a><a href="mailto:markets@kalibrefin.com">Contact</a><a href="/terms">Terms of service</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="/cookies">Cookies</a><a href="/risk-disclosure">Risk disclosure</a><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
-    <p class="yasal">Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/setup">Kalibre Bridge</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/rule-guard">Prop traders</a></li><li><a href="/trade-analytics">Active MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Setup</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/egitim">Articles (Turkish)</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>
-<script src="/static/menu.js" defer></script>
+<script src="/static/nav.js" defer></script>
 <script src="/static/lightbox.js" defer></script>
 
 </body>

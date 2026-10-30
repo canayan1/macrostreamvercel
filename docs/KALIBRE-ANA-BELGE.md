@@ -280,3 +280,11 @@ Claude'un yapacakları:
 - /company yeniden tasarlandı (B2B vizyon; ürün listesi yok).
 - Sırada: Bridge dosya biçimi (seri-…json Türkçe anahtarlar) ve MQL5 dosya adları (KalibreKopru → KalibreBridge, KalibreMotor → KalibreEngine), Motor'un kalibre: 3 okuması; bunlar MT5'te yeniden derleme ister. Hesap senkron yükü (Supabase) anahtarları. Eski Türkçe içerik sayfaları (egitim vb.) Türkçe kalır.
 - Önizleme: https://macrostreamvercel-9ent6lhte-canayan1s-projects.vercel.app (canlıya alınmadı).
+
+### 30.10 ek 4: Apple tasarım standardına geçiş
+- Can: site "AI hazırlamış gibi" duruyordu; Apple'ın ürün sayfası standartları istendi.
+- static/site.css baştan yazıldı: açık zemin (#fff, #f5f5f7), ürün görüntüleri siyah bantlarda, sistem yazı tipi (Apple'da SF Pro), büyük sıkı başlıklar, mavi hap düğme (#0071e3) ve "Learn more ›" bağlantıları. Büyük harfli etiketler, monospace küçük yazılar, noktalı meta satırları ve aynı kart kalıpları kaldırıldı.
+- Yeni üretici yerel/product-pages.py: ana sayfa, /trade-analytics, /fx-blotter, /rule-guard, /kalibre-lab (yeni), /demo, /company; her ürün sayfasında yapışkan yerel menü. Rakamlar lab/samples/summary.json'dan. pitch-uret.py ve talep-uret.py emekli (şirket metni yerel/company-copy.json).
+- /mt5-analytics → /trade-analytics, /treasury → /fx-blotter (308). Talep ölçüm kimlikleri aynı (mt5-analytics, treasury, rule-guard).
+- Belge sayfaları (güvenlik, metodoloji, yasal, kurulum) aynı kabukta; eski Türkçe içerik sayfaları kabuk.js ile eski görünümde kalır.
+- Rule Guard görseli: örnek hesabın günlük kapanış bakiyesi FTMO 2-Step tabanlarına karşı (SVG, summary.json propDays).

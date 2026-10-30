@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Kalibre Lab: build, backtest and check trading rules</title>
+<meta name="description" content="Build a rule with blocks or a form, backtest it with costs and check settings with training and test periods, deflated Sharpe and the probability of backtest overfitting.">
+<link rel="canonical" href="https://kalibremarkets.com/kalibre-lab">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/kalibre-lab">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/kalibre-lab">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/kalibre-lab">
+<meta property="og:title" content="Kalibre Lab: build, backtest and check trading rules">
+<meta property="og:description" content="Build a rule with blocks or a form, backtest it with costs and check settings with training and test periods, deflated Sharpe and the probability of backtest overfitting.">
+<meta property="og:url" content="https://kalibremarkets.com/kalibre-lab">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/">Kalibre Markets</a>
+    <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab" aria-current="page">Kalibre Lab</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/company">Company</a></li></ul></nav>
+    <a class="gnav-lang" href="/tr/kalibre-lab" hreflang="tr" lang="tr">Türkçe</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+
+<nav class="lnav" aria-label="Kalibre Lab">
+  <div class="wrap">
+    <a class="lnav-title" href="#top">Kalibre Lab</a>
+    <ul class="lnav-links"><li><a href="#top">Overview</a></li><li><a href="#highlights">Highlights</a></li><li><a href="#validation">Validation</a></li></ul>
+    <a class="btn" href="/lab">Open the lab</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">Kalibre Lab<span class="status status-beta">Beta</span></span>
+    <h1 class="display">Test the rule before you trade it.</h1>
+    <p class="sub">Build a rule with blocks or a form, backtest it with costs, and check whether the best settings would have held up.</p>
+    <div class="actions"><a class="btn" href="/lab?demo=1">Run the sample backtest</a><a class="more" href="/lab">Open the lab</a></div>
+  </div>
+  <div class="stage">
+    <div class="wrap" style="max-width:820px"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-1x.webp 640w, /static/urun/demo/lab-backtest-2x.webp 1280w" sizes="(max-width: 820px) 100vw, 820px"><img src="/static/urun/demo/lab-backtest.png" width="1280" height="1132" alt="Sample backtest: trades on the price chart, equity curve, result ID and statistics" fetchpriority="high" decoding="async"></picture></figure></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="row">
+      <div class="row-text"><h2 class="title-s">Rules you can read.</h2><p class="lede">Blocks for entries, exits, stops, targets and risk. The lab writes the rule back in plain language, so you can check what you built.</p>
+      <div class="actions left"><a class="more" href="/lab">Start from a template</a></div></div>
+      <div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-builder-1x.webp 770w, /static/urun/demo/lab-builder-2x.webp 1540w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/lab-builder.png" width="1540" height="1500" alt="Rule builder with entry and exit blocks" loading="lazy" decoding="async"></picture></figure></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mist" id="highlights">
+  <div class="wrap">
+    <h2 class="title">Get the highlights.</h2>
+    <div class="tiles">
+      <div class="tile "><h3>Costs and fills you choose.</h3><p>Spread, commission and slippage. Contract size, lot steps, swap and margin. Four fill models for the bar that touches both stop and target.</p></div>
+      <div class="tile dark"><h3>Settings that hold up, or not.</h3><p>Training and test periods, a walk-forward run, the deflated Sharpe ratio and the probability of backtest overfitting.</p></div>
+      <div class="tile "><h3>Same inputs, same result ID.</h3><p>Every run gets an ID from the rule, the data and the settings. Export the run and anyone can check it.</p><p class="big" style="font-size:clamp(24px,3vw,34px);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:0">kr1-d75fe88a3f8370a5</p></div>
+      <div class="tile "><h3>Thirteen templates.</h3><p>Trend, pullback, breakout and volatility-targeted rules to start from, each with its sources.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec night" id="validation">
+  <div class="wrap">
+    <h2 class="title">Checked against MetaTrader 5.</h2>
+    <p class="lede">The engine is compared trade by trade with the MT5 Strategy Tester, and recomputed by a separate reference implementation written from the rule specification alone.</p>
+    <div class="numbers">
+      <div><b>97</b><span>Strategy Tester runs</span></div>
+      <div><b>44,015</b><span>MT5 trades compared</span></div>
+      <div><b>87,315</b><span>trades recomputed</span></div>
+      <div><b>0</b><span>unexplained differences</span></div>
+    </div>
+    <div class="actions left"><a class="more" href="/methodology">Read the methodology</a></div>
+    <p class="legal-note" style="color:#86868b;margin-left:0">Backtests and simulations are hypothetical and do not reflect actual trading. Past performance is not indicative of future results.</p>
+  </div>
+</section>
+</main>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/setup">Kalibre Bridge</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/rule-guard">Prop traders</a></li><li><a href="/trade-analytics">Active MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Setup</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/egitim">Articles (Turkish)</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+  </div>
+</footer>
+<script src="/static/nav.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
+
+</body>
+</html>

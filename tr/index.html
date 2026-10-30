@@ -6,28 +6,22 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Kalibre Markets: alım satım verisi için analiz (beta)</title>
-<meta name="description" content="Bir hesabın ya da masanın nerede kazanıp kaybettiğini gör, prop firması kayıp sınırlarını denetle ve kurallarını kendi geçmişinde sına. Dosyalar tarayıcında işlenir.">
+<title>Kalibre Markets: işlem kayıtları için analiz</title>
+<meta name="description" content="Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve paranın nerede kazanılıp kaybedildiğini gösterir. Dosyalar tarayıcında işlenir.">
 <link rel="canonical" href="https://kalibremarkets.com/tr">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:title" content="Kalibre Markets: alım satım verisi için analiz (beta)">
-<meta property="og:description" content="Bir hesabın ya da masanın nerede kazanıp kaybettiğini gör, prop firması kayıp sınırlarını denetle ve kurallarını kendi geçmişinde sına. Dosyalar tarayıcında işlenir.">
+<meta property="og:title" content="Kalibre Markets: işlem kayıtları için analiz">
+<meta property="og:description" content="Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve paranın nerede kazanılıp kaybedildiğini gösterir. Dosyalar tarayıcında işlenir.">
 <meta property="og:url" content="https://kalibremarkets.com/tr">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalibre Markets","url":"https://kalibremarkets.com","email":"markets@kalibrefin.com"}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" type="image/webp" imagesrcset="/static/urun/analytics/hero-tr-1x.webp 1440w, /static/urun/analytics/hero-tr-2x.webp 2880w" imagesizes="(max-width: 1180px) 100vw, 1100px">
+<meta name="theme-color" content="#fbfbfd">
 <link rel="stylesheet" href="/static/site.css">
-<link rel="stylesheet" href="/static/ana/pitch.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
 <meta name="kalibre:yol:signIn" content="/tr/sign-in">
@@ -39,154 +33,93 @@
 <script src="/static/kalibre-auth.js" defer></script>
 </head>
 <body>
-
-<script>document.documentElement.classList.add('js')</script>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
-    <nav class="ana-menu" id="ana-menu" aria-label="Ana menü">
-      <details class="mgrup"><summary>Ürünler</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?lang=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/connect?lang=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
-      </details>
-      <details class="mgrup mgrup-dar"><summary>Çözümler</summary>
-        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/tr/rule-guard"><b>Prop trader'lar</b><small>Firmanın günlük ve toplam kayıp sınırları içinde kal.</small></a><a class="mitem" href="/tr/mt5-analytics"><b>Aktif MT5 trader'ları</b><small>Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</small></a><a class="mitem" href="/tr/treasury"><b>Hazine ve dealing masaları</b><small>Masanın zaten tuttuğu FX blotter'ını analiz et.</small></a><a class="mitem" href="/tr/company#partners"><b>Aracı kurumlar ve prop firmaları</b><small>Çok hesaplı analiz. Bizimle konuşun.</small></a></div></div>
-      </details>
-      <a class="mduz" href="/tr/demo">Demolar</a><a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company">Şirket</a>
-      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/tr/demo">Demolar</a></div>
-    </nav>
-    <a class="dil" href="/" hreflang="en" lang="en">EN</a>
-    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menü</button>
-    <a class="dugme ikincil kucuk baglan" href="/tr/demo">Demolar</a>
-    <a class="dugme kucuk" href="/tr/mt5-analytics#pricing">Erken erişim</a>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
+    <a class="gnav-lang" href="/" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
   </div>
 </header>
+<main id="top">
 
-<main>
-<section class="p-hero p-ust-bosluk">
-  <div class="kap">
-    <a class="p-rozet" href="/tr/mt5-analytics"><span class="durum durum-beta">Beta</span><span>Trade Analytics MT5 raporlarını, CSV ve Excel dosyalarını okur</span></a>
-    <h1>Alım satım verisi için analiz.</h1>
-    <p class="giris">Bir hesabın ya da masanın nerede kazanıp kaybettiğini gör, risk sınırları içinde kal ve kurallarını kendi geçmişinde sına. Dosyalar tarayıcında işlenir.</p>
-    <div class="p-eylem">
-      <a class="dugme" href="/tr/demo">Her ürünü örnek dosyalarla dene</a>
-      <a class="dugme ikincil" href="/tr/mt5-analytics#pricing">Erken erişim</a>
-      <a class="metin-bag" href="/tr/treasury#demo">Masa demosu iste</a>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display">Paranın nereye gittiğini bil.</h1>
+    <p class="sub">Zaten tuttuğun işlem kayıtları için analiz. MT5 geçmişin, masanın FX blotter'ı, kuralların.</p>
+    <div class="actions"><a class="btn" href="/tr/demo">Demoları gör</a><a class="more" href="/trade-analytics#pricing">Erken erişim al</a></div>
+  </div>
+</section>
+
+<section class="panel mist" style="margin-top:72px">
+  <h2 class="title">Trade Analytics</h2>
+  <p class="sub">Nerede kazanıp nerede kaybettiğini gör.</p>
+  <div class="actions"><a class="more" href="/trade-analytics">Daha fazla</a><a class="more" href="/lab/analytics?file=templates/kalibre-trade-log-example.xlsx&amp;lang=tr">Örneği dene</a></div>
+  <div class="panel-media"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/analytics-overview-tr-1x.webp 1172w, /static/urun/demo/analytics-overview-tr-2x.webp 2344w" sizes="(max-width: 1040px) 100vw, 1040px"><img src="/static/urun/demo/analytics-overview-tr.png" width="2344" height="1104" alt="Örnek bir hesapla Trade Analytics hesap özeti" fetchpriority="high" decoding="async"></picture></figure></div>
+</section>
+
+<section class="panel night" style="margin-top:12px">
+  <h2 class="title">FX Blotter</h2>
+  <p class="sub">Masanın blotter'ı, deal'ine kadar açıklanmış.</p>
+  <div class="actions"><a class="more" href="/tr/fx-blotter">Daha fazla</a><a class="more" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Örnek blotter'ı aç</a></div>
+  <div class="panel-media"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-tr-1x.webp 1172w, /static/urun/demo/blotter-pnl-tr-2x.webp 2344w" sizes="(max-width: 1040px) 100vw, 1040px"><img src="/static/urun/demo/blotter-pnl-tr.png" width="2344" height="781" alt="Örnek blotter'ın parite bazında K/Z tablosu: fiyat, puan, taşıma ve MTM" loading="lazy" decoding="async"></picture></figure></div>
+</section>
+
+<div class="panels-2">
+  <section class="panel mist">
+    <h2 class="title">Rule Guard<span class="status status-test">Testte</span></h2>
+    <p class="sub">Firmanın kayıp sınırları içinde kal.</p>
+    <div class="actions"><a class="more" href="/tr/rule-guard">Daha fazla</a></div>
+    <div class="panel-media"><figure class="shot" style="background:#000;padding:28px 20px 12px"><svg viewBox="0 0 1000 438" role="img" aria-label="Örnek hesap: FTMO 2-Step tabanlarına karşı günlük kapanış bakiyesi" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"><line x1="64" x2="976" y1="372.0" y2="372.0" stroke="#2c2c2e"/><text x="54" y="376.0" text-anchor="end" fill="#86868b" font-size="13">90k</text><line x1="64" x2="976" y1="308.7" y2="308.7" stroke="#2c2c2e"/><text x="54" y="312.7" text-anchor="end" fill="#86868b" font-size="13">94k</text><line x1="64" x2="976" y1="245.5" y2="245.5" stroke="#2c2c2e"/><text x="54" y="249.5" text-anchor="end" fill="#86868b" font-size="13">98k</text><line x1="64" x2="976" y1="182.2" y2="182.2" stroke="#2c2c2e"/><text x="54" y="186.2" text-anchor="end" fill="#86868b" font-size="13">102k</text><line x1="64" x2="976" y1="118.9" y2="118.9" stroke="#2c2c2e"/><text x="54" y="122.9" text-anchor="end" fill="#86868b" font-size="13">106k</text><line x1="64" x2="976" y1="55.6" y2="55.6" stroke="#2c2c2e"/><text x="54" y="59.6" text-anchor="end" fill="#86868b" font-size="13">110k</text><path d="M64.0,372.0 87.4,372.0 L87.4,372.0 110.8,372.0 L110.8,372.0 134.2,372.0 L134.2,372.0 157.5,372.0 L157.5,372.0 180.9,372.0 L180.9,372.0 204.3,372.0 L204.3,372.0 227.7,372.0 L227.7,372.0 251.1,372.0 L251.1,372.0 274.5,372.0 L274.5,372.0 297.8,372.0 L297.8,372.0 321.2,372.0 L321.2,372.0 344.6,372.0 L344.6,372.0 368.0,372.0 L368.0,372.0 391.4,372.0 L391.4,372.0 414.8,372.0 L414.8,372.0 438.2,372.0 L438.2,372.0 461.5,372.0 L461.5,372.0 484.9,372.0 L484.9,372.0 508.3,372.0 L508.3,372.0 531.7,372.0 L531.7,372.0 555.1,372.0 L555.1,372.0 578.5,372.0 L578.5,372.0 601.8,372.0 L601.8,372.0 625.2,372.0 L625.2,372.0 648.6,372.0 L648.6,372.0 672.0,372.0 L672.0,372.0 695.4,372.0 L695.4,372.0 718.8,372.0 L718.8,372.0 742.2,372.0 L742.2,372.0 765.5,372.0 L765.5,372.0 788.9,372.0 L788.9,372.0 812.3,372.0 L812.3,372.0 835.7,372.0 L835.7,372.0 859.1,372.0 L859.1,372.0 882.5,372.0 L882.5,372.0 905.8,372.0 L905.8,372.0 929.2,372.0 L929.2,372.0 952.6,372.0 L952.6,372.0 976.0,372.0 L976.0,372.0 976.0,372.0" fill="none" stroke="#a1a1a6" stroke-width="2" stroke-dasharray="2 4"/><path d="M64.0,292.9 87.4,292.9 L87.4,272.7 110.8,272.7 L110.8,310.2 134.2,310.2 L134.2,302.0 157.5,302.0 L157.5,273.4 180.9,273.4 L180.9,271.8 204.3,271.8 L204.3,239.0 227.7,239.0 L227.7,275.5 251.1,275.5 L251.1,223.5 274.5,223.5 L274.5,209.2 297.8,209.2 L297.8,222.5 321.2,222.5 L321.2,203.4 344.6,203.4 L344.6,164.8 368.0,164.8 L368.0,145.1 391.4,145.1 L391.4,125.9 414.8,125.9 L414.8,197.3 438.2,197.3 L438.2,152.3 461.5,152.3 L461.5,144.4 484.9,144.4 L484.9,132.0 508.3,132.0 L508.3,143.2 531.7,143.2 L531.7,145.2 555.1,145.2 L555.1,151.6 578.5,151.6 L578.5,208.0 601.8,208.0 L601.8,245.9 625.2,245.9 L625.2,274.8 648.6,274.8 L648.6,236.6 672.0,236.6 L672.0,259.9 695.4,259.9 L695.4,295.6 718.8,295.6 L718.8,295.9 742.2,295.9 L742.2,266.8 765.5,266.8 L765.5,233.7 788.9,233.7 L788.9,221.6 812.3,221.6 L812.3,229.6 835.7,229.6 L835.7,238.5 859.1,238.5 L859.1,216.2 882.5,216.2 L882.5,207.4 905.8,207.4 L905.8,194.4 929.2,194.4 L929.2,256.6 952.6,256.6 L952.6,269.1 976.0,269.1 L976.0,257.7 976.0,257.7" fill="none" stroke="#ff453a" stroke-width="2" stroke-dasharray="6 5"/><path d="M64.0,193.6 L87.4,231.1 L110.8,222.9 L134.2,194.3 L157.5,192.7 L180.9,159.9 L204.3,196.4 L227.7,144.4 L251.1,130.2 L274.5,143.4 L297.8,124.3 L321.2,85.7 L344.6,66.1 L368.0,46.8 L391.4,118.2 L414.8,73.2 L438.2,65.3 L461.5,52.9 L484.9,64.1 L508.3,66.1 L531.7,72.5 L555.1,128.9 L578.5,166.8 L601.8,195.8 L625.2,157.6 L648.6,180.8 L672.0,216.5 L695.4,216.8 L718.8,187.7 L742.2,154.6 L765.5,142.5 L788.9,150.5 L812.3,159.4 L835.7,137.1 L859.1,128.4 L882.5,115.4 L905.8,177.5 L929.2,190.0 L952.6,178.7 L976.0,193.7" fill="none" stroke="#2997ff" stroke-width="2.5" stroke-linejoin="round"/><circle cx="64.0" cy="221.8" r="2.6" fill="#ff9f0a"/><circle cx="87.4" cy="231.1" r="2.6" fill="#ff9f0a"/><circle cx="110.8" cy="247.8" r="2.6" fill="#ff9f0a"/><circle cx="134.2" cy="230.6" r="2.6" fill="#ff9f0a"/><circle cx="157.5" cy="194.3" r="2.6" fill="#ff9f0a"/><circle cx="180.9" cy="207.8" r="2.6" fill="#ff9f0a"/><circle cx="204.3" cy="196.4" r="2.6" fill="#ff9f0a"/><circle cx="227.7" cy="196.4" r="2.6" fill="#ff9f0a"/><circle cx="251.1" cy="167.7" r="2.6" fill="#ff9f0a"/><circle cx="274.5" cy="143.4" r="2.6" fill="#ff9f0a"/><circle cx="297.8" cy="157.1" r="2.6" fill="#ff9f0a"/><circle cx="321.2" cy="124.3" r="2.6" fill="#ff9f0a"/><circle cx="344.6" cy="115.1" r="2.6" fill="#ff9f0a"/><circle cx="368.0" cy="66.1" r="2.6" fill="#ff9f0a"/><circle cx="391.4" cy="118.2" r="2.6" fill="#ff9f0a"/><circle cx="414.8" cy="118.2" r="2.6" fill="#ff9f0a"/><circle cx="438.2" cy="92.3" r="2.6" fill="#ff9f0a"/><circle cx="461.5" cy="79.4" r="2.6" fill="#ff9f0a"/><circle cx="484.9" cy="64.1" r="2.6" fill="#ff9f0a"/><circle cx="508.3" cy="72.5" r="2.6" fill="#ff9f0a"/><circle cx="531.7" cy="81.0" r="2.6" fill="#ff9f0a"/><circle cx="555.1" cy="128.9" r="2.6" fill="#ff9f0a"/><circle cx="578.5" cy="166.8" r="2.6" fill="#ff9f0a"/><circle cx="601.8" cy="195.8" r="2.6" fill="#ff9f0a"/><circle cx="625.2" cy="208.2" r="2.6" fill="#ff9f0a"/><circle cx="648.6" cy="180.8" r="2.6" fill="#ff9f0a"/><circle cx="672.0" cy="216.5" r="2.6" fill="#ff9f0a"/><circle cx="695.4" cy="247.1" r="2.6" fill="#ff9f0a"/><circle cx="718.8" cy="224.2" r="2.6" fill="#ff9f0a"/><circle cx="742.2" cy="187.7" r="2.6" fill="#ff9f0a"/><circle cx="765.5" cy="161.6" r="2.6" fill="#ff9f0a"/><circle cx="788.9" cy="150.5" r="2.6" fill="#ff9f0a"/><circle cx="812.3" cy="177.5" r="2.6" fill="#ff9f0a"/><circle cx="835.7" cy="159.4" r="2.6" fill="#ff9f0a"/><circle cx="859.1" cy="137.1" r="2.6" fill="#ff9f0a"/><circle cx="882.5" cy="142.6" r="2.6" fill="#ff9f0a"/><circle cx="905.8" cy="177.5" r="2.6" fill="#ff9f0a"/><circle cx="929.2" cy="190.0" r="2.6" fill="#ff9f0a"/><circle cx="952.6" cy="190.0" r="2.6" fill="#ff9f0a"/><circle cx="976.0" cy="193.7" r="2.6" fill="#ff9f0a"/><text x="64.0" y="402" fill="#86868b" font-size="13">Nis 2026</text><text x="555.1" y="402" fill="#86868b" font-size="13">May 2026</text><g transform="translate(64,418)"><line x1="0" x2="22" y1="-4" y2="-4" stroke="#2997ff" stroke-width="2.5" stroke-dasharray=""/><text x="30" y="0" fill="#a1a1a6" font-size="13">Gün sonu kapanış bakiyesi</text></g><g transform="translate(304,418)"><line x1="0" x2="22" y1="-4" y2="-4" stroke="#ff9f0a" stroke-width="2.5" stroke-dasharray=""/><text x="30" y="0" fill="#a1a1a6" font-size="13">Gün içi en düşük kapanış bakiyesi</text></g><g transform="translate(544,418)"><line x1="0" x2="22" y1="-4" y2="-4" stroke="#ff453a" stroke-width="2.5" stroke-dasharray="6 5"/><text x="30" y="0" fill="#a1a1a6" font-size="13">Günlük taban (%5)</text></g><g transform="translate(784,418)"><line x1="0" x2="22" y1="-4" y2="-4" stroke="#a1a1a6" stroke-width="2.5" stroke-dasharray="2 4"/><text x="30" y="0" fill="#a1a1a6" font-size="13">Toplam taban (%10)</text></g></svg></figure></div>
+  </section>
+  <section class="panel night">
+    <h2 class="title">Kalibre Lab</h2>
+    <p class="sub">Kuralı işlem yapmadan önce sına.</p>
+    <div class="actions"><a class="more" href="/tr/kalibre-lab">Daha fazla</a><a class="more" href="/lab?demo=1&amp;lang=tr">Örneği çalıştır</a></div>
+    <div class="panel-media" style="max-width:520px"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-tr-1x.webp 640w, /static/urun/demo/lab-backtest-tr-2x.webp 1280w" sizes="(max-width: 860px) 100vw, 520px"><img src="/static/urun/demo/lab-backtest-tr.png" width="1280" height="1132" alt="Örnek backtest sonucu" loading="lazy" decoding="async"></picture></figure></div>
+  </section>
+</div>
+
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="title">Verin cihazında kalır.</h2>
+    <p class="lede">Gizlilik bir ayar değil, ürünlerin nasıl yapıldığının parçası.</p>
+    <div class="facts"><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="28" height="22" rx="3"/><path d="M4 13h28"/><circle cx="8" cy="10" r=".6" fill="currentColor"/><circle cx="11" cy="10" r=".6" fill="currentColor"/></svg><h3>Dosyalar tarayıcında okunur</h3><p>MT5 raporları, CSV ve Excel dosyaları cihazında işlenir ve yüklenmez. Rapordaki hesap numarası ve ad okunmaz.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="16" width="20" height="14" rx="3"/><path d="M12 16v-4a6 6 0 0 1 12 0v4"/><path d="M18 22v3"/></svg><h3>Canlı MT5 verisi uçtan uca şifreli</h3><p>Kalibre Bridge her paketi terminalden çıkmadan AES-256 ile şifreler. Röle yalnız şifreli metni tutar ve 2 saat içinde siler.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="22" r="6"/><path d="M16.5 17.5 29 5M24 10l3 3M21 13l2 2"/></svg><h3>Şifre yok</h3><p>MT5 ya da aracı kurum şifreni hiçbir zaman istemeyiz. Alpaca ve Tradier anahtarları tarayıcında kalır.</p></div></div>
+    <div class="actions"><a class="more" href="/tr/security">Güvenlik ayrıntılarını oku</a></div>
+  </div>
+</section>
+
+<section class="sec night">
+  <div class="wrap">
+    <h2 class="title">MetaTrader 5'e karşı sınanmış bir motor.</h2>
+    <p class="lede">Bir sayıyı göstermeden önce nasıl hesaplandığını sınarız. Bunlar motorla ilgili bilgilerdir, işlem sonucu değildir.</p>
+    <div class="numbers">
+      <div><b>97</b><span>işlem işlem karşılaştırılan MT5 Strategy Tester koşusu</span></div>
+      <div><b>44.015</b><span>bu koşulardaki MT5 işlemi</span></div>
+      <div><b>87.315</b><span>ayrı bir referans uygulamasıyla yeniden hesaplanan işlem</span></div>
+      <div><b>0</b><span>iki denetimde de açıklanamayan fark</span></div>
     </div>
-    <p class="not">Beta yazılım. Denemek için hesap gerekmez. Yatırım tavsiyesi değildir.</p>
-    <div class="p-sahne">
-      <figure class="p-cerceve"><picture><source type="image/webp" srcset="/static/urun/analytics/hero-tr-1x.webp 1440w, /static/urun/analytics/hero-tr-2x.webp 2880w" sizes="(max-width: 1180px) 100vw, 1100px"><img src="/static/urun/analytics/hero-tr.png" width="2880" height="1800" alt="Örnek bir hesap için hesap özetini gösteren Kalibre Trade Analytics" fetchpriority="high" decoding="async"></picture></figure>
-      <p class="p-alt-yazi"><span class="p-sentetik">Örnek</span>Örnek bir hesapla Kalibre Trade Analytics.</p>
-    </div>
+    <div class="actions left"><a class="more" href="/tr/methodology">Metodolojiyi oku</a></div>
   </div>
 </section>
 
-<section class="bolum" id="products" aria-labelledby="urun-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="urun-bas">Ürünler</h2><p>Her ürün aynı işlem modeli üzerinde çalışır. Önündeki işe uyanla başla.</p></div>
-    <div class="p-izgara">
-      <article class="p-kart genis">
-        <span class="p-is">Analiz</span>
-        <h3>Trade Analytics<span class="durum durum-beta">Beta</span></h3>
-        <p>MT5 geçmiş raporunu, bir CSV dosyasını ya da Excel kaydını bırak. Sonuçlarını sembol, saat, gün, seans, pozisyon süresi, işlem büyüklüğü ve kayıptan sonraki işleme göre gör.</p>
-        <ul><li>Kaybettiren ve kazandıran durumlar sıralı, her biri en az 20 işlemle</li><li>Prop firması günlük ve toplam sınırları, gün gün</li><li>Kendi gruplama görünümlerin, tarayıcında kayıtlı</li></ul>
-        <a class="bag" href="/tr/mt5-analytics">Trade Analytics'i incele</a>
-        <div class="p-mini"><picture><source type="image/webp" srcset="/static/urun/analytics/insights-tr-1x.webp 1440w, /static/urun/analytics/insights-tr-2x.webp 2880w" sizes="(max-width: 1000px) 100vw, 760px"><img src="/static/urun/analytics/insights-tr.png" width="2880" height="1800" alt="Örnek hesap için sıralı kaybettiren ve kazandıran durumlar" loading="lazy" decoding="async"></picture></div>
-      </article>
-      <article class="p-kart dar">
-        <span class="p-is">Analiz</span>
-        <h3>FX Blotter Analytics<span class="durum durum-beta">Beta</span></h3>
-        <p>Hazine ya da dealing masasının zaten tuttuğu FX blotter'ını, dışa aktarıldığı haliyle okur.</p>
-        <ul><li>Günlük kâr/zarar: değerleme artı gerçekleşen, valör tarihinde</li><li>Spot ve swap puanı kâr/zararı ayrı satırlarda</li><li>Taşıma maliyeti gecelik swap olarak</li><li>Gün içi net açık pozisyon ve valör merdiveni</li><li>Tek tıkla deal'lere inme</li></ul>
-        <p class="p-baslik-ornek">İşlem Tarihi · Valör · Döviz Cinsi · Alış/Satış · Tutar · Kur</p>
-        <a class="bag" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Örnek Excel blotter ile dene</a> <a class="bag" href="/tr/treasury">Masalar için</a>
-      </article>
-      <article class="p-kart uc">
-        <span class="p-is">Koru</span>
-        <h3>Rule Guard<span class="durum durum-test">Testte</span></h3>
-        <p>Firmanın günlük ve toplam kayıp tabanlarını her tick'te izleyen ve tabana yakın yeni işlemi engelleyen MT5 eklentisi. FTMO ve The5ers ön ayarları.</p>
-        <a class="bag" href="/tr/rule-guard">Rule Guard hakkında</a>
-      </article>
-      <article class="p-kart uc">
-        <span class="p-is">Araştır</span>
-        <h3>Kalibre Lab<span class="durum durum-beta">Beta</span></h3>
-        <p>Bloklarla ya da formla kural kur, maliyetlerle backtest et, ayarları eğitim ve test dönemleri, deflated Sharpe ve backtest aşırı uyum olasılığıyla sına.</p>
-        <a class="bag" href="/lab?lang=tr">Laboratuvarı aç</a>
-      </article>
-      <article class="p-kart uc">
-        <span class="p-is">Bağla</span>
-        <h3>Bağlantılar</h3>
-        <p>Veriyi zaten bulunduğu yerden getir.</p>
-        <div class="p-baglanti-liste"><a href="/tr/setup">MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></a><a href="/tr/mt5-analytics#kendi-kaydin">CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></a><a href="/lab/connect?lang=tr">Alpaca ve Tradier<span class="durum durum-beta">Beta</span></a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="bolum" aria-labelledby="adim-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="adim-bas">Nasıl çalışır</h2><p>Bir dosyadan kendi vereceğin karara üç adım.</p></div>
-    <div class="p-adimlar"><div class="p-adim"><span class="no">ŞEKİL 01</span><h3>Bağla</h3><p>MT5'ten rapor al, bir CSV ya da Excel kaydı bırak ya da canlı MT5 hesabını Kalibre Bridge ile bağla.</p></div><div class="p-adim"><span class="no">ŞEKİL 02</span><h3>Analiz et</h3><p>Kalibre tek bir işlem modeli kurar ve sonuçları önemli alanlara göre ayırır. Küçük örneklemler gürültü olabilir diye işaretlenir.</p></div><div class="p-adim"><span class="no">ŞEKİL 03</span><h3>Harekete geç</h3><p>Rule Guard ile kayıp sınırlarını kur ya da kuralındaki bir değişikliği işleme koymadan önce Kalibre Lab'de sına.</p></div></div>
-    <div style="margin-top:40px"><div class="p-satir"><div><h3>Nerede kazanıp kaybettiğin</h3><p>Liste durumları net kâr/zarara katkılarına göre sıralar. Her satır işlem sayısını, ortalamana göre kazanma oranını ve farklıysa ortalama büyüklüğünü gösterir. Bir durumun listeye girmesi için en az 20 işlem gerekir.</p></div><figure class="p-cerceve"><picture><source type="image/webp" srcset="/static/urun/analytics/insights-tr-1x.webp 1440w, /static/urun/analytics/insights-tr-2x.webp 2880w" sizes="(max-width: 760px) 100vw, 640px"><img src="/static/urun/analytics/insights-tr.png" width="2880" height="1800" alt="Örnek hesap için sıralı durumlar" loading="lazy" decoding="async"></picture></figure></div><div class="p-satir ters"><div><h3>Prop sınırları, gün gün</h3><p>Bir firma ön ayarı seç ya da kendi yüzdelerini gir. Her gün iki tabanı, en düşük kapanış bakiyesini ve tabana ne kadar yaklaşıldığını gösterir. Geçmiş raporunda gün içi varlık değeri olmadığı için bu görünüm yalnız kapanmış işlemleri ölçer.</p></div><figure class="p-cerceve"><picture><source type="image/webp" srcset="/static/urun/analytics/prop-limits-tr-1x.webp 1440w, /static/urun/analytics/prop-limits-tr-2x.webp 2880w" sizes="(max-width: 760px) 100vw, 640px"><img src="/static/urun/analytics/prop-limits-tr.png" width="2880" height="1800" alt="Örnek hesap için günlük prop sınırı tablosu" loading="lazy" decoding="async"></picture></figure></div><div class="p-satir"><div><h3>Kendi görünümlerin</h3><p>Herhangi bir alana göre grupla, bir ölçü ve grafik seç. Görünümler tarayıcında kaydedilir ve sonraki ziyaretinde yeniden açılır.</p></div><figure class="p-cerceve"><picture><source type="image/webp" srcset="/static/urun/analytics/custom-view-tr-1x.webp 1440w, /static/urun/analytics/custom-view-tr-2x.webp 2880w" sizes="(max-width: 760px) 100vw, 640px"><img src="/static/urun/analytics/custom-view-tr.png" width="2880" height="1800" alt="Örnek hesabı seansa göre gruplayan görünüm kurucu" loading="lazy" decoding="async"></picture></figure></div></div>
-  </div>
-</section>
-
-<section class="p-kagit" aria-labelledby="dog-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="dog-bas">MetaTrader 5'e karşı sınanmış bir motor</h2><p>Bir sayıyı göstermeden önce nasıl hesaplandığını sınarız. Bunlar motorla ilgili doğrulama bilgileridir, işlem sonucu değildir.</p></div>
-    <div class="p-sayilar"><div class="p-sayi"><b>97</b><span>işlem işlem karşılaştırılan MT5 Strategy Tester koşusu</span></div><div class="p-sayi"><b>44.015</b><span>bu koşulardaki MT5 işlemi</span></div><div class="p-sayi"><b>87.315</b><span>ayrı bir referans uygulamasıyla yeniden hesaplanan işlem</span></div><div class="p-sayi"><b>0</b><span>iki denetimde de açıklanamayan fark</span></div></div>
-    <p class="p-dipnot">Strategy Tester karşılaştırması: EURUSD, GBPUSD, XAUUSD ve USDJPY'de 7 strateji, Temmuz 2025 ile Haziran 2026 arası. Kalan her fark belgelenmiş bir nedene bağlandı. Referans uygulama, motor koduna bakılmadan yalnız kural şartnamesinden yazıldı. <a href="/tr/methodology">Metodolojiyi oku</a></p>
-  </div>
-</section>
-
-<section class="bolum" style="border-top:0" aria-labelledby="giz-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="giz-bas">Verin cihazında kalır</h2><p>Gizlilik bir ayar değil, mimarinin parçası. <a href="/tr/security">Güvenlik ayrıntılarını oku</a></p></div>
-    <div class="p-uclu"><div><span class="p-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></span><h3>Dosyalar tarayıcında okunur</h3><p>MT5 raporları, CSV ve Excel dosyaları cihazında işlenir ve yüklenmez. Rapordaki hesap numarası ve ad okunmaz.</p></div><div><span class="p-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h3>Canlı MT5 verisi uçtan uca şifreli</h3><p>Kalibre Bridge her paketi terminalden çıkmadan AES-256 ile şifreler. Röle yalnız şifreli metni tutar ve 2 saat içinde siler.</p></div><div><span class="p-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/></svg></span><h3>Şifre yok</h3><p>MT5 ya da aracı kurum şifreni hiçbir zaman istemeyiz. Alpaca ve Tradier anahtarları tarayıcında kalır.</p></div></div>
-  </div>
-</section>
-
-<section class="bolum" aria-labelledby="seg-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="seg-bas">İşlem yapma biçimine göre</h2><p>Aynı motor, dört tür kullanıcı için.</p></div>
-    <div class="p-segmentler"><a class="p-segment" href="/tr/rule-guard"><h3>Prop trader'lar</h3><p>Firmanın günlük ve toplam kayıp sınırları içinde kal, hangi günlerin yaklaştığını gör.</p><span>Rule Guard</span></a><a class="p-segment" href="/tr/mt5-analytics"><h3>Aktif MT5 trader'ları</h3><p>Sana para kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</p><span>Trade Analytics</span></a><a class="p-segment" href="/tr/treasury"><h3>Hazine ve dealing masaları</h3><p>Masanın zaten tuttuğu FX blotter'ını yeniden biçimlendirmeden analiz et.</p><span>FX Blotter Analytics</span></a><a class="p-segment" href="/tr/company#partners"><h3>Aracı kurumlar ve prop firmaları</h3><p>Çok sayıda hesapta analiz ve kural izleme.</p><span>Bizimle konuşun</span></a></div>
-  </div>
-</section>
-
-<section class="bolum" id="roadmap" aria-labelledby="yol-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="yol-bas">Yol haritası</h2><p>Neyin hazır olduğu, sırada ne olduğu ve neyin planlandığı. Tarih sözü verilmez.</p></div>
-    <div class="p-yol"><div><h3>Şimdi</h3><ul><li><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>MT5 raporu, CSV ve Excel, kırılımlar, prop sınırları</small></li><li><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kurucu, backtest, aşırı uyum denetimli optimizasyon</small></li><li><b>Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MT5'ten şifreli, salt okunur bağlantı</small></li><li><b>İşlem kaydı şablonları<span class="durum durum-beta">Beta</span></b><small>Satır satır denetimli CSV ve Excel şablonları</small></li></ul></div><div><h3>Sırada</h3><ul><li><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Demo hesaplarda erken erişim</small></li><li><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Hazine ve dealing masalarıyla kendi blotter'larında pilot</small></li></ul></div><div><h3>Sonra</h3><ul><li><b>Haftalık kural raporu<span class="durum durum-plan">Planlanıyor</span></b><small>Kural ihlalleri ve pahalı alışkanlıklar, haftada bir</small></li><li><b>Çok hesaplı görünümler<span class="durum durum-plan">Planlanıyor</span></b><small>Prop firmaları ve aracı kurumlar için</small></li><li><b>Yeni platformlar<span class="durum durum-plan">Planlanıyor</span></b><small>cTrader ve Match-Trader</small></li></ul></div></div>
-  </div>
-</section>
-
-<section class="bolum p-son" aria-labelledby="son-bas">
-  <div class="kap">
-    <h2 id="son-bas">Kendi geçmişinde dene</h2>
-    <p class="giris">Her ürünü örnek dosyayla aç ve sonucu indir ya da kendi dosyanı bırak. Hiçbir şey yüklenmez.</p>
-    <div class="p-eylem">
-      <a class="dugme" href="/tr/demo">Her ürünü örnek dosyalarla dene</a>
-      <a class="dugme ikincil" href="/tr/mt5-analytics#pricing">Erken erişim</a>
-      <a class="metin-bag" href="/tr/treasury#demo">Masa demosu iste</a>
-    </div>
+<section class="sec mist center">
+  <div class="wrap">
+    <h2 class="title">Masalar ve firmalar için de.</h2>
+    <p class="lede">Hazine ve dealing masaları, aracı kurumlar ve prop firmaları, binadan tek bir müşteri verisi çıkmadan örnek ya da anonim veriyle pilot yapabilir.</p>
+    <div class="actions"><a class="btn" href="/tr/fx-blotter#demo">Masa demosu iste</a><a class="more" href="/tr/company">Kalibre Markets hakkında</a></div>
   </div>
 </section>
 </main>
-
-<footer class="alt">
-  <div class="kap">
-    <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Alım satım verisi için analiz. Ürünler beta aşamasında.</p>
-      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-    </div>
-    <div><h4>Ürünler</h4><a href="/tr/mt5-analytics">Trade Analytics</a><a href="/tr/treasury">FX Blotter Analytics</a><a href="/tr/rule-guard">Rule Guard</a><a href="/lab?lang=tr">Kalibre Lab</a><a href="/tr/setup">MT5 için Kalibre Bridge</a><a href="/tr/mt5-analytics#kendi-kaydin">CSV ve Excel işlem kayıtları</a><a href="/lab/connect?lang=tr">Alpaca ve Tradier</a></div>
-    <div><h4>Çözümler</h4><a href="/tr/rule-guard">Prop trader'lar</a><a href="/tr/mt5-analytics">Aktif MT5 trader'ları</a><a href="/tr/treasury">Hazine ve dealing masaları</a><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></div>
-    <div><h4>Kaynaklar</h4><a href="/tr/security">Güvenlik</a><a href="/tr/methodology">Metodoloji</a><a href="/tr/setup">Kurulum</a><a href="/tr/pricing">Fiyat</a><a href="/egitim">Eğitim yazıları</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>
-    <div><h4>Kalibre Markets</h4><a href="/tr/company">Şirket</a><a href="mailto:markets@kalibrefin.com">İletişim</a><a href="/tr/terms">Hizmet şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/refunds">İade ve iptal</a><a href="/tr/cookies">Çerezler</a><a href="/tr/risk-disclosure">Risk bildirimi</a><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
-    <p class="yasal">Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır. Bu sitedeki içerik yatırım danışmanlığı kapsamında değildir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.</p><p>Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.</p><p>MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir.</p></div>
+    <div class="gfoot-cols"><div><h4>Ürünler</h4><ul><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/setup">Kalibre Bridge</a></li></ul></div><div><h4>Çözümler</h4><ul><li><a href="/tr/rule-guard">Prop trader'lar</a></li><li><a href="/tr/trade-analytics">Aktif MT5 trader'ları</a></li><li><a href="/tr/fx-blotter">Hazine ve dealing masaları</a></li><li><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></li></ul></div><div><h4>Kaynaklar</h4><ul><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/methodology">Metodoloji</a></li><li><a href="/tr/setup">Kurulum</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/egitim">Eğitim yazıları</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/tr/company">Şirket</a></li><li><a href="mailto:markets@kalibrefin.com">İletişim</a></li><li><a href="/tr/terms">Hizmet şartları</a></li><li><a href="/tr/privacy">Gizlilik</a></li><li><a href="/tr/refunds">İade ve iptal</a></li><li><a href="/tr/cookies">Çerezler</a></li><li><a href="/tr/risk-disclosure">Risk bildirimi</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
   </div>
 </footer>
-<script src="/static/menu.js" defer></script>
+<script src="/static/nav.js" defer></script>
 <script src="/static/lightbox.js" defer></script>
+
 </body>
 </html>

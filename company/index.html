@@ -19,12 +19,9 @@
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalibre Markets","url":"https://kalibremarkets.com","email":"markets@kalibrefin.com"}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
 <link rel="stylesheet" href="/static/site.css">
-<link rel="stylesheet" href="/static/ana/pitch.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
 <meta name="kalibre:yol:signIn" content="/sign-in">
@@ -36,97 +33,79 @@
 <script src="/static/kalibre-auth.js" defer></script>
 </head>
 <body>
-
-<script>document.documentElement.classList.add('js')</script>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
-    <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
-      <details class="mgrup"><summary>Products</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/connect"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
-      </details>
-      <details class="mgrup mgrup-dar"><summary>Solutions</summary>
-        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
-      </details>
-      <a class="mduz" href="/demo">Demos</a><a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company" aria-current="page">Company</a>
-      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/demo">Try the demos</a></div>
-    </nav>
-    <a class="dil" href="/tr/company" hreflang="tr" lang="tr">TR</a>
-    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
-    <a class="dugme ikincil kucuk baglan" href="/demo">Try the demos</a>
-    <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/">Kalibre Markets</a>
+    <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/company" aria-current="page">Company</a></li></ul></nav>
+    <a class="gnav-lang" href="/tr/company" hreflang="tr" lang="tr">Türkçe</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
+<main id="top">
 
-<main class="s-sayfa">
-<section class="p-hero p-ust-bosluk s-hero" aria-labelledby="s-h1">
-  <div class="kap">
-    <p class="p-is">Company</p>
-    <h1 id="s-h1">Make trading data explainable.</h1>
-    <p class="giris">Kalibre Markets builds analytics software for trading data. We want every desk, firm and trader to see where a result came from, and to be able to show it.</p>
-    <dl class="s-kunye"><div><dt>Origin</dt><dd>Founded by a former bank treasurer and economist</dd></div><div><dt>Stage</dt><dd>Early stage and independent. Products in beta.</dd></div><div><dt>Model</dt><dd>Software only. No advice, no client funds.</dd></div></dl>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display">Make trading data explainable.</h1>
+    <p class="sub">Kalibre Markets builds analytics software for trading data. We want every desk, firm and trader to see where a result came from, and to be able to show it.</p>
   </div>
 </section>
 
-<section class="bolum" id="why" aria-labelledby="neden-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="neden-bas">Why trading data needs an analytics layer</h2><p>Every trade is recorded somewhere. Yet simple questions about those records still take a day of spreadsheet work.</p></div>
-    <ol class="s-sorunlar"><li><span class="no">01</span><h3>Blotters live in spreadsheets</h3><p>A dealing desk keeps its deals in an Excel blotter exported from another system. Reports are rebuilt by hand, and every rebuild can break.</p></li><li><span class="no">02</span><h3>P&amp;L that cannot be traced</h3><p>A daily figure gets reported, but the split between spot, swap points and carry is hard to show. When someone questions a number, finding the deals behind it is slow.</p></li><li><span class="no">03</span><h3>Limits checked by hand</h3><p>Position and loss limits are often checked after the fact, by someone reading a sheet. A breach can be found late.</p></li></ol>
-    <figure class="s-katman">
-      <div class="s-katman-akis"><div class="s-katman-sutun"><p class="s-katman-bas">Trade records</p><span>Blotters</span><span>Platform reports</span><span>Trade logs</span></div><div class="s-ok" aria-hidden="true"></div><div class="s-katman-sutun orta"><p class="s-katman-bas">Analytics layer</p><span>One trade model</span><span>Checked against a reference</span></div><div class="s-ok" aria-hidden="true"></div><div class="s-katman-sutun"><p class="s-katman-bas">Decisions</p><span>P&amp;L traced to deals</span><span>Limits watched</span><span>Rules tested</span></div></div>
-      <figcaption>We sit between the trade record and the decision. We do not sit between a client and the market.</figcaption>
-    </figure>
+<section class="sec">
+  <div class="wrap">
+    <div class="numbers" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div><span style="margin:0 0 6px">Origin</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Founded by a former bank treasurer and economist</b></div><div><span style="margin:0 0 6px">Stage</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Early stage and independent. Products in beta.</b></div><div><span style="margin:0 0 6px">Model</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Software only. No advice, no client funds.</b></div></div>
   </div>
 </section>
 
-<section class="bolum" id="who" aria-labelledby="kim-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="kim-bas">Who we work with</h2><p>We start with traders, because they can test software on their own history today. Our long-term work is with institutions.</p></div>
-    <div class="s-kimler"><article class="s-kim"><span class="s-asama"><i></i>Where we start</span><h3>Active and prop traders</h3><p>People who trade their own or a funded account and want to know which habits cost them money. They are the first to test our engine, on their own files.</p></article><article class="s-kim"><span class="s-asama"><i></i>Where we grow</span><h3>Brokers and prop firms</h3><p>Firms that run many accounts and need the same rules applied to each one. They need analytics and rule monitoring per account, not one trader at a time.</p></article><article class="s-kim"><span class="s-asama"><i></i>Where we are going</span><h3>Bank and corporate treasury desks</h3><p>Desks that run FX positions and report P&amp;L to a treasurer and a risk team. They need numbers that trace back to each deal.</p></article></div>
+<section class="sec mist">
+  <div class="wrap">
+    <h2 class="title" style="max-width:22ch">Why trading data needs an analytics layer.</h2>
+    <p class="lede">Every trade is recorded somewhere. Yet simple questions about those records still take a day of spreadsheet work.</p>
+    <div class="facts"><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4H10a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11z"/><path d="M21 4v7h7M13 19h10M13 24h10"/></svg><h3>Blotters live in spreadsheets</h3><p>A dealing desk keeps its deals in an Excel blotter exported from another system. Reports are rebuilt by hand, and every rebuild can break.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27l8-9 6 5 12-14"/><path d="M24 9h7v7"/></svg><h3>P&amp;L that cannot be traced</h3><p>A daily figure gets reported, but the split between spot, swap points and carry is hard to show. When someone questions a number, finding the deals behind it is slow.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 4l11 4v9c0 7-4.7 12.3-11 15-6.3-2.7-11-8-11-15V8z"/></svg><h3>Limits checked by hand</h3><p>Position and loss limits are often checked after the fact, by someone reading a sheet. A breach can be found late.</p></div></div>
+    <p class="lede" style="margin-top:56px"><b>We sit between the trade record and the decision. We do not sit between a client and the market.</b></p>
   </div>
 </section>
 
-<section class="bolum" id="principles" aria-labelledby="ilke-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="ilke-bas">What we believe</h2><p>Four principles decide what we build and what we leave out.</p></div>
-    <ol class="s-ilkeler"><li><div class="s-ilke-bas"><span class="no">01</span><h3>Check the number before you show it</h3></div><div><p>Our engine is compared trade by trade against the MetaTrader 5 Strategy Tester. A separate reference implementation, written without access to the engine code, recomputes the same rules. Neither check left an unexplained difference. <a href="/methodology">Read the methodology</a></p><div class="s-sayilar"><div><b>97</b><span>MT5 Strategy Tester runs</span></div><div><b>44,015</b><span>MT5 trades compared</span></div><div><b>87,315</b><span>trades recomputed</span></div><div><b>0</b><span>unexplained differences</span></div></div></div></li><li><div class="s-ilke-bas"><span class="no">02</span><h3>Data stays on your side</h3></div><div><p>Files are processed in your browser and are not uploaded. Live MT5 data is encrypted end to end with AES-256, and the relay deletes it within 2 hours. We never ask for a password. <a href="/security">Read the security details</a></p></div></li><li><div class="s-ilke-bas"><span class="no">03</span><h3>Software, not a broker</h3></div><div><p>We do not give investment advice or trading signals. We do not hold client funds, and our servers do not send orders.</p></div></li><li><div class="s-ilke-bas"><span class="no">04</span><h3>Say what is ready</h3></div><div><p>Every product carries a status label: Beta, In testing, In development or Planned. We do not publish performance claims.</p></div></li></ol>
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title">Who we work with.</h2>
+    <p class="lede">We start with traders, because they can test software on their own history today. Our long-term work is with institutions.</p>
+    <div class="tiles"><div class="tile third"><h3>Active and prop traders</h3><p>People who trade their own or a funded account and want to know which habits cost them money. They are the first to test our engine, on their own files.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Where we start</p></div><div class="tile third"><h3>Brokers and prop firms</h3><p>Firms that run many accounts and need the same rules applied to each one. They need analytics and rule monitoring per account, not one trader at a time.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Where we grow</p></div><div class="tile third"><h3>Bank and corporate treasury desks</h3><p>Desks that run FX positions and report P&amp;L to a treasurer and a risk team. They need numbers that trace back to each deal.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Where we are going</p></div></div>
   </div>
 </section>
 
-<section class="p-kagit s-kurum" id="partners" aria-labelledby="kurum-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="kurum-bas">How we work with institutions</h2><p>A desk should be able to judge the software before any client data leaves the building. Our pilots are designed around that.</p></div>
-    <div class="p-adimlar s-kurum-adim"><div class="p-adim"><span class="no">01</span><h3>Start on sample or anonymized data</h3><p>We begin with our sample files or an anonymized export of your own. No real client data is needed to judge the fit.</p></div><div class="p-adim"><span class="no">02</span><h3>Your data stays with you</h3><p>Files are read in the browser on your own machine. We do not receive or store your blotter.</p></div><div class="p-adim"><span class="no">03</span><h3>Bring your own rate files</h3><p>Valuation uses the rates you already have. We do not supply market data, so there is no new market data licence to sign.</p></div><div class="p-adim"><span class="no">04</span><h3>Talk to the founder</h3><p>Questions and requests go to the founder, not a sales team. What we learn in a pilot shapes what we build next.</p></div></div>
+<section class="sec night">
+  <div class="wrap">
+    <h2 class="title">What we believe.</h2>
+    <p class="lede">Four principles decide what we build and what we leave out.</p>
+    <div class="facts" style="grid-template-columns:1fr 1fr"><div><h3>Check the number before you show it</h3><p>Our engine is compared trade by trade against the MetaTrader 5 Strategy Tester. A separate reference implementation, written without access to the engine code, recomputes the same rules. Neither check left an unexplained difference.</p><div class="actions left" style="margin-top:12px"><a class="more" href="/methodology">Read the methodology</a></div></div><div><h3>Data stays on your side</h3><p>Files are processed in your browser and are not uploaded. Live MT5 data is encrypted end to end with AES-256, and the relay deletes it within 2 hours. We never ask for a password.</p><div class="actions left" style="margin-top:12px"><a class="more" href="/security">Read the security details</a></div></div><div><h3>Software, not a broker</h3><p>We do not give investment advice or trading signals. We do not hold client funds, and our servers do not send orders.</p></div><div><h3>Say what is ready</h3><p>Every product carries a status label: Beta, In testing, In development or Planned. We do not publish performance claims.</p></div></div>
   </div>
 </section>
 
-<section class="bolum p-son" id="contact" aria-labelledby="son-bas" style="border-top:0">
-  <div class="kap">
-    <h2 id="son-bas">Talk to us about your desk or firm</h2>
-    <p class="giris">We are looking for treasury desks, brokers and prop firms to run early pilots with. Tell us your role and the system your data comes from.</p>
-    <div class="p-eylem">
-      <a class="dugme" href="mailto:markets@kalibrefin.com?subject=Kalibre%20pilot">Propose a pilot</a>
-      <a class="dugme ikincil" href="mailto:markets@kalibrefin.com">Email markets@kalibrefin.com</a>
-    </div>
+<section class="sec mist" id="partners">
+  <div class="wrap">
+    <h2 class="title">How we work with institutions.</h2>
+    <p class="lede">A desk should be able to judge the software before any client data leaves the building. Our pilots are designed around that.</p>
+    <ol class="steps"><li><h3>Start on sample or anonymized data</h3><p>We begin with our sample files or an anonymized export of your own. No real client data is needed to judge the fit.</p></li><li><h3>Your data stays with you</h3><p>Files are read in the browser on your own machine. We do not receive or store your blotter.</p></li><li><h3>Bring your own rate files</h3><p>Valuation uses the rates you already have. We do not supply market data, so there is no new market data licence to sign.</p></li><li><h3>Talk to the founder</h3><p>Questions and requests go to the founder, not a sales team. What we learn in a pilot shapes what we build next.</p></li></ol>
+  </div>
+</section>
+
+<section class="sec center" id="contact">
+  <div class="wrap">
+    <h2 class="title">Talk to us about your desk or firm.</h2>
+    <p class="lede">We are looking for treasury desks, brokers and prop firms to run early pilots with. Tell us your role and the system your data comes from.</p>
+    <div class="actions"><a class="btn" href="mailto:markets@kalibrefin.com?subject=Kalibre%20pilot">Propose a pilot</a><a class="more" href="mailto:markets@kalibrefin.com">Email markets@kalibrefin.com</a></div>
   </div>
 </section>
 </main>
-
-<footer class="alt">
-  <div class="kap">
-    <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Analytics for trading data. Products are in beta.</p>
-      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-    </div>
-    <div><h4>Products</h4><a href="/mt5-analytics">Trade Analytics</a><a href="/treasury">FX Blotter Analytics</a><a href="/rule-guard">Rule Guard</a><a href="/lab">Kalibre Lab</a><a href="/setup">Kalibre Bridge for MT5</a><a href="/mt5-analytics#import-your-log">CSV and Excel trade logs</a><a href="/lab/connect">Alpaca and Tradier</a></div>
-    <div><h4>Solutions</h4><a href="/rule-guard">Prop traders</a><a href="/mt5-analytics">Active MT5 traders</a><a href="/treasury">Treasury and dealing desks</a><a href="/company#partners">Brokers and prop firms</a></div>
-    <div><h4>Resources</h4><a href="/security">Security</a><a href="/methodology">Methodology</a><a href="/setup">Setup</a><a href="/pricing">Pricing</a><a href="/egitim">Articles (Turkish)</a></div>
-    <div><h4>Kalibre Markets</h4><a href="/company">Company</a><a href="mailto:markets@kalibrefin.com">Contact</a><a href="/terms">Terms of service</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="/cookies">Cookies</a><a href="/risk-disclosure">Risk disclosure</a><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
-    <p class="yasal">Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/setup">Kalibre Bridge</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/rule-guard">Prop traders</a></li><li><a href="/trade-analytics">Active MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Setup</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/egitim">Articles (Turkish)</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>
-<script src="/static/menu.js" defer></script>
+<script src="/static/nav.js" defer></script>
 <script src="/static/lightbox.js" defer></script>
+
 </body>
 </html>

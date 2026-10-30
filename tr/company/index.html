@@ -19,12 +19,9 @@
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalibre Markets","url":"https://kalibremarkets.com","email":"markets@kalibrefin.com"}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
 <link rel="stylesheet" href="/static/site.css">
-<link rel="stylesheet" href="/static/ana/pitch.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
 <meta name="kalibre:yol:signIn" content="/tr/sign-in">
@@ -36,97 +33,79 @@
 <script src="/static/kalibre-auth.js" defer></script>
 </head>
 <body>
-
-<script>document.documentElement.classList.add('js')</script>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
-    <nav class="ana-menu" id="ana-menu" aria-label="Ana menü">
-      <details class="mgrup"><summary>Ürünler</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?lang=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/connect?lang=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
-      </details>
-      <details class="mgrup mgrup-dar"><summary>Çözümler</summary>
-        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/tr/rule-guard"><b>Prop trader'lar</b><small>Firmanın günlük ve toplam kayıp sınırları içinde kal.</small></a><a class="mitem" href="/tr/mt5-analytics"><b>Aktif MT5 trader'ları</b><small>Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</small></a><a class="mitem" href="/tr/treasury"><b>Hazine ve dealing masaları</b><small>Masanın zaten tuttuğu FX blotter'ını analiz et.</small></a><a class="mitem" href="/tr/company#partners"><b>Aracı kurumlar ve prop firmaları</b><small>Çok hesaplı analiz. Bizimle konuşun.</small></a></div></div>
-      </details>
-      <a class="mduz" href="/tr/demo">Demolar</a><a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company" aria-current="page">Şirket</a>
-      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/tr/demo">Demolar</a></div>
-    </nav>
-    <a class="dil" href="/company" hreflang="en" lang="en">EN</a>
-    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menü</button>
-    <a class="dugme ikincil kucuk baglan" href="/tr/demo">Demolar</a>
-    <a class="dugme kucuk" href="/tr/mt5-analytics#pricing">Erken erişim</a>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company" aria-current="page">Şirket</a></li></ul></nav>
+    <a class="gnav-lang" href="/company" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
   </div>
 </header>
+<main id="top">
 
-<main class="s-sayfa">
-<section class="p-hero p-ust-bosluk s-hero" aria-labelledby="s-h1">
-  <div class="kap">
-    <p class="p-is">Şirket</p>
-    <h1 id="s-h1">Alım satım verisini açıklanabilir kılmak.</h1>
-    <p class="giris">Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. Her masanın, firmanın ve trader'ın bir sonucun nereden geldiğini görmesini ve bunu gösterebilmesini istiyoruz.</p>
-    <dl class="s-kunye"><div><dt>Köken</dt><dd>Kurucusu eski bir banka hazinecisi ve ekonomist</dd></div><div><dt>Aşama</dt><dd>Erken aşama ve bağımsız. Ürünler beta aşamasında.</dd></div><div><dt>Model</dt><dd>Yalnız yazılım. Tavsiye yok, müşteri parası yok.</dd></div></dl>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display">Alım satım verisini açıklanabilir kılmak.</h1>
+    <p class="sub">Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. Her masanın, firmanın ve trader'ın bir sonucun nereden geldiğini görmesini ve bunu gösterebilmesini istiyoruz.</p>
   </div>
 </section>
 
-<section class="bolum" id="why" aria-labelledby="neden-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="neden-bas">Alım satım verisinin neden bir analiz katmanına ihtiyacı var</h2><p>Her işlem bir yerde kayıtlı. Yine de bu kayıtlarla ilgili basit sorular hâlâ bir günlük tablo işi gerektiriyor.</p></div>
-    <ol class="s-sorunlar"><li><span class="no">01</span><h3>Blotter'lar tablolarda yaşıyor</h3><p>Bir dealing masası deal'lerini başka bir sistemden dışa aktarılmış bir Excel blotter'ında tutar. Raporlar elle yeniden kurulur ve her yeniden kurulum bozulabilir.</p></li><li><span class="no">02</span><h3>İzi sürülemeyen kâr/zarar</h3><p>Günlük bir rakam raporlanır ama spot, swap puanı ve taşıma maliyeti ayrımını göstermek zordur. Bir rakam sorgulandığında arkasındaki deal'leri bulmak yavaştır.</p></li><li><span class="no">03</span><h3>Elle denetlenen sınırlar</h3><p>Pozisyon ve kayıp sınırları çoğu zaman sonradan, bir tabloyu okuyan biri tarafından denetlenir. Bir ihlal geç fark edilebilir.</p></li></ol>
-    <figure class="s-katman">
-      <div class="s-katman-akis"><div class="s-katman-sutun"><p class="s-katman-bas">İşlem kayıtları</p><span>Blotter'lar</span><span>Platform raporları</span><span>İşlem kayıtları</span></div><div class="s-ok" aria-hidden="true"></div><div class="s-katman-sutun orta"><p class="s-katman-bas">Analiz katmanı</p><span>Tek bir işlem modeli</span><span>Bir referansa karşı sınanmış</span></div><div class="s-ok" aria-hidden="true"></div><div class="s-katman-sutun"><p class="s-katman-bas">Kararlar</p><span>Deal'e kadar izlenen kâr/zarar</span><span>İzlenen sınırlar</span><span>Sınanan kurallar</span></div></div>
-      <figcaption>İşlem kaydı ile karar arasında dururuz. Müşteri ile piyasa arasında durmayız.</figcaption>
-    </figure>
+<section class="sec">
+  <div class="wrap">
+    <div class="numbers" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div><span style="margin:0 0 6px">Köken</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Kurucusu eski bir banka hazinecisi ve ekonomist</b></div><div><span style="margin:0 0 6px">Aşama</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Erken aşama ve bağımsız. Ürünler beta aşamasında.</b></div><div><span style="margin:0 0 6px">Model</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">Yalnız yazılım. Tavsiye yok, müşteri parası yok.</b></div></div>
   </div>
 </section>
 
-<section class="bolum" id="who" aria-labelledby="kim-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="kim-bas">Kimlerle çalışıyoruz</h2><p>Trader'larla başlıyoruz, çünkü yazılımı bugün kendi geçmişlerinde sınayabilirler. Uzun vadeli işimiz kurumlarla.</p></div>
-    <div class="s-kimler"><article class="s-kim"><span class="s-asama"><i></i>Başladığımız yer</span><h3>Aktif ve prop trader'lar</h3><p>Kendi hesabıyla ya da fonlanmış bir hesapla işlem yapan ve hangi alışkanlıklarının para kaybettirdiğini bilmek isteyen kişiler. Motorumuzu kendi dosyalarında ilk onlar sınar.</p></article><article class="s-kim"><span class="s-asama"><i></i>Büyüdüğümüz yer</span><h3>Aracı kurumlar ve prop firmaları</h3><p>Çok sayıda hesap yöneten ve aynı kuralları her birine uygulaması gereken firmalar. Tek tek trader değil, hesap bazında analiz ve kural izleme gerekir.</p></article><article class="s-kim"><span class="s-asama"><i></i>Gittiğimiz yer</span><h3>Banka ve şirket hazine masaları</h3><p>FX pozisyonu yöneten ve kâr/zararı hazine yöneticisine ve risk ekibine raporlayan masalar. Her deal'e kadar izlenebilen rakamlara ihtiyaç duyarlar.</p></article></div>
+<section class="sec mist">
+  <div class="wrap">
+    <h2 class="title" style="max-width:22ch">Alım satım verisinin neden bir analiz katmanına ihtiyacı var.</h2>
+    <p class="lede">Her işlem bir yerde kayıtlı. Yine de bu kayıtlarla ilgili basit sorular hâlâ bir günlük tablo işi gerektiriyor.</p>
+    <div class="facts"><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4H10a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11z"/><path d="M21 4v7h7M13 19h10M13 24h10"/></svg><h3>Blotter'lar tablolarda yaşıyor</h3><p>Bir dealing masası deal'lerini başka bir sistemden dışa aktarılmış bir Excel blotter'ında tutar. Raporlar elle yeniden kurulur ve her yeniden kurulum bozulabilir.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27l8-9 6 5 12-14"/><path d="M24 9h7v7"/></svg><h3>İzi sürülemeyen kâr/zarar</h3><p>Günlük bir rakam raporlanır ama spot, swap puanı ve taşıma maliyeti ayrımını göstermek zordur. Bir rakam sorgulandığında arkasındaki deal'leri bulmak yavaştır.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 4l11 4v9c0 7-4.7 12.3-11 15-6.3-2.7-11-8-11-15V8z"/></svg><h3>Elle denetlenen sınırlar</h3><p>Pozisyon ve kayıp sınırları çoğu zaman sonradan, bir tabloyu okuyan biri tarafından denetlenir. Bir ihlal geç fark edilebilir.</p></div></div>
+    <p class="lede" style="margin-top:56px"><b>İşlem kaydı ile karar arasında dururuz. Müşteri ile piyasa arasında durmayız.</b></p>
   </div>
 </section>
 
-<section class="bolum" id="principles" aria-labelledby="ilke-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="ilke-bas">Neye inanıyoruz</h2><p>Neyi geliştirip neyi dışarıda bırakacağımıza dört ilke karar verir.</p></div>
-    <ol class="s-ilkeler"><li><div class="s-ilke-bas"><span class="no">01</span><h3>Sayıyı göstermeden önce sına</h3></div><div><p>Motorumuz MetaTrader 5 Strategy Tester'a karşı işlem işlem karşılaştırılır. Motor koduna bakılmadan yazılmış ayrı bir referans uygulaması aynı kuralları yeniden hesaplar. İki denetimde de açıklanamayan fark kalmadı. <a href="/tr/methodology">Metodolojiyi oku</a></p><div class="s-sayilar"><div><b>97</b><span>MT5 Strategy Tester koşusu</span></div><div><b>44.015</b><span>karşılaştırılan MT5 işlemi</span></div><div><b>87.315</b><span>yeniden hesaplanan işlem</span></div><div><b>0</b><span>açıklanamayan fark</span></div></div></div></li><li><div class="s-ilke-bas"><span class="no">02</span><h3>Veri kullanıcının tarafında kalır</h3></div><div><p>Dosyalar tarayıcıda işlenir ve yüklenmez. Canlı MT5 verisi AES-256 ile uçtan uca şifrelenir ve röle onu 2 saat içinde siler. Hiçbir zaman şifre istemeyiz. <a href="/tr/security">Güvenlik ayrıntılarını oku</a></p></div></li><li><div class="s-ilke-bas"><span class="no">03</span><h3>Aracı kurum değil, yazılım</h3></div><div><p>Yatırım tavsiyesi ya da işlem sinyali vermeyiz. Müşteri parası tutmayız ve sunucularımız emir göndermez.</p></div></li><li><div class="s-ilke-bas"><span class="no">04</span><h3>Neyin hazır olduğunu söyle</h3></div><div><p>Her ürün bir durum etiketi taşır: Beta, Testte, Geliştiriliyor ya da Planlanıyor. Performans iddiası yayımlamayız.</p></div></li></ol>
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title">Kimlerle çalışıyoruz.</h2>
+    <p class="lede">Trader'larla başlıyoruz, çünkü yazılımı bugün kendi geçmişlerinde sınayabilirler. Uzun vadeli işimiz kurumlarla.</p>
+    <div class="tiles"><div class="tile third"><h3>Aktif ve prop trader'lar</h3><p>Kendi hesabıyla ya da fonlanmış bir hesapla işlem yapan ve hangi alışkanlıklarının para kaybettirdiğini bilmek isteyen kişiler. Motorumuzu kendi dosyalarında ilk onlar sınar.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Başladığımız yer</p></div><div class="tile third"><h3>Aracı kurumlar ve prop firmaları</h3><p>Çok sayıda hesap yöneten ve aynı kuralları her birine uygulaması gereken firmalar. Tek tek trader değil, hesap bazında analiz ve kural izleme gerekir.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Büyüdüğümüz yer</p></div><div class="tile third"><h3>Banka ve şirket hazine masaları</h3><p>FX pozisyonu yöneten ve kâr/zararı hazine yöneticisine ve risk ekibine raporlayan masalar. Her deal'e kadar izlenebilen rakamlara ihtiyaç duyarlar.</p><p class="big" style="font-size:clamp(22px,2.4vw,28px);letter-spacing:0">Gittiğimiz yer</p></div></div>
   </div>
 </section>
 
-<section class="p-kagit s-kurum" id="partners" aria-labelledby="kurum-bas">
-  <div class="kap">
-    <div class="bolum-bas"><h2 id="kurum-bas">Kurumlarla nasıl çalışıyoruz</h2><p>Bir masa, binadan tek bir müşteri verisi çıkmadan yazılımı değerlendirebilmeli. Pilotlarımızı buna göre kurarız.</p></div>
-    <div class="p-adimlar s-kurum-adim"><div class="p-adim"><span class="no">01</span><h3>Örnek ya da anonim veriyle başlayın</h3><p>Örnek dosyalarımızla ya da sizin anonimleştirilmiş bir dışa aktarımınızla başlarız. Uygunluğu görmek için gerçek müşteri verisi gerekmez.</p></div><div class="p-adim"><span class="no">02</span><h3>Veriniz sizde kalır</h3><p>Dosyalar kendi bilgisayarınızda, tarayıcıda okunur. Blotter'ınızı almayız ve saklamayız.</p></div><div class="p-adim"><span class="no">03</span><h3>Kendi kur dosyanızı getirin</h3><p>Değerleme zaten elinizdeki kurlarla yapılır. Piyasa verisi sağlamadığımız için yeni bir piyasa verisi lisansı imzalamanız gerekmez.</p></div><div class="p-adim"><span class="no">04</span><h3>Kurucuyla konuşun</h3><p>Sorular ve talepler bir satış ekibine değil, kurucuya gider. Pilotta öğrendiğimiz şey sıradaki geliştirmeyi belirler.</p></div></div>
+<section class="sec night">
+  <div class="wrap">
+    <h2 class="title">Neye inanıyoruz.</h2>
+    <p class="lede">Neyi geliştirip neyi dışarıda bırakacağımıza dört ilke karar verir.</p>
+    <div class="facts" style="grid-template-columns:1fr 1fr"><div><h3>Sayıyı göstermeden önce sına</h3><p>Motorumuz MetaTrader 5 Strategy Tester'a karşı işlem işlem karşılaştırılır. Motor koduna bakılmadan yazılmış ayrı bir referans uygulaması aynı kuralları yeniden hesaplar. İki denetimde de açıklanamayan fark kalmadı.</p><div class="actions left" style="margin-top:12px"><a class="more" href="/tr/methodology">Metodolojiyi oku</a></div></div><div><h3>Veri kullanıcının tarafında kalır</h3><p>Dosyalar tarayıcıda işlenir ve yüklenmez. Canlı MT5 verisi AES-256 ile uçtan uca şifrelenir ve röle onu 2 saat içinde siler. Hiçbir zaman şifre istemeyiz.</p><div class="actions left" style="margin-top:12px"><a class="more" href="/tr/security">Güvenlik ayrıntılarını oku</a></div></div><div><h3>Aracı kurum değil, yazılım</h3><p>Yatırım tavsiyesi ya da işlem sinyali vermeyiz. Müşteri parası tutmayız ve sunucularımız emir göndermez.</p></div><div><h3>Neyin hazır olduğunu söyle</h3><p>Her ürün bir durum etiketi taşır: Beta, Testte, Geliştiriliyor ya da Planlanıyor. Performans iddiası yayımlamayız.</p></div></div>
   </div>
 </section>
 
-<section class="bolum p-son" id="contact" aria-labelledby="son-bas" style="border-top:0">
-  <div class="kap">
-    <h2 id="son-bas">Masanız ya da firmanız için bizimle konuşun</h2>
-    <p class="giris">Erken pilotlar için hazine masaları, aracı kurumlar ve prop firmaları arıyoruz. Görevinizi ve verinizin geldiği sistemi yazın.</p>
-    <div class="p-eylem">
-      <a class="dugme" href="mailto:markets@kalibrefin.com?subject=Kalibre%20pilot">Pilot önerin</a>
-      <a class="dugme ikincil" href="mailto:markets@kalibrefin.com">markets@kalibrefin.com adresine yazın</a>
-    </div>
+<section class="sec mist" id="partners">
+  <div class="wrap">
+    <h2 class="title">Kurumlarla nasıl çalışıyoruz.</h2>
+    <p class="lede">Bir masa, binadan tek bir müşteri verisi çıkmadan yazılımı değerlendirebilmeli. Pilotlarımızı buna göre kurarız.</p>
+    <ol class="steps"><li><h3>Örnek ya da anonim veriyle başlayın</h3><p>Örnek dosyalarımızla ya da sizin anonimleştirilmiş bir dışa aktarımınızla başlarız. Uygunluğu görmek için gerçek müşteri verisi gerekmez.</p></li><li><h3>Veriniz sizde kalır</h3><p>Dosyalar kendi bilgisayarınızda, tarayıcıda okunur. Blotter'ınızı almayız ve saklamayız.</p></li><li><h3>Kendi kur dosyanızı getirin</h3><p>Değerleme zaten elinizdeki kurlarla yapılır. Piyasa verisi sağlamadığımız için yeni bir piyasa verisi lisansı imzalamanız gerekmez.</p></li><li><h3>Kurucuyla konuşun</h3><p>Sorular ve talepler bir satış ekibine değil, kurucuya gider. Pilotta öğrendiğimiz şey sıradaki geliştirmeyi belirler.</p></li></ol>
+  </div>
+</section>
+
+<section class="sec center" id="contact">
+  <div class="wrap">
+    <h2 class="title">Masanız ya da firmanız için bizimle konuşun.</h2>
+    <p class="lede">Erken pilotlar için hazine masaları, aracı kurumlar ve prop firmaları arıyoruz. Görevinizi ve verinizin geldiği sistemi yazın.</p>
+    <div class="actions"><a class="btn" href="mailto:markets@kalibrefin.com?subject=Kalibre%20pilot">Pilot önerin</a><a class="more" href="mailto:markets@kalibrefin.com">markets@kalibrefin.com adresine yazın</a></div>
   </div>
 </section>
 </main>
-
-<footer class="alt">
-  <div class="kap">
-    <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Alım satım verisi için analiz. Ürünler beta aşamasında.</p>
-      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-    </div>
-    <div><h4>Ürünler</h4><a href="/tr/mt5-analytics">Trade Analytics</a><a href="/tr/treasury">FX Blotter Analytics</a><a href="/tr/rule-guard">Rule Guard</a><a href="/lab?lang=tr">Kalibre Lab</a><a href="/tr/setup">MT5 için Kalibre Bridge</a><a href="/tr/mt5-analytics#kendi-kaydin">CSV ve Excel işlem kayıtları</a><a href="/lab/connect?lang=tr">Alpaca ve Tradier</a></div>
-    <div><h4>Çözümler</h4><a href="/tr/rule-guard">Prop trader'lar</a><a href="/tr/mt5-analytics">Aktif MT5 trader'ları</a><a href="/tr/treasury">Hazine ve dealing masaları</a><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></div>
-    <div><h4>Kaynaklar</h4><a href="/tr/security">Güvenlik</a><a href="/tr/methodology">Metodoloji</a><a href="/tr/setup">Kurulum</a><a href="/tr/pricing">Fiyat</a><a href="/egitim">Eğitim yazıları</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>
-    <div><h4>Kalibre Markets</h4><a href="/tr/company">Şirket</a><a href="mailto:markets@kalibrefin.com">İletişim</a><a href="/tr/terms">Hizmet şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/refunds">İade ve iptal</a><a href="/tr/cookies">Çerezler</a><a href="/tr/risk-disclosure">Risk bildirimi</a><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
-    <p class="yasal">Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır. Bu sitedeki içerik yatırım danışmanlığı kapsamında değildir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.</p><p>Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.</p><p>MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir.</p></div>
+    <div class="gfoot-cols"><div><h4>Ürünler</h4><ul><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/setup">Kalibre Bridge</a></li></ul></div><div><h4>Çözümler</h4><ul><li><a href="/tr/rule-guard">Prop trader'lar</a></li><li><a href="/tr/trade-analytics">Aktif MT5 trader'ları</a></li><li><a href="/tr/fx-blotter">Hazine ve dealing masaları</a></li><li><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></li></ul></div><div><h4>Kaynaklar</h4><ul><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/methodology">Metodoloji</a></li><li><a href="/tr/setup">Kurulum</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/egitim">Eğitim yazıları</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/tr/company">Şirket</a></li><li><a href="mailto:markets@kalibrefin.com">İletişim</a></li><li><a href="/tr/terms">Hizmet şartları</a></li><li><a href="/tr/privacy">Gizlilik</a></li><li><a href="/tr/refunds">İade ve iptal</a></li><li><a href="/tr/cookies">Çerezler</a></li><li><a href="/tr/risk-disclosure">Risk bildirimi</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
   </div>
 </footer>
-<script src="/static/menu.js" defer></script>
+<script src="/static/nav.js" defer></script>
 <script src="/static/lightbox.js" defer></script>
+
 </body>
 </html>

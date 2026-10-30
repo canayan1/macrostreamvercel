@@ -16,9 +16,6 @@
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -33,30 +30,18 @@
 </head>
 <body>
 
-<script>document.documentElement.classList.add('js')</script>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
-    <nav class="ana-menu" id="ana-menu" aria-label="Ana menü">
-      <details class="mgrup"><summary>Ürünler</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?lang=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/connect?lang=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
-      </details>
-      <details class="mgrup mgrup-dar"><summary>Çözümler</summary>
-        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/tr/rule-guard"><b>Prop trader'lar</b><small>Firmanın günlük ve toplam kayıp sınırları içinde kal.</small></a><a class="mitem" href="/tr/mt5-analytics"><b>Aktif MT5 trader'ları</b><small>Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</small></a><a class="mitem" href="/tr/treasury"><b>Hazine ve dealing masaları</b><small>Masanın zaten tuttuğu FX blotter'ını analiz et.</small></a><a class="mitem" href="/tr/company#partners"><b>Aracı kurumlar ve prop firmaları</b><small>Çok hesaplı analiz. Bizimle konuşun.</small></a></div></div>
-      </details>
-      <a class="mduz" href="/tr/demo">Demolar</a><a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company">Şirket</a>
-      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/tr/demo">Demolar</a></div>
-    </nav>
-    <a class="dil" href="/about" hreflang="en" lang="en">EN</a>
-    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menü</button>
-    <a class="dugme ikincil kucuk baglan" href="/tr/demo">Demolar</a>
-    <a class="dugme kucuk" href="/tr/mt5-analytics#pricing">Erken erişim</a>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
+    <a class="gnav-lang" href="/about" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
   </div>
 </header>
 
-<main class="belge">
-  <div class="kap belge-izgara">
-    <article class="belge-govde">
+<main class="doc">
+  <div class="doc-grid">
+    <article class="doc-body">
 
 <h1>Kalibre Markets hakkında</h1>
 <p class="giris">Kalibre Markets yatırımcılar için yazılım geliştirir. İlk ürünümüz Kalibre Lab; MetaTrader 5, Alpaca ve Tradier hesapları için bir backtest ve risk aracıdır.</p>
@@ -89,21 +74,14 @@
   </div>
 </main>
 
-<footer class="alt">
-  <div class="kap">
-    <div>
-      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Alım satım verisi için analiz. Ürünler beta aşamasında.</p>
-      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
-    </div>
-    <div><h4>Ürünler</h4><a href="/tr/mt5-analytics">Trade Analytics</a><a href="/tr/treasury">FX Blotter Analytics</a><a href="/tr/rule-guard">Rule Guard</a><a href="/lab?lang=tr">Kalibre Lab</a><a href="/tr/setup">MT5 için Kalibre Bridge</a><a href="/tr/mt5-analytics#kendi-kaydin">CSV ve Excel işlem kayıtları</a><a href="/lab/connect?lang=tr">Alpaca ve Tradier</a></div>
-    <div><h4>Çözümler</h4><a href="/tr/rule-guard">Prop trader'lar</a><a href="/tr/mt5-analytics">Aktif MT5 trader'ları</a><a href="/tr/treasury">Hazine ve dealing masaları</a><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></div>
-    <div><h4>Kaynaklar</h4><a href="/tr/security">Güvenlik</a><a href="/tr/methodology">Metodoloji</a><a href="/tr/setup">Kurulum</a><a href="/tr/pricing">Fiyat</a><a href="/egitim">Eğitim yazıları</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>
-    <div><h4>Kalibre Markets</h4><a href="/tr/company">Şirket</a><a href="mailto:markets@kalibrefin.com">İletişim</a><a href="/tr/terms">Hizmet şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/refunds">İade ve iptal</a><a href="/tr/cookies">Çerezler</a><a href="/tr/risk-disclosure">Risk bildirimi</a><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
-    <p class="yasal">Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır. Bu sitedeki içerik yatırım danışmanlığı kapsamında değildir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.</p><p>Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.</p><p>MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir.</p></div>
+    <div class="gfoot-cols"><div><h4>Ürünler</h4><ul><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/setup">Kalibre Bridge</a></li></ul></div><div><h4>Çözümler</h4><ul><li><a href="/tr/rule-guard">Prop trader'lar</a></li><li><a href="/tr/trade-analytics">Aktif MT5 trader'ları</a></li><li><a href="/tr/fx-blotter">Hazine ve dealing masaları</a></li><li><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></li></ul></div><div><h4>Kaynaklar</h4><ul><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/methodology">Metodoloji</a></li><li><a href="/tr/setup">Kurulum</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/egitim">Eğitim yazıları</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/tr/company">Şirket</a></li><li><a href="mailto:markets@kalibrefin.com">İletişim</a></li><li><a href="/tr/terms">Hizmet şartları</a></li><li><a href="/tr/privacy">Gizlilik</a></li><li><a href="/tr/refunds">İade ve iptal</a></li><li><a href="/tr/cookies">Çerezler</a></li><li><a href="/tr/risk-disclosure">Risk bildirimi</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
   </div>
 </footer>
-<script src="/static/menu.js" defer></script>
+<script src="/static/nav.js" defer></script>
 <script src="/static/lightbox.js" defer></script>
 
 </body>

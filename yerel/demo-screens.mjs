@@ -34,9 +34,9 @@ async function shot(name, selectors, pad = 16) {
   console.log('written', name, Math.round(clip.width), 'x', Math.round(clip.height));
 }
 const SHOTS = [
-  { url: '/lab/analytics?file=templates/kalibre-trade-log-example.xlsx', shots: [['analytics-overview', ['#ozet-kart']], ['analytics-segments', ['#icgoru-kart']]] },
-  { url: '/lab/blotter?file=samples/fx-blotter-sample.xlsx', trUrl: '/lab/blotter?file=samples/fx-blotter-ornek.xlsx', shots: [['blotter-summary', ['#ozet-kart']], ['blotter-reconciliation', ['#mutabakat-kart']]] },
-  { url: '/lab/?demo=1', shots: [['lab-backtest', ['#calistirma', '#grafik', '#istatistik', '#egri']]] },
+  { url: '/lab/analytics?file=templates/kalibre-trade-log-example.xlsx', shots: [['analytics-overview', ['#ozet-kart']], ['analytics-segments', ['#icgoru-kart']], ['analytics-prop', ['#prop-kart']], ['analytics-view', ['#gorunum-kart']]] },
+  { url: '/lab/blotter?file=samples/fx-blotter-sample.xlsx', trUrl: '/lab/blotter?file=samples/fx-blotter-ornek.xlsx', shots: [['blotter-summary', ['#ozet-kart']], ['blotter-reconciliation', ['#mutabakat-kart']], ['blotter-pnl', ['#kz-kart']], ['blotter-ladder', ['#merdiven-kart']], ['blotter-columns', ['#eslesme-kart']], ['blotter-positions', ['#pozisyon-kart']]] },
+  { url: '/lab/?demo=1', shots: [['lab-backtest', ['#calistirma', '#grafik', '#istatistik', '#egri']], ['lab-builder', ['#form']]] },
 ];
 try {
   ws = new WebSocket(await connect());

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>FX Blotter Analytics: hazine ve dealing masaları için</title>
+<meta name="description" content="Masanın kendi FX blotter'ını olduğu gibi okur: fiyat ve puanı ayrı gerçekleşen K/Z, taşıma, MTM, valöre göre pozisyonlar ve her dosyada yedi mutabakat kontrolü.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/fx-blotter">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/fx-blotter">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/fx-blotter">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/fx-blotter">
+<meta property="og:title" content="FX Blotter Analytics: hazine ve dealing masaları için">
+<meta property="og:description" content="Masanın kendi FX blotter'ını olduğu gibi okur: fiyat ve puanı ayrı gerçekleşen K/Z, taşıma, MTM, valöre göre pozisyonlar ve her dosyada yedi mutabakat kontrolü.">
+<meta property="og:url" content="https://kalibremarkets.com/tr/fx-blotter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?lang=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter" aria-current="page">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
+    <a class="gnav-lang" href="/fx-blotter" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+
+<div data-talep-sayfa="treasury">
+<nav class="lnav" aria-label="FX Blotter">
+  <div class="wrap">
+    <a class="lnav-title" href="#top">FX Blotter</a>
+    <ul class="lnav-links"><li><a href="#top">Genel bakış</a></li><li><a href="#reconciliation">Mutabakat</a></li><li><a href="#samples">Örnek dosyalar</a></li><li><a href="#pilots">Pilotlar</a></li></ul>
+    <a class="btn" href="#demo" data-erken-erisim>Demo iste</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">FX Blotter Analytics<span class="status status-beta">Beta</span></span>
+    <h1 class="display">Blotter'ın, açıklanmış.</h1>
+    <p class="sub">Masanın zaten dışa aktardığı FX blotter'ını bırak. Her toplam deal'lerine kadar izlenir.</p>
+    <div class="actions"><a class="btn" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Örnek blotter'ı aç</a><a class="more" href="#demo" data-erken-erisim>Demo iste</a></div>
+  </div>
+  <div class="stage">
+    <div class="wrap"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-tr-1x.webp 1172w, /static/urun/demo/blotter-summary-tr-2x.webp 2344w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/static/urun/demo/blotter-summary-tr.png" width="2344" height="634" alt="Örnek blotter özeti: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış" fetchpriority="high" decoding="async"></picture></figure></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title center" style="max-width:20ch;margin:0 auto">Bir hazine masasının günü okuma biçimine göre kuruldu.</h2>
+    <div class="rows" style="margin-top:clamp(56px,7vw,96px)">
+      <div class="row"><div class="row-text"><h3 class="title-s">Fiyat ve puan, ayrı.</h3><p class="lede">Gerçekleşen K/Z spot fiyat ve vadeli puanı olarak ayrılır. Taşıma gecelik swap olarak, MTM açık pozisyon için görünür. Swap'lar roll sayılır ve net pozisyonu değiştirmez.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-tr-1x.webp 1172w, /static/urun/demo/blotter-pnl-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-pnl-tr.png" width="2344" height="781" alt="Pariteye göre K/Z tablosu; her satır deal'lerini açar" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row flip"><div class="row-text"><h3 class="title-s">Her toplam deal'lerini açar.</h3><p class="lede">Parite, portföy, dealer, kalem türü, büyüklük, saat ya da güne göre grupla. Herhangi bir rakama tıkla, arkasındaki deal satırları açılır.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-positions-tr-1x.webp 1172w, /static/urun/demo/blotter-positions-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-positions-tr.png" width="2344" height="997" alt="USD karşılığı döviz bazında net açık pozisyon" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row"><div class="row-text"><h3 class="title-s">Valöre göre pozisyonlar.</h3><p class="lede">Bugünden spot, bir hafta, bir ay ve bir yılın ötesine uzanan, döviz bazında bir merdiven; kendi limitlerinin yanında.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-ladder-tr-1x.webp 1172w, /static/urun/demo/blotter-ladder-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-ladder-tr.png" width="2344" height="630" alt="Örnek blotter'ın valör merdiveni" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row flip"><div class="row-text"><h3 class="title-s">Dosyayı olduğu gibi okur.</h3><p class="lede">Rapor başlığı satırları, toplam satırları, İngilizce, Türkçe, Almanca ya da Fransızca başlıklar ve yerel sayı biçimleri tanınır. Her sütun eşleşmesi güven puanını gösterir ve değiştirilebilir.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-columns-tr-1x.webp 1172w, /static/urun/demo/blotter-columns-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-columns-tr.png" width="2344" height="1300" alt="Güven puanıyla tanınan sütunlar" loading="lazy" decoding="async"></picture></figure></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec night" id="reconciliation">
+  <div class="wrap">
+    <div class="row">
+      <div class="row-text">
+        <h2 class="title">Her dosyada yedi kontrol.</h2>
+        <p class="lede">Satır sayıları, alt toplamların genel toplamı tutması, her bacakta tutar çarpı kur, döviz bazında nominaller, blotter'ın yerel para sütunu, açık lotların pozisyona eşitliği ve FIFO ile ortalama maliyet. Başarısız kontrol kırmızıya döner.</p>
+        <p class="lede">Elle hesaplanmış on iki vaka birebir tutuyor.</p>
+      </div>
+      <div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-reconciliation-tr-1x.webp 1172w, /static/urun/demo/blotter-reconciliation-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-reconciliation-tr.png" width="2344" height="950" alt="Mutabakat paneli: örnek blotter'da bütün kontroller geçti" loading="lazy" decoding="async"></picture></figure></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mist center" id="samples">
+  <div class="wrap">
+    <h2 class="title">Örneğimizde dene.</h2>
+    <p class="lede">Bir banka FX masasının Excel dökümünde bir haftalık deal'ler: 224 bacak, toplam K/Z +99.400 USD, 7 kontrolün 7'si geçti.</p>
+    <div class="files">
+      <div class="file"><h3>Girdi</h3><p>Masanın dışa aktardığı haliyle blotter.</p><div class="file-links"><a class="more" href="/lab/samples/fx-blotter-ornek.xlsx" download>fx-blotter-ornek.xlsx</a><a class="more" href="/lab/samples/fx-blotter-ornek.csv" download>CSV sürümü</a><a class="more" href="/lab/samples/fx-blotter-sample.xlsx" download>İngilizce başlıklı sürüm</a></div></div>
+      <div class="file"><h3>Tarayıcıda</h3><p>Aynı dosya FX Blotter Analytics'te açılır; örnek kur ve limitler girilir.</p><div class="file-links"><a class="more" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Örneği aç</a></div></div>
+      <div class="file"><h3>Sonuç</h3><p>Pano, parite, portföy ve dealer bazında K/Z, pozisyon, merdiven, limitler ve mutabakat içeren çalışma kitabı.</p><div class="file-links"><a class="more" href="/lab/samples/fx-blotter-ornek-sonuc.xlsx" download>fx-blotter-ornek-sonuc.xlsx</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec center" id="pilots">
+  <div class="wrap">
+    <h2 class="title">Binadan tek bir müşteri verisi çıkmadan değerlendirin.</h2>
+    <div class="facts"><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4H10a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11z"/><path d="M21 4v7h7M13 19h10M13 24h10"/></svg><h3>Örnek ya da anonim veriyle başlayın</h3><p>Örnek dosyalarımızla ya da kendi anonimleştirilmiş dökümünüzle başlayın.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="28" height="22" rx="3"/><path d="M4 13h28"/><circle cx="8" cy="10" r=".6" fill="currentColor"/><circle cx="11" cy="10" r=".6" fill="currentColor"/></svg><h3>Veriniz sizde kalır</h3><p>Blotter kendi makinenizdeki tarayıcıda okunur. Karşı taraf adları varsayılan olarak alınmaz.</p></div><div><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27l8-9 6 5 12-14"/><path d="M24 9h7v7"/></svg><h3>Kendi kur dosyalarınızı getirin</h3><p>Değerleme elinizdeki kurları kullanır. Piyasa verisi vermediğimiz için yeni bir lisans imzalamanız gerekmez.</p></div></div>
+    <div class="faq"><details><summary>Hangi sistemleri okuyabilir?</summary><p>360T, FXall, Bloomberg FXGO ve Murex gibi sistemlerin CSV ve Excel dışa aktarımları ile Excel'de elle tutulan blotter'lar.</p></details><details><summary>Hangi ürünler kapsanıyor?</summary><p>Spot, outright forward, swap bacakları ve NDF. Opsiyonlar tanınır ve gerekçesiyle dışarıda bırakılır.</p></details><details><summary>Fırsat maliyeti gösteriliyor mu?</summary><p>Henüz değil. Tanımı masalarla netleşince eklenecek.</p></details></div>
+  </div>
+</section>
+
+<section class="sec night center" id="demo">
+  <div class="wrap">
+    <h2 class="title">Masanızın dökümünde görün.</h2>
+    <p class="lede">Kurum türünüzü, masa büyüklüğünü ve blotter'ın geldiği sistemi yazın. Uygun bir zaman için e-postayla döneriz.</p>
+    <div class="actions"><a class="btn" href="#demo" data-erken-erisim>Demo iste</a></div>
+  </div>
+</section>
+
+<dialog id="erken-erisim" aria-labelledby="ee-baslik" data-tamam="Talebiniz alındı. Demo için e-posta ile yazacağız.">
+  <h2 id="ee-baslik">Demo iste</h2>
+  <p>Demo ücretsizdir ve örnek blotter'ımız ya da sizin anonimleştirilmiş bir dökümünüz üzerinde yapılır. Gerçek müşteri verisi göndermeyin.</p>
+  <form novalidate>
+    <div class="alanlar">
+      <label for="ee-eposta">İş e-postası<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
+      <label for="ee-kurum">Kurum türü<select id="ee-kurum" name="kurum" data-soru><option value="">Seçin</option><option value="banka">Banka</option><option value="kurumsal-hazine">Şirket hazinesi</option><option value="araci-kurum">Aracı kurum</option><option value="prop-firma">Prop firması</option><option value="fon">Fon ya da portföy yönetimi</option><option value="diger">Diğer</option></select></label><label for="ee-masa">Masadaki kişi sayısı<select id="ee-masa" name="masa" data-soru><option value="">Seçin</option><option value="1">1</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="20+">20+</option></select></label><label for="ee-sistem">Blotter hangi sistemden geliyor?<input type="text" id="ee-sistem" name="sistem" maxlength="300" placeholder="ör. 360T, Murex, Excel" data-soru></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>Kalibre Markets'in demo ve ürün güncellemeleri hakkında bana e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
+    <p class="not">E-postanızı, cevaplarınızı ve talep zamanını saklarız. Ayrıntılar <a href="/tr/privacy#collect-why">gizlilik politikasında</a>.</p>
+    <div class="kapat-satir">
+      <button type="button" class="dugme ikincil" data-kapat>Kapat</button>
+      <button type="submit" class="dugme">Demo iste</button>
+    </div>
+  </form>
+  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
+  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
+</dialog>
+</div>
+</main>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez.</p><p>Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır.</p><p>MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir.</p></div>
+    <div class="gfoot-cols"><div><h4>Ürünler</h4><ul><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/setup">Kalibre Bridge</a></li></ul></div><div><h4>Çözümler</h4><ul><li><a href="/tr/rule-guard">Prop trader'lar</a></li><li><a href="/tr/trade-analytics">Aktif MT5 trader'ları</a></li><li><a href="/tr/fx-blotter">Hazine ve dealing masaları</a></li><li><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></li></ul></div><div><h4>Kaynaklar</h4><ul><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/methodology">Metodoloji</a></li><li><a href="/tr/setup">Kurulum</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/egitim">Eğitim yazıları</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/tr/company">Şirket</a></li><li><a href="mailto:markets@kalibrefin.com">İletişim</a></li><li><a href="/tr/terms">Hizmet şartları</a></li><li><a href="/tr/privacy">Gizlilik</a></li><li><a href="/tr/refunds">İade ve iptal</a></li><li><a href="/tr/cookies">Çerezler</a></li><li><a href="/tr/risk-disclosure">Risk bildirimi</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
+  </div>
+</footer>
+<script src="/static/nav.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
+<script src="/static/talep.js" defer></script>
+</body>
+</html>
