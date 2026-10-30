@@ -2,7 +2,7 @@
 // şey gönderilmez. Hesaplar saf modüllerde: analiz/{model,mt5-rapor,csv-ice,hesap,prop,ornek}.js.
 
 import './dil-analiz.js';
-import { t as ceviri, yerel, sayfayiCevir } from './dil.js';
+import { t as ceviri, yerel, sayfayiCevir, dil } from './dil.js';
 import { kacis } from './guvenlik.js';
 import { CSV_ALANLARI } from './analiz/csv-ice.js';
 import { dosyadanHesap, tablodan } from './analiz/ice-aktar.js';
@@ -29,7 +29,8 @@ const duzPara = (x, b = 2) => (typeof x === 'number' && Number.isFinite(x) ? `${
 const yuzde = (x, b = 1) => (typeof x === 'number' && Number.isFinite(x) ? (yerel === 'tr-TR' ? `%${sayi(x * 100, b)}` : `${sayi(x * 100, b)}%`) : '–');
 const oran = (x, b = 2) => (x === Infinity ? '∞' : sayi(x, b));
 const sinif = x => (x > 0 ? 'pozitif' : x < 0 ? 'negatif' : '');
-const tarih = sn => { if (!sn) return '–'; const d = new Date(sn * 1000); return `${String(d.getUTCDate()).padStart(2, '0')}.${String(d.getUTCMonth() + 1).padStart(2, '0')}.${d.getUTCFullYear()}`; };
+// Tarih: Türkçede 01.04.2026, İngilizcede ISO 2026-04-01 (blotter sayfasıyla aynı).
+const tarih = sn => { if (!sn) return '–'; const d = new Date(sn * 1000); const g = String(d.getUTCDate()).padStart(2, '0'), a = String(d.getUTCMonth() + 1).padStart(2, '0'); return dil === 'en' ? `${d.getUTCFullYear()}-${a}-${g}` : `${g}.${a}.${d.getUTCFullYear()}`; };
 const gunMetni = g => { const [y, a, gg] = g.split('-'); return `${gg}.${a}.${y}`; };
 const olcuMetni = (tur, x) => (tur === 'para' ? para(x) : tur === 'yuzde' ? yuzde(x) : tur === 'sayi' ? sayi(x, 0) : oran(x));
 const etiket = s => ceviri(s);

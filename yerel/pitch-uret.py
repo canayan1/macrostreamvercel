@@ -594,7 +594,7 @@ def demo(dil):
          f'<a class="dugme kucuk" href="/lab?{q}demo=1">Sonucu aç</a><small>Kural ve fiyat dosyası yüklenir, backtest çalışır.</small>',
          dosya("/lab/ornek/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Özet ve işlem listesi") + dosya("/lab/ornek/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Çalıştırma paketi"))}
 {sayilar([(say(lab["islem"]), "işlem"), (say(lab["karFaktoru"], 2), "kâr faktörü"), (yuzde(lab["getiriYuzde"], 2), "getiri, maliyetsiz"), (yuzde(lab["maxDususYuzde"], 2), "azami düşüş")])}
-<p>Sonuç kimliği <code>{lab["resultId"][:12]}…</code>: aynı kural, veri ve ayarlar her zaman aynı kimliği verir. Örnek kâr etmiyor; olduğu gibi gösteriyoruz. Eğitim örneğidir, yatırım önerisi değildir.</p>
+<p>Sonuç kimliği <code>kr1-{lab["resultId"][:16]}</code>: aynı kural, veri ve ayarlar her zaman aynı kimliği verir. Örnek kâr etmiyor; olduğu gibi gösteriyoruz. Eğitim örneğidir, yatırım önerisi değildir.</p>
 </section>
 
 <section class="d-urun" id="rule-guard"><h2>Rule Guard {durum_et("test", dil)}</h2>
@@ -634,7 +634,7 @@ def demo(dil):
          '<a class="dugme kucuk" href="/lab?demo=1">Open the result</a><small>The rule and price file are loaded and the backtest runs.</small>',
          dosya("/lab/ornek/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Summary and trade list") + dosya("/lab/ornek/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Run package"))}
 {sayilar([(say(lab["islem"]), "trades"), (say(lab["karFaktoru"], 2), "profit factor"), (yuzde(lab["getiriYuzde"], 2), "return, gross"), (yuzde(lab["maxDususYuzde"], 2), "max drawdown")])}
-<p>Result ID <code>{lab["resultId"][:12]}…</code>: the same rule, data and settings always give the same ID. The sample loses money; we show it as it is. It is an educational sample, not investment advice.</p>
+<p>Result ID <code>kr1-{lab["resultId"][:16]}</code>: the same rule, data and settings always give the same ID. The sample loses money; we show it as it is. It is an educational sample, not investment advice.</p>
 </section>
 
 <section class="d-urun" id="rule-guard"><h2>Rule Guard {durum_et("test", dil)}</h2>

@@ -8,8 +8,8 @@
     "seed": null,
     "specHash": "4b408b6ab7e0cfc757f357098301c7e5e6ab8d55541fc0b12da0dd09386e14a4",
     "dataHash": "c05af42e64d1c567c333d23785fad95cc61424d5aba05304d48ef2f79e93541f",
-    "configHash": "a85c8ae3e906bb3985a68f7149add7f5b043aedd17cc54641a9bb6b59d5907e6",
-    "resultId": "7d0ff99169fdf3b630e57e74e8d86c316ca0e757633ff2e39437e960d0b5473f",
+    "configHash": "84c08b632050e237a940f59f43091cf0b7087b21c7dca2eb6cd52f1d982210e0",
+    "resultId": "e62670676d24e858eab5255262522c360379175a3a524a247cee505ca1feff81",
     "bars": 3000,
     "firstBar": 1893974400,
     "lastBar": 1908918000
@@ -103,7 +103,11 @@
     }
   },
   "config": {
-    "maliyet": {}
+    "maliyet": {
+      "spread": 0,
+      "kayma": 0,
+      "komisyonYuzde": 0
+    }
   },
   "summary": {
     "islem": 31,
