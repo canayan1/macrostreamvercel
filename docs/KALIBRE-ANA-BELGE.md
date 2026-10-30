@@ -269,3 +269,14 @@ Claude'un yapacakları:
 - Bağımsız denetim (Python/openpyxl): pozisyonlar USD −20.635.889, EUR 610.000, TRY 873.817.070 ve swap roll −43.750 USD motorla birebir; işlem kaydı 343 işlem, net 15.839,03 USD birebir.
 - FX Blotter Analytics durumu "Beta"ya alındı; /treasury'de fırsat maliyeti iddiası kaldırıldı (tanım bekleniyor).
 - Önizleme: https://macrostreamvercel-cmscyadmq-canayan1s-projects.vercel.app/demo (canlıya alınmadı).
+
+### 30.10 ek 3: Dışarıdan görünen her şey İngilizce
+- Karar (Can): dışarıdan görünen her şey şimdi native İngilizce; yeni kod İngilizce yazılır; mevcut iç kod dokunuldukça testlerle çevrilir.
+- Kural dosyası biçimi `kalibre: 3` (İngilizce anahtar ve değerler; eski 1/2 okunmaya devam eder): lab/core/src/strategy-format.js. Backtest paketi formatVersion 2 (ayar, özet, işlemler, çıkış nedenleri, uyarılar İngilizce): run-format.js, messages-en.js. Optimizasyon ve yürüyen ileri paketleri de formatVersion 2.
+- Manifest hash'leri İngilizce biçim üzerinden; motor 0.2.0. Ortak eşleme schema/kalibre-format.map.json; Python referansı onu okur (287 vaka, 0 fark, sonuç kimlikleri aynı).
+- Şablon kütüphanesi lab/strategies/ (catalog.json + İngilizce adlı dosyalar), kaynak ornekler/ ve paketler/ olarak kalır (araclar/strategies-publish.mjs).
+- Adresler: /lab/analytics, /lab/optimization, /lab/volatility, /lab/dashboard, /lab/connect, /lab/samples/, /lab/templates/; parametreler ?lang ?sample ?file ?symbol ?source. Eski adresler 308 ile yönlendirilir, eski parametreler okunur.
+- Örnek etiketi EXAMPLE; "gerçek değildir" türü notlar yok.
+- /company yeniden tasarlandı (B2B vizyon; ürün listesi yok).
+- Sırada: Bridge dosya biçimi (seri-…json Türkçe anahtarlar) ve MQL5 dosya adları (KalibreKopru → KalibreBridge, KalibreMotor → KalibreEngine), Motor'un kalibre: 3 okuması; bunlar MT5'te yeniden derleme ister. Hesap senkron yükü (Supabase) anahtarları. Eski Türkçe içerik sayfaları (egitim vb.) Türkçe kalır.
+- Önizleme: https://macrostreamvercel-9ent6lhte-canayan1s-projects.vercel.app (canlıya alınmadı).
