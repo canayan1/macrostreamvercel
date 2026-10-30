@@ -11,7 +11,7 @@ export const BLOTTER_EN = {
   'Sentetik örnek veri': 'Synthetic sample data',
   'İşlem Analizi': 'Trade Analytics',
   'Strateji Kurucu': 'Strategy Builder',
-  'FX Blotter Analizi · Geliştiriliyor': 'FX Blotter Analytics · In development',
+  'FX Blotter Analizi · Beta': 'FX Blotter Analytics · Beta',
   "Masanın blotter'ını olduğu gibi bırak.": 'Drop in your desk blotter as it is.',
   "Platformdan, hazine sisteminden ya da Excel'den aldığın FX blotter'ını düzenlemeden yükle. Gerçekleşen K/Z, fiyat ve puan ayrımı, taşıma, MTM, döviz bazında pozisyon ve valör merdiveni tek tabloda; her toplam tek tıkla işlem satırlarına iner. Dosya bu tarayıcıda okunur.": 'Load the FX blotter from your platform, treasury system or Excel without editing it. Realized P&amp;L split into price and points, carry, MTM, position by currency and the value-date ladder in one table. Every total opens its deal rows in one click. The file is read in this browser.',
   'Örnek blotter': 'Example blotter',
