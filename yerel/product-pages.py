@@ -214,24 +214,25 @@ def home(lang):
     tr = lang == "tr"
     ta, fx, lab = SUMMARY[f"tradeAnalytics_{lang}"], SUMMARY[f"fxBlotter_{lang}"], SUMMARY["kalibreLab"]
     body = f'''
-<section class="hero">
+<section class="hero home-hero">
   <div class="wrap">
-    <h1 class="display">{T(lang, "Know where the money went.", "Paranın nereye gittiğini bil.")}</h1>
-    <p class="sub">{T(lang, "Analytics for the trading records you already keep. Your MT5 history, your desk's FX blotter, your rules.", "Zaten tuttuğun işlem kayıtları için analiz. MT5 geçmişin, masanın FX blotter'ı, kuralların.")}</p>
-    <div class="actions">{btn(P(lang, "/demo"), T(lang, "See the demos", "Demoları gör"))}{more(P(lang, "/trade-analytics") + "#pricing", T(lang, "Get early access", "Erken erişim al"))}</div>
+    <h1 class="display">{T(lang, "FX, solved.", "FX'i çözüyoruz.")}</h1>
+    <p class="sub">{T(lang, "See where every trade made or lost money.", "Her işlemin nerede kazandırıp kaybettirdiğini gör.")}</p>
+    <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/fx-blotter") + "#demo", T(lang, "Request a desk demo", "Masa demosu iste"), "")}</div>
   </div>
+  <figure class="home-hero-media"><picture><source type="image/webp" srcset="/static/urun/hero/home-{lang}-1x.webp 1440w, /static/urun/hero/home-{lang}-2x.webp 2880w" sizes="(max-width: 1440px) 100vw, 1440px"><img src="/static/urun/hero/home-{lang}.png" width="2880" height="1720" alt="{T(lang, "FX Blotter Analytics on a laptop: total P&amp;L split into price, points, carry and MTM, and seven reconciliation checks passed", "Dizüstünde FX Blotter Analytics: fiyat, puan, taşıma ve MTM olarak ayrılmış toplam K/Z ve geçen yedi mutabakat kontrolü")}" fetchpriority="high" decoding="async"></picture></figure>
 </section>
 
 <section class="panel mist" style="margin-top:72px">
   <h2 class="title">Trade Analytics</h2>
-  <p class="sub">{T(lang, "See where you make and lose money.", "Nerede kazanıp nerede kaybettiğini gör.")}</p>
+  <p class="sub">{T(lang, "Find what costs you money.", "Sana neyin kaybettirdiğini bul.")}</p>
   <div class="actions">{more(P(lang, "/trade-analytics"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene"))}</div>
   <div class="panel-media">{shot("analytics-overview", T(lang, "Trade Analytics account overview with an example account", "Örnek bir hesapla Trade Analytics hesap özeti"), lang, eager=True, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
 </section>
 
 <section class="panel night" style="margin-top:12px">
   <h2 class="title">FX Blotter</h2>
-  <p class="sub">{T(lang, "Your desk's blotter, explained to the deal.", "Masanın blotter'ı, deal'ine kadar açıklanmış.")}</p>
+  <p class="sub">{T(lang, "Your blotter, explained.", "Blotter'ın, açıklanmış.")}</p>
   <div class="actions">{more(P(lang, "/fx-blotter"), T(lang, "Learn more", "Daha fazla"))}{more(FX_SAMPLE[lang], T(lang, "Open the sample blotter", "Örnek blotter'ı aç"))}</div>
   <div class="panel-media">{shot("blotter-pnl", T(lang, "P&amp;L table of the sample blotter by pair, with price, points, carry and MTM", "Örnek blotter'ın parite bazında K/Z tablosu: fiyat, puan, taşıma ve MTM"), lang, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
 </section>
@@ -239,13 +240,13 @@ def home(lang):
 <div class="panels-2">
   <section class="panel mist">
     <h2 class="title">Rule Guard{status_tag("test", lang)}</h2>
-    <p class="sub">{T(lang, "Stay inside the firm's loss limits.", "Firmanın kayıp sınırları içinde kal.")}</p>
+    <p class="sub">{T(lang, "Stay inside the limits.", "Sınırların içinde kal.")}</p>
     <div class="actions">{more(P(lang, "/rule-guard"), T(lang, "Learn more", "Daha fazla"))}</div>
     <div class="panel-media">{prop_chart(lang, days=40)}</div>
   </section>
   <section class="panel night">
     <h2 class="title">Kalibre Lab</h2>
-    <p class="sub">{T(lang, "Test a rule before you trade it.", "Kuralı işlem yapmadan önce sına.")}</p>
+    <p class="sub">{T(lang, "Test before you trade.", "İşlemden önce sına.")}</p>
     <div class="actions">{more(P(lang, "/kalibre-lab"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, LAB_SAMPLE), T(lang, "Run the sample", "Örneği çalıştır"))}</div>
     <div class="panel-media" style="max-width:520px">{shot("lab-backtest", T(lang, "Sample backtest result", "Örnek backtest sonucu"), lang, sizes="(max-width: 860px) 100vw, 520px")}</div>
   </section>
@@ -253,8 +254,7 @@ def home(lang):
 
 <section class="sec center">
   <div class="wrap">
-    <h2 class="title">{T(lang, "Your data stays on your device.", "Verin cihazında kalır.")}</h2>
-    <p class="lede">{T(lang, "Privacy is part of how the products are built, not a setting you turn on.", "Gizlilik bir ayar değil, ürünlerin nasıl yapıldığının parçası.")}</p>
+    <h2 class="title">{T(lang, "Your data stays with you.", "Verin sende kalır.")}</h2>
     {facts([("browser", T(lang, "Files are read in your browser", "Dosyalar tarayıcında okunur"), T(lang, "MT5 reports, CSV and Excel files are processed on your device and are not uploaded. The account number and name in a report are not read.", "MT5 raporları, CSV ve Excel dosyaları cihazında işlenir ve yüklenmez. Rapordaki hesap numarası ve ad okunmaz.")),
             ("lock", T(lang, "Live MT5 data is encrypted end to end", "Canlı MT5 verisi uçtan uca şifreli"), T(lang, "Kalibre Bridge encrypts each packet with AES-256 before it leaves the terminal. The relay stores only ciphertext and deletes it within 2 hours.", "Kalibre Bridge her paketi terminalden çıkmadan AES-256 ile şifreler. Röle yalnız şifreli metni tutar ve 2 saat içinde siler.")),
             ("key", T(lang, "No passwords", "Şifre yok"), T(lang, "We never ask for your MT5 or broker password. Alpaca and Tradier keys stay in your browser.", "MT5 ya da aracı kurum şifreni hiçbir zaman istemeyiz. Alpaca ve Tradier anahtarları tarayıcında kalır."))])}
@@ -264,8 +264,8 @@ def home(lang):
 
 <section class="sec night">
   <div class="wrap">
-    <h2 class="title">{T(lang, "An engine checked against MetaTrader 5.", "MetaTrader 5'e karşı sınanmış bir motor.")}</h2>
-    <p class="lede">{T(lang, "We check how a number is computed before we show it. These are facts about the engine, not trading results.", "Bir sayıyı göstermeden önce nasıl hesaplandığını sınarız. Bunlar motorla ilgili bilgilerdir, işlem sonucu değildir.")}</p>
+    <h2 class="title">{T(lang, "Checked against MetaTrader 5.", "MetaTrader 5'e karşı sınandı.")}</h2>
+    <p class="lede">{T(lang, "Facts about the engine, not trading results.", "Motorla ilgili bilgiler, işlem sonucu değil.")}</p>
     <div class="numbers">
       <div><b>97</b><span>{T(lang, "MT5 Strategy Tester runs compared trade by trade", "işlem işlem karşılaştırılan MT5 Strategy Tester koşusu")}</span></div>
       <div><b>{fmt(44015, lang)}</b><span>{T(lang, "MT5 trades in those runs", "bu koşulardaki MT5 işlemi")}</span></div>
@@ -278,13 +278,13 @@ def home(lang):
 
 <section class="sec mist center">
   <div class="wrap">
-    <h2 class="title">{T(lang, "Built for desks and firms too.", "Masalar ve firmalar için de.")}</h2>
-    <p class="lede">{T(lang, "Treasury and dealing desks, brokers and prop firms can run a pilot on sample or anonymized data before any client data leaves the building.", "Hazine ve dealing masaları, aracı kurumlar ve prop firmaları, binadan tek bir müşteri verisi çıkmadan örnek ya da anonim veriyle pilot yapabilir.")}</p>
+    <h2 class="title">{T(lang, "Built for desks.", "Masalar için.")}</h2>
+    <p class="lede">{T(lang, "Pilot on sample or anonymized data. No client data leaves the building.", "Örnek ya da anonim veriyle pilot. Binadan müşteri verisi çıkmaz.")}</p>
     <div class="actions">{btn(P(lang, "/fx-blotter") + "#demo", T(lang, "Request a desk demo", "Masa demosu iste"))}{more(P(lang, "/company"), T(lang, "About Kalibre Markets", "Kalibre Markets hakkında"))}</div>
   </div>
 </section>'''
     path = "tr/index.html" if tr else "index.html"
-    page(path, lang, T(lang, "Kalibre Markets: analytics for trading records", "Kalibre Markets: işlem kayıtları için analiz"),
+    page(path, lang, T(lang, "Kalibre Markets: FX, solved", "Kalibre Markets: FX'i çözüyoruz"),
          T(lang, "Trade Analytics, FX Blotter, Rule Guard and Kalibre Lab read the trading records you already keep and show where the money was made and lost. Files are processed in your browser.",
            "Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve paranın nerede kazanılıp kaybedildiğini gösterir. Dosyalar tarayıcında işlenir."),
          body, P(lang, "/"), "/" if tr else "/tr")

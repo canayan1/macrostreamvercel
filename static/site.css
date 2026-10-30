@@ -320,3 +320,11 @@ body #km-beta button:hover { color: var(--ink); }
   .facts { grid-template-columns: minmax(0, 1fr) !important; }
   .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
+
+/* Home hero: a short line set very large, then the product image straight away, as on apple.com. */
+.home-hero { padding-top: clamp(40px, 6vw, 72px); background: none; }
+.home-hero .display { font-size: clamp(56px, 10vw, 128px); line-height: 1; letter-spacing: -.03em; max-width: none; }
+.home-hero .sub { max-width: none; margin-top: 18px; color: var(--ink-2); }
+.home-hero .actions { margin-top: 26px; }
+.home-hero-media { margin: clamp(8px, 2vw, 24px) auto 0; max-width: 1440px; }
+.home-hero-media img { width: 100%; height: auto; display: block; }

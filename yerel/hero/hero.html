@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- Home page hero composition: a drawn laptop showing a real FX Blotter screen (SCREEN_SRC is
+     replaced by yerel/hero-render.mjs). Rendered at 2x and published as a still image. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; background: #100e0c; }
+  .scene {
+    position: relative; width: 1440px; height: 860px; overflow: hidden;
+    background:
+      radial-gradient(62% 58% at 50% 52%, rgba(255, 166, 48, .30), rgba(255, 122, 0, .10) 58%, transparent 80%),
+      radial-gradient(90% 60% at 50% 110%, rgba(255, 166, 48, .10), transparent 70%),
+      #100e0c;
+  }
+  .laptop { position: absolute; left: 50%; top: 48px; width: 1060px; transform: translateX(-50%); }
+  .lid {
+    position: relative; padding: 22px 22px 30px; border-radius: 26px 26px 10px 10px;
+    background: linear-gradient(180deg, #2b2620 0%, #1b1814 60%, #15120f 100%);
+    box-shadow: 0 0 0 1.5px #3d352b, inset 0 0 0 1px rgba(255, 255, 255, .05), 0 60px 120px rgba(0, 0, 0, .65);
+  }
+  .lid::before { content: ""; position: absolute; top: 9px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: #0b0a08; box-shadow: inset 0 0 0 1px #2a251f; }
+  .screen { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1440 / 900; background: #100e0c; box-shadow: 0 0 0 1px #000; }
+  .screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, 0) 38%); pointer-events: none; }
+  .base {
+    position: relative; height: 22px; margin: 0 -64px; border-radius: 3px 3px 22px 22px;
+    background: linear-gradient(180deg, #4a4136 0%, #2c261f 35%, #1a1612 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 220, 170, .25), 0 30px 50px rgba(0, 0, 0, .7);
+  }
+  .base::before { content: ""; position: absolute; top: 0; left: 50%; width: 180px; height: 9px; margin-left: -90px; border-radius: 0 0 10px 10px; background: linear-gradient(180deg, #1c1813, #2a241d); }
+  .floor { position: absolute; left: 50%; bottom: 18px; width: 1300px; height: 60px; transform: translateX(-50%); background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, .7), transparent 70%); filter: blur(8px); }
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="floor"></div>
+    <div class="laptop">
+      <div class="lid"><div class="screen"><img src="SCREEN_SRC" alt=""></div></div>
+      <div class="base"></div>
+    </div>
+  </div>
+</body>
+</html>

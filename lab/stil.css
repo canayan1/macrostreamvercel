@@ -403,3 +403,6 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
   .analiz .a-sentetik span{display:none}
   .analiz .a-sentetik .kucuk{margin-left:auto}
 }
+
+/* Sign-in slot from kalibre-auth.js: the "not configured" note is for previews only and is never shown. */
+.kh-d.pasif{display:none}
