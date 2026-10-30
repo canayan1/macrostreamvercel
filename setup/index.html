@@ -33,20 +33,24 @@
 </head>
 <body>
 
+<script>document.documentElement.classList.add('js')</script>
 <header class="ust">
   <div class="kap">
     <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
-    <nav aria-label="Main menu">
-      <a href="/lab">Lab</a>
-      <a href="/lab/panom">Dashboard</a>
-      <a href="/prop">Prop Shield</a>
-      <a href="/setup" aria-current="page">Setup</a>
-      <a href="/security">Security</a>
-      <a href="/pricing">Pricing</a>
+    <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
+      <details class="mgrup"><summary>Products</summary>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury"><b>FX Blotter Analytics<span class="durum durum-gelis">In development</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup" aria-current="page"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/baglan"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
+      </details>
+      <details class="mgrup mgrup-dar"><summary>Solutions</summary>
+        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
+      </details>
+      <a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
+      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/analytics?ornek=1">Try the sample</a></div>
     </nav>
     <a class="dil" href="/tr/setup" hreflang="tr" lang="tr">TR</a>
-    <a class="dugme ikincil kucuk baglan" href="/connect">Connect MetaTrader 5</a>
-    <a class="dugme kucuk" href="/lab">Open the lab</a>
+    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
+    <a class="dugme ikincil kucuk baglan" href="/analytics?ornek=1">Try the sample</a>
+    <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
   </div>
 </header>
 
@@ -150,39 +154,17 @@
   <div class="kap">
     <div>
       <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
-      <p>Kalibre Lab: backtesting and risk tools for MetaTrader 5, Alpaca and Tradier.</p>
+      <p>Analytics for trading data. Products are in beta.</p>
+      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
     </div>
-    <div>
-      <h4>Kalibre Lab</h4>
-      <a href="/lab">Lab</a>
-      <a href="/lab/panom">Dashboard</a>
-      <a href="/prop">Prop Shield</a>
-      <a href="/forex">Retail forex</a>
-      <a href="/rule-guard">Rule Guard (early access)</a>
-      <a href="/mt5-analytics">Trade Analytics (beta)</a>
-      <a href="/setup">Setup</a>
-      <a href="/security">Security</a>
-      <a href="/pricing">Pricing</a>
-    </div>
-    <div>
-      <h4>Learn</h4>
-      <a href="/methodology">Methodology</a>
-      <a href="/egitim" hreflang="tr" lang="tr">Articles (Turkish)</a>
-    </div>
-    <div>
-      <h4>Kalibre Markets</h4>
-      <a href="/about">About</a>
-      <a href="mailto:markets@kalibrefin.com">Contact</a>
-      <a href="/terms">Terms of service</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/refunds">Refunds</a>
-      <a href="/cookies">Cookies</a>
-      <a href="/risk-disclosure">Risk disclosure</a>
-      <a href="/cookies#manage" data-cerez-ayar>Cookie settings</a>
-    </div>
-    <p class="yasal">Kalibre Lab is in beta. Kalibre Lab is software. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+    <div><h4>Products</h4><a href="/mt5-analytics">Trade Analytics</a><a href="/treasury">FX Blotter Analytics</a><a href="/rule-guard">Rule Guard</a><a href="/lab">Kalibre Lab</a><a href="/setup">Kalibre Bridge for MT5</a><a href="/mt5-analytics#import-your-log">CSV and Excel trade logs</a><a href="/lab/baglan">Alpaca and Tradier</a></div>
+    <div><h4>Solutions</h4><a href="/rule-guard">Prop traders</a><a href="/mt5-analytics">Active MT5 traders</a><a href="/treasury">Treasury and dealing desks</a><a href="/company#partners">Brokers and prop firms</a></div>
+    <div><h4>Resources</h4><a href="/security">Security</a><a href="/methodology">Methodology</a><a href="/setup">Setup</a><a href="/pricing">Pricing</a><a href="/egitim">Articles (Turkish)</a></div>
+    <div><h4>Kalibre Markets</h4><a href="/company">Company</a><a href="mailto:markets@kalibrefin.com">Contact</a><a href="/terms">Terms of service</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="/cookies">Cookies</a><a href="/risk-disclosure">Risk disclosure</a><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+    <p class="yasal">Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
   </div>
 </footer>
+<script src="/static/menu.js" defer></script>
 
 </body>
 </html>

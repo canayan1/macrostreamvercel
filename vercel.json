@@ -3,6 +3,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/about",
+      "destination": "/company",
+      "statusCode": 308
+    },
+    {
+      "source": "/tr/about",
+      "destination": "/tr/company",
+      "statusCode": 308
+    },
+    {
       "source": "/pro",
       "destination": "/tr/pricing",
       "statusCode": 308
@@ -24,7 +34,7 @@
     },
     {
       "source": "/hakkinda",
-      "destination": "/tr/about",
+      "destination": "/tr/company",
       "statusCode": 308
     },
     {
@@ -54,7 +64,7 @@
     },
     {
       "source": "/hakkinda.html",
-      "destination": "/tr/about",
+      "destination": "/tr/company",
       "statusCode": 308
     },
     {
@@ -84,7 +94,7 @@
     },
     {
       "source": "/en/about",
-      "destination": "/about",
+      "destination": "/company",
       "statusCode": 308
     },
     {

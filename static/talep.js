@@ -47,6 +47,9 @@
     ? { eposta: 'Geçerli bir e-posta adresi girin.', onay: 'Devam etmek için onay kutusunu işaretleyin.', hiz: 'Çok sık deneme. Biraz sonra yeniden deneyin.', genel: 'Gönderilemedi. Biraz sonra yeniden deneyin ya da markets@kalibrefin.com adresine yazın.', tamam: 'Listedesiniz. Erken erişim açıldığında e-posta göndereceğiz.' }
     : { eposta: 'Enter a valid email address.', onay: 'Tick the consent box to continue.', hiz: 'Too many attempts. Try again shortly.', genel: 'Could not send. Try again shortly or email markets@kalibrefin.com.', tamam: 'You are on the list. We will email you when early access opens.' };
 
+  // Sayfa kendi başarı metnini verebilir (ör. /treasury: demo isteği).
+  if (pencere && pencere.getAttribute('data-tamam')) METIN.tamam = pencere.getAttribute('data-tamam');
+
   document.querySelectorAll('[data-erken-erisim]').forEach(function (b) {
     b.addEventListener('click', function (e) {
       e.preventDefault();

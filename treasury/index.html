@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>FX Blotter Analytics for treasury and dealing desks (in development)</title>
+<meta name="description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. In development; request a demo.">
+<link rel="canonical" href="https://kalibremarkets.com/treasury">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury">
+<meta property="og:title" content="FX Blotter Analytics for treasury and dealing desks (in development)">
+<meta property="og:description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. In development; request a demo.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+dialog#erken-erisim { max-width: 560px; width: calc(100% - 32px); background: var(--zemin-2); color: var(--metin); border: 1px solid var(--cizgi-2); border-radius: 8px; padding: 24px; }
+dialog#erken-erisim::backdrop { background: rgba(5, 10, 18, .7); }
+dialog#erken-erisim h2 { margin: 0 0 6px; font-size: 24px; }
+dialog#erken-erisim .alanlar { display: grid; gap: 12px; margin: 14px 0; }
+dialog#erken-erisim label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+dialog#erken-erisim input[type=email], dialog#erken-erisim input[type=text], dialog#erken-erisim select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 15px var(--sans); width: 100%; box-sizing: border-box; }
+dialog#erken-erisim label.onay { display: flex; font-size: 14px; }
+dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.talep-mesaj { margin: 10px 0; font-weight: 600; }
+.talep-mesaj.tamam { color: var(--yesil); } .talep-mesaj.hata { color: var(--kehribar); }
+.gizli-alan { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.demo-kutu { border: 1px solid var(--cizgi-2); border-radius: 12px; padding: 24px; background: var(--zemin-2); margin: 24px 0; }
+.demo-kutu h2 { margin: 0 0 8px !important; }
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js')</script>
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
+      <details class="mgrup"><summary>Products</summary>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-gelis">In development</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/baglan"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
+      </details>
+      <details class="mgrup mgrup-dar"><summary>Solutions</summary>
+        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury" aria-current="page"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
+      </details>
+      <a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
+      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/analytics?ornek=1">Try the sample</a></div>
+    </nav>
+    <a class="dil" href="/tr/treasury" hreflang="tr" lang="tr">TR</a>
+    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
+    <a class="dugme ikincil kucuk baglan" href="/analytics?ornek=1">Try the sample</a>
+    <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+<div data-talep-sayfa="treasury">
+<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-gelis">In development</span></h1></div>
+<p class="giris">Analyze the FX blotter your desk already keeps. Drop in the export as it is. Kalibre detects the columns, matches deals into positions and shows where the book made and lost money.</p>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/analytics?ornek=1">Try Trade Analytics with sample data</a></div>
+<div class="kutu">This product is in development. The scope below is what we plan for the first version. We are looking for a small number of desks to try it on synthetic or anonymized blotters.</div>
+
+<h2 id="reads">What it reads</h2>
+<p>The goal is to read the export without reformatting it:</p>
+<ul>
+  <li>CSV and Excel exports from systems such as 360T, FXall, Bloomberg FXGO and Murex</li>
+  <li>Excel blotters kept by hand, including Turkish headers</li>
+  <li>Spot, outright forwards, swap legs and NDFs. Options are detected and left out.</li>
+</ul>
+<p class="p-baslik-ornek">Trade Date · Value Date · Currency Pair · Buy/Sell · Notional · Rate · Counterparty · Book</p>
+
+<h2 id="detect">How columns are detected</h2>
+<div class="p-sutun2">
+  <div><h3>Headers and values</h3><p>Headers are matched against English and Turkish synonyms, and values by their patterns: pairs, dates, amounts and rates. In a "bought currency and amount, sold currency and amount" layout, the rate is derived from the two amounts.</p></div>
+  <div><h3>You confirm</h3><p>Before import, Kalibre shows what it found, for example "Trade date = column C". Blotters usually record the side from the bank's view; that is the default, and one choice switches it. Rates are read as all-in rates and value dates as dates. Rows that cannot be read are listed with a reason.</p></div>
+</div>
+
+<h2 id="see">What you see</h2>
+<p>Built around how a treasury desk reads its day:</p>
+<ul>
+  <li>Daily P&amp;L: the day's mark-to-market plus realized P&amp;L. Realized P&amp;L is recognized on the value date.</li>
+  <li>Spot P&amp;L and swap-points P&amp;L on separate lines</li>
+  <li>Carry cost shown as overnight swap, with the opportunity cost next to it</li>
+  <li>Client margin from the blotter's cost column</li>
+  <li>Intraday net open position (NOP) by currency and on a value-date ladder</li>
+  <li>Amounts in USD equivalent first, then in local currency</li>
+  <li>One-click drill-down from any figure to the deals behind it</li>
+</ul>
+<p>For marking and currency equivalents you supply an end-of-day or intraday rates file. We have no market data licence.</p>
+
+<h2 id="standard">The standard</h2>
+<p>What a head of treasury trusts is a fast table that is never wrong. That is the acceptance bar for the first version: every total traces back to deal rows and is tested against hand-computed cases.</p>
+
+<h2 id="data">How data is handled</h2>
+<ul>
+  <li>The file is read in your browser and is not uploaded to our servers.</li>
+  <li>Counterparty names are dropped by default. Deal IDs are used only to match legs and positions.</li>
+  <li>Demos run on synthetic or anonymized data. Do not send real client data.</li>
+</ul>
+
+<div class="demo-kutu" id="demo">
+  <h2>Request a demo</h2>
+  <p>Tell us your organization type, desk size and the system your blotter comes from. We will reply by email to find a time.</p>
+  <a class="dugme" href="#demo" data-erken-erisim>Request a demo</a>
+</div>
+
+<dialog id="erken-erisim" aria-labelledby="ee-baslik" data-tamam="Thanks. We will email you to arrange a demo.">
+  <h2 id="ee-baslik">Request a demo</h2>
+  <p>The demo is free and runs on a synthetic or anonymized blotter. Do not send real client data.</p>
+  <form novalidate>
+    <div class="alanlar">
+      <label for="ee-eposta">Work email<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
+      <label for="ee-kurum">Organization type<select id="ee-kurum" name="kurum" data-soru><option value="">Choose</option><option value="banka">Bank</option><option value="kurumsal-hazine">Corporate treasury</option><option value="araci-kurum">Broker</option><option value="prop-firma">Prop firm</option><option value="fon">Fund or asset manager</option><option value="diger">Other</option></select></label><label for="ee-masa">People on the desk<select id="ee-masa" name="masa" data-soru><option value="">Choose</option><option value="1">1</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="20+">20+</option></select></label><label for="ee-sistem">Which system does your blotter come from?<input type="text" id="ee-sistem" name="sistem" maxlength="300" placeholder="e.g. 360T, Murex, Excel" data-soru></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>I agree to receive emails from Kalibre Markets about the demo and product updates. I can unsubscribe at any time.</span></label>
+    <p class="not">We store your email, your answers and the time of your request. Details are in the <a href="/privacy#collect-why">privacy policy</a>.</p>
+    <div class="kapat-satir">
+      <button type="button" class="dugme ikincil" data-kapat>Close</button>
+      <button type="submit" class="dugme">Request a demo</button>
+    </div>
+  </form>
+  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
+  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Close</button></div>
+</dialog>
+</div>
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#reads">What it reads</a><a href="#detect">How columns are detected</a><a href="#see">What you see</a><a href="#standard">The standard</a><a href="#data">How data is handled</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Analytics for trading data. Products are in beta.</p>
+      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
+    </div>
+    <div><h4>Products</h4><a href="/mt5-analytics">Trade Analytics</a><a href="/treasury">FX Blotter Analytics</a><a href="/rule-guard">Rule Guard</a><a href="/lab">Kalibre Lab</a><a href="/setup">Kalibre Bridge for MT5</a><a href="/mt5-analytics#import-your-log">CSV and Excel trade logs</a><a href="/lab/baglan">Alpaca and Tradier</a></div>
+    <div><h4>Solutions</h4><a href="/rule-guard">Prop traders</a><a href="/mt5-analytics">Active MT5 traders</a><a href="/treasury">Treasury and dealing desks</a><a href="/company#partners">Brokers and prop firms</a></div>
+    <div><h4>Resources</h4><a href="/security">Security</a><a href="/methodology">Methodology</a><a href="/setup">Setup</a><a href="/pricing">Pricing</a><a href="/egitim">Articles (Turkish)</a></div>
+    <div><h4>Kalibre Markets</h4><a href="/company">Company</a><a href="mailto:markets@kalibrefin.com">Contact</a><a href="/terms">Terms of service</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="/cookies">Cookies</a><a href="/risk-disclosure">Risk disclosure</a><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+    <p class="yasal">Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/menu.js" defer></script>
+<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>
+</body>
+</html>

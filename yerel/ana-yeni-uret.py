@@ -1,3 +1,5 @@
+# EMEKLİ (30.10.2026): ana sayfa artık yerel/pitch-uret.py ile üretiliyor (eski hazırlık ana sayfası).
+import sys; sys.exit("Bu üretici emekli; ana sayfa için: python3 yerel/pitch-uret.py")
 # Yeni ana sayfa (TR + EN). Ortak üst bar ve alt bilgi sayfa-uret.py'den gelir.
 #
 # Kullanım:

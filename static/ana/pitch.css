@@ -1,0 +1,162 @@
+/* Kalibre Markets ana sayfa, /treasury ve /company (yerel/pitch-uret.py üretir).
+ * Tasarım dili static/site.css: mürekkep zemin, serif başlık, sabit genişlikli rakam.
+ * Yeni belirteçler (yalnız bu dosyada):
+ *   --kagit       açık "kâğıt" bant zemini (doğrulama rakamları; koyu sayfada karşıtlık)
+ *   --kagit-metin kâğıt üstünde metin, --kagit-soluk ikincil metin, --kagit-cizgi ayırıcı
+ *   --parilti     ekran görüntüsünün arkasındaki hafif ışık
+ */
+:root {
+  --kagit: #eef2f6;
+  --kagit-metin: #0e1724;
+  --kagit-soluk: #44546a;
+  --kagit-cizgi: #cfd8e3;
+  --parilti: radial-gradient(60% 60% at 50% 0%, rgba(95, 184, 154, .16), transparent 70%), radial-gradient(40% 50% at 85% 20%, rgba(143, 199, 255, .10), transparent 70%);
+}
+
+.p-ust-bosluk { padding-top: clamp(48px, 7vw, 88px); }
+.p-rozet {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  border: 1px solid var(--cizgi-2); border-radius: 999px; padding: 5px 14px 5px 6px;
+  font-size: 14px; color: var(--soluk); background: var(--zemin-2);
+}
+.p-rozet:hover { border-color: var(--soluk); color: var(--metin); }
+.p-rozet .durum { border-radius: 999px; }
+.p-hero h1 { font-size: clamp(42px, 7vw, 84px); line-height: 1.02; letter-spacing: -.02em; margin: 22px 0 18px; max-width: 14ch; }
+.p-hero .giris { max-width: 60ch; }
+.p-eylem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 28px 0 14px; }
+.p-eylem .metin-bag { color: var(--soluk); text-decoration: none; padding: 0 6px; font-weight: 500; }
+.p-eylem .metin-bag:hover { color: var(--metin); }
+.p-eylem .metin-bag::after { content: " \2192"; }
+
+.p-sahne { position: relative; margin: clamp(40px, 6vw, 72px) 0 0; }
+.p-sahne::before { content: ""; position: absolute; inset: -60px -40px auto; height: 420px; background: var(--parilti); pointer-events: none; z-index: 0; }
+.p-cerceve {
+  position: relative; z-index: 1; margin: 0;
+  border: 1px solid var(--cizgi-2); border-radius: 12px; overflow: hidden; background: var(--zemin-2);
+  box-shadow: 0 30px 80px rgba(3, 8, 16, .55);
+}
+.p-cerceve img { width: 100%; height: auto; }
+.p-alt-yazi { position: relative; z-index: 1; margin-top: 12px; font-size: 13.5px; color: var(--silik); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.p-sentetik { font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--kehribar); border: 1px solid color-mix(in srgb, var(--kehribar) 55%, transparent); border-radius: 4px; padding: 4px 6px; }
+
+/* Ürün ızgarası (işe göre) */
+.p-izgara { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.p-kart {
+  background: var(--zemin-2); border: 1px solid var(--cizgi); border-radius: 12px; padding: 24px;
+  display: flex; flex-direction: column; gap: 10px; min-width: 0;
+}
+.p-kart.genis { grid-column: span 4; }
+.p-kart.dar { grid-column: span 2; }
+.p-kart.uc { grid-column: span 2; }
+.p-is { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silik); }
+.p-kart h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; font-size: 22px; }
+.p-kart p { color: var(--soluk); margin: 0; }
+.p-kart ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; color: #cdd6e1; font-size: 15px; }
+.p-kart li { padding-left: 18px; position: relative; }
+.p-kart li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 1.5px; background: var(--yesil); }
+.p-kart .bag { margin-top: auto; padding-top: 8px; font-weight: 600; color: var(--metin); text-decoration: none; }
+.p-kart .bag::after { content: " \2192"; color: var(--yesil); }
+.p-kart .bag:hover { color: #fff; }
+.p-kart .p-mini { margin: 6px -24px -24px; border-top: 1px solid var(--cizgi); overflow: hidden; border-radius: 0 0 12px 12px; }
+.p-kart .p-mini img { width: 100%; height: auto; }
+.p-baglanti-liste { display: grid; gap: 10px; margin: 2px 0 0; }
+.p-baglanti-liste a { display: flex; justify-content: space-between; gap: 10px; align-items: center; text-decoration: none; padding: 10px 12px; border: 1px solid var(--cizgi); border-radius: 8px; color: var(--metin); font-size: 15px; }
+.p-baglanti-liste a:hover { border-color: var(--cizgi-2); background: var(--yuzey); }
+
+/* Nasıl çalışır: numaralı şekiller */
+.p-adimlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: adim; }
+.p-adim { border-top: 1px solid var(--cizgi-2); padding-top: 18px; }
+.p-adim .no { font: 500 12px/1 var(--mono); color: var(--yesil); letter-spacing: .08em; }
+.p-adim h3 { margin: 10px 0 8px; }
+.p-adim p { color: var(--soluk); margin: 0; }
+
+/* Özellik satırları: metin + ekran görüntüsü, sırayla yer değiştirir */
+.p-satir { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 64px); align-items: center; padding: 40px 0; }
+.p-satir + .p-satir { border-top: 1px solid var(--cizgi); }
+.p-satir.ters > :first-child { order: 2; }
+.p-satir h3 { font-size: clamp(24px, 2.6vw, 30px); margin-bottom: 12px; }
+.p-satir p { color: var(--soluk); }
+.p-satir .p-cerceve { box-shadow: 0 20px 50px rgba(3, 8, 16, .45); }
+
+/* Doğrulama bandı (kâğıt) */
+.p-kagit { background: var(--kagit); color: var(--kagit-metin); padding: clamp(64px, 8vw, 104px) 0; }
+.p-kagit h2 { color: var(--kagit-metin); }
+.p-kagit .bolum-bas p { color: var(--kagit-soluk); }
+.p-sayilar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--kagit-cizgi); }
+.p-sayi { padding: 24px 20px 4px 0; }
+.p-sayi + .p-sayi { border-left: 1px solid var(--kagit-cizgi); padding-left: 20px; }
+.p-sayi b { display: block; font: 600 clamp(36px, 4.4vw, 54px)/1 var(--serif); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.p-sayi span { display: block; margin-top: 10px; color: var(--kagit-soluk); font-size: 15px; max-width: 26ch; }
+.p-kagit .p-dipnot { margin: 28px 0 0; color: var(--kagit-soluk); font-size: 14px; max-width: 90ch; }
+.p-kagit a { color: var(--kagit-metin); font-weight: 600; }
+.p-kagit a:hover { color: #000; }
+.p-kagit :focus-visible { outline-color: #1d5fa8; }
+
+/* Gizlilik mimarisi */
+.p-uclu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.p-uclu > div { border: 1px solid var(--cizgi); border-radius: 12px; padding: 22px; background: var(--zemin-2); }
+.p-uclu h3 { font-size: 19px; margin-bottom: 8px; }
+.p-uclu p { color: var(--soluk); margin: 0; font-size: 15.5px; }
+.p-ikon { width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: color-mix(in srgb, var(--yesil) 14%, transparent); color: var(--yesil); margin-bottom: 14px; }
+.p-ikon svg { width: 18px; height: 18px; }
+
+/* Segmentler */
+.p-segmentler { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.p-segment { text-decoration: none; border: 1px solid var(--cizgi); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 8px; background: linear-gradient(180deg, var(--zemin-2), var(--zemin)); }
+.p-segment:hover { border-color: var(--cizgi-2); }
+.p-segment h3 { font-size: 19px; }
+.p-segment p { color: var(--soluk); margin: 0; font-size: 15px; }
+.p-segment span { margin-top: auto; padding-top: 10px; font-weight: 600; font-size: 14.5px; }
+.p-segment span::after { content: " \2192"; color: var(--yesil); }
+
+/* Yol haritası */
+.p-yol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.p-yol > div { border-top: 2px solid var(--cizgi-2); padding-top: 16px; }
+.p-yol > div:first-child { border-top-color: var(--yesil); }
+.p-yol h3 { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--soluk); margin-bottom: 14px; }
+.p-yol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.p-yol li { display: grid; gap: 4px; }
+.p-yol li b { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-weight: 600; }
+.p-yol li small { color: var(--soluk); font-size: 14.5px; }
+
+/* Kapanış */
+.p-son { text-align: center; }
+.p-son h2 { max-width: 20ch; margin: 0 auto 14px; }
+.p-son .giris { margin: 0 auto; }
+.p-son .p-eylem { justify-content: center; }
+
+/* /treasury ve /company */
+.p-belge-hero { padding-bottom: 8px; }
+.p-belge-hero h1 { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.p-tablo-dar { font-size: 15px; }
+.p-sutun2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 28px; }
+.p-sutun2 > div { border: 1px solid var(--cizgi); border-radius: 10px; padding: 18px; background: var(--zemin-2); }
+.p-sutun2 h3 { font-size: 18px; margin-bottom: 8px; }
+.p-sutun2 p, .p-sutun2 li { color: var(--soluk); font-size: 15.5px; }
+.p-sutun2 ul { margin: 0; padding-left: 1.1em; }
+.p-baslik-ornek { font-family: var(--mono); font-size: 13.5px; background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: 8px; padding: 12px 14px; overflow-x: auto; white-space: nowrap; color: #cdd6e1; }
+
+@media (max-width: 1000px) {
+  .p-izgara { grid-template-columns: 1fr 1fr; }
+  .p-kart.genis { grid-column: 1 / -1; }
+  .p-kart.dar, .p-kart.uc { grid-column: span 1; }
+  .p-segmentler { grid-template-columns: 1fr 1fr; }
+  .p-sayilar { grid-template-columns: 1fr 1fr; }
+  .p-sayi:nth-child(3) { border-left: 0; padding-left: 0; }
+  .p-sayi:nth-child(n+3) { border-top: 1px solid var(--kagit-cizgi); }
+}
+@media (max-width: 760px) {
+  .p-izgara, .p-adimlar, .p-uclu, .p-yol, .p-segmentler, .p-sutun2 { grid-template-columns: 1fr; }
+  .p-kart.dar, .p-kart.uc { grid-column: auto; }
+  .p-satir { grid-template-columns: 1fr; padding: 28px 0; }
+  .p-satir.ters > :first-child { order: 0; }
+  .p-sahne::before { inset: -30px -16px auto; height: 260px; }
+}
+@media (max-width: 480px) {
+  .p-sayilar { grid-template-columns: 1fr; }
+  .p-sayi + .p-sayi { border-left: 0; padding-left: 0; border-top: 1px solid var(--kagit-cizgi); }
+  .p-eylem .dugme { width: 100%; }
+}
+.p-kart .p-baslik-ornek { white-space: normal; margin: 4px 0 0; font-size: 12.5px; line-height: 1.6; }
+.belge-govde { min-width: 0; }
+.p-hero { overflow-x: clip; }

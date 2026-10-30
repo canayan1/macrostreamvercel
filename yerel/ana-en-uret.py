@@ -1,3 +1,5 @@
+# EMEKLİ (30.10.2026): ana sayfa artık yerel/pitch-uret.py ile üretiliyor (eski İngilizce ana sayfa).
+import sys; sys.exit("Bu üretici emekli; ana sayfa için: python3 yerel/pitch-uret.py")
 # English homepage (/): same styles as the Turkish homepage, English content.
 import os, re
 _d = os.path.dirname(os.path.abspath(__file__))

@@ -77,6 +77,8 @@ console.log(`  rule-guard firma: ${say('firma', 'rule-guard')}`);
 console.log(`  rule-guard son 12 ayda sınav: ${say('sinav', 'rule-guard')}`);
 console.log(`  mt5-analytics platform: ${say('platform', 'mt5-analytics')}`);
 console.log(`  mt5-analytics şu an kullanılan: ${say('simdi', 'mt5-analytics')}`);
+console.log(`  treasury kurum: ${say('kurum', 'treasury')}`);
+console.log(`  treasury masa büyüklüğü: ${say('masa', 'treasury')}`);
 
 const csv = arg('--csv');
 if (csv) {

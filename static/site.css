@@ -45,35 +45,91 @@ a:hover { color: #fff; }
 
 .kap { max-width: var(--genislik); margin: 0 auto; padding: 0 var(--kenar); }
 
-/* ---------------------------------------------------------------- üst bar */
+/* ---------------------------------------------------------------- üst bar
+ * Menü: "Ürünler" ve "Çözümler" <details> panelleri (JS olmadan da açılır), düz bağlantılar.
+ * static/menu.js: tek panel açık kalır, dışarı tıklama ve Esc kapatır; dar ekranda Menü düğmesi.
+ * Yeni belirteçler: --panel (açık panel zemini), --golge (panel gölgesi). */
+:root { --panel: #111c2c; --golge: 0 24px 60px rgba(3, 8, 16, .55); }
 .ust {
   border-bottom: 1px solid var(--cizgi);
   background: color-mix(in srgb, var(--zemin) 92%, transparent);
-  position: sticky; top: 0; z-index: 20;
-  backdrop-filter: blur(6px);
+  position: sticky; top: 0; z-index: 30;
+  backdrop-filter: blur(8px);
 }
-.ust .kap { display: flex; align-items: center; gap: 28px; min-height: 64px; }
-.marka { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.ust .kap { display: flex; align-items: center; gap: 16px; min-height: 64px; position: relative; }
+.marka { display: flex; align-items: baseline; gap: 8px; text-decoration: none; flex-shrink: 0; }
 .marka b { font: 600 22px/1 var(--serif); letter-spacing: -.01em; }
 .marka span { font-size: 13px; color: var(--silik); }
-.ust nav { display: flex; gap: 22px; margin-left: auto; font-size: 15px; }
-.ust nav a { text-decoration: none; color: var(--soluk); padding: 6px 0; white-space: nowrap; }
-.ust nav a:hover, .ust nav a[aria-current="page"] { color: var(--metin); }
-.ust nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--yesil); }
-.ust .dugme { margin-left: 4px; }
+.ana-menu { display: flex; align-items: center; gap: 4px; margin-right: auto; font-size: 15px; }
+.ana-menu summary, .ana-menu .mduz {
+  list-style: none; cursor: pointer; color: var(--soluk); text-decoration: none; white-space: nowrap;
+  padding: 8px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;
+}
+.ana-menu summary::-webkit-details-marker { display: none; }
+.ana-menu summary::after { content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .15s; }
+.ana-menu details[open] > summary::after { transform: translateY(1px) rotate(225deg); }
+.ana-menu summary:hover, .ana-menu .mduz:hover, .ana-menu details[open] > summary { color: var(--metin); background: var(--zemin-2); }
+.ana-menu .mduz[aria-current="page"] { color: var(--metin); box-shadow: inset 0 -2px 0 var(--yesil); border-radius: 0; }
+.mega {
+  position: absolute; top: calc(100% + 1px); left: var(--kenar); right: var(--kenar);
+  background: var(--panel); border: 1px solid var(--cizgi-2); border-radius: 10px; box-shadow: var(--golge);
+  padding: 22px; animation: mega-ac .14s ease-out;
+}
+.mgrup-dar { position: relative; }
+.mgrup-dar .mega-dar { left: 0; right: auto; top: calc(100% + 13px); width: 400px; }
+@keyframes mega-ac { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.mega-izgara { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 18px; }
+.mbas { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silik); margin: 4px 10px 10px; }
+.mitem { display: block; text-decoration: none; padding: 10px; border-radius: 8px; }
+.mitem:hover, .mitem:focus-visible { background: var(--yuzey); }
+.mitem b { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; font-weight: 600; font-size: 15px; color: var(--metin); }
+.mitem small { display: block; color: var(--soluk); font-size: 13.5px; line-height: 1.45; margin-top: 3px; }
+.mitem[aria-current="page"] b { color: var(--yesil); }
+.mega-liste { display: grid; gap: 2px; }
+.mega-alt { margin: 16px 10px 0; padding-top: 14px; border-top: 1px solid var(--cizgi); font-size: 13.5px; color: var(--silik); }
+.mega-alt a { color: var(--soluk); }
+.durum { font: 500 10.5px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; padding: 4px 6px; border-radius: 4px; white-space: nowrap; }
+.durum-beta { color: var(--yesil); border: 1px solid color-mix(in srgb, var(--yesil) 55%, transparent); }
+.durum-test { color: var(--kehribar); border: 1px solid color-mix(in srgb, var(--kehribar) 55%, transparent); }
+.durum-gelis { color: var(--odak); border: 1px solid color-mix(in srgb, var(--odak) 50%, transparent); }
+.durum-plan { color: var(--silik); border: 1px solid var(--cizgi-2); }
 .ust .dugme, .ust .dil { white-space: nowrap; flex-shrink: 0; }
-/* Menü öğeleri ve düğmeler tek satırda kalır (nowrap). Başlık tek satıra ~1000px'te sığar:
-   1081-1260px aralıklar daralır, 1080px ve altında menü ikinci satıra iner. */
-@media (min-width: 1081px) and (max-width: 1260px) {
-  .ust .kap { gap: 16px; }
-  .ust nav { gap: 14px; font-size: 14px; }
-  .ust .dugme.kucuk { padding-left: 12px; padding-right: 12px; }
+.ust .dil + .menu-ac, .ust .dil + .dugme { margin-left: 0; }
+.menu-eylem { display: none; }
+.menu-ac {
+  display: none; min-height: 36px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: transparent;
+  color: var(--metin); font: 600 14px var(--sans); cursor: pointer;
 }
+@media (min-width: 1081px) and (max-width: 1200px) {
+  .ust .kap { gap: 14px; }
+  .ana-menu summary, .ana-menu .mduz { padding: 8px 9px; font-size: 14px; }
+}
+/* Dar ekran (JS ile): menü bir çekmeceye döner. JS yoksa menü ikinci satırda kayar. */
 @media (max-width: 1080px) {
-  .ust .kap { flex-wrap: wrap; gap: 6px 18px; padding-top: 10px; padding-bottom: 10px; }
-  .ust nav { order: 3; width: 100%; margin: 0; overflow-x: auto; gap: 18px; font-size: 14px; scrollbar-width: none; }
-  .ust .dugme { margin-left: auto; }
+  .ust .kap { flex-wrap: wrap; gap: 8px 14px; padding-top: 10px; padding-bottom: 10px; }
+  .ust .dil { margin-left: auto; }
+  .ana-menu { order: 5; width: 100%; overflow-x: auto; scrollbar-width: none; margin: 0; }
+  .js .ust .kap { flex-wrap: nowrap; }
+  .js .menu-ac { display: inline-flex; align-items: center; }
+  .js .ana-menu {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; overflow-y: auto; max-height: calc(100vh - 64px);
+    flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--kenar) 24px;
+    background: var(--panel); border-bottom: 1px solid var(--cizgi-2); box-shadow: var(--golge);
+  }
+  .js .ust.acik .ana-menu { display: flex; }
+  .js .ana-menu summary, .js .ana-menu .mduz { display: flex; padding: 14px 4px; border-radius: 0; border-bottom: 1px solid var(--cizgi); justify-content: space-between; font-size: 16px; }
+  .js .ana-menu summary:hover, .js .ana-menu details[open] > summary { background: transparent; }
+  .js .mega, .js .mega-dar { position: static; width: auto; border: 0; box-shadow: none; padding: 6px 0 12px; background: transparent; animation: none; }
+  .js .mega-izgara { grid-template-columns: 1fr 1fr; }
 }
+@media (max-width: 1080px) { .ust .dugme.baglan { display: none; } }
+@media (max-width: 640px) {
+  .js .mega-izgara { grid-template-columns: 1fr; }
+  .js .ust .kap > .dugme:not(.ikincil) { display: none; }
+  .ust .kh-d.pasif { display: none; }
+  .js .menu-eylem { display: grid; gap: 10px; padding-top: 18px; }
+}
+@media (max-width: 400px) { .marka span { display: none; } .ust .dugme.kucuk { padding: 0 10px; } }
 
 /* ---------------------------------------------------------------- düğmeler */
 .dugme {
@@ -130,18 +186,17 @@ p { margin: 0 0 1em; }
 
 /* ---------------------------------------------------------------- alt bilgi */
 .alt { border-top: 1px solid var(--cizgi); padding: 48px 0 56px; color: var(--silik); font-size: 14px; }
-.alt .kap { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.alt .kap { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 32px; }
 .alt h4 { font: 600 14px/1.4 var(--sans); color: var(--soluk); margin: 0 0 10px; }
 .alt a { display: block; text-decoration: none; padding: 3px 0; color: var(--silik); }
 .alt a:hover { color: var(--metin); }
 .alt .yasal { grid-column: 1 / -1; border-top: 1px solid var(--cizgi); padding-top: 20px; max-width: 90ch; }
-@media (max-width: 760px) { .alt .kap { grid-template-columns: 1fr 1fr; } .alt .kap > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 960px) { .alt .kap { grid-template-columns: 1fr 1fr; } .alt .kap > :first-child { grid-column: 1 / -1; } }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 
 /* Dil bağlantısı (TR | EN) */
 .ust .dil { font: 600 13px var(--sans); color: var(--soluk); text-decoration: none; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 4px 8px; }
 .ust .dil:hover { color: var(--metin); border-color: var(--soluk); }
-@media (max-width: 1080px) { .ust .dil { margin-left: auto; } .ust .dil + .dugme, .ust .dugme + .dugme { margin-left: 0; } }
-/* Dar ekranda tek giriş düğmesi kalır; laboratuvar menüde zaten var. */
-@media (max-width: 560px) { .ust .dugme.kucuk:not(.baglan) { display: none; } .ust .dugme.baglan { margin-left: auto; } .ust .dil + .dugme.baglan { margin-left: 0; } }
+/* Yalnız geliştirme ve önizlemede görünen "Sign-in not configured" notu dar başlıkta yer kaplamasın. */
+@media (max-width: 1320px) { .ust .kh-d.pasif { display: none; } }

@@ -1,4 +1,4 @@
-// Talep testi (docs/TALEP-TESTI.md): iki segment sayfasının (/rule-guard, /mt5-analytics) ölçümü.
+// Talep testi (docs/TALEP-TESTI.md): segment sayfalarının (/rule-guard, /mt5-analytics, /treasury) ölçümü.
 // Ödeme yok; yalnız sayaç ve erken erişim formu. Ham IP saklanmaz: hız sınırı anahtarında IP'nin
 // tuzlu özeti kullanılır ve en çok 1 saat yaşar. E-posta yalnız açık onayla saklanır.
 //
@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import type { Depo } from './depo.ts';
 
-export const SAYFALAR = ['rule-guard', 'mt5-analytics'] as const;
+export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury'] as const;
 export const OLAYLAR = ['goruntuleme', 'fiyat-tik', 'form-gonder'] as const;
 export const SINIR = { olayDakika: 60, formSaat: 5, metin: 300 };
 export const SURE = { sayac: 400 * 86400, kayit: 395 * 86400 };
@@ -30,6 +30,11 @@ const SORULAR: Record<Sayfa, Record<string, readonly string[] | 'metin'>> = {
     platform: ['mt5', 'mt4', 'ctrader', 'tradingview', 'diger'],
     simdi: ['myfxbook', 'fxblue', 'gunluk', 'tablo', 'hicbiri', 'diger'],
     odeme: 'metin',
+  },  // Hazine ve dealing masaları: demo isteği (fiyat yok; varyant yine atanır ama kullanılmaz).
+  treasury: {
+    kurum: ['banka', 'kurumsal-hazine', 'araci-kurum', 'prop-firma', 'fon', 'diger'],
+    masa: ['1', '2-5', '6-20', '20+'],
+    sistem: 'metin',
   },
 };
 

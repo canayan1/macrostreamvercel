@@ -10,8 +10,8 @@
 
   var en = document.documentElement.lang === 'en';
   var metin = en
-    ? 'Kalibre Lab is in beta. Results are simulations. Read the risk disclosure before trading with real money.'
-    : 'Kalibre Lab beta sürümündedir. Sonuçlar simülasyondur. Gerçek parayla işlem yapmadan önce risk bildirimini oku.';
+    ? 'Kalibre Markets products are in beta. Backtests are simulations. Read the risk disclosure before trading with real money.'
+    : 'Kalibre Markets ürünleri beta aşamasındadır. Backtestler simülasyondur. Gerçek parayla işlem yapmadan önce risk bildirimini oku.';
   var baglanti = en ? 'Risk disclosure' : 'Risk bildirimi';
   var adres = en ? '/risk-disclosure' : '/tr/risk-disclosure';
   var baglanti2 = en ? 'Beta programme' : 'Beta programı';

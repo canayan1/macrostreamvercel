@@ -2,19 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kalibremarkets.com/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/"/>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://kalibremarkets.com/about</loc>
-    <lastmod>2026-10-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/about"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/about"/>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/carry-hesaplayici</loc>
@@ -22,8 +14,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kalibremarkets.com/company</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/company"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/company"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/company"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kalibremarkets.com/cookies</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/cookies"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/cookies"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/cookies"/>
@@ -156,7 +156,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/forex</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/forex"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/forex"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/forex"/>
@@ -184,12 +184,12 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/lab</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/methodology</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/methodology"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/methodology"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/methodology"/>
@@ -197,11 +197,11 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/mt5-analytics</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/mt5-analytics"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/mt5-analytics"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/mt5-analytics"/>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/oyun</loc>
@@ -210,7 +210,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/pricing</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/pricing"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/pricing"/>
@@ -218,7 +218,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/privacy</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/privacy"/>
@@ -226,7 +226,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/prop</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/prop"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/prop"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/prop"/>
@@ -234,7 +234,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/refunds</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/refunds"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/refunds"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/refunds"/>
@@ -242,7 +242,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/risk-disclosure</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/risk-disclosure"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/risk-disclosure"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/risk-disclosure"/>
@@ -250,15 +250,15 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/rule-guard</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/rule-guard"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/rule-guard"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/rule-guard"/>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/security</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/security"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/security"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/security"/>
@@ -266,7 +266,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/setup</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/setup"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/setup"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/setup"/>
@@ -274,7 +274,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/terms</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/terms"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/terms"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/terms"/>
@@ -282,23 +282,23 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/"/>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kalibremarkets.com/tr/about</loc>
-    <lastmod>2026-10-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/about"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/about"/>
+    <loc>https://kalibremarkets.com/tr/company</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/company"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/company"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/company"/>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/cookies</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/cookies"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/cookies"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/cookies"/>
@@ -306,7 +306,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/forex</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/forex"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/forex"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/forex"/>
@@ -314,7 +314,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/methodology</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/methodology"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/methodology"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/methodology"/>
@@ -322,7 +322,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/mt5-analytics</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/mt5-analytics"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/mt5-analytics"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/mt5-analytics"/>
@@ -330,7 +330,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/pricing</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/pricing"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/pricing"/>
@@ -338,7 +338,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/privacy</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/privacy"/>
@@ -346,7 +346,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/prop</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/prop"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/prop"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/prop"/>
@@ -354,7 +354,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/refunds</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/refunds"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/refunds"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/refunds"/>
@@ -362,7 +362,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/risk-disclosure</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/risk-disclosure"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/risk-disclosure"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/risk-disclosure"/>
@@ -370,7 +370,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/rule-guard</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/rule-guard"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/rule-guard"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/rule-guard"/>
@@ -378,7 +378,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/security</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/security"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/security"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/security"/>
@@ -386,7 +386,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/setup</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/setup"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/setup"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/setup"/>
@@ -394,15 +394,31 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/tr/terms</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/terms"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/terms"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/terms"/>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kalibremarkets.com/tr/treasury</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kalibremarkets.com/trading/onyargi-testi</loc>
     <lastmod>2026-10-25</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/treasury</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury"/>
+    <priority>0.8</priority>
   </url>
 </urlset>

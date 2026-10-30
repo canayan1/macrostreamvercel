@@ -1,39 +1,28 @@
 # Kullanım: python3 yerel/og-uret.py (site kökünden çalıştır)
-# Paylaşım görseli (1200x630): koyu mürekkep zemin, rapor serifi başlık, sağda karar notu kartı.
+# Paylaşım görseli (1200x630): koyu mürekkep zemin, serif başlık, sağda ürün ekran görüntüsü (sentetik veri).
 from PIL import Image, ImageDraw, ImageFont
-import math, random
-W,H=1200,630
-im=Image.new('RGB',(W,H),'#0e1724'); d=ImageDraw.Draw(im)
-serif=lambda s,i=0: ImageFont.truetype('/System/Library/Fonts/Supplemental/Charter.ttc',s,index=i)
-sans=lambda s: ImageFont.truetype('/System/Library/Fonts/HelveticaNeue.ttc',s,index=0)
-sansB=lambda s: ImageFont.truetype('/System/Library/Fonts/HelveticaNeue.ttc',s,index=1)
-d.text((72,64),'Kalibre',font=serif(40,3),fill='#e7ecf2')
-d.text((232,80),'Markets',font=sans(24),fill='#73839a')
-y=170
-for satir in ['Backtest your','MetaTrader 5','strategies on your','broker\'s data.']:
-    d.text((72,y),satir,font=serif(62,0),fill='#e7ecf2'); y+=74
-d.text((72,500),'Kalibre Lab: backtesting and risk tools.',font=sans(26),fill='#a3b0c2')
-d.text((72,540),'End-to-end encrypted MT5 data.',font=sans(26),fill='#a3b0c2')
-# karar notu kartı
-x0,y0,x1,y1=700,120,1128,520
-d.rounded_rectangle((x0,y0,x1,y1),radius=10,fill='#f4f6f8')
-d.text((x0+28,y0+24),'Decision memo',font=serif(30,3),fill='#18222f')
-d.line((x0+28,y0+70,x1-28,y0+70),fill='#18222f',width=3)
-d.rounded_rectangle((x0+28,y0+88,x0+150,y0+114),radius=4,fill='#f6e7c4')
-d.text((x0+38,y0+91),'SYNTHETIC',font=sansB(18),fill='#8a5a00')
-d.text((x0+162,y0+91),'sample series',font=sans(18),fill='#5a6878')
-# grafik
-gx0,gy0,gx1,gy1=x0+28,y0+130,x1-28,y0+290
-d.rectangle((gx0,gy0,gx1,gy1),fill='#ffffff',outline='#d9dfe6')
-random.seed(7); v=1.0; a=[]; b=[]
-for i in range(140):
-    v*=1+random.gauss(0.0008,0.012); a.append(v); b.append(v*(1-0.0006*i))
-mn,mx=min(a+b),max(a+b)
-pt=lambda s: [(gx0+6+i*(gx1-gx0-12)/(len(s)-1), gy1-8-(x-mn)/(mx-mn)*(gy1-gy0-16)) for i,x in enumerate(s)]
-d.line(pt(a),fill='#7d8a99',width=2); d.line(pt(b),fill='#1f7a5c',width=3)
-satirlar=[('Total return','gross / net'),('Max drawdown','next to return')]
-yy=y0+310
-for k,v in satirlar:
-    d.text((x0+28,yy),k,font=sans(20),fill='#5a6878'); d.text((x1-28,yy),v,font=sans(20),fill='#18222f',anchor='ra')
-    yy+=34; d.line((x0+28,yy-6,x1-28,yy-6),fill='#dfe4ea',width=1)
-im.save('og-default.png',optimize=True); print('ok')
+W, H = 1200, 630
+im = Image.new('RGB', (W, H), '#0e1724'); d = ImageDraw.Draw(im)
+serif = lambda s, i=0: ImageFont.truetype('/System/Library/Fonts/Supplemental/Charter.ttc', s, index=i)
+sans = lambda s: ImageFont.truetype('/System/Library/Fonts/HelveticaNeue.ttc', s, index=0)
+mono = lambda s: ImageFont.truetype('/System/Library/Fonts/Menlo.ttc', s, index=0)
+d.text((64, 56), 'Kalibre', font=serif(38, 3), fill='#e7ecf2')
+d.text((214, 70), 'Markets', font=sans(22), fill='#73839a')
+y = 168
+for satir in ['Analytics for', 'trading data.']:
+    d.text((64, y), satir, font=serif(64, 0), fill='#e7ecf2'); y += 76
+y += 18
+for satir in ['See where an account or desk', 'makes and loses money.', 'Files are processed in your browser.']:
+    d.text((64, y), satir, font=sans(25), fill='#a3b0c2'); y += 36
+d.rounded_rectangle((64, 548, 132, 578), radius=5, outline='#5fb89a', width=2)
+d.text((77, 554), 'BETA', font=mono(16), fill='#5fb89a')
+d.text((148, 554), 'Software only. Not investment advice.', font=sans(18), fill='#73839a')
+# Ekran görüntüsü: hafif ışık + çerçeve
+ek = Image.open('static/urun/analytics/insights.png').convert('RGB')
+gen = 548; yuk = int(ek.height * gen / ek.width); kes = min(yuk, 342)
+ek = ek.resize((gen, yuk), Image.LANCZOS).crop((0, 0, gen, kes))
+x0, y0 = 600, 126
+im.paste(ek, (x0, y0))
+d.rounded_rectangle((x0 - 2, y0 - 2, x0 + gen + 1, y0 + kes + 1), radius=10, outline='#33465f', width=2)
+d.text((x0, y0 + kes + 14), 'SYNTHETIC SAMPLE DATA', font=mono(14), fill='#d9a441')
+im.save('og-default.png', optimize=True); print('ok')

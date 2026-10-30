@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>FX Blotter Analytics: hazine ve dealing masaları için (geliştiriliyor)</title>
+<meta name="description" content="Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Geliştiriliyor; demo isteyin.">
+<link rel="canonical" href="https://kalibremarkets.com/tr/treasury">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury">
+<meta property="og:title" content="FX Blotter Analytics: hazine ve dealing masaları için (geliştiriliyor)">
+<meta property="og:description" content="Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Geliştiriliyor; demo isteyin.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/tr/sign-in">
+<meta name="kalibre:yol:account" content="/tr/account">
+<meta name="kalibre:yol:pricing" content="/tr/pricing">
+<meta name="kalibre:yol:connect" content="/tr/connect">
+<meta name="kalibre:yol:lab" content="/lab?dil=tr">
+<meta name="kalibre:yol:home" content="/tr">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+dialog#erken-erisim { max-width: 560px; width: calc(100% - 32px); background: var(--zemin-2); color: var(--metin); border: 1px solid var(--cizgi-2); border-radius: 8px; padding: 24px; }
+dialog#erken-erisim::backdrop { background: rgba(5, 10, 18, .7); }
+dialog#erken-erisim h2 { margin: 0 0 6px; font-size: 24px; }
+dialog#erken-erisim .alanlar { display: grid; gap: 12px; margin: 14px 0; }
+dialog#erken-erisim label { display: grid; gap: 6px; font-size: 14px; color: var(--soluk); }
+dialog#erken-erisim input[type=email], dialog#erken-erisim input[type=text], dialog#erken-erisim select { min-height: 42px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 15px var(--sans); width: 100%; box-sizing: border-box; }
+dialog#erken-erisim label.onay { display: flex; font-size: 14px; }
+dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.talep-mesaj { margin: 10px 0; font-weight: 600; }
+.talep-mesaj.tamam { color: var(--yesil); } .talep-mesaj.hata { color: var(--kehribar); }
+.gizli-alan { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.demo-kutu { border: 1px solid var(--cizgi-2); border-radius: 12px; padding: 24px; background: var(--zemin-2); margin: 24px 0; }
+.demo-kutu h2 { margin: 0 0 8px !important; }
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js')</script>
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
+    <nav class="ana-menu" id="ana-menu" aria-label="Ana menü">
+      <details class="mgrup"><summary>Ürünler</summary>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-gelis">Geliştiriliyor</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?dil=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/baglan?dil=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
+      </details>
+      <details class="mgrup mgrup-dar"><summary>Çözümler</summary>
+        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/tr/rule-guard"><b>Prop trader'lar</b><small>Firmanın günlük ve toplam kayıp sınırları içinde kal.</small></a><a class="mitem" href="/tr/mt5-analytics"><b>Aktif MT5 trader'ları</b><small>Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</small></a><a class="mitem" href="/tr/treasury" aria-current="page"><b>Hazine ve dealing masaları</b><small>Masanın zaten tuttuğu FX blotter'ını analiz et.</small></a><a class="mitem" href="/tr/company#partners"><b>Aracı kurumlar ve prop firmaları</b><small>Çok hesaplı analiz. Bizimle konuşun.</small></a></div></div>
+      </details>
+      <a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company">Şirket</a>
+      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/analytics?dil=tr&amp;ornek=1">Örnekle dene</a></div>
+    </nav>
+    <a class="dil" href="/treasury" hreflang="en" lang="en">EN</a>
+    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menü</button>
+    <a class="dugme ikincil kucuk baglan" href="/analytics?dil=tr&amp;ornek=1">Örnekle dene</a>
+    <a class="dugme kucuk" href="/tr/mt5-analytics#pricing">Erken erişim</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+<div data-talep-sayfa="treasury">
+<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-gelis">Geliştiriliyor</span></h1></div>
+<p class="giris">Masanın zaten tuttuğu FX blotter'ını analiz et. Dışa aktarımı olduğu gibi bırak. Kalibre sütunları tanır, deal'leri pozisyonlara eşler ve defterin nerede kazanıp kaybettiğini gösterir.</p>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/analytics?dil=tr&amp;ornek=1">Trade Analytics'i örnekle dene</a></div>
+<div class="kutu">Bu ürün geliştiriliyor. Aşağıdaki kapsam ilk sürüm için planlanandır. İlk sürümü sentetik ya da anonimleştirilmiş blotter'larla deneyecek az sayıda masa arıyoruz.</div>
+
+<h2 id="reads">Neyi okur</h2>
+<p>Hedef, dışa aktarımı yeniden biçimlendirmeden okumak:</p>
+<ul>
+  <li>360T, FXall, Bloomberg FXGO ve Murex gibi sistemlerin CSV ve Excel dışa aktarımları</li>
+  <li>Elle tutulan Excel blotter'ları, Türkçe başlıklar dahil</li>
+  <li>Spot, outright forward, swap bacakları ve NDF. Opsiyonlar tanınır ve dışarıda bırakılır.</li>
+</ul>
+<p class="p-baslik-ornek">İşlem Tarihi · Valör · Döviz Cinsi · Alış/Satış · Tutar · Kur · Karşı Taraf · Portföy</p>
+
+<h2 id="detect">Sütunlar nasıl tanınır</h2>
+<div class="p-sutun2">
+  <div><h3>Başlık ve değer</h3><p>Başlıklar İngilizce ve Türkçe eşanlamlılarla, değerler desenleriyle eşleştirilir: parite, tarih, tutar, kur. "Alınan döviz ve tutar, satılan döviz ve tutar" düzeninde kur iki tutarın oranından çıkarılır.</p></div>
+  <div><h3>Siz onaylarsınız</h3><p>İçe aktarmadan önce bulunan eşleşmeler gösterilir, örneğin "İşlem tarihi = C sütunu". Blotter'lar yönü genelde bankanın bakışından kaydeder; varsayılan budur ve tek bir seçimle değiştirilebilir. Kurlar all-in, valörler tarih olarak okunur. Okunamayan satırlar nedeniyle listelenir.</p></div>
+</div>
+
+<h2 id="see">Ne görürsünüz</h2>
+<p>Bir hazine masasının günü nasıl okuduğuna göre kurgulandı:</p>
+<ul>
+  <li>Günün kâr/zararı: günün değerlemesi (MTM) artı gerçekleşen kâr/zarar. Gerçekleşen kâr/zarar valör tarihinde tanınır.</li>
+  <li>Spot kâr/zararı ve swap puanı kâr/zararı ayrı satırlarda</li>
+  <li>Taşıma maliyeti gecelik swap olarak, fırsat maliyetiyle birlikte görünür</li>
+  <li>Müşteri marjı, blotter'daki maliyet sütunundan</li>
+  <li>Gün içi net açık pozisyon (NOP), para birimi bazında ve valör merdiveninde</li>
+  <li>Tutarlar önce USD karşılığı, sonra yerel para birimi olarak</li>
+  <li>Her rakamdan tek tıkla ilgili deal'lere inme</li>
+</ul>
+<p>Değerleme ve karşılık tutarlar için gün sonu ya da gün içi kur dosyasını siz sağlarsınız. Piyasa verisi lisansımız yok.</p>
+
+<h2 id="standard">Ölçüt</h2>
+<p>Bir hazine müdürünün güvendiği şey hızlı ve hiç yanılmayan bir tablodur. İlk sürümün kabul ölçütü budur: her toplam deal satırlarına kadar izlenebilir olacak ve elle hesaplanmış örneklerle sınanacak.</p>
+
+<h2 id="data">Veri nasıl işlenir</h2>
+<ul>
+  <li>Dosya tarayıcınızda okunur ve sunucumuza yüklenmez.</li>
+  <li>Karşı taraf adları varsayılan olarak alınmaz. İşlem numaraları yalnız eşleştirme için kullanılır.</li>
+  <li>Demo sentetik ya da anonimleştirilmiş veriyle yapılır. Gerçek müşteri verisi göndermeyin.</li>
+</ul>
+
+<div class="demo-kutu" id="demo">
+  <h2>Demo iste</h2>
+  <p>Kurum türünüzü, masa büyüklüğünü ve blotter'ın geldiği sistemi yazın. Uygun bir zaman için e-posta ile döneriz.</p>
+  <a class="dugme" href="#demo" data-erken-erisim>Demo iste</a>
+</div>
+
+<dialog id="erken-erisim" aria-labelledby="ee-baslik" data-tamam="Talebiniz alındı. Demo için e-posta ile yazacağız.">
+  <h2 id="ee-baslik">Demo iste</h2>
+  <p>Demo ücretsizdir ve sentetik ya da anonimleştirilmiş bir blotter üzerinde yapılır. Gerçek müşteri verisi göndermeyin.</p>
+  <form novalidate>
+    <div class="alanlar">
+      <label for="ee-eposta">İş e-postası<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
+      <label for="ee-kurum">Kurum türü<select id="ee-kurum" name="kurum" data-soru><option value="">Seçin</option><option value="banka">Banka</option><option value="kurumsal-hazine">Şirket hazinesi</option><option value="araci-kurum">Aracı kurum</option><option value="prop-firma">Prop firması</option><option value="fon">Fon ya da portföy yönetimi</option><option value="diger">Diğer</option></select></label><label for="ee-masa">Masadaki kişi sayısı<select id="ee-masa" name="masa" data-soru><option value="">Seçin</option><option value="1">1</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="20+">20+</option></select></label><label for="ee-sistem">Blotter hangi sistemden geliyor?<input type="text" id="ee-sistem" name="sistem" maxlength="300" placeholder="ör. 360T, Murex, Excel" data-soru></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>Kalibre Markets'in demo ve ürün güncellemeleri hakkında bana e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
+    <p class="not">E-postanızı, cevaplarınızı ve talep zamanını saklarız. Ayrıntılar <a href="/tr/privacy#collect-why">gizlilik politikasında</a>.</p>
+    <div class="kapat-satir">
+      <button type="button" class="dugme ikincil" data-kapat>Kapat</button>
+      <button type="submit" class="dugme">Demo iste</button>
+    </div>
+  </form>
+  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
+  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
+</dialog>
+</div>
+    </article>
+    <aside class="belge-kenar" aria-label="Bu sayfada"><a href="#reads">Neyi okur</a><a href="#detect">Sütunlar nasıl tanınır</a><a href="#see">Ne görürsünüz</a><a href="#standard">Ölçüt</a><a href="#data">Veri nasıl işlenir</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Alım satım verisi için analiz. Ürünler beta aşamasında.</p>
+      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
+    </div>
+    <div><h4>Ürünler</h4><a href="/tr/mt5-analytics">Trade Analytics</a><a href="/tr/treasury">FX Blotter Analytics</a><a href="/tr/rule-guard">Rule Guard</a><a href="/lab?dil=tr">Kalibre Lab</a><a href="/tr/setup">MT5 için Kalibre Bridge</a><a href="/tr/mt5-analytics#kendi-kaydin">CSV ve Excel işlem kayıtları</a><a href="/lab/baglan?dil=tr">Alpaca ve Tradier</a></div>
+    <div><h4>Çözümler</h4><a href="/tr/rule-guard">Prop trader'lar</a><a href="/tr/mt5-analytics">Aktif MT5 trader'ları</a><a href="/tr/treasury">Hazine ve dealing masaları</a><a href="/tr/company#partners">Aracı kurumlar ve prop firmaları</a></div>
+    <div><h4>Kaynaklar</h4><a href="/tr/security">Güvenlik</a><a href="/tr/methodology">Metodoloji</a><a href="/tr/setup">Kurulum</a><a href="/tr/pricing">Fiyat</a><a href="/egitim">Eğitim yazıları</a><a href="/grafik-oku">Grafik okuma testi</a><a href="/trading/onyargi-testi">Önyargı testi</a></div>
+    <div><h4>Kalibre Markets</h4><a href="/tr/company">Şirket</a><a href="mailto:markets@kalibrefin.com">İletişim</a><a href="/tr/terms">Hizmet şartları</a><a href="/tr/privacy">Gizlilik</a><a href="/tr/refunds">İade ve iptal</a><a href="/tr/cookies">Çerezler</a><a href="/tr/risk-disclosure">Risk bildirimi</a><a href="/tr/cookies#manage" data-cerez-ayar>Çerez ayarları</a></div>
+    <p class="yasal">Kalibre Markets ürünleri beta aşamasında olan yazılımlardır. Kalibre Markets aracı kurum, yatırım danışmanı ya da portföy yöneticisi değildir; müşteri parası tutmaz, yatırım tavsiyesi ya da işlem sinyali vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır ve herkes için uygun olmayabilir; yatırdığınız paranın tamamını kaybedebilirsiniz. Gerçek ya da simülasyon, geçmiş performans gelecekteki sonuçların göstergesi değildir. Backtest ve simülasyonlar varsayımsaldır. Bu sitedeki içerik yatırım danışmanlığı kapsamında değildir. MetaTrader, MetaQuotes Ltd.'nin markasıdır; Kalibre Markets MetaQuotes ile bağlantılı değildir. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/menu.js" defer></script>
+<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>
+</body>
+</html>

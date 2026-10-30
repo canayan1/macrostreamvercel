@@ -151,3 +151,15 @@ test('CSV: formül enjeksiyonu kaçırılır, tırnak ve virgül korunur', () =>
   assert.equal(bas, 'zaman,sayfa,varyant,kaynak,dil,eposta,onaySurumu,odeme,platform');
   assert.ok(satir.includes(`"'=HYPERLINK(""x"")"`), satir);
 });
+
+test('treasury: demo isteği kurum, masa ve sistem cevaplarını kabul eder, izinsiz değeri reddeder', async () => {
+  const d = izliDepo();
+  const iyi = await talepIsle(d, olay({ sayfa: 'treasury', olay: 'form-gonder', eposta: 'desk@bank.example', onay: true,
+    cevaplar: { kurum: 'banka', masa: '6-20', sistem: '360T ve Excel' } }), '1.2.3.4', T);
+  assert.equal(iyi.durum, 200);
+  const k = [...d.anahtarlar].find(a => a.startsWith('talep:kayit:treasury:'));
+  assert.ok(k);
+  const kotu = await talepIsle(d, olay({ sayfa: 'treasury', olay: 'form-gonder', eposta: 'x@bank.example', onay: true,
+    cevaplar: { kurum: 'uzayli' } }), '1.2.3.5', T);
+  assert.equal(kotu.durum, 400);
+});
