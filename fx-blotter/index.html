@@ -20,7 +20,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fbfbfd">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -35,7 +38,7 @@
 <body>
 <header class="gnav">
   <div class="wrap">
-    <a class="gnav-brand" href="/">Kalibre Markets</a>
+    <a class="gnav-brand" href="/" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>
     <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter" aria-current="page">FX Blotter</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/kalibre-lab">Kalibre Lab</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/company">Company</a></li></ul></nav>
     <a class="gnav-lang" href="/tr/fx-blotter" hreflang="tr" lang="tr">Türkçe</a><span data-kalibre-auth></span>
     <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
@@ -59,7 +62,7 @@
     <div class="actions"><a class="btn" href="/lab/blotter?file=samples/fx-blotter-sample.xlsx">Open the sample blotter</a><a class="more" href="#demo" data-erken-erisim>Request a demo</a></div>
   </div>
   <div class="stage">
-    <div class="wrap"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-1x.webp 1172w, /static/urun/demo/blotter-summary-2x.webp 2344w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/static/urun/demo/blotter-summary.png" width="2344" height="634" alt="Summary of the sample blotter: total P&amp;L split into price, points, carry and MTM" fetchpriority="high" decoding="async"></picture></figure></div>
+    <div class="wrap"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-1x.webp 1172w, /static/urun/demo/blotter-summary-2x.webp 2344w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/static/urun/demo/blotter-summary.png" width="2344" height="633" alt="Summary of the sample blotter: total P&amp;L split into price, points, carry and MTM" fetchpriority="high" decoding="async"></picture></figure></div>
   </div>
 </section>
 
@@ -67,9 +70,9 @@
   <div class="wrap">
     <h2 class="title center" style="max-width:20ch;margin:0 auto">Built around how a treasury desk reads its day.</h2>
     <div class="rows" style="margin-top:clamp(56px,7vw,96px)">
-      <div class="row"><div class="row-text"><h3 class="title-s">Price and points, apart.</h3><p class="lede">Realized P&amp;L is split into spot price and forward points. Carry shows as overnight swap and MTM covers the open position. Swaps count as rolls and do not change the net position.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-1x.webp 1172w, /static/urun/demo/blotter-pnl-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-pnl.png" width="2344" height="781" alt="P&amp;L table by pair; every row opens its deals" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row"><div class="row-text"><h3 class="title-s">Price and points, apart.</h3><p class="lede">Realized P&amp;L is split into spot price and forward points. Carry shows as overnight swap and MTM covers the open position. Swaps count as rolls and do not change the net position.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-1x.webp 1172w, /static/urun/demo/blotter-pnl-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-pnl.png" width="2344" height="779" alt="P&amp;L table by pair; every row opens its deals" loading="lazy" decoding="async"></picture></figure></div></div>
       <div class="row flip"><div class="row-text"><h3 class="title-s">Every total opens its deals.</h3><p class="lede">Group by pair, book, dealer, item type, deal size, hour or weekday. Click any figure and the deal rows behind it open.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-positions-1x.webp 1172w, /static/urun/demo/blotter-positions-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-positions.png" width="2344" height="997" alt="Net open position by currency in USD equivalent" loading="lazy" decoding="async"></picture></figure></div></div>
-      <div class="row"><div class="row-text"><h3 class="title-s">Positions by value date.</h3><p class="lede">A ladder from today through spot, one week, one month and beyond a year, per currency, next to your own limits.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-ladder-1x.webp 1172w, /static/urun/demo/blotter-ladder-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-ladder.png" width="2344" height="630" alt="Value-date ladder of the sample blotter" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row"><div class="row-text"><h3 class="title-s">Positions by value date.</h3><p class="lede">A ladder from today through spot, one week, one month and beyond a year, per currency, next to your own limits.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-ladder-1x.webp 1172w, /static/urun/demo/blotter-ladder-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-ladder.png" width="2344" height="632" alt="Value-date ladder of the sample blotter" loading="lazy" decoding="async"></picture></figure></div></div>
       <div class="row flip"><div class="row-text"><h3 class="title-s">Reads the file as it is.</h3><p class="lede">Report title rows, total rows, headers in English, Turkish, German or French and local number formats are handled. Each column match shows its confidence, and you can change it.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-columns-1x.webp 1172w, /static/urun/demo/blotter-columns-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-columns.png" width="2344" height="1300" alt="Detected columns with their confidence" loading="lazy" decoding="async"></picture></figure></div></div>
     </div>
   </div>

@@ -32,7 +32,7 @@ const oran = (x, b = 2) => (x === Infinity ? '∞' : sayi(x, b));
 const sinif = x => (x > 0 ? 'pozitif' : x < 0 ? 'negatif' : '');
 // Tarih: Türkçede 01.04.2026, İngilizcede ISO 2026-04-01 (blotter sayfasıyla aynı).
 const tarih = sn => { if (!sn) return '–'; const d = new Date(sn * 1000); const g = String(d.getUTCDate()).padStart(2, '0'), a = String(d.getUTCMonth() + 1).padStart(2, '0'); return dil === 'en' ? `${d.getUTCFullYear()}-${a}-${g}` : `${g}.${a}.${d.getUTCFullYear()}`; };
-const gunMetni = g => { const [y, a, gg] = g.split('-'); return `${gg}.${a}.${y}`; };
+const gunMetni = g => { const [y, a, gg] = g.split('-'); return dil === 'en' ? g : `${gg}.${a}.${y}`; };
 const olcuMetni = (tur, x) => (tur === 'para' ? para(x) : tur === 'yuzde' ? yuzde(x) : tur === 'sayi' ? sayi(x, 0) : oran(x));
 const etiket = s => ceviri(s);
 
@@ -187,7 +187,7 @@ function egriCiz(c, egri) {
   for (let k = 0; k <= 3; k++) {
     const v = lo + ((hi - lo) * k) / 3, py = Y(v);
     x.strokeStyle = 'rgba(141,156,176,.14)'; x.lineWidth = 1; x.beginPath(); x.moveTo(solPay, py); x.lineTo(w - sagPay, py); x.stroke();
-    x.fillStyle = '#8d9cb0'; x.textAlign = 'right'; x.fillText(sayi(v, 0), solPay - 8, py);
+    x.fillStyle = '#8a7f6a'; x.textAlign = 'right'; x.fillText(sayi(v, 0), solPay - 8, py);
   }
   // başlangıç bakiyesi kesikli çizgi
   const b0 = egri[0].bakiye;
@@ -200,9 +200,9 @@ function egriCiz(c, egri) {
   x.beginPath(); nokta.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py)));
   x.lineTo(nokta[nokta.length - 1][0], h - alt); x.lineTo(nokta[0][0], h - alt); x.closePath(); x.fillStyle = grad; x.fill();
   x.beginPath(); nokta.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py)));
-  x.strokeStyle = '#5fb89a'; x.lineWidth = 1.8; x.lineJoin = 'round'; x.stroke();
+  x.strokeStyle = '#4ade80'; x.lineWidth = 1.8; x.lineJoin = 'round'; x.stroke();
   // tarih etiketleri
-  x.fillStyle = '#8d9cb0'; x.textBaseline = 'alphabetic';
+  x.fillStyle = '#8a7f6a'; x.textBaseline = 'alphabetic';
   x.textAlign = 'left'; x.fillText(tarih(t0), solPay, h - 6);
   x.textAlign = 'right'; x.fillText(tarih(t1), w - sagPay, h - 6);
 }

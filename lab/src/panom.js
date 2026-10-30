@@ -52,22 +52,22 @@ function tuval(c) {
 
 function bakiyeCiz(c, egri, yatirilan) {
   const { x, w, h } = tuval(c);
-  if (egri.length < 2) { x.fillStyle = '#8d9cb0'; x.font = '12px ui-monospace, monospace'; x.fillText(ceviri('Henüz çizilecek işlem yok.'), 8, 20); return; }
+  if (egri.length < 2) { x.fillStyle = '#8a7f6a'; x.font = '12px ui-monospace, monospace'; x.fillText(ceviri('Henüz çizilecek işlem yok.'), 8, 20); return; }
   const pad = 8;
   const degerler = egri.map(e => e.bakiye);
   const lo = Math.min(...degerler, yatirilan), hi = Math.max(...degerler, yatirilan);
   const t0 = egri[0].zaman, t1 = egri[egri.length - 1].zaman;
   const X = tz => pad + ((tz - t0) / (t1 - t0 || 1)) * (w - 2 * pad);
   const Y = v => h - pad - ((v - lo) / (hi - lo || 1)) * (h - 2 * pad);
-  x.strokeStyle = '#24344c'; x.lineWidth = 1;
+  x.strokeStyle = '#26221d'; x.lineWidth = 1;
   for (let i = 1; i < 4; i++) { x.beginPath(); x.moveTo(0, h * i / 4); x.lineTo(w, h * i / 4); x.stroke(); }
   // Yatırılan toplam: işlem sonucu sıfır çizgisi.
-  x.strokeStyle = '#33465f'; x.setLineDash([3, 3]); x.beginPath(); x.moveTo(0, Y(yatirilan)); x.lineTo(w, Y(yatirilan)); x.stroke(); x.setLineDash([]);
+  x.strokeStyle = '#3a332a'; x.setLineDash([3, 3]); x.beginPath(); x.moveTo(0, Y(yatirilan)); x.lineTo(w, Y(yatirilan)); x.stroke(); x.setLineDash([]);
   const son = degerler[degerler.length - 1];
-  x.strokeStyle = son >= yatirilan ? '#5fb89a' : '#e07a6e'; x.lineWidth = 1.6; x.beginPath();
+  x.strokeStyle = son >= yatirilan ? '#4ade80' : '#ef4444'; x.lineWidth = 1.6; x.beginPath();
   egri.forEach((e, i) => (i ? x.lineTo(X(e.zaman), Y(e.bakiye)) : x.moveTo(X(e.zaman), Y(e.bakiye))));
   x.stroke();
-  x.fillStyle = '#8d9cb0'; x.font = '11px ui-monospace, monospace';
+  x.fillStyle = '#8a7f6a'; x.font = '11px ui-monospace, monospace';
   x.fillText(ceviri('bakiye'), 8, 14);
   x.textAlign = 'right'; x.fillText(para(son, 0), w - 8, 14); x.textAlign = 'left';
 }

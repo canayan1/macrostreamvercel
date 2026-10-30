@@ -17,12 +17,12 @@
 .blotter .b-isi{background:color-mix(in srgb, var(--accent) calc(var(--yog,0) * 28%), transparent)}
 .blotter .b-isi.negatif{background:color-mix(in srgb, var(--red, #ef4444) calc(var(--yog,0) * 28%), transparent)}
 .blotter tr.b-eksik td{background:rgba(239,68,68,.10)}
-.blotter tr.b-dusuk td{background:rgba(217,164,65,.10)}
+.blotter tr.b-dusuk td{background:rgba(255,122,0,.10)}
 .blotter #eslesme-tablo select{max-width:280px;font:12px var(--mono)}
 .blotter .b-kontrol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .blotter .b-kontrol li{display:grid;grid-template-columns:22px minmax(0,auto) 1fr;gap:8px;align-items:baseline;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg-1);font-size:13px}
 .blotter .b-kontrol li .dipnot{overflow-wrap:anywhere}
-.blotter .b-kontrol li.tamam .b-isaret{color:var(--accent)}
+.blotter .b-kontrol li.tamam .b-isaret{color:var(--green)}
 .blotter .b-kontrol li.hata{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.08)}
 .blotter .b-kontrol li.hata .b-isaret,.blotter .b-kontrol li.hata b{color:var(--red, #ef4444)}
 .blotter .b-kontrol li.bos .b-isaret{color:var(--muted)}

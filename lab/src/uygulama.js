@@ -586,16 +586,16 @@ function fiyatCiz(c, mumlar, islemler) {
   for (const m of mumlar) { lo = Math.min(lo, m.d); hi = Math.max(hi, m.y); }
   const X = i => pad + (i / (mumlar.length - 1)) * (w - 2 * pad);
   const Y = v => h - pad - ((v - lo) / (hi - lo)) * (h - 2 * pad);
-  x.strokeStyle = '#24344c'; x.lineWidth = 1;
+  x.strokeStyle = '#26221d'; x.lineWidth = 1;
   for (let i = 1; i < 4; i++) { x.beginPath(); x.moveTo(0, h * i / 4); x.lineTo(w, h * i / 4); x.stroke(); }
-  x.strokeStyle = '#a3b0c2'; x.lineWidth = 1.2; x.beginPath();
+  x.strokeStyle = '#a89c83'; x.lineWidth = 1.2; x.beginPath();
   mumlar.forEach((m, i) => (i ? x.lineTo(X(i), Y(m.k)) : x.moveTo(X(i), Y(m.k))));
   x.stroke();
   for (const t of islemler) {
     x.strokeStyle = t.kar > 0 ? 'rgba(74,222,128,.75)' : 'rgba(239,68,68,.75)';
     x.lineWidth = 2;
     x.beginPath(); x.moveTo(X(t.girisI), Y(t.giris)); x.lineTo(X(t.cikisI), Y(t.cikis)); x.stroke();
-    x.fillStyle = t.yon === 'long' ? '#8fc7ff' : '#d9a441';
+    x.fillStyle = t.yon === 'long' ? '#60a5fa' : '#ffa630';
     x.beginPath(); x.arc(X(t.girisI), Y(t.giris), 2.5, 0, Math.PI * 2); x.fill();
   }
 }
@@ -605,11 +605,11 @@ function egriCiz(c, ozk) {
   const pad = 6, lo = Math.min(...ozk), hi = Math.max(...ozk), bas = ozk[0];
   const X = i => pad + (i / (ozk.length - 1)) * (w - 2 * pad);
   const Y = v => h - pad - ((v - lo) / (hi - lo || 1)) * (h - 2 * pad);
-  x.strokeStyle = '#33465f'; x.setLineDash([3, 3]); x.beginPath(); x.moveTo(0, Y(bas)); x.lineTo(w, Y(bas)); x.stroke(); x.setLineDash([]);
-  x.strokeStyle = ozk.at(-1) >= bas ? '#5fb89a' : '#e07a6e'; x.lineWidth = 1.5; x.beginPath();
+  x.strokeStyle = '#3a332a'; x.setLineDash([3, 3]); x.beginPath(); x.moveTo(0, Y(bas)); x.lineTo(w, Y(bas)); x.stroke(); x.setLineDash([]);
+  x.strokeStyle = ozk.at(-1) >= bas ? '#4ade80' : '#ef4444'; x.lineWidth = 1.5; x.beginPath();
   ozk.forEach((v, i) => (i ? x.lineTo(X(i), Y(v)) : x.moveTo(X(i), Y(v))));
   x.stroke();
-  x.fillStyle = '#8d9cb0'; x.font = '11px ui-monospace, monospace'; x.fillText(ceviri('özkaynak'), 8, 14);
+  x.fillStyle = '#8a7f6a'; x.font = '11px ui-monospace, monospace'; x.fillText(ceviri('özkaynak'), 8, 14);
 }
 
 // ---------------------------------------------------------------- olaylar

@@ -20,7 +20,10 @@
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fbfbfd">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -35,7 +38,7 @@
 <body>
 <header class="gnav">
   <div class="wrap">
-    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <a class="gnav-brand" href="/tr" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>
     <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter" aria-current="page">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
     <a class="gnav-lang" href="/fx-blotter" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
     <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
@@ -59,7 +62,7 @@
     <div class="actions"><a class="btn" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Örnek blotter'ı aç</a><a class="more" href="#demo" data-erken-erisim>Demo iste</a></div>
   </div>
   <div class="stage">
-    <div class="wrap"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-tr-1x.webp 1172w, /static/urun/demo/blotter-summary-tr-2x.webp 2344w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/static/urun/demo/blotter-summary-tr.png" width="2344" height="634" alt="Örnek blotter özeti: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış" fetchpriority="high" decoding="async"></picture></figure></div>
+    <div class="wrap"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-tr-1x.webp 1172w, /static/urun/demo/blotter-summary-tr-2x.webp 2344w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/static/urun/demo/blotter-summary-tr.png" width="2344" height="633" alt="Örnek blotter özeti: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış" fetchpriority="high" decoding="async"></picture></figure></div>
   </div>
 </section>
 
@@ -67,9 +70,9 @@
   <div class="wrap">
     <h2 class="title center" style="max-width:20ch;margin:0 auto">Bir hazine masasının günü okuma biçimine göre kuruldu.</h2>
     <div class="rows" style="margin-top:clamp(56px,7vw,96px)">
-      <div class="row"><div class="row-text"><h3 class="title-s">Fiyat ve puan, ayrı.</h3><p class="lede">Gerçekleşen K/Z spot fiyat ve vadeli puanı olarak ayrılır. Taşıma gecelik swap olarak, MTM açık pozisyon için görünür. Swap'lar roll sayılır ve net pozisyonu değiştirmez.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-tr-1x.webp 1172w, /static/urun/demo/blotter-pnl-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-pnl-tr.png" width="2344" height="781" alt="Pariteye göre K/Z tablosu; her satır deal'lerini açar" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row"><div class="row-text"><h3 class="title-s">Fiyat ve puan, ayrı.</h3><p class="lede">Gerçekleşen K/Z spot fiyat ve vadeli puanı olarak ayrılır. Taşıma gecelik swap olarak, MTM açık pozisyon için görünür. Swap'lar roll sayılır ve net pozisyonu değiştirmez.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-pnl-tr-1x.webp 1172w, /static/urun/demo/blotter-pnl-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-pnl-tr.png" width="2344" height="779" alt="Pariteye göre K/Z tablosu; her satır deal'lerini açar" loading="lazy" decoding="async"></picture></figure></div></div>
       <div class="row flip"><div class="row-text"><h3 class="title-s">Her toplam deal'lerini açar.</h3><p class="lede">Parite, portföy, dealer, kalem türü, büyüklük, saat ya da güne göre grupla. Herhangi bir rakama tıkla, arkasındaki deal satırları açılır.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-positions-tr-1x.webp 1172w, /static/urun/demo/blotter-positions-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-positions-tr.png" width="2344" height="997" alt="USD karşılığı döviz bazında net açık pozisyon" loading="lazy" decoding="async"></picture></figure></div></div>
-      <div class="row"><div class="row-text"><h3 class="title-s">Valöre göre pozisyonlar.</h3><p class="lede">Bugünden spot, bir hafta, bir ay ve bir yılın ötesine uzanan, döviz bazında bir merdiven; kendi limitlerinin yanında.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-ladder-tr-1x.webp 1172w, /static/urun/demo/blotter-ladder-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-ladder-tr.png" width="2344" height="630" alt="Örnek blotter'ın valör merdiveni" loading="lazy" decoding="async"></picture></figure></div></div>
+      <div class="row"><div class="row-text"><h3 class="title-s">Valöre göre pozisyonlar.</h3><p class="lede">Bugünden spot, bir hafta, bir ay ve bir yılın ötesine uzanan, döviz bazında bir merdiven; kendi limitlerinin yanında.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-ladder-tr-1x.webp 1172w, /static/urun/demo/blotter-ladder-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-ladder-tr.png" width="2344" height="632" alt="Örnek blotter'ın valör merdiveni" loading="lazy" decoding="async"></picture></figure></div></div>
       <div class="row flip"><div class="row-text"><h3 class="title-s">Dosyayı olduğu gibi okur.</h3><p class="lede">Rapor başlığı satırları, toplam satırları, İngilizce, Türkçe, Almanca ya da Fransızca başlıklar ve yerel sayı biçimleri tanınır. Her sütun eşleşmesi güven puanını gösterir ve değiştirilebilir.</p></div><div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-columns-tr-1x.webp 1172w, /static/urun/demo/blotter-columns-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-columns-tr.png" width="2344" height="1300" alt="Güven puanıyla tanınan sütunlar" loading="lazy" decoding="async"></picture></figure></div></div>
     </div>
   </div>
@@ -83,7 +86,7 @@
         <p class="lede">Satır sayıları, alt toplamların genel toplamı tutması, her bacakta tutar çarpı kur, döviz bazında nominaller, blotter'ın yerel para sütunu, açık lotların pozisyona eşitliği ve FIFO ile ortalama maliyet. Başarısız kontrol kırmızıya döner.</p>
         <p class="lede">Elle hesaplanmış on iki vaka birebir tutuyor.</p>
       </div>
-      <div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-reconciliation-tr-1x.webp 1172w, /static/urun/demo/blotter-reconciliation-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-reconciliation-tr.png" width="2344" height="950" alt="Mutabakat paneli: örnek blotter'da bütün kontroller geçti" loading="lazy" decoding="async"></picture></figure></div>
+      <div><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-reconciliation-tr-1x.webp 1172w, /static/urun/demo/blotter-reconciliation-tr-2x.webp 2344w" sizes="(max-width: 860px) 100vw, 720px"><img src="/static/urun/demo/blotter-reconciliation-tr.png" width="2344" height="915" alt="Mutabakat paneli: örnek blotter'da bütün kontroller geçti" loading="lazy" decoding="async"></picture></figure></div>
     </div>
   </div>
 </section>

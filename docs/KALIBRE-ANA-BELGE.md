@@ -288,3 +288,8 @@ Claude'un yapacakları:
 - /mt5-analytics → /trade-analytics, /treasury → /fx-blotter (308). Talep ölçüm kimlikleri aynı (mt5-analytics, treasury, rule-guard).
 - Belge sayfaları (güvenlik, metodoloji, yasal, kurulum) aynı kabukta; eski Türkçe içerik sayfaları kabuk.js ile eski görünümde kalır.
 - Rule Guard görseli: örnek hesabın günlük kapanış bakiyesi FTMO 2-Step tabanlarına karşı (SVG, summary.json propDays).
+
+### 30.10 ek 5: Orijinal Kalibre Markets kimliği
+- Apple yerleşim kuralları korunarak orijinal kimliğe dönüldü: sıcak siyah #100e0c, yüzey #1a1612, çizgi #26221d, krem metin #ebe3d3, amber eylem #ffa630 (sıcak ton #ff7a00), kazanç #4ade80, kayıp #ef4444; Inter Tight ve Geist Mono. Logo: amber çerçeveli K + "KALIBRE // MARKETS".
+- Terminal dokunuşları: ürün adları "// Ürün" amber monospace, rakamlar ve durum etiketleri monospace, adım numaraları 01/02/03.
+- Lab uygulaması aynı palete geçti (stil.css değişkenleri canlı sitenin değerleri); bütün ekran görüntüleri yeniden çekildi.

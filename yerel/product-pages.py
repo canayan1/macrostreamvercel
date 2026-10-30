@@ -191,23 +191,23 @@ def prop_chart(lang, days=60):
     y = lambda v: TOP + (hi - v) * (H - TOP - BOT) / (hi - lo)
     path = lambda key: " ".join(f"{'M' if i == 0 else 'L'}{x(i):.1f},{y(d[key]):.1f}" for i, d in enumerate(data))
     step_floor = lambda key: "M" + " L".join(f"{x(i):.1f},{y(d[key]):.1f} {x(i + 1 if i + 1 < len(data) else i):.1f},{y(d[key]):.1f}" for i, d in enumerate(data))
-    lows = "".join(f'<circle cx="{x(i):.1f}" cy="{y(d["low"]):.1f}" r="2.6" fill="#ff9f0a"/>' for i, d in enumerate(data))
+    lows = "".join(f'<circle cx="{x(i):.1f}" cy="{y(d["low"]):.1f}" r="2.6" fill="#ebe3d3"/>' for i, d in enumerate(data))
     grid = ""
     for v in range(int(lo), int(hi) + 1, 4000):
-        grid += f'<line x1="{L}" x2="{W - R}" y1="{y(v):.1f}" y2="{y(v):.1f}" stroke="#2c2c2e"/><text x="{L - 10}" y="{y(v) + 4:.1f}" text-anchor="end" fill="#86868b" font-size="13">{fmt(v / 1000, lang)}k</text>'
+        grid += f'<line x1="{L}" x2="{W - R}" y1="{y(v):.1f}" y2="{y(v):.1f}" stroke="#26221d"/><text x="{L - 10}" y="{y(v) + 4:.1f}" text-anchor="end" fill="#6f6553" font-size="13">{fmt(v / 1000, lang)}k</text>'
     months = {}
     for i, d in enumerate(data):
         months.setdefault(d["day"][:7], i)
     month_names = {"en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], "tr": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]}[lang]
-    ticks = "".join(f'<text x="{x(i):.1f}" y="{H - 18}" fill="#86868b" font-size="13">{month_names[int(m[5:]) - 1]} {m[:4]}</text>' for m, i in months.items())
-    legend = [("#2997ff", T(lang, "Closed balance at day end", "Gün sonu kapanış bakiyesi"), ""), ("#ff9f0a", T(lang, "Lowest closed balance in the day", "Gün içi en düşük kapanış bakiyesi"), ""),
-              ("#ff453a", T(lang, "Daily floor (5%)", "Günlük taban (%5)"), "6 5"), ("#a1a1a6", T(lang, "Total floor (10%)", "Toplam taban (%10)"), "2 4")]
-    leg = "".join(f'<g transform="translate({L + k * 240},{H - 2})"><line x1="0" x2="22" y1="-4" y2="-4" stroke="{c}" stroke-width="2.5" stroke-dasharray="{dash}"/><text x="30" y="0" fill="#a1a1a6" font-size="13">{t}</text></g>' for k, (c, t, dash) in enumerate(legend))
+    ticks = "".join(f'<text x="{x(i):.1f}" y="{H - 18}" fill="#6f6553" font-size="13">{month_names[int(m[5:]) - 1]} {m[:4]}</text>' for m, i in months.items())
+    legend = [("#ffa630", T(lang, "Closed balance at day end", "Gün sonu kapanış bakiyesi"), ""), ("#ebe3d3", T(lang, "Lowest closed balance in the day", "Gün içi en düşük kapanış bakiyesi"), ""),
+              ("#ef4444", T(lang, "Daily floor (5%)", "Günlük taban (%5)"), "6 5"), ("#8a7f6a", T(lang, "Total floor (10%)", "Toplam taban (%10)"), "2 4")]
+    leg = "".join(f'<g transform="translate({L + k * 240},{H - 2})"><line x1="0" x2="22" y1="-4" y2="-4" stroke="{c}" stroke-width="2.5" stroke-dasharray="{dash}"/><text x="30" y="0" fill="#a89c83" font-size="13">{t}</text></g>' for k, (c, t, dash) in enumerate(legend))
     title = T(lang, "Closed balance by day against FTMO 2-Step floors, example account", "Örnek hesap: FTMO 2-Step tabanlarına karşı günlük kapanış bakiyesi")
-    return (f'<figure class="shot" style="background:#000;padding:28px 20px 12px"><svg viewBox="0 0 {W} {H + 18}" role="img" aria-label="{title}" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif">'
-            f'{grid}<path d="{step_floor("totalFloor")}" fill="none" stroke="#a1a1a6" stroke-width="2" stroke-dasharray="2 4"/>'
-            f'<path d="{step_floor("dailyFloor")}" fill="none" stroke="#ff453a" stroke-width="2" stroke-dasharray="6 5"/>'
-            f'<path d="{path("end")}" fill="none" stroke="#2997ff" stroke-width="2.5" stroke-linejoin="round"/>{lows}{ticks}{leg}</svg></figure>')
+    return (f'<figure class="shot" style="background:var(--night);padding:28px 20px 12px"><svg viewBox="0 0 {W} {H + 18}" role="img" aria-label="{title}" font-family="Geist Mono, JetBrains Mono, ui-monospace, monospace">'
+            f'{grid}<path d="{step_floor("totalFloor")}" fill="none" stroke="#8a7f6a" stroke-width="2" stroke-dasharray="2 4"/>'
+            f'<path d="{step_floor("dailyFloor")}" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 5"/>'
+            f'<path d="{path("end")}" fill="none" stroke="#ffa630" stroke-width="2.5" stroke-linejoin="round"/>{lows}{ticks}{leg}</svg></figure>')
 
 # ================================================================== home
 def home(lang):
@@ -296,9 +296,9 @@ def trade_analytics(lang):
     local = lnav("Trade Analytics", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Highlights", "Öne çıkanlar"), "#highlights"), (T(lang, "Your data", "Verin"), "#privacy"), (T(lang, "Pricing", "Fiyat"), "#pricing")],
                  T(lang, "Try it", "Dene"), sample)
     template_cols = ["open_time", "close_time", "symbol", "side", "volume", "open_price", "close_price", "profit"]
-    sheet = ('<figure class="shot" style="background:#fff;box-shadow:0 0 0 1px #d2d2d7;padding:0"><div style="overflow-x:auto"><table style="border-collapse:collapse;font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1d1d1f;min-width:640px;width:100%">'
-             '<thead><tr>' + "".join(f'<th style="text-align:left;padding:10px 12px;background:#f5f5f7;border-bottom:1px solid #d2d2d7;font-weight:600">{c}</th>' for c in template_cols) + '</tr></thead><tbody>'
-             + "".join('<tr>' + "".join(f'<td style="padding:9px 12px;border-bottom:1px solid #e8e8ed">{v}</td>' for v in r) + '</tr>' for r in [
+    sheet = ('<figure class="shot" style="padding:0"><div style="overflow-x:auto"><table style="border-collapse:collapse;font:13px/1.4 var(--mono);color:var(--ink);min-width:640px;width:100%">'
+             '<thead><tr>' + "".join(f'<th style="text-align:left;padding:10px 12px;background:var(--surface);border-bottom:1px solid var(--line-2);font-weight:500;color:var(--action)">{c}</th>' for c in template_cols) + '</tr></thead><tbody>'
+             + "".join('<tr>' + "".join(f'<td style="padding:9px 12px;border-bottom:1px solid var(--line)">{v}</td>' for v in r) + '</tr>' for r in [
                  ["2026-04-01 09:15", "2026-04-01 13:40", "EURUSD", "buy", "1.00", "1.08345", "1.08512", "167.00"],
                  ["2026-04-01 10:02", "2026-04-01 10:31", "XAUUSD", "sell", "0.50", "3125.40", "3131.10", "−285.00"]])
              + '</tbody></table></div></figure>')
@@ -495,7 +495,7 @@ def rule_guard(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "What it does.", "Ne yapar.")}</h2>
     <div class="tiles">
-      {tile(T(lang, "Floors calculated the way your firm does.", "Tabanlar firmanın hesapladığı gibi."), T(lang, "The daily floor uses the start-of-day balance. The total floor uses the starting balance or the peak. The day resets at the firm's time.", "Günlük taban gün başı bakiyeden, toplam taban başlangıç bakiyesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır."), f'<p class="big">5%<span style="font-size:.4em;color:#6e6e73"> / 10%</span></p>' if not tr else '<p class="big">%5<span style="font-size:.4em;color:#6e6e73"> / %10</span></p>')}
+      {tile(T(lang, "Floors calculated the way your firm does.", "Tabanlar firmanın hesapladığı gibi."), T(lang, "The daily floor uses the start-of-day balance. The total floor uses the starting balance or the peak. The day resets at the firm's time.", "Günlük taban gün başı bakiyeden, toplam taban başlangıç bakiyesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır."), f'<p class="big">5%<span style="font-size:.4em;color:var(--ink-3)"> / 10%</span></p>' if not tr else '<p class="big">%5<span style="font-size:.4em;color:var(--ink-3)"> / %10</span></p>')}
       {tile(T(lang, "No new trades near the floor.", "Tabana yakın yeni işlem yok."), T(lang, "At twice the safety margin, Kalibre Engine opens no new trades. At one safety margin, it closes its own positions.", "Güvenlik payının iki katında Kalibre Engine yeni işlem açmaz. Bir güvenlik payında kendi pozisyonlarını kapatır."), "", "dark")}
       {tile(T(lang, "Firm presets.", "Firma ön ayarları."), T(lang, "FTMO 2-Step, FTMO 1-Step, FTMO Instant and The5ers High Stakes, or your own limits. FundedNext and FundingPips are planned.", "FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. FundedNext ve FundingPips planlanıyor."), "", "third")}
       {tile(T(lang, "Your password stays yours.", "Şifren sende kalır."), T(lang, "Rule Guard runs as an Expert Advisor in your terminal. You never give us your MT5 password.", "Rule Guard terminalinde Expert Advisor olarak çalışır. MT5 şifreni bize hiçbir zaman vermezsin."), "", "third")}
@@ -575,7 +575,7 @@ def kalibre_lab(lang):
       <div><b>0</b><span>{T(lang, "unexplained differences", "açıklanamayan fark")}</span></div>
     </div>
     <div class="actions left">{more(P(lang, "/methodology"), T(lang, "Read the methodology", "Metodolojiyi oku"))}</div>
-    <p class="legal-note" style="color:#86868b;margin-left:0">{T(lang, "Backtests and simulations are hypothetical and do not reflect actual trading. Past performance is not indicative of future results.", "Backtest ve simülasyonlar varsayımsaldır ve gerçek işlemleri yansıtmaz. Geçmiş performans gelecekteki sonuçların göstergesi değildir.")}</p>
+    <p class="legal-note" style="margin-left:0">{T(lang, "Backtests and simulations are hypothetical and do not reflect actual trading. Past performance is not indicative of future results.", "Backtest ve simülasyonlar varsayımsaldır ve gerçek işlemleri yansıtmaz. Geçmiş performans gelecekteki sonuçların göstergesi değildir.")}</p>
   </div>
 </section>'''
     page("tr/kalibre-lab/index.html" if tr else "kalibre-lab/index.html", lang,

@@ -429,10 +429,10 @@ function isiCiz() {
     }
   }
   if (h.enIyi && h.enIyi.i !== undefined) {
-    x.strokeStyle = renk('--text') || '#e7ecf2'; x.lineWidth = 2;
+    x.strokeStyle = renk('--text') || '#ebe3d3'; x.lineWidth = 2;
     x.strokeRect(sol + h.enIyi.i * gw + 1, ust + (h.ys.length - 1 - h.enIyi.j) * gh + 1, gw - 2, gh - 2);
   }
-  x.fillStyle = renk('--muted') || '#8d9cb0';
+  x.fillStyle = renk('--muted') || '#8a7f6a';
   x.textAlign = 'center'; x.textBaseline = 'top';
   const xAdim = Math.ceil(h.xs.length / Math.max(1, Math.floor((w - sol) / 44)));
   h.xs.forEach((v, i) => { if (i % xAdim === 0) x.fillText(String(v), sol + (i + 0.5) * gw, yuk - alt + 6); });

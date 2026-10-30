@@ -164,7 +164,7 @@ def gnav(active, lang, other=None):
     links = "".join(f'<li><a href="{h}"{current if h == active else ""}>{n}</a></li>' for n, h in items)
     lang_link = (f'<a class="gnav-lang" href="{other}" hreflang="{"en" if tr else "tr"}" lang="{"en" if tr else "tr"}">{"English" if tr else "Türkçe"}</a>' if other else "")
     return (f'<header class="gnav">\n  <div class="wrap">\n'
-            f'    <a class="gnav-brand" href="{home}">Kalibre Markets</a>\n'
+            f'    <a class="gnav-brand" href="{home}" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>\n'
             f'    <nav aria-label="{"Ana menü" if tr else "Main menu"}"><ul class="gnav-links" id="gnav-links">{links}</ul></nav>\n'
             f'    {lang_link}<span data-kalibre-auth></span>\n'
             f'    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="{"Menü" if tr else "Menu"}"><span></span><span></span></button>\n'
@@ -223,7 +223,10 @@ def head(lang, title, description, canonical_path, alternates="", extra=""):
 <meta property="og:locale" content="{"tr_TR" if lang == "tr" else "en_US"}">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fbfbfd">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -262,6 +265,9 @@ def sayfa(yol, baslik, aciklama, aktif, govde, kenar="", ek_stil="", ek_betik=""
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="{"en_US" if dil == "en" else "tr_TR"}">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>

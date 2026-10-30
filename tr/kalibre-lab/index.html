@@ -20,7 +20,10 @@
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fbfbfd">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site.css">
 <script src="/static/kalibre-cerez.js"></script>
 <script src="/static/beta.js" defer></script>
@@ -35,7 +38,7 @@
 <body>
 <header class="gnav">
   <div class="wrap">
-    <a class="gnav-brand" href="/tr">Kalibre Markets</a>
+    <a class="gnav-brand" href="/tr" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>
     <nav aria-label="Ana menü"><ul class="gnav-links" id="gnav-links"><li><a href="/tr/trade-analytics">Trade Analytics</a></li><li><a href="/tr/fx-blotter">FX Blotter</a></li><li><a href="/tr/rule-guard">Rule Guard</a></li><li><a href="/tr/kalibre-lab" aria-current="page">Kalibre Lab</a></li><li><a href="/tr/demo">Demolar</a></li><li><a href="/tr/security">Güvenlik</a></li><li><a href="/tr/pricing">Fiyat</a></li><li><a href="/tr/company">Şirket</a></li></ul></nav>
     <a class="gnav-lang" href="/kalibre-lab" hreflang="en" lang="en">English</a><span data-kalibre-auth></span>
     <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menü"><span></span><span></span></button>
@@ -58,7 +61,7 @@
     <div class="actions"><a class="btn" href="/lab?demo=1&amp;lang=tr">Örnek backtest'i çalıştır</a><a class="more" href="/lab?lang=tr">Laboratuvarı aç</a></div>
   </div>
   <div class="stage">
-    <div class="wrap" style="max-width:820px"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-tr-1x.webp 640w, /static/urun/demo/lab-backtest-tr-2x.webp 1280w" sizes="(max-width: 820px) 100vw, 820px"><img src="/static/urun/demo/lab-backtest-tr.png" width="1280" height="1132" alt="Örnek backtest: fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler" fetchpriority="high" decoding="async"></picture></figure></div>
+    <div class="wrap" style="max-width:820px"><figure class="shot"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-tr-1x.webp 640w, /static/urun/demo/lab-backtest-tr-2x.webp 1280w" sizes="(max-width: 820px) 100vw, 820px"><img src="/static/urun/demo/lab-backtest-tr.png" width="1280" height="1138" alt="Örnek backtest: fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler" fetchpriority="high" decoding="async"></picture></figure></div>
   </div>
 </section>
 
@@ -95,7 +98,7 @@
       <div><b>0</b><span>açıklanamayan fark</span></div>
     </div>
     <div class="actions left"><a class="more" href="/tr/methodology">Metodolojiyi oku</a></div>
-    <p class="legal-note" style="color:#86868b;margin-left:0">Backtest ve simülasyonlar varsayımsaldır ve gerçek işlemleri yansıtmaz. Geçmiş performans gelecekteki sonuçların göstergesi değildir.</p>
+    <p class="legal-note" style="margin-left:0">Backtest ve simülasyonlar varsayımsaldır ve gerçek işlemleri yansıtmaz. Geçmiş performans gelecekteki sonuçların göstergesi değildir.</p>
   </div>
 </section>
 </main>
