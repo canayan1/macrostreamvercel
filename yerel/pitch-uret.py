@@ -697,6 +697,14 @@ DEMO_STIL = """
 .d-sayilar b { display: block; font: 600 20px var(--serif); }
 .d-sayilar span { font-size: 13px; color: var(--soluk, #8a97a8); }
 @media (max-width: 760px) { .d-adimlar, .d-sayilar { grid-template-columns: 1fr 1fr; } .d-adimlar { grid-template-columns: 1fr; } }
+.d-bakis { margin: 18px 0 6px; }
+.d-bakis > b { display: block; font: 500 12px var(--mono, monospace); letter-spacing: .06em; color: var(--soluk, #8a97a8); margin-bottom: 8px; }
+.d-gorseller { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.d-gorseller.tek { grid-template-columns: minmax(0, 640px); }
+figure.d-gorsel { margin: 0; border: 1px solid var(--cizgi-2); border-radius: 6px; overflow: hidden; background: #0f1722; }
+figure.d-gorsel img { display: block; width: 100%; height: auto; }
+figure.d-gorsel figcaption { padding: 8px 12px; font-size: 13px; color: var(--soluk, #8a97a8); border-top: 1px solid var(--cizgi-2); }
+@media (max-width: 760px) { .d-gorseller { grid-template-columns: 1fr; } }
 """
 
 def demo(dil):
@@ -719,6 +727,17 @@ def demo(dil):
                 f'<div><b class="no">3 · {"SONUÇ DOSYASI" if tr else "RESULT FILE"}</b>{cikti}</div></div>')
     def dosya(yol, ad, not_=""):
         return f'<a href="{yol}" download>{ad}</a>' + (f"<small>{not_}</small>" if not_ else "")
+    import struct
+    def gorsel(ad, alt):
+        ek = "-tr" if tr else ""
+        yol = os.path.join(KOK, "static", "urun", "demo", f"{ad}{ek}.png")
+        w, h = struct.unpack(">II", open(yol, "rb").read()[16:24])
+        kok = f"/static/urun/demo/{ad}{ek}"
+        return (f'<figure class="d-gorsel"><picture><source type="image/webp" srcset="{kok}-1x.webp {w // 2}w, {kok}-2x.webp {w}w" sizes="(max-width: 760px) 100vw, 560px">'
+                f'<img src="{kok}.png" width="{w}" height="{h}" alt="{alt}" loading="lazy" decoding="async"></picture><figcaption>{alt}</figcaption></figure>')
+    def bakis(*figurler):
+        etiket = "SONUÇ, BİR BAKIŞTA · büyütmek için tıkla" if tr else "THE RESULT AT A GLANCE · click to enlarge"
+        return f'<div class="d-bakis"><b>{etiket}</b><div class="d-gorseller{" tek" if len(figurler) == 1 else ""}">{"".join(figurler)}</div></div>'
     def sayilar(liste):
         return '<div class="d-sayilar">' + "".join(f"<div><b>{d}</b><span>{e}</span></div>" for d, e in liste) + "</div>"
 
@@ -738,6 +757,7 @@ def demo(dil):
          f'<a class="dugme kucuk" href="/lab/analytics?{q}file=templates/kalibre-trade-log-example.xlsx">Sonucu aç</a><small>Aynı dosya Trade Analytics&#39;te açılır.</small>',
          dosya(f"/lab/samples/{analiz_sonuc}.xlsx", f"{analiz_sonuc}.xlsx", "Özet, kaybettiren ve kazandıran dilimler, 8 kırılım, günlük prop sınırları"))}
 {sayilar([(say(a["trades"]), "kapanmış işlem"), (isaret(a["netUsd"], 2) + " USD", "net kâr/zarar"), (yuzde(a["winRatePct"]), "kazanma oranı"), (say(a["profitFactor"], 2), "kâr faktörü")])}
+{bakis(gorsel("analytics-overview", "Hesap özeti: net K/Z, kazanma oranı, kâr faktörü, düşüş ve bakiye eğrisi"), gorsel("analytics-segments", "Kaybettiren ve kazandıran dilimler, her biri en az 20 işlem"))}
 <p>Prop sınırları ({a["propRuleSet"]} ön ayarı): {say(a["days"])} günün {say(a["propBreachDays"])} gününde sınır aşıldı. Kendi dosyan için: MT5 geçmiş raporu (HTML ya da XLSX), CSV ya da Excel kaydı. <a href="/lab/templates/kalibre-trade-log-template.xlsx" download>Boş şablon</a> · <a href="/tr/mt5-analytics">Ürün sayfası</a></p>
 </section>
 
@@ -747,6 +767,7 @@ def demo(dil):
          f'<a class="dugme kucuk" href="/lab/blotter?{q}file=samples/{blotter_girdi[0]}.xlsx">Sonucu aç</a><small>Kur, faiz ve limit tablolarına örnek değerler girilir.</small>',
          dosya(f"/lab/samples/{blotter_sonuc}.xlsx", f"{blotter_sonuc}.xlsx", "Özet, parite, portföy, trader ve kalem türüne göre K/Z, pozisyon, valör merdiveni, limitler, mutabakat, dışlanan satırlar"))}
 {sayilar([(say(b["legs"]), "bacak aktarıldı"), (isaret(b["totalUsd"]) + " USD", "toplam K/Z"), (isaret(b["priceUsd"]) + " USD", "fiyat (spot) K/Z"), (f'{b["checksPassed"]}/{b["checks"]}', "mutabakat kontrolü geçti")])}
+{bakis(gorsel("blotter-summary", "Özet: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış"), gorsel("blotter-reconciliation", "Mutabakat paneli: her dosyada çalışan 7 kontrol"))}
 <p>Toplamın geri kalanı: puan ve swap {isaret(b["pointsUsd"])} USD, taşıma {isaret(b["carryUsd"])} USD, açık pozisyon MTM {isaret(b["mtmUsd"])} USD. {say(b["excludedRows"])} satır gerekçesiyle dışlandı: bir opsiyon ve düzeltilmiş işlemin eski satırı. <a href="/tr/treasury">Ürün sayfası</a></p>
 </section>
 
@@ -756,6 +777,7 @@ def demo(dil):
          f'<a class="dugme kucuk" href="/lab?{q}demo=1">Sonucu aç</a><small>Kural ve fiyat dosyası yüklenir, backtest çalışır.</small>',
          dosya("/lab/samples/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Özet ve işlem listesi") + dosya("/lab/samples/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Çalıştırma paketi"))}
 {sayilar([(say(lab["trades"]), "işlem"), (say(lab["profitFactor"], 2), "kâr faktörü"), (yuzde(lab["returnPct"], 2), "getiri, maliyetsiz"), (yuzde(lab["maxDrawdownPct"], 2), "azami düşüş")])}
+{bakis(gorsel("lab-backtest", "Fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler"))}
 <p>Sonuç kimliği <code>kr1-{lab["resultId"][:16]}</code>: aynı kural, veri ve ayarlar her zaman aynı kimliği verir.</p>
 </section>
 
@@ -778,6 +800,7 @@ def demo(dil):
          '<a class="dugme kucuk" href="/lab/analytics?file=templates/kalibre-trade-log-example.xlsx">Open the result</a><small>The same file opens in Trade Analytics.</small>',
          dosya(f"/lab/samples/{analiz_sonuc}.xlsx", f"{analiz_sonuc}.xlsx", "Summary, losing and winning segments, 8 breakdowns, daily prop limits"))}
 {sayilar([(say(a["trades"]), "closed trades"), (isaret(a["netUsd"], 2) + " USD", "net P&amp;L"), (yuzde(a["winRatePct"]), "win rate"), (say(a["profitFactor"], 2), "profit factor")])}
+{bakis(gorsel("analytics-overview", "Account overview: net P&amp;L, win rate, profit factor, drawdown and the balance curve"), gorsel("analytics-segments", "Losing and winning segments, each with at least 20 trades"))}
 <p>Prop limits ({a["propRuleSet"]} preset): a limit was breached on {say(a["propBreachDays"])} of {say(a["days"])} days. For your own file: an MT5 history report (HTML or XLSX), a CSV or an Excel log. <a href="/lab/templates/kalibre-trade-log-template.xlsx" download>Empty template</a> · <a href="/mt5-analytics">Product page</a></p>
 </section>
 
@@ -787,6 +810,7 @@ def demo(dil):
          f'<a class="dugme kucuk" href="/lab/blotter?file=samples/{blotter_girdi[0]}.xlsx">Open the result</a><small>Example rates, overnight rates and limits are filled in.</small>',
          dosya(f"/lab/samples/{blotter_sonuc}.xlsx", f"{blotter_sonuc}.xlsx", "Summary, P&amp;L by pair, book, dealer and item type, positions, value-date ladder, limits, reconciliation, excluded rows"))}
 {sayilar([(say(b["legs"]), "legs imported"), (isaret(b["totalUsd"]) + " USD", "total P&amp;L"), (isaret(b["priceUsd"]) + " USD", "price (spot) P&amp;L"), (f'{b["checksPassed"]}/{b["checks"]}', "reconciliation checks passed")])}
+{bakis(gorsel("blotter-summary", "Summary: total P&amp;L split into price, points, carry and MTM"), gorsel("blotter-reconciliation", "Reconciliation panel: 7 checks that run on every file"))}
 <p>The rest of the total: points and swap {isaret(b["pointsUsd"])} USD, carry {isaret(b["carryUsd"])} USD, MTM of the open position {isaret(b["mtmUsd"])} USD. {say(b["excludedRows"])} rows were excluded with a reason: an option and the earlier line of a corrected deal. <a href="/treasury">Product page</a></p>
 </section>
 
@@ -796,6 +820,7 @@ def demo(dil):
          '<a class="dugme kucuk" href="/lab?demo=1">Open the result</a><small>The rule and price file are loaded and the backtest runs.</small>',
          dosya("/lab/samples/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Summary and trade list") + dosya("/lab/samples/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Run package"))}
 {sayilar([(say(lab["trades"]), "trades"), (say(lab["profitFactor"], 2), "profit factor"), (yuzde(lab["returnPct"], 2), "return, gross"), (yuzde(lab["maxDrawdownPct"], 2), "max drawdown")])}
+{bakis(gorsel("lab-backtest", "Trades on the price chart, the equity curve, the result ID and the statistics"))}
 <p>Result ID <code>kr1-{lab["resultId"][:16]}</code>: the same rule, data and settings always give the same ID.</p>
 </section>
 

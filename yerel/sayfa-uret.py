@@ -135,7 +135,7 @@ def _alt(dil):
             f'    {kol("Kaynaklar" if tr else "Resources", kaynak)}\n'
             f'    <div><h4>Kalibre Markets</h4>{sirket_html}<a href="{cerez}" data-cerez-ayar>{ayar}</a></div>\n'
             f'    <p class="yasal">{yasal}</p>\n  </div>\n</footer>\n'
-            '<script src="/static/menu.js" defer></script>')
+            '<script src="/static/menu.js" defer></script>\n<script src="/static/lightbox.js" defer></script>')
 
 ALT = _alt("tr")
 ALT_EN = _alt("en")

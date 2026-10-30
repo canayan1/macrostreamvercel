@@ -43,6 +43,14 @@
 .d-sayilar b { display: block; font: 600 20px var(--serif); }
 .d-sayilar span { font-size: 13px; color: var(--soluk, #8a97a8); }
 @media (max-width: 760px) { .d-adimlar, .d-sayilar { grid-template-columns: 1fr 1fr; } .d-adimlar { grid-template-columns: 1fr; } }
+.d-bakis { margin: 18px 0 6px; }
+.d-bakis > b { display: block; font: 500 12px var(--mono, monospace); letter-spacing: .06em; color: var(--soluk, #8a97a8); margin-bottom: 8px; }
+.d-gorseller { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.d-gorseller.tek { grid-template-columns: minmax(0, 640px); }
+figure.d-gorsel { margin: 0; border: 1px solid var(--cizgi-2); border-radius: 6px; overflow: hidden; background: #0f1722; }
+figure.d-gorsel img { display: block; width: 100%; height: auto; }
+figure.d-gorsel figcaption { padding: 8px 12px; font-size: 13px; color: var(--soluk, #8a97a8); border-top: 1px solid var(--cizgi-2); }
+@media (max-width: 760px) { .d-gorseller { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -79,6 +87,7 @@
 <p>Bir işlem kaydının nerede kazandırıp kaybettirdiğini gösterir. Örnek: Kalibre şablonunda 343 kapanmış işlemli örnek bir hesap.</p>
 <div class="d-adimlar"><div><b class="no">1 · GİRDİ</b><a href="/lab/templates/kalibre-trade-log-example.xlsx" download>kalibre-trade-log-example.xlsx</a><small>Excel, işlem kaydı</small><a href="/lab/templates/kalibre-trade-log-example.csv" download>CSV sürümü</a></div><div><b class="no">2 · ÜRÜNDE AÇ</b><a class="dugme kucuk" href="/lab/analytics?lang=tr&amp;file=templates/kalibre-trade-log-example.xlsx">Sonucu aç</a><small>Aynı dosya Trade Analytics&#39;te açılır.</small></div><div><b class="no">3 · SONUÇ DOSYASI</b><a href="/lab/samples/trade-analytics-ornek-sonuc.xlsx" download>trade-analytics-ornek-sonuc.xlsx</a><small>Özet, kaybettiren ve kazandıran dilimler, 8 kırılım, günlük prop sınırları</small></div></div>
 <div class="d-sayilar"><div><b>343</b><span>kapanmış işlem</span></div><div><b>+15.839,03 USD</b><span>net kâr/zarar</span></div><div><b>%42,0</b><span>kazanma oranı</span></div><div><b>1,10</b><span>kâr faktörü</span></div></div>
+<div class="d-bakis"><b>SONUÇ, BİR BAKIŞTA · büyütmek için tıkla</b><div class="d-gorseller"><figure class="d-gorsel"><picture><source type="image/webp" srcset="/static/urun/demo/analytics-overview-tr-1x.webp 1172w, /static/urun/demo/analytics-overview-tr-2x.webp 2344w" sizes="(max-width: 760px) 100vw, 560px"><img src="/static/urun/demo/analytics-overview-tr.png" width="2344" height="1104" alt="Hesap özeti: net K/Z, kazanma oranı, kâr faktörü, düşüş ve bakiye eğrisi" loading="lazy" decoding="async"></picture><figcaption>Hesap özeti: net K/Z, kazanma oranı, kâr faktörü, düşüş ve bakiye eğrisi</figcaption></figure><figure class="d-gorsel"><picture><source type="image/webp" srcset="/static/urun/demo/analytics-segments-tr-1x.webp 1172w, /static/urun/demo/analytics-segments-tr-2x.webp 2344w" sizes="(max-width: 760px) 100vw, 560px"><img src="/static/urun/demo/analytics-segments-tr.png" width="2344" height="1306" alt="Kaybettiren ve kazandıran dilimler, her biri en az 20 işlem" loading="lazy" decoding="async"></picture><figcaption>Kaybettiren ve kazandıran dilimler, her biri en az 20 işlem</figcaption></figure></div></div>
 <p>Prop sınırları (FTMO 2-Step ön ayarı): 132 günün 0 gününde sınır aşıldı. Kendi dosyan için: MT5 geçmiş raporu (HTML ya da XLSX), CSV ya da Excel kaydı. <a href="/lab/templates/kalibre-trade-log-template.xlsx" download>Boş şablon</a> · <a href="/tr/mt5-analytics">Ürün sayfası</a></p>
 </section>
 
@@ -86,6 +95,7 @@
 <p>Masanın FX blotter'ını dışa aktarıldığı haliyle okur. Örnek: bir banka FX masasının bir haftalık Excel dökümü; rapor başlığı satırları, toplam satırı, bir opsiyon ve düzeltilmiş bir işlem dahil.</p>
 <div class="d-adimlar"><div><b class="no">1 · GİRDİ</b><a href="/lab/samples/fx-blotter-ornek.xlsx" download>fx-blotter-ornek.xlsx</a><small>Excel, Türkçe başlık ve sayı biçimi</small><a href="/lab/samples/fx-blotter-ornek.csv" download>CSV sürümü</a><a href="/lab/samples/fx-blotter-sample.xlsx" download>İngilizce başlıklı sürüm</a></div><div><b class="no">2 · ÜRÜNDE AÇ</b><a class="dugme kucuk" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx">Sonucu aç</a><small>Kur, faiz ve limit tablolarına örnek değerler girilir.</small></div><div><b class="no">3 · SONUÇ DOSYASI</b><a href="/lab/samples/fx-blotter-ornek-sonuc.xlsx" download>fx-blotter-ornek-sonuc.xlsx</a><small>Özet, parite, portföy, trader ve kalem türüne göre K/Z, pozisyon, valör merdiveni, limitler, mutabakat, dışlanan satırlar</small></div></div>
 <div class="d-sayilar"><div><b>224</b><span>bacak aktarıldı</span></div><div><b>+99.400 USD</b><span>toplam K/Z</span></div><div><b>+83.489 USD</b><span>fiyat (spot) K/Z</span></div><div><b>7/7</b><span>mutabakat kontrolü geçti</span></div></div>
+<div class="d-bakis"><b>SONUÇ, BİR BAKIŞTA · büyütmek için tıkla</b><div class="d-gorseller"><figure class="d-gorsel"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-summary-tr-1x.webp 1172w, /static/urun/demo/blotter-summary-tr-2x.webp 2344w" sizes="(max-width: 760px) 100vw, 560px"><img src="/static/urun/demo/blotter-summary-tr.png" width="2344" height="634" alt="Özet: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış" loading="lazy" decoding="async"></picture><figcaption>Özet: toplam K/Z fiyat, puan, taşıma ve MTM olarak ayrılmış</figcaption></figure><figure class="d-gorsel"><picture><source type="image/webp" srcset="/static/urun/demo/blotter-reconciliation-tr-1x.webp 1172w, /static/urun/demo/blotter-reconciliation-tr-2x.webp 2344w" sizes="(max-width: 760px) 100vw, 560px"><img src="/static/urun/demo/blotter-reconciliation-tr.png" width="2344" height="950" alt="Mutabakat paneli: her dosyada çalışan 7 kontrol" loading="lazy" decoding="async"></picture><figcaption>Mutabakat paneli: her dosyada çalışan 7 kontrol</figcaption></figure></div></div>
 <p>Toplamın geri kalanı: puan ve swap +5.803 USD, taşıma +8.242 USD, açık pozisyon MTM +1.866 USD. 2 satır gerekçesiyle dışlandı: bir opsiyon ve düzeltilmiş işlemin eski satırı. <a href="/tr/treasury">Ürün sayfası</a></p>
 </section>
 
@@ -93,6 +103,7 @@
 <p>Bir kuralı maliyetlerle backtest eder ve her sonuca bir kimlik (resultId) verir. Örnek: kütüphanedeki EMA trend şablonu (risk %1) ve 3.000 H1 mumluk örnek fiyat serisi.</p>
 <div class="d-adimlar"><div><b class="no">1 · GİRDİ</b><a href="/lab/samples/kalibre-lab-sample-strategy.json" download>kalibre-lab-sample-strategy.json</a><small>Kural dosyası</small><a href="/lab/samples/kalibre-lab-sample-prices.csv" download>kalibre-lab-sample-prices.csv</a><small>Fiyat serisi</small></div><div><b class="no">2 · ÜRÜNDE AÇ</b><a class="dugme kucuk" href="/lab?lang=tr&amp;demo=1">Sonucu aç</a><small>Kural ve fiyat dosyası yüklenir, backtest çalışır.</small></div><div><b class="no">3 · SONUÇ DOSYASI</b><a href="/lab/samples/kalibre-lab-sample-result.xlsx" download>kalibre-lab-sample-result.xlsx</a><small>Özet ve işlem listesi</small><a href="/lab/samples/kalibre-lab-sample-result.json" download>kalibre-lab-sample-result.json</a><small>Çalıştırma paketi</small></div></div>
 <div class="d-sayilar"><div><b>31</b><span>işlem</span></div><div><b>0,95</b><span>kâr faktörü</span></div><div><b>%−0,81</b><span>getiri, maliyetsiz</span></div><div><b>%8,15</b><span>azami düşüş</span></div></div>
+<div class="d-bakis"><b>SONUÇ, BİR BAKIŞTA · büyütmek için tıkla</b><div class="d-gorseller tek"><figure class="d-gorsel"><picture><source type="image/webp" srcset="/static/urun/demo/lab-backtest-tr-1x.webp 640w, /static/urun/demo/lab-backtest-tr-2x.webp 1280w" sizes="(max-width: 760px) 100vw, 560px"><img src="/static/urun/demo/lab-backtest-tr.png" width="1280" height="1228" alt="Fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler" loading="lazy" decoding="async"></picture><figcaption>Fiyat grafiğinde işlemler, özkaynak eğrisi, sonuç kimliği ve istatistikler</figcaption></figure></div></div>
 <p>Sonuç kimliği <code>kr1-d75fe88a3f8370a5</code>: aynı kural, veri ve ayarlar her zaman aynı kimliği verir.</p>
 </section>
 
@@ -123,6 +134,7 @@
   </div>
 </footer>
 <script src="/static/menu.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
 <link rel="stylesheet" href="/static/ana/pitch.css">
 </body>
 </html>
