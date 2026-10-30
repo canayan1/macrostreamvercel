@@ -4,6 +4,9 @@
 import { EN } from './dil-en.js';
 
 export const ANALIZ_EN = {
+  '{p} gün tabana mesafe {m2} altına indi: Rule Guard burada yeni işlemi bekletir. {k} gün {m1} altına indi: Rule Guard açtığı pozisyonları kapatır ve günü kilitler.': 'On {p} days the room to the floor fell under {m2}, where Rule Guard pauses new trades. On {k} days it fell under {m1}, where Rule Guard closes the positions it opened and locks the day.',
+  'En yakın günün bile tabandan {d} uzakta kaldı. Rule Guard aynı tabanları MT5\'te her tick\'te izler.': 'Even your closest day stayed {d} above the floor. Rule Guard watches the same floors live in MT5, on every tick.',
+  'Rule Guard erken erişim': 'Get early access to Rule Guard',
   // sayfa
   'İşlem Analizi': 'Trade Analytics',
   'İşlem Analizi · Kalibre Lab': 'Trade Analytics · Kalibre Lab',

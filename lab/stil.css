@@ -406,3 +406,8 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 
 /* Sign-in slot from kalibre-auth.js: the "not configured" note is for previews only and is never shown. */
 .kh-d.pasif{display:none}
+
+.rg-cagri{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:14px 16px;border:1px solid rgba(255,166,48,.45);border-radius:10px;background:rgba(255,166,48,.06)}
+.rg-cagri p{margin:0;max-width:72ch;color:var(--text-dim)}
+.rg-cagri b{color:var(--text)}
+.rg-cagri a.dugme{text-decoration:none}

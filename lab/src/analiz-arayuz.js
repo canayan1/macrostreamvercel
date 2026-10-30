@@ -267,6 +267,7 @@ function propCiz() {
     karo('Tabana en yakın gün', s.enYakin ? gunMetni(s.enYakin.gun) : '–'),
     karo('O gün tabana mesafe', s.enYakin ? `${duzPara(s.enYakin.mesafe)} (${yuzde(s.enYakin.mesafeYuzde)})` : '–', s.enYakin && s.enYakin.mesafe < 0 ? 'negatif' : s.enYakin && s.enYakin.mesafeYuzde < 0.01 ? 'uyari' : ''),
   ].join('');
+  ruleGuardNote(s);
   const DURUM = { gunluk: 'Günlük sınır aşıldı', azami: 'Azami sınır aşıldı', ikisi: 'İki sınır da aşıldı' };
   const gunler = [...s.gunler].sort((x, y) => x.mesafe - y.mesafe).slice(0, 10);
   const bas = ['Gün', 'Gün başı bakiye', 'Günlük taban', 'Azami taban', 'En düşük bakiye', 'Tabana en yakın', 'Durum'];
@@ -278,6 +279,22 @@ function propCiz() {
   $('#prop-kaynak').textContent = a
     ? ceviri('{ad}: günlük {g}, azami {z}, {tur}. Kaynak: {kaynak}, {tarih}.', { ad: a.ad, g: yuzde(a.gunluk / 100, 0), z: yuzde(a.azami / 100, 0), tur: ceviri(TUR_AD[a.tur]), kaynak: a.kaynak, tarih: gunMetni(a.tarih) }) + (a.varsayim ? ' ' + ceviri('Firma sayfası günlük sınırın hesap yöntemini yazmıyor; burada sabit taban varsayılır.') : '')
     : ceviri('Özel kural: günlük ve azami yüzdeler başlangıç sermayesine göre, sabit taban.');
+}
+
+// Rule Guard on the visitor's own days: the add-on's default safety margin is 0.5% of the start
+// (mql5/Include/Kalibre/Kalkan.mqh): room <= 2 margins pauses new trades, room <= 1 margin closes its own
+// positions and locks the day. Measured here on closed balances, as in the table.
+function ruleGuardNote(s) {
+  const box = $('#prop-rg');
+  const margin = s.baslangic * 0.005;
+  const pause = s.gunler.filter(g => g.mesafe <= 2 * margin).length;
+  const lock = s.gunler.filter(g => g.mesafe <= margin).length;
+  const href = dil === 'tr' ? '/tr/rule-guard#pricing' : '/rule-guard#pricing';
+  const text = pause
+    ? ceviri('{p} gün tabana mesafe {m2} altına indi: Rule Guard burada yeni işlemi bekletir. {k} gün {m1} altına indi: Rule Guard açtığı pozisyonları kapatır ve günü kilitler.', { p: sayi(pause, 0), k: sayi(lock, 0), m2: duzPara(2 * margin, 0), m1: duzPara(margin, 0) })
+    : ceviri('En yakın günün bile tabandan {d} uzakta kaldı. Rule Guard aynı tabanları MT5\'te her tick\'te izler.', { d: s.enYakin ? duzPara(s.enYakin.mesafe, 0) : '–' });
+  box.innerHTML = `<p><b>Rule Guard</b> ${kacis(text)}</p><a class="dugme" href="${kacis(href)}">${kacis(ceviri('Rule Guard erken erişim'))}</a>`;
+  box.hidden = false;
 }
 
 // ---------------------------------------------------------------- kendi görünümün
