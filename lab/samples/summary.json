@@ -1076,7 +1076,62 @@
         "dailyFloor": 111262.58,
         "totalFloor": 90000
       }
-    ]
+    ],
+    "propReplay": {
+      "day": "2026-07-17",
+      "start": 107634.17,
+      "floor": 102634.17,
+      "floorType": "daily",
+      "margin": 500,
+      "steps": [
+        {
+          "time": null,
+          "balance": 107634.17,
+          "room": 5000,
+          "state": "open"
+        },
+        {
+          "time": "10:15",
+          "symbol": "EURUSD",
+          "net": -539.4,
+          "balance": 107094.77,
+          "room": 4460.6,
+          "state": "open"
+        },
+        {
+          "time": "12:01",
+          "symbol": "EURUSD",
+          "net": -871.2,
+          "balance": 106223.57,
+          "room": 3589.4,
+          "state": "open"
+        },
+        {
+          "time": "14:28",
+          "symbol": "EURUSD",
+          "net": -1084.68,
+          "balance": 105138.89,
+          "room": 2504.72,
+          "state": "open"
+        },
+        {
+          "time": "16:11",
+          "symbol": "EURUSD",
+          "net": -2038.32,
+          "balance": 103100.57,
+          "room": 466.4,
+          "state": "lock"
+        },
+        {
+          "time": "18:17",
+          "symbol": "EURUSD",
+          "net": 262.6,
+          "balance": 103363.17,
+          "room": 729,
+          "state": "lock"
+        }
+      ]
+    }
   },
   "fxBlotter_tr": {
     "legs": 224,
@@ -2155,7 +2210,62 @@
         "dailyFloor": 111262.58,
         "totalFloor": 90000
       }
-    ]
+    ],
+    "propReplay": {
+      "day": "2026-07-17",
+      "start": 107634.17,
+      "floor": 102634.17,
+      "floorType": "daily",
+      "margin": 500,
+      "steps": [
+        {
+          "time": null,
+          "balance": 107634.17,
+          "room": 5000,
+          "state": "open"
+        },
+        {
+          "time": "10:15",
+          "symbol": "EURUSD",
+          "net": -539.4,
+          "balance": 107094.77,
+          "room": 4460.6,
+          "state": "open"
+        },
+        {
+          "time": "12:01",
+          "symbol": "EURUSD",
+          "net": -871.2,
+          "balance": 106223.57,
+          "room": 3589.4,
+          "state": "open"
+        },
+        {
+          "time": "14:28",
+          "symbol": "EURUSD",
+          "net": -1084.68,
+          "balance": 105138.89,
+          "room": 2504.72,
+          "state": "open"
+        },
+        {
+          "time": "16:11",
+          "symbol": "EURUSD",
+          "net": -2038.32,
+          "balance": 103100.57,
+          "room": 466.4,
+          "state": "lock"
+        },
+        {
+          "time": "18:17",
+          "symbol": "EURUSD",
+          "net": 262.6,
+          "balance": 103363.17,
+          "room": 729,
+          "state": "lock"
+        }
+      ]
+    }
   },
   "kalibreLab": {
     "resultId": "d75fe88a3f8370a53098995396c72b5cdb0a604643ac4ead53f3216bf1f94a79",

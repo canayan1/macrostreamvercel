@@ -48,7 +48,7 @@
 <nav class="lnav" aria-label="Rule Guard">
   <div class="wrap">
     <a class="lnav-title" href="#top">Rule Guard</a>
-    <ul class="lnav-links"><li><a href="#top">Overview</a></li><li><a href="#features">What it does</a></li><li><a href="#pricing">Pricing</a></li></ul>
+    <ul class="lnav-links"><li><a href="#top">Overview</a></li><li><a href="#replay">Replay</a></li><li><a href="#features">What it does</a></li><li><a href="#pricing">Pricing</a></li></ul>
     <a class="btn" href="#pricing" data-erken-erisim>Get early access</a>
   </div>
 </nav>
@@ -61,7 +61,16 @@
   </div>
 </section>
 
-<section class="sec mist" id="features">
+
+<section class="sec mist" id="replay">
+  <div class="wrap">
+    <h2 class="title">Replay the closest day.</h2>
+    <p class="lede">17 July, the example account on FTMO 2-Step. The closed balance came within 466 USD of the daily floor.</p>
+    <div class="replay"><figure class="shot" style="background:var(--night);padding:24px 16px 8px"><svg viewBox="0 0 1000 400" role="img" aria-label="Closed balance through the closest day against the daily floor and Rule Guard's margins" font-family="Geist Mono, ui-monospace, monospace"><rect x="40" y="300.0" width="760" height="28.0" fill="rgba(239,68,68,.14)"/><rect x="40" y="272.0" width="760" height="28.0" fill="rgba(255,166,48,.12)"/><line x1="40" x2="800" y1="328.0" y2="328.0" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6 5"/><text x="810" y="332.0" fill="#ef4444" font-size="17">daily floor</text><line x1="40" x2="800" y1="300.0" y2="300.0" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2 4"/><text x="810" y="304.0" fill="#ef4444" font-size="17">close and lock</text><line x1="40" x2="800" y1="272.0" y2="272.0" stroke="#ffa630" stroke-width="1.5" stroke-dasharray="2 4"/><text x="810" y="276.0" fill="#ffa630" font-size="17">pause new trades</text><path d="M40.0,48.0 H192.0 V78.2 H344.0 V127.0 H496.0 V187.7 H648.0 V301.9 H800.0 V287.2" fill="none" stroke="#ffa630" stroke-width="2.5"/><circle cx="40.0" cy="48.0" r="5" fill="#ebe3d3"/><circle cx="192.0" cy="78.2" r="5" fill="#ebe3d3"/><circle cx="344.0" cy="127.0" r="5" fill="#ebe3d3"/><circle cx="496.0" cy="187.7" r="5" fill="#ebe3d3"/><circle cx="648.0" cy="301.9" r="5" fill="#ef4444"/><circle cx="800.0" cy="287.2" r="5" fill="#ef4444"/><text x="40.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">start</text><text x="192.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">10:15</text><text x="344.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">12:01</text><text x="496.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">14:28</text><text x="648.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">16:11</text><text x="800.0" y="386" text-anchor="middle" fill="#6f6553" font-size="17">18:17</text></svg></figure><ol class="replay-events"><li><b>14:28</b><span>Room to the floor: 2,505 USD. Trading as usual.</span></li><li><b>16:11</b><span>Room 466 USD, inside the 500 USD margin. Rule Guard closes the positions it opened and locks the day until the reset.</span></li></ol></div>
+    <p class="caption">Times are server time. Live, Rule Guard reads equity on every tick, so new trades wait as soon as the room reaches 1,000 USD. Margins shown are the defaults: 0.5% of the start.</p>
+  </div>
+</section>
+<section class="sec" id="features">
   <div class="wrap">
     <h2 class="title">What it does.</h2>
     <div class="tiles">

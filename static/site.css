@@ -368,3 +368,12 @@ body #km-beta button:hover { color: var(--ink); }
 .waitlist .fine, .waitlist-ok { font-size: 14px; color: var(--ink-3); margin-top: 14px; }
 .waitlist-ok { color: var(--ink); font-size: 17px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Rule Guard replay */
+.replay { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: center; margin-top: clamp(32px, 4vw, 48px); }
+.replay-events { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.replay-events li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 16px 18px; display: grid; gap: 6px; }
+.replay-events li:last-child { border-color: rgba(239, 68, 68, .5); }
+.replay-events b { font: 500 15px var(--mono); color: var(--action); }
+.replay-events span { color: var(--ink-2); font-size: 16px; line-height: 1.45; }
+@media (max-width: 860px) { .replay { grid-template-columns: 1fr; } }

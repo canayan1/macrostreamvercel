@@ -177,6 +177,7 @@ def LAB(lang, path):
 
 TA_SAMPLE = "/lab/analytics?file=templates/kalibre-trade-log-example.xlsx"
 FX_SAMPLE = {"en": "/lab/blotter?file=samples/fx-blotter-sample.xlsx", "tr": "/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx"}
+FX_TOUR = {k: v + "&amp;tour=1" for k, v in FX_SAMPLE.items()}
 LAB_SAMPLE = "/lab?demo=1"
 
 # ------------------------------------------------------------------ Rule Guard illustration
@@ -208,6 +209,49 @@ def prop_chart(lang, days=60, legend=True):
             f'{grid}<path d="{step_floor("totalFloor")}" fill="none" stroke="#8a7f6a" stroke-width="2" stroke-dasharray="2 4"/>'
             f'<path d="{step_floor("dailyFloor")}" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 5"/>'
             f'<path d="{path("end")}" fill="none" stroke="#ffa630" stroke-width="2.5" stroke-linejoin="round"/>{lows}{ticks}{leg if legend else ""}</svg></figure>')
+
+def replay(lang):
+    """Rule Guard on the example account's closest day: closed balance after each trade against the floor,
+    with the default safety margin bands (summary.json propReplay, written by ornek-dosya-uret.mjs)."""
+    r = SUMMARY["tradeAnalytics_en"]["propReplay"]
+    st, floor, m = r["steps"], r["floor"], r["margin"]
+    W, H, L, R, TOP, BOT = 1000, 400, 40, 200, 20, 44
+    lo, hi = floor - 500, max(x["balance"] for x in st) + 500
+    x = lambda i: L + i * (W - L - R) / (len(st) - 1)
+    y = lambda v: TOP + (hi - v) * (H - TOP - BOT) / (hi - lo)
+    path = f"M{x(0):.1f},{y(st[0]['balance']):.1f}" + "".join(f" H{x(i):.1f} V{y(p['balance']):.1f}" for i, p in enumerate(st) if i)
+    band = lambda v1, v2, c: f'<rect x="{L}" y="{y(v2):.1f}" width="{W - L - R}" height="{y(v1) - y(v2):.1f}" fill="{c}"/>'
+    line = lambda v, c, dash, label: (f'<line x1="{L}" x2="{W - R}" y1="{y(v):.1f}" y2="{y(v):.1f}" stroke="{c}" stroke-width="1.5" stroke-dasharray="{dash}"/>'
+                                     f'<text x="{W - R + 10}" y="{y(v) + 4:.1f}" fill="{c}" font-size="17">{label}</text>')
+    colour = {"open": "#ebe3d3", "pause": "#ffa630", "lock": "#ef4444"}
+    dots = "".join(f'<circle cx="{x(i):.1f}" cy="{y(p["balance"]):.1f}" r="5" fill="{colour[p["state"]]}"/>' for i, p in enumerate(st))
+    times = "".join(f'<text x="{x(i):.1f}" y="{H - 14}" text-anchor="middle" fill="#6f6553" font-size="17">{p["time"] or T(lang, "start", "gün başı")}</text>' for i, p in enumerate(st))
+    title = T(lang, "Closed balance through the closest day against the daily floor and Rule Guard's margins", "En yakın günde kapanış bakiyesi, günlük taban ve Rule Guard payları")
+    svg = (f'<figure class="shot" style="background:var(--night);padding:24px 16px 8px"><svg viewBox="0 0 {W} {H}" role="img" aria-label="{title}" font-family="Geist Mono, ui-monospace, monospace">'
+           + band(floor, floor + m, "rgba(239,68,68,.14)") + band(floor + m, floor + 2 * m, "rgba(255,166,48,.12)")
+           + line(floor, "#ef4444", "6 5", T(lang, "daily floor", "günlük taban")) + line(floor + m, "#ef4444", "2 4", T(lang, "close and lock", "kapat ve kilitle"))
+           + line(floor + 2 * m, "#ffa630", "2 4", T(lang, "pause new trades", "yeni işlem bekler"))
+           + f'<path d="{path}" fill="none" stroke="#ffa630" stroke-width="2.5"/>{dots}{times}</svg></figure>')
+    lock = next(p for p in st if p["state"] == "lock")
+    before = st[st.index(lock) - 1]
+    months = {"en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+              "tr": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]}[lang]
+    d = r["day"]
+    day = f"{int(d[8:])} {months[int(d[5:7]) - 1]}"
+    usd = lambda v: fmt(v, lang) + " USD"
+    events = [(before["time"], T(lang, f"Room to the floor: {usd(before['room'])}. Trading as usual.", f"Tabana mesafe: {usd(before['room'])}. İşlemler olağan.")),
+              (lock["time"], T(lang, f"Room {usd(lock['room'])}, inside the {usd(m)} margin. Rule Guard closes the positions it opened and locks the day until the reset.",
+                               f"Mesafe {usd(lock['room'])}, {usd(m)} payın içinde. Rule Guard açtığı pozisyonları kapatır ve günü sıfırlanana kadar kilitler."))]
+    items = "".join(f'<li><b>{t}</b><span>{e}</span></li>' for t, e in events)
+    return f'''
+<section class="sec mist" id="replay">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Replay the closest day.", "En yakın günü yeniden oynat.")}</h2>
+    <p class="lede">{T(lang, f"{day}, the example account on FTMO 2-Step. The closed balance came within {usd(lock['room'])} of the daily floor.", f"{day}, FTMO 2-Step üzerindeki örnek hesap. Kapanış bakiyesi günlük tabana {usd(lock['room'])} yaklaştı.")}</p>
+    <div class="replay">{svg}<ol class="replay-events">{items}</ol></div>
+    <p class="caption">{T(lang, "Times are server time. Live, Rule Guard reads equity on every tick, so new trades wait as soon as the room reaches", "Saatler sunucu saatidir. Canlıda Rule Guard varlığı her tick'te okur; mesafe")} {usd(2 * m)}{T(lang, ".", "'a indiğinde yeni işlemler bekler.")} {T(lang, "Margins shown are the defaults: 0.5% of the start.", "Gösterilen paylar varsayılandır: başlangıcın %0,5'i.")}</p>
+  </div>
+</section>'''
 
 # ================================================================== home
 def home(lang):
@@ -389,7 +433,7 @@ def fx_blotter(lang):
 {local}
 {page_hero(T(lang, "Your blotter, explained.", "Blotter'ın, açıklanmış."),
            T(lang, "Drop in your desk's export. Every total opens its deals.", "Masanın dökümünü bırak. Her toplam deal'lerini açar."),
-           btn(sample, T(lang, "Open the sample blotter", "Örnek blotter'ı aç")) + more("#demo", T(lang, "Request a demo", "Demo iste"), " data-erken-erisim"),
+           btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more("#demo", T(lang, "Request a demo", "Demo iste"), " data-erken-erisim"),
            hero_image("fx-blotter", lang, T(lang, "FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM", "Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu")),
            kicker="FX Blotter Analytics" + status_tag("beta", lang))}
 
@@ -468,7 +512,7 @@ def fx_blotter(lang):
 # ================================================================== Rule Guard
 def rule_guard(lang):
     tr = lang == "tr"
-    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Pricing", "Fiyat"), "#pricing")],
+    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Replay", "Tekrar"), "#replay"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Pricing", "Fiyat"), "#pricing")],
                  T(lang, "Get early access", "Erken erişim al"), "#pricing", " data-erken-erisim")
     questions = (select("firma", T(lang, "Which firm are you taking a challenge with?", "Hangi firmada sınava giriyorsun?"), [("ftmo", "FTMO"), ("fundednext", "FundedNext"), ("fundingpips", "FundingPips"), ("the5ers", "The5ers"), ("topstep", "Topstep"), ("diger", T(lang, "Other", "Başka")), ("yok", T(lang, "Not yet", "Henüz girmedim"))], T(lang, "Choose", "Seç"))
                  + select("sinav", T(lang, "How many challenges in the last 12 months?", "Son 12 ayda kaç sınav aldın?"), [("0", "0"), ("1", "1"), ("2-3", "2-3"), ("4-10", "4-10"), ("10+", T(lang, "More than 10", "10'dan fazla"))], T(lang, "Choose", "Seç"))
@@ -493,7 +537,8 @@ def rule_guard(lang):
   </div>
 </section>
 
-<section class="sec mist" id="features">
+{replay(lang)}
+<section class="sec" id="features">
   <div class="wrap">
     <h2 class="title">{T(lang, "What it does.", "Ne yapar.")}</h2>
     <div class="tiles">

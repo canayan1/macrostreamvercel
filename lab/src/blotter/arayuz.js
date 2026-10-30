@@ -13,6 +13,8 @@ import { kurTablosuCoz, tasimaGirdiCoz } from './kur.js';
 import { ornekBlotter, ORNEK_KURLAR, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
 import { rastgeleTuz } from './model.js';
 import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
+import { deskReport } from './desk-report.js';
+import { startTour } from '../tour.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
@@ -21,7 +23,7 @@ const depoOku = k => { try { return localStorage.getItem(k); } catch { return nu
 const depoYaz = (k, v) => { try { localStorage.setItem(k, v); } catch { /* depo yok */ } };
 const TUZ = rastgeleTuz();
 
-let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null;
+let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null, kaynakDosya = '';
 
 // ---------------------------------------------------------------- biçim
 const sayi = (x, b = 0) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString(yerel, { minimumFractionDigits: b, maximumFractionDigits: b }) : '–');
@@ -85,6 +87,7 @@ async function ornekDosyaAc(yol) {
 
 function yeniSatirlar(s, kaynakAdi, { tarih } = {}) {
   satirlar = s;
+  kaynakDosya = String(kaynakAdi).split(' · ')[0];
   eslesmeElle = {};
   $('#kaynak-rozet').hidden = false;
   $('#kaynak-rozet').textContent = kaynakAdi;
@@ -172,6 +175,41 @@ function hesapla() {
   for (const id of ['girdi-kart', 'ozet-kart', 'mutabakat-kart', 'kz-kart', 'pozisyon-kart', 'merdiven-kart', 'swap-kart', 'marj-kart', 'atlanan-kart']) $('#' + id).hidden = false;
   ozetGoster(); mutabakatGoster(); kzGoster(); pozisyonGoster(); merdivenGoster(); swapGoster(); marjGoster(); atlananGoster();
   if (detayAnahtar) detayKapat();
+}
+
+// ---------------------------------------------------------------- desk report download
+// The same workbook as the published sample result (blotter/desk-report.js), built from what is on screen.
+function downloadReport() {
+  if (!analiz) return;
+  const a = analiz.ayar;
+  const rates = Object.entries(a.kurTablosu ?? {}).map(([k, v]) => `${k} ${v}`).join(', ') || '–';
+  const overnight = Object.entries(a.faiz ?? {}).map(([k, v]) => `${k} ${v}`).join(', ') || '–';
+  const { bytes } = deskReport({
+    aktarim, an: analiz, mut: analiz.mutabakat, lang: dil === 'tr' ? 'tr' : 'en', source: kaynakDosya, example: sentetik,
+    localCcy: a.yerelDoviz, method: a.yontem, inputs: ceviri('Anlık kurlar: {k}. Gecelik faiz (yıllık %): {f}. Limitler Limitler sayfasında.', { k: rates, f: overnight }),
+  });
+  const url = URL.createObjectURL(new Blob([bytes], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+  const link = Object.assign(document.createElement('a'), { href: url, download: `fx-desk-report-${analiz.tarih}.xlsx` });
+  document.body.append(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// ---------------------------------------------------------------- guided tour (?tour=1 or the button on the example banner)
+const TOUR = [
+  ['#yukle-kart', 'Masanın kendi dökümü', 'Dosya olduğu gibi bırakıldı: rapor başlığı, toplam satırı, yerel biçimler. Tarayıcıda okunur, hiçbir yere yüklenmez.'],
+  ['#eslesme-kart', 'Sütunlar kendiliğinden eşleşir', 'Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzeltilir.'],
+  ['#ozet-kart', "Haftanın K/Z'si, parçalarına ayrılmış", 'Toplam K/Z fiyat, vadeli puan, taşıma ve MTM olarak ayrılır; yerel para karşılığıyla.'],
+  ['#mutabakat-kart', 'Her toplam dosyaya bağlanır', 'Yedi kontrol: satır sayıları, alt toplamlar, tutar çarpı kur, nominaller, TL karşılığı, açık lotlar ve iki maliyet yöntemi.'],
+  ['#kz-kart', 'İstediğin gibi grupla', 'Parite, portföy, dealer, kalem türü, büyüklük, saat ya da güne göre.'],
+  ['#detay-kart', "Bir rakama tıkla, deal'ler açılır", 'Her satır, arkasındaki işlem satırlarını dosyadaki satır numarasıyla gösterir.', () => { if ($('#detay-kart').hidden) $('#kz-tablo tbody tr')?.click(); }],
+  ['#pozisyon-kart', 'Pozisyon ve limitler', 'Döviz bazında net pozisyon, masanın kendi limitlerinin yanında.'],
+  ['#merdiven-kart', 'Valöre göre nakit akışı', 'Bugünden bir yılın ötesine, döviz bazında bir merdiven.'],
+  ['#rapor-indir', 'Yanında götür', 'Bütün analiz grafikli bir Excel masa raporu olarak iner.'],
+];
+async function tour() {
+  if (!analiz) { if (!(await ornekDosyaAc(dil === 'tr' ? 'samples/fx-blotter-ornek.xlsx' : 'samples/fx-blotter-sample.xlsx'))) ornekYukle(); }
+  startTour(TOUR.map(([target, title, text, before]) => ({ target, title: ceviri(title), text: ceviri(text), before })),
+    { labels: { next: ceviri('Sonraki adım'), back: ceviri('Önceki adım'), done: ceviri('Turu bitir'), close: ceviri('Turu kapat'), of: dil === 'tr' ? '/' : 'of' } });
 }
 
 // ---------------------------------------------------------------- özet
@@ -338,12 +376,14 @@ function baslat() {
   for (const id of ['#analiz-gunu', '#yontem', '#kapsam', '#yerel-doviz', '#marj-yuzde']) $(id).addEventListener('change', hesapla);
   for (const id of ['#kur-tablo', '#tasima-tablo', '#limit-tablo']) $(id).addEventListener('change', hesapla);
   $('#kz-boyut').addEventListener('change', kzGoster);
+  $('#rapor-indir').addEventListener('click', downloadReport);
+  $('#tur-baslat').addEventListener('click', tour);
   $('#detay-kapat').addEventListener('click', detayKapat);
   for (const id of ['#kz-tablo', '#pozisyon-tablo', '#merdiven-tablo', '#swap-tablo', '#marj-tablo']) {
     $(id).addEventListener('click', tiklaAc);
     $(id).addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tiklaAc(e); } });
   }
-  if (sampleFileParam()) ornekDosyaAc(sampleFileParam());
-  else if (urlParam('sample') === '1') ornekYukle();
+  const ready = sampleFileParam() ? ornekDosyaAc(sampleFileParam()) : urlParam('sample') === '1' ? ornekYukle() : null;
+  if (urlParam('tour') === '1') Promise.resolve(ready).then(tour);
 }
 baslat();
