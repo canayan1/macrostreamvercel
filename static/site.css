@@ -377,3 +377,4 @@ body #km-beta button:hover { color: var(--ink); }
 .replay-events b { font: 500 15px var(--mono); color: var(--action); }
 .replay-events span { color: var(--ink-2); font-size: 16px; line-height: 1.45; }
 @media (max-width: 860px) { .replay { grid-template-columns: 1fr; } }
+.files.files-5 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }

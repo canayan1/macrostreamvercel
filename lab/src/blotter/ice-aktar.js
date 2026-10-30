@@ -69,7 +69,8 @@ export function yonCoz(v) {
   let bakis = null;
   const on = n.match(/^(client|customer|musteri|cpty|counterparty|bank|banka|requester|we)/);
   if (on) { bakis = /^(bank|banka|requester|we)/.test(on[1]) ? 'biz' : 'karsi'; n = n.slice(on[1].length); }
-  n = n.replace(/(eur|usd|gbp|try|jpy|chf)$/, '').replace(/s$/, '');
+  n = n.replace(/(eur|usd|gbp|try|jpy|chf)$/, '');
+  if (n.length > 2) n = n.replace(/s$/, ''); // "Buys" → "buy"; a bare "S" code stays a sell
   if (YON_AL.test(n) || /^(buy|al|alis|kauf|achat)/.test(n)) return { yon: 'al', bakis };
   if (YON_SAT.test(n) || /^(sell|sat|satis|verkauf|vente)/.test(n)) return { yon: 'sat', bakis };
   return null;
@@ -101,6 +102,9 @@ export function durumCoz(v) {
   if (/^(pending|pretrade|beklemede|onaysiz|draft|taslak|indicative)/.test(n)) return 'onaysiz';
   return 'gecerli'; // done, confirmed, aktif, active, new, newt, amend (g), f, filled, düzeltildi
 }
+// Amendment that replaces an earlier row named in the reference column (SWIFT 22A AMND with 21, FIX 150=G with 19).
+const DUZELTME_RE = /^(amnd|amend|amended|amendment|correct|corrected|correction|corr|replace|replaced|g|duzeltme|duzeltildi|korrigiert|corrige)$/;
+export const duzeltmeMi = v => DUZELTME_RE.test(norm(v));
 
 function karsiTarafTipiCoz(...ipuclari) {
   for (const v of ipuclari) {
@@ -112,6 +116,9 @@ function karsiTarafTipiCoz(...ipuclari) {
   }
   return 'bilinmiyor';
 }
+
+// Compact timestamp without separators (SWIFT 98D "20261012061523", optional fraction) → "20261012-06:15:23".
+const kompaktZaman = v => (typeof v === 'string' ? v.trim().replace(/^(\d{8})(\d{2})(\d{2})(\d{2})(?:[.,]\d+)?$/, '$1-$2:$3:$4') : v);
 
 // Vade kodundan yaklaşık valör (valör tarihi yoksa; tatil takvimi yok [DY]).
 function tenordenValor(tenor, islemTarihi, base, kote) {
@@ -209,7 +216,7 @@ export function iceAktar(satirlar, ayar = {}) {
     if (!it) return { gerekce: String(al(s, 'islemTarihi') ?? '').trim() ? 'tarih-okunamadi' : 'bos-zorunlu-alan', alan: 'islemTarihi' };
     let saniye = it.saniye;
     if ('islemZamani' in e) {
-      const z = al(s, 'islemZamani');
+      const z = kompaktZaman(al(s, 'islemZamani'));
       const tz = tarihAyristir(z);
       saniye = saatAyristir(z) ?? tz?.saniye ?? saniye;
     }
@@ -297,7 +304,7 @@ export function iceAktar(satirlar, ayar = {}) {
     const portfoy = String(al(s, 'portfoy') ?? '').trim() || '(portföy yok)';
     const karsiAd = String(al(s, 'karsiTaraf') ?? '').trim();
     const bacak = {
-      satirNo, durum, kaynakHam, refHam, baglantiHam,
+      satirNo, durum, duzeltme: duzeltmeMi(al(s, 'durum')), kaynakHam, refHam, baglantiHam,
       kaynakId: hashle(kaynakHam, tuz), refId: hashle(refHam, tuz), baglantiId: hashle(baglantiHam, tuz),
       urun, ndf: urun === 'ndf' || !!urunBilgi?.ndf, bacakRol: urun === 'swap' ? rol : 'tek',
       islemTarihi: it.gun, islemZamani, valor, valorYaklasik, spotGun,
@@ -317,11 +324,17 @@ export function iceAktar(satirlar, ayar = {}) {
   const sonSurum = new Map();
   for (const b of ham) if (b.kaynakHam) sonSurum.set(`${b.kaynakHam}|${b.bacakRol ?? ''}`, b);
   const iptalRef = new Set(ham.filter(b => b.durum === 'iptal' && b.refHam).map(b => b.refHam));
+  // An amendment with its own id and a reference to the earlier id replaces that earlier row.
+  const duzeltmeRef = new Set(ham.filter(b => b.duzeltme && b.refHam && b.refHam !== b.kaynakHam).map(b => b.refHam));
   const gecerli = [];
   for (const b of ham) {
     if (b.kaynakHam && sonSurum.get(`${b.kaynakHam}|${b.bacakRol ?? ''}`) !== b) {
       atlanan.push({ satirNo: b.satirNo, gerekce: 'eski-surum' });
       uyarilar.push({ kod: 'tekrar-eden-islem-no', satirNo: b.satirNo });
+      continue;
+    }
+    if (b.kaynakHam && duzeltmeRef.has(b.kaynakHam)) {
+      atlanan.push({ satirNo: b.satirNo, gerekce: 'eski-surum' });
       continue;
     }
     if (b.durum !== 'gecerli') { atlanan.push({ satirNo: b.satirNo, gerekce: b.durum }); continue; }
@@ -338,6 +351,8 @@ export function iceAktar(satirlar, ayar = {}) {
       const m = b.kaynakHam.match(/^(.+?)[-_/.](1|2|n|f|near|far)$/i);
       if (m) { anahtar = 'sonek:' + m[1]; b.baglantiId = hashle(anahtar, tuz); b.baglantiOnerildi = true; }
     }
+    // Both legs under one trade id, told apart by the leg column (near/far).
+    if (!anahtar && b.kaynakHam && b.bacakRol) anahtar = 'no:' + b.kaynakHam;
     if (!anahtar) anahtar = `tek:${b.satirNo}`;
     if (!gruplar.has(anahtar)) gruplar.set(anahtar, []);
     gruplar.get(anahtar).push(b);
@@ -362,7 +377,7 @@ export function iceAktar(satirlar, ayar = {}) {
   const bacaklar = gecerli.filter(b => !reddedilenSwap.has(b));
   bacaklar.forEach((b, i) => {
     b.id = i + 1;
-    delete b.kaynakHam; delete b.refHam; delete b.baglantiHam; delete b.durum; // ham değerler modelde tutulmaz
+    delete b.kaynakHam; delete b.refHam; delete b.baglantiHam; delete b.durum; delete b.duzeltme; // ham değerler modelde tutulmaz
     if (b.urun !== 'swap') b.roll = false;
   });
   for (const b of bacaklar) if (b.valorYaklasik) { uyarilar.push({ kod: 'valor-tenordan', satirNo: b.satirNo }); }

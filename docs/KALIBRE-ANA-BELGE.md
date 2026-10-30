@@ -313,3 +313,7 @@ Claude'un yapacakları:
   3. Trade Analytics: ücretsiz rakipler var; ücretsiz giriş kapısı, Rule Guard'a yönlendirir.
   4. Kalibre Lab: backtest ücretsiz kalır; para otomasyonda ve o alan kısıtlı. Şimdilik yatırım yok.
   5. Kalibre Bridge: altyapı, tek başına satılmaz. Aracı kurum/prop firma çözümü Rule Guard kullanıcı kazanınca.
+
+### 30.10 ek 9: FX Blotter ve Rule Guard demo hazırlığı
+- FX Blotter: tarayıcıdan "Download desk report (Excel)" (örnek sonuç dosyasıyla aynı kod: lab/src/blotter/desk-report.js); 2 dakikalık rehberli tur (?tour=1, lab/src/tour.js); aynı işlemlerin beş sistem biçimi (işlem platformu, hazine sistemi, MT300 teyitleri, FIX işlem kopyası, Almanca elle tutulan Excel; lab/samples/formats, araclar/blotter-formats.mjs). Beşi de 224 bacak ve +99.400 USD veriyor; test bunu denetler. Okuyucu artık B/S kodlarını, kendi kimliğiyle gelen düzeltmeleri (AMND, ExecType G), tek kimlikli swap bacaklarını ve 98D zaman damgasını okuyor. MT300 ve FIX alan numaraları kaynakla doğrulandı (spec K10).
+- Rule Guard: sayfada örnek hesabın tabana en yakın günü (17 Temmuz, FTMO 2-Step) eklentinin varsayılan paylarıyla tekrar oynatılıyor (pay başlangıcın %0,5'i; 2 pay yeni işlem bekler, 1 pay kapat ve kilitle).

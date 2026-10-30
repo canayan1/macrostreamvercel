@@ -253,6 +253,26 @@ def replay(lang):
   </div>
 </section>'''
 
+FORMATS = [("platform-export", "Trading platform export", "İşlem platformu dökümü", "Bought and sold columns, UTC times, one ID for both swap legs.", "Alınan ve satılan sütunları, UTC saat, iki swap bacağına tek kimlik."),
+           ("tms-export", "Treasury system report", "Hazine sistemi raporu", "Title rows, DD/MM/YYYY dates, dealt and contra amounts, a grand total row.", "Başlık satırları, GG/AA/YYYY tarih, işlem ve karşı tutar, genel toplam satırı."),
+           ("confirmation-mt300", "MT300 confirmations", "MT300 teyitleri", "SWIFT field tags, comma decimals, amendments as AMND with a related reference.", "SWIFT alan etiketleri, virgüllü ondalık, düzeltmeler ilgili referanslı AMND."),
+           ("fix-dropcopy", "FIX drop copy", "FIX işlem kopyası", "Tag numbers as headers, side codes 1 and 2, corrections as ExecType G.", "Başlıkta etiket numaraları, 1 ve 2 yön kodları, ExecType G düzeltmeleri."),
+           ("desk-excel", "Hand-kept Excel (German)", "Elle tutulan Excel (Almanca)", "German headers, 1.000.000,00 numbers, mixed date formats, a Summe row.", "Almanca başlıklar, 1.000.000,00 sayılar, karışık tarih biçimleri, Summe satırı.")]
+
+def formats_block(lang):
+    legs = fmt(SUMMARY[f"fxBlotter_{lang}"]["legs"], lang)
+    def card(k, en, tr, den, dtr):
+        links = (more(LAB(lang, f"/lab/blotter?file=samples/formats/fx-blotter-{k}.xlsx"), T(lang, "Open it", "Aç"))
+                 + more(f"/lab/samples/formats/fx-blotter-{k}.xlsx", "Excel", " download")
+                 + more(f"/lab/samples/formats/fx-blotter-{k}.csv", "CSV", " download"))
+        return f'<div class="file"><h3>{T(lang, en, tr)}</h3><p>{T(lang, den, dtr)}</p><div class="file-links">{links}</div></div>'
+    head = T(lang, "Same deals, five systems.", "Aynı deal'ler, beş sistem.")
+    lede = T(lang, f"Each file lays out the same week the way a different system would. Every one gives {legs} legs and the same total P&amp;L.",
+             f"Her dosya aynı haftayı farklı bir sistemin dizdiği gibi verir. Hepsi {legs} bacak ve aynı toplam K/Z verir.")
+    rows = "".join(card(*f) for f in FORMATS)
+    return (f'<h3 class="title-s" style="margin-top:clamp(56px,7vw,88px)">{head}</h3><p class="lede">{lede}</p>'
+            f'<div class="files files-5">{rows}</div>')
+
 # ================================================================== home
 def home(lang):
     tr = lang == "tr"
@@ -480,6 +500,7 @@ def fx_blotter(lang):
       <div class="file"><h3>{T(lang, "In the browser", "Tarayıcıda")}</h3><p>{T(lang, "The same file opened in FX Blotter Analytics, with example rates and limits filled in.", "Aynı dosya FX Blotter Analytics'te açılır; örnek kur ve limitler girilir.")}</p><div class="file-links">{more(sample, T(lang, "Open the sample", "Örneği aç"))}</div></div>
       <div class="file"><h3>{T(lang, "Result", "Sonuç")}</h3><p>{T(lang, "A workbook with a dashboard, P&amp;L by pair, book and dealer, positions, the ladder, limits and the reconciliation.", "Pano, parite, portföy ve dealer bazında K/Z, pozisyon, merdiven, limitler ve mutabakat içeren çalışma kitabı.")}</p><div class="file-links">{more(f"/lab/samples/{res}.xlsx", f"{res}.xlsx", " download")}</div></div>
     </div>
+    {formats_block(lang)}
   </div>
 </section>
 
@@ -653,7 +674,7 @@ def demos(lang):
 {section("fx-blotter", "FX Blotter Analytics", "beta", T(lang, "One week of a bank FX desk.", "Bir banka FX masasının bir haftası."),
          [(fmt(fx["legs"], lang), T(lang, "legs imported", "bacak aktarıldı")), (fmt(fx["totalUsd"], lang, 0, True), T(lang, "total P&amp;L, USD", "toplam K/Z, USD")), (fmt(fx["priceUsd"], lang, 0, True), T(lang, "price P&amp;L, USD", "fiyat K/Z, USD")), (f'{fx["checksPassed"]}/{fx["checks"]}', T(lang, "reconciliation checks passed", "mutabakat kontrolü geçti"))],
          files(more(f"/lab/samples/{fx_in}.xlsx", f"{fx_in}.xlsx", " download") + more(f"/lab/samples/{fx_in}.csv", T(lang, "CSV version", "CSV sürümü"), " download"),
-               FX_SAMPLE[lang], more(f"/lab/samples/{fx_res}.xlsx", f"{fx_res}.xlsx", " download"), T(lang, "Example rates, overnight rates and limits are filled in.", "Örnek kur, faiz ve limitler girilir.")),
+               FX_SAMPLE[lang], more(f"/lab/samples/{fx_res}.xlsx", f"{fx_res}.xlsx", " download"), T(lang, "Example rates, overnight rates and limits are filled in.", "Örnek kur, faiz ve limitler girilir.")) + formats_block(lang),
          shot_tile("blotter-summary", T(lang, "Summary of the sample blotter", "Örnek blotter özeti")) + shot_tile("blotter-reconciliation", T(lang, "Reconciliation panel", "Mutabakat paneli")), "mist")}
 {section("lab", "Kalibre Lab", "beta", T(lang, "A trend rule on 3,000 hourly bars.", "3.000 saatlik mumda bir trend kuralı.") if lab["bars"] == 3000 else "Kalibre Lab",
          [(fmt(lab["trades"], lang), T(lang, "trades", "işlem")), (fmt(lab["profitFactor"], lang, 2), T(lang, "profit factor", "kâr faktörü")), (pct(lab["returnPct"], lang, 2), T(lang, "return, no costs", "getiri, maliyetsiz")), (pct(lab["maxDrawdownPct"], lang, 2), T(lang, "max drawdown", "azami düşüş"))],

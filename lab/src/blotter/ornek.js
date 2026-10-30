@@ -18,7 +18,8 @@ export const ORNEK_FAIZ_METNI = Object.entries(ORNEK_FAIZ).map(([d, r]) => `${d}
 export const ORNEK_LIMITLER = 'NOP USD 25000000\nGECE 40000000\nGUNICI trader Trader 1 15000000\nSTOP masa 50000\nVALOR USD ≤ 1 ay 10000000';
 export const ORNEK_LIMITLER_EN = 'NOP USD 25000000\nOVERNIGHT 40000000\nINTRADAY trader Trader 1 15000000\nSTOP desk 50000\nVALUE USD ≤ 1 month 10000000';
 // Yayımlanan örnek dosyalar (lab/samples/). ?file= yalnız bu listedekileri açar.
-export const ORNEK_DOSYALAR = ['samples/fx-blotter-sample.xlsx', 'samples/fx-blotter-ornek.xlsx', 'samples/fx-blotter-sample.csv', 'samples/fx-blotter-ornek.csv'];
+export const ORNEK_DOSYALAR = ['samples/fx-blotter-sample.xlsx', 'samples/fx-blotter-ornek.xlsx', 'samples/fx-blotter-sample.csv', 'samples/fx-blotter-ornek.csv',
+  ...['platform-export', 'tms-export', 'confirmation-mt300', 'fix-dropcopy', 'desk-excel'].flatMap(f => [`samples/formats/fx-blotter-${f}.xlsx`, `samples/formats/fx-blotter-${f}.csv`])];
 
 function rng(tohum) {
   let s = tohum >>> 0;
