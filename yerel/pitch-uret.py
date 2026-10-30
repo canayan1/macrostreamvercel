@@ -366,7 +366,7 @@ def hazine(dil):
         govde = f'''<div data-talep-sayfa="treasury">
 <div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("gelis", dil)}</h1></div>
 <p class="giris">Masanın zaten tuttuğu FX blotter'ını analiz et. Dışa aktarımı olduğu gibi bırak. Kalibre sütunları tanır, deal'leri pozisyonlara eşler ve defterin nerede kazanıp kaybettiğini gösterir.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/analytics?dil=tr&amp;ornek=1">Trade Analytics'i örnekle dene</a></div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/lab/blotter?dil=tr&amp;ornek=1">Örnek blotter ile dene</a></div>
 <div class="kutu">Bu ürün geliştiriliyor. Aşağıdaki kapsam ilk sürüm için planlanandır. İlk sürümü sentetik ya da anonimleştirilmiş blotter'larla deneyecek az sayıda masa arıyoruz.</div>
 
 <h2 id="reads">Neyi okur</h2>
@@ -414,12 +414,12 @@ def hazine(dil):
 </div>
 {demo_pencere(dil)}
 </div>'''
-        sayfa("tr/treasury/index.html", "FX Blotter Analytics: hazine ve dealing masaları için (geliştiriliyor)", "Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Geliştiriliyor; demo isteyin.", "/tr/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="tr")
+        sayfa("tr/treasury/index.html", "FX Blotter Analytics: hazine ve dealing masaları için (erken sürüm)", "Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Erken sürüm örnek blotter ile denenebilir; demo isteyin.", "/tr/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="tr")
     else:
         govde = f'''<div data-talep-sayfa="treasury">
 <div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("gelis", dil)}</h1></div>
 <p class="giris">Analyze the FX blotter your desk already keeps. Drop in the export as it is. Kalibre detects the columns, matches deals into positions and shows where the book made and lost money.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/analytics?ornek=1">Try Trade Analytics with sample data</a></div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/lab/blotter?ornek=1">Try it with a sample blotter</a></div>
 <div class="kutu">This product is in development. The scope below is what we plan for the first version. We are looking for a small number of desks to try it on synthetic or anonymized blotters.</div>
 
 <h2 id="reads">What it reads</h2>
@@ -467,7 +467,7 @@ def hazine(dil):
 </div>
 {demo_pencere(dil)}
 </div>'''
-        sayfa("treasury/index.html", "FX Blotter Analytics for treasury and dealing desks (in development)", "Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. In development; request a demo.", "/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="en")
+        sayfa("treasury/index.html", "FX Blotter Analytics for treasury and dealing desks (early version)", "Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. Early version: try it with a sample blotter or request a demo.", "/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="en")
 
 # ------------------------------------------------------------------ /company
 def sirket(dil):

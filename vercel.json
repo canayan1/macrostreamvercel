@@ -208,6 +208,16 @@
       "statusCode": 302
     },
     {
+      "source": "/blotter",
+      "destination": "/lab/blotter",
+      "permanent": false
+    },
+    {
+      "source": "/tr/blotter",
+      "destination": "/lab/blotter?dil=tr",
+      "permanent": false
+    },
+    {
       "source": "/analytics",
       "destination": "/lab/analiz",
       "statusCode": 302

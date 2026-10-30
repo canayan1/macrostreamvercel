@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="/lab/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FX Blotter Analizi · Kalibre Lab</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="blotter.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>FX Blotter Analizi</span></a>
+  <div class="ust-eylem">
+    <span class="rozet ust-sentetik" id="ust-sentetik" hidden data-t>Sentetik örnek veri</span>
+    <a class="dugme ikincil" href="analiz.html" data-t>İşlem Analizi</a>
+    <a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a>
+  </div>
+</header>
+
+<main class="tek-sutun panom analiz blotter">
+  <section class="a-giris">
+    <p class="a-ust" data-t>FX Blotter Analizi · Geliştiriliyor</p>
+    <h1 data-t>Masanın blotter'ını olduğu gibi bırak.</h1>
+    <p class="a-alt" data-t>Platformdan, hazine sisteminden ya da Excel'den aldığın FX blotter'ını düzenlemeden yükle. Gerçekleşen K/Z, fiyat ve puan ayrımı, taşıma, MTM, döviz bazında pozisyon ve valör merdiveni tek tabloda; her toplam tek tıkla işlem satırlarına iner. Dosya bu tarayıcıda okunur.</p>
+  </section>
+
+  <div class="a-sentetik" id="sentetik-bant" hidden role="note">
+    <b data-t>Sentetik örnek veri</b>
+    <span data-t>Bu blotter gerçek değildir. Bir Türk bankası FX masasının bir haftası gibi üretildi; kurlar piyasa verisi değildir.</span>
+    <button type="button" class="kucuk" id="ornek-kapat" data-t>Kendi blotter'ını yükle</button>
+  </div>
+
+  <section class="kart" id="yukle-kart">
+    <div class="kart-bas"><h2><span class="bolum-no">01</span><span data-t>Blotter'ı yükle</span></h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
+    <label class="birak" id="birak" for="dosya">
+      <input type="file" id="dosya" accept=".csv,.txt,.tsv,.xlsx,text/csv" hidden>
+      <svg class="birak-ikon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <b data-t>Blotter dosyasını buraya bırak ya da seç</b>
+      <span data-t>XLSX ya da CSV. Rapor başlığı, toplam satırları, Türkçe başlıklar ve Türkçe sayı biçimi olduğu gibi okunur. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
+    </label>
+    <div class="satir-dugme a-yukle-eylem">
+      <button type="button" class="dugme" id="ornek-yukle" data-t>Örnek blotter ile dene</button>
+      <label class="secici"><span data-t>Yönler kimin gözünden</span><select id="bakis">
+        <option value="biz" data-t>Banka (dosyanın sahibi)</option>
+        <option value="karsi" data-t>Karşı taraf</option>
+      </select></label>
+      <label class="secici"><span data-t>Kaynak saat dilimi (UTC farkı)</span><select id="saat-dilimi"></select></label>
+    </div>
+    <p class="dipnot" id="yukle-durum" role="status"></p>
+    <ul class="a-onizleme" id="bos-durum">
+      <li><b data-t>İçe aktarma özeti</b><span data-t>Okunan, aktarılan, dışlanan ve atlanan her satır gerekçesiyle.</span></li>
+      <li><b data-t>K/Z, fiyat ve puan ayrı</b><span data-t>Gerçekleşen (valörde), MTM ve gecelik taşıma ayrı sütunlarda.</span></li>
+      <li><b data-t>Pozisyon ve valör merdiveni</b><span data-t>Döviz bazında net açık pozisyon, kovalara göre nakit akışı.</span></li>
+      <li><b data-t>Mutabakat paneli</b><span data-t>Satır sayıları, alt toplamlar, TL karşılığı ve açık lotlar ekranda kontrol edilir.</span></li>
+    </ul>
+  </section>
+
+  <section class="kart" id="eslesme-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">02</span><span data-t>Algılanan sütunlar</span></h2><span class="dipnot" id="eslesme-ozet"></span></div>
+    <p class="dipnot" data-t>Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzelt. Sarı satırların güveni düşük; kırmızı satır zorunlu ve eksik.</p>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo" id="eslesme-tablo"></table></div>
+    <div class="satir-dugme">
+      <button type="button" class="dugme" id="eslesme-onay" data-t>Onayla ve hesapla</button>
+      <span class="dipnot" id="eslesme-durum" role="status"></span>
+    </div>
+  </section>
+
+  <section class="kart" id="girdi-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Analiz ayarları</span></h2></div>
+    <div class="satir-dugme b-ayar">
+      <label class="secici"><span data-t>Analiz günü</span><input type="date" id="analiz-gunu"></label>
+      <label class="secici"><span data-t>Yöntem</span><select id="yontem">
+        <option value="fifo" data-t>FIFO</option>
+        <option value="ortalama" data-t>Ortalama maliyet</option>
+      </select></label>
+      <label class="secici"><span data-t>Kapsam</span><select id="kapsam">
+        <option value="portfoy" data-t>Portföy × parite</option>
+        <option value="trader" data-t>Portföy × trader × parite</option>
+      </select></label>
+      <label class="secici"><span data-t>Yerel para</span><select id="yerel-doviz"></select></label>
+      <label class="secici"><span data-t>Müşteri marjı % (maliyet sütunu yoksa)</span><input type="number" id="marj-yuzde" min="0" max="5" step="0.01" placeholder="0,00"></label>
+    </div>
+    <div class="b-girdi-izgara">
+      <label class="b-metin"><span data-t>Anlık kur tablosu</span>
+        <textarea id="kur-tablo" rows="6" spellcheck="false" placeholder="USD/TRY 41.92&#10;EUR/USD 1.0875"></textarea>
+        <small class="dipnot" data-t>Canlı veri değildir; senin girdiğin kurlar. MTM, USD karşılığı ve yerel para bu tabloyla hesaplanır.</small>
+      </label>
+      <label class="b-metin"><span data-t>Gecelik faiz (yıllık %) ya da T/N puanı</span>
+        <textarea id="tasima-tablo" rows="6" spellcheck="false" placeholder="USD 4.25&#10;TRY 39.5&#10;EUR/USD TN 0.000012"></textarea>
+        <small class="dipnot" data-t>Spot valörünü geçmiş açık pozisyonun gecelik taşıma maliyeti için. Döviz satırı faiz, parite satırı gecelik T/N puanıdır.</small>
+      </label>
+      <label class="b-metin"><span data-t>Limitler (isteğe bağlı, USD)</span>
+        <textarea id="limit-tablo" rows="6" spellcheck="false" placeholder="NOP USD 25000000&#10;GECE 40000000&#10;GUNICI trader Trader 1 15000000&#10;STOP masa 50000&#10;VALOR USD ≤ 1 ay 10000000"></textarea>
+        <small class="dipnot" data-t>Limitler senin tanımın. Satır türleri: NOP, GECE, GUNICI, STOP, VALOR.</small>
+      </label>
+    </div>
+    <p class="dipnot" id="girdi-durum" role="status"></p>
+  </section>
+
+  <section class="kart" id="ozet-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">04</span><span data-t>Özet</span></h2><span class="dipnot" id="ozet-not"></span></div>
+    <div class="a-ana-karolar" id="ozet-ana"></div>
+    <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
+    <p class="dipnot" id="ozet-eksik"></p>
+  </section>
+
+  <section class="kart" id="mutabakat-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">05</span><span data-t>Mutabakat</span></h2><span class="dipnot" id="mutabakat-ozet"></span></div>
+    <ul class="b-kontrol" id="mutabakat-liste"></ul>
+  </section>
+
+  <section class="kart" id="kz-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">06</span><span data-t>K/Z tablosu</span></h2>
+      <label class="secici"><span data-t>Gruplama</span><select id="kz-boyut"></select></label></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="kz-tablo"></table></div>
+    <p class="dipnot" data-t>Satıra ya da toplam satırına tıkla: işlem satırları açılır. Tutarlar USD karşılığıdır; vadeli K/Z iskontosuzdur.</p>
+    <p class="dipnot" data-t>Fırsat maliyeti sütunu, tanımı onaylanana kadar boş kalır.</p>
+  </section>
+
+  <section class="kart" id="detay-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">↳</span><span id="detay-baslik" data-t>İşlem satırları</span></h2><button type="button" class="kucuk" id="detay-kapat" data-t>Kapat</button></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="detay-tablo"></table></div>
+  </section>
+
+  <section class="kart" id="pozisyon-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">07</span><span data-t>Döviz bazında pozisyon ve limitler</span></h2><span class="dipnot" id="pozisyon-ozet"></span></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="pozisyon-tablo"></table></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="limit-sonuc"></table></div>
+    <p class="dipnot" data-t>Swap'lar (roll) net pozisyonu değiştirmediği için pozisyona katılmaz. Fixing'i geçmiş NDF'ler kapanmış sayılır.</p>
+  </section>
+
+  <section class="kart" id="merdiven-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">08</span><span data-t>Valör merdiveni</span></h2></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo b-merdiven" id="merdiven-tablo"></table></div>
+    <p class="dipnot" data-t>Nakit akışları valör kovalarına göre, döviz biriminde. Swap'lar iki tarihte görünür; NDF satırları teslimsizdir.</p>
+  </section>
+
+  <section class="kart" id="swap-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">09</span><span data-t>Swap'lar (roll)</span></h2></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="swap-tablo"></table></div>
+    <p class="dipnot" data-t>Puan etkisi nominal ve iskontosuzdur; toplam K/Z'ye "puan" sütununda dahildir.</p>
+  </section>
+
+  <section class="kart" id="marj-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">10</span><span data-t>Müşteri marjı</span></h2><span class="dipnot" id="marj-ozet"></span></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="marj-tablo"></table></div>
+  </section>
+
+  <section class="kart" id="atlanan-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">11</span><span data-t>Dışlanan ve atlanan satırlar</span></h2><span class="dipnot" id="atlanan-ozet"></span></div>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="atlanan-tablo"></table></div>
+  </section>
+
+  <p class="dipnot panom-dipnot" data-t>Bu sayfadaki hesaplar senin tarayıcında yapılır; dosyan Kalibre sunucusuna gönderilmez. Karşı taraf adları varsayılan olarak okunmaz, işlem numaraları özetlenir (hash), trader adları takma adla gösterilir. Sonuçlar blotter'ın betimlemesidir ve bankanın resmi K/Z'sinin yerine geçmez.</p>
+</main>
+
+<script src="/static/kalibre-auth.js" defer></script>
+<script type="module" src="src/blotter/arayuz.js"></script>
+</body>
+</html>

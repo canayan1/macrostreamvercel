@@ -1,0 +1,34 @@
+/* FX Blotter Analizi sayfasına özel stiller (lab/stil.css ve .analiz stilleri üzerine). */
+.blotter .b-ayar{flex-wrap:wrap;gap:10px 14px;margin-bottom:12px}
+.blotter .b-ayar input[type=number]{width:110px}
+.blotter .b-girdi-izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.blotter .b-metin{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-dim)}
+.blotter .b-metin span{font:500 12px var(--sans, inherit);color:var(--text)}
+.blotter .b-metin textarea{width:100%;box-sizing:border-box;font:12px/1.5 var(--mono);background:var(--bg-1);color:var(--text);border:1px solid var(--border-2);border-radius:8px;padding:8px 10px;resize:vertical}
+.blotter .b-metin textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.blotter .b-tablo td,.blotter .b-tablo th{white-space:nowrap}
+.blotter .b-tablo td.sayi,.blotter .b-tablo th.sayi{text-align:right;font-variant-numeric:tabular-nums}
+.blotter .b-tablo tfoot td{border-top:1px solid var(--border-2);font-weight:600}
+.blotter tr.b-tik,.blotter td.b-tik{cursor:pointer}
+.blotter tr.b-tik:hover td,.blotter tr.b-tik:focus td,.blotter td.b-tik:hover,.blotter td.b-tik:focus{background:var(--surface-2)}
+.blotter tr.b-tik:focus,.blotter td.b-tik:focus{outline:2px solid var(--accent);outline-offset:-2px}
+.blotter .b-pasif{color:var(--muted);opacity:.7}
+.blotter .b-bos{color:var(--muted)}
+.blotter .b-isi{background:color-mix(in srgb, var(--accent) calc(var(--yog,0) * 28%), transparent)}
+.blotter .b-isi.negatif{background:color-mix(in srgb, var(--red, #ef4444) calc(var(--yog,0) * 28%), transparent)}
+.blotter tr.b-eksik td{background:rgba(239,68,68,.10)}
+.blotter tr.b-dusuk td{background:rgba(217,164,65,.10)}
+.blotter #eslesme-tablo select{max-width:280px;font:12px var(--mono)}
+.blotter .b-kontrol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.blotter .b-kontrol li{display:grid;grid-template-columns:22px minmax(0,auto) 1fr;gap:8px;align-items:baseline;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg-1);font-size:13px}
+.blotter .b-kontrol li .dipnot{overflow-wrap:anywhere}
+.blotter .b-kontrol li.tamam .b-isaret{color:var(--accent)}
+.blotter .b-kontrol li.hata{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.08)}
+.blotter .b-kontrol li.hata .b-isaret,.blotter .b-kontrol li.hata b{color:var(--red, #ef4444)}
+.blotter .b-kontrol li.bos .b-isaret{color:var(--muted)}
+.blotter .b-isaret{font:600 14px var(--mono);text-align:center}
+@media (max-width:900px){
+  .blotter .b-girdi-izgara{grid-template-columns:1fr}
+  .blotter .b-kontrol li{grid-template-columns:22px 1fr}
+  .blotter .b-kontrol li .dipnot{grid-column:2}
+}
