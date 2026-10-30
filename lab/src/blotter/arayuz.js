@@ -64,7 +64,7 @@ function ornekYukle(satirlarDis = null, kaynakAdi = null) {
   $('#limit-tablo').value = dil === 'en' ? ORNEK_LIMITLER_EN : ORNEK_LIMITLER;
   $('#yerel-doviz').value = 'TRY';
   $('#analiz-gunu').value = o.tarih;
-  yeniSatirlar(satirlarDis ?? o.satirlar, kaynakAdi ?? ceviri('Sentetik örnek blotter'), { tarih: o.tarih });
+  yeniSatirlar(satirlarDis ?? o.satirlar, kaynakAdi ?? ceviri('Örnek blotter'), { tarih: o.tarih });
 }
 
 // ?dosya=ornek/…: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.

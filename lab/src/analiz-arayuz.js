@@ -114,7 +114,7 @@ function csvEslesmeGoster(satirlar, r) {
   };
 }
 
-const KAYNAK_ADI = { 'mt5-html': 'MT5 raporu (HTML)', 'mt5-xlsx': 'MT5 raporu (XLSX)', kopru: 'Kalibre Bridge', csv: 'Kendi tablon (CSV)', xlsx: 'Kendi tablon (XLSX)', ornek: 'SENTETİK örnek' };
+const KAYNAK_ADI = { 'mt5-html': 'MT5 raporu (HTML)', 'mt5-xlsx': 'MT5 raporu (XLSX)', kopru: 'Kalibre Bridge', csv: 'Kendi tablon (CSV)', xlsx: 'Kendi tablon (XLSX)', ornek: 'Örnek hesap' };
 
 function yukle(h, rapor = null) {
   if (!h.islemler.length) {

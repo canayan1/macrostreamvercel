@@ -194,7 +194,7 @@ def mt5_analytics(dil):
 <h1>Kalibre Trade Analytics: nerede kazanıp nerede kaybettiğini gör</h1>
 <p class="giris">MT5 geçmiş raporunu bırak. Sonuçlarını sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre gör. Prop hesabında her günün kayıp sınırına ne kadar yaklaştığını kontrol et. Dosya tarayıcında okunur. Şu an beta.</p>
 <div class="eylem-satir"><a class="dugme" href="{ornek}">Örnek veriyle dene</a><a class="dugme ikincil" href="#pricing" data-erken-erisim>Erken erişim al</a></div>
-<div class="urun-hero">{gorsel("hero", "İşlem Analizi sayfası: yükleme alanı ve hesap özeti, sentetik örnek veriyle", "Sentetik örnek veri. Gerçek bir hesap değildir.", dil, True)}</div>
+<div class="urun-hero">{gorsel("hero", "İşlem Analizi sayfası: yükleme alanı ve hesap özeti, örnek veriyle", "Örnek hesap.", dil, True)}</div>
 
 <h2 id="nasil-calisir">Nasıl çalışır</h2>
 <ol class="adimlar">
@@ -210,7 +210,7 @@ def mt5_analytics(dil):
 {gorsel("prop-limits", "Prop firması sınırları: tabana en yakın günler", "Prop sınırları: her gün günlük ve azami tabana ne kadar yaklaşıldığı. FTMO ve The5ers kural setleri ya da kendi yüzdelerin.", dil)}
 {gorsel("custom-view", "Kendi görünümün: seansa göre net sonuç", "Kendi görünümün: istediğin alana göre grupla, ölçüyü seç, çubuk, çizgi ya da tablo olarak kaydet.", dil)}
 </div>
-<p class="sentetik-not">Görüntülerdeki tüm sayılar sentetik örnek veridir.</p>
+<p class="sentetik-not">Görüntülerdeki sayılar örnek bir hesaptandır.</p>
 
 <h2 id="ozellikler">Özellikler</h2>
 <ul class="ozellik">
@@ -260,7 +260,7 @@ def mt5_analytics(dil):
 <h1>Kalibre Trade Analytics: see where you make and lose money</h1>
 <p class="giris">Drop in your MT5 history report. See your results by symbol, hour, weekday, session, trade size and the trade after a loss. On a prop account, check how close each day came to the loss limits. The file is read in your browser. In beta.</p>
 <div class="eylem-satir"><a class="dugme" href="{ornek}">Try it with sample data</a><a class="dugme ikincil" href="#pricing" data-erken-erisim>Get early access</a></div>
-<div class="urun-hero">{gorsel("hero", "Trade Analytics page: upload area and account overview with synthetic sample data", "Synthetic sample data. Not a real account.", dil, True)}</div>
+<div class="urun-hero">{gorsel("hero", "Trade Analytics page: upload area and account overview with example data", "Example account.", dil, True)}</div>
 
 <h2 id="how-it-works">How it works</h2>
 <ol class="adimlar">
@@ -276,7 +276,7 @@ def mt5_analytics(dil):
 {gorsel("prop-limits", "Prop firm limits: the days closest to a floor", "Prop limits: how close each day came to the daily and max floors. FTMO and The5ers rule sets, or your own percentages.", dil)}
 {gorsel("custom-view", "Your own view: net result by session", "Your own view: group by any field, pick a measure, save it as a bar chart, line chart or table.", dil)}
 </div>
-<p class="sentetik-not">All numbers in these screenshots are synthetic sample data.</p>
+<p class="sentetik-not">The numbers in these screenshots are from an example account.</p>
 
 <h2 id="features">Features</h2>
 <ul class="ozellik">

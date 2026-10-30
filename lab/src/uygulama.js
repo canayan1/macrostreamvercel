@@ -352,8 +352,8 @@ function panelCiz() {
 // ---------------------------------------------------------------- prova
 // Sentetik piyasa ya da kullanıcının kendi dosyası (MT5 köprüsü JSON'u veya CSV).
 const DIPNOT = {
-  sentetik: 'Gerçek bir piyasa değildir. Sentetik prova kuralların nasıl davrandığını görmek içindir; ' +
-    'gerçek backtest, kendi aracı kurum verinle MT5 Strategy Tester\'da Kalibre Motor ile yapılır.',
+  sentetik: 'Örnek fiyat serisi: kuralların nasıl davrandığını görmek içindir. ' +
+    'Kesin backtest, kendi aracı kurum verinle MT5 Strategy Tester\'da Kalibre Motor ile yapılır.',
   dosya: 'Kendi verinle hızlı ön izleme. Maliyet bölümü boşsa makas, komisyon ve kayma hesaba katılmaz, bu yüzden gerçek sonuç ' +
     'daha düşük olur. Kesin sonuç için aynı stratejiyi MT5 Strategy Tester\'da Kalibre Motor ile çalıştır.',
   mt5: 'Kendi MT5 verinle hızlı ön izleme; yeni mum kapandıkça kendiliğinden yenilenir. Maliyet bölümü boşsa makas, komisyon ve kayma ' +

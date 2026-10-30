@@ -1,4 +1,4 @@
-﻿"SAMPLE BANK TREASURY - FX DEAL BLOTTER (SYNTHETIC SAMPLE, NOT REAL DATA)"
+﻿SAMPLE BANK TREASURY - FX DEAL BLOTTER (EXAMPLE)
 Report date: 16/10/2026,,Time zone: Europe/Istanbul
 Deal ID,Trade Date,Time,Value Date,Product,Buy/Sell,Currency,Amount,Counter Currency,Counter Amount,Rate,Spot Rate,Cost Rate,TRY Equivalent,Swap Ref,Leg,Counterparty,Client Type,Dealer,Portfolio,Status
 300100,12/10/2026,09:20:02,14/10/2026,SPOT,SELL,EUR,"1,000,000.00",USD,"1,085,400.00",1.0854,,1.0849,"45,499,968.00",,,Client-Marmara Otomotiv,CLIENT,A.Demir,G10,Active

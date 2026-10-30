@@ -6,10 +6,10 @@
     "engineVersion": "0.1.1",
     "tur": "prova",
     "seed": null,
-    "specHash": "4b408b6ab7e0cfc757f357098301c7e5e6ab8d55541fc0b12da0dd09386e14a4",
+    "specHash": "1139a9277cf0f9334bc26e663a608b0681d3213a3790fa0eb1660976b693b832",
     "dataHash": "c05af42e64d1c567c333d23785fad95cc61424d5aba05304d48ef2f79e93541f",
     "configHash": "84c08b632050e237a940f59f43091cf0b7087b21c7dca2eb6cd52f1d982210e0",
-    "resultId": "e62670676d24e858eab5255262522c360379175a3a524a247cee505ca1feff81",
+    "resultId": "798f677e801391c9ecb1550562e7823cdf4520bf68c0189af774777f0fbfdeab",
     "bars": 3000,
     "firstBar": 1893974400,
     "lastBar": 1908918000
@@ -17,7 +17,7 @@
   "strategy": {
     "kalibre": 1,
     "ad": "EMA trend (sample)",
-    "aciklama": "Educational sample, not investment advice. Long when the 20 EMA crosses above the 50 EMA with ADX above 20, short on the opposite cross. Stop 2 ATR, target 2R, 3 ATR trailing stop. Risk 1% a trade.",
+    "aciklama": "Long when the 20 EMA crosses above the 50 EMA with ADX above 20, short on the opposite cross. Stop 2 ATR, target 2R, 3 ATR trailing stop. Risk 1% a trade.",
     "zaman_dilimi": "H1",
     "yon": "iki_yon",
     "gostergeler": {

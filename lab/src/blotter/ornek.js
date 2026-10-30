@@ -138,13 +138,13 @@ export function ornekBlotter(tohum = 20261016, { dil = 'tr', hucre = false } = {
   satirlar.unshift(eski);
 
   const veri = en ? [
-    ['SAMPLE BANK TREASURY - FX DEAL BLOTTER (SYNTHETIC SAMPLE, NOT REAL DATA)'],
+    ['SAMPLE BANK TREASURY - FX DEAL BLOTTER (EXAMPLE)'],
     [`Report date: ${enTarih(ORNEK_TARIH)}`, '', 'Time zone: Europe/Istanbul'],
     ORNEK_BASLIK_EN,
     ...satirlar,
     ['TOTAL', '', '', '', '', '', '', '', '', '', '', '', '', sayiYaz(toplamTl, 2)],
   ] : [
-    ['ÖRNEK BANKA A.Ş. HAZİNE - FX İŞLEM LİSTESİ (SENTETİK ÖRNEK, GERÇEK VERİ DEĞİLDİR)'],
+    ['ÖRNEK BANKA A.Ş. HAZİNE - FX İŞLEM LİSTESİ (ÖRNEK)'],
     [`Rapor tarihi: ${trTarih(ORNEK_TARIH)}`, '', 'Saat dilimi: Europe/Istanbul'],
     ORNEK_BASLIK,
     ...satirlar,
