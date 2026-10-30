@@ -212,6 +212,11 @@ function eksikKurlar(katkilar, pozisyon) {
 //   GUNICI trader|portfoy <ad...> <tutar>  gün içi tepe NOP
 //   STOP masa|trader|portfoy [<ad...>] <tutar>  günlük zarar (gerçekleşen o gün + MTM + taşıma)
 //   VALOR <DÖVİZ> <kova> <tutar>           valör aralığı (gap): kova ör. "≤ 1 ay"
+// İngilizce satır türleri ve valör kovaları da kabul edilir (OVERNIGHT, INTRADAY, VALUE; desk, book; "≤ 1 month").
+const LIMIT_TUR_EN = { OVERNIGHT: 'GECE', INTRADAY: 'GUNICI', VALUE: 'VALOR' };
+const KOVA_EN = { 'past/today': 'Geçmiş/bugün', '≤ 1 week': '≤ 1 hafta', '≤ 1 month': '≤ 1 ay', '≤ 3 months': '≤ 3 ay', '≤ 6 months': '≤ 6 ay', '≤ 1 year': '≤ 1 yıl', '> 1 year': '> 1 yıl' };
+const kovaCoz = x => { const n = x.replace(/<=/g, '≤').trim(); return KOVALAR.includes(n) ? n : KOVA_EN[n.toLowerCase()] ?? null; };
+
 export function limitleriCoz(metin) {
   const limitler = [], hatalar = [];
   String(metin ?? '').split(/\r?\n/).forEach((satir, i) => {
@@ -219,14 +224,16 @@ export function limitleriCoz(metin) {
     if (!s || s.startsWith('#')) return;
     const p = s.split(/\s+/);
     const tutar = Number(String(p[p.length - 1]).replace(/[_,.](?=\d{3}(\D|$))/g, ''));
-    const tur = (p[0] || '').toUpperCase();
+    const tur = LIMIT_TUR_EN[(p[0] || '').toUpperCase()] ?? (p[0] || '').toUpperCase();
+    if (p[1] && /^(desk|book)$/i.test(p[1])) p[1] = /^desk$/i.test(p[1]) ? 'masa' : 'portfoy';
     const ad = p.slice(2, -1).join(' ');
+    const kova = p.length >= 4 ? kovaCoz(p.slice(2, -1).join(' ')) : null;
     if (!(tutar > 0)) { hatalar.push(i + 1); return; }
     if (tur === 'NOP' && p.length === 3) limitler.push({ tur: 'nop-doviz', doviz: p[1].toUpperCase(), usd: tutar, satir: s });
     else if (tur === 'GECE' && p.length === 2) limitler.push({ tur: 'gece', usd: tutar, satir: s });
     else if (tur === 'GUNICI' && /^(trader|portfoy|portföy)$/i.test(p[1]) && ad) limitler.push({ tur: 'gunici', kapsam: /^trader$/i.test(p[1]) ? 'trader' : 'portfoy', ad, usd: tutar, satir: s });
     else if (tur === 'STOP' && /^(masa|trader|portfoy|portföy)$/i.test(p[1])) limitler.push({ tur: 'stop-loss', kapsam: /^masa$/i.test(p[1]) ? 'masa' : /^trader$/i.test(p[1]) ? 'trader' : 'portfoy', ad, usd: tutar, satir: s });
-    else if (tur === 'VALOR' && p.length >= 4 && KOVALAR.includes(p.slice(2, -1).join(' '))) limitler.push({ tur: 'valor-araligi', doviz: p[1].toUpperCase(), kova: p.slice(2, -1).join(' '), usd: tutar, satir: s });
+    else if (tur === 'VALOR' && kova) limitler.push({ tur: 'valor-araligi', doviz: p[1].toUpperCase(), kova, usd: tutar, satir: s });
     else hatalar.push(i + 1);
   });
   return { limitler, hatalar };

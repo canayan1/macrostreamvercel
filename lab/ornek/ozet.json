@@ -1,0 +1,50 @@
+{
+  "blotter-en": {
+    "bacak": 224,
+    "dislanan": 2,
+    "toplamUsd": 99400,
+    "fiyatUsd": 83489,
+    "puanUsd": 5803,
+    "tasimaUsd": 8242,
+    "mtmUsd": 1866,
+    "kontrol": 7,
+    "gecen": 7
+  },
+  "analiz-en": {
+    "adet": 343,
+    "netUsd": 15839.03,
+    "kazanmaYuzde": 42,
+    "karFaktoru": 1.1,
+    "propKural": "FTMO 2-Step",
+    "propIhlalGun": 0,
+    "gun": 132
+  },
+  "blotter-tr": {
+    "bacak": 224,
+    "dislanan": 2,
+    "toplamUsd": 99400,
+    "fiyatUsd": 83489,
+    "puanUsd": 5803,
+    "tasimaUsd": 8242,
+    "mtmUsd": 1866,
+    "kontrol": 7,
+    "gecen": 7
+  },
+  "analiz-tr": {
+    "adet": 343,
+    "netUsd": 15839.03,
+    "kazanmaYuzde": 42,
+    "karFaktoru": 1.1,
+    "propKural": "FTMO 2-Step",
+    "propIhlalGun": 0,
+    "gun": 132
+  },
+  "lab": {
+    "resultId": "7d0ff99169fdf3b630e57e74e8d86c316ca0e757633ff2e39437e960d0b5473f",
+    "islem": 31,
+    "karFaktoru": 0.95,
+    "getiriYuzde": -0.81,
+    "maxDususYuzde": 8.15,
+    "mum": 3000
+  }
+}

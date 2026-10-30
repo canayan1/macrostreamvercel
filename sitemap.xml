@@ -35,6 +35,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kalibremarkets.com/demo</loc>
+    <lastmod>2026-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kalibremarkets.com/egitim</loc>
     <lastmod>2026-10-25</lastmod>
     <priority>0.6</priority>
@@ -302,6 +307,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://kalibremarkets.com/cookies"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/cookies"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/cookies"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/tr/demo</loc>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>

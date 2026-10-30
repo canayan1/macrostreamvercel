@@ -12,7 +12,7 @@ DURUM = {"beta": ("Beta", "Beta"), "test": ("In testing", "Testte"), "gelis": ("
 URUNLER = {
  "en": [
   ("Analyze", [("Trade Analytics", "beta", "See where your trading makes and loses money.", "/mt5-analytics"),
-               ("FX Blotter Analytics", "gelis", "Realized P&amp;L and positions from your desk's own blotter.", "/treasury")]),
+               ("FX Blotter Analytics", "beta", "Realized P&amp;L and positions from your desk's own blotter.", "/treasury")]),
   ("Protect", [("Rule Guard", "test", "Prop firm loss limits, checked on every tick in MT5.", "/rule-guard")]),
   ("Research", [("Kalibre Lab", "beta", "Build rules, backtest them and check settings for overfitting.", "/lab"),
                 ("Methodology", None, "How the engine is validated.", "/methodology")]),
@@ -22,7 +22,7 @@ URUNLER = {
  ],
  "tr": [
   ("Analiz", [("Trade Analytics", "beta", "İşlemlerinin nerede kazandırıp kaybettirdiğini gör.", "/tr/mt5-analytics"),
-              ("FX Blotter Analytics", "gelis", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/treasury")]),
+              ("FX Blotter Analytics", "beta", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/treasury")]),
   ("Koru", [("Rule Guard", "test", "Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.", "/tr/rule-guard")]),
   ("Araştır", [("Kalibre Lab", "beta", "Kural kur, backtest et, ayarları aşırı uyuma karşı sına.", "/lab?dil=tr"),
                ("Metodoloji", None, "Motorun nasıl doğrulandığı.", "/tr/methodology")]),
@@ -41,8 +41,8 @@ COZUMLER = {
         ("Hazine ve dealing masaları", "Masanın zaten tuttuğu FX blotter'ını analiz et.", "/tr/treasury"),
         ("Aracı kurumlar ve prop firmaları", "Çok hesaplı analiz. Bizimle konuşun.", "/tr/company#partners")],
 }
-DUZ = {"en": [("/security", "Security"), ("/pricing", "Pricing"), ("/company", "Company")],
-       "tr": [("/tr/security", "Güvenlik"), ("/tr/pricing", "Fiyat"), ("/tr/company", "Şirket")]}
+DUZ = {"en": [("/demo", "Demos"), ("/security", "Security"), ("/pricing", "Pricing"), ("/company", "Company")],
+       "tr": [("/tr/demo", "Demolar"), ("/tr/security", "Güvenlik"), ("/tr/pricing", "Fiyat"), ("/tr/company", "Şirket")]}
 # Eski adlar: başka üreticiler MENU/MENU_EN'e bakıyorsa kırılmasın.
 MENU = DUZ["tr"]; MENU_EN = DUZ["en"]
 
@@ -50,7 +50,7 @@ MENU = DUZ["tr"]; MENU_EN = DUZ["en"]
 ESLER = {"/tr": "/", "/tr/prop": "/prop", "/tr/forex": "/forex", "/tr/setup": "/setup",
          "/tr/security": "/security", "/tr/methodology": "/methodology", "/tr/about": "/about", "/tr/pricing": "/pricing",
          "/tr/account": "/account", "/tr/sign-in": "/sign-in", "/tr/risk-disclosure": "/risk-disclosure", "/tr/terms": "/terms", "/tr/privacy": "/privacy", "/tr/refunds": "/refunds", "/tr/cookies": "/cookies", "/tr/beta": "/beta",
-         "/tr/rule-guard": "/rule-guard", "/tr/mt5-analytics": "/mt5-analytics", "/tr/treasury": "/treasury", "/tr/company": "/company"}
+         "/tr/rule-guard": "/rule-guard", "/tr/mt5-analytics": "/mt5-analytics", "/tr/treasury": "/treasury", "/tr/company": "/company", "/tr/demo": "/demo"}
 ESLER_TERS = {v: k for k, v in ESLER.items()}
 
 def yol_url(yol):
@@ -83,7 +83,7 @@ def ust(aktif, dil="tr", diger=None):
     alt_not = ("Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir." if tr
                else "All products are software. No advice, no signals. Your data is processed on your device.")
     guv = "/tr/security" if tr else "/security"
-    ornek = "/analytics?dil=tr&amp;ornek=1" if tr else "/analytics?ornek=1"
+    ornek = "/tr/demo" if tr else "/demo"
     erken = "/tr/mt5-analytics#pricing" if tr else "/mt5-analytics#pricing"
     return ("<script>document.documentElement.classList.add('js')</script>\n"
             f'<header class="ust">\n  <div class="kap">\n'
@@ -96,11 +96,11 @@ def ust(aktif, dil="tr", diger=None):
             f'        <div class="mega mega-dar"><div class="mega-liste">{cozum}</div></div>\n'
             f'      </details>\n'
             f'      {duz}\n'
-            f'      <div class="menu-eylem"><a class="dugme" href="{erken}">{"Erken erişim" if tr else "Get early access"}</a><a class="dugme ikincil" href="{ornek}">{"Örnekle dene" if tr else "Try the sample"}</a></div>\n'
+            f'      <div class="menu-eylem"><a class="dugme" href="{erken}">{"Erken erişim" if tr else "Get early access"}</a><a class="dugme ikincil" href="{ornek}">{"Demolar" if tr else "Try the demos"}</a></div>\n'
             f'    </nav>\n'
             f'    {dil_baglanti}\n'
             f'    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">{"Menü" if tr else "Menu"}</button>\n'
-            f'    <a class="dugme ikincil kucuk baglan" href="{ornek}">{"Örnekle dene" if tr else "Try the sample"}</a>\n'
+            f'    <a class="dugme ikincil kucuk baglan" href="{ornek}">{"Demolar" if tr else "Try the demos"}</a>\n'
             f'    <a class="dugme kucuk" href="{erken}">{"Erken erişim" if tr else "Get early access"}</a>\n'
             f'  </div>\n</header>')
 

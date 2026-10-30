@@ -13,6 +13,12 @@ GBP/USD 1.3360
 EUR/TRY 45.5880`;
 // Sentetik gecelik faiz varsayımları (yıllık %), taşıma maliyeti örneği için.
 export const ORNEK_FAIZ = { USD: 4.25, TRY: 39.5, EUR: 2.0, GBP: 4.0 };
+export const ORNEK_FAIZ_METNI = Object.entries(ORNEK_FAIZ).map(([d, r]) => `${d} ${r}`).join('\n');
+// Örnek limit tablosu (sentetik masa limitleri).
+export const ORNEK_LIMITLER = 'NOP USD 25000000\nGECE 40000000\nGUNICI trader Trader 1 15000000\nSTOP masa 50000\nVALOR USD ≤ 1 ay 10000000';
+export const ORNEK_LIMITLER_EN = 'NOP USD 25000000\nOVERNIGHT 40000000\nINTRADAY trader Trader 1 15000000\nSTOP desk 50000\nVALUE USD ≤ 1 month 10000000';
+// Yayımlanan örnek dosyalar (lab/ornek/). ?dosya= yalnız bu listedekileri açar.
+export const ORNEK_DOSYALAR = ['ornek/fx-blotter-sample.xlsx', 'ornek/fx-blotter-ornek.xlsx', 'ornek/fx-blotter-sample.csv', 'ornek/fx-blotter-ornek.csv'];
 
 function rng(tohum) {
   let s = tohum >>> 0;
@@ -27,9 +33,28 @@ const saat = sn => [Math.floor(sn / 3600), Math.floor(sn / 60) % 60, sn % 60].ma
 const gunEkle = (g, n) => new Date(Date.parse(g + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10);
 const isGunu = (g, n) => { let x = g, k = 0; while (k < n) { x = gunEkle(x, 1); const h = new Date(x + 'T00:00:00Z').getUTCDay(); if (h && h !== 6) k++; } return x; };
 
+// İngilizce sürüm: aynı işlemler, Londra masası dışa aktarımı gibi İngilizce başlık, İngilizce sayı biçimi ve gg/aa/yyyy.
+export const ORNEK_BASLIK_EN = ['Deal ID', 'Trade Date', 'Time', 'Value Date', 'Product', 'Buy/Sell', 'Currency', 'Amount', 'Counter Currency', 'Counter Amount', 'Rate', 'Spot Rate', 'Cost Rate', 'TRY Equivalent', 'Swap Ref', 'Leg', 'Counterparty', 'Client Type', 'Dealer', 'Portfolio', 'Status'];
+const EN = {
+  VADELİ: 'FORWARD', SPOT: 'SPOT', SWAP: 'SWAP', OPSİYON: 'OPTION', ALIŞ: 'BUY', SATIŞ: 'SELL', YAKIN: 'NEAR', UZAK: 'FAR', MÜŞTERİ: 'CLIENT', İNTERBANK: 'INTERBANK',
+  Aktif: 'Active', 'SPOT-TRY': 'SPOT-TRY', G10: 'G10', LİKİDİTE: 'LIQUIDITY',
+};
+const enSayi = (x, b) => { const [t, o] = Math.abs(x).toFixed(b).split('.'); return (x < 0 ? '-' : '') + t.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (b ? '.' + o : ''); };
+const enTarih = g => { const [y, a, d] = g.split('-'); return `${d}/${a}/${y}`; };
+// Excel seri günü (1900 tarih sistemi) ve gün kesri.
+const excelGun = g => Date.parse(g + 'T00:00:00Z') / 86400000 + 25569;
+
 export const ORNEK_BASLIK = ['İşlem No', 'İşlem Tarihi', 'Saat', 'Valör', 'İşlem Tipi', 'Alış/Satış', 'Döviz Cinsi', 'Tutar', 'Karşı Döviz', 'Karşı Tutar', 'Kur', 'Spot Kur', 'Maliyet', 'TL Karşılığı', 'Swap Ref', 'Bacak', 'Karşı Taraf', 'Müşteri Tipi', 'Dealer', 'Portföy', 'Durum'];
 
-export function ornekBlotter(tohum = 20261016) {
+// dil: 'tr' (TR başlık ve sayı biçimi) ya da 'en'. hucre: true ise sayılar ve tarihler XLSX için tipli döner
+// ({ tarih: seriGün } / { saat: günKesri } / sayı), metin biçimlendirme yapılmaz.
+export function ornekBlotter(tohum = 20261016, { dil = 'tr', hucre = false } = {}) {
+  const en = dil === 'en';
+  const sayiYaz = (x, b) => (hucre ? +x.toFixed(b) : en ? enSayi(x, b) : trSayi(x, b));
+  const tarihYaz = g => (hucre ? { tarih: excelGun(g) } : en ? enTarih(g) : trTarih(g));
+  const saatYaz = sn => (hucre ? { saat: sn / 86400 } : saat(sn));
+  const etiket = v => (en && v in EN ? EN[v] : v);
+  const ad = v => (en ? v.replace(/^Müşteri-/, 'Client-').replace(/^Banka-/, 'Bank-') : v);
   const r = rng(tohum);
   const gunler = ['2026-10-12', '2026-10-13', '2026-10-14', '2026-10-15', '2026-10-16'];
   const usdTrySeviye = [41.82, 41.86, 41.90, 41.88, 41.92];
@@ -42,8 +67,8 @@ export function ornekBlotter(tohum = 20261016) {
   let no = 300100;
   const ekle = h => satirlar.push(h);
   const satir = (o) => [
-    String(o.no), trTarih(o.gun), saat(o.sn), trTarih(o.valor), o.tip, o.yon, o.doviz, trSayi(o.tutar, 2), o.karsi, trSayi(o.karsiTutar, 2),
-    trSayi(o.kur, 4), o.spot ? trSayi(o.spot, 4) : '', o.maliyet ? trSayi(o.maliyet, 4) : '', o.tl === null ? '' : trSayi(o.tl, 2), o.swap ?? '', o.bacak ?? '', o.karsiTaraf, o.tipMusteri, o.dealer, o.portfoy, o.durum ?? 'Aktif',
+    String(o.no), tarihYaz(o.gun), saatYaz(o.sn), tarihYaz(o.valor), etiket(o.tip), etiket(o.yon), o.doviz, sayiYaz(o.tutar, 2), o.karsi, sayiYaz(o.karsiTutar, 2),
+    sayiYaz(o.kur, 4), o.spot ? sayiYaz(o.spot, 4) : '', o.maliyet ? sayiYaz(o.maliyet, 4) : '', o.tl === null ? '' : sayiYaz(o.tl, 2), o.swap ?? '', etiket(o.bacak ?? ''), ad(o.karsiTaraf), etiket(o.tipMusteri), o.dealer, etiket(o.portfoy), etiket(o.durum ?? 'Aktif'),
   ];
   const tl = (kote, karsiTutar, gunIdx) => (kote === 'TRY' ? karsiTutar : karsiTutar * 41.92); // USD karşılığından TL (sentetik sabit kurla)
   let toplamTl = 0;
@@ -108,17 +133,23 @@ export function ornekBlotter(tohum = 20261016) {
   ekle(satir({ no: no++, gun: '2026-10-14', sn: 11 * 3600, valor: '2026-11-16', tip: 'OPSİYON', yon: 'SATIŞ', doviz: 'USD', tutar: 1e6, karsi: 'TRY', karsiTutar: 42500000, kur: 42.5, maliyet: null, tl: null, karsiTaraf: 'Müşteri-Ege Gıda', tipMusteri: 'MÜŞTERİ', dealer: 'A.Demir', portfoy: 'OPSİYON' }));
   // Düzeltme: ilk işlem önce iki kat tutarla girilmiş, sonra aynı numarayla doğru tutarla yeniden yazılmış.
   const ilk = satirlar[0];
-  const sayi = h => Number(String(h).replace(/\./g, '').replace(',', '.'));
-  const eski = ilk.map((h, j) => ([7, 9, 13].includes(j) && h ? trSayi(sayi(h) * 2, 2) : h));
+  const sayi = h => (typeof h === 'number' ? h : Number(en ? String(h).replace(/,/g, '') : String(h).replace(/\./g, '').replace(',', '.')));
+  const eski = ilk.map((h, j) => ([7, 9, 13].includes(j) && h ? sayiYaz(sayi(h) * 2, 2) : h));
   satirlar.unshift(eski);
 
-  const veri = [
+  const veri = en ? [
+    ['SAMPLE BANK TREASURY - FX DEAL BLOTTER (SYNTHETIC SAMPLE, NOT REAL DATA)'],
+    [`Report date: ${enTarih(ORNEK_TARIH)}`, '', 'Time zone: Europe/Istanbul'],
+    ORNEK_BASLIK_EN,
+    ...satirlar,
+    ['TOTAL', '', '', '', '', '', '', '', '', '', '', '', '', sayiYaz(toplamTl, 2)],
+  ] : [
     ['ÖRNEK BANKA A.Ş. HAZİNE - FX İŞLEM LİSTESİ (SENTETİK ÖRNEK, GERÇEK VERİ DEĞİLDİR)'],
     [`Rapor tarihi: ${trTarih(ORNEK_TARIH)}`, '', 'Saat dilimi: Europe/Istanbul'],
     ORNEK_BASLIK,
     ...satirlar,
-    ['TOPLAM', '', '', '', '', '', '', '', '', '', '', '', '', trSayi(toplamTl, 2)],
+    ['TOPLAM', '', '', '', '', '', '', '', '', '', '', '', '', sayiYaz(toplamTl, 2)],
   ];
   veri.forEach((s, i) => { s.no = i + 1; });
-  return { satirlar: veri, tarih: ORNEK_ANALIZ_TARIHI, raporTarihi: ORNEK_TARIH, saatDilimi: 3 };
+  return { satirlar: veri, tarih: ORNEK_ANALIZ_TARIHI, raporTarihi: ORNEK_TARIH, saatDilimi: 3, dil };
 }

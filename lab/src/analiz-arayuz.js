@@ -52,6 +52,18 @@ async function dosyaOku(dosya) {
   sonucuIsle(s);
 }
 
+// ?dosya=: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
+const ORNEK_DOSYALAR = ['sablon/kalibre-trade-log-example.xlsx', 'sablon/kalibre-trade-log-example.csv'];
+async function ornekDosyaAc(yol) {
+  try {
+    const y = await fetch(yol);
+    if (!y.ok) throw new Error(String(y.status));
+    await dosyaOku(new File([await y.arrayBuffer()], yol.split('/').pop()));
+  } catch {
+    durum(ceviri('Dosya okunamadı. MT5 raporunu HTML olarak kaydedip yeniden dene.'), true);
+  }
+}
+
 function sonucuIsle(s) {
   if (s.tur === 'eslesme') {
     csvEslesmeGoster(s.satirlar, s.rapor);
@@ -339,7 +351,9 @@ function baslat() {
 
   $('#ornek-yukle').onclick = () => yukle(ornekHesap());
   $('#ornek-kapat').onclick = () => { $('#yukle-kart').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#dosya').click(); };
-  if (new URLSearchParams(location.search).get('ornek') === '1') yukle(ornekHesap());
+  const q = new URLSearchParams(location.search);
+  if (ORNEK_DOSYALAR.includes(q.get('dosya'))) ornekDosyaAc(q.get('dosya'));
+  else if (q.get('ornek') === '1') yukle(ornekHesap());
   const kod = depoOku(DEPO.kod);
   if (kod) {
     const d = $('#kopru-yukle'); d.hidden = false;

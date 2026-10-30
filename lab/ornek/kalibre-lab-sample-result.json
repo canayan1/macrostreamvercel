@@ -1,0 +1,504 @@
+{
+  "format": "kalibre-run",
+  "formatVersion": 1,
+  "manifest": {
+    "manifestVersion": 1,
+    "engineVersion": "0.1.1",
+    "tur": "prova",
+    "seed": null,
+    "specHash": "4b408b6ab7e0cfc757f357098301c7e5e6ab8d55541fc0b12da0dd09386e14a4",
+    "dataHash": "c05af42e64d1c567c333d23785fad95cc61424d5aba05304d48ef2f79e93541f",
+    "configHash": "a85c8ae3e906bb3985a68f7149add7f5b043aedd17cc54641a9bb6b59d5907e6",
+    "resultId": "7d0ff99169fdf3b630e57e74e8d86c316ca0e757633ff2e39437e960d0b5473f",
+    "bars": 3000,
+    "firstBar": 1893974400,
+    "lastBar": 1908918000
+  },
+  "strategy": {
+    "kalibre": 1,
+    "ad": "EMA trend (sample)",
+    "aciklama": "Educational sample, not investment advice. Long when the 20 EMA crosses above the 50 EMA with ADX above 20, short on the opposite cross. Stop 2 ATR, target 2R, 3 ATR trailing stop. Risk 1% a trade.",
+    "zaman_dilimi": "H1",
+    "yon": "iki_yon",
+    "gostergeler": {
+      "hizli": {
+        "tip": "EMA",
+        "periyot": 20
+      },
+      "yavas": {
+        "tip": "EMA",
+        "periyot": 50
+      },
+      "adx": {
+        "tip": "ADX",
+        "periyot": 14
+      },
+      "atr": {
+        "tip": "ATR",
+        "periyot": 14
+      }
+    },
+    "giris": {
+      "long": {
+        "hepsi": [
+          {
+            "sol": "hizli",
+            "op": "yukari_keser",
+            "sag": "yavas"
+          },
+          {
+            "sol": "adx.ana",
+            "op": ">",
+            "sag": 20
+          }
+        ]
+      },
+      "short": {
+        "hepsi": [
+          {
+            "sol": "hizli",
+            "op": "asagi_keser",
+            "sag": "yavas"
+          },
+          {
+            "sol": "adx.ana",
+            "op": ">",
+            "sag": 20
+          }
+        ]
+      }
+    },
+    "cikis": {
+      "stop": {
+        "tip": "atr",
+        "gosterge": "atr",
+        "carpan": 2
+      },
+      "hedef": {
+        "tip": "r",
+        "deger": 2
+      },
+      "iz_suren_stop": {
+        "tip": "atr",
+        "gosterge": "atr",
+        "carpan": 3
+      }
+    },
+    "risk": {
+      "islem_basi_yuzde": 1,
+      "max_acik_pozisyon": 1,
+      "max_spread_puan": 30,
+      "gunluk_max_kayip_yuzde": 3
+    },
+    "filtre": {
+      "saat": {
+        "bas": 8,
+        "bit": 20
+      },
+      "haber": {
+        "once_dk": 30,
+        "sonra_dk": 30,
+        "onem": "yuksek"
+      }
+    }
+  },
+  "config": {
+    "maliyet": {}
+  },
+  "summary": {
+    "islem": 31,
+    "kazanmaOrani": 0.3225806451612903,
+    "beklentiR": -0.01856807309347363,
+    "ortKazancR": 1.6702174505289524,
+    "ortKayipR": -0.8227516557708194,
+    "karFaktoru": 0.9547231243792096,
+    "getiriYuzde": -0.8118844350701537,
+    "maxDususYuzde": 8.148815123658853,
+    "enUzunKayipSerisi": 5
+  },
+  "trades": [
+    {
+      "yon": "long",
+      "girisI": 137,
+      "giris": 99.73225,
+      "cikisI": 140,
+      "cikis": 102.22107857142856,
+      "neden": "hedef",
+      "kar": 200,
+      "r": 2,
+      "komisyon": 0,
+      "miktar": 80.35909033509745
+    },
+    {
+      "yon": "short",
+      "girisI": 211,
+      "giris": 101.40115,
+      "cikisI": 244,
+      "cikis": 100.23434142857144,
+      "neden": "iz süren stop",
+      "kar": 70.37951487124938,
+      "r": 0.6899952438357783,
+      "komisyon": 0,
+      "miktar": 60.31796182734714
+    },
+    {
+      "yon": "short",
+      "girisI": 376,
+      "giris": 103.18994,
+      "cikisI": 380,
+      "cikis": 104.05275714285715,
+      "neden": "stop",
+      "kar": -102.70379514871226,
+      "r": -0.9999999999999978,
+      "komisyon": 0,
+      "miktar": 119.03309524961237
+    },
+    {
+      "yon": "short",
+      "girisI": 490,
+      "giris": 93.8211,
+      "cikisI": 513,
+      "cikis": 83.71948571428572,
+      "neden": "hedef",
+      "kar": 203.35351439445066,
+      "r": 1.9999999999999993,
+      "komisyon": 0,
+      "miktar": 20.130793815997666
+    },
+    {
+      "yon": "short",
+      "girisI": 614,
+      "giris": 91.754,
+      "cikisI": 615,
+      "cikis": 94.55340714285715,
+      "neden": "stop",
+      "kar": -103.71029234117002,
+      "r": -1.0000000000000013,
+      "komisyon": 0,
+      "miktar": 37.04723430666129
+    },
+    {
+      "yon": "long",
+      "girisI": 617,
+      "giris": 100.33304,
+      "cikisI": 629,
+      "cikis": 98.42329928571428,
+      "neden": "iz süren stop",
+      "kar": -48.02947618537617,
+      "r": -0.4677898530058625,
+      "komisyon": 0,
+      "miktar": 25.149736729229325
+    },
+    {
+      "yon": "short",
+      "girisI": 643,
+      "giris": 96.15702,
+      "cikisI": 662,
+      "cikis": 96.19746071428571,
+      "neden": "iz süren stop",
+      "kar": -1.2988996829070913,
+      "r": -0.012710273911710212,
+      "komisyon": 0,
+      "miktar": 32.11861377448828
+    },
+    {
+      "yon": "long",
+      "girisI": 667,
+      "giris": 106.31861,
+      "cikisI": 671,
+      "cikis": 104.38021857142856,
+      "neden": "iz süren stop",
+      "kar": -53.741971303268436,
+      "r": -0.5259544032324639,
+      "komisyon": 0,
+      "miktar": 27.725035568731876
+    },
+    {
+      "yon": "short",
+      "girisI": 921,
+      "giris": 121.91674,
+      "cikisI": 923,
+      "cikis": 123.53398714285714,
+      "neden": "stop",
+      "kar": -101.64248594604253,
+      "r": -0.9999999999999988,
+      "komisyon": 0,
+      "miktar": 62.849074363782165
+    },
+    {
+      "yon": "long",
+      "girisI": 924,
+      "giris": 123.24134,
+      "cikisI": 927,
+      "cikis": 126.54801142857141,
+      "neden": "hedef",
+      "kar": 201.25212217316457,
+      "r": 2.0000000000000013,
+      "komisyon": 0,
+      "miktar": 60.86244929999334
+    },
+    {
+      "yon": "long",
+      "girisI": 1021,
+      "giris": 126.49166,
+      "cikisI": 1028,
+      "cikis": 129.40453428571428,
+      "neden": "hedef",
+      "kar": 205.27716461662692,
+      "r": 1.999999999999992,
+      "komisyon": 0,
+      "miktar": 70.47237349836051
+    },
+    {
+      "yon": "short",
+      "girisI": 1285,
+      "giris": 118.418,
+      "cikisI": 1293,
+      "cikis": 110.97886285714286,
+      "neden": "hedef",
+      "kar": 209.38270790896047,
+      "r": 2.0000000000000018,
+      "komisyon": 0,
+      "miktar": 28.14610134053032
+    },
+    {
+      "yon": "long",
+      "girisI": 1506,
+      "giris": 94.72088,
+      "cikisI": 1513,
+      "cikis": 93.64078,
+      "neden": "ters sinyal",
+      "kar": -91.47443214348439,
+      "r": -0.8566210335376763,
+      "komisyon": 0,
+      "miktar": 84.69070654891719
+    },
+    {
+      "yon": "short",
+      "girisI": 1646,
+      "giris": 95.93045,
+      "cikisI": 1678,
+      "cikis": 93.53361285714286,
+      "neden": "hedef",
+      "kar": 211.74087342426998,
+      "r": 2.0000000000000018,
+      "komisyon": 0,
+      "miktar": 88.34178578018253
+    },
+    {
+      "yon": "long",
+      "girisI": 1692,
+      "giris": 97.08096,
+      "cikisI": 1695,
+      "cikis": 95.93626,
+      "neden": "stop",
+      "kar": -107.98784544637705,
+      "r": -0.9999999999999948,
+      "komisyon": 0,
+      "miktar": 94.33724595647509
+    },
+    {
+      "yon": "long",
+      "girisI": 1716,
+      "giris": 96.64454,
+      "cikisI": 1720,
+      "cikis": 95.62849000000001,
+      "neden": "stop",
+      "kar": -106.90796699191321,
+      "r": -0.9999999999999941,
+      "komisyon": 0,
+      "miktar": 105.2191988503656
+    },
+    {
+      "yon": "long",
+      "girisI": 1738,
+      "giris": 95.84433,
+      "cikisI": 1742,
+      "cikis": 95.18971,
+      "neden": "ters sinyal",
+      "kar": -54.514486764060436,
+      "r": -0.5150704825364468,
+      "komisyon": 0,
+      "miktar": 83.27653717280394
+    },
+    {
+      "yon": "short",
+      "girisI": 1742,
+      "giris": 95.18971,
+      "cikisI": 1750,
+      "cikis": 96.07084,
+      "neden": "ters sinyal",
+      "kar": -80.72801218941338,
+      "r": -0.7666933505038039,
+      "komisyon": 0,
+      "miktar": 91.61873070876429
+    },
+    {
+      "yon": "long",
+      "girisI": 1957,
+      "giris": 100.14651,
+      "cikisI": 1958,
+      "cikis": 98.77568714285715,
+      "neden": "stop",
+      "kar": -104.48646233245996,
+      "r": -1,
+      "komisyon": 0,
+      "miktar": 76.2217100393529
+    },
+    {
+      "yon": "long",
+      "girisI": 2077,
+      "giris": 105.73824,
+      "cikisI": 2091,
+      "cikis": 108.64477142857143,
+      "neden": "hedef",
+      "kar": 206.88319541827056,
+      "r": 1.9999999999999984,
+      "komisyon": 0,
+      "miktar": 71.1787229907762
+    },
+    {
+      "yon": "short",
+      "girisI": 2124,
+      "giris": 103.9365,
+      "cikisI": 2133,
+      "cikis": 104.62955,
+      "neden": "iz süren stop",
+      "kar": -44.93188018591297,
+      "r": -0.42585249940967745,
+      "komisyon": 0,
+      "miktar": 64.83209030504726
+    },
+    {
+      "yon": "long",
+      "girisI": 2505,
+      "giris": 113.14837,
+      "cikisI": 2506,
+      "cikis": 111.88734428571429,
+      "neden": "stop",
+      "kar": -105.06111086145842,
+      "r": -0.9999999999999952,
+      "komisyon": 0,
+      "miktar": 83.31401149973294
+    },
+    {
+      "yon": "short",
+      "girisI": 2508,
+      "giris": 110.5711,
+      "cikisI": 2510,
+      "cikis": 111.52847142857142,
+      "neden": "iz süren stop",
+      "kar": -73.54508330558293,
+      "r": -0.7070928750495857,
+      "komisyon": 0,
+      "miktar": 76.81980170990286
+    },
+    {
+      "yon": "long",
+      "girisI": 2560,
+      "giris": 113.10392,
+      "cikisI": 2564,
+      "cikis": 111.92225,
+      "neden": "stop",
+      "kar": -103.27504891978869,
+      "r": -1.0000000000000016,
+      "komisyon": 0,
+      "miktar": 87.39753816191404
+    },
+    {
+      "yon": "long",
+      "girisI": 2653,
+      "giris": 117.01259,
+      "cikisI": 2663,
+      "cikis": 115.71205714285715,
+      "neden": "stop",
+      "kar": -102.24229843059032,
+      "r": -0.9999999999999969,
+      "komisyon": 0,
+      "miktar": 78.61569807256295
+    },
+    {
+      "yon": "long",
+      "girisI": 2678,
+      "giris": 116.65727,
+      "cikisI": 2708,
+      "cikis": 127.06659571428571,
+      "neden": "hedef",
+      "kar": 202.43975089256935,
+      "r": 1.999999999999999,
+      "komisyon": 0,
+      "miktar": 19.4479216472919
+    },
+    {
+      "yon": "short",
+      "girisI": 2726,
+      "giris": 114.22148,
+      "cikisI": 2745,
+      "cikis": 114.16169357142857,
+      "neden": "iz süren stop",
+      "kar": 1.2574389939241182,
+      "r": 0.012179261453752714,
+      "komisyon": 0,
+      "miktar": 21.032181114846676
+    },
+    {
+      "yon": "short",
+      "girisI": 2820,
+      "giris": 120.93796,
+      "cikisI": 2826,
+      "cikis": 126.60270000000001,
+      "neden": "stop",
+      "kar": -103.2568473451497,
+      "r": -1.0000000000000004,
+      "komisyon": 0,
+      "miktar": 18.227994108317333
+    },
+    {
+      "yon": "long",
+      "girisI": 2865,
+      "giris": 123.99532,
+      "cikisI": 2868,
+      "cikis": 119.99406571428572,
+      "neden": "stop",
+      "kar": -102.22427887169815,
+      "r": -1,
+      "komisyon": 0,
+      "miktar": 25.54805857669944
+    },
+    {
+      "yon": "short",
+      "girisI": 2923,
+      "giris": 116.60581,
+      "cikisI": 2926,
+      "cikis": 120.73044142857144,
+      "neden": "stop",
+      "kar": -101.20203608298114,
+      "r": -0.9999999999999996,
+      "komisyon": 0,
+      "miktar": 24.536019238458955
+    },
+    {
+      "yon": "long",
+      "girisI": 2969,
+      "giris": 127.93646,
+      "cikisI": 2969,
+      "cikis": 122.71377,
+      "neden": "stop",
+      "kar": -100.19001572215126,
+      "r": -0.9999999999999989,
+      "komisyon": 0,
+      "miktar": 19.183603798454676
+    }
+  ],
+  "warnings": [
+    "Haber filtresi provada uygulanmaz (MT5 takvimi gerekir).",
+    "Spread provada sıfır kabul edilir."
+  ],
+  "extra": {
+    "dolum": {
+      "model": "stop-once",
+      "belirsizMum": 0,
+      "belirsizOran": 0
+    }
+  }
+}

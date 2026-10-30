@@ -29,7 +29,7 @@ M = {
   rozet="Trade Analytics reads MT5 reports, CSV and Excel files", rozet_url="/mt5-analytics",
   h1="Analytics for trading data.",
   giris="See where a trading account or desk makes and loses money, keep within risk limits and test rules on your own history. Files are processed in your browser.",
-  b1="Try with sample data", b1u="/analytics?ornek=1", b2="Get early access", b2u="/mt5-analytics#pricing", b3="Request a desk demo", b3u="/treasury#demo",
+  b1="Try every product with sample files", b1u="/demo", b2="Get early access", b2u="/mt5-analytics#pricing", b3="Request a desk demo", b3u="/treasury#demo",
   not_="Beta software. No account needed to try it. Not investment advice.",
   hero_alt="Kalibre Trade Analytics showing an account overview for a synthetic sample account",
   sentetik="Synthetic sample data", hero_yazi="Kalibre Trade Analytics with a generated sample account. It is not a real trader.",
@@ -37,7 +37,7 @@ M = {
   ta_ac="Drop in an MT5 history report, a CSV file or an Excel log. See results by symbol, hour, weekday, session, holding time, trade size and the trade after a loss.",
   ta_madde=["Losing and winning segments ranked, each with at least 20 trades", "Prop firm daily and total limits, day by day", "Your own group-by views, saved in your browser"],
   ta_bag="Explore Trade Analytics", ta_alt="Ranked losing and winning segments for the synthetic sample account",
-  fx_ac="Reads the FX blotter a treasury or dealing desk already keeps, as it is exported.", fx_bag="See the plan",
+  fx_ac="Reads the FX blotter a treasury or dealing desk already keeps, as it is exported.", fx_bag="Try the sample Excel blotter", fx_url="/lab/blotter?dosya=ornek/fx-blotter-sample.xlsx",
   fx_madde=["Daily P&amp;L: mark-to-market plus realized, on value date", "Spot and swap-points P&amp;L on separate lines", "Carry cost as overnight swap", "Intraday net open position and value-date ladder", "One-click drill-down to the deals"],
   rg_ac="An MT5 add-on that tracks the firm's daily and total loss floors on every tick and blocks new trades near the floor. Presets for FTMO and The5ers.", rg_bag="About Rule Guard",
   lab_ac="Build a rule with blocks or a form, backtest it with costs and check settings with training and test periods, deflated Sharpe and the probability of backtest overfitting.", lab_bag="Open the lab",
@@ -66,9 +66,9 @@ M = {
           ("Brokers and prop firms", "Analytics and rule monitoring across many accounts.", "/company#partners", "Talk to us")],
   yol_bas="Roadmap", yol_giris="What is available, what comes next and what is planned. Dates are not promised.",
   yol=[("Now", [("Trade Analytics", "beta", "MT5 reports, CSV and Excel, breakdowns, prop limits"), ("Kalibre Lab", "beta", "Rule builder, backtest, optimization with overfitting checks"), ("Kalibre Bridge", "beta", "Encrypted read-only link from MT5"), ("Trade log templates", "beta", "CSV and Excel templates with row-level checks")]),
-       ("Next", [("Rule Guard", "test", "Early access on demo accounts"), ("FX Blotter Analytics", "gelis", "Demo for treasury and dealing desks")]),
+       ("Next", [("Rule Guard", "test", "Early access on demo accounts"), ("FX Blotter Analytics", "beta", "Pilots with treasury and dealing desks on their own blotters")]),
        ("Later", [("Weekly rule report", "plan", "Rule breaks and costly habits, once a week"), ("Multi-account views", "plan", "For prop firms and brokers"), ("More platforms", "plan", "cTrader and Match-Trader")])],
-  son_bas="Try it on your own history", son_giris="Use the synthetic sample, or drop in your MT5 report. Nothing is uploaded.",
+  son_bas="Try it on your own history", son_giris="Open each product with a sample file and download the result, or drop in your own file. Nothing is uploaded.",
  ),
  "tr": dict(
   title="Kalibre Markets: alım satım verisi için analiz (beta)",
@@ -76,7 +76,7 @@ M = {
   rozet="Trade Analytics MT5 raporlarını, CSV ve Excel dosyalarını okur", rozet_url="/tr/mt5-analytics",
   h1="Alım satım verisi için analiz.",
   giris="Bir hesabın ya da masanın nerede kazanıp kaybettiğini gör, risk sınırları içinde kal ve kurallarını kendi geçmişinde sına. Dosyalar tarayıcında işlenir.",
-  b1="Örnek veriyle dene", b1u="/analytics?dil=tr&amp;ornek=1", b2="Erken erişim", b2u="/tr/mt5-analytics#pricing", b3="Masa demosu iste", b3u="/tr/treasury#demo",
+  b1="Her ürünü örnek dosyalarla dene", b1u="/tr/demo", b2="Erken erişim", b2u="/tr/mt5-analytics#pricing", b3="Masa demosu iste", b3u="/tr/treasury#demo",
   not_="Beta yazılım. Denemek için hesap gerekmez. Yatırım tavsiyesi değildir.",
   hero_alt="Sentetik bir örnek hesap için hesap özetini gösteren Kalibre Trade Analytics",
   sentetik="Sentetik örnek veri", hero_yazi="Üretilmiş bir örnek hesapla Kalibre Trade Analytics. Gerçek bir trader değildir.",
@@ -84,7 +84,7 @@ M = {
   ta_ac="MT5 geçmiş raporunu, bir CSV dosyasını ya da Excel kaydını bırak. Sonuçlarını sembol, saat, gün, seans, pozisyon süresi, işlem büyüklüğü ve kayıptan sonraki işleme göre gör.",
   ta_madde=["Kaybettiren ve kazandıran durumlar sıralı, her biri en az 20 işlemle", "Prop firması günlük ve toplam sınırları, gün gün", "Kendi gruplama görünümlerin, tarayıcında kayıtlı"],
   ta_bag="Trade Analytics'i incele", ta_alt="Sentetik örnek hesap için sıralı kaybettiren ve kazandıran durumlar",
-  fx_ac="Hazine ya da dealing masasının zaten tuttuğu FX blotter'ını, dışa aktarıldığı haliyle okur.", fx_bag="Planı gör",
+  fx_ac="Hazine ya da dealing masasının zaten tuttuğu FX blotter'ını, dışa aktarıldığı haliyle okur.", fx_bag="Örnek Excel blotter ile dene", fx_url="/lab/blotter?dil=tr&amp;dosya=ornek/fx-blotter-ornek.xlsx",
   fx_madde=["Günlük kâr/zarar: değerleme artı gerçekleşen, valör tarihinde", "Spot ve swap puanı kâr/zararı ayrı satırlarda", "Taşıma maliyeti gecelik swap olarak", "Gün içi net açık pozisyon ve valör merdiveni", "Tek tıkla deal'lere inme"],
   rg_ac="Firmanın günlük ve toplam kayıp tabanlarını her tick'te izleyen ve tabana yakın yeni işlemi engelleyen MT5 eklentisi. FTMO ve The5ers ön ayarları.", rg_bag="Rule Guard hakkında",
   lab_ac="Bloklarla ya da formla kural kur, maliyetlerle backtest et, ayarları eğitim ve test dönemleri, deflated Sharpe ve backtest aşırı uyum olasılığıyla sına.", lab_bag="Laboratuvarı aç",
@@ -113,9 +113,9 @@ M = {
           ("Aracı kurumlar ve prop firmaları", "Çok sayıda hesapta analiz ve kural izleme.", "/tr/company#partners", "Bizimle konuşun")],
   yol_bas="Yol haritası", yol_giris="Neyin hazır olduğu, sırada ne olduğu ve neyin planlandığı. Tarih sözü verilmez.",
   yol=[("Şimdi", [("Trade Analytics", "beta", "MT5 raporu, CSV ve Excel, kırılımlar, prop sınırları"), ("Kalibre Lab", "beta", "Kural kurucu, backtest, aşırı uyum denetimli optimizasyon"), ("Kalibre Bridge", "beta", "MT5'ten şifreli, salt okunur bağlantı"), ("İşlem kaydı şablonları", "beta", "Satır satır denetimli CSV ve Excel şablonları")]),
-       ("Sırada", [("Rule Guard", "test", "Demo hesaplarda erken erişim"), ("FX Blotter Analytics", "gelis", "Hazine ve dealing masaları için demo")]),
+       ("Sırada", [("Rule Guard", "test", "Demo hesaplarda erken erişim"), ("FX Blotter Analytics", "beta", "Hazine ve dealing masalarıyla kendi blotter'larında pilot")]),
        ("Sonra", [("Haftalık kural raporu", "plan", "Kural ihlalleri ve pahalı alışkanlıklar, haftada bir"), ("Çok hesaplı görünümler", "plan", "Prop firmaları ve aracı kurumlar için"), ("Yeni platformlar", "plan", "cTrader ve Match-Trader")])],
-  son_bas="Kendi geçmişinde dene", son_giris="Sentetik örneği kullan ya da MT5 raporunu bırak. Hiçbir şey yüklenmez.",
+  son_bas="Kendi geçmişinde dene", son_giris="Her ürünü örnek dosyayla aç ve sonucu indir ya da kendi dosyanı bırak. Hiçbir şey yüklenmez.",
  ),
 }
 
@@ -173,11 +173,11 @@ def ana_govde(dil):
       </article>
       <article class="p-kart dar">
         <span class="p-is">{is_ad[0]}</span>
-        <h3>FX Blotter Analytics{durum_et("gelis", dil)}</h3>
+        <h3>FX Blotter Analytics{durum_et("beta", dil)}</h3>
         <p>{t["fx_ac"]}</p>
         <ul>{"".join(f"<li>{m}</li>" for m in t["fx_madde"])}</ul>
         <p class="p-baslik-ornek">{"İşlem Tarihi · Valör · Döviz Cinsi · Alış/Satış · Tutar · Kur" if tr else "Trade Date · Value Date · Pair · Buy/Sell · Notional · Rate"}</p>
-        <a class="bag" href="{hazine}">{t["fx_bag"]}</a>
+        <a class="bag" href="{t["fx_url"]}">{t["fx_bag"]}</a> <a class="bag" href="{hazine}">{"Masalar için" if tr else "For desks"}</a>
       </article>
       <article class="p-kart uc">
         <span class="p-is">{is_ad[1]}</span>
@@ -364,16 +364,16 @@ def hazine(dil):
     tr = dil == "tr"
     if tr:
         govde = f'''<div data-talep-sayfa="treasury">
-<div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("gelis", dil)}</h1></div>
+<div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("beta", dil)}</h1></div>
 <p class="giris">Masanın zaten tuttuğu FX blotter'ını analiz et. Dışa aktarımı olduğu gibi bırak. Kalibre sütunları tanır, deal'leri pozisyonlara eşler ve defterin nerede kazanıp kaybettiğini gösterir.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/lab/blotter?dil=tr&amp;ornek=1">Örnek blotter ile dene</a></div>
-<div class="kutu">Bu ürün geliştiriliyor. Aşağıdaki kapsam ilk sürüm için planlanandır. İlk sürümü sentetik ya da anonimleştirilmiş blotter'larla deneyecek az sayıda masa arıyoruz.</div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/lab/blotter?dil=tr&amp;dosya=ornek/fx-blotter-ornek.xlsx">Örnek Excel blotter ile dene</a><a class="metin-bag" href="/tr/demo#fx-blotter">Örnek girdi ve sonuç dosyaları</a></div>
+<div class="kutu">İlk sürüm çalışıyor. Örnek Excel blotter'ı açıp sonucu görebilir, girdi ve sonuç dosyalarını demo sayfasından indirebilirsin. Kendi blotter'larıyla deneyecek az sayıda masa arıyoruz. Fırsat maliyeti henüz gösterilmiyor; tanımı masalarla netleşince eklenecek.</div>
 
 <h2 id="reads">Neyi okur</h2>
 <p>Hedef, dışa aktarımı yeniden biçimlendirmeden okumak:</p>
 <ul>
   <li>360T, FXall, Bloomberg FXGO ve Murex gibi sistemlerin CSV ve Excel dışa aktarımları</li>
-  <li>Elle tutulan Excel blotter'ları, Türkçe başlıklar dahil</li>
+  <li>Elle tutulan Excel blotter'ları: Türkçe, İngilizce, Almanca ve Fransızca başlıklar</li>
   <li>Spot, outright forward, swap bacakları ve NDF. Opsiyonlar tanınır ve dışarıda bırakılır.</li>
 </ul>
 <p class="p-baslik-ornek">İşlem Tarihi · Valör · Döviz Cinsi · Alış/Satış · Tutar · Kur · Karşı Taraf · Portföy</p>
@@ -389,7 +389,7 @@ def hazine(dil):
 <ul>
   <li>Günün kâr/zararı: günün değerlemesi (MTM) artı gerçekleşen kâr/zarar. Gerçekleşen kâr/zarar valör tarihinde tanınır.</li>
   <li>Spot kâr/zararı ve swap puanı kâr/zararı ayrı satırlarda</li>
-  <li>Taşıma maliyeti gecelik swap olarak, fırsat maliyetiyle birlikte görünür</li>
+  <li>Taşıma maliyeti gecelik swap olarak</li>
   <li>Müşteri marjı, blotter'daki maliyet sütunundan</li>
   <li>Gün içi net açık pozisyon (NOP), para birimi bazında ve valör merdiveninde</li>
   <li>Tutarlar önce USD karşılığı, sonra yerel para birimi olarak</li>
@@ -398,7 +398,7 @@ def hazine(dil):
 <p>Değerleme ve karşılık tutarlar için gün sonu ya da gün içi kur dosyasını siz sağlarsınız. Piyasa verisi lisansımız yok.</p>
 
 <h2 id="standard">Ölçüt</h2>
-<p>Bir hazine müdürünün güvendiği şey hızlı ve hiç yanılmayan bir tablodur. İlk sürümün kabul ölçütü budur: her toplam deal satırlarına kadar izlenebilir olacak ve elle hesaplanmış örneklerle sınanacak.</p>
+<p>Bir hazine müdürünün güvendiği şey hızlı ve hiç yanılmayan bir tablodur. İlk sürümün kabul ölçütü budur: her toplam deal satırlarına kadar izlenebilir, 12 elle hesaplanmış vaka birebir tutuyor ve her dosyada 7 kontrollü bir mutabakat paneli çalışıyor.</p>
 
 <h2 id="data">Veri nasıl işlenir</h2>
 <ul>
@@ -414,19 +414,19 @@ def hazine(dil):
 </div>
 {demo_pencere(dil)}
 </div>'''
-        sayfa("tr/treasury/index.html", "FX Blotter Analytics: hazine ve dealing masaları için (erken sürüm)", "Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Erken sürüm örnek blotter ile denenebilir; demo isteyin.", "/tr/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="tr")
+        sayfa("tr/treasury/index.html", "FX Blotter Analytics: hazine ve dealing masaları için (beta)", "Masanın kendi FX blotter'ını olduğu gibi okur: FIFO ile gerçekleşen kâr/zarar, fiyat ve swap puanı ayrı, taşıma, MTM, valör merdiveni ve müşteri marjı. Örnek Excel blotter ile dene ya da demo iste.", "/tr/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="tr")
     else:
         govde = f'''<div data-talep-sayfa="treasury">
-<div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("gelis", dil)}</h1></div>
+<div class="p-belge-hero"><h1>FX Blotter Analytics {durum_et("beta", dil)}</h1></div>
 <p class="giris">Analyze the FX blotter your desk already keeps. Drop in the export as it is. Kalibre detects the columns, matches deals into positions and shows where the book made and lost money.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/lab/blotter?ornek=1">Try it with a sample blotter</a></div>
-<div class="kutu">This product is in development. The scope below is what we plan for the first version. We are looking for a small number of desks to try it on synthetic or anonymized blotters.</div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/lab/blotter?dosya=ornek/fx-blotter-sample.xlsx">Try it with a sample Excel blotter</a><a class="metin-bag" href="/demo#fx-blotter">Sample input and result files</a></div>
+<div class="kutu">The first version works. Open the sample Excel blotter to see the result, or download the input and result files from the demo page. We are looking for a small number of desks to try it on their own blotters. Opportunity cost is not shown yet; it will be added once its definition is agreed with desks.</div>
 
 <h2 id="reads">What it reads</h2>
 <p>The goal is to read the export without reformatting it:</p>
 <ul>
   <li>CSV and Excel exports from systems such as 360T, FXall, Bloomberg FXGO and Murex</li>
-  <li>Excel blotters kept by hand, including Turkish headers</li>
+  <li>Excel blotters kept by hand, with English, Turkish, German or French headers</li>
   <li>Spot, outright forwards, swap legs and NDFs. Options are detected and left out.</li>
 </ul>
 <p class="p-baslik-ornek">Trade Date · Value Date · Currency Pair · Buy/Sell · Notional · Rate · Counterparty · Book</p>
@@ -442,7 +442,7 @@ def hazine(dil):
 <ul>
   <li>Daily P&amp;L: the day's mark-to-market plus realized P&amp;L. Realized P&amp;L is recognized on the value date.</li>
   <li>Spot P&amp;L and swap-points P&amp;L on separate lines</li>
-  <li>Carry cost shown as overnight swap, with the opportunity cost next to it</li>
+  <li>Carry cost shown as overnight swap</li>
   <li>Client margin from the blotter's cost column</li>
   <li>Intraday net open position (NOP) by currency and on a value-date ladder</li>
   <li>Amounts in USD equivalent first, then in local currency</li>
@@ -451,7 +451,7 @@ def hazine(dil):
 <p>For marking and currency equivalents you supply an end-of-day or intraday rates file. We have no market data licence.</p>
 
 <h2 id="standard">The standard</h2>
-<p>What a head of treasury trusts is a fast table that is never wrong. That is the acceptance bar for the first version: every total traces back to deal rows and is tested against hand-computed cases.</p>
+<p>What a head of treasury trusts is a fast table that is never wrong. That is the acceptance bar for the first version: every total traces back to deal rows, 12 hand-computed cases match exactly, and a reconciliation panel with 7 checks runs on every file.</p>
 
 <h2 id="data">How data is handled</h2>
 <ul>
@@ -467,7 +467,7 @@ def hazine(dil):
 </div>
 {demo_pencere(dil)}
 </div>'''
-        sayfa("treasury/index.html", "FX Blotter Analytics for treasury and dealing desks (early version)", "Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. Early version: try it with a sample blotter or request a demo.", "/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="en")
+        sayfa("treasury/index.html", "FX Blotter Analytics for treasury and dealing desks (beta)", "Reads your desk's own FX blotter as it is: realized P&L with FIFO, price and swap points apart, carry, MTM, a value-date ladder and client margin. Try it with a sample Excel blotter or request a demo.", "/treasury", govde, icindekiler(govde.split('<dialog')[0]), ek_stil=FORM_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css"><script src="/static/talep.js" defer></script>', dil="en")
 
 # ------------------------------------------------------------------ /company
 def sirket(dil):
@@ -519,6 +519,133 @@ def sirket(dil):
 <p>Email: <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>'''
         sayfa("company/index.html", "Company: Kalibre Markets", "Kalibre Markets builds analytics software for trading data. Principles: a verified engine, local-first privacy, software only.", "/company", govde, icindekiler(govde), ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css">', dil="en")
 
+# ------------------------------------------------------------------ /demo
+# Her ürün için örnek girdi, tek tıkla sonuç ve indirilebilir sonuç dosyası. Rakamlar elle yazılmaz:
+# kalibre-lab araclar/ornek-dosya-uret.mjs'in ürettiği lab/ornek/ozet.json'dan okunur.
+DEMO_STIL = """
+.d-urun { border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 22px 0 30px; background: var(--zemin-2); }
+.d-urun h2 { margin-top: 0; }
+.d-adimlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+.d-adimlar > div { border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 14px 16px; }
+.d-adimlar b.no { display: block; font: 500 12px var(--mono, monospace); letter-spacing: .06em; color: var(--soluk, #8a97a8); margin-bottom: 6px; }
+.d-adimlar a { display: block; margin-top: 6px; overflow-wrap: anywhere; }
+.d-adimlar small { display: block; color: var(--soluk, #8a97a8); }
+.d-sayilar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 14px 0 6px; }
+.d-sayilar div { border-top: 1px solid var(--cizgi-2); padding-top: 8px; }
+.d-sayilar b { display: block; font: 600 20px var(--serif); }
+.d-sayilar span { font-size: 13px; color: var(--soluk, #8a97a8); }
+@media (max-width: 760px) { .d-adimlar, .d-sayilar { grid-template-columns: 1fr 1fr; } .d-adimlar { grid-template-columns: 1fr; } }
+"""
+
+def demo(dil):
+    import json
+    tr = dil == "tr"
+    oz = json.load(open(os.path.join(KOK, "lab", "ornek", "ozet.json")))
+    b, a, lab = oz["blotter-tr" if tr else "blotter-en"], oz["analiz-tr" if tr else "analiz-en"], oz["lab"]
+    def say(x, k=0):
+        m = f"{abs(x):,.{k}f}"
+        if tr: m = m.replace(",", "X").replace(".", ",").replace("X", ".")
+        return ("−" if x < 0 else "") + m
+    isaret = lambda x, k=0: ("+" if x > 0 else "") + say(x, k)
+    yuzde = lambda x, k=1: (f"%{say(x, k)}" if tr else f"{say(x, k)}%")
+    q = "dil=tr&amp;" if tr else ""
+    ind = "İndir" if tr else "Download"
+    def adimlar(girdi, ac, cikti):
+        return ('<div class="d-adimlar">'
+                f'<div><b class="no">1 · {"GİRDİ" if tr else "INPUT"}</b>{girdi}</div>'
+                f'<div><b class="no">2 · {"ÜRÜNDE AÇ" if tr else "OPEN IN THE PRODUCT"}</b>{ac}</div>'
+                f'<div><b class="no">3 · {"SONUÇ DOSYASI" if tr else "RESULT FILE"}</b>{cikti}</div></div>')
+    def dosya(yol, ad, not_=""):
+        return f'<a href="{yol}" download>{ad}</a>' + (f"<small>{not_}</small>" if not_ else "")
+    def sayilar(liste):
+        return '<div class="d-sayilar">' + "".join(f"<div><b>{d}</b><span>{e}</span></div>" for d, e in liste) + "</div>"
+
+    blotter_girdi = ("fx-blotter-ornek", "fx-blotter-sample") if tr else ("fx-blotter-sample", "fx-blotter-ornek")
+    blotter_sonuc = "fx-blotter-ornek-sonuc" if tr else "fx-blotter-sample-result"
+    analiz_sonuc = "trade-analytics-ornek-sonuc" if tr else "trade-analytics-sample-result"
+    def toc(govde):
+        return "".join(f'<a href="#{i}">{re.sub(r"<span.*?</span>", "", n).strip()}</a>' for i, n in re.findall(r'<section class="d-urun" id="([^"]+)"><h2>(.*?)</h2>', govde))
+    if tr:
+        govde = f"""<div class="p-belge-hero"><h1>Demolar</h1></div>
+<p class="giris">Her ürün, örnek bir girdi dosyası ve ürettiği sonuçla. Sonucu ürünün içinde tek tıkla aç ya da girdi dosyasını indirip kendin bırak ve sonuç dosyasıyla karşılaştır.</p>
+<div class="kutu">Bütün örnek veriler sentetiktir: gerçek bir hesap, masa ya da fiyat değildir. Aşağıdaki rakamlar sayfaların kullandığı motorla hesaplandı ve sonuç dosyalarındakiyle aynıdır. Dosyalar tarayıcında okunur, hiçbir yere yüklenmez.</div>
+
+<section class="d-urun" id="trade-analytics"><h2>Trade Analytics {durum_et("beta", dil)}</h2>
+<p>Bir işlem kaydının nerede kazandırıp kaybettirdiğini gösterir. Örnek: Kalibre şablonunda {say(a["adet"])} kapanmış işlemli sentetik bir hesap.</p>
+{adimlar(dosya("/lab/sablon/kalibre-trade-log-example.xlsx", "kalibre-trade-log-example.xlsx", "Excel, işlem kaydı") + dosya("/lab/sablon/kalibre-trade-log-example.csv", "CSV sürümü"),
+         f'<a class="dugme kucuk" href="/lab/analiz?{q}dosya=sablon/kalibre-trade-log-example.xlsx">Sonucu aç</a><small>Aynı dosya Trade Analytics&#39;te açılır.</small>',
+         dosya(f"/lab/ornek/{analiz_sonuc}.xlsx", f"{analiz_sonuc}.xlsx", "Özet, kaybettiren ve kazandıran dilimler, 8 kırılım, günlük prop sınırları"))}
+{sayilar([(say(a["adet"]), "kapanmış işlem"), (isaret(a["netUsd"], 2) + " USD", "net kâr/zarar"), (yuzde(a["kazanmaYuzde"]), "kazanma oranı"), (say(a["karFaktoru"], 2), "kâr faktörü")])}
+<p>Prop sınırları ({a["propKural"]} ön ayarı): {say(a["gun"])} günün {say(a["propIhlalGun"])} gününde sınır aşıldı. Kendi dosyan için: MT5 geçmiş raporu (HTML ya da XLSX), CSV ya da Excel kaydı. <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Boş şablon</a> · <a href="/tr/mt5-analytics">Ürün sayfası</a></p>
+</section>
+
+<section class="d-urun" id="fx-blotter"><h2>FX Blotter Analytics {durum_et("beta", dil)}</h2>
+<p>Masanın FX blotter'ını dışa aktarıldığı haliyle okur. Örnek: sentetik bir banka FX masasının bir haftalık Excel dökümü; rapor başlığı satırları, toplam satırı, bir opsiyon ve düzeltilmiş bir işlem dahil.</p>
+{adimlar(dosya(f"/lab/ornek/{blotter_girdi[0]}.xlsx", f"{blotter_girdi[0]}.xlsx", "Excel, Türkçe başlık ve sayı biçimi") + dosya(f"/lab/ornek/{blotter_girdi[0]}.csv", "CSV sürümü") + dosya(f"/lab/ornek/{blotter_girdi[1]}.xlsx", "İngilizce başlıklı sürüm"),
+         f'<a class="dugme kucuk" href="/lab/blotter?{q}dosya=ornek/{blotter_girdi[0]}.xlsx">Sonucu aç</a><small>Kur, faiz ve limit tablolarına sentetik değerler girilir.</small>',
+         dosya(f"/lab/ornek/{blotter_sonuc}.xlsx", f"{blotter_sonuc}.xlsx", "Özet, parite, portföy, trader ve kalem türüne göre K/Z, pozisyon, valör merdiveni, limitler, mutabakat, dışlanan satırlar"))}
+{sayilar([(say(b["bacak"]), "bacak aktarıldı"), (isaret(b["toplamUsd"]) + " USD", "toplam K/Z"), (isaret(b["fiyatUsd"]) + " USD", "fiyat (spot) K/Z"), (f'{b["gecen"]}/{b["kontrol"]}', "mutabakat kontrolü geçti")])}
+<p>Toplamın geri kalanı: puan ve swap {isaret(b["puanUsd"])} USD, taşıma {isaret(b["tasimaUsd"])} USD, açık pozisyon MTM {isaret(b["mtmUsd"])} USD. {say(b["dislanan"])} satır gerekçesiyle dışlandı: bir opsiyon ve düzeltilmiş işlemin eski satırı. <a href="/tr/treasury">Ürün sayfası</a></p>
+</section>
+
+<section class="d-urun" id="lab"><h2>Kalibre Lab {durum_et("beta", dil)}</h2>
+<p>Bir kuralı maliyetlerle backtest eder ve her sonuca bir kimlik (resultId) verir. Örnek: kütüphanedeki EMA trend şablonu (risk %1) ve {say(lab["mum"])} sentetik H1 mumu. Tarihler (2030) kurgusaldır.</p>
+{adimlar(dosya("/lab/ornek/kalibre-lab-sample-strategy.json", "kalibre-lab-sample-strategy.json", "Kural dosyası") + dosya("/lab/ornek/kalibre-lab-sample-prices.csv", "kalibre-lab-sample-prices.csv", "Fiyat serisi"),
+         f'<a class="dugme kucuk" href="/lab?{q}demo=1">Sonucu aç</a><small>Kural ve fiyat dosyası yüklenir, backtest çalışır.</small>',
+         dosya("/lab/ornek/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Özet ve işlem listesi") + dosya("/lab/ornek/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Çalıştırma paketi"))}
+{sayilar([(say(lab["islem"]), "işlem"), (say(lab["karFaktoru"], 2), "kâr faktörü"), (yuzde(lab["getiriYuzde"], 2), "getiri, maliyetsiz"), (yuzde(lab["maxDususYuzde"], 2), "azami düşüş")])}
+<p>Sonuç kimliği <code>{lab["resultId"][:12]}…</code>: aynı kural, veri ve ayarlar her zaman aynı kimliği verir. Örnek kâr etmiyor; olduğu gibi gösteriyoruz. Eğitim örneğidir, yatırım önerisi değildir.</p>
+</section>
+
+<section class="d-urun" id="rule-guard"><h2>Rule Guard {durum_et("test", dil)}</h2>
+<p>MT5 içinde çalışan bir eklenti olduğu için web demosu yok; demo hesaplarda test ediliyor. Aynı günlük ve toplam kayıp kurallarını örnek işlem kaydında görebilirsin: Trade Analytics sonucunda "Prop sınırları" bölümü. <a href="/lab/analiz?{q}dosya=sablon/kalibre-trade-log-example.xlsx">Örnekte aç</a> · <a href="/tr/rule-guard">Ürün sayfası</a></p>
+</section>
+
+<section class="d-urun" id="connections"><h2>Bağlantılar</h2>
+<p>Kalibre Bridge MT5 terminali gerektirir: <a href="/tr/setup">kurulum</a>. CSV ve Excel kayıtları için <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>şablon</a>. Alpaca ve Tradier kendi anahtarınla bağlanır: <a href="/lab/baglan?dil=tr">bağlantılar</a>.</p>
+</section>"""
+        sayfa("tr/demo/index.html", "Demolar: her ürün örnek girdi ve sonuç dosyasıyla", "Kalibre Markets ürünlerini sentetik örnek dosyalarla dene: Trade Analytics, FX Blotter Analytics ve Kalibre Lab. Girdiyi indir, sonucu tek tıkla aç, sonuç dosyasıyla karşılaştır.", "/tr/demo", govde, toc(govde), ek_stil=DEMO_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css">', dil="tr")
+    else:
+        govde = f"""<div class="p-belge-hero"><h1>Product demos</h1></div>
+<p class="giris">Every product with a sample input file and the result it produces. Open the result in the product with one click, or download the input, drop it in yourself and compare with the result file.</p>
+<div class="kutu">All sample data is synthetic: no real account, desk or price. The figures below are computed by the engine the pages use and match the result files. Files are read in your browser and are not uploaded.</div>
+
+<section class="d-urun" id="trade-analytics"><h2>Trade Analytics {durum_et("beta", dil)}</h2>
+<p>Shows where a trade log makes and loses money. Sample: a synthetic account with {say(a["adet"])} closed trades in the Kalibre template.</p>
+{adimlar(dosya("/lab/sablon/kalibre-trade-log-example.xlsx", "kalibre-trade-log-example.xlsx", "Excel trade log") + dosya("/lab/sablon/kalibre-trade-log-example.csv", "CSV version"),
+         '<a class="dugme kucuk" href="/lab/analiz?dosya=sablon/kalibre-trade-log-example.xlsx">Open the result</a><small>The same file opens in Trade Analytics.</small>',
+         dosya(f"/lab/ornek/{analiz_sonuc}.xlsx", f"{analiz_sonuc}.xlsx", "Summary, losing and winning segments, 8 breakdowns, daily prop limits"))}
+{sayilar([(say(a["adet"]), "closed trades"), (isaret(a["netUsd"], 2) + " USD", "net P&amp;L"), (yuzde(a["kazanmaYuzde"]), "win rate"), (say(a["karFaktoru"], 2), "profit factor")])}
+<p>Prop limits ({a["propKural"]} preset): a limit was breached on {say(a["propIhlalGun"])} of {say(a["gun"])} days. For your own file: an MT5 history report (HTML or XLSX), a CSV or an Excel log. <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Empty template</a> · <a href="/mt5-analytics">Product page</a></p>
+</section>
+
+<section class="d-urun" id="fx-blotter"><h2>FX Blotter Analytics {durum_et("beta", dil)}</h2>
+<p>Reads a desk's FX blotter as it is exported. Sample: one week of deals from a synthetic bank FX desk as an Excel export, with report title rows, a total row, an option and a corrected deal.</p>
+{adimlar(dosya(f"/lab/ornek/{blotter_girdi[0]}.xlsx", f"{blotter_girdi[0]}.xlsx", "Excel, English headers") + dosya(f"/lab/ornek/{blotter_girdi[0]}.csv", "CSV version") + dosya(f"/lab/ornek/{blotter_girdi[1]}.xlsx", "Turkish-format version"),
+         f'<a class="dugme kucuk" href="/lab/blotter?dosya=ornek/{blotter_girdi[0]}.xlsx">Open the result</a><small>Synthetic rates, overnight rates and limits are filled in.</small>',
+         dosya(f"/lab/ornek/{blotter_sonuc}.xlsx", f"{blotter_sonuc}.xlsx", "Summary, P&amp;L by pair, book, dealer and item type, positions, value-date ladder, limits, reconciliation, excluded rows"))}
+{sayilar([(say(b["bacak"]), "legs imported"), (isaret(b["toplamUsd"]) + " USD", "total P&amp;L"), (isaret(b["fiyatUsd"]) + " USD", "price (spot) P&amp;L"), (f'{b["gecen"]}/{b["kontrol"]}', "reconciliation checks passed")])}
+<p>The rest of the total: points and swap {isaret(b["puanUsd"])} USD, carry {isaret(b["tasimaUsd"])} USD, MTM of the open position {isaret(b["mtmUsd"])} USD. {say(b["dislanan"])} rows were excluded with a reason: an option and the earlier line of a corrected deal. <a href="/treasury">Product page</a></p>
+</section>
+
+<section class="d-urun" id="lab"><h2>Kalibre Lab {durum_et("beta", dil)}</h2>
+<p>Backtests a rule with costs and gives every result an ID (resultId). Sample: the EMA trend template from the library (1% risk) on {say(lab["mum"])} synthetic H1 candles. The dates (2030) are fictional.</p>
+{adimlar(dosya("/lab/ornek/kalibre-lab-sample-strategy.json", "kalibre-lab-sample-strategy.json", "Rule file") + dosya("/lab/ornek/kalibre-lab-sample-prices.csv", "kalibre-lab-sample-prices.csv", "Price series"),
+         '<a class="dugme kucuk" href="/lab?demo=1">Open the result</a><small>The rule and price file are loaded and the backtest runs.</small>',
+         dosya("/lab/ornek/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", "Summary and trade list") + dosya("/lab/ornek/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", "Run package"))}
+{sayilar([(say(lab["islem"]), "trades"), (say(lab["karFaktoru"], 2), "profit factor"), (yuzde(lab["getiriYuzde"], 2), "return, gross"), (yuzde(lab["maxDususYuzde"], 2), "max drawdown")])}
+<p>Result ID <code>{lab["resultId"][:12]}…</code>: the same rule, data and settings always give the same ID. The sample loses money; we show it as it is. It is an educational sample, not investment advice.</p>
+</section>
+
+<section class="d-urun" id="rule-guard"><h2>Rule Guard {durum_et("test", dil)}</h2>
+<p>Rule Guard is an add-on that runs inside MT5, so there is no web demo; it is being tested on demo accounts. You can see the same daily and total loss rules on the sample trade log: the "Prop limits" section of the Trade Analytics result. <a href="/lab/analiz?dosya=sablon/kalibre-trade-log-example.xlsx">Open in the sample</a> · <a href="/rule-guard">Product page</a></p>
+</section>
+
+<section class="d-urun" id="connections"><h2>Connections</h2>
+<p>Kalibre Bridge needs an MT5 terminal: <a href="/setup">setup</a>. For CSV and Excel logs, use the <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>template</a>. Alpaca and Tradier connect with your own keys: <a href="/lab/baglan">connections</a>.</p>
+</section>"""
+        sayfa("demo/index.html", "Product demos: every product with sample input and result files", "Try Kalibre Markets products with synthetic sample files: Trade Analytics, FX Blotter Analytics and Kalibre Lab. Download the input, open the result in one click and compare with the result file.", "/demo", govde, toc(govde), ek_stil=DEMO_STIL, ek_betik='<link rel="stylesheet" href="/static/ana/pitch.css">', dil="en")
+
 # icindekiler sayfa-uret.py'de "kurulum" işaretinden sonra tanımlı olabilir; yoksa basit sürüm.
 if "icindekiler" not in globals():
     def icindekiler(govde):
@@ -529,3 +656,4 @@ for d in ("en", "tr"):
     ana_yaz(d)
     hazine(d)
     sirket(d)
+    demo(d)

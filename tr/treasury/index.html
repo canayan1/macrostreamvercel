@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>FX Blotter Analytics: hazine ve dealing masaları için (erken sürüm)</title>
-<meta name="description" content="Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Erken sürüm örnek blotter ile denenebilir; demo isteyin.">
+<title>FX Blotter Analytics: hazine ve dealing masaları için (beta)</title>
+<meta name="description" content="Masanın kendi FX blotter'ını olduğu gibi okur: FIFO ile gerçekleşen kâr/zarar, fiyat ve swap puanı ayrı, taşıma, MTM, valör merdiveni ve müşteri marjı. Örnek Excel blotter ile dene ya da demo iste.">
 <link rel="canonical" href="https://kalibremarkets.com/tr/treasury">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury">
-<meta property="og:title" content="FX Blotter Analytics: hazine ve dealing masaları için (erken sürüm)">
-<meta property="og:description" content="Masanın kendi FX blotter'ını olduğu gibi okuyan, FIFO ile gerçekleşen kâr/zarar, valör merdiveni ve marj analizi veren araç. Erken sürüm örnek blotter ile denenebilir; demo isteyin.">
+<meta property="og:title" content="FX Blotter Analytics: hazine ve dealing masaları için (beta)">
+<meta property="og:description" content="Masanın kendi FX blotter'ını olduğu gibi okur: FIFO ile gerçekleşen kâr/zarar, fiyat ve swap puanı ayrı, taşıma, MTM, valör merdiveni ve müşteri marjı. Örnek Excel blotter ile dene ya da demo iste.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -53,17 +53,17 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
     <a class="marka" href="/tr"><b>Kalibre</b><span>Markets</span></a>
     <nav class="ana-menu" id="ana-menu" aria-label="Ana menü">
       <details class="mgrup"><summary>Ürünler</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-gelis">Geliştiriliyor</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?dil=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/baglan?dil=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analiz</p><a class="mitem" href="/tr/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>İşlemlerinin nerede kazandırıp kaybettirdiğini gör.</small></a><a class="mitem" href="/tr/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.</small></a></div><div class="mkol"><p class="mbas">Koru</p><a class="mitem" href="/tr/rule-guard"><b>Rule Guard<span class="durum durum-test">Testte</span></b><small>Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.</small></a></div><div class="mkol"><p class="mbas">Araştır</p><a class="mitem" href="/lab?dil=tr"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Kural kur, backtest et, ayarları aşırı uyuma karşı sına.</small></a><a class="mitem" href="/tr/methodology"><b>Metodoloji</b><small>Motorun nasıl doğrulandığı.</small></a></div><div class="mkol"><p class="mbas">Bağla</p><a class="mitem" href="/tr/setup"><b>MT5 için Kalibre Bridge<span class="durum durum-beta">Beta</span></b><small>MetaTrader 5'ten şifreli, salt okunur bağlantı.</small></a><a class="mitem" href="/tr/mt5-analytics#kendi-kaydin"><b>CSV ve Excel işlem kayıtları<span class="durum durum-beta">Beta</span></b><small>Her platformdan ya da tablodan işlem getir.</small></a><a class="mitem" href="/lab/baglan?dil=tr"><b>Alpaca ve Tradier<span class="durum durum-beta">Beta</span></b><small>ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.</small></a></div></div><p class="mega-alt">Hepsi yazılım. Tavsiye ve sinyal yok. Verin cihazında işlenir. <a href="/tr/security">Güvenlik mimarisi</a></p></div>
       </details>
       <details class="mgrup mgrup-dar"><summary>Çözümler</summary>
         <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/tr/rule-guard"><b>Prop trader'lar</b><small>Firmanın günlük ve toplam kayıp sınırları içinde kal.</small></a><a class="mitem" href="/tr/mt5-analytics"><b>Aktif MT5 trader'ları</b><small>Sana kaybettiren saatleri, sembolleri ve alışkanlıkları bul.</small></a><a class="mitem" href="/tr/treasury" aria-current="page"><b>Hazine ve dealing masaları</b><small>Masanın zaten tuttuğu FX blotter'ını analiz et.</small></a><a class="mitem" href="/tr/company#partners"><b>Aracı kurumlar ve prop firmaları</b><small>Çok hesaplı analiz. Bizimle konuşun.</small></a></div></div>
       </details>
-      <a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company">Şirket</a>
-      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/analytics?dil=tr&amp;ornek=1">Örnekle dene</a></div>
+      <a class="mduz" href="/tr/demo">Demolar</a><a class="mduz" href="/tr/security">Güvenlik</a><a class="mduz" href="/tr/pricing">Fiyat</a><a class="mduz" href="/tr/company">Şirket</a>
+      <div class="menu-eylem"><a class="dugme" href="/tr/mt5-analytics#pricing">Erken erişim</a><a class="dugme ikincil" href="/tr/demo">Demolar</a></div>
     </nav>
     <a class="dil" href="/treasury" hreflang="en" lang="en">EN</a>
     <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menü</button>
-    <a class="dugme ikincil kucuk baglan" href="/analytics?dil=tr&amp;ornek=1">Örnekle dene</a>
+    <a class="dugme ikincil kucuk baglan" href="/tr/demo">Demolar</a>
     <a class="dugme kucuk" href="/tr/mt5-analytics#pricing">Erken erişim</a>
   </div>
 </header>
@@ -72,16 +72,16 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
   <div class="kap belge-izgara">
     <article class="belge-govde">
 <div data-talep-sayfa="treasury">
-<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-gelis">Geliştiriliyor</span></h1></div>
+<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-beta">Beta</span></h1></div>
 <p class="giris">Masanın zaten tuttuğu FX blotter'ını analiz et. Dışa aktarımı olduğu gibi bırak. Kalibre sütunları tanır, deal'leri pozisyonlara eşler ve defterin nerede kazanıp kaybettiğini gösterir.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/lab/blotter?dil=tr&amp;ornek=1">Örnek blotter ile dene</a></div>
-<div class="kutu">Bu ürün geliştiriliyor. Aşağıdaki kapsam ilk sürüm için planlanandır. İlk sürümü sentetik ya da anonimleştirilmiş blotter'larla deneyecek az sayıda masa arıyoruz.</div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Demo iste</a><a class="dugme ikincil" href="/lab/blotter?dil=tr&amp;dosya=ornek/fx-blotter-ornek.xlsx">Örnek Excel blotter ile dene</a><a class="metin-bag" href="/tr/demo#fx-blotter">Örnek girdi ve sonuç dosyaları</a></div>
+<div class="kutu">İlk sürüm çalışıyor. Örnek Excel blotter'ı açıp sonucu görebilir, girdi ve sonuç dosyalarını demo sayfasından indirebilirsin. Kendi blotter'larıyla deneyecek az sayıda masa arıyoruz. Fırsat maliyeti henüz gösterilmiyor; tanımı masalarla netleşince eklenecek.</div>
 
 <h2 id="reads">Neyi okur</h2>
 <p>Hedef, dışa aktarımı yeniden biçimlendirmeden okumak:</p>
 <ul>
   <li>360T, FXall, Bloomberg FXGO ve Murex gibi sistemlerin CSV ve Excel dışa aktarımları</li>
-  <li>Elle tutulan Excel blotter'ları, Türkçe başlıklar dahil</li>
+  <li>Elle tutulan Excel blotter'ları: Türkçe, İngilizce, Almanca ve Fransızca başlıklar</li>
   <li>Spot, outright forward, swap bacakları ve NDF. Opsiyonlar tanınır ve dışarıda bırakılır.</li>
 </ul>
 <p class="p-baslik-ornek">İşlem Tarihi · Valör · Döviz Cinsi · Alış/Satış · Tutar · Kur · Karşı Taraf · Portföy</p>
@@ -97,7 +97,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 <ul>
   <li>Günün kâr/zararı: günün değerlemesi (MTM) artı gerçekleşen kâr/zarar. Gerçekleşen kâr/zarar valör tarihinde tanınır.</li>
   <li>Spot kâr/zararı ve swap puanı kâr/zararı ayrı satırlarda</li>
-  <li>Taşıma maliyeti gecelik swap olarak, fırsat maliyetiyle birlikte görünür</li>
+  <li>Taşıma maliyeti gecelik swap olarak</li>
   <li>Müşteri marjı, blotter'daki maliyet sütunundan</li>
   <li>Gün içi net açık pozisyon (NOP), para birimi bazında ve valör merdiveninde</li>
   <li>Tutarlar önce USD karşılığı, sonra yerel para birimi olarak</li>
@@ -106,7 +106,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 <p>Değerleme ve karşılık tutarlar için gün sonu ya da gün içi kur dosyasını siz sağlarsınız. Piyasa verisi lisansımız yok.</p>
 
 <h2 id="standard">Ölçüt</h2>
-<p>Bir hazine müdürünün güvendiği şey hızlı ve hiç yanılmayan bir tablodur. İlk sürümün kabul ölçütü budur: her toplam deal satırlarına kadar izlenebilir olacak ve elle hesaplanmış örneklerle sınanacak.</p>
+<p>Bir hazine müdürünün güvendiği şey hızlı ve hiç yanılmayan bir tablodur. İlk sürümün kabul ölçütü budur: her toplam deal satırlarına kadar izlenebilir, 12 elle hesaplanmış vaka birebir tutuyor ve her dosyada 7 kontrollü bir mutabakat paneli çalışıyor.</p>
 
 <h2 id="data">Veri nasıl işlenir</h2>
 <ul>

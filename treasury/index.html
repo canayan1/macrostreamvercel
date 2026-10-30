@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>FX Blotter Analytics for treasury and dealing desks (early version)</title>
-<meta name="description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. Early version: try it with a sample blotter or request a demo.">
+<title>FX Blotter Analytics for treasury and dealing desks (beta)</title>
+<meta name="description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, price and swap points apart, carry, MTM, a value-date ladder and client margin. Try it with a sample Excel blotter or request a demo.">
 <link rel="canonical" href="https://kalibremarkets.com/treasury">
 <link rel="alternate" hreflang="en" href="https://kalibremarkets.com/treasury">
 <link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/treasury">
 <link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/treasury">
-<meta property="og:title" content="FX Blotter Analytics for treasury and dealing desks (early version)">
-<meta property="og:description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, a value-date ladder and spread capture against your mid rates. Early version: try it with a sample blotter or request a demo.">
+<meta property="og:title" content="FX Blotter Analytics for treasury and dealing desks (beta)">
+<meta property="og:description" content="Reads your desk's own FX blotter as it is: realized P&L with FIFO, price and swap points apart, carry, MTM, a value-date ladder and client margin. Try it with a sample Excel blotter or request a demo.">
 <meta property="og:site_name" content="Kalibre Markets">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kalibremarkets.com/og-default.png">
@@ -53,17 +53,17 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
     <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
     <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
       <details class="mgrup"><summary>Products</summary>
-        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-gelis">In development</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/baglan"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury" aria-current="page"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/baglan"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
       </details>
       <details class="mgrup mgrup-dar"><summary>Solutions</summary>
         <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury" aria-current="page"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
       </details>
-      <a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
-      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/analytics?ornek=1">Try the sample</a></div>
+      <a class="mduz" href="/demo">Demos</a><a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
+      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/demo">Try the demos</a></div>
     </nav>
     <a class="dil" href="/tr/treasury" hreflang="tr" lang="tr">TR</a>
     <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
-    <a class="dugme ikincil kucuk baglan" href="/analytics?ornek=1">Try the sample</a>
+    <a class="dugme ikincil kucuk baglan" href="/demo">Try the demos</a>
     <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
   </div>
 </header>
@@ -72,16 +72,16 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
   <div class="kap belge-izgara">
     <article class="belge-govde">
 <div data-talep-sayfa="treasury">
-<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-gelis">In development</span></h1></div>
+<div class="p-belge-hero"><h1>FX Blotter Analytics <span class="durum durum-beta">Beta</span></h1></div>
 <p class="giris">Analyze the FX blotter your desk already keeps. Drop in the export as it is. Kalibre detects the columns, matches deals into positions and shows where the book made and lost money.</p>
-<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/lab/blotter?ornek=1">Try it with a sample blotter</a></div>
-<div class="kutu">This product is in development. The scope below is what we plan for the first version. We are looking for a small number of desks to try it on synthetic or anonymized blotters.</div>
+<div class="p-eylem"><a class="dugme" href="#demo" data-erken-erisim>Request a demo</a><a class="dugme ikincil" href="/lab/blotter?dosya=ornek/fx-blotter-sample.xlsx">Try it with a sample Excel blotter</a><a class="metin-bag" href="/demo#fx-blotter">Sample input and result files</a></div>
+<div class="kutu">The first version works. Open the sample Excel blotter to see the result, or download the input and result files from the demo page. We are looking for a small number of desks to try it on their own blotters. Opportunity cost is not shown yet; it will be added once its definition is agreed with desks.</div>
 
 <h2 id="reads">What it reads</h2>
 <p>The goal is to read the export without reformatting it:</p>
 <ul>
   <li>CSV and Excel exports from systems such as 360T, FXall, Bloomberg FXGO and Murex</li>
-  <li>Excel blotters kept by hand, including Turkish headers</li>
+  <li>Excel blotters kept by hand, with English, Turkish, German or French headers</li>
   <li>Spot, outright forwards, swap legs and NDFs. Options are detected and left out.</li>
 </ul>
 <p class="p-baslik-ornek">Trade Date · Value Date · Currency Pair · Buy/Sell · Notional · Rate · Counterparty · Book</p>
@@ -97,7 +97,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 <ul>
   <li>Daily P&amp;L: the day's mark-to-market plus realized P&amp;L. Realized P&amp;L is recognized on the value date.</li>
   <li>Spot P&amp;L and swap-points P&amp;L on separate lines</li>
-  <li>Carry cost shown as overnight swap, with the opportunity cost next to it</li>
+  <li>Carry cost shown as overnight swap</li>
   <li>Client margin from the blotter's cost column</li>
   <li>Intraday net open position (NOP) by currency and on a value-date ladder</li>
   <li>Amounts in USD equivalent first, then in local currency</li>
@@ -106,7 +106,7 @@ dialog#erken-erisim .kapat-satir { display: flex; gap: 10px; flex-wrap: wrap; ju
 <p>For marking and currency equivalents you supply an end-of-day or intraday rates file. We have no market data licence.</p>
 
 <h2 id="standard">The standard</h2>
-<p>What a head of treasury trusts is a fast table that is never wrong. That is the acceptance bar for the first version: every total traces back to deal rows and is tested against hand-computed cases.</p>
+<p>What a head of treasury trusts is a fast table that is never wrong. That is the acceptance bar for the first version: every total traces back to deal rows, 12 hand-computed cases match exactly, and a reconciliation panel with 7 checks runs on every file.</p>
 
 <h2 id="data">How data is handled</h2>
 <ul>

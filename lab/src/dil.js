@@ -33,6 +33,7 @@ export let yerel = dil === 'en' ? 'en-US' : 'tr-TR';
 if (globalThis.document?.documentElement) globalThis.document.documentElement.lang = dil;
 // Logo site ana sayfasına gider: İngilizce kök "/", Türkçe "/tr".
 if (dil === 'tr') for (const a of globalThis.document?.querySelectorAll?.('a.logo[href="/"]') ?? []) a.setAttribute('href', '/tr');
+if (dil === 'tr') for (const a of globalThis.document?.querySelectorAll?.('a[href="/demo"]') ?? []) a.setAttribute('href', '/tr/demo');
 
 // Testler için: dili değiştirir (canlı bağlama: içe aktaranlar yeni değeri görür).
 export function dilAyarla(d) {

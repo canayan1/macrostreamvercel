@@ -9,8 +9,9 @@ import { SOZLUK, ZORUNLU_ALANLAR } from './tespit.js';
 import { blotterAnaliz, grupla, BOYUTLAR, KOVALAR, limitleriCoz, FIRSAT_MALIYETI_ONAYLI } from './analiz.js';
 import { mutabakat } from './mutabakat.js';
 import { kurTablosuCoz, tasimaGirdiCoz } from './kur.js';
-import { ornekBlotter, ORNEK_KURLAR, ORNEK_FAIZ } from './ornek.js';
+import { ornekBlotter, ORNEK_KURLAR, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
 import { rastgeleTuz } from './model.js';
+import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
@@ -53,16 +54,32 @@ function sentetikAyarla(acik) {
   $('#ust-sentetik').hidden = !acik;
 }
 
-function ornekYukle() {
-  const o = ornekBlotter();
+// satirlarDis: yayımlanmış örnek dosyadan okunan satırlar (yoksa üretici, sayfa diline göre TR ya da EN başlıklı).
+function ornekYukle(satirlarDis = null, kaynakAdi = null) {
+  const o = ornekBlotter(undefined, { dil: dil === 'en' ? 'en' : 'tr' });
   sentetikAyarla(true);
   $('#saat-dilimi').value = String(o.saatDilimi);
   $('#kur-tablo').value = ORNEK_KURLAR;
-  $('#tasima-tablo').value = Object.entries(ORNEK_FAIZ).map(([d, r]) => `${d} ${r}`).join('\n');
-  $('#limit-tablo').value = 'NOP USD 25000000\nGECE 40000000\nGUNICI trader Trader 1 15000000\nSTOP masa 50000\nVALOR USD ≤ 1 ay 10000000';
+  $('#tasima-tablo').value = ORNEK_FAIZ_METNI;
+  $('#limit-tablo').value = dil === 'en' ? ORNEK_LIMITLER_EN : ORNEK_LIMITLER;
   $('#yerel-doviz').value = 'TRY';
   $('#analiz-gunu').value = o.tarih;
-  yeniSatirlar(o.satirlar, ceviri('Sentetik örnek blotter'), { tarih: o.tarih });
+  yeniSatirlar(satirlarDis ?? o.satirlar, kaynakAdi ?? ceviri('Sentetik örnek blotter'), { tarih: o.tarih });
+}
+
+// ?dosya=ornek/…: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
+async function ornekDosyaAc(yol) {
+  if (!ORNEK_DOSYALAR.includes(yol)) return false;
+  durum(ceviri('Okunuyor…'));
+  try {
+    const y = await fetch(yol);
+    if (!y.ok) throw new Error(String(y.status));
+    const r = await dosyadanSatirlar(yol, new Uint8Array(await y.arrayBuffer()));
+    ornekYukle(r.satirlar, `${yol.split('/').pop()}${r.sayfa ? ' · ' + r.sayfa : ''} · ${r.kodlama}`);
+  } catch {
+    durum(ceviri('Dosya okunamadı. XLSX ya da CSV olarak kaydedip yeniden dene.'), true);
+  }
+  return true;
 }
 
 function yeniSatirlar(s, kaynakAdi, { tarih } = {}) {
@@ -217,8 +234,6 @@ function kontrolDetay(x) {
 }
 
 // ---------------------------------------------------------------- K/Z tablosu ve tek tık ayrıntı
-const TUR_AD = { gerceklesen: 'Gerçekleşen', swap: 'Swap (roll)', ndf: 'NDF uzlaşma', mtm: 'MTM', tasima: 'Taşıma' };
-const DEGER_AD = { musteri: 'Müşteri', interbank: 'İnterbank', 'grup-ici': 'Grup içi', bilinmiyor: 'Bilinmiyor', spot: 'Spot', forward: 'Vadeli', swap: 'Swap', ndf: 'NDF', ...TUR_AD };
 const degerAd = v => ceviri(DEGER_AD[v] ?? v);
 let sonGruplar = [];
 function kzGoster() {
@@ -253,8 +268,6 @@ function detayGoster(baslik, idler) {
 function detayKapat() { $('#detay-kart').hidden = true; detayAnahtar = null; }
 
 // ---------------------------------------------------------------- pozisyon ve limitler
-const LIMIT_AD = { 'nop-doviz': 'NOP {d}', gece: 'Gece pozisyonu', gunici: 'Gün içi tepe: {a}', 'stop-loss': 'Günlük zarar: {a}', 'valor-araligi': 'Valör aralığı {d} {k}' };
-const LIMIT_DURUM = { asildi: 'Aşıldı', yakin: 'Yakın', icinde: 'İçinde', hesaplanamadi: 'Hesaplanamadı' };
 function pozisyonGoster() {
   const p = analiz.pozisyon;
   $('#pozisyon-ozet').textContent = ceviri('Uzun {u} USD · kısa {k} USD · kısa yol {s} USD', { u: sayi(p.uzun), k: sayi(p.kisa), s: sayi(p.kisaYol) });
@@ -286,13 +299,6 @@ function marjGoster() {
   const kaynak = k => ceviri(k.tur === 'maliyet' ? 'maliyet sütunu' : k.tur === 'yuzde' ? 'varsayılan yüzde' : 'back-to-back eşleşme');
   $('#marj-tablo').innerHTML = m.kalem.length ? `<thead><tr>${['Satır', 'Parite', 'Yön', 'Tutar (base)', 'Kur', 'Kaynak', 'bps', 'Marj', 'USD karşılığı'].map((h, i) => `<th${[0, 3, 4, 6, 7, 8].includes(i) ? ' class="sayi"' : ''}>${kacis(ceviri(h))}</th>`).join('')}</tr></thead><tbody>${m.kalem.slice(0, 500).map(k => `<tr class="b-tik" tabindex="0" data-idler="${kacis(k.bacakIdler.join(','))}" data-baslik="${kacis(ceviri('Marj · satır {s}', { s: k.bacak.satirNo }))}"><td class="sayi">${k.bacak.satirNo}</td><td>${kacis(k.bacak.parite)}</td><td>${kacis(ceviri(k.bacak.yon === 'al' ? 'Alış' : 'Satış'))}</td><td class="sayi">${isaretli(k.bacak.baseTutar)}</td><td class="sayi">${kurMetni(k.bacak.kur)}</td><td>${kacis(kaynak(k))}</td><td class="sayi">${sayi(k.bps, 2)}</td><td class="sayi ${kacis(sinif(k.kote_marj))}">${isaretli(k.kote_marj)} ${kacis(k.bacak.kote)}</td><td class="sayi">${usd(k.usd_marj)}</td></tr>`).join('')}</tbody>` : `<tbody><tr><td class="dipnot">${kacis(ceviri('Maliyet sütunu, müşteri işaretli satır ya da back-to-back eşleşme bulunamadı.'))}</td></tr></tbody>`;
 }
-const GEREKCE_AD = {
-  opsiyon: 'Opsiyon (desteklenmiyor)', iptal: 'İptal', reddedildi: 'Reddedildi', 'eski-surum': 'Eski sürüm (aynı işlem no daha aşağıda)', onaysiz: 'Onaysız / beklemede',
-  'toplam-satiri': 'Toplam satırı', 'baslik-oncesi': 'Rapor başlığı satırı', 'tutar-kur-tutarsiz': 'Tutar ve kur tutarsız', 'valor-islem-tarihinden-once': 'Valör işlem tarihinden önce',
-  'bilinmeyen-doviz': 'Bilinmeyen döviz', 'tek-bacakli-swap': "Swap'in diğer bacağı yok", 'ndf-fixing-eksik': 'NDF fixing tarihi yok', 'bos-zorunlu-alan': 'Zorunlu alan boş',
-  'tarih-okunamadi': 'Tarih okunamadı', 'tutar-okunamadi': 'Tutar okunamadı', 'yon-okunamadi': 'Yön okunamadı',
-};
-const UYARI_AD = { 'tekrar-eden-islem-no': 'Aynı işlem no tekrar ediyor; son satır geçerli sayıldı', 'swap-baglanti-onerildi': 'Swap bacakları işlem no sonekinden bağlandı', 'dengesiz-swap': 'Swap bacak tutarları farklı; roll sayılmadı', 'valor-tenordan': 'Valör vade kodundan hesaplandı' };
 function atlananGoster() {
   const a = aktarim.atlanan.filter(x => x.gerekce !== 'baslik-oncesi');
   const u = aktarim.uyarilar;
@@ -323,7 +329,8 @@ function baslat() {
   birak.addEventListener('dragover', e => { e.preventDefault(); birak.classList.add('uzerinde'); });
   birak.addEventListener('dragleave', () => birak.classList.remove('uzerinde'));
   birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyaOku(e.dataTransfer?.files?.[0]); });
-  $('#ornek-yukle').addEventListener('click', ornekYukle);
+  $('#ornek-yukle').addEventListener('click', () => ornekYukle());
+  if (dil === 'en') $('#limit-tablo').placeholder = ORNEK_LIMITLER_EN;
   $('#ornek-kapat').addEventListener('click', () => { sentetikAyarla(false); $('#dosya').click(); });
   for (const id of ['#bakis', '#saat-dilimi']) $(id).addEventListener('change', () => { depoYaz(DEPO.saat, $('#saat-dilimi').value); if (satirlar) { aktar(); hesapla(); } });
   $('#eslesme-onay').addEventListener('click', hesapla);
@@ -335,6 +342,8 @@ function baslat() {
     $(id).addEventListener('click', tiklaAc);
     $(id).addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tiklaAc(e); } });
   }
-  if (new URLSearchParams(location.search).get('ornek') === '1') ornekYukle();
+  const q = new URLSearchParams(location.search);
+  if (q.get('dosya')) ornekDosyaAc(q.get('dosya'));
+  else if (q.get('ornek') === '1') ornekYukle();
 }
 baslat();

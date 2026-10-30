@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Product demos: every product with sample input and result files</title>
+<meta name="description" content="Try Kalibre Markets products with synthetic sample files: Trade Analytics, FX Blotter Analytics and Kalibre Lab. Download the input, open the result in one click and compare with the result file.">
+<link rel="canonical" href="https://kalibremarkets.com/demo">
+<link rel="alternate" hreflang="en" href="https://kalibremarkets.com/demo">
+<link rel="alternate" hreflang="tr" href="https://kalibremarkets.com/tr/demo">
+<link rel="alternate" hreflang="x-default" href="https://kalibremarkets.com/demo">
+<meta property="og:title" content="Product demos: every product with sample input and result files">
+<meta property="og:description" content="Try Kalibre Markets products with synthetic sample files: Trade Analytics, FX Blotter Analytics and Kalibre Lab. Download the input, open the result in one click and compare with the result file.">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+<style>
+.d-urun { border: 1px solid var(--cizgi-2); border-radius: 6px; padding: 22px 24px; margin: 22px 0 30px; background: var(--zemin-2); }
+.d-urun h2 { margin-top: 0; }
+.d-adimlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+.d-adimlar > div { border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 14px 16px; }
+.d-adimlar b.no { display: block; font: 500 12px var(--mono, monospace); letter-spacing: .06em; color: var(--soluk, #8a97a8); margin-bottom: 6px; }
+.d-adimlar a { display: block; margin-top: 6px; overflow-wrap: anywhere; }
+.d-adimlar small { display: block; color: var(--soluk, #8a97a8); }
+.d-sayilar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 14px 0 6px; }
+.d-sayilar div { border-top: 1px solid var(--cizgi-2); padding-top: 8px; }
+.d-sayilar b { display: block; font: 600 20px var(--serif); }
+.d-sayilar span { font-size: 13px; color: var(--soluk, #8a97a8); }
+@media (max-width: 760px) { .d-adimlar, .d-sayilar { grid-template-columns: 1fr 1fr; } .d-adimlar { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js')</script>
+<header class="ust">
+  <div class="kap">
+    <a class="marka" href="/"><b>Kalibre</b><span>Markets</span></a>
+    <nav class="ana-menu" id="ana-menu" aria-label="Main menu">
+      <details class="mgrup"><summary>Products</summary>
+        <div class="mega"><div class="mega-izgara"><div class="mkol"><p class="mbas">Analyze</p><a class="mitem" href="/mt5-analytics"><b>Trade Analytics<span class="durum durum-beta">Beta</span></b><small>See where your trading makes and loses money.</small></a><a class="mitem" href="/treasury"><b>FX Blotter Analytics<span class="durum durum-beta">Beta</span></b><small>Realized P&amp;L and positions from your desk's own blotter.</small></a></div><div class="mkol"><p class="mbas">Protect</p><a class="mitem" href="/rule-guard"><b>Rule Guard<span class="durum durum-test">In testing</span></b><small>Prop firm loss limits, checked on every tick in MT5.</small></a></div><div class="mkol"><p class="mbas">Research</p><a class="mitem" href="/lab"><b>Kalibre Lab<span class="durum durum-beta">Beta</span></b><small>Build rules, backtest them and check settings for overfitting.</small></a><a class="mitem" href="/methodology"><b>Methodology</b><small>How the engine is validated.</small></a></div><div class="mkol"><p class="mbas">Connect</p><a class="mitem" href="/setup"><b>Kalibre Bridge for MT5<span class="durum durum-beta">Beta</span></b><small>Encrypted, read-only link from MetaTrader 5.</small></a><a class="mitem" href="/mt5-analytics#import-your-log"><b>CSV and Excel trade logs<span class="durum durum-beta">Beta</span></b><small>Bring trades from any platform or spreadsheet.</small></a><a class="mitem" href="/lab/baglan"><b>Alpaca and Tradier<span class="durum durum-beta">Beta</span></b><small>US brokerage accounts, read-only, with your own keys.</small></a></div></div><p class="mega-alt">All products are software. No advice, no signals. Your data is processed on your device. <a href="/security">Security architecture</a></p></div>
+      </details>
+      <details class="mgrup mgrup-dar"><summary>Solutions</summary>
+        <div class="mega mega-dar"><div class="mega-liste"><a class="mitem" href="/rule-guard"><b>Prop traders</b><small>Stay inside the firm's daily and total loss limits.</small></a><a class="mitem" href="/mt5-analytics"><b>Active MT5 traders</b><small>Find the hours, symbols and habits that cost you.</small></a><a class="mitem" href="/treasury"><b>Treasury and dealing desks</b><small>Analyze the FX blotter your desk already keeps.</small></a><a class="mitem" href="/company#partners"><b>Brokers and prop firms</b><small>Analytics across many accounts. Talk to us.</small></a></div></div>
+      </details>
+      <a class="mduz" href="/demo" aria-current="page">Demos</a><a class="mduz" href="/security">Security</a><a class="mduz" href="/pricing">Pricing</a><a class="mduz" href="/company">Company</a>
+      <div class="menu-eylem"><a class="dugme" href="/mt5-analytics#pricing">Get early access</a><a class="dugme ikincil" href="/demo">Try the demos</a></div>
+    </nav>
+    <a class="dil" href="/tr/demo" hreflang="tr" lang="tr">TR</a>
+    <button class="menu-ac" type="button" aria-controls="ana-menu" aria-expanded="false">Menu</button>
+    <a class="dugme ikincil kucuk baglan" href="/demo">Try the demos</a>
+    <a class="dugme kucuk" href="/mt5-analytics#pricing">Get early access</a>
+  </div>
+</header>
+
+<main class="belge">
+  <div class="kap belge-izgara">
+    <article class="belge-govde">
+<div class="p-belge-hero"><h1>Product demos</h1></div>
+<p class="giris">Every product with a sample input file and the result it produces. Open the result in the product with one click, or download the input, drop it in yourself and compare with the result file.</p>
+<div class="kutu">All sample data is synthetic: no real account, desk or price. The figures below are computed by the engine the pages use and match the result files. Files are read in your browser and are not uploaded.</div>
+
+<section class="d-urun" id="trade-analytics"><h2>Trade Analytics <span class="durum durum-beta">Beta</span></h2>
+<p>Shows where a trade log makes and loses money. Sample: a synthetic account with 343 closed trades in the Kalibre template.</p>
+<div class="d-adimlar"><div><b class="no">1 · INPUT</b><a href="/lab/sablon/kalibre-trade-log-example.xlsx" download>kalibre-trade-log-example.xlsx</a><small>Excel trade log</small><a href="/lab/sablon/kalibre-trade-log-example.csv" download>CSV version</a></div><div><b class="no">2 · OPEN IN THE PRODUCT</b><a class="dugme kucuk" href="/lab/analiz?dosya=sablon/kalibre-trade-log-example.xlsx">Open the result</a><small>The same file opens in Trade Analytics.</small></div><div><b class="no">3 · RESULT FILE</b><a href="/lab/ornek/trade-analytics-sample-result.xlsx" download>trade-analytics-sample-result.xlsx</a><small>Summary, losing and winning segments, 8 breakdowns, daily prop limits</small></div></div>
+<div class="d-sayilar"><div><b>343</b><span>closed trades</span></div><div><b>+15,839.03 USD</b><span>net P&amp;L</span></div><div><b>42.0%</b><span>win rate</span></div><div><b>1.10</b><span>profit factor</span></div></div>
+<p>Prop limits (FTMO 2-Step preset): a limit was breached on 0 of 132 days. For your own file: an MT5 history report (HTML or XLSX), a CSV or an Excel log. <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Empty template</a> · <a href="/mt5-analytics">Product page</a></p>
+</section>
+
+<section class="d-urun" id="fx-blotter"><h2>FX Blotter Analytics <span class="durum durum-beta">Beta</span></h2>
+<p>Reads a desk's FX blotter as it is exported. Sample: one week of deals from a synthetic bank FX desk as an Excel export, with report title rows, a total row, an option and a corrected deal.</p>
+<div class="d-adimlar"><div><b class="no">1 · INPUT</b><a href="/lab/ornek/fx-blotter-sample.xlsx" download>fx-blotter-sample.xlsx</a><small>Excel, English headers</small><a href="/lab/ornek/fx-blotter-sample.csv" download>CSV version</a><a href="/lab/ornek/fx-blotter-ornek.xlsx" download>Turkish-format version</a></div><div><b class="no">2 · OPEN IN THE PRODUCT</b><a class="dugme kucuk" href="/lab/blotter?dosya=ornek/fx-blotter-sample.xlsx">Open the result</a><small>Synthetic rates, overnight rates and limits are filled in.</small></div><div><b class="no">3 · RESULT FILE</b><a href="/lab/ornek/fx-blotter-sample-result.xlsx" download>fx-blotter-sample-result.xlsx</a><small>Summary, P&amp;L by pair, book, dealer and item type, positions, value-date ladder, limits, reconciliation, excluded rows</small></div></div>
+<div class="d-sayilar"><div><b>224</b><span>legs imported</span></div><div><b>+99,400 USD</b><span>total P&amp;L</span></div><div><b>+83,489 USD</b><span>price (spot) P&amp;L</span></div><div><b>7/7</b><span>reconciliation checks passed</span></div></div>
+<p>The rest of the total: points and swap +5,803 USD, carry +8,242 USD, MTM of the open position +1,866 USD. 2 rows were excluded with a reason: an option and the earlier line of a corrected deal. <a href="/treasury">Product page</a></p>
+</section>
+
+<section class="d-urun" id="lab"><h2>Kalibre Lab <span class="durum durum-beta">Beta</span></h2>
+<p>Backtests a rule with costs and gives every result an ID (resultId). Sample: the EMA trend template from the library (1% risk) on 3,000 synthetic H1 candles. The dates (2030) are fictional.</p>
+<div class="d-adimlar"><div><b class="no">1 · INPUT</b><a href="/lab/ornek/kalibre-lab-sample-strategy.json" download>kalibre-lab-sample-strategy.json</a><small>Rule file</small><a href="/lab/ornek/kalibre-lab-sample-prices.csv" download>kalibre-lab-sample-prices.csv</a><small>Price series</small></div><div><b class="no">2 · OPEN IN THE PRODUCT</b><a class="dugme kucuk" href="/lab?demo=1">Open the result</a><small>The rule and price file are loaded and the backtest runs.</small></div><div><b class="no">3 · RESULT FILE</b><a href="/lab/ornek/kalibre-lab-sample-result.xlsx" download>kalibre-lab-sample-result.xlsx</a><small>Summary and trade list</small><a href="/lab/ornek/kalibre-lab-sample-result.json" download>kalibre-lab-sample-result.json</a><small>Run package</small></div></div>
+<div class="d-sayilar"><div><b>31</b><span>trades</span></div><div><b>0.95</b><span>profit factor</span></div><div><b>−0.81%</b><span>return, gross</span></div><div><b>8.15%</b><span>max drawdown</span></div></div>
+<p>Result ID <code>7d0ff99169fd…</code>: the same rule, data and settings always give the same ID. The sample loses money; we show it as it is. It is an educational sample, not investment advice.</p>
+</section>
+
+<section class="d-urun" id="rule-guard"><h2>Rule Guard <span class="durum durum-test">In testing</span></h2>
+<p>Rule Guard is an add-on that runs inside MT5, so there is no web demo; it is being tested on demo accounts. You can see the same daily and total loss rules on the sample trade log: the "Prop limits" section of the Trade Analytics result. <a href="/lab/analiz?dosya=sablon/kalibre-trade-log-example.xlsx">Open in the sample</a> · <a href="/rule-guard">Product page</a></p>
+</section>
+
+<section class="d-urun" id="connections"><h2>Connections</h2>
+<p>Kalibre Bridge needs an MT5 terminal: <a href="/setup">setup</a>. For CSV and Excel logs, use the <a href="/lab/sablon/kalibre-trade-log-template.xlsx" download>template</a>. Alpaca and Tradier connect with your own keys: <a href="/lab/baglan">connections</a>.</p>
+</section>
+    </article>
+    <aside class="belge-kenar" aria-label="On this page"><a href="#trade-analytics">Trade Analytics</a><a href="#fx-blotter">FX Blotter Analytics</a><a href="#lab">Kalibre Lab</a><a href="#rule-guard">Rule Guard</a><a href="#connections">Connections</a></aside>
+  </div>
+</main>
+
+<footer class="alt">
+  <div class="kap">
+    <div>
+      <p><b style="font:600 18px var(--serif);color:var(--metin)">Kalibre Markets</b></p>
+      <p>Analytics for trading data. Products are in beta.</p>
+      <p><a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></p>
+    </div>
+    <div><h4>Products</h4><a href="/mt5-analytics">Trade Analytics</a><a href="/treasury">FX Blotter Analytics</a><a href="/rule-guard">Rule Guard</a><a href="/lab">Kalibre Lab</a><a href="/setup">Kalibre Bridge for MT5</a><a href="/mt5-analytics#import-your-log">CSV and Excel trade logs</a><a href="/lab/baglan">Alpaca and Tradier</a></div>
+    <div><h4>Solutions</h4><a href="/rule-guard">Prop traders</a><a href="/mt5-analytics">Active MT5 traders</a><a href="/treasury">Treasury and dealing desks</a><a href="/company#partners">Brokers and prop firms</a></div>
+    <div><h4>Resources</h4><a href="/security">Security</a><a href="/methodology">Methodology</a><a href="/setup">Setup</a><a href="/pricing">Pricing</a><a href="/egitim">Articles (Turkish)</a></div>
+    <div><h4>Kalibre Markets</h4><a href="/company">Company</a><a href="mailto:markets@kalibrefin.com">Contact</a><a href="/terms">Terms of service</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="/cookies">Cookies</a><a href="/risk-disclosure">Risk disclosure</a><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+    <p class="yasal">Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals. Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading. MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes. &copy; 2026 Kalibre Markets</p>
+  </div>
+</footer>
+<script src="/static/menu.js" defer></script>
+<link rel="stylesheet" href="/static/ana/pitch.css">
+</body>
+</html>

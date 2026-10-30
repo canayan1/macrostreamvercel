@@ -892,6 +892,23 @@ if (ISTENEN_SEMBOL) {
   provaCalistir();
   $('#prova-kart').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+// Ürün demosu (?demo=1): yayımlanan örnek kural ve örnek fiyat dosyası, kullanıcının içe aktaracağı gibi yüklenir.
+async function labDemoAc() {
+  try {
+    const [k, f] = await Promise.all(['ornek/kalibre-lab-sample-strategy.json', 'ornek/kalibre-lab-sample-prices.csv'].map(y => fetch(y).then(r => { if (!r.ok) throw new Error(String(r.status)); return r.text(); })));
+    s = stratejiyiTemizle(JSON.parse(k)).strateji;
+    s.gostergeler ??= {};
+    ornektenAd = null; ornekUyarisi();
+    formCiz(); panelCiz();
+    provaVeri = dosyaCoz(f, 'kalibre-lab-sample-prices.csv');
+    provaVeri.ad = `${ceviri('ÖRNEK (SENTETİK)')} · kalibre-lab-sample-prices.csv`;
+    $('#prova-kaynak').value = 'dosya';
+    provaKaynakGoster();
+    provaCalistir();
+    $('#prova-kart').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch { alert(ceviri('Örnek yüklenemedi.')); }
+}
+if (new URLSearchParams(location.search).get('demo') === '1') labDemoAc();
 provaKaynakGoster();
 window.addEventListener('resize', () => { clearTimeout(provaZamanlayici); provaZamanlayici = setTimeout(provaCalistir, 150); });
 

@@ -50,7 +50,7 @@ export const BLOTTER_EN = {
   'Gecelik faiz (yıllık %) ya da T/N puanı': 'Overnight rate (annual %) or T/N points',
   'Spot valörünü geçmiş açık pozisyonun gecelik taşıma maliyeti için. Döviz satırı faiz, parite satırı gecelik T/N puanıdır.': 'For the overnight carry of open positions past their spot value date. A currency line is an interest rate, a pair line is overnight T/N points.',
   'Limitler (isteğe bağlı, USD)': 'Limits (optional, USD)',
-  'Limitler senin tanımın. Satır türleri: NOP, GECE, GUNICI, STOP, VALOR.': 'Limits are your own definitions. Line types: NOP, GECE (overnight), GUNICI (intraday), STOP, VALOR (value-date bucket).',
+  'Limitler senin tanımın. Satır türleri: NOP, GECE, GUNICI, STOP, VALOR.': 'Limits are your own definitions. Line types: NOP, OVERNIGHT, INTRADAY (trader or book), STOP (desk, trader or book), VALUE (currency and value-date bucket).',
   'Özet': 'Summary',
   'Mutabakat': 'Reconciliation',
   'K/Z tablosu': 'P&amp;L table',
@@ -285,6 +285,8 @@ export const BLOTTER_EN = {
   'Kaynak': 'Source',
   'bps': 'bps',
   'Marj': 'Margin',
+  'Satır sayıları': 'Row counts',
+  'Alt toplamlar genel toplama eşit': 'Subtotals equal the grand total',
 };
 
 Object.assign(EN, Object.fromEntries(Object.entries(BLOTTER_EN).filter(([k]) => EN[k] === undefined)));
