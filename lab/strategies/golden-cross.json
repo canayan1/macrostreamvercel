@@ -1,0 +1,59 @@
+{
+  "kalibre": 3,
+  "name": "Golden Cross",
+  "description": "SMA50/SMA200 crossover. Few trades, late entries, big trends.",
+  "timeframe": "D1",
+  "direction": "long_only",
+  "indicators": {
+    "sma50": {
+      "type": "SMA",
+      "period": 50
+    },
+    "sma200": {
+      "type": "SMA",
+      "period": 200
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 20
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "sma50",
+          "op": "crosses_above",
+          "right": "sma200"
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 3
+    },
+    "trailing_stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 4
+    },
+    "condition": {
+      "long": {
+        "all": [
+          {
+            "left": "sma50",
+            "op": "<",
+            "right": "sma200"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 1,
+    "max_open_positions": 1
+  }
+}

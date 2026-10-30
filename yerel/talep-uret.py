@@ -187,7 +187,7 @@ def gorsel(ad, alt, alt_yazi, dil, ilk=False):
 
 def mt5_analytics(dil):
     tr = dil == "tr"
-    ornek = "/lab/analiz?ornek=1&dil=tr" if tr else "/lab/analiz?ornek=1"
+    ornek = "/lab/analytics?sample=1&lang=tr" if tr else "/lab/analytics?sample=1"
     if tr:
         bas = f'''
 <div data-talep-sayfa="mt5-analytics">
@@ -237,7 +237,7 @@ def mt5_analytics(dil):
   <li><b>İsteğe bağlı:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
   <li>Okunamayan her satır, satır numarası ve nedeniyle listelenir. Formüller çalıştırılmaz.</li>
 </ul>
-<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Şablonu indir (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Şablonu indir (CSV)</a></div>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/templates/kalibre-trade-log-template.xlsx" download>Şablonu indir (Excel)</a><a class="dugme ikincil" href="/lab/templates/kalibre-trade-log-template.csv" download>Şablonu indir (CSV)</a></div>
 '''
         maddeler = ["MT5 raporu, Excel/CSV ve Kalibre Bridge", "Dilimler, kırılımlar ve prop sınırları", "Kaydedilen görünümler", "Replay ve haftalık rapor (planlanıyor)"]
         sss = '''
@@ -303,7 +303,7 @@ def mt5_analytics(dil):
   <li><b>Optional:</b> commission, swap, stop_loss, take_profit, utc_offset, account_currency, ticket, row_type (deposit, withdrawal), strategy, tag, note.</li>
   <li>Every row that cannot be read is listed with its row number and the reason. Formulas are not run.</li>
 </ul>
-<div class="eylem-satir"><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.xlsx" download>Download template (Excel)</a><a class="dugme ikincil" href="/lab/sablon/kalibre-trade-log-template.csv" download>Download template (CSV)</a></div>
+<div class="eylem-satir"><a class="dugme ikincil" href="/lab/templates/kalibre-trade-log-template.xlsx" download>Download template (Excel)</a><a class="dugme ikincil" href="/lab/templates/kalibre-trade-log-template.csv" download>Download template (CSV)</a></div>
 '''
         maddeler = ["MT5 report, Excel/CSV and Kalibre Bridge", "Segments, breakdowns and prop limits", "Saved views", "Replay and weekly report (planned)"]
         sss = '''

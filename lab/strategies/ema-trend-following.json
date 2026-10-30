@@ -1,0 +1,88 @@
+{
+  "kalibre": 3,
+  "name": "EMA Trend Following",
+  "description": "EMA20/50 crossover with an ADX filter. The library starter template.",
+  "timeframe": "H1",
+  "direction": "both",
+  "indicators": {
+    "fast": {
+      "type": "EMA",
+      "period": 20
+    },
+    "slow": {
+      "type": "EMA",
+      "period": 50
+    },
+    "adx": {
+      "type": "ADX",
+      "period": 14
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "fast",
+          "op": "crosses_above",
+          "right": "slow"
+        },
+        {
+          "left": "adx.main",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "fast",
+          "op": "crosses_below",
+          "right": "slow"
+        },
+        {
+          "left": "adx.main",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 2
+    },
+    "target": {
+      "type": "r",
+      "value": 2
+    },
+    "trailing_stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 3
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 1,
+    "max_open_positions": 1,
+    "max_spread_points": 30,
+    "daily_max_loss_pct": 3
+  },
+  "filters": {
+    "hours": {
+      "start": 8,
+      "end": 20
+    },
+    "news": {
+      "minutes_before": 30,
+      "minutes_after": 30,
+      "impact": "high"
+    }
+  }
+}

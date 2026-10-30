@@ -182,7 +182,7 @@ export function tablodanHesap(tumSatirlar, eslesme = null, { kaynak = 'csv' } = 
     const sh = [];
     const tur = SATIR_TURU[norm(al(s, 'satirTuru') ?? '')];
     if (tur === undefined) { hatalar.push({ satir: no, alan: 'row_type', neden: 'bilinmeyen satır türü' }); return; }
-    if (/synthetic|sentetik/i.test(`${al(s, 'etiket') ?? ''} ${al(s, 'not') ?? ''}`)) sentetik++;
+    if (/synthetic|sentetik|example/i.test(`${al(s, 'etiket') ?? ''} ${al(s, 'not') ?? ''}`)) sentetik++;
     const pb = String(al(s, 'para') ?? '').trim().toUpperCase();
     if (/^[A-Z]{3}$/.test(pb)) para ??= pb;
     let ofset = dolu(al(s, 'ofset')) ? ofsetCoz(al(s, 'ofset')) : null;

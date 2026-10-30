@@ -1,0 +1,50 @@
+{
+  "kalibre": 3,
+  "name": "Defensive Long",
+  "description": "Long above the 200-day average, cash below it. Built to sidestep long declines.",
+  "timeframe": "D1",
+  "direction": "long_only",
+  "indicators": {
+    "sma200": {
+      "type": "SMA",
+      "period": 200
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 20
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_above",
+          "right": "sma200"
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 3
+    },
+    "condition": {
+      "long": {
+        "all": [
+          {
+            "left": "price.close",
+            "op": "<",
+            "right": "sma200"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 1,
+    "max_open_positions": 1
+  }
+}

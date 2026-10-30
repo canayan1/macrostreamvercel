@@ -1,6 +1,7 @@
 // FX Blotter Analizi sayfası (lab/blotter.html). Dosya ve hesaplar tarayıcıda kalır; ağ isteği yok.
 // Hesaplar saf modüllerde: blotter/{model,tespit,ice-aktar,kz,degerleme,kur,analiz,mutabakat,ornek}.js.
 
+import { urlParam, sampleFileParam } from '../url-params.js';
 import '../dil-blotter.js';
 import { t as ceviri, yerel, sayfayiCevir, dil } from '../dil.js';
 import { kacis } from '../guvenlik.js';
@@ -67,7 +68,7 @@ function ornekYukle(satirlarDis = null, kaynakAdi = null) {
   yeniSatirlar(satirlarDis ?? o.satirlar, kaynakAdi ?? ceviri('Örnek blotter'), { tarih: o.tarih });
 }
 
-// ?dosya=ornek/…: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
+// ?file=samples/…: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
 async function ornekDosyaAc(yol) {
   if (!ORNEK_DOSYALAR.includes(yol)) return false;
   durum(ceviri('Okunuyor…'));
@@ -342,8 +343,7 @@ function baslat() {
     $(id).addEventListener('click', tiklaAc);
     $(id).addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tiklaAc(e); } });
   }
-  const q = new URLSearchParams(location.search);
-  if (q.get('dosya')) ornekDosyaAc(q.get('dosya'));
-  else if (q.get('ornek') === '1') ornekYukle();
+  if (sampleFileParam()) ornekDosyaAc(sampleFileParam());
+  else if (urlParam('sample') === '1') ornekYukle();
 }
 baslat();

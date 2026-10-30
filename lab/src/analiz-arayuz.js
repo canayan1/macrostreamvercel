@@ -1,6 +1,7 @@
-// İşlem Analizi sayfası (lab/analiz.html). Dosya ve işlemler tarayıcıda kalır; sunucuya hiçbir
+// İşlem Analizi sayfası (lab/analytics.html). Dosya ve işlemler tarayıcıda kalır; sunucuya hiçbir
 // şey gönderilmez. Hesaplar saf modüllerde: analiz/{model,mt5-rapor,csv-ice,hesap,prop,ornek}.js.
 
+import { urlParam, sampleFileParam } from './url-params.js';
 import './dil-analiz.js';
 import { t as ceviri, yerel, sayfayiCevir, dil } from './dil.js';
 import { kacis } from './guvenlik.js';
@@ -53,8 +54,8 @@ async function dosyaOku(dosya) {
   sonucuIsle(s);
 }
 
-// ?dosya=: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
-const ORNEK_DOSYALAR = ['sablon/kalibre-trade-log-example.xlsx', 'sablon/kalibre-trade-log-example.csv'];
+// ?file=: yayımlanmış örnek dosyayı sunucudan alır ve bir kullanıcının bırakacağı gibi okur.
+const ORNEK_DOSYALAR = ['templates/kalibre-trade-log-example.xlsx', 'templates/kalibre-trade-log-example.csv'];
 async function ornekDosyaAc(yol) {
   try {
     const y = await fetch(yol);
@@ -91,7 +92,7 @@ function satirRaporu(r) {
   const kutu = $('#satir-rapor');
   if (!r || (!r.hatalar.length && !r.sentetik)) { kutu.hidden = true; kutu.innerHTML = ''; return; }
   const ilk = r.hatalar.slice(0, 50);
-  const uyari = r.sentetik ? `<p class="negatif">${kacis(ceviri('{n} satır SYNTHETIC olarak etiketli. Şablondaki örnek satırları silmeyi unutma.', { n: r.sentetik }))}</p>` : '';
+  const uyari = r.sentetik ? `<p class="negatif">${kacis(ceviri('{n} satır EXAMPLE olarak etiketli. Şablondaki örnek satırları silmeyi unutma.', { n: r.sentetik }))}</p>` : '';
   const liste = ilk.length ? `<p>${kacis(ceviri('Atlanan satırlar:'))}</p><ul>${ilk.map(h => `<li>${kacis(ceviri('Satır {no}', { no: h.satir }))}: <code>${kacis(h.alan)}</code> ${kacis(ceviri(h.neden))}</li>`).join('')}</ul>${r.hatalar.length > ilk.length ? `<p>${kacis(ceviri('ve {n} satır daha.', { n: r.hatalar.length - ilk.length }))}</p>` : ''}` : '';
   kutu.innerHTML = uyari + liste;
   kutu.hidden = false;
@@ -352,9 +353,8 @@ function baslat() {
 
   $('#ornek-yukle').onclick = () => yukle(ornekHesap());
   $('#ornek-kapat').onclick = () => { $('#yukle-kart').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#dosya').click(); };
-  const q = new URLSearchParams(location.search);
-  if (ORNEK_DOSYALAR.includes(q.get('dosya'))) ornekDosyaAc(q.get('dosya'));
-  else if (q.get('ornek') === '1') yukle(ornekHesap());
+  if (ORNEK_DOSYALAR.includes(sampleFileParam())) ornekDosyaAc(sampleFileParam());
+  else if (urlParam('sample') === '1') yukle(ornekHesap());
   const kod = depoOku(DEPO.kod);
   if (kod) {
     const d = $('#kopru-yukle'); d.hidden = false;

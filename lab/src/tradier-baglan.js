@@ -1,6 +1,7 @@
 // Bağlantı sayfasında "Tradier (ABD)" sekmesi: token ile bağlanır, hesap seçtirir, ayarı bu tarayıcıda
 // saklar ve Tradier'i etkin kaynak yapar. Token yalnız Tradier'e gider (veri/tradier.js).
 
+import { urlParam } from './url-params.js';
 import { t as ceviri, dil } from './dil.js';
 import {
   tradierIstemci, tradierAdresi, tradierOku, tradierYaz, kaynakYaz, etkinKaynak, maskeliHesap, TRADIER_ADRES,
@@ -9,7 +10,7 @@ import {
 const $ = s => document.querySelector(s);
 import { kacis } from './guvenlik.js';
 const main = document.querySelector('main.baglan');
-const ek = dil === 'tr' ? '?dil=tr' : '';
+const ek = dil === 'tr' ? '?lang=tr' : '';
 let profil = null, bekleyen = null;
 
 function sekme(k) {
@@ -84,9 +85,9 @@ $('#t-baglan').addEventListener('click', baglan);
 $('#t-token').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); baglan(); } });
 $('#t-kaydet').addEventListener('click', kaydet);
 $('#t-kes').addEventListener('click', kes);
-$('#t-panom').href = `panom.html${ek}`;
+$('#t-panom').href = `dashboard.html${ek}`;
 
-const istenen = new URLSearchParams(location.search).get('kaynak');
+const istenen = urlParam('source');
 // Sekmeler (MT5, Tradier, Alpaca) burada yönetilir; Alpaca sekmesinin alanları alpaca-baglan.js'tedir.
 const etkin = etkinKaynak();
 sekme(['tradier', 'alpaca'].includes(istenen) ? istenen : !istenen && etkin !== 'mt5' ? etkin : 'mt5');

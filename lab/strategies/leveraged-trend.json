@@ -1,0 +1,76 @@
+{
+  "kalibre": 3,
+  "name": "Leveraged Trend",
+  "description": "SMA100 crossover both ways, trailing stop, tight risk.",
+  "timeframe": "H1",
+  "direction": "both",
+  "indicators": {
+    "sma100": {
+      "type": "SMA",
+      "period": 100
+    },
+    "adx": {
+      "type": "ADX",
+      "period": 14
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_above",
+          "right": "sma100"
+        },
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_below",
+          "right": "sma100"
+        },
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 2
+    },
+    "trailing_stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 3
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.5,
+    "max_open_positions": 1,
+    "max_spread_points": 30,
+    "daily_max_loss_pct": 2
+  },
+  "filters": {
+    "news": {
+      "minutes_before": 30,
+      "minutes_after": 30,
+      "impact": "high"
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "format": "kalibre-strategy-catalog",
+  "version": 1,
+  "templates": [
+    {
+      "id": "defensive-long",
+      "name": "Defensive Long",
+      "summary": "Long above the 200-day average, cash below it. Built to sidestep long declines.",
+      "name_tr": "Savunmacı Long",
+      "summary_tr": "200 günlük ortalamanın üstünde long, altında nakit. Uzun düşüşlerden kaçmak için.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "moderate",
+      "profiles": [
+        "long_only",
+        "macro"
+      ],
+      "sources": [
+        "faber2007"
+      ]
+    },
+    {
+      "id": "golden-cross",
+      "name": "Golden Cross",
+      "summary": "SMA50/SMA200 crossover. Few trades, late entries, big trends.",
+      "name_tr": "Altın Kesişim",
+      "summary_tr": "SMA50/SMA200 kesişimi. Az işlem, geç giriş, büyük trendler.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "weak",
+      "profiles": [
+        "long_only"
+      ],
+      "sources": [
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "pullback-in-a-trend",
+      "name": "Pullback in a Trend",
+      "summary": "Buy short-term oversold moves in a rising market.",
+      "name_tr": "Trend İçi Geri Çekilme",
+      "summary_tr": "Yükselen piyasada kısa vadeli aşırı satımı al.",
+      "family": "mean_reversion",
+      "horizon": "swing",
+      "evidence": "moderate",
+      "profiles": [
+        "long_only",
+        "macro"
+      ],
+      "sources": [
+        "lehmann1990",
+        "faber2007"
+      ]
+    },
+    {
+      "id": "protective-short",
+      "name": "Protective Short",
+      "summary": "Short below the 200-day average. Downside protection for a long portfolio.",
+      "name_tr": "Koruma Short",
+      "summary_tr": "200 günlük ortalamanın altında short. Long portföy için düşüş koruması.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "weak",
+      "profiles": [
+        "short_only",
+        "macro"
+      ],
+      "sources": [
+        "faber2007",
+        "stambaugh2012"
+      ]
+    },
+    {
+      "id": "selling-rallies-in-a-bear-regime",
+      "name": "Selling Rallies in a Bear Regime",
+      "summary": "Sell short-term overbought moves in a falling market.",
+      "name_tr": "Ayı Rejiminde Tepki Satışı",
+      "summary_tr": "Düşen piyasada kısa vadeli aşırı alımı sat.",
+      "family": "mean_reversion",
+      "horizon": "swing",
+      "evidence": "moderate",
+      "profiles": [
+        "short_only",
+        "macro"
+      ],
+      "sources": [
+        "lehmann1990",
+        "stambaugh2012"
+      ]
+    },
+    {
+      "id": "downside-breakout",
+      "name": "Downside Breakout",
+      "summary": "SMA50 break in a strong downtrend.",
+      "name_tr": "Aşağı Kırılım",
+      "summary_tr": "Güçlü düşüş trendinde SMA50 kırılımı.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "moderate",
+      "profiles": [
+        "short_only",
+        "macro"
+      ],
+      "sources": [
+        "moskowitz2012",
+        "stambaugh2012"
+      ]
+    },
+    {
+      "id": "ema-trend-following",
+      "name": "EMA Trend Following",
+      "summary": "EMA20/50 crossover with an ADX filter. The library starter template.",
+      "name_tr": "EMA Trend Takibi",
+      "summary_tr": "EMA20/50 kesişimi + ADX filtresi. Kütüphanenin başlangıç şablonu.",
+      "family": "trend",
+      "horizon": "intraday",
+      "evidence": "strong",
+      "profiles": [
+        "leveraged_long_short",
+        "long_only",
+        "short_only",
+        "macro"
+      ],
+      "sources": [
+        "moskowitz2012",
+        "hurst2017",
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "leveraged-trend",
+      "name": "Leveraged Trend",
+      "summary": "SMA100 crossover both ways, trailing stop, tight risk.",
+      "name_tr": "Kaldıraçlı Trend",
+      "summary_tr": "SMA100 kesişimi iki yönde, iz süren stop, sıkı risk.",
+      "family": "trend",
+      "horizon": "intraday",
+      "evidence": "strong",
+      "profiles": [
+        "leveraged_long_short",
+        "macro"
+      ],
+      "sources": [
+        "moskowitz2012",
+        "hurst2017",
+        "moreira2017"
+      ]
+    },
+    {
+      "id": "macd-trend-confirmation",
+      "name": "MACD Trend Confirmation",
+      "summary": "MACD crossover with an SMA200 regime filter.",
+      "name_tr": "MACD Trend Onayı",
+      "summary_tr": "MACD kesişimi, SMA200 rejim filtresiyle.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "weak",
+      "profiles": [
+        "leveraged_long_short"
+      ],
+      "sources": [
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "adx-trend-continuation",
+      "name": "ADX Trend Continuation",
+      "summary": "Enter on pullbacks in a strong trend.",
+      "name_tr": "ADX Trend Devamı",
+      "summary_tr": "Güçlü trendde geri çekilmeye giriş.",
+      "family": "trend",
+      "horizon": "intraday",
+      "evidence": "weak",
+      "profiles": [
+        "leveraged_long_short"
+      ],
+      "sources": [
+        "moskowitz2012",
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "outside-the-band-momentum",
+      "name": "Outside-the-Band Momentum",
+      "summary": "Read a close outside the Bollinger band as momentum.",
+      "name_tr": "Bant Dışı Momentum",
+      "summary_tr": "Bollinger bandı dışına kapanışı momentum olarak oku.",
+      "family": "intraday_momentum",
+      "horizon": "intraday",
+      "evidence": "weak",
+      "profiles": [
+        "leveraged_long_short"
+      ],
+      "sources": [
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "reversal-inside-the-bands",
+      "name": "Reversal Inside the Bands",
+      "summary": "Reversals from the Bollinger band edges in a weak trend.",
+      "name_tr": "Bant İçi Dönüş",
+      "summary_tr": "Zayıf trendde Bollinger bandı uçlarından dönüş.",
+      "family": "mean_reversion",
+      "horizon": "intraday",
+      "evidence": "weak",
+      "profiles": [
+        "leveraged_long_short",
+        "long_only"
+      ],
+      "sources": [
+        "lehmann1990",
+        "bajgrowicz2012"
+      ]
+    },
+    {
+      "id": "volatility-targeted-trend",
+      "name": "Volatility-Targeted Trend",
+      "summary": "Trend signal, lot size scaled by GARCH volatility and a volatility-based stop.",
+      "name_tr": "Volatilite Hedefli Trend",
+      "summary_tr": "Trend sinyali, GARCH oynaklığına göre ölçeklenen lot ve oynaklık tabanlı stop.",
+      "family": "trend",
+      "horizon": "swing",
+      "evidence": "moderate",
+      "profiles": [
+        "leveraged_long_short",
+        "macro"
+      ],
+      "sources": [
+        "moreira2017",
+        "hurst2017"
+      ]
+    }
+  ]
+}

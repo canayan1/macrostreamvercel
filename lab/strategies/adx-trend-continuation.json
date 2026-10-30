@@ -1,0 +1,103 @@
+{
+  "kalibre": 3,
+  "name": "ADX Trend Continuation",
+  "description": "Enter on pullbacks in a strong trend.",
+  "timeframe": "H1",
+  "indicators": {
+    "adx": {
+      "type": "ADX",
+      "period": 14
+    },
+    "rsi": {
+      "type": "RSI",
+      "period": 14
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 25
+        },
+        {
+          "left": "adx.plus",
+          "op": ">",
+          "right": "adx.minus"
+        },
+        {
+          "left": "rsi",
+          "op": "<",
+          "right": 40
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 25
+        },
+        {
+          "left": "adx.minus",
+          "op": ">",
+          "right": "adx.plus"
+        },
+        {
+          "left": "rsi",
+          "op": ">",
+          "right": 60
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 1.5
+    },
+    "target": {
+      "type": "r",
+      "value": 2
+    },
+    "condition": {
+      "long": {
+        "all": [
+          {
+            "left": "rsi",
+            "op": ">",
+            "right": 65
+          }
+        ]
+      },
+      "short": {
+        "all": [
+          {
+            "left": "rsi",
+            "op": "<",
+            "right": 35
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.5,
+    "max_open_positions": 1,
+    "daily_max_loss_pct": 2
+  },
+  "filters": {
+    "news": {
+      "minutes_before": 30,
+      "minutes_after": 30,
+      "impact": "high"
+    }
+  }
+}

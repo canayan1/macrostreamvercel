@@ -2,6 +2,8 @@
 // Hesap optimizasyon.js'tedir; bu dosya yalnız arayüzdür. Sonuçlar sıralanır ama bir ayar önerilmez:
 // kullanıcı bir satırı kendisi seçip kurucuda açar ya da kural dosyası olarak indirir.
 
+import { toPublic, toInternal } from '../core/src/strategy-format.js';
+import { publicConfig, publicParameter, publicOptimizationRow, publicNeighbourhood, publicPbo, publicHaircut, publicFold, publicWindowType, publicWarning } from '../core/src/run-format.js';
 import { t as ceviri, dil, yerel, sayfayiCevir, dilAnahtari, sayiMetni, isaretliYuzde, yuzdeMetni } from './dil.js';
 import { dogrula } from './dogrula.js';
 import { ozet } from './ozet.js';
@@ -25,7 +27,7 @@ import { kimlikSatiri } from './calistirma-arayuz.js';
 import { gercekciAlani, durumOku as gercekciOku, provaSecenekleri, dolumAdi } from './gercekci-arayuz.js';
 import './dil-gercekci.js';
 const sayiOku = v => Number(String(v).trim().replace(',', '.'));
-const dilEki = dil === 'tr' ? '?dil=tr' : '';
+const dilEki = dil === 'tr' ? '?lang=tr' : '';
 
 let s = null;            // strateji
 let params = [];         // parametreler(s) + seçim ve aralıklar
@@ -214,7 +216,7 @@ async function mt5Hazirla() {
   const kod = depo.oku(KOD_ANAHTARI) ?? '';
   if (!KOD_RE.test(kod)) {
     $('#veri-rozet').textContent = ceviri('MT5 BAĞLI DEĞİL');
-    $('#veri-durum').innerHTML = kacis(ceviri('MetaTrader bağlı değil.')) + ` <a href="baglan.html${dilEki}">${kacis(ceviri("MetaTrader 5'i bağla"))}</a>`;
+    $('#veri-durum').innerHTML = kacis(ceviri('MetaTrader bağlı değil.')) + ` <a href="connect.html${dilEki}">${kacis(ceviri("MetaTrader 5'i bağla"))}</a>`;
     return;
   }
   mt5 ??= istemci(kod, roleAdresi('', depo.oku(ROLE_ANAHTARI)));
@@ -232,7 +234,7 @@ async function mt5Hazirla() {
     const r = await mt5.seri(sembol, td, { enAz: 200 });
     if (!r) { $('#veri-durum').textContent = ceviri('Bu seri henüz gelmedi; birkaç saniye sonra yeniden dene.'); return; }
     const sunucu = durum.terminal.sunucu ?? 'MT5';
-    veri = { mumlar: r.mumlar, ad: r.ornek ? `${ceviri('ÖRNEK (SENTETİK)')} · ${sembol} ${td}` : `MT5 · ${sunucu} · ${sembol} ${td}`, uyarilar: r.uyarilar, nokta: r.meta?.nokta ?? null };
+    veri = { mumlar: r.mumlar, ad: r.ornek ? `${ceviri('ÖRNEK')} · ${sembol} ${td}` : `MT5 · ${sunucu} · ${sembol} ${td}`, uyarilar: r.uyarilar, nokta: r.meta?.nokta ?? null };
   } catch (err) {
     const d = sinifla({ hata: err });
     $('#veri-rozet').textContent = ceviri('MT5 VERİSİ YOK');
@@ -359,11 +361,11 @@ function ozetCiz() {
   const strateji = JSON.parse(JSON.stringify(s)), parametre = secilenSon;
   $('#kimlik-not').hidden = false;
   kimlikSatiri($('#calistirma'), {
-    resultId: r.resultId, dosyaAdi: 'kalibre-optimizasyon',
+    resultId: r.resultId, dosyaAdi: 'kalibre-optimization',
     paket: () => ({
-      format: 'kalibre-optimization', formatVersion: 1, manifest: r.manifest, strategy: strateji, parameters: parametre,
-      summary: { N: r.N, tried: r.denenen, total: r.toplam, sampled: r.ornek, deflatedSharpe: r.deflatedSharpe, pbo: r.pbo, haircut: r.kirpma, neighbourhood: r.komsuluk, cost: r.maliyet },
-      best: r.enIyiler, results: r.sonuclar, warnings: r.uyarilar,
+      format: 'kalibre-optimization', formatVersion: 2, manifest: r.manifest, strategy: toPublic(strateji), parameters: parametre.map(publicParameter),
+      summary: { N: r.N, tried: r.denenen, total: r.toplam, sampled: r.ornek, deflatedSharpe: r.deflatedSharpe, pbo: publicPbo(r.pbo), haircut: publicHaircut(r.kirpma), neighbourhood: publicNeighbourhood(r.komsuluk), costs: publicConfig({ maliyet: r.maliyet }).costs },
+      best: r.enIyiler.map(publicOptimizationRow), results: r.sonuclar.map(publicOptimizationRow), warnings: r.uyarilar.map(publicWarning),
     }),
   });
 }
@@ -483,9 +485,9 @@ async function yuruyenCalistir() {
     kimlikSatiri($('#yuruyen-kimlik'), {
       resultId: k.resultId, dosyaAdi: 'kalibre-walk-forward',
       paket: () => ({
-        format: 'kalibre-walk-forward', formatVersion: 1, manifest: k.manifest, strategy: strateji, parameters: parametre,
-        summary: { type: k.tur, train: k.egitim, test: k.sinama, embargo: k.embargo, wfe: k.wfe, oosReturnPct: k.oosGetiriYuzde, settingChangeRate: k.ayarDegisimOrani },
-        folds: k.katlar, oosEquity: k.oosOzkaynak,
+        format: 'kalibre-walk-forward', formatVersion: 2, manifest: k.manifest, strategy: toPublic(strateji), parameters: parametre.map(publicParameter),
+        summary: { windowType: publicWindowType(k.tur), trainBars: k.egitim, testBars: k.sinama, embargoBars: k.embargo, wfe: k.wfe, oosReturnPct: k.oosGetiriYuzde, settingChangeRate: k.ayarDegisimOrani },
+        folds: k.katlar.map(publicFold), oosEquity: k.oosOzkaynak,
       }),
     });
     const satir = (b, m) => `<div><b>${b}</b><span>${m}</span></div>`;
@@ -533,7 +535,7 @@ $('#sonuc-tablo').addEventListener('click', e => {
   } else if (indir) {
     const { k, x } = satirStratejisi(Number(indir.dataset.indir));
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([JSON.stringify(k, null, 2) + '\n'], { type: 'application/json' }));
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(toPublic(k), null, 2) + '\n'], { type: 'application/json' }));
     a.download = dosyaAdi(k.ad, secilenSon, x.degerler);
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
@@ -547,7 +549,7 @@ $('#ice-aktar').addEventListener('change', async e => {
   e.target.value = '';
   if (!f) return;
   try {
-    const v = JSON.parse(await f.text());
+    const v = toInternal(JSON.parse(await f.text()));
     if (typeof v !== 'object' || v === null || Array.isArray(v)) throw new Error();
     stratejiYukle(v, ceviri('Kaynak: içe aktarılan dosya ({ad}).', { ad: f.name }));
     veriHazirla();

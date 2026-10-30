@@ -18,17 +18,17 @@ URUNLER = {
                 ("Methodology", None, "How the engine is validated.", "/methodology")]),
   ("Connect", [("Kalibre Bridge for MT5", "beta", "Encrypted, read-only link from MetaTrader 5.", "/setup"),
                ("CSV and Excel trade logs", "beta", "Bring trades from any platform or spreadsheet.", "/mt5-analytics#import-your-log"),
-               ("Alpaca and Tradier", "beta", "US brokerage accounts, read-only, with your own keys.", "/lab/baglan")]),
+               ("Alpaca and Tradier", "beta", "US brokerage accounts, read-only, with your own keys.", "/lab/connect")]),
  ],
  "tr": [
   ("Analiz", [("Trade Analytics", "beta", "İşlemlerinin nerede kazandırıp kaybettirdiğini gör.", "/tr/mt5-analytics"),
               ("FX Blotter Analytics", "beta", "Masanın kendi blotter'ından gerçekleşen kâr/zarar ve pozisyon.", "/tr/treasury")]),
   ("Koru", [("Rule Guard", "test", "Prop firması kayıp sınırları, MT5'te her tick'te denetlenir.", "/tr/rule-guard")]),
-  ("Araştır", [("Kalibre Lab", "beta", "Kural kur, backtest et, ayarları aşırı uyuma karşı sına.", "/lab?dil=tr"),
+  ("Araştır", [("Kalibre Lab", "beta", "Kural kur, backtest et, ayarları aşırı uyuma karşı sına.", "/lab?lang=tr"),
                ("Metodoloji", None, "Motorun nasıl doğrulandığı.", "/tr/methodology")]),
   ("Bağla", [("MT5 için Kalibre Bridge", "beta", "MetaTrader 5'ten şifreli, salt okunur bağlantı.", "/tr/setup"),
              ("CSV ve Excel işlem kayıtları", "beta", "Her platformdan ya da tablodan işlem getir.", "/tr/mt5-analytics#kendi-kaydin"),
-             ("Alpaca ve Tradier", "beta", "ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.", "/lab/baglan?dil=tr")]),
+             ("Alpaca ve Tradier", "beta", "ABD aracı kurum hesapları, salt okunur, kendi anahtarınla.", "/lab/connect?lang=tr")]),
  ],
 }
 COZUMLER = {
@@ -141,7 +141,7 @@ ALT = _alt("tr")
 ALT_EN = _alt("en")
 
 # Hesap betiği (static/kalibre-auth.js) bu yolları okur; site köküne İngilizce taşınınca yalnız burası değişir.
-YOLLAR = {"tr": {"signIn": "/tr/sign-in", "account": "/tr/account", "pricing": "/tr/pricing", "connect": "/tr/connect", "lab": "/lab?dil=tr", "home": "/tr"},
+YOLLAR = {"tr": {"signIn": "/tr/sign-in", "account": "/tr/account", "pricing": "/tr/pricing", "connect": "/tr/connect", "lab": "/lab?lang=tr", "home": "/tr"},
           "en": {"signIn": "/sign-in", "account": "/account", "pricing": "/pricing", "connect": "/connect", "lab": "/lab", "home": "/"}}
 def yol_etiketleri(dil):
     return "".join(f'<meta name="kalibre:yol:{k}" content="{v}">\n' for k, v in YOLLAR[dil].items())
@@ -277,7 +277,7 @@ KURULUM = '''
 <p>ABD'deki aracı kurum Tradier'de hesabın varsa MetaTrader 5 yerine onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Tradier'e doğrudan senin tarayıcından bağlanır.</p>
 <ol>
   <li>Tradier hesabında bir API erişim token'ı oluştur. İlk deneme için <b>Sandbox</b> token'ı öneririz; Sandbox fiyatları 15 dakika gecikmelidir.</li>
-  <li><a href="/lab/baglan?kaynak=tradier&dil=tr">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li><a href="/lab/connect?kaynak=tradier&lang=tr">Bağlantı sayfasında</a> <b>Tradier</b> sekmesini seç, token'ı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
   <li>Birden çok hesabın varsa birini seç. Pano, strateji kurucu ve optimizasyon artık Tradier verisini kullanır.</li>
 </ol>
 <div class="kutu">Tradier token'ı hesabına tam erişim verir. Kalibre bu token'la sadece okuma isteği yapar, emir göndermez. Token bu tarayıcıda saklanır ve sadece Tradier'e gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Tradier'in koşullarına göre bu bağlantı kişisel kullanım içindir.</div>
@@ -286,7 +286,7 @@ KURULUM = '''
 <p>ABD'deki aracı kurum Alpaca'da hesabın varsa onu da bağlayabilirsin. Eklenti gerekmez; laboratuvar Alpaca'ya doğrudan senin tarayıcından bağlanır.</p>
 <ol>
   <li>Alpaca panelinde bir API anahtar çifti oluştur (Key ID ve Secret). İlk deneme için <b>Paper</b> (sanal) hesabı öneririz.</li>
-  <li><a href="/lab/baglan?kaynak=alpaca&dil=tr">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
+  <li><a href="/lab/connect?kaynak=alpaca&lang=tr">Bağlantı sayfasında</a> <b>Alpaca</b> sekmesini seç, iki anahtarı yapıştır, ortamı seç ve <b>Bağlan</b>'a bas.</li>
   <li>Pano, strateji kurucu ve optimizasyon artık Alpaca verisini kullanır. İzleme listen boşsa açık pozisyonların, o da yoksa Pano'da eklediğin semboller gösterilir.</li>
 </ol>
 <div class="kutu">Ücretsiz Alpaca planında anlık fiyatlar sadece IEX borsasından gelir. Bu, toplam piyasa hacminin küçük bir kısmıdır. Kalibre anahtarlarınla sadece okuma isteği yapar, emir göndermez. Anahtarlar bu tarayıcıda saklanır ve sadece Alpaca'ya gönderilir. Kalibre sunucularına gönderilmez. Bağlantıyı kestiğinde bu tarayıcıdan silinir. Kendi kişisel API anahtarlarını kullan.</div>
@@ -666,7 +666,7 @@ sayfa("tr/prop/index.html", "Prop Kalkanı: prop firması sınavları için kay�
 FOREX = """
 <h1>Bireysel forex yatırımcıları için risk araçları</h1>
 <p class="giris">İşlem başına risk belirle, lotu oynaklığa göre ayarla ve günlük kayıp sınırı ekle. Sonra kuralı bu ayarlarla aracı kurumunun verisinde test et.</p>
-<div class="eylem-satir"><a class="dugme" href="/lab?dil=tr">Laboratuvarı aç</a><a class="dugme ikincil" href="/tr/setup">Kurulum rehberi</a></div>
+<div class="eylem-satir"><a class="dugme" href="/lab?lang=tr">Laboratuvarı aç</a><a class="dugme ikincil" href="/tr/setup">Kurulum rehberi</a></div>
 
 <h2 id="neden">Pozisyon büyüklüğü neden önemli?</h2>
 <ul>
@@ -777,7 +777,7 @@ BETA = f"""
   <li><a href="/tr/connect">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
   <li><a href="/tr/dashboard">Pano'yu</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
   <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; Hızlı Backtest'i çalıştır.</li>
-  <li><a href="/lab/optimizasyon?dil=tr">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
+  <li><a href="/lab/optimization?lang=tr">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
   <li>İstersen Alpaca paper ya da Tradier sandbox hesabını da <a href="/tr/connect">bağlanma sayfasından</a> bağla ve Pano'yu onunla dene.</li>
 </ol>
 

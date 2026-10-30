@@ -15,7 +15,7 @@ const LISANS_RE = /^KLM(-[0-9A-HJKMNP-TV-Z]{5}){4}$/;
 
 const $ = s => document.querySelector(s);
 const en = dil === 'en';
-const ek = en ? '' : '?dil=tr';
+const ek = en ? '' : '?lang=tr';
 
 // ---------------------------------------------------------------- durum
 const parametre = new URLSearchParams(location.search).get('role');
@@ -81,7 +81,7 @@ function yonlendir() {
   yonlendirme = setInterval(() => {
     kalan--;
     if (iptal) { clearInterval(yonlendirme); return; }
-    if (kalan <= 0) { clearInterval(yonlendirme); location.href = `panom.html${ek}`; return; }
+    if (kalan <= 0) { clearInterval(yonlendirme); location.href = `dashboard.html${ek}`; return; }
     yaz();
   }, 1000);
 }
@@ -231,7 +231,7 @@ if (LISANS_RE.test(lisans ?? '')) {
 // Bağlantılar dile göre (site kökü İngilizce, Türkçe /tr altında).
 $('#abone-baglanti').href = en ? '/pricing' : '/tr/pricing';
 $('#lisans-baglanti').href = en ? '/account' : '/tr/account';
-for (const id of ['#zaten-panom', '#panoma-git', '#git-panom']) $(id).href = `panom.html${ek}`;
+for (const id of ['#zaten-panom', '#panoma-git', '#git-panom']) $(id).href = `dashboard.html${ek}`;
 $('#git-kurucu').href = `./${ek}`;
 
 // ---------------------------------------------------------------- başlat

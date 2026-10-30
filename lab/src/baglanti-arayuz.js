@@ -115,7 +115,7 @@ export function mt5Panel({ yukle, hata, istenenSembol = '' }) {
       yukle({
         mumlar: r.mumlar, zamanDilimi: r.meta.zamanDilimi, takvim: r.meta.takvim, sembol: r.meta.sembol,
         ornek: r.ornek, atlanan: r.atlanan, uyarilar: r.uyarilar,
-        ad: r.ornek ? `${ceviri('ÖRNEK (SENTETİK)')} · ${k.sembol} ${k.zamanDilimi}` : `MT5 · ${sunucu} · ${k.sembol} ${k.zamanDilimi}`,
+        ad: r.ornek ? `${ceviri('ÖRNEK')} · ${k.sembol} ${k.zamanDilimi}` : `MT5 · ${sunucu} · ${k.sembol} ${k.zamanDilimi}`,
       });
     } catch (e) {
       if (n === nesil && istek === seriIstek) hata(ceviri('{s} {z} okunamadı: {m}', { s: k.sembol, z: k.zamanDilimi, m: ceviri(e.message) }));

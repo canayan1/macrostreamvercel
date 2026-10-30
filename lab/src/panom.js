@@ -32,9 +32,9 @@ const depo = {
   oku(k) { try { return localStorage.getItem(k); } catch { return null; } },
 };
 
-const dilEki = dil === 'tr' ? '&dil=tr' : '';
+const dilEki = dil === 'tr' ? '&lang=tr' : '';
 const KAYNAK = etkinKaynak();
-const backtestBaglantisi = sembol => `./?sembol=${encodeURIComponent(sembol)}${araciMi(KAYNAK) ? `&kaynak=${KAYNAK}` : ''}${dilEki}`;
+const backtestBaglantisi = sembol => `./?symbol=${encodeURIComponent(sembol)}${araciMi(KAYNAK) ? `&source=${KAYNAK}` : ''}${dilEki}`;
 let yenidenYokla = () => {}; // canlı kipte kota listesini hemen yeniler (sembol eklenince)
 // Tradier hız sınırı dakikada 60 (sandbox) / 120 (canlı): yoklama seyrek tutulur.
 const TRADIER_YOKLAMA_SN = { gorunur: 15, gizli: 60 };
@@ -215,9 +215,9 @@ function ornekGoster() {
   const b = panomOrnek({ simdi: Math.floor(Date.now() / 1000) });
   const simdi = Date.now() / 1000;
   const durum = durumCoz(b.durum, simdi);
-  $('#kaynak-rozet').textContent = ceviri('SENTETİK ÖRNEK');
+  $('#kaynak-rozet').textContent = ceviri('ÖRNEK');
   $('#kaynak-rozet').hidden = false;
-  durumYaz({ sinif: 'bagli', baslik: ceviri('Örnek veri (SENTETİK)'), ayrinti: ceviri('Gerçek bir hesap değil; Panom\'u tanıtmak için üretilmiş rastgele bir geçmiş.') }, durum);
+  durumYaz({ sinif: 'bagli', baslik: ceviri('Örnek veri'), ayrinti: '' }, durum);
   const poz = pozisyonCoz(b.pozisyonlar);
   hesapYaz(durum, poz);
   kotalarYaz(kotaCoz(b.kotalar));
@@ -246,7 +246,7 @@ function canli(ist) {
     $('#baglan-kutu').hidden = !!durum;
     if (durum) {
       $('#kaynak-rozet').hidden = !durum.ornek;
-      if (durum.ornek) $('#kaynak-rozet').textContent = ceviri('SENTETİK ÖRNEK');
+      if (durum.ornek) $('#kaynak-rozet').textContent = ceviri('ÖRNEK');
       const [poz, kot] = await Promise.all([
         durum.pozisyonlarVar ? ist.pozisyonlar().catch(() => null) : null,
         durum.kotalarVar ? ist.kotalar().catch(() => null) : null,
@@ -297,7 +297,7 @@ $('#sembol-ekle').addEventListener('submit', e => {
   $('#sembol-durum').textContent = ceviri('Eklendi. Semboller yalnız bu tarayıcıda saklanır.');
   yenidenYokla();
 });
-$('#baglan-git').href = `baglan.html${dilEki ? '?dil=tr' : ''}`;
+$('#baglan-git').href = `connect.html${dilEki ? '?lang=tr' : ''}`;
 window.addEventListener('resize', () => { if (sonIslemler) islemlerYaz(sonIslemler, Date.now() / 1000); });
 
 const kod = depo.oku(KOD_ANAHTARI);

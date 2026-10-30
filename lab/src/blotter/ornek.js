@@ -17,8 +17,8 @@ export const ORNEK_FAIZ_METNI = Object.entries(ORNEK_FAIZ).map(([d, r]) => `${d}
 // Örnek limit tablosu (sentetik masa limitleri).
 export const ORNEK_LIMITLER = 'NOP USD 25000000\nGECE 40000000\nGUNICI trader Trader 1 15000000\nSTOP masa 50000\nVALOR USD ≤ 1 ay 10000000';
 export const ORNEK_LIMITLER_EN = 'NOP USD 25000000\nOVERNIGHT 40000000\nINTRADAY trader Trader 1 15000000\nSTOP desk 50000\nVALUE USD ≤ 1 month 10000000';
-// Yayımlanan örnek dosyalar (lab/ornek/). ?dosya= yalnız bu listedekileri açar.
-export const ORNEK_DOSYALAR = ['ornek/fx-blotter-sample.xlsx', 'ornek/fx-blotter-ornek.xlsx', 'ornek/fx-blotter-sample.csv', 'ornek/fx-blotter-ornek.csv'];
+// Yayımlanan örnek dosyalar (lab/samples/). ?file= yalnız bu listedekileri açar.
+export const ORNEK_DOSYALAR = ['samples/fx-blotter-sample.xlsx', 'samples/fx-blotter-ornek.xlsx', 'samples/fx-blotter-sample.csv', 'samples/fx-blotter-ornek.csv'];
 
 function rng(tohum) {
   let s = tohum >>> 0;

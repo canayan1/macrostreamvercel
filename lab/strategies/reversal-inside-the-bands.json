@@ -1,0 +1,98 @@
+{
+  "kalibre": 3,
+  "name": "Reversal Inside the Bands",
+  "description": "Reversals from the Bollinger band edges in a weak trend.",
+  "timeframe": "M15",
+  "indicators": {
+    "bb": {
+      "type": "BB",
+      "period": 20,
+      "deviation": 2
+    },
+    "rsi": {
+      "type": "RSI",
+      "period": 14
+    },
+    "adx": {
+      "type": "ADX",
+      "period": 14
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "<",
+          "right": "bb.lower"
+        },
+        {
+          "left": "rsi",
+          "op": "<",
+          "right": 30
+        },
+        {
+          "left": "adx.main",
+          "op": "<",
+          "right": 20
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": ">",
+          "right": "bb.upper"
+        },
+        {
+          "left": "rsi",
+          "op": ">",
+          "right": 70
+        },
+        {
+          "left": "adx.main",
+          "op": "<",
+          "right": 20
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 1.5
+    },
+    "max_bars": 24,
+    "condition": {
+      "long": {
+        "any": [
+          {
+            "left": "price.close",
+            "op": ">=",
+            "right": "bb.middle"
+          }
+        ]
+      },
+      "short": {
+        "any": [
+          {
+            "left": "price.close",
+            "op": "<=",
+            "right": "bb.middle"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.5,
+    "max_open_positions": 1,
+    "max_spread_points": 20
+  }
+}

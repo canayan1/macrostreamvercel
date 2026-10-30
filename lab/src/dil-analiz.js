@@ -1,4 +1,4 @@
-// İşlem Analizi sayfası (analiz.html, analiz-arayuz.js, analiz/*.js etiketleri) için İngilizce
+// İşlem Analizi sayfası (analytics.html, analiz-arayuz.js, analiz/*.js etiketleri) için İngilizce
 // karşılıklar. İçe aktarıldığında dil-en.js sözlüğüne eklenir; sözlükte zaten olan anahtar
 // değiştirilmez (diğer sayfaların çevirisi korunur). Anahtar Türkçe kaynak metindir.
 import { EN } from './dil-en.js';
@@ -71,7 +71,7 @@ export const ANALIZ_EN = {
   'Sütunlar tanınamadı. Aşağıdan eşleştir ya da şablonu kullan.': 'The columns were not recognised. Match them below or use the template.',
   'Okunabilen işlem satırı yok. Aşağıdaki satır hatalarına bak.': 'No trade rows could be read. See the row errors below.',
   '{n} satır alındı, {m} satır atlandı.': '{n} rows imported, {m} rows skipped.',
-  '{n} satır SYNTHETIC olarak etiketli. Şablondaki örnek satırları silmeyi unutma.': '{n} rows are tagged SYNTHETIC. Remember to delete the template example rows.',
+  '{n} satır EXAMPLE olarak etiketli. Şablondaki örnek satırları silmeyi unutma.': '{n} rows are tagged EXAMPLE. Remember to delete the template example rows.',
   'Atlanan satırlar:': 'Skipped rows:',
   'Satır {no}': 'Row {no}',
   've {n} satır daha.': 'and {n} more rows.',

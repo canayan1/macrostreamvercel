@@ -3,9 +3,9 @@
 //
 // Aynı motor sürümü + aynı strateji + aynı veri + aynı ayarlar + aynı tohum her zaman aynı
 // resultId'yi verir. Kimlik, kanonik JSON'un SHA-256 özetidir:
-//   specHash   = sha256(kanonik(strateji))
+//   specHash   = sha256(kanonik(public strategy))           (strategy-format.js, kalibre: 3)
 //   dataHash   = sha256(mum satırları "t,a,y,d,k[,v]\n")
-//   configHash = sha256(kanonik(ayarlar))
+//   configHash = sha256(kanonik({ kind, ...public settings, extra? }))   (run-format.js)
 //   resultId   = sha256(kanonik({ dataHash, configHash, engineVersion, seed, specHash }))
 // SHA-256 burada saf JavaScript ile yazılıdır: tarayıcıda ve Node'da eşzamanlı ve aynı sonucu
 // verir; testler node:crypto ile karşılaştırır.
@@ -15,6 +15,9 @@
 // aynı); -0 → 0; NaN, Infinity, -Infinity → "NaN", "Infinity", "-Infinity" dizgeleri.
 
 import { MOTOR_SURUMU } from './surum.js';
+import { toPublic } from './strategy-format.js';
+import { publicKind, publicConfig, publicExtra, publicSummary, publicTrade } from './run-format.js';
+import { englishMessage } from './messages-en.js';
 
 export function kanonik(v) {
   if (v === null) return 'null';
@@ -110,15 +113,17 @@ function ayarOzetlenebilir(ayar = {}) {
 }
 
 // tur: 'prova' | 'optimizasyon' | 'yuruyen-ileri' | başka bir iş adı. seed: rastgelelik yoksa null.
+// Hashes are taken over the public (English) forms, so an exported package is self-verifying.
 export function manifestOlustur({ strateji, mumlar, ayar = {}, seed = null, tur = 'prova', ek } = {}) {
-  const specHash = sha256(kanonik(strateji ?? null));
+  const kind = publicKind(tur);
+  const specHash = sha256(kanonik(strateji ? toPublic(strateji) : null));
   const dataHash = veriOzeti(mumlar ?? []);
-  const configHash = sha256(kanonik({ tur, ...ayarOzetlenebilir(ayar), ...(ek ? { ek } : {}) }));
+  const configHash = sha256(kanonik({ kind, ...publicConfig(ayarOzetlenebilir(ayar)), ...(ek ? { extra: publicExtra(ek) } : {}) }));
   const engineVersion = MOTOR_SURUMU;
   const resultId = sha256(kanonik({ dataHash, configHash, engineVersion, seed, specHash }));
   return {
-    manifestVersion: 1,
-    engineVersion, tur, seed, specHash, dataHash, configHash, resultId,
+    manifestVersion: 2,
+    engineVersion, kind, seed, specHash, dataHash, configHash, resultId,
     bars: mumlar?.length ?? 0,
     firstBar: mumlar?.[0]?.t ?? null,
     lastBar: mumlar?.at?.(-1)?.t ?? null,
@@ -130,10 +135,11 @@ export const kisaKimlik = id => `kr1-${String(id).slice(0, 16)}`;
 
 // Dışa aktarma paketi: manifest + strateji + ayar + özet + işlemler. Tekrar üretmek için
 // aynı veri (dataHash ile doğrulanır) ve aynı motor sürümü gerekir.
+// Every field is in the public (English) form, warnings included.
 export function calistirmaPaketi({ manifest, strateji, ayar, istatistik, islemler, uyarilar, ek }) {
   return {
-    format: 'kalibre-run', formatVersion: 1,
-    manifest, strategy: strateji, config: ayarOzetlenebilir(ayar), summary: istatistik,
-    trades: islemler, warnings: uyarilar ?? [], ...(ek ? { extra: ek } : {}),
+    format: 'kalibre-run', formatVersion: 2,
+    manifest, strategy: toPublic(strateji), config: publicConfig(ayarOzetlenebilir(ayar)), summary: publicSummary(istatistik),
+    trades: (islemler ?? []).map(publicTrade), warnings: (uyarilar ?? []).map(englishMessage), ...(ek ? { extra: publicExtra(ek) } : {}),
   };
 }

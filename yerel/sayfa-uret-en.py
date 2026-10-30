@@ -72,7 +72,7 @@ SETUP = '''
 <p>If you have an account with the US broker Tradier, you can connect it instead of MetaTrader 5. No add-on is needed; the lab talks to Tradier directly from your browser.</p>
 <ol>
   <li>Create an API access token in your Tradier account. We suggest a <b>Sandbox</b> token for your first try; Sandbox prices are delayed by 15 minutes.</li>
-  <li>On the <a href="/lab/baglan?kaynak=tradier">connect page</a>, choose the <b>Tradier</b> tab, paste the token, pick the environment and press <b>Connect</b>.</li>
+  <li>On the <a href="/lab/connect?kaynak=tradier">connect page</a>, choose the <b>Tradier</b> tab, paste the token, pick the environment and press <b>Connect</b>.</li>
   <li>If you have several accounts, pick one. The Dashboard, the strategy builder and the optimizer now use Tradier data.</li>
 </ol>
 <div class="kutu">A Tradier token gives full access to your account. Kalibre makes read-only requests with it and never sends orders. The token is stored in this browser and sent only to Tradier. It is never sent to Kalibre servers. Disconnecting deletes it from this browser. Under Tradier's terms, this connection is for personal use.</div>
@@ -81,7 +81,7 @@ SETUP = '''
 <p>If you have an account with the US broker Alpaca, you can connect it too. No add-on is needed; the lab talks to Alpaca directly from your browser.</p>
 <ol>
   <li>Create an API key pair in your Alpaca dashboard (Key ID and Secret). We suggest a <b>Paper</b> (simulated) account for your first try.</li>
-  <li>On the <a href="/lab/baglan?kaynak=alpaca">connect page</a>, choose the <b>Alpaca</b> tab, paste both keys, pick the environment and press <b>Connect</b>.</li>
+  <li>On the <a href="/lab/connect?kaynak=alpaca">connect page</a>, choose the <b>Alpaca</b> tab, paste both keys, pick the environment and press <b>Connect</b>.</li>
   <li>The Dashboard, the strategy builder and the optimizer now use Alpaca data. If your watchlist is empty, your open positions are shown; if there are none, the symbols you add on the Dashboard.</li>
 </ol>
 <div class="kutu">On the free Alpaca plan, live prices come from the IEX exchange only, which is a small share of total market volume. Kalibre makes read-only requests with your keys and never sends orders. The keys are stored in this browser and sent only to Alpaca. They are never sent to Kalibre servers. Disconnecting deletes them from this browser. Use your own personal API keys.</div>
@@ -471,7 +471,7 @@ BETA_EN = f"""
   <li>Connect your demo MT5 account on the <a href="/connect">connect page</a>: download the add-on, paste the code, add the permission address, press <b>OK</b>. Note any step where you get stuck.</li>
   <li>Open the <a href="/dashboard">Dashboard</a>: are balance, quotes and positions right? Compare with what MT5 shows.</li>
   <li>In the strategy builder, build a strategy in Simple mode (e.g. a moving-average cross) or load an educational example; fill in the risk section yourself; run Quick Backtest.</li>
-  <li>On the <a href="/lab/optimizasyon">Optimization</a> page, scan two parameters; look at the heat map and the test-period result.</li>
+  <li>On the <a href="/lab/optimization">Optimization</a> page, scan two parameters; look at the heat map and the test-period result.</li>
   <li>If you like, also connect an Alpaca paper or Tradier sandbox account on the <a href="/connect">connect page</a> and try the Dashboard with it.</li>
 </ol>
 

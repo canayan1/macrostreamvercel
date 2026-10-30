@@ -9,15 +9,15 @@ const TD_ADI = () => ({ D1: ceviri('Günlük'), W1: ceviri('Haftalık'), H1: cev
 export const SEMBOL_RE = /^[A-Z0-9.\-/]{1,16}$/;
 
 // kok: boş bir kapsayıcı öğe. kaynak: 'tradier' | 'alpaca'. yukle(veri): seri yüklendi. hata(mesaj): yüklenemedi.
-// istenenSembol: Panom'dan gelen ?sembol=. Dönüş: { baslat(), durdur(), bagli }
+// istenenSembol: Panom'dan gelen ?symbol=. Dönüş: { baslat(), durdur(), bagli }
 export function araciSecici(kok, kaynak, { yukle, hata, istenenSembol = '', zamanDilimi = 'D1' } = {}) {
   const t = ARACI[kaynak];
   const ayar = t.oku();
-  const ek = dil === 'tr' ? '&dil=tr' : '';
+  const ek = dil === 'tr' ? '&lang=tr' : '';
   const on = kaynak === 'tradier' ? 'tr' : 'ap';
   if (!ayar) {
     const m = ceviri('{a} bağlı değil.', { a: t.ad });
-    kok.innerHTML = `<p class="dipnot">${kacis(m)} <a href="baglan.html?kaynak=${kaynak}${ek}">${kacis(ceviri('{a} bağla', { a: t.ad }))}</a></p>`;
+    kok.innerHTML = `<p class="dipnot">${kacis(m)} <a href="connect.html?source=${kaynak}${ek}">${kacis(ceviri('{a} bağla', { a: t.ad }))}</a></p>`;
     return { baslat() { hata?.(m); }, durdur() {}, bagli: false };
   }
   const ist = t.istemci();

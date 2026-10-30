@@ -1,0 +1,64 @@
+{
+  "kalibre": 3,
+  "name": "Pullback in a Trend",
+  "description": "Buy short-term oversold moves in a rising market.",
+  "timeframe": "D1",
+  "direction": "long_only",
+  "indicators": {
+    "sma200": {
+      "type": "SMA",
+      "period": 200
+    },
+    "sma5": {
+      "type": "SMA",
+      "period": 5
+    },
+    "rsi2": {
+      "type": "RSI",
+      "period": 2
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": ">",
+          "right": "sma200"
+        },
+        {
+          "left": "rsi2",
+          "op": "<",
+          "right": 10
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 2.5
+    },
+    "max_bars": 10,
+    "condition": {
+      "long": {
+        "all": [
+          {
+            "left": "price.close",
+            "op": ">",
+            "right": "sma5"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 1,
+    "max_open_positions": 1
+  }
+}

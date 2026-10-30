@@ -1,0 +1,508 @@
+{
+  "format": "kalibre-run",
+  "formatVersion": 2,
+  "manifest": {
+    "manifestVersion": 2,
+    "engineVersion": "0.2.0",
+    "kind": "backtest",
+    "seed": null,
+    "specHash": "c1bd50186a34cf83d0ed7b6eb08af4f3cdcc95f3d058a4d07ebdba6b5d6d8b9a",
+    "dataHash": "c05af42e64d1c567c333d23785fad95cc61424d5aba05304d48ef2f79e93541f",
+    "configHash": "3b5fa1fad78aa795b755af4b8825a8851468e3defc5ad91118afdd2812b43fd8",
+    "resultId": "d75fe88a3f8370a53098995396c72b5cdb0a604643ac4ead53f3216bf1f94a79",
+    "bars": 3000,
+    "firstBar": 1893974400,
+    "lastBar": 1908918000
+  },
+  "strategy": {
+    "kalibre": 3,
+    "name": "EMA trend (sample)",
+    "description": "Long when the 20 EMA crosses above the 50 EMA with ADX above 20, short on the opposite cross. Stop 2 ATR, target 2R, 3 ATR trailing stop. Risk 1% a trade.",
+    "timeframe": "H1",
+    "direction": "both",
+    "indicators": {
+      "fast": {
+        "type": "EMA",
+        "period": 20
+      },
+      "slow": {
+        "type": "EMA",
+        "period": 50
+      },
+      "adx": {
+        "type": "ADX",
+        "period": 14
+      },
+      "atr": {
+        "type": "ATR",
+        "period": 14
+      }
+    },
+    "entry": {
+      "long": {
+        "all": [
+          {
+            "left": "fast",
+            "op": "crosses_above",
+            "right": "slow"
+          },
+          {
+            "left": "adx.main",
+            "op": ">",
+            "right": 20
+          }
+        ]
+      },
+      "short": {
+        "all": [
+          {
+            "left": "fast",
+            "op": "crosses_below",
+            "right": "slow"
+          },
+          {
+            "left": "adx.main",
+            "op": ">",
+            "right": 20
+          }
+        ]
+      }
+    },
+    "exit": {
+      "stop": {
+        "type": "atr",
+        "indicator": "atr",
+        "multiplier": 2
+      },
+      "target": {
+        "type": "r",
+        "value": 2
+      },
+      "trailing_stop": {
+        "type": "atr",
+        "indicator": "atr",
+        "multiplier": 3
+      }
+    },
+    "risk": {
+      "risk_per_trade_pct": 1,
+      "max_open_positions": 1,
+      "max_spread_points": 30,
+      "daily_max_loss_pct": 3
+    },
+    "filters": {
+      "hours": {
+        "start": 8,
+        "end": 20
+      },
+      "news": {
+        "minutes_before": 30,
+        "minutes_after": 30,
+        "impact": "high"
+      }
+    }
+  },
+  "config": {
+    "costs": {
+      "spread": 0,
+      "slippage": 0,
+      "commissionPct": 0
+    }
+  },
+  "summary": {
+    "trades": 31,
+    "winRate": 0.3225806451612903,
+    "expectancyR": -0.01856807309347363,
+    "avgWinR": 1.6702174505289524,
+    "avgLossR": -0.8227516557708194,
+    "profitFactor": 0.9547231243792096,
+    "returnPct": -0.8118844350701537,
+    "maxDrawdownPct": 8.148815123658853,
+    "longestLosingStreak": 5
+  },
+  "trades": [
+    {
+      "side": "long",
+      "entryIndex": 137,
+      "entryPrice": 99.73225,
+      "exitIndex": 140,
+      "exitPrice": 102.22107857142856,
+      "exitReason": "target",
+      "profit": 200,
+      "r": 2,
+      "commission": 0,
+      "quantity": 80.35909033509745
+    },
+    {
+      "side": "short",
+      "entryIndex": 211,
+      "entryPrice": 101.40115,
+      "exitIndex": 244,
+      "exitPrice": 100.23434142857144,
+      "exitReason": "trailing_stop",
+      "profit": 70.37951487124938,
+      "r": 0.6899952438357783,
+      "commission": 0,
+      "quantity": 60.31796182734714
+    },
+    {
+      "side": "short",
+      "entryIndex": 376,
+      "entryPrice": 103.18994,
+      "exitIndex": 380,
+      "exitPrice": 104.05275714285715,
+      "exitReason": "stop",
+      "profit": -102.70379514871226,
+      "r": -0.9999999999999978,
+      "commission": 0,
+      "quantity": 119.03309524961237
+    },
+    {
+      "side": "short",
+      "entryIndex": 490,
+      "entryPrice": 93.8211,
+      "exitIndex": 513,
+      "exitPrice": 83.71948571428572,
+      "exitReason": "target",
+      "profit": 203.35351439445066,
+      "r": 1.9999999999999993,
+      "commission": 0,
+      "quantity": 20.130793815997666
+    },
+    {
+      "side": "short",
+      "entryIndex": 614,
+      "entryPrice": 91.754,
+      "exitIndex": 615,
+      "exitPrice": 94.55340714285715,
+      "exitReason": "stop",
+      "profit": -103.71029234117002,
+      "r": -1.0000000000000013,
+      "commission": 0,
+      "quantity": 37.04723430666129
+    },
+    {
+      "side": "long",
+      "entryIndex": 617,
+      "entryPrice": 100.33304,
+      "exitIndex": 629,
+      "exitPrice": 98.42329928571428,
+      "exitReason": "trailing_stop",
+      "profit": -48.02947618537617,
+      "r": -0.4677898530058625,
+      "commission": 0,
+      "quantity": 25.149736729229325
+    },
+    {
+      "side": "short",
+      "entryIndex": 643,
+      "entryPrice": 96.15702,
+      "exitIndex": 662,
+      "exitPrice": 96.19746071428571,
+      "exitReason": "trailing_stop",
+      "profit": -1.2988996829070913,
+      "r": -0.012710273911710212,
+      "commission": 0,
+      "quantity": 32.11861377448828
+    },
+    {
+      "side": "long",
+      "entryIndex": 667,
+      "entryPrice": 106.31861,
+      "exitIndex": 671,
+      "exitPrice": 104.38021857142856,
+      "exitReason": "trailing_stop",
+      "profit": -53.741971303268436,
+      "r": -0.5259544032324639,
+      "commission": 0,
+      "quantity": 27.725035568731876
+    },
+    {
+      "side": "short",
+      "entryIndex": 921,
+      "entryPrice": 121.91674,
+      "exitIndex": 923,
+      "exitPrice": 123.53398714285714,
+      "exitReason": "stop",
+      "profit": -101.64248594604253,
+      "r": -0.9999999999999988,
+      "commission": 0,
+      "quantity": 62.849074363782165
+    },
+    {
+      "side": "long",
+      "entryIndex": 924,
+      "entryPrice": 123.24134,
+      "exitIndex": 927,
+      "exitPrice": 126.54801142857141,
+      "exitReason": "target",
+      "profit": 201.25212217316457,
+      "r": 2.0000000000000013,
+      "commission": 0,
+      "quantity": 60.86244929999334
+    },
+    {
+      "side": "long",
+      "entryIndex": 1021,
+      "entryPrice": 126.49166,
+      "exitIndex": 1028,
+      "exitPrice": 129.40453428571428,
+      "exitReason": "target",
+      "profit": 205.27716461662692,
+      "r": 1.999999999999992,
+      "commission": 0,
+      "quantity": 70.47237349836051
+    },
+    {
+      "side": "short",
+      "entryIndex": 1285,
+      "entryPrice": 118.418,
+      "exitIndex": 1293,
+      "exitPrice": 110.97886285714286,
+      "exitReason": "target",
+      "profit": 209.38270790896047,
+      "r": 2.0000000000000018,
+      "commission": 0,
+      "quantity": 28.14610134053032
+    },
+    {
+      "side": "long",
+      "entryIndex": 1506,
+      "entryPrice": 94.72088,
+      "exitIndex": 1513,
+      "exitPrice": 93.64078,
+      "exitReason": "opposite_signal",
+      "profit": -91.47443214348439,
+      "r": -0.8566210335376763,
+      "commission": 0,
+      "quantity": 84.69070654891719
+    },
+    {
+      "side": "short",
+      "entryIndex": 1646,
+      "entryPrice": 95.93045,
+      "exitIndex": 1678,
+      "exitPrice": 93.53361285714286,
+      "exitReason": "target",
+      "profit": 211.74087342426998,
+      "r": 2.0000000000000018,
+      "commission": 0,
+      "quantity": 88.34178578018253
+    },
+    {
+      "side": "long",
+      "entryIndex": 1692,
+      "entryPrice": 97.08096,
+      "exitIndex": 1695,
+      "exitPrice": 95.93626,
+      "exitReason": "stop",
+      "profit": -107.98784544637705,
+      "r": -0.9999999999999948,
+      "commission": 0,
+      "quantity": 94.33724595647509
+    },
+    {
+      "side": "long",
+      "entryIndex": 1716,
+      "entryPrice": 96.64454,
+      "exitIndex": 1720,
+      "exitPrice": 95.62849000000001,
+      "exitReason": "stop",
+      "profit": -106.90796699191321,
+      "r": -0.9999999999999941,
+      "commission": 0,
+      "quantity": 105.2191988503656
+    },
+    {
+      "side": "long",
+      "entryIndex": 1738,
+      "entryPrice": 95.84433,
+      "exitIndex": 1742,
+      "exitPrice": 95.18971,
+      "exitReason": "opposite_signal",
+      "profit": -54.514486764060436,
+      "r": -0.5150704825364468,
+      "commission": 0,
+      "quantity": 83.27653717280394
+    },
+    {
+      "side": "short",
+      "entryIndex": 1742,
+      "entryPrice": 95.18971,
+      "exitIndex": 1750,
+      "exitPrice": 96.07084,
+      "exitReason": "opposite_signal",
+      "profit": -80.72801218941338,
+      "r": -0.7666933505038039,
+      "commission": 0,
+      "quantity": 91.61873070876429
+    },
+    {
+      "side": "long",
+      "entryIndex": 1957,
+      "entryPrice": 100.14651,
+      "exitIndex": 1958,
+      "exitPrice": 98.77568714285715,
+      "exitReason": "stop",
+      "profit": -104.48646233245996,
+      "r": -1,
+      "commission": 0,
+      "quantity": 76.2217100393529
+    },
+    {
+      "side": "long",
+      "entryIndex": 2077,
+      "entryPrice": 105.73824,
+      "exitIndex": 2091,
+      "exitPrice": 108.64477142857143,
+      "exitReason": "target",
+      "profit": 206.88319541827056,
+      "r": 1.9999999999999984,
+      "commission": 0,
+      "quantity": 71.1787229907762
+    },
+    {
+      "side": "short",
+      "entryIndex": 2124,
+      "entryPrice": 103.9365,
+      "exitIndex": 2133,
+      "exitPrice": 104.62955,
+      "exitReason": "trailing_stop",
+      "profit": -44.93188018591297,
+      "r": -0.42585249940967745,
+      "commission": 0,
+      "quantity": 64.83209030504726
+    },
+    {
+      "side": "long",
+      "entryIndex": 2505,
+      "entryPrice": 113.14837,
+      "exitIndex": 2506,
+      "exitPrice": 111.88734428571429,
+      "exitReason": "stop",
+      "profit": -105.06111086145842,
+      "r": -0.9999999999999952,
+      "commission": 0,
+      "quantity": 83.31401149973294
+    },
+    {
+      "side": "short",
+      "entryIndex": 2508,
+      "entryPrice": 110.5711,
+      "exitIndex": 2510,
+      "exitPrice": 111.52847142857142,
+      "exitReason": "trailing_stop",
+      "profit": -73.54508330558293,
+      "r": -0.7070928750495857,
+      "commission": 0,
+      "quantity": 76.81980170990286
+    },
+    {
+      "side": "long",
+      "entryIndex": 2560,
+      "entryPrice": 113.10392,
+      "exitIndex": 2564,
+      "exitPrice": 111.92225,
+      "exitReason": "stop",
+      "profit": -103.27504891978869,
+      "r": -1.0000000000000016,
+      "commission": 0,
+      "quantity": 87.39753816191404
+    },
+    {
+      "side": "long",
+      "entryIndex": 2653,
+      "entryPrice": 117.01259,
+      "exitIndex": 2663,
+      "exitPrice": 115.71205714285715,
+      "exitReason": "stop",
+      "profit": -102.24229843059032,
+      "r": -0.9999999999999969,
+      "commission": 0,
+      "quantity": 78.61569807256295
+    },
+    {
+      "side": "long",
+      "entryIndex": 2678,
+      "entryPrice": 116.65727,
+      "exitIndex": 2708,
+      "exitPrice": 127.06659571428571,
+      "exitReason": "target",
+      "profit": 202.43975089256935,
+      "r": 1.999999999999999,
+      "commission": 0,
+      "quantity": 19.4479216472919
+    },
+    {
+      "side": "short",
+      "entryIndex": 2726,
+      "entryPrice": 114.22148,
+      "exitIndex": 2745,
+      "exitPrice": 114.16169357142857,
+      "exitReason": "trailing_stop",
+      "profit": 1.2574389939241182,
+      "r": 0.012179261453752714,
+      "commission": 0,
+      "quantity": 21.032181114846676
+    },
+    {
+      "side": "short",
+      "entryIndex": 2820,
+      "entryPrice": 120.93796,
+      "exitIndex": 2826,
+      "exitPrice": 126.60270000000001,
+      "exitReason": "stop",
+      "profit": -103.2568473451497,
+      "r": -1.0000000000000004,
+      "commission": 0,
+      "quantity": 18.227994108317333
+    },
+    {
+      "side": "long",
+      "entryIndex": 2865,
+      "entryPrice": 123.99532,
+      "exitIndex": 2868,
+      "exitPrice": 119.99406571428572,
+      "exitReason": "stop",
+      "profit": -102.22427887169815,
+      "r": -1,
+      "commission": 0,
+      "quantity": 25.54805857669944
+    },
+    {
+      "side": "short",
+      "entryIndex": 2923,
+      "entryPrice": 116.60581,
+      "exitIndex": 2926,
+      "exitPrice": 120.73044142857144,
+      "exitReason": "stop",
+      "profit": -101.20203608298114,
+      "r": -0.9999999999999996,
+      "commission": 0,
+      "quantity": 24.536019238458955
+    },
+    {
+      "side": "long",
+      "entryIndex": 2969,
+      "entryPrice": 127.93646,
+      "exitIndex": 2969,
+      "exitPrice": 122.71377,
+      "exitReason": "stop",
+      "profit": -100.19001572215126,
+      "r": -0.9999999999999989,
+      "commission": 0,
+      "quantity": 19.183603798454676
+    }
+  ],
+  "warnings": [
+    "The news filter is not applied in a quick backtest (it needs the MT5 calendar).",
+    "The spread is assumed to be zero in a quick backtest."
+  ],
+  "extra": {
+    "fill": {
+      "model": "stop_first",
+      "ambiguousBars": 0,
+      "ambiguousRatio": 0
+    }
+  }
+}

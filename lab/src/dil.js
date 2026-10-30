@@ -2,10 +2,10 @@
 // sözlükteki karşılığı döner, karşılık yoksa Türkçe kalır. Değişkenler {ad} biçiminde yazılır:
 // t('{n} sorun var', { n: 3 }).
 //
-// Dil sırası: ?dil=en|tr > sayfanın <html lang> özniteliği (lab sayfalarında yoktur; başka bir
+// Dil sırası: ?lang=en|tr (eski ?dil= de okunur) > sayfanın <html lang> özniteliği (lab sayfalarında yoktur; başka bir
 // sayfa laboratuvarı kendi diliyle gömdüğünde kullanılır) > tarayıcıda kayıtlı seçim
 // ('kalibre-dil') > İngilizce. Site küresel pazara İngilizce çıkar; Türkçe yalnız açıkça
-// seçilince (?dil=tr ya da kayıtlı seçim) gelir. Node'da (testler) varsayılan Türkçedir.
+// seçilince (?lang=tr ya da kayıtlı seçim) gelir. Node'da (testler) varsayılan Türkçedir.
 
 import { EN } from './dil-en.js';
 import { trGoster } from './dil-tr.js';
@@ -19,7 +19,7 @@ function yaz(d) { try { globalThis.localStorage?.setItem(DEPO, d); } catch { /* 
 function belirle() {
   const loc = globalThis.location;
   if (!loc) return 'tr';
-  const q = new URLSearchParams(loc.search ?? '').get('dil');
+  const q = new URLSearchParams(loc.search ?? '').get('lang') ?? new URLSearchParams(loc.search ?? '').get('dil');
   if (gecerli(q)) { yaz(q); return q; }
   const h = (globalThis.document?.documentElement?.getAttribute('lang') ?? '').slice(0, 2).toLowerCase();
   if (gecerli(h)) return h;

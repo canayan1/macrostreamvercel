@@ -1,0 +1,67 @@
+{
+  "kalibre": 3,
+  "name": "MACD Trend Confirmation",
+  "description": "MACD crossover with an SMA200 regime filter.",
+  "timeframe": "H4",
+  "indicators": {
+    "macd": {
+      "type": "MACD",
+      "fast": 12,
+      "slow": 26,
+      "signal": 9
+    },
+    "sma200": {
+      "type": "SMA",
+      "period": 200
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "macd",
+          "op": "crosses_above",
+          "right": "macd.signal"
+        },
+        {
+          "left": "price.close",
+          "op": ">",
+          "right": "sma200"
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "macd",
+          "op": "crosses_below",
+          "right": "macd.signal"
+        },
+        {
+          "left": "price.close",
+          "op": "<",
+          "right": "sma200"
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 2
+    },
+    "target": {
+      "type": "r",
+      "value": 2
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.75,
+    "max_open_positions": 1
+  }
+}

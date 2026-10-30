@@ -35,6 +35,6 @@ export function dosyaCoz(metin, dosyaAdi = 'dosya', { enAz = 200 } = {}) {
   }
   // Rozet metni: örnek veri hiçbir zaman "kendi verin" diye gösterilmez.
   const etiket = sonuc.sembol ? `${sonuc.sembol} ${sonuc.zamanDilimi}` : dosyaAdi;
-  sonuc.ad = `${ceviri(sonuc.ornek ? 'ÖRNEK (SENTETİK)' : 'KENDİ VERİN')} · ${etiket}`;
+  sonuc.ad = `${ceviri(sonuc.ornek ? 'ÖRNEK' : 'KENDİ VERİN')} · ${etiket}`;
   return sonuc;
 }

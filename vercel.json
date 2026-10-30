@@ -3,6 +3,41 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/lab/analiz",
+      "destination": "/lab/analytics",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/optimizasyon",
+      "destination": "/lab/optimization",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/oynaklik",
+      "destination": "/lab/volatility",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/panom",
+      "destination": "/lab/dashboard",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/baglan",
+      "destination": "/lab/connect",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/ornek/:path*",
+      "destination": "/lab/samples/:path*",
+      "statusCode": 308
+    },
+    {
+      "source": "/lab/sablon/:path*",
+      "destination": "/lab/templates/:path*",
+      "statusCode": 308
+    },
+    {
       "source": "/about",
       "destination": "/company",
       "statusCode": 308
@@ -189,22 +224,22 @@
     },
     {
       "source": "/connect",
-      "destination": "/lab/baglan",
+      "destination": "/lab/connect",
       "statusCode": 302
     },
     {
       "source": "/dashboard",
-      "destination": "/lab/panom",
+      "destination": "/lab/dashboard",
       "statusCode": 302
     },
     {
       "source": "/tr/connect",
-      "destination": "/lab/baglan?dil=tr",
+      "destination": "/lab/connect?lang=tr",
       "statusCode": 302
     },
     {
       "source": "/tr/dashboard",
-      "destination": "/lab/panom?dil=tr",
+      "destination": "/lab/dashboard?lang=tr",
       "statusCode": 302
     },
     {
@@ -214,32 +249,32 @@
     },
     {
       "source": "/tr/blotter",
-      "destination": "/lab/blotter?dil=tr",
+      "destination": "/lab/blotter?lang=tr",
       "permanent": false
     },
     {
       "source": "/analytics",
-      "destination": "/lab/analiz",
+      "destination": "/lab/analytics",
       "statusCode": 302
     },
     {
       "source": "/tr/analytics",
-      "destination": "/lab/analiz?dil=tr",
+      "destination": "/lab/analytics?lang=tr",
       "statusCode": 302
     },
     {
       "source": "/baglan",
-      "destination": "/lab/baglan?dil=tr",
+      "destination": "/lab/connect?lang=tr",
       "statusCode": 308
     },
     {
       "source": "/panom",
-      "destination": "/lab/panom?dil=tr",
+      "destination": "/lab/dashboard?lang=tr",
       "statusCode": 308
     },
     {
       "source": "/tr/lab",
-      "destination": "/lab?dil=tr",
+      "destination": "/lab?lang=tr",
       "statusCode": 302
     },
     {
@@ -324,7 +359,7 @@
     },
     {
       "source": "/trading",
-      "destination": "/lab?dil=tr",
+      "destination": "/lab?lang=tr",
       "statusCode": 301
     },
     {

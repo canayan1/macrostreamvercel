@@ -1,0 +1,71 @@
+{
+  "kalibre": 3,
+  "name": "Volatility-Targeted Trend",
+  "description": "Trend signal, lot size scaled by GARCH volatility and a volatility-based stop.",
+  "timeframe": "H1",
+  "indicators": {
+    "sma100": {
+      "type": "SMA",
+      "period": 100
+    },
+    "garch": {
+      "type": "GARCH_VOL",
+      "model": "gjr",
+      "distribution": "t",
+      "window": 1000,
+      "refit_every": 24
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_above",
+          "right": "sma100"
+        },
+        {
+          "left": "garch.ratio",
+          "op": "<",
+          "right": 2
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_below",
+          "right": "sma100"
+        },
+        {
+          "left": "garch.ratio",
+          "op": "<",
+          "right": 2
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "volatility",
+      "indicator": "garch",
+      "multiplier": 3
+    },
+    "trailing_stop": {
+      "type": "volatility",
+      "indicator": "garch",
+      "multiplier": 4
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.5,
+    "max_open_positions": 1,
+    "daily_max_loss_pct": 2,
+    "volatility_target": {
+      "indicator": "garch",
+      "min_multiplier": 0.25,
+      "max_multiplier": 1.5
+    }
+  }
+}

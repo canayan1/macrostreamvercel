@@ -1,5 +1,6 @@
 // Optimizasyon panelinin saf yardımcıları (DOM yok; Node testlerinde de çalışır).
 
+import { publicPath } from '../core/src/run-format.js';
 import { degerler } from './optimizasyon.js';
 
 export const EN_COK_PARAMETRE = 3;
@@ -69,8 +70,8 @@ export function hucreRengi(puan, min, max) {
 export function dosyaAdi(stratejiAdi, secilen, degerListesi) {
   const temiz = v => String(v).toLocaleLowerCase('tr').replace(/[çğıöşü]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' }[c]))
     .replace(/[^a-z0-9.]+/g, '-').replace(/^-|-$/g, '');
-  const ek = secilen.map((p, i) => `${temiz(p.yol.split('.').slice(-2).join('-'))}-${temiz(degerListesi[i])}`).join('_');
-  return `${temiz(stratejiAdi || 'strateji') || 'strateji'}_${ek}.json`;
+  const ek = secilen.map((p, i) => `${temiz(publicPath(p.yol).split('.').slice(-2).join('-'))}-${temiz(degerListesi[i])}`).join('_');
+  return `${temiz(stratejiAdi || 'strategy') || 'strategy'}_${ek}.json`;
 }
 
 // Komşuluk oranının düz anlatımı için sınıf: 'saglam' (≥ 0,8), 'orta' (0,5-0,8), 'kirilgan' (< 0,5).

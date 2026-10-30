@@ -1,0 +1,50 @@
+{
+  "fxBlotter_en": {
+    "legs": 224,
+    "excludedRows": 2,
+    "totalUsd": 99400,
+    "priceUsd": 83489,
+    "pointsUsd": 5803,
+    "carryUsd": 8242,
+    "mtmUsd": 1866,
+    "checks": 7,
+    "checksPassed": 7
+  },
+  "tradeAnalytics_en": {
+    "trades": 343,
+    "netUsd": 15839.03,
+    "winRatePct": 42,
+    "profitFactor": 1.1,
+    "propRuleSet": "FTMO 2-Step",
+    "propBreachDays": 0,
+    "days": 132
+  },
+  "fxBlotter_tr": {
+    "legs": 224,
+    "excludedRows": 2,
+    "totalUsd": 99400,
+    "priceUsd": 83489,
+    "pointsUsd": 5803,
+    "carryUsd": 8242,
+    "mtmUsd": 1866,
+    "checks": 7,
+    "checksPassed": 7
+  },
+  "tradeAnalytics_tr": {
+    "trades": 343,
+    "netUsd": 15839.03,
+    "winRatePct": 42,
+    "profitFactor": 1.1,
+    "propRuleSet": "FTMO 2-Step",
+    "propBreachDays": 0,
+    "days": 132
+  },
+  "kalibreLab": {
+    "resultId": "d75fe88a3f8370a53098995396c72b5cdb0a604643ac4ead53f3216bf1f94a79",
+    "trades": 31,
+    "profitFactor": 0.95,
+    "returnPct": -0.81,
+    "maxDrawdownPct": 8.15,
+    "bars": 3000
+  }
+}

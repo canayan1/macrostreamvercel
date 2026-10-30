@@ -7,7 +7,7 @@ import { alpacaIstemci, alpacaAdresi, alpacaOku, alpacaYaz, ALPACA_ADRES } from 
 import { kaynakYaz, maskeliHesap } from './veri/tradier.js';
 
 const $ = s => document.querySelector(s);
-const ek = dil === 'tr' ? '?dil=tr' : '';
+const ek = dil === 'tr' ? '?lang=tr' : '';
 const ortamAdi = o => (o === 'canli' ? ceviri('Canlı') : 'Paper');
 const para = (v, p) => (v === null ? '' : `${v.toLocaleString(dil === 'en' ? 'en-US' : 'tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${p}`);
 
@@ -68,5 +68,5 @@ $('#a-ortam').addEventListener('change', canliUyari);
 $('#a-baglan').addEventListener('click', baglan);
 for (const id of ['#a-anahtar', '#a-sir']) $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); baglan(); } });
 $('#a-kes').addEventListener('click', kes);
-$('#a-panom').href = `panom.html${ek}`;
+$('#a-panom').href = `dashboard.html${ek}`;
 bagliGoster(alpacaOku());

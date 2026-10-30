@@ -1,0 +1,89 @@
+{
+  "kalibre": 3,
+  "name": "Outside-the-Band Momentum",
+  "description": "Read a close outside the Bollinger band as momentum.",
+  "timeframe": "H1",
+  "indicators": {
+    "bb": {
+      "type": "BB",
+      "period": 20,
+      "deviation": 2
+    },
+    "adx": {
+      "type": "ADX",
+      "period": 14
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 14
+    }
+  },
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": ">",
+          "right": "bb.upper"
+        },
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "<",
+          "right": "bb.lower"
+        },
+        {
+          "left": "adx",
+          "op": ">",
+          "right": 20
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 2
+    },
+    "condition": {
+      "long": {
+        "all": [
+          {
+            "left": "price.close",
+            "op": "<",
+            "right": "bb.middle"
+          }
+        ]
+      },
+      "short": {
+        "all": [
+          {
+            "left": "price.close",
+            "op": ">",
+            "right": "bb.middle"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.5,
+    "max_open_positions": 1,
+    "max_spread_points": 30
+  },
+  "filters": {
+    "hours": {
+      "start": 8,
+      "end": 20
+    }
+  }
+}

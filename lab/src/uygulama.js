@@ -2,6 +2,7 @@
 // Durum = strateji JSON'unun kendisi. Form ondan çizilir, her değişiklikte
 // doğrulama, özet, sentetik prova ve JSON önizlemesi yenilenir.
 
+import { urlParam } from './url-params.js';
 import { dogrula, v2Ozellikleri, ZAMAN_DILIMLERI, GOSTERGE_TIPLERI, OPERATORLER, HATLAR, OYNAKLIK } from './dogrula.js';
 import { ozet, gostergeTanimi } from './ozet.js';
 import { prova, maliyetVar } from './motor.js';
@@ -22,6 +23,7 @@ const TASLAK_ANAHTARI = 'kalibre-lab-taslak';
 const $ = s => document.querySelector(s);
 const sayi = (v, b = 1) => sayiMetni(v, b);
 import { kacis, stratejiyiTemizle } from './guvenlik.js';
+import { toPublic, toInternal } from '../core/src/strategy-format.js';
 import { hesapSenkron, teklifBandi } from './hesap-senkron.js';
 
 const BOS = () => ({
@@ -49,7 +51,7 @@ const senkron = hesapSenkron({
 });
 let hatalar = [];
 let provaZamanlayici = 0;
-const ISTENEN_SEMBOL = (new URLSearchParams(location.search).get('sembol') ?? '').trim().slice(0, 32);
+const ISTENEN_SEMBOL = (urlParam('symbol') ?? '').trim().slice(0, 32);
 let provaVeri = null; // kullanıcının bıraktığı dosya (dosyaCoz sonucu)
 let mt5Veri = null;   // MetaTrader köprüsünden gelen seri (aynı biçim)
 let tradierVeri = null; // Tradier'den gelen seri (aynı biçim)
@@ -343,7 +345,7 @@ function panelCiz() {
        <ul class="hata-liste">${hatalar.map(h => `<li data-git="${kacis(h.yol)}">${kacis(h.mesaj)} <code>${kacis(h.yol)}</code></li>`).join('')}</ul>`
     : `<span class="durum-ok">${ceviri('✓ Geçerli. Kalibre Motor bu dosyayı yürütebilir.')}</span>`;
   $('#ozet').innerHTML = ozet(s).map(o => `<dt>${kacis(o.baslik)}</dt><dd>${kacis(o.metin)}</dd>`).join('');
-  $('#json').textContent = JSON.stringify(s, null, 2);
+  $('#json').textContent = JSON.stringify(toPublic(s), null, 2);
   taslakYaz();
   clearTimeout(provaZamanlayici);
   provaZamanlayici = setTimeout(provaCalistir, 200);
@@ -791,12 +793,12 @@ $('#sablon').addEventListener('change', async e => {
   if (v === 'bos') { s = BOS(); ornektenAd = null; }
   else {
     try {
-      const yanit = await fetch(`../ornekler/${v}.json`);
-      s = await yanit.json();
+      const yanit = await fetch(`strategies/${v}.json`);
+      s = toInternal(await yanit.json());
     } catch { alert(ceviri('Örnek yüklenemedi.')); return; }
-    // Örnek dosyanın kendisi Türkçe adla durur; İngilizcede katalogdaki ad_en gösterilir.
-    ornektenAd = (dil === 'en' && ornekAdlari[v]?.ad) || s.ad;
-    if (dil === 'en' && ornekAdlari[v]?.kisa) s.aciklama = ornekAdlari[v].kisa;
+    // Template files are English; the Turkish UI shows the catalog's Turkish name and summary.
+    ornektenAd = (dil === 'tr' && ornekAdlari[v]?.name_tr) || s.ad;
+    if (dil === 'tr' && ornekAdlari[v]?.summary_tr) s.aciklama = ornekAdlari[v].summary_tr;
     s.ad = ceviri('{ad} (benim kopyam)', { ad: ornektenAd }).slice(0, 60);
     s.risk ??= {};
     for (const k of RISK_KULLANICININ) delete s.risk[k];
@@ -809,7 +811,7 @@ $('#ice-aktar').addEventListener('change', async e => {
   e.target.value = '';
   if (!dosya) return;
   try {
-    const v = JSON.parse(await dosya.text());
+    const v = toInternal(JSON.parse(await dosya.text()));
     if (typeof v !== 'object' || v === null || Array.isArray(v)) throw new Error();
     // Dışarıdan gelen dosya forma çizilmeden önce temizlenir (guvenlik.js); kalan sorunları dogrula gösterir.
     const temiz = stratejiyiTemizle(v);
@@ -828,31 +830,30 @@ $('#indir').addEventListener('click', () => {
     return;
   }
   if (hatalar.length && !confirm(ceviri('{n} sorun var; Motor bu dosyayı reddeder. Yine de indirilsin mi?', { n: hatalar.length }))) return;
-  const dosyaAdi = (s.ad || 'strateji').toLocaleLowerCase('tr').replace(/[çğıöşü]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' }[c]))
-    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'strateji';
+  const dosyaAdi = (s.ad || 'strategy').toLocaleLowerCase('tr').replace(/[çğıöşü]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' }[c]))
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'strategy';
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(s, null, 2) + '\n'], { type: 'application/json' }));
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(toPublic(s), null, 2) + '\n'], { type: 'application/json' }));
   a.download = `${dosyaAdi}.json`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
 
 $('#kopyala').addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(JSON.stringify(s, null, 2)); $('#kopyala').textContent = ceviri('Kopyalandı'); }
+  try { await navigator.clipboard.writeText(JSON.stringify(toPublic(s), null, 2)); $('#kopyala').textContent = ceviri('Kopyalandı'); }
   catch { $('#kopyala').textContent = ceviri('Kopyalanamadı'); }
   setTimeout(() => { $('#kopyala').textContent = ceviri('Kopyala'); }, 1500);
 });
 
-// Şablon listesi kütüphane kataloğundan; yalnız Motor'un bugün yürüttüğü (v1) şablonlar.
+// Template list from the published library catalog (templates the engine runs today).
 const ornekAdlari = {};
-fetch('../paketler/sablonlar.json').then(y => y.json()).then(k => {
+fetch('strategies/catalog.json').then(y => y.json()).then(k => {
   const sec = $('#sablon');
-  for (const s of k.sablonlar.filter(s => s.durum === 'v1')) {
-    const ad = dil === 'en' && s.ad_en ? s.ad_en : s.ad;
-    if (s.ad_en) ornekAdlari[s.id] = { ad: s.ad_en, kisa: s.kisa_en };
-    sec.add(new Option(ad, s.id));
+  for (const t of k.templates) {
+    ornekAdlari[t.id] = t;
+    sec.add(new Option(dil === 'tr' && t.name_tr ? t.name_tr : t.name, t.id));
   }
-}).catch(() => { /* katalog yoksa yalnız boş şablon */ });
+}).catch(() => { /* no catalog: blank template only */ });
 
 $('#rejim').innerHTML = Object.entries(REJIMLER).map(([k, r]) => `<option value="${kacis(k)}">${ceviri(r.ad)}</option>`).join('');
 $('#tohum').value = 4821;
@@ -884,9 +885,9 @@ gercekci = gercekciAlani($('#gercekci-alan'), {
     return { adet: altMumlar.length };
   },
 });
-// Panom'dan "Backtest": ?sembol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
+// Panom'dan "Backtest": ?symbol=EURUSD ile gelince MetaTrader kaynağı seçilir ve o seri yüklenir.
 if (ISTENEN_SEMBOL) {
-  const istenenKaynak = new URLSearchParams(location.search).get('kaynak');
+  const istenenKaynak = urlParam('source');
   $('#prova-kaynak').value = /^(tradier|alpaca)$/.test(istenenKaynak ?? '') ? istenenKaynak : 'mt5';
   provaKaynakGoster();
   provaCalistir();
@@ -895,13 +896,13 @@ if (ISTENEN_SEMBOL) {
 // Ürün demosu (?demo=1): yayımlanan örnek kural ve örnek fiyat dosyası, kullanıcının içe aktaracağı gibi yüklenir.
 async function labDemoAc() {
   try {
-    const [k, f] = await Promise.all(['ornek/kalibre-lab-sample-strategy.json', 'ornek/kalibre-lab-sample-prices.csv'].map(y => fetch(y).then(r => { if (!r.ok) throw new Error(String(r.status)); return r.text(); })));
-    s = stratejiyiTemizle(JSON.parse(k)).strateji;
+    const [k, f] = await Promise.all(['samples/kalibre-lab-sample-strategy.json', 'samples/kalibre-lab-sample-prices.csv'].map(y => fetch(y).then(r => { if (!r.ok) throw new Error(String(r.status)); return r.text(); })));
+    s = stratejiyiTemizle(toInternal(JSON.parse(k))).strateji;
     s.gostergeler ??= {};
     ornektenAd = null; ornekUyarisi();
     formCiz(); panelCiz();
     provaVeri = dosyaCoz(f, 'kalibre-lab-sample-prices.csv');
-    provaVeri.ad = `${ceviri('ÖRNEK (SENTETİK)')} · kalibre-lab-sample-prices.csv`;
+    provaVeri.ad = `${ceviri('ÖRNEK')} · kalibre-lab-sample-prices.csv`;
     $('#prova-kaynak').value = 'dosya';
     provaKaynakGoster();
     provaCalistir();

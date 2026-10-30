@@ -51,7 +51,7 @@ export function cozumMetni(sinif) {
 export function baglanDugmesi(yer) {
   if (!yer || !globalThis.document) return { guncelle() {} };
   const a = globalThis.document.createElement('a');
-  a.href = `baglan.html${dil === 'tr' ? '?dil=tr' : ''}`;
+  a.href = `connect.html${dil === 'tr' ? '?lang=tr' : ''}`;
   function guncelle() {
     // Aracı kurum (Tradier, Alpaca) etkin kaynaksa ayarın kayıtlı olması yeter (yoklama doğrudan kuruma
     // gider, kalp atışı yoktur).

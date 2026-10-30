@@ -1,0 +1,50 @@
+{
+  "kalibre": 3,
+  "name": "Protective Short",
+  "description": "Short below the 200-day average. Downside protection for a long portfolio.",
+  "timeframe": "D1",
+  "direction": "short_only",
+  "indicators": {
+    "sma200": {
+      "type": "SMA",
+      "period": 200
+    },
+    "atr": {
+      "type": "ATR",
+      "period": 20
+    }
+  },
+  "entry": {
+    "short": {
+      "all": [
+        {
+          "left": "price.close",
+          "op": "crosses_below",
+          "right": "sma200"
+        }
+      ]
+    }
+  },
+  "exit": {
+    "stop": {
+      "type": "atr",
+      "indicator": "atr",
+      "multiplier": 3
+    },
+    "condition": {
+      "short": {
+        "all": [
+          {
+            "left": "price.close",
+            "op": ">",
+            "right": "sma200"
+          }
+        ]
+      }
+    }
+  },
+  "risk": {
+    "risk_per_trade_pct": 0.75,
+    "max_open_positions": 1
+  }
+}
