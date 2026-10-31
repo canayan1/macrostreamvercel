@@ -5,6 +5,8 @@ import { EN } from './dil-en.js';
 
 export const BLOTTER_EN = {
   // rates, carry and limit tables (blotter/girdi-tablo.js)
+  'İlk {n} satırı göster': 'Show the first {n} rows',
+  '{n} satırın tamamını göster': 'Show all {n} rows',
   'Şu sütunlar bulunamadı: {a}. Aşağıdaki listeden dosyandaki karşılığını seç.': 'These columns were not found: {a}. Pick the matching column of your file in the list below.',
   'Kur tablosunda {n} satır okunamadı.': '{n} line(s) in the rate table could not be read.',
   'Taşıma tablosunda {n} satır okunamadı.': '{n} line(s) in the carry table could not be read.',

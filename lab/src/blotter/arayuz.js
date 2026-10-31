@@ -386,12 +386,37 @@ function merdivenGoster() {
 function swapGoster() {
   const l = analiz.kz.swaplar;
   $('#swap-tablo').innerHTML = l.length ? `<thead><tr>${['Parite', 'Base tutar (yakın)', 'Yakın valör', 'Uzak valör', 'Yakın kur', 'Uzak kur', 'Puan', 'Puan K/Z', 'USD karşılığı'].map((h, i) => `<th${[1, 4, 5, 6, 7, 8].includes(i) ? ' class="sayi"' : ''}>${kacis(ceviri(h))}</th>`).join('')}</tr></thead><tbody>${l.map(s => `<tr class="b-tik" tabindex="0" data-idler="${kacis(s.bacakIdler.join(','))}" data-baslik="${kacis(`${s.parite} swap`)}"><td>${kacis(s.parite)}</td><td class="sayi">${isaretli(s.miktar)}</td><td>${tarihMetni(s.yakinValor)}</td><td>${tarihMetni(s.uzakValor)}</td><td class="sayi">${kurMetni(s.yakinKur)}</td><td class="sayi">${kurMetni(s.uzakKur)}</td><td class="sayi">${kurMetni(s.puanFark)}</td><td class="sayi ${kacis(sinif(s.kote_puan))}">${isaretli(s.kote_puan)} ${kacis(s.kote)}</td><td class="sayi ${kacis(sinif(s.kote_puan))}">${usd(analiz.cevir.usd(s.kote_puan, s.kote))}</td></tr>`).join('')}</tbody>` : `<tbody><tr><td class="dipnot">${kacis(ceviri('Blotter\'da dengeli swap yok.'))}</td></tr></tbody>`;
+  kisalt('#swap-tablo');
 }
+// Uzun satır listeleri ilk {KISA} satırla açılır; kullanıcı isterse aşağıya doğru tamamını açar.
+const KISA = 10;
+const acikTablolar = new Set();
+function kisalt(id) {
+  const tablo = $(id), satirlar = [...tablo.querySelectorAll('tbody tr')];
+  let d = tablo.closest('.tablo-kutu').nextElementSibling;
+  if (!d?.classList.contains('b-uzat')) { d = document.createElement('p'); d.className = 'b-uzat'; tablo.closest('.tablo-kutu').after(d); }
+  const acik = acikTablolar.has(id);
+  satirlar.forEach((tr, i) => { tr.hidden = !acik && i >= KISA; });
+  d.hidden = satirlar.length <= KISA;
+  d.replaceChildren();
+  if (d.hidden) return;
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'kucuk';
+  b.textContent = acik ? ceviri('İlk {n} satırı göster', { n: KISA }) : ceviri('{n} satırın tamamını göster', { n: sayi(satirlar.length) });
+  b.addEventListener('click', () => {
+    if (acik) acikTablolar.delete(id); else acikTablolar.add(id);
+    kisalt(id);
+    if (acik) tablo.closest('.kart').scrollIntoView({ block: 'start' });
+  });
+  d.append(b);
+}
+
 function marjGoster() {
   const m = analiz.marjOzet;
   $('#marj-ozet').textContent = ceviri('Toplam {x}', { x: usd(m.usd) }) + (m.eksik ? ' · ' + ceviri('{n} kalem için kur yok', { n: m.eksik }) : '');
   const kaynak = k => ceviri(k.tur === 'maliyet' ? 'maliyet sütunu' : k.tur === 'yuzde' ? 'varsayılan yüzde' : 'back-to-back eşleşme');
-  $('#marj-tablo').innerHTML = m.kalem.length ? `<thead><tr>${['Satır', 'Parite', 'Yön', 'Tutar (base)', 'Kur', 'Kaynak', 'bps', 'Marj', 'USD karşılığı'].map((h, i) => `<th${[0, 3, 4, 6, 7, 8].includes(i) ? ' class="sayi"' : ''}>${kacis(ceviri(h))}</th>`).join('')}</tr></thead><tbody>${m.kalem.slice(0, 500).map(k => `<tr class="b-tik" tabindex="0" data-idler="${kacis(k.bacakIdler.join(','))}" data-baslik="${kacis(ceviri('Marj · satır {s}', { s: k.bacak.satirNo }))}"><td class="sayi">${k.bacak.satirNo}</td><td>${kacis(k.bacak.parite)}</td><td>${kacis(ceviri(k.bacak.yon === 'al' ? 'Alış' : 'Satış'))}</td><td class="sayi">${isaretli(k.bacak.baseTutar)}</td><td class="sayi">${kurMetni(k.bacak.kur)}</td><td>${kacis(kaynak(k))}</td><td class="sayi">${sayi(k.bps, 2)}</td><td class="sayi ${kacis(sinif(k.kote_marj))}">${isaretli(k.kote_marj)} ${kacis(k.bacak.kote)}</td><td class="sayi">${usd(k.usd_marj)}</td></tr>`).join('')}</tbody>` : `<tbody><tr><td class="dipnot">${kacis(ceviri('Maliyet sütunu, müşteri işaretli satır ya da back-to-back eşleşme bulunamadı.'))}</td></tr></tbody>`;
+  $('#marj-tablo').innerHTML = m.kalem.length ? `<thead><tr>${['Satır', 'Parite', 'Yön', 'Tutar (base)', 'Kur', 'Kaynak', 'bps', 'Marj', 'USD karşılığı'].map((h, i) => `<th${[0, 3, 4, 6, 7, 8].includes(i) ? ' class="sayi"' : ''}>${kacis(ceviri(h))}</th>`).join('')}</tr></thead><tbody>${m.kalem.map(k => `<tr class="b-tik" tabindex="0" data-idler="${kacis(k.bacakIdler.join(','))}" data-baslik="${kacis(ceviri('Marj · satır {s}', { s: k.bacak.satirNo }))}"><td class="sayi">${k.bacak.satirNo}</td><td>${kacis(k.bacak.parite)}</td><td>${kacis(ceviri(k.bacak.yon === 'al' ? 'Alış' : 'Satış'))}</td><td class="sayi">${isaretli(k.bacak.baseTutar)}</td><td class="sayi">${kurMetni(k.bacak.kur)}</td><td>${kacis(kaynak(k))}</td><td class="sayi">${sayi(k.bps, 2)}</td><td class="sayi ${kacis(sinif(k.kote_marj))}">${isaretli(k.kote_marj)} ${kacis(k.bacak.kote)}</td><td class="sayi">${usd(k.usd_marj)}</td></tr>`).join('')}</tbody>` : `<tbody><tr><td class="dipnot">${kacis(ceviri('Maliyet sütunu, müşteri işaretli satır ya da back-to-back eşleşme bulunamadı.'))}</td></tr></tbody>`;
+  kisalt('#marj-tablo');
 }
 function atlananGoster() {
   const a = aktarim.atlanan.filter(x => x.gerekce !== 'baslik-oncesi');
@@ -402,6 +427,7 @@ function atlananGoster() {
     ...u.map(x => `<tr class="b-dusuk"><td class="sayi">${x.satirNo ?? '–'}</td><td>${kacis(ceviri('Uyarı'))}</td><td>${kacis(ceviri(UYARI_AD[x.kod] ?? x.kod))}</td></tr>`),
   ];
   $('#atlanan-tablo').innerHTML = satirlarHtml.length ? `<thead><tr><th class="sayi">${kacis(ceviri('Satır'))}</th><th>${kacis(ceviri('Sonuç'))}</th><th>${kacis(ceviri('Gerekçe'))}</th></tr></thead><tbody>${satirlarHtml.join('')}</tbody>` : `<tbody><tr><td class="dipnot">${kacis(ceviri('Atlanan satır yok.'))}</td></tr></tbody>`;
+  kisalt('#atlanan-tablo');
 }
 
 // ---------------------------------------------------------------- başlat
