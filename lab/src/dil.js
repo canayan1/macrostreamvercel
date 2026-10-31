@@ -65,7 +65,7 @@ export const isaretliYuzde = (v, b = 1) => `${v >= 0 ? '+' : '−'}${yuzdeMetni(
 export const sade = s => s.replace(/\s+/g, ' ').trim();
 export function sayfayiCevir(kok = globalThis.document) {
   if (!kok) return;
-  if (dil === 'tr') { trSayfa(kok); return; }
+  if (dil === 'tr') { trSayfa(kok); goster(kok); return; }
   for (const el of kok.querySelectorAll('[data-t]')) {
     const k = sade(el.innerHTML);
     if (EN[k] !== undefined) el.innerHTML = EN[k];
@@ -77,7 +77,11 @@ export function sayfayiCevir(kok = globalThis.document) {
     }
   }
   if (kok.title && EN[kok.title] !== undefined) kok.title = EN[kok.title];
+  goster(kok);
 }
+
+// Lab sayfaları Türkçe kaynak metin çevrilene kadar gizli açılır (sayfanın <head>'indeki ceviri-bekliyor sınıfı).
+function goster(kok) { kok.documentElement?.classList.remove('ceviri-bekliyor'); }
 
 // Türkçe sayfada görünen adların düzeltilmesi (dil-tr.js): data-t içerikleri, çevrilen öznitelikler ve başlık.
 function trSayfa(kok) {

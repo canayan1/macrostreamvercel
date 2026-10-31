@@ -226,7 +226,7 @@ Object.assign(EN, Object.fromEntries(Object.entries({
   'İşlem Analizi · Beta': 'Trade Analytics · Beta',
   'Nerede kazanıp nerede kaybettiğini gör.': 'See where you make and lose money.',
   'MT5 geçmiş raporunu bırak. Sembol, saat, gün, seans, işlem boyutu ve kayıptan sonraki işlemlere göre sonuçlarını gör. Dosya bu tarayıcıda okunur.': 'Drop in your MT5 history report. See your results by symbol, hour, weekday, session, trade size and the trade after a loss. The file is read in this browser.',
-  'Sentetik örnek veri': 'Synthetic sample data',
+  'Sentetik örnek veri': 'Example data',
   'Örnek hesap': 'Example account',
   'Örnek': 'Example',
   'Dolu örnek': 'Filled example',

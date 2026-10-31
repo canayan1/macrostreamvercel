@@ -10,7 +10,7 @@ import { SOZLUK, ZORUNLU_ALANLAR } from './tespit.js';
 import { blotterAnaliz, grupla, BOYUTLAR, KOVALAR, limitleriCoz, FIRSAT_MALIYETI_ONAYLI } from './analiz.js';
 import { mutabakat } from './mutabakat.js';
 import { kurTablosuCoz, tasimaGirdiCoz, lastTradedRates } from './kur.js';
-import { ornekBlotter, ORNEK_KURLAR, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
+import { ornekBlotter, ORNEK_KURLAR, ORNEK_KURLAR_EN, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
 import { rastgeleTuz } from './model.js';
 import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
 import { deskReport } from './desk-report.js';
@@ -67,7 +67,7 @@ function ornekYukle(satirlarDis = null, kaynakAdi = null) {
   const o = ornekBlotter(undefined, { dil: dil === 'en' ? 'en' : 'tr' });
   sentetikAyarla(true);
   $('#saat-dilimi').value = String(o.saatDilimi);
-  $('#kur-tablo').value = ORNEK_KURLAR;
+  $('#kur-tablo').value = dil === 'en' ? ORNEK_KURLAR_EN : ORNEK_KURLAR;
   $('#tasima-tablo').value = ORNEK_FAIZ_METNI;
   $('#limit-tablo').value = dil === 'en' ? ORNEK_LIMITLER_EN : ORNEK_LIMITLER;
   $('#yerel-doviz').value = 'TRY';
@@ -225,12 +225,16 @@ function downloadReport() {
 const TOUR = [
   ['#yukle-kart', 'Masanın kendi dökümü', 'Dosya olduğu gibi bırakıldı: rapor başlığı, toplam satırı, yerel biçimler. Tarayıcıda okunur, hiçbir yere yüklenmez.'],
   ['#eslesme-kart', 'Sütunlar kendiliğinden eşleşir', 'Her alan için bulunan sütun ve güven puanı. Yanlışsa listeden düzeltilir.', () => fold('#eslesme-kart', false)],
+  ['#girdi-kart', 'Kurlar ve limitler masanın', 'Analiz günü, maliyet yöntemi ve yerel para burada. Kendi dosyanda kur tablosu dosyanın son işlem kurlarıyla başlar; gecelik faiz ve limitler masanın kendi tanımıdır. Her değişiklik sonucu hemen yeniden hesaplar.', () => fold('#girdi-kart', false)],
   ['#ozet-kart', "Haftanın K/Z'si, parçalarına ayrılmış", 'Toplam K/Z fiyat, vadeli puan, taşıma ve MTM olarak ayrılır; yerel para karşılığıyla.'],
   ['#mutabakat-kart', 'Her toplam dosyaya bağlanır', 'Yedi kontrol: satır sayıları, alt toplamlar, tutar çarpı kur, nominaller, TL karşılığı, açık lotlar ve iki maliyet yöntemi.'],
   ['#kz-kart', 'İstediğin gibi grupla', 'Parite, portföy, dealer, kalem türü, büyüklük, saat ya da güne göre.'],
   ['#detay-kart', "Bir rakama tıkla, deal'ler açılır", 'Her satır, arkasındaki işlem satırlarını dosyadaki satır numarasıyla gösterir.', () => { if ($('#detay-kart').hidden) $('#kz-tablo tbody tr')?.click(); }],
   ['#pozisyon-kart', 'Pozisyon ve limitler', 'Döviz bazında net pozisyon, masanın kendi limitlerinin yanında.'],
   ['#merdiven-kart', 'Valöre göre nakit akışı', 'Bugünden bir yılın ötesine, döviz bazında bir merdiven.'],
+  ['#swap-kart', "Swap'lar ayrı izlenir", 'Her roll yakın ve uzak bacağıyla; puan etkisi toplam K/Z içinde puan sütununda.'],
+  ['#marj-kart', 'Müşteri marjı', 'Müşteri işlemlerinde maliyet kuruna göre kazanılan marj, işlem işlem.'],
+  ['#atlanan-kart', 'Hiçbir satır sessizce kaybolmaz', 'Dışlanan ya da okunamayan her satır, dosyadaki satır numarası ve gerekçesiyle burada.'],
   ['#rapor-indir', 'Yanında götür', 'Bütün analiz grafikli bir Excel masa raporu olarak iner.'],
 ];
 async function tour() {
@@ -397,7 +401,7 @@ function baslat() {
   birak.addEventListener('dragleave', () => birak.classList.remove('uzerinde'));
   birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyaOku(e.dataTransfer?.files?.[0]); });
   $('#ornek-yukle').addEventListener('click', () => ornekYukle());
-  if (dil === 'en') $('#limit-tablo').placeholder = ORNEK_LIMITLER_EN;
+  if (dil === 'en') { $('#limit-tablo').placeholder = ORNEK_LIMITLER_EN; $('#marj-yuzde').placeholder = '0.00'; }
   $('#ornek-kapat').addEventListener('click', () => { sentetikAyarla(false); $('#dosya').click(); });
   for (const id of ['#bakis', '#saat-dilimi']) $(id).addEventListener('change', () => { depoYaz(DEPO.saat, $('#saat-dilimi').value); if (satirlar) { aktar(); hesapla(); } });
   $('#eslesme-onay').addEventListener('click', hesapla);

@@ -6,11 +6,9 @@ export const ORNEK_TARIH = '2026-10-16';
 // Demo analiz günü: hafta kapandıktan sonraki çarşamba (açık pozisyonların spot valörü geçmiş, taşıma görünür).
 export const ORNEK_ANALIZ_TARIHI = '2026-10-21';
 // Analiz günü için sentetik anlık kur tablosu (kullanıcının kendi tablosunun yerine).
-export const ORNEK_KURLAR = `# SENTETİK anlık kurlar
-USD/TRY 41.9200
-EUR/USD 1.0875
-GBP/USD 1.3360
-EUR/TRY 45.5880`;
+const KURLAR = 'USD/TRY 41.9200\nEUR/USD 1.0875\nGBP/USD 1.3360\nEUR/TRY 45.5880';
+export const ORNEK_KURLAR = `# Örnek anlık kurlar\n${KURLAR}`;
+export const ORNEK_KURLAR_EN = `# Example rates\n${KURLAR}`;
 // Sentetik gecelik faiz varsayımları (yıllık %), taşıma maliyeti örneği için.
 export const ORNEK_FAIZ = { USD: 4.25, TRY: 39.5, EUR: 2.0, GBP: 4.0 };
 export const ORNEK_FAIZ_METNI = Object.entries(ORNEK_FAIZ).map(([d, r]) => `${d} ${r}`).join('\n');
