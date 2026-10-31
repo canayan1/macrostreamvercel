@@ -592,6 +592,7 @@ def rule_guard(lang):
 
 # ================================================================== Desk Signal
 DESK_DEMO = "/lab/desk"
+DESK_LIVE = "/lab/desk-live"
 
 def desk_signal(lang):
     tr = lang == "tr"
@@ -607,7 +608,7 @@ def desk_signal(lang):
 {local}
 {page_hero(T(lang, "One key to the whole desk.", "Tek tuşla bütün masa."),
            T(lang, "Colour signals from the head of desk to every trader's screen, in every city, with a record of who answered.", "Masa şefinden her şehirdeki her trader'ın ekranına renkli sinyal; kimin yanıt verdiğinin kaydıyla."),
-           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(LAB(lang, DESK_DEMO + "?tour=1"), T(lang, "Take the 1-minute tour", "1 dakikalık turu başlat")),
+           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(DESK_LIVE, T(lang, "Start a live desk", "Canlı masa kur")),
            hero_image("desk-signal", lang, T(lang, "Desk Signal demo on a laptop: the head of desk's signal board next to four trader screens, one orb lit amber in London and one grown red in Tokyo", "Dizüstünde Desk Signal demosu: masa şefinin sinyal panosu ve dört trader ekranı; Londra'da amber, Tokyo'da büyümüş kırmızı bir top")),
            kicker="Desk Signal" + status_tag("test", lang))}
 
@@ -647,12 +648,14 @@ def desk_signal(lang):
 <section class="sec center" id="pricing">
   <div class="wrap">
     <h2 class="title">{T(lang, "Free during early access.", "Erken erişimde ücretsiz.")}</h2>
-    <p class="lede">{T(lang, "Early access opens first for prop firms and trading desks of 2 to 50 people.", "Erken erişim önce prop firmalarına ve 2 ile 50 kişilik işlem masalarına açılıyor.")}</p>
-    <div class="actions">{btn("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim")}{more(LAB(lang, DESK_DEMO), T(lang, "Try the demo first", "Önce demoyu dene"))}</div>
+    <p class="lede">{T(lang, "Start a desk in your browser now and send the invite link to your traders. Built first for prop firms and trading desks of 2 to 50 people.", "Masanı şimdi tarayıcında kur ve davet bağlantısını trader'larına gönder. Önce prop firmaları ve 2 ile 50 kişilik işlem masaları için yapıldı.")}</p>
+    <div class="actions">{btn(DESK_LIVE, T(lang, "Start a desk", "Masa kur"))}{btn("#pricing", T(lang, "Tell us about your desk", "Masanı anlat"), " data-erken-erisim", ghost=True)}{more(LAB(lang, DESK_DEMO), T(lang, "Try the demo first", "Önce demoyu dene"))}</div>
     {faq([(T(lang, "Does it replace our chat or recorded lines?", "Sohbeti ya da kayıtlı hatları değiştirir mi?"), T(lang, "No. It sits next to them for the quick signals. Your firm's own record-keeping rules still apply, and the signal log helps you keep them.", "Hayır. Hızlı sinyaller için onların yanında durur. Firmanın kendi kayıt tutma kuralları geçerliliğini korur; sinyal logu bunlara yardımcı olur.")),
           (T(lang, "Does the demo send anything?", "Demo bir şey gönderiyor mu?"), T(lang, "No. The demo runs in your browser and sends nothing to a server.", "Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.")),
           (T(lang, "Can we choose our own colours and meanings?", "Renkleri ve anlamları kendimiz seçebilir miyiz?"), T(lang, "Yes. Up to nine signals, each with its own meaning and key. You choose which ones ring until answered.", "Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.")),
-          (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "For the demo, nothing. Early access starts in a browser tab, and the desktop app follows.", "Demo için hiçbir şey. Erken erişim bir tarayıcı sekmesinde başlar, masaüstü uygulaması ardından gelir."))])}
+          (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "Nothing. They open the invite link in a browser tab and pick a name. In Chrome and Edge the orb can stay on top of their other windows. The desktop app follows.", "Hiçbir şey. Davet bağlantısını bir tarayıcı sekmesinde açar ve bir ad seçer. Chrome ve Edge'de top diğer pencerelerin üstünde kalabilir. Masaüstü uygulaması ardından gelir.")),
+          (T(lang, "Can Kalibre read our signals?", "Kalibre sinyallerimizi okuyabilir mi?"), T(lang, "No. Signals are sealed in your browsers with a key that lives only in your invite link. Our relay passes them on without being able to open them, and only the head's browser can send a signal.", "Hayır. Sinyaller tarayıcılarınızda, yalnız davet bağlantınızda duran bir anahtarla mühürlenir. Rölemiz onları açamadan iletir ve sinyali yalnız masa şefinin tarayıcısı gönderebilir.")),
+          (T(lang, "How long is the log kept?", "Log ne kadar tutulur?"), T(lang, "The head's console downloads the full log as CSV or Excel at any time. During early access the relay keeps the last 5,000 events for 30 days.", "Masa şefinin konsolu tam logu istediği an CSV ya da Excel olarak indirir. Erken erişimde röle son 5.000 olayı 30 gün tutar."))])}
     <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
   </div>
 </section>

@@ -56,7 +56,7 @@ Planlar ücretsiz kalır (Vercel Hobby, Supabase free, Resend free, Upstash free
 | Kalibre Bridge (MT5 EA) | MT5'ten fiyat geçmişi, Market Watch fiyatları, açık pozisyonlar, 90 günlük kapanmış işlemler ve bakiye hareketlerini şifreli röle üzerinden tarayıcıya taşır; salt okuma | Beta (testçilere açık) |
 | Kalibre Engine (MT5 EA) | Kullanıcının kendi kurallarını MT5'te çalıştırır; prop kalkanı (günlük/toplam kayıp tabanı); gerçek hesapta açık onay ve zorunlu kayıp sınırı | Yalnız kurucunun demo hesabında; testçilere YOK |
 | Alpaca / Tradier bağlantısı | ABD hisseleri için tarayıcıdan doğrudan, kullanıcının kendi anahtarıyla, salt okuma | Beta; ticari kullanım için yazılı onay gerekir |
-| Desk Signal (masa sinyali) | Masa şefinden trader'lara tek tuşla renkli sinyal; acil sinyaller yanıtlanana kadar çalar; kimin gördüğü ve bitirdiği saniyesine kadar kayıtlı (CSV/Excel) | Tarayıcı demosu (/lab/desk), erken erişim formu; çok kullanıcılı MVP sırada |
+| Desk Signal (masa sinyali) | Masa şefinden trader'lara tek tuşla renkli sinyal; acil sinyaller yanıtlanana kadar çalar; kimin gördüğü ve bitirdiği saniyesine kadar kayıtlı (CSV/Excel) | Tarayıcı demosu (/lab/desk) ve çalışan canlı masa (/lab/desk-live): şifreli röle, şef konsolu, trader ekranı; erken erişimde ücretsiz |
 | 2. ürün: davranışsal finans | İşlem geçmişinden önyargı analizi ve uyarılar; günlük (Edgewonk/TradeZella alanı) | Adı ve tasarımı sonra |
 
 Ortak paket ya da ayrı satış açık. Lisans ve hesap modeli ürün eklemeye hazır (`licenses.product`).
@@ -337,3 +337,16 @@ Claude'un yapacakları:
 - Can'ın onayıyla ("gayet iyi siteyi canlıya alabiliriz") kalibremarkets.com güncellendi (deploy macrostreamvercel-9iiliw7hp). Çıkanlar: Desk Signal ürün sayfası ve /lab/desk demosu, FX Blotter ilk kullanım iyileştirmeleri, görsellere tıklayınca büyütme (static/lightbox.js yeni sayfa sınıflarına bağlandı; telefonda büyütülen ekran kaydırılarak okunur).
 - Tarayıcıyla doğrulandı: /desk-signal başlık ve büyütme, /lab/desk örnek sahne (3 top, 4 satır), /lab/blotter örnek (+99,400 USD).
 - Müşteri sunumları: ~/Desktop/kalibre-sunumlar (5 pptx). Tanıtım filmleri: ~/Desktop/kalibre-videolar (konsept, HeyGen denemeleri).
+
+### 31.10 ek 13: Lab Türkçe kalıntıları ve canlıya çıkış
+- Lab sayfaları çeviri bitene kadar gizli (en çok 2,5 sn), Türkçe kaynak metin artık bir an bile görünmüyor. FX Blotter turu 13 adım, 12 bölümün hepsi. "Synthetic" yerine "Example". Denetim betiği kalibre-lab `araclar/turkce-tara.mjs` (12 sayfa durumu, canlıda 0). Can'ın "canlıya al" onayıyla yayımlandı (deploy macrostreamvercel-k2j8lwk94).
+
+### 31.10 ek 14: Desk Signal canlı masa (çok kullanıcılı MVP)
+- Sayfa: `/lab/desk-live` (kalibre-lab lab/desk-live.html, src/desk/live-ui.js). Üç görünüm: masa kur ya da katıl; `#head=<masa>` şef konsolu; `#join=<davet>` trader ekranı.
+- Güvenlik modeli (src/desk/kasa.js): masa kodu "KDS1"+32 bayt, yalnız davet bağlantısının # kısmında (sunucuya gitmez). Olaylar AES-256-GCM ile tarayıcıda mühürlenir; röle içini okuyamaz. Şefin tarayıcısı ECDSA P-256 anahtarı üretir; sinyal, pano, iptal ve çıkarma olayları imzalıdır, trader kodla sinyal gönderemez. Trader yanıtları (görüldü/bitti) imzasız: masa kodunu bilen biri başkası adına yanıt uydurabilir; sonraki adımda trader anahtarı eklenebilir. Şef anahtarı tarayıcıda durur; "head key backup" JSON'u indirilip başka tarayıcıda açılabilir.
+- Olaylar (src/desk/live.js, saf ve testli): board, join, remove, send, mark, cancel. Herkes aynı kayıtları aynı sırayla oynatır; zamanlar rölenin saatidir.
+- Röle: site `api/desk.ts`. POST tek Upstash EVAL ile sınır + sıra no + kayıt (son 5000, 30 gün) + PUBLISH. GET akışı (SSE) Redis SUBSCRIBE ile (api/_lib/abone.ts, REST adresinin ana makinesine TLS 6379; yeni gizli anahtar gerekmedi), kopunca kaldığı yerden; akış kurulamazsa tarayıcı 1,5 sn'lik okumaya düşer. Çevrimiçi tablosu (rastgele kişi kimliği → son görülme).
+- Ölçüm (önizleme, gerçek Upstash): gönderimden trader ekranına 228-248 ms; POST ~225 ms (4 ayrı istekken ~520 ms idi).
+- Trader: büyük top, Seen/Done, ses (ilk tıklamayla açılır), tarayıcı bildirimi (acilse kapanana kadar durur), başlıkta yanıp sönen sinyal, Chrome/Edge'de "Keep the orb on top" (Document Picture-in-Picture). Şef: 20 sn'de kırmızı satır + ton + bildirim, Connected sütunu, trader çıkarma, log CSV/Excel.
+- Testler: kalibre-lab `lab/test/desk-live.test.mjs` (5), site `test/desk.test.mjs` (5).
+- Ürün sayfası: "Start a desk" düğmesi, yeni SSS (Kalibre okuyabilir mi, log ne kadar tutulur). Canlıya alınmadı.
