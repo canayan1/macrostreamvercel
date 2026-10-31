@@ -332,3 +332,8 @@ Claude'un yapacakları:
 - Mesaj: sabit anlamlar, serbest metin yok, emir yok, piyasa verisi yok. Kayıt yükümlülüğü iddiası (MiFID II 16(7) vb.) metinlere kaynak doğrulanmadan konmadı.
 - Sırada (plan: /Users/can/.claude/plans/bright-knitting-moonbeam.md): 2) çok kullanıcılı web MVP: davet kodlu masa, `api/desk.ts` röle (kopru.ts deseni, Upstash, uçtan uca şifreli), tarayıcı bildirimi ve ses; 3) Tauri masaüstü top uygulaması; 4) iPhone AlarmKit eskalasyonu; 5) Stream Deck eklentisi.
 - Önizleme: https://macrostreamvercel-h8rz4p9gn-canayan1s-projects.vercel.app/desk-signal (canlıya alınmadı).
+
+### 31.10 ek 12: Canlıya çıkış
+- Can'ın onayıyla ("gayet iyi siteyi canlıya alabiliriz") kalibremarkets.com güncellendi (deploy macrostreamvercel-9iiliw7hp). Çıkanlar: Desk Signal ürün sayfası ve /lab/desk demosu, FX Blotter ilk kullanım iyileştirmeleri, görsellere tıklayınca büyütme (static/lightbox.js yeni sayfa sınıflarına bağlandı; telefonda büyütülen ekran kaydırılarak okunur).
+- Tarayıcıyla doğrulandı: /desk-signal başlık ve büyütme, /lab/desk örnek sahne (3 top, 4 satır), /lab/blotter örnek (+99,400 USD).
+- Müşteri sunumları: ~/Desktop/kalibre-sunumlar (5 pptx). Tanıtım filmleri: ~/Desktop/kalibre-videolar (konsept, HeyGen denemeleri).
