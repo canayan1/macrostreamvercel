@@ -103,16 +103,16 @@ export function sutunTahmin(basliklar) {
   return e;
 }
 
-// Başlık satırı: şablon sütunlarından en çoğunu içeren ilk 10 satırdan biri (başlıktan önce
-// açıklama satırları olabilir). En az 4 şablon sütunu yoksa ilk satır.
+// Başlık satırı: ilk 30 satırdan en çok sütunu tanınanı (şablon adları ve eş anlamlılar; başlıktan
+// önce rapor adı ya da açıklama satırları olabilir). En az 3 sütun tanınmazsa ilk satır.
 function baslikBul(satirlar) {
-  const sablon = new Set(SABLON_SUTUNLARI.map(norm));
   let en = 0, enSay = 0;
-  for (let k = 0; k < Math.min(10, satirlar.length); k++) {
-    const say = satirlar[k].filter(h => sablon.has(norm(h))).length;
+  for (let k = 0; k < Math.min(30, satirlar.length); k++) {
+    const e = sutunTahmin(satirlar[k] ?? []);
+    const say = CSV_ALANLARI.filter(a => e[a] >= 0).length;
     if (say > enSay) { en = k; enSay = say; }
   }
-  const indis = enSay >= 4 ? en : 0;
+  const indis = enSay >= 3 ? en : 0;
   const n = new Set((satirlar[indis] ?? []).map(norm));
   return { indis, sablon: SABLON_ZORUNLU.every(z => n.has(norm(z))) };
 }

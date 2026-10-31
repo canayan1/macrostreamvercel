@@ -356,3 +356,9 @@ Claude'un yapacakları:
 - Limit satırı alanlarla: tür (Currency NOP, Overnight total, Intraday peak, Daily loss, Value date bucket), kapsam, ad ya da valör aralığı, tutar (basamak ayraçlı). Okunamayan satır kaybolmaz, kırmızı kalır; yorum satırları (# Example rates, dosyadan gelen kurlar) tablonun üstünde not.
 - Mesajlar: eksik zorunlu sütunlar adıyla söylenir; tablo hataları satır numarası yerine "kırmızı satırları düzelt ya da sil"; özette "kur yok" çıkınca "Add the missing rates" eksik pariteleri boş değerli satır olarak ekler ve kur kutusuna odaklanır.
 - Doğrulama: örnekte toplam +99,400 USD; kur değişikliği anında yeniden hesaplar ve kaydedilir; yeni gün içi limit hemen değerlendirilir; GBP/USD silinip düğmeyle geri eklenince uyarı kalkar. Testler `lab/test/girdi-tablo.test.mjs` (4), lab toplam 447. Telefonda yatay kaydırma yok.
+- Ek (canlıda, deploy macrostreamvercel-4p9v13rbp): uzun satır tabloları (müşteri marjı, swap, dışlanan satırlar) ilk 10 satırla açılır, "Show all N rows" ile aşağı uzar. Can'ın isteği.
+
+### 31.10 ek 16: Trade Analytics ilk kullanım (MVP sırası 3)
+- Yürüyüş: boş sayfa → MT5 raporu (HTML ve XLSX fikstürü; gerçek terminal çıktısı değil, Python ile MT5 yapısı taklit edilerek üretilmiş) → özet. Rapor sorunsuz okunuyor.
+- Bulunan ve düzeltilen takılmalar: (1) yanlış dosya bırakılınca önceki hesabın sonuçları ekranda kalıyordu; artık gizlenir. (2) Kendi tablosunda üstte başlık/açıklama satırı ya da eş anlamlı sütun adları (Open Time, Type, Lots, Entry, Exit, PnL) olan dosya tanınmıyordu; başlık satırı artık ilk 30 satırda en çok sütunu tanınan satırdır. (3) Hiç işlem sütunu yoksa "bu dosya bir işlem geçmişine benzemiyor" denir. (4) 20 işlemin altında iki boş liste ve tekrar eden metin yerine tek açıklama.
+- Açık: gerçek bir MT5 terminal raporuyla deneme (Can'ın hesabından bir rapor) en güvenilir test olur.

@@ -66,13 +66,25 @@ async function ornekDosyaAc(yol) {
   }
 }
 
+// Yeni dosya okunamazsa önceki hesabın sonuçları ekranda kalmasın.
+function sonuclariGizle() {
+  for (const id of ['#ozet-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#gorunum-kart']) $(id).hidden = true;
+  $('#kaynak-rozet').hidden = true;
+  $('#bos-durum').hidden = false;
+}
+
 function sonucuIsle(s) {
   if (s.tur === 'eslesme') {
+    sonuclariGizle();
     csvEslesmeGoster(s.satirlar, s.rapor);
-    durum(ceviri('Sütunlar tanınamadı. Aşağıdan eşleştir ya da şablonu kullan.'), true);
+    const taninan = Object.values(s.rapor.eslesme ?? {}).filter(i => i >= 0).length;
+    durum(taninan
+      ? ceviri('Sütunlar tanınamadı. Aşağıdan eşleştir ya da şablonu kullan.')
+      : ceviri('Bu dosya bir işlem geçmişine benzemiyor. MT5 raporunu (HTML ya da XLSX) ya da şablondan yapılmış bir tabloyu bırak. Sütunların başka adlarla duruyorsa aşağıdan eşleştir.'), true);
     return;
   }
   if (s.tur === 'bos') {
+    sonuclariGizle();
     satirRaporu(s.rapor);
     durum(s.rapor
       ? ceviri('Okunabilen işlem satırı yok. Aşağıdaki satır hatalarına bak.')
@@ -222,9 +234,11 @@ function icgoruCiz() {
   const liste = (el, d) => { el.innerHTML = d.length ? d.map(icgoruKart).join('') : `<li class="bos">${kacis(ceviri('Bu ölçütü geçen dilim yok.'))}</li>`; };
   liste($('#icgoru-kayip'), ic.kaybettiren);
   liste($('#icgoru-kazanc'), ic.kazandiran);
+  // Az işlemli hesapta iki boş liste yerine tek açıklama.
+  $('#icgoru-kayip').closest('div').parentElement.hidden = !ic.yeterliVeri;
   $('#icgoru-not').textContent = ic.yeterliVeri
     ? ceviri('Yalnız en az {n} işlemli dilimler listelenir. Dilimler örtüşür: bir işlem birden çok satırda yer alabilir. Bu bir betimlemedir, öneri değildir.', { n: ic.enAz })
-    : ceviri('Dilimleri göstermek için en az {n} işlem gerekir.', { n: ic.enAz });
+    : ceviri('{t} işlemle dilimler henüz oluşmadı: bir dilim en az {n} işlemle listelenir. Daha uzun bir dönemin raporunu bırakınca burası dolar; aşağıdaki kırılımlar her grubu şimdiden gösteriyor.', { t: sayi(hesap.islemler.length, 0), n: ic.enAz });
 }
 
 // ---------------------------------------------------------------- kırılımlar

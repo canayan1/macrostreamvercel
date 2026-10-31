@@ -144,6 +144,8 @@ export const ANALIZ_EN = {
   'Kazanma oranı {w}, tüm işlemlerde {g}.': 'Win rate {w}, versus {g} across all trades.',
   'Ortalama boyut, tüm işlemlerin ortalamasının {k} katı.': 'Average size is {k}x your overall average.',
   'Bu örneklemde fark küçük; rastlantı olabilir.': 'The difference is small for this sample and may be noise.',
+  'Bu dosya bir işlem geçmişine benzemiyor. MT5 raporunu (HTML ya da XLSX) ya da şablondan yapılmış bir tabloyu bırak. Sütunların başka adlarla duruyorsa aşağıdan eşleştir.': 'This file does not look like a trade history. Drop an MT5 report (HTML or XLSX) or a sheet made from the template. If your columns use other names, match them below.',
+  '{t} işlemle dilimler henüz oluşmadı: bir dilim en az {n} işlemle listelenir. Daha uzun bir dönemin raporunu bırakınca burası dolar; aşağıdaki kırılımlar her grubu şimdiden gösteriyor.': 'With {t} trades there are no segments yet: a segment is listed once it has {n} trades. Drop a report for a longer period and this fills in; the breakdowns below already show every group.',
   'Bu ölçütü geçen dilim yok.': 'No segment meets the threshold.',
   'Yalnız en az {n} işlemli dilimler listelenir. Dilimler örtüşür: bir işlem birden çok satırda yer alabilir. Bu bir betimlemedir, öneri değildir.':
     'Only segments with at least {n} trades are listed. Segments overlap, so one trade can appear in several rows. This describes your history and is not a recommendation.',
