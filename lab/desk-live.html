@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/lab/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desk Signal · Kalibre</title>
+<meta name="description" content="Run your own desk: send colour signals to your traders and see who has seen them and who is done.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="desk.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre home"><i></i>Kalibre <span>Desk Signal</span></a>
+  <div class="ust-eylem">
+    <span class="dl-baglanti" id="baglanti" hidden><i></i><span>Connecting</span></span>
+    <a class="dugme ikincil" href="/desk-signal">About Desk Signal</a>
+  </div>
+</header>
+
+<main class="tek-sutun panom analiz desk dl">
+
+  <!-- start: create or join -->
+  <section id="baslangic" hidden>
+    <section class="a-giris">
+      <p class="a-ust">Desk Signal · Early access</p>
+      <h1>Run your own desk.</h1>
+      <p class="a-alt">Start a desk in this browser, send the invite link to your traders, and signal them in one key. Their screen lights up in the signal colour and urgent signals keep ringing until they answer.</p>
+    </section>
+    <div class="dl-iki">
+      <form class="kart dl-form" id="kur">
+        <h2>Start a desk</h2>
+        <p class="dipnot">This browser becomes the head of desk. Only it can send signals.</p>
+        <label>Desk name <input id="kur-ad" maxlength="40" required placeholder="London FX"></label>
+        <button class="dugme" type="submit">Start the desk</button>
+        <div id="masalarim" hidden>
+          <h3>Your desks in this browser</h3>
+          <ul class="dl-liste" id="masa-liste"></ul>
+        </div>
+        <p class="dipnot">Moving to a new browser? <label class="kucuk dl-dosya">Open a head key backup<input type="file" id="yedek-ac" accept=".json,application/json" hidden></label></p>
+        <p class="dipnot uyari" id="kur-hata" role="alert" hidden></p>
+      </form>
+      <form class="kart dl-form" id="katil">
+        <h2>Join a desk</h2>
+        <p class="dipnot">Paste the invite link your head of desk sent you.</p>
+        <label>Invite link <input id="katil-baglanti" required placeholder="https://kalibremarkets.com/lab/desk-live#join=…"></label>
+        <button class="dugme ikincil" type="submit">Join</button>
+        <p class="dipnot uyari" id="katil-hata" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- trader: name before joining -->
+  <section id="kimlik" hidden>
+    <form class="kart dl-form dl-dar" id="kimlik-form">
+      <h2>Join <span id="kimlik-masa">the desk</span></h2>
+      <p class="dipnot">Your head of desk sees this name next to your answers.</p>
+      <label>Your name <input id="kimlik-ad" maxlength="40" required autocomplete="name"></label>
+      <label>Location <input id="kimlik-yer" maxlength="30" placeholder="London"></label>
+      <button class="dugme" type="submit">Join and turn on sound</button>
+    </form>
+  </section>
+
+  <!-- head of desk -->
+  <section id="sef" hidden>
+    <section class="a-giris dl-bas">
+      <p class="a-ust">Head of desk</p>
+      <h1 id="sef-masa">Desk</h1>
+      <div class="satir-dugme">
+        <button type="button" class="dugme" id="davet-ac">Invite traders</button>
+        <label class="d-anahtar"><input type="checkbox" id="ses" checked> Sound</label>
+      </div>
+    </section>
+
+    <section class="kart dl-davet" id="davet" hidden>
+      <div class="kart-bas"><h2>Invite traders</h2><button type="button" class="kucuk" id="davet-kapat">Close</button></div>
+      <p class="dipnot">Send this link to your traders by your desk's usual channel. Anyone with it can join and answer signals; only this browser can send them.</p>
+      <div class="dl-kopya"><input id="davet-baglanti" readonly aria-label="Invite link"><button type="button" class="dugme" id="davet-kopyala">Copy link</button></div>
+      <p class="dipnot">Keep this browser for the desk: the key that sends signals lives here. <button type="button" class="kucuk" id="anahtar-indir">Download a backup of the head key</button></p>
+    </section>
+
+    <div class="d-sahne dl-sahne">
+      <section class="kart d-konsol" id="konsol" aria-labelledby="konsol-bas">
+        <div class="kart-bas"><h2 id="konsol-bas">Send a signal</h2></div>
+        <div class="d-blok" id="pano">
+          <div class="d-blok-bas"><h3>1 · Signal</h3><button type="button" class="kucuk" id="pano-duzenle" aria-pressed="false">Edit signals</button></div>
+          <div class="d-sinyaller" id="sinyaller" role="radiogroup" aria-label="Signal"></div>
+          <p class="dipnot uyari" id="pano-hata" role="alert" hidden></p>
+        </div>
+        <div class="d-blok" id="hedefler">
+          <div class="d-blok-bas"><h3>2 · Send to</h3><span class="dipnot" id="silahli" aria-live="polite">Pick a signal first.</span></div>
+          <div class="d-hedefler" id="kisiler"></div>
+          <div class="d-hedefler d-gruplar" id="gruplar"></div>
+          <p class="dipnot" id="kimse-yok">No traders yet. Send them the invite link; they appear here as they join.</p>
+        </div>
+        <p class="dipnot d-kisayol">Keys: <kbd>1</kbd>…<kbd>9</kbd> pick a signal, then a trader key (<kbd>Q</kbd>…) or a group key (<kbd>A</kbd> everyone) sends it. <kbd>Enter</kbd> repeats the last send, <kbd>Esc</kbd> clears.</p>
+        <p class="dipnot uyari" id="gonder-hata" role="alert" hidden></p>
+      </section>
+
+      <section class="kart" id="yanit-kart">
+        <div class="kart-bas"><h2>Who has answered</h2></div>
+        <div class="tablo-kutu"><table class="a-tablo d-tablo" id="yanit"></table></div>
+        <p class="dipnot">Urgent signals grow on the trader's screen after <span id="esik-1">10</span> seconds without an answer. After <span id="esik-2">20</span> seconds the row turns red here and you hear a tone, so you know who to call.</p>
+      </section>
+    </div>
+
+    <section class="kart" id="kayit-kart">
+      <div class="kart-bas"><h2>Signal log</h2>
+        <div class="satir-dugme">
+          <button type="button" class="kucuk" id="csv-indir" disabled>Download CSV</button>
+          <button type="button" class="kucuk" id="xlsx-indir" disabled>Download Excel</button>
+        </div></div>
+      <p class="dipnot" id="kayit-bos">Every signal is logged with the time it was sent, delivered, seen and done, on the relay's clock. Send one to start.</p>
+      <div class="tablo-kutu"><table class="a-tablo d-tablo" id="kayit" hidden></table></div>
+    </section>
+  </section>
+
+  <!-- trader screen -->
+  <section id="trader" hidden>
+    <div class="dl-trader">
+      <p class="a-ust" id="trader-masa">Desk</p>
+      <button type="button" class="d-orb dl-orb" id="orb" aria-label="No signals"><span class="d-rozet"></span></button>
+      <div class="dl-sinyal" id="sinyal" aria-live="assertive">
+        <p class="dl-sinyal-ad" id="sinyal-ad">All clear</p>
+        <p class="dipnot" id="sinyal-alt">Signals from your head of desk appear here.</p>
+        <div class="satir-dugme dl-sinyal-eylem" id="sinyal-eylem" hidden>
+          <button type="button" class="dugme" id="tamam">Done</button>
+        </div>
+      </div>
+      <div class="dl-ayar">
+        <button type="button" class="kucuk" id="pip">Keep the orb on top</button>
+        <button type="button" class="kucuk" id="bildirim">Turn on notifications</button>
+        <button type="button" class="kucuk" id="ses-dene">Test sound</button>
+        <label class="d-anahtar"><input type="checkbox" id="trader-ses" checked> Sound</label>
+      </div>
+      <p class="dipnot uyari dl-not" id="trader-hata" role="alert" hidden></p>
+      <p class="dipnot dl-not" id="ses-uyari" hidden>Click anywhere on this page to turn the sound on.</p>
+      <p class="dipnot dl-not">Keep this tab open. <span id="pip-not">Keep the orb on top puts a small always-on-top orb over your other windows.</span></p>
+      <p class="dipnot dl-not">Signed in as <b id="trader-ad"></b>. <button type="button" class="kucuk" id="ad-degistir">Change name</button></p>
+    </div>
+  </section>
+
+  <p class="dipnot panom-dipnot">Signals are sealed in your browser before they leave it; the relay passes them on without being able to read them. Signals carry a fixed meaning from your board, never free text and never orders. Early access: the relay keeps the last 5,000 events for 30 days.</p>
+</main>
+
+<div class="sr" aria-live="assertive" id="duyuru"></div>
+<script type="module" src="src/desk/live-ui.js"></script>
+</body>
+</html>

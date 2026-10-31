@@ -10,6 +10,22 @@ export interface Depo {
   yazYoksa(anahtar: string, deger: string, ttlSn?: number): Promise<boolean>; // yalnız yoksa yazar
   oku(anahtar: string): Promise<string | null>;
   say(anahtar: string, ttlSn: number): Promise<number>; // artırır, yeni değeri döner
+  // Desk Signal rölesi için: sıra numarası, kayıt listesi, çevrimiçi tablosu ve yayın.
+  artir(anahtar: string, ttlSn: number): Promise<number>; // artırır, ömrü her seferinde yeniler
+  ekle(anahtar: string, deger: string, enFazla: number, ttlSn: number): Promise<void>; // listeye ekler, son enFazla kalır
+  son(anahtar: string, adet: number): Promise<string[]>; // listenin son adet öğesi, eskiden yeniye
+  hYaz(anahtar: string, alan: string, deger: string, ttlSn: number): Promise<void>;
+  hHepsi(anahtar: string): Promise<Record<string, string>>;
+  yayinla(kanal: string, mesaj: string): Promise<void>;
+}
+
+// Bellek deposunun yayınları aynı süreçteki abonelere gider (yerel geliştirme).
+type Dinleyici = (mesaj: string) => void;
+export const bellekYayin = new Map<string, Set<Dinleyici>>();
+export function bellekAbone(kanal: string, fn: Dinleyici): () => void {
+  if (!bellekYayin.has(kanal)) bellekYayin.set(kanal, new Set());
+  bellekYayin.get(kanal)!.add(fn);
+  return () => { bellekYayin.get(kanal)?.delete(fn); };
 }
 
 export function bellekDepo(): Depo {
@@ -35,6 +51,24 @@ export function bellekDepo(): Depo {
       m.set(k, { v: yeni, bitis: x?.bitis ?? bitis(ttl) });
       return Number(yeni);
     },
+    async artir(k, ttl) {
+      const yeni = String(Number(canli(k)?.v ?? 0) + 1);
+      m.set(k, { v: yeni, bitis: bitis(ttl) });
+      return Number(yeni);
+    },
+    async ekle(k, v, enFazla, ttl) {
+      const liste: string[] = JSON.parse(canli(k)?.v ?? '[]');
+      liste.push(v);
+      m.set(k, { v: JSON.stringify(liste.slice(-enFazla)), bitis: bitis(ttl) });
+    },
+    async son(k, adet) { return (JSON.parse(canli(k)?.v ?? '[]') as string[]).slice(-adet); },
+    async hYaz(k, alan, deger, ttl) {
+      const h = JSON.parse(canli(k)?.v ?? '{}');
+      h[alan] = deger;
+      m.set(k, { v: JSON.stringify(h), bitis: bitis(ttl) });
+    },
+    async hHepsi(k) { return JSON.parse(canli(k)?.v ?? '{}'); },
+    async yayinla(kanal, mesaj) { bellekYayin.get(kanal)?.forEach(fn => fn(mesaj)); },
   };
 }
 
@@ -56,6 +90,17 @@ function upstashDepo(url: string, token: string): Depo {
     },
     async oku(k) { const [r] = await komut([['GET', k]]); return (r?.result as string) ?? null; },
     async say(k, ttl) { const [r] = await komut([['INCR', k], ['EXPIRE', k, ttl, 'NX']]); return Number(r?.result ?? 0); },
+    async artir(k, ttl) { const [r] = await komut([['INCR', k], ['EXPIRE', k, ttl]]); return Number(r?.result ?? 0); },
+    async ekle(k, v, enFazla, ttl) { await komut([['RPUSH', k, v], ['LTRIM', k, -enFazla, -1], ['EXPIRE', k, ttl]]); },
+    async son(k, adet) { const [r] = await komut([['LRANGE', k, -adet, -1]]); return (r?.result as string[]) ?? []; },
+    async hYaz(k, alan, deger, ttl) { await komut([['HSET', k, alan, deger], ['EXPIRE', k, ttl]]); },
+    async hHepsi(k) {
+      const [r] = await komut([['HGETALL', k]]);
+      const a = (r?.result as string[]) ?? [], o: Record<string, string> = {};
+      for (let i = 0; i + 1 < a.length; i += 2) o[a[i]] = a[i + 1];
+      return o;
+    },
+    async yayinla(kanal, mesaj) { await komut([['PUBLISH', kanal, mesaj]]); },
   };
 }
 
