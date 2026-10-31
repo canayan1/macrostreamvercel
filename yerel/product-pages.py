@@ -1,6 +1,6 @@
 # Current marketing pages in the site design system (static/site.css), English and Turkish:
 #   /                home: one panel per product, privacy, validation
-#   /trade-analytics /fx-blotter /rule-guard /kalibre-lab   product pages with a local nav
+#   /trade-analytics /fx-blotter /rule-guard /desk-signal /kalibre-lab   product pages with a local nav
 #   /demo            every product with its sample input and result files
 #   /company         who we are and how we work with institutions
 # Shared shell (gnav, lnav, gfoot, head) comes from sayfa-uret.py. Figures on the pages are read
@@ -590,6 +590,79 @@ def rule_guard(lang):
          T(lang, "An MT5 add-on that watches your firm's daily and total limits and pauses new trades near the floor. In early access.", "Firmanın günlük ve toplam sınırlarını MT5'te izleyen ve tabana yakın yeni işlemi bekleten eklenti. Erken erişimde."),
          body, P(lang, "/rule-guard"), "/rule-guard" if tr else "/tr/rule-guard", '<script src="/static/talep.js" defer></script>')
 
+# ================================================================== Desk Signal
+DESK_DEMO = "/lab/desk"
+
+def desk_signal(lang):
+    tr = lang == "tr"
+    local = lnav("Desk Signal", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "How it works", "Nasıl çalışır"), "#how"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Next", "Sırada"), "#next"), (T(lang, "Early access", "Erken erişim"), "#pricing")],
+                 T(lang, "Try the demo", "Demoyu dene"), LAB(lang, DESK_DEMO))
+    questions = (select("kurum", T(lang, "Where do you work?", "Nerede çalışıyorsun?"), [("prop-firma", T(lang, "Prop firm", "Prop firması")), ("banka", T(lang, "Bank", "Banka")), ("kurumsal-hazine", T(lang, "Corporate treasury", "Kurumsal hazine")), ("araci-kurum", T(lang, "Broker", "Aracı kurum")), ("fon", T(lang, "Fund", "Fon")), ("diger", T(lang, "Other", "Başka"))], T(lang, "Choose", "Seç"))
+                 + select("masa", T(lang, "How many traders on the desk?", "Masada kaç trader var?"), [("2-5", "2-5"), ("6-20", "6-20"), ("21-50", "21-50"), ("50+", T(lang, "More than 50", "50'den fazla"))], T(lang, "Choose", "Seç"))
+                 + text_field("simdi", T(lang, "How does the head of desk reach traders today?", "Masa şefi trader'lara bugün nasıl ulaşıyor?"), T(lang, "Chat, voice, calling across the room", "Sohbet, ses hattı, odada seslenmek")))
+    def plan_tile(h, p, cls=""):
+        return tile(h + status_tag("plan", lang), p, "", cls)
+    body = f'''
+<div data-talep-sayfa="desk-signal">
+{local}
+{page_hero(T(lang, "One key to the whole desk.", "Tek tuşla bütün masa."),
+           T(lang, "Colour signals from the head of desk to every trader's screen, in every city, with a record of who answered.", "Masa şefinden her şehirdeki her trader'ın ekranına renkli sinyal; kimin yanıt verdiğinin kaydıyla."),
+           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(LAB(lang, DESK_DEMO + "?tour=1"), T(lang, "Take the 1-minute tour", "1 dakikalık turu başlat")),
+           hero_image("desk-signal", lang, T(lang, "Desk Signal demo on a laptop: the head of desk's signal board next to four trader screens, one orb lit amber in London and one grown red in Tokyo", "Dizüstünde Desk Signal demosu: masa şefinin sinyal panosu ve dört trader ekranı; Londra'da amber, Tokyo'da büyümüş kırmızı bir top")),
+           kicker="Desk Signal" + status_tag("test", lang))}
+
+<section class="sec center" id="how">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Pick. Send. See.", "Seç. Gönder. Gör.")}</h2>
+    {steps([(T(lang, "Pick a signal", "Sinyali seç"), T(lang, "Up to nine colours, each with one meaning your desk agrees on.", "Dokuz renge kadar; her birinin masanın üzerinde anlaştığı tek bir anlamı var.")),
+            (T(lang, "Pick who gets it", "Kime gideceğini seç"), T(lang, "One trader, one city or everyone. Two keys or two clicks.", "Bir trader, bir şehir ya da herkes. İki tuş ya da iki tık.")),
+            (T(lang, "See who answered", "Kimin yanıt verdiğini gör"), T(lang, "Every signal shows when it was seen and when it was done.", "Her sinyal ne zaman görüldüğünü ve ne zaman bittiğini gösterir."))])}
+  </div>
+</section>
+
+<section class="sec mist" id="features">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "What it does.", "Ne yapar.")}</h2>
+    <div class="tiles">
+      {tile(T(lang, "Quicker than a chat message.", "Sohbet mesajından hızlı."), T(lang, "No window to find and nothing to type. The signal lights up the corner of every screen it is sent to.", "Bulunacak pencere, yazılacak mesaj yok. Sinyal gönderildiği her ekranın köşesinde yanar."))}
+      {tile(T(lang, "Rings until answered.", "Yanıtlanana kadar çalar."), T(lang, "Urgent signals keep sounding until the trader opens them. After 10 seconds the orb grows. After 20 seconds the trader's name turns red on your screen.", "Acil sinyaller trader açana kadar çalmaya devam eder. 10 saniye sonra top büyür. 20 saniye sonra trader'ın adı senin ekranında kırmızıya döner."), "", "dark")}
+      {tile(T(lang, "Every location on one board.", "Her lokasyon tek panoda."), T(lang, "Send to a city with one key and see each trader's local time next to their answer.", "Tek tuşla bir şehre gönder; her trader'ın yerel saatini yanıtının yanında gör."), "", "third")}
+      {tile(T(lang, "A log for your records.", "Kayıtların için bir log."), T(lang, "Sent, delivered, seen and done, to the second in UTC. Download it as CSV or Excel.", "Gönderildi, ulaştı, görüldü ve bitti; UTC'de saniyesine kadar. CSV ya da Excel olarak indir."), "", "third")}
+      {tile(T(lang, "Fixed meanings, never orders.", "Sabit anlamlar, asla emir değil."), T(lang, "A signal carries only a meaning from your board. No free text, no orders and no market data.", "Sinyal yalnız panondaki bir anlamı taşır. Serbest metin, emir ya da piyasa verisi yok."), "", "third")}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="next">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "What comes next.", "Sırada ne var.")}</h2>
+    <div class="tiles">
+      {plan_tile(T(lang, "Desktop app.", "Masaüstü uygulaması."), T(lang, "For Mac and Windows. The orb sits in a corner above every window, and the same keys work from any app with ⌃⌥.", "Mac ve Windows için. Top her pencerenin üstünde bir köşede durur; aynı tuşlar ⌃⌥ ile her uygulamadan çalışır."), "third")}
+      {plan_tile(T(lang, "Phone alarm.", "Telefon alarmı."), T(lang, "Urgent signals that wait too long on the desktop ring on the trader's phone, even when it is on silent.", "Masaüstünde fazla bekleyen acil sinyaller trader'ın telefonunda, sessizdeyken bile çalar."), "dark third")}
+      {plan_tile(T(lang, "Key pad.", "Tuş takımı."), T(lang, "A programmable key pad on the head's desk, one key per signal.", "Masa şefinin masasında programlanabilir bir tuş takımı; her sinyale bir tuş."), "third")}
+    </div>
+  </div>
+</section>
+
+<section class="sec center" id="pricing">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Free during early access.", "Erken erişimde ücretsiz.")}</h2>
+    <p class="lede">{T(lang, "Early access opens first for prop firms and trading desks of 2 to 50 people.", "Erken erişim önce prop firmalarına ve 2 ile 50 kişilik işlem masalarına açılıyor.")}</p>
+    <div class="actions">{btn("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim")}{more(LAB(lang, DESK_DEMO), T(lang, "Try the demo first", "Önce demoyu dene"))}</div>
+    {faq([(T(lang, "Does it replace our chat or recorded lines?", "Sohbeti ya da kayıtlı hatları değiştirir mi?"), T(lang, "No. It sits next to them for the quick signals. Your firm's own record-keeping rules still apply, and the signal log helps you keep them.", "Hayır. Hızlı sinyaller için onların yanında durur. Firmanın kendi kayıt tutma kuralları geçerliliğini korur; sinyal logu bunlara yardımcı olur.")),
+          (T(lang, "Does the demo send anything?", "Demo bir şey gönderiyor mu?"), T(lang, "No. The demo runs in your browser and sends nothing to a server.", "Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.")),
+          (T(lang, "Can we choose our own colours and meanings?", "Renkleri ve anlamları kendimiz seçebilir miyiz?"), T(lang, "Yes. Up to nine signals, each with its own meaning and key. You choose which ones ring until answered.", "Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.")),
+          (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "For the demo, nothing. Early access starts in a browser tab, and the desktop app follows.", "Demo için hiçbir şey. Erken erişim bir tarayıcı sekmesinde başlar, masaüstü uygulaması ardından gelir."))])}
+    <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
+  </div>
+</section>
+{signup_dialog(lang, questions)}
+</div>'''
+    page("tr/desk-signal/index.html" if tr else "desk-signal/index.html", lang,
+         T(lang, "Desk Signal: colour signals from the head of desk to every trader", "Desk Signal: masa şefinden her trader'a renkli sinyal"),
+         T(lang, "Send a colour signal to one trader, a city or the whole desk with one key. Urgent signals ring until answered, and every signal is logged.", "Tek tuşla bir trader'a, bir şehre ya da bütün masaya renkli sinyal gönder. Acil sinyaller yanıtlanana kadar çalar, her sinyal kaydedilir."),
+         body, P(lang, "/desk-signal"), "/desk-signal" if tr else "/tr/desk-signal", '<script src="/static/talep.js" defer></script>')
+
 # ================================================================== Kalibre Lab
 def kalibre_lab(lang):
     tr = lang == "tr"
@@ -664,7 +737,7 @@ def demos(lang):
     body = f'''
 {page_hero(T(lang, "Try every product.", "Her ürünü dene."),
            T(lang, "Sample in, result out. Open it in your browser.", "Örnek girer, sonuç çıkar. Tarayıcında aç."),
-           btn("#trade-analytics", "Trade Analytics", "", True) + btn("#fx-blotter", "FX Blotter", "", True) + btn("#lab", "Kalibre Lab", "", True),
+           btn("#trade-analytics", "Trade Analytics", "", True) + btn("#fx-blotter", "FX Blotter", "", True) + btn("#lab", "Kalibre Lab", "", True) + btn("#desk-signal", "Desk Signal", "", True),
            hero_image("suite", lang, T(lang, "Trade Analytics, FX Blotter Analytics and Kalibre Lab open on sample files", "Örnek dosyalarla açık Trade Analytics, FX Blotter Analytics ve Kalibre Lab")))}
 {section("trade-analytics", "Trade Analytics", "beta", T(lang, "A trade log of 343 closed trades.", "343 kapanmış işlemlik bir işlem kaydı.") if ta["trades"] == 343 else "Trade Analytics",
          [(fmt(ta["trades"], lang), T(lang, "closed trades", "kapanmış işlem")), (fmt(ta["netUsd"], lang, 0, True), T(lang, "net P&amp;L, USD", "net K/Z, USD")), (pct(ta["winRatePct"], lang), T(lang, "win rate", "kazanma oranı")), (fmt(ta["profitFactor"], lang, 2), T(lang, "profit factor", "kâr faktörü"))],
@@ -681,7 +754,15 @@ def demos(lang):
          files(more("/lab/samples/kalibre-lab-sample-strategy.json", "kalibre-lab-sample-strategy.json", " download") + more("/lab/samples/kalibre-lab-sample-prices.csv", "kalibre-lab-sample-prices.csv", " download"),
                LAB(lang, LAB_SAMPLE), more("/lab/samples/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", " download") + more("/lab/samples/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", " download"), T(lang, f"The rule and prices load and the backtest runs. Result ID kr1-{lab['resultId'][:16]}.", f"Kural ve fiyatlar yüklenir, backtest çalışır. Sonuç kimliği kr1-{lab['resultId'][:16]}.")),
          shot_tile("lab-backtest", T(lang, "Backtest result with equity curve and statistics", "Özkaynak eğrisi ve istatistiklerle backtest sonucu")), "paper")}
-<section class="sec mist center">
+<section class="sec mist" id="desk-signal">
+  <div class="wrap">
+    <span class="kicker">Desk Signal{status_tag("test", lang)}</span>
+    <h2 class="title">{T(lang, "A desk of four traders in three cities.", "Üç şehirde dört trader'lık bir masa.")}</h2>
+    <p class="lede">{T(lang, "Send signals as the head of desk and answer them as each trader. The answer grid and the signal log fill in as you go, and the log downloads as CSV or Excel.", "Masa şefi olarak sinyal gönder, her trader olarak yanıtla. Yanıt tablosu ve sinyal logu sen ilerledikçe dolar; log CSV ya da Excel olarak iner.")}</p>
+    <div class="actions left">{btn(LAB(lang, DESK_DEMO), T(lang, "Open the demo", "Demoyu aç"))}{more(LAB(lang, DESK_DEMO + "?tour=1"), T(lang, "Take the 1-minute tour", "1 dakikalık turu başlat"))}{more(P(lang, "/desk-signal"), T(lang, "About Desk Signal", "Desk Signal hakkında"))}</div>
+  </div>
+</section>
+<section class="sec paper center">
   <div class="wrap">
     <h2 class="title-s">Rule Guard{status_tag("test", lang)}</h2>
     <p class="lede">{T(lang, "Rule Guard runs inside MT5, so there is no web demo. The same daily and total limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard MT5 içinde çalışır, bu yüzden web demosu yok. Aynı günlük ve toplam sınırlar Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
@@ -828,6 +909,7 @@ for lang in ("en", "tr"):
     trade_analytics(lang)
     fx_blotter(lang)
     rule_guard(lang)
+    desk_signal(lang)
     kalibre_lab(lang)
     demos(lang)
     company(lang)

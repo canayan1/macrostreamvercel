@@ -13,15 +13,15 @@ KOK = 'https://kalibremarkets.com'
 DISARI = {'404.html', 'google96988813a828bfb8.html'}
 DISARI_DIZIN = ('yeni-ana/', 'static/', 'yerel/', 'test/', 'docs/', 'api/', 'node_modules/', 'lab/')
 # Laboratuvarın yalnız giriş sayfası haritada; bağlan/panom gibi uygulama ekranları değil.
-EK = ['lab/index.html']
+EK = ['lab/index.html', 'lab/desk.html']
 # Türkçe sayfa -> İngilizce eşi (site kökü İngilizce, Türkçe /tr altında; sayfa-uret.py ESLER ile aynı).
 ESLER = {'/tr': '/', '/tr/beta': '/beta', '/tr/account': '/account', '/tr/sign-in': '/sign-in', '/tr/prop': '/prop', '/tr/forex': '/forex',
          '/tr/setup': '/setup', '/tr/security': '/security', '/tr/methodology': '/methodology', '/tr/about': '/about',
          '/tr/pricing': '/pricing', '/tr/risk-disclosure': '/risk-disclosure', '/tr/terms': '/terms', '/tr/privacy': '/privacy',
          '/tr/refunds': '/refunds', '/tr/cookies': '/cookies',
          '/tr/rule-guard': '/rule-guard', '/tr/trade-analytics': '/trade-analytics', '/tr/fx-blotter': '/fx-blotter',
-         '/tr/kalibre-lab': '/kalibre-lab', '/tr/demo': '/demo', '/tr/company': '/company'}
-ONCELIK = {'/': '1.0', '/tr': '0.9', '/trade-analytics': '0.9', '/fx-blotter': '0.9', '/kalibre-lab': '0.8', '/demo': '0.8', '/rule-guard': '0.8', '/company': '0.7', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
+         '/tr/kalibre-lab': '/kalibre-lab', '/tr/demo': '/demo', '/tr/company': '/company', '/tr/desk-signal': '/desk-signal'}
+ONCELIK = {'/': '1.0', '/tr': '0.9', '/trade-analytics': '0.9', '/fx-blotter': '0.9', '/kalibre-lab': '0.8', '/demo': '0.8', '/rule-guard': '0.8', '/desk-signal': '0.8', '/company': '0.7', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
            '/prop': '0.8', '/tr/prop': '0.7', '/forex': '0.8', '/tr/forex': '0.7'}
 
 TURKISH_PUBLIC = False  # same switch as yerel/sayfa-uret.py

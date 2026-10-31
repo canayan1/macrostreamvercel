@@ -14,12 +14,14 @@ const SCREENS = {
   'blotter-pnl': { url: lang => `/lab/blotter?lang=${lang}&file=samples/${lang === 'tr' ? 'fx-blotter-ornek' : 'fx-blotter-sample'}.xlsx`, top: '#kz-kart' },
   analytics: { url: lang => `/lab/analytics?lang=${lang}&file=templates/kalibre-trade-log-example.xlsx`, top: '#ozet-kart' },
   lab: { url: lang => `/lab/?lang=${lang}&demo=1`, top: '#prova-kart', wait: 6000 },
+  desk: { url: () => '/lab/desk?scene=1', top: '.d-sahne', wait: 2500 },
 };
 const TARGETS = [
   { name: 'home', kind: 'laptop', screen: 'blotter' },
   { name: 'fx-blotter', kind: 'laptop', screen: 'blotter-pnl' },
   { name: 'trade-analytics', kind: 'laptop', screen: 'analytics' },
   { name: 'kalibre-lab', kind: 'laptop', screen: 'lab' },
+  { name: 'desk-signal', kind: 'laptop', screen: 'desk' },
   { name: 'suite', kind: 'suite', screens: ['analytics', 'blotter', 'lab'] },
 ];
 

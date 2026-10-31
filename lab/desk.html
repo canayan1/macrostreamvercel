@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/lab/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desk Signal · Kalibre Lab</title>
+<meta name="description" content="Send a colour signal to one trader, a location or the whole desk with one key, and see who has seen it and who is done.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+<link rel="stylesheet" href="desk.css">
+</head>
+<body>
+<header class="ust">
+  <a class="logo" href="/" title="Kalibre home"><i></i>Kalibre Lab <span>Desk Signal</span></a>
+  <div class="ust-eylem">
+    <a class="dugme ikincil" href="/desk-signal">About Desk Signal</a>
+    <a class="dugme ikincil" href="/demo">Demos</a>
+  </div>
+</header>
+
+<main class="tek-sutun panom analiz desk">
+  <section class="a-giris">
+    <p class="a-ust">Desk Signal · Demo</p>
+    <h1>Signal the desk in one key.</h1>
+    <p class="a-alt">Pick a signal, pick who gets it. The orb in the corner of their screen lights up in that colour. Urgent signals keep ringing until someone answers, and you see who has seen it and who is done.</p>
+  </section>
+
+  <div class="a-sentetik" role="note">
+    <b>Example desk</b>
+    <span>Four traders in three cities. Click an orb to answer as that trader.</span>
+    <button type="button" class="kucuk" id="tur-baslat">1-minute tour</button>
+  </div>
+
+  <div class="d-sahne">
+    <section class="kart d-konsol" id="konsol" aria-labelledby="konsol-bas">
+      <div class="kart-bas"><h2 id="konsol-bas">Head of desk</h2>
+        <label class="d-anahtar"><input type="checkbox" id="ses" checked> Sound</label></div>
+
+      <div class="d-blok" id="pano">
+        <div class="d-blok-bas"><h3>1 · Signal</h3><button type="button" class="kucuk" id="pano-duzenle" aria-pressed="false">Edit signals</button></div>
+        <div class="d-sinyaller" id="sinyaller" role="radiogroup" aria-label="Signal"></div>
+        <p class="dipnot uyari" id="pano-hata" role="alert" hidden></p>
+      </div>
+
+      <div class="d-blok" id="hedefler">
+        <div class="d-blok-bas"><h3>2 · Send to</h3><span class="dipnot" id="silahli" aria-live="polite">Pick a signal first.</span></div>
+        <div class="d-hedefler" id="kisiler"></div>
+        <div class="d-hedefler d-gruplar" id="gruplar"></div>
+      </div>
+
+      <p class="dipnot d-kisayol">Keys: <kbd>1</kbd>…<kbd>5</kbd> pick a signal, then a person or group key sends it. <kbd>Enter</kbd> repeats the last send, <kbd>Esc</kbd> clears. The desktop app takes the same keys from any window with <kbd>⌃</kbd><kbd>⌥</kbd>.</p>
+    </section>
+
+    <section class="d-ekranlar" id="ekranlar" aria-label="Trader screens"></section>
+  </div>
+
+  <section class="kart" id="yanit-kart">
+    <div class="kart-bas"><h2>Who has answered</h2>
+      <label class="d-anahtar"><input type="checkbox" id="oto"> Traders answer on their own</label></div>
+    <div class="tablo-kutu"><table class="a-tablo d-tablo" id="yanit"></table></div>
+    <p class="dipnot">Urgent signals grow on the trader's screen after <span id="esik-1">10</span> seconds without an answer. After <span id="esik-2">20</span> seconds the row turns red here, so you know who to call.</p>
+  </section>
+
+  <section class="kart" id="kayit-kart">
+    <div class="kart-bas"><h2>Signal log</h2>
+      <div class="satir-dugme">
+        <button type="button" class="kucuk" id="csv-indir" disabled>Download CSV</button>
+        <button type="button" class="kucuk" id="xlsx-indir" disabled>Download Excel</button>
+        <button type="button" class="kucuk sil" id="temizle" disabled>Clear</button>
+      </div></div>
+    <p class="dipnot" id="kayit-bos">Every signal is logged with the time it was sent, seen and done. Send one to start.</p>
+    <div class="tablo-kutu"><table class="a-tablo d-tablo" id="kayit" hidden></table></div>
+  </section>
+
+  <p class="dipnot panom-dipnot">This demo runs in your browser and sends nothing to a server. Signals carry a fixed meaning from your board, never free text and never orders.</p>
+</main>
+
+<div class="sr" aria-live="assertive" id="duyuru"></div>
+<script src="/static/kalibre-auth.js" defer></script>
+<script type="module" src="src/desk/demo.js"></script>
+</body>
+</html>

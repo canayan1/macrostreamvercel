@@ -1,0 +1,107 @@
+/* Desk Signal demo (/lab/desk). The orb is the one loud thing on the page; everything around it
+   stays in the lab's quiet warm-black palette. Signal colours arrive as --c on each element. */
+
+.desk kbd{display:inline-block;min-width:20px;padding:1px 5px;border:1px solid var(--border-2);border-bottom-width:2px;border-radius:5px;
+  background:var(--bg-1);font:600 11px/16px var(--mono);color:var(--text-dim);text-align:center}
+.desk .d-nokta{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%;background:var(--c)}
+.desk .d-anahtar{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-dim);cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* stage: console beside the four screens */
+.desk .d-sahne{display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:1040px){.desk .d-sahne{grid-template-columns:1fr}}
+
+/* head console */
+.desk .d-konsol{display:flex;flex-direction:column;gap:18px}
+.desk .d-konsol .kart-bas{margin:0}
+.desk .d-blok-bas{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.desk .d-blok-bas .dipnot{margin:0;text-align:right}
+.desk .d-sinyaller{display:flex;flex-direction:column;gap:6px;border-radius:10px}
+.desk .d-sinyaller.uyar{animation:d-uyar .5s}
+@keyframes d-uyar{30%{box-shadow:0 0 0 2px rgba(255,166,48,.7)}}
+.desk .d-sinyal{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:1px solid var(--border-2);border-radius:9px;
+  background:var(--bg-1);color:var(--text);font:500 14px var(--sans);text-align:left;cursor:pointer}
+.desk button.d-sinyal:hover{border-color:var(--text-dim)}
+.desk .d-sinyal[aria-checked=true]{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--bg-1))}
+.desk .d-sinyal[aria-checked=true] kbd{border-color:var(--c);color:var(--text)}
+.desk .d-sinyal .d-anlam{flex:1}
+.desk .d-sinyal em{font:500 11px var(--mono);font-style:normal;color:var(--muted)}
+.desk div.d-sinyal{cursor:default;flex-wrap:wrap}
+.desk div.d-sinyal input:not([type=checkbox]){flex:1;min-width:140px}
+.desk div.d-sinyal .d-anahtar{font-size:12px}
+
+.desk .d-hedefler{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.desk .d-gruplar{margin-top:6px}
+.desk .d-hedef{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:9px 10px 10px;border:1px solid var(--border-2);border-radius:9px;
+  background:var(--bg-1);color:var(--text);font:600 13px var(--sans);text-align:left;cursor:pointer;opacity:.55;transition:opacity .15s,border-color .15s}
+.desk .d-hedef span{font:400 11px var(--sans);color:var(--muted)}
+.desk .d-hedef kbd{margin-bottom:4px}
+.desk .d-gruplar .d-hedef{background:transparent;border-style:dashed}
+.desk #hedefler.hazir .d-hedef{opacity:1}
+.desk #hedefler.hazir .d-hedef:hover{border-color:var(--c)}
+.desk .d-hedef.gitti{animation:d-gitti .6s}
+@keyframes d-gitti{0%{box-shadow:0 0 0 0 var(--c,var(--accent));background:color-mix(in srgb,var(--c,var(--accent)) 30%,var(--bg-1))}100%{box-shadow:0 0 0 10px transparent}}
+@media (max-width:420px){.desk .d-hedefler{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.desk .d-kisayol{margin:0;line-height:1.9}
+
+/* trader screens */
+.desk .d-ekranlar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.desk .d-ekran{position:relative;aspect-ratio:16/10;min-height:210px;border:1px solid var(--border-2);border-radius:12px;overflow:visible;
+  background:linear-gradient(180deg,#0d0b09,#110f0c);transition:border-color .3s,box-shadow .3s}
+.desk .d-ekran.l2{border-color:var(--red);box-shadow:0 0 0 2px var(--red),0 0 36px rgba(239,68,68,.22)}
+.desk .d-ekran-bas{display:flex;align-items:baseline;gap:8px;padding:9px 64px 9px 12px;border-bottom:1px solid var(--border);font-size:13px}
+.desk .d-ekran-bas span{color:var(--muted)}
+.desk .d-saat{margin-left:auto;font:500 12px var(--mono);color:var(--text-dim)}
+.desk .d-uygulama{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:8px;padding:10px;height:calc(100% - 38px)}
+.desk .d-pencere{border:1px solid var(--border);border-radius:6px;background:var(--bg-1);padding:10px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.desk .d-pencere:first-child{grid-row:span 2}
+.desk .d-pencere i{display:block;height:6px;border-radius:3px;background:var(--border)}
+.desk .d-pencere i:nth-child(2n){width:72%}
+.desk .d-pencere i:nth-child(3n){width:48%}
+
+@media (max-width:620px){
+  .desk .d-ekranlar{gap:10px}
+  .desk .d-ekran{aspect-ratio:1/1;min-height:0}
+  .desk .d-ekran-bas{padding-right:48px}
+  .desk .d-ekran-bas span{display:none}
+  .desk .d-uygulama{grid-template-columns:1fr}
+  .desk .d-pencere:first-child{grid-row:auto}
+  .desk .d-kart{left:8px;right:8px;width:auto}
+}
+
+/* the orb */
+.desk .d-orb{position:absolute;top:7px;right:10px;z-index:2;width:26px;height:26px;padding:0;border-radius:50%;cursor:default;
+  border:2px solid var(--border-2);background:radial-gradient(circle at 35% 30%,#2a241d,#14110e);transition:transform .25s cubic-bezier(.3,1.5,.5,1),background .2s}
+.desk .d-orb.acik,.desk .d-orb.goruldu{cursor:pointer;border-color:transparent;
+  background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 55%,#fff),var(--c) 55%,color-mix(in srgb,var(--c) 70%,#000))}
+.desk .d-orb.acik{animation:d-nabiz 1.6s ease-out infinite}
+.desk .d-orb.goruldu{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent)}
+.desk .d-orb.l1,.desk .d-orb.l2{transform:scale(1.7);animation-duration:.8s}
+@keyframes d-nabiz{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--c) 70%,transparent)}100%{box-shadow:0 0 0 16px transparent}}
+.desk .d-orb:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.desk .d-rozet{position:absolute;top:-7px;right:-9px;min-width:16px;padding:0 4px;border-radius:8px;background:var(--text);color:#100e0c;font:700 10px/16px var(--mono)}
+.desk .d-rozet:empty{display:none}
+
+.desk .d-kart{position:absolute;top:44px;right:8px;z-index:3;width:min(250px,calc(100% - 16px));padding:12px 14px;border-radius:10px;
+  background:var(--surface-2);border:1px solid var(--c);box-shadow:0 14px 40px rgba(0,0,0,.6)}
+.desk .d-kart p{margin:0}
+.desk .d-kart-bas{display:flex;align-items:center;gap:8px;font-size:15px}
+.desk .d-kart-alt{margin-top:4px!important;font-size:12px;color:var(--muted)}
+.desk .d-kart-eylem{display:flex;align-items:center;gap:10px;margin-top:12px}
+.desk .d-kart-eylem .dipnot{margin:0}
+
+/* grid and log */
+.desk .d-tablo td:last-child{text-align:right}
+.desk .d-tablo tr.kotu td{background:rgba(239,68,68,.07)}
+.desk .d-cip{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans)}
+.desk .d-durum{display:inline-block;padding:2px 8px;border-radius:20px;font:500 11px var(--mono);border:1px solid var(--border-2);color:var(--text-dim)}
+.desk .d-durum.iyi{color:var(--green);border-color:rgba(74,222,128,.4)}
+.desk .d-durum.uyari{color:var(--accent);border-color:rgba(255,166,48,.45)}
+.desk .d-durum.kotu{color:var(--red);border-color:rgba(239,68,68,.5)}
+.desk #kayit-kart .kart-bas .satir-dugme{margin:0}
+
+@media (prefers-reduced-motion:reduce){
+  .desk .d-orb,.desk .d-orb.acik{animation:none;transition:none}
+  .desk .d-orb.acik{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 45%,transparent)}
+  .desk .d-hedef.gitti,.desk .d-sinyaller.uyar{animation:none}
+}

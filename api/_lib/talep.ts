@@ -1,4 +1,4 @@
-// Talep testi (docs/TALEP-TESTI.md): segment sayfalarının (/rule-guard, /mt5-analytics, /treasury) ölçümü.
+// Talep testi (docs/TALEP-TESTI.md): segment sayfalarının (/rule-guard, /mt5-analytics, /treasury, /desk-signal) ölçümü.
 // Ödeme yok; yalnız sayaç ve erken erişim formu. Ham IP saklanmaz: hız sınırı anahtarında IP'nin
 // tuzlu özeti kullanılır ve en çok 1 saat yaşar. E-posta yalnız açık onayla saklanır.
 //
@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import type { Depo } from './depo.ts';
 
-export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury'] as const;
+export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury', 'desk-signal'] as const;
 export const OLAYLAR = ['goruntuleme', 'fiyat-tik', 'form-gonder'] as const;
 export const SINIR = { olayDakika: 60, formSaat: 5, metin: 300 };
 export const SURE = { sayac: 400 * 86400, kayit: 395 * 86400 };
@@ -35,6 +35,12 @@ const SORULAR: Record<Sayfa, Record<string, readonly string[] | 'metin'>> = {
     kurum: ['banka', 'kurumsal-hazine', 'araci-kurum', 'prop-firma', 'fon', 'diger'],
     masa: ['1', '2-5', '6-20', '20+'],
     sistem: 'metin',
+  },
+  // Desk Signal: masa şefinin trader'lara renk sinyali (erken erişim; fiyat henüz yok).
+  'desk-signal': {
+    kurum: ['prop-firma', 'banka', 'kurumsal-hazine', 'araci-kurum', 'fon', 'diger'],
+    masa: ['2-5', '6-20', '21-50', '50+'],
+    simdi: 'metin',
   },
 };
 
