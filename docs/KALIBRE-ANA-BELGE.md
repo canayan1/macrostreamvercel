@@ -56,6 +56,7 @@ Planlar ücretsiz kalır (Vercel Hobby, Supabase free, Resend free, Upstash free
 | Kalibre Bridge (MT5 EA) | MT5'ten fiyat geçmişi, Market Watch fiyatları, açık pozisyonlar, 90 günlük kapanmış işlemler ve bakiye hareketlerini şifreli röle üzerinden tarayıcıya taşır; salt okuma | Beta (testçilere açık) |
 | Kalibre Engine (MT5 EA) | Kullanıcının kendi kurallarını MT5'te çalıştırır; prop kalkanı (günlük/toplam kayıp tabanı); gerçek hesapta açık onay ve zorunlu kayıp sınırı | Yalnız kurucunun demo hesabında; testçilere YOK |
 | Alpaca / Tradier bağlantısı | ABD hisseleri için tarayıcıdan doğrudan, kullanıcının kendi anahtarıyla, salt okuma | Beta; ticari kullanım için yazılı onay gerekir |
+| Desk Signal (masa sinyali) | Masa şefinden trader'lara tek tuşla renkli sinyal; acil sinyaller yanıtlanana kadar çalar; kimin gördüğü ve bitirdiği saniyesine kadar kayıtlı (CSV/Excel) | Tarayıcı demosu (/lab/desk), erken erişim formu; çok kullanıcılı MVP sırada |
 | 2. ürün: davranışsal finans | İşlem geçmişinden önyargı analizi ve uyarılar; günlük (Edgewonk/TradeZella alanı) | Adı ve tasarımı sonra |
 
 Ortak paket ya da ayrı satış açık. Lisans ve hesap modeli ürün eklemeye hazır (`licenses.product`).
@@ -322,3 +323,12 @@ Claude'un yapacakları:
 ### 30.10 ek 10: Canlıya alındı; FX Blotter ilk kullanım
 - Canlı (kalibremarkets.com): tamamen İngilizce site, ilk ekranda görsel, FX Blotter ve Rule Guard demoları.
 - FX Blotter ilk kullanım (kendi dosyasıyla gelen kullanıcı): kur tablosu boşsa dosyadaki her paritenin son işlem kuruyla dolar (önceden USD/TRY K/Z'si 0 görünüyor, toplam yanlış küçük çıkıyordu); özetin altında "Change the rates". Dosya temiz okununca sütun eşleşmesi ve ayarlar katlanır, sayfa özete kayar; zorunlu alan eksikse eşleşme açık kalır ve oraya kayar.
+
+### 31.10 ek 11: Desk Signal (yeni ürün, MVP sırasının başında)
+- Can'ın fikri: dealing room'da masa şefi trader'lara Teams/Bloomberg sohbeti yerine tek tuşla renkli sinyal versin; masaüstünde köşede yanan top; acil sinyal yanıtlanana kadar susmaz (AlarmKit benzeri); çoklu lokasyon. Karar: önce tarayıcı demosu, hemen ardından çok kullanıcılı web MVP; ilk müşteri prop firmaları ve küçük masalar.
+- Çekirdek: kalibre-lab `lab/src/desk/signal.js` (pano, alıcılar, sent → delivered → seen → done / cancelled, eskalasyon 10 sn büyür, 20 sn şefe kırmızı, öncelik sırası, özet, log CSV/XLSX). Testler `lab/test/desk.test.mjs` (npm test'te).
+- Demo: `/lab/desk` (desk.html, desk.css, src/desk/demo.js). 5 örnek sinyal, 4 örnek trader (Londra x2, Tokyo, İstanbul), klavye: 1-5 sinyal, Q W E R kişi, A S D F grup, Enter tekrar, Esc temizle. Sinyal anlamları düzenlenebilir; "trader'lar kendi yanıtlasın" seçeneği; tur (?tour=1); görsel sahne (?scene=1). Sunucuya hiçbir şey gitmez.
+- Site: `/desk-signal` ürün sayfası (product-pages.py desk_signal), /demo'da bölüm, site haritası, ilk ekran görseli hero-render.mjs `desk-signal` hedefi. Erken erişim formu api/_lib/talep.ts sayfa kimliği `desk-signal` (kurum, masa büyüklüğü, bugün nasıl ulaşıyor). Ana menüye eklenmedi (ana sayfa ve menü değişikliği Can onayı ister).
+- Mesaj: sabit anlamlar, serbest metin yok, emir yok, piyasa verisi yok. Kayıt yükümlülüğü iddiası (MiFID II 16(7) vb.) metinlere kaynak doğrulanmadan konmadı.
+- Sırada (plan: /Users/can/.claude/plans/bright-knitting-moonbeam.md): 2) çok kullanıcılı web MVP: davet kodlu masa, `api/desk.ts` röle (kopru.ts deseni, Upstash, uçtan uca şifreli), tarayıcı bildirimi ve ses; 3) Tauri masaüstü top uygulaması; 4) iPhone AlarmKit eskalasyonu; 5) Stream Deck eklentisi.
+- Önizleme: https://macrostreamvercel-h8rz4p9gn-canayan1s-projects.vercel.app/desk-signal (canlıya alınmadı).
