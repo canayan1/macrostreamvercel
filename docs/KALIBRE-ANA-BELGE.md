@@ -362,3 +362,7 @@ Claude'un yapacakları:
 - Yürüyüş: boş sayfa → MT5 raporu (HTML ve XLSX fikstürü; gerçek terminal çıktısı değil, Python ile MT5 yapısı taklit edilerek üretilmiş) → özet. Rapor sorunsuz okunuyor.
 - Bulunan ve düzeltilen takılmalar: (1) yanlış dosya bırakılınca önceki hesabın sonuçları ekranda kalıyordu; artık gizlenir. (2) Kendi tablosunda üstte başlık/açıklama satırı ya da eş anlamlı sütun adları (Open Time, Type, Lots, Entry, Exit, PnL) olan dosya tanınmıyordu; başlık satırı artık ilk 30 satırda en çok sütunu tanınan satırdır. (3) Hiç işlem sütunu yoksa "bu dosya bir işlem geçmişine benzemiyor" denir. (4) 20 işlemin altında iki boş liste ve tekrar eden metin yerine tek açıklama.
 - Açık: gerçek bir MT5 terminal raporuyla deneme (Can'ın hesabından bir rapor) en güvenilir test olur.
+
+### 31.10 ek 17: Portföy incelemesi
+- Trade Analytics ilk kullanım düzeltmeleri Can'ın onayıyla canlıda (deploy macrostreamvercel-fwtityh2o).
+- Can'ın sorusu üzerine ürün portföyü incelemesi yazıldı: `docs/STRATEJI-INCELEMESI-2026-10-31.md`. Öneri: iki pazarlanan ürün (Kalibre Desk = FX Blotter + Desk Signal; Trade Analytics = analiz + ileride Guard sekmesi) + pazarlanmayan motor (Lab/Engine); web tek platform, masaüstü yalnız top için ince kabuk; şirket kurulumu kritik yolda. Kararlar Can'da (belgenin 7. bölümü). Talep testi rakamları bu incelemede yok (Claude gizli anahtar okumaz); Can `node yerel/talep-ozet.mjs` ile alacak.
