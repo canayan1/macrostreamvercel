@@ -11,10 +11,11 @@ import { blotterAnaliz, grupla, BOYUTLAR, KOVALAR, limitleriCoz, FIRSAT_MALIYETI
 import { mutabakat } from './mutabakat.js';
 import { kurTablosuCoz, tasimaGirdiCoz, lastTradedRates } from './kur.js';
 import { ornekBlotter, ORNEK_KURLAR, ORNEK_KURLAR_EN, ORNEK_FAIZ_METNI, ORNEK_LIMITLER, ORNEK_LIMITLER_EN, ORNEK_DOSYALAR } from './ornek.js';
-import { rastgeleTuz } from './model.js';
+import { rastgeleTuz, konvansiyon } from './model.js';
 import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
 import { deskReport } from './desk-report.js';
 import { startTour } from '../tour.js';
+import { duzenleyiciKur } from './girdi-tablo.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
@@ -25,6 +26,8 @@ const TUZ = rastgeleTuz();
 // First line of a rate table filled from the dropped file; a later file replaces such a table, never one the desk typed.
 const RATES_FROM_FILE = '# last traded rate per pair in the file';
 
+let duzenleyiciler = [];
+const tablolariYenile = () => duzenleyiciler.forEach(d => d.yenile());
 let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null, kaynakDosya = '', ratesFromFile = false;
 
 // ---------------------------------------------------------------- biçim
@@ -72,6 +75,7 @@ function ornekYukle(satirlarDis = null, kaynakAdi = null) {
   $('#limit-tablo').value = dil === 'en' ? ORNEK_LIMITLER_EN : ORNEK_LIMITLER;
   $('#yerel-doviz').value = 'TRY';
   $('#analiz-gunu').value = o.tarih;
+  tablolariYenile();
   yeniSatirlar(satirlarDis ?? o.satirlar, kaynakAdi ?? ceviri('Örnek blotter'), { tarih: o.tarih });
 }
 
@@ -105,6 +109,7 @@ function yeniSatirlar(s, kaynakAdi, { tarih } = {}) {
     if (rates.length) {
       $('#kur-tablo').value = [RATES_FROM_FILE, ...rates.map(r => `${r.pair} ${r.rate}`)].join('\n');
       ratesFromFile = true;
+      tablolariYenile();
     }
   }
   if (aktarim && !aktarim.eksik.length) {
@@ -118,7 +123,7 @@ function aktar() {
   eslesmeGoster();
   const o = aktarim.ozet ?? {};
   if (aktarim.tespit.baslikIndex < 0) { durum(ceviri('Başlık satırı bulunamadı. İlk 30 satırda sütun adları olmalı (ör. İşlem Tarihi, Valör, Parite, Tutar, Kur).'), true); return; }
-  if (aktarim.eksik.length) { durum(ceviri('Zorunlu alanlar eşleşmedi. Aşağıdan seç.'), true); return; }
+  if (aktarim.eksik.length) { durum(ceviri('Şu sütunlar bulunamadı: {a}. Aşağıdaki listeden dosyandaki karşılığını seç.', { a: aktarim.eksik.map(a => ceviri(ALAN_AD[a] ?? a)).join(', ') }), true); return; }
   durum(ceviri('{a} bacak aktarıldı, {d} satır dışlandı, {h} satır okunamadı.', { a: sayi(o.aktarilan), d: sayi(o.dislanan), h: sayi(o.hatali) }), o.hatali > 0);
 }
 
@@ -178,9 +183,10 @@ function girdiler() {
   depoYaz(DEPO.kur, $('#kur-tablo').value); depoYaz(DEPO.tasima, $('#tasima-tablo').value); depoYaz(DEPO.limit, $('#limit-tablo').value);
   depoYaz(DEPO.yerel, $('#yerel-doviz').value);
   const hata = [];
-  if (kur.hatalar.length) hata.push(ceviri('Kur tablosunda okunamayan satır: {s}', { s: kur.hatalar.join(', ') }));
-  if (tas.hatalar.length) hata.push(ceviri('Taşıma tablosunda okunamayan satır: {s}', { s: tas.hatalar.join(', ') }));
-  if (lim.hatalar.length) hata.push(ceviri('Limit tablosunda okunamayan satır: {s}', { s: lim.hatalar.join(', ') }));
+  if (kur.hatalar.length) hata.push(ceviri('Kur tablosunda {n} satır okunamadı.', { n: kur.hatalar.length }));
+  if (tas.hatalar.length) hata.push(ceviri('Taşıma tablosunda {n} satır okunamadı.', { n: tas.hatalar.length }));
+  if (lim.hatalar.length) hata.push(ceviri('Limit tablosunda {n} satır okunamadı.', { n: lim.hatalar.length }));
+  if (hata.length) hata.push(ceviri('Kırmızı satırları düzelt ya da sil; okunamayan satırlar hesaba katılmaz.'));
   $('#girdi-durum').textContent = hata.join(' ');
   $('#girdi-durum').classList.toggle('negatif', hata.length > 0);
   return {
@@ -266,7 +272,24 @@ function ozetGoster() {
   const eksik = analiz.eksikKur;
   $('#ozet-eksik').textContent = eksik.length ? ceviri('Eksik girdi (bu kalemler toplama katılmadı): {e}', { e: eksik.map(eksikMetni).join('; ') }) : '';
   $('#ozet-eksik').classList.toggle('negatif', eksik.length > 0);
+  $('#ozet-eksik-ekle').hidden = !eksik.some(x => !x.endsWith(':spot-kur-yok'));
   $('#ozet-kurlar').hidden = !ratesFromFile;
+}
+
+// Özetteki "kur yok" kalemlerini kur ve taşıma tablolarına boş değerli satır olarak ekler.
+function eksikKurlariEkle() {
+  const kurlar = [], tasima = [];
+  for (const x of analiz?.eksikKur ?? []) {
+    const [tur, a, b] = x.split(':');
+    if (tur === 'mtm' && b !== 'spot-kur-yok') kurlar.push({ parite: a, deger: '' });
+    else if (tur === 'kur' && a !== 'USD') kurlar.push({ parite: `${konvansiyon(a, 'USD').join('/')}`, deger: '' });
+    else if (tur === 'tasima') tasima.push({ ad: a, deger: '' });
+  }
+  fold('#girdi-kart', false);
+  $('#girdi-kart').dataset.elle = '1';
+  if (tasima.length) duzenleyiciler[1].ekleSatirlar(tasima);
+  const odak = kurlar.length ? duzenleyiciler[0].ekleSatirlar(kurlar) : null;
+  (odak ?? $('#girdi-kart')).scrollIntoView({ block: 'center' });
 }
 
 function eksikMetni(x) {
@@ -393,6 +416,7 @@ function baslat() {
   $('#kur-tablo').value = depoOku(DEPO.kur) ?? '';
   $('#tasima-tablo').value = depoOku(DEPO.tasima) ?? '';
   $('#limit-tablo').value = depoOku(DEPO.limit) ?? '';
+  duzenleyiciler = [['#kur-tablo', 'kur'], ['#tasima-tablo', 'tasima'], ['#limit-tablo', 'limit']].map(([id, tur]) => duzenleyiciKur($(id), tur, { t: ceviri, dil }));
   const kb = $('#kz-boyut');
   for (const b of BOYUTLAR) kb.insertAdjacentHTML('beforeend', `<option value="${kacis(b.id)}">${kacis(ceviri(b.ad))}</option>`);
   $('#dosya').addEventListener('change', e => dosyaOku(e.target.files?.[0]));
@@ -408,7 +432,8 @@ function baslat() {
   for (const id of ['#analiz-gunu', '#yontem', '#kapsam', '#yerel-doviz', '#marj-yuzde']) $(id).addEventListener('change', hesapla);
   $('#kur-tablo').addEventListener('change', () => { ratesFromFile = false; });
   for (const id of ['#kur-tablo', '#tasima-tablo', '#limit-tablo']) $(id).addEventListener('change', hesapla);
-  $('#ozet-kurlar-ac').addEventListener('click', () => { fold('#girdi-kart', false); $('#girdi-kart').scrollIntoView({ block: 'start' }); $('#kur-tablo').focus({ preventScroll: true }); });
+  $('#ozet-kurlar-ac').addEventListener('click', () => { fold('#girdi-kart', false); $('#girdi-kart').scrollIntoView({ block: 'start' }); ($('#kur-alan input') ?? $('#kur-tablo')).focus({ preventScroll: true }); });
+  $('#ozet-eksik-ekle').addEventListener('click', eksikKurlariEkle);
   $('#kz-boyut').addEventListener('change', kzGoster);
   $('#rapor-indir').addEventListener('click', downloadReport);
   for (const b of document.querySelectorAll('.katla')) b.addEventListener('click', () => { const k = $(b.dataset.katla); k.dataset.elle = '1'; fold(b.dataset.katla, !k.classList.contains('katli')); });

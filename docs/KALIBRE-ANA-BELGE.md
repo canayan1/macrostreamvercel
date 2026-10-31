@@ -349,4 +349,10 @@ Claude'un yapacakları:
 - Ölçüm (önizleme, gerçek Upstash): gönderimden trader ekranına 228-248 ms; POST ~225 ms (4 ayrı istekken ~520 ms idi).
 - Trader: büyük top, Seen/Done, ses (ilk tıklamayla açılır), tarayıcı bildirimi (acilse kapanana kadar durur), başlıkta yanıp sönen sinyal, Chrome/Edge'de "Keep the orb on top" (Document Picture-in-Picture). Şef: 20 sn'de kırmızı satır + ton + bildirim, Connected sütunu, trader çıkarma, log CSV/Excel.
 - Testler: kalibre-lab `lab/test/desk-live.test.mjs` (5), site `test/desk.test.mjs` (5).
-- Ürün sayfası: "Start a desk" düğmesi, yeni SSS (Kalibre okuyabilir mi, log ne kadar tutulur). Canlıya alınmadı.
+- Ürün sayfası: "Start a desk" düğmesi, yeni SSS (Kalibre okuyabilir mi, log ne kadar tutulur). Can'ın onayıyla canlıda (deploy macrostreamvercel-mv7szcyvu); kalibremarkets.com'da masa kur, katıl, gönder, Delivered tarayıcıyla doğrulandı.
+
+### 31.10 ek 15: FX Blotter kur, taşıma ve limit tabloları (MVP sırası 1)
+- 03 Analysis settings'te üç metin kutusu satır satır tabloya döndü (kalibre-lab `lab/src/blotter/girdi-tablo.js`). Kaynak yine metin: ayrıştırıcılar, yerel kayıt ve örnek yükleme değişmedi; tablo metni satırlara böler ve düzenlenince yeniden yazar. "Paste as text" ile metin kutusu açılır; Excel'den çok satırlı yapıştırma tabloya satır satır eklenir.
+- Limit satırı alanlarla: tür (Currency NOP, Overnight total, Intraday peak, Daily loss, Value date bucket), kapsam, ad ya da valör aralığı, tutar (basamak ayraçlı). Okunamayan satır kaybolmaz, kırmızı kalır; yorum satırları (# Example rates, dosyadan gelen kurlar) tablonun üstünde not.
+- Mesajlar: eksik zorunlu sütunlar adıyla söylenir; tablo hataları satır numarası yerine "kırmızı satırları düzelt ya da sil"; özette "kur yok" çıkınca "Add the missing rates" eksik pariteleri boş değerli satır olarak ekler ve kur kutusuna odaklanır.
+- Doğrulama: örnekte toplam +99,400 USD; kur değişikliği anında yeniden hesaplar ve kaydedilir; yeni gün içi limit hemen değerlendirilir; GBP/USD silinip düğmeyle geri eklenince uyarı kalkar. Testler `lab/test/girdi-tablo.test.mjs` (4), lab toplam 447. Telefonda yatay kaydırma yok.

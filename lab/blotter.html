@@ -90,18 +90,18 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       <label class="secici"><span data-t>Müşteri marjı % (maliyet sütunu yoksa)</span><input type="number" id="marj-yuzde" min="0" max="5" step="0.01" placeholder="0,00"></label>
     </div>
     <div class="b-girdi-izgara">
-      <label class="b-metin"><span data-t>Anlık kur tablosu</span>
-        <textarea id="kur-tablo" rows="6" spellcheck="false" placeholder="USD/TRY 41.92&#10;EUR/USD 1.0875"></textarea>
+      <div class="b-metin" id="kur-alan"><span data-t>Anlık kur tablosu</span>
+        <textarea id="kur-tablo" data-t-attr="aria-label" aria-label="Anlık kur tablosu" rows="6" spellcheck="false" placeholder="USD/TRY 41.92&#10;EUR/USD 1.0875"></textarea>
         <small class="dipnot" data-t>Canlı veri değildir; senin girdiğin kurlar. MTM, USD karşılığı ve yerel para bu tabloyla hesaplanır.</small>
-      </label>
-      <label class="b-metin"><span data-t>Gecelik faiz (yıllık %) ya da T/N puanı</span>
-        <textarea id="tasima-tablo" rows="6" spellcheck="false" placeholder="USD 4.25&#10;TRY 39.5&#10;EUR/USD TN 0.000012"></textarea>
+      </div>
+      <div class="b-metin" id="tasima-alan"><span data-t>Gecelik faiz (yıllık %) ya da T/N puanı</span>
+        <textarea id="tasima-tablo" data-t-attr="aria-label" aria-label="Gecelik faiz (yıllık %) ya da T/N puanı" rows="6" spellcheck="false" placeholder="USD 4.25&#10;TRY 39.5&#10;EUR/USD TN 0.000012"></textarea>
         <small class="dipnot" data-t>Spot valörünü geçmiş açık pozisyonun gecelik taşıma maliyeti için. Döviz satırı faiz, parite satırı gecelik T/N puanıdır.</small>
-      </label>
-      <label class="b-metin"><span data-t>Limitler (isteğe bağlı, USD)</span>
-        <textarea id="limit-tablo" rows="6" spellcheck="false" placeholder="NOP USD 25000000&#10;GECE 40000000&#10;GUNICI trader Trader 1 15000000&#10;STOP masa 50000&#10;VALOR USD ≤ 1 ay 10000000"></textarea>
-        <small class="dipnot" data-t>Limitler senin tanımın. Satır türleri: NOP, GECE, GUNICI, STOP, VALOR.</small>
-      </label>
+      </div>
+      <div class="b-metin b-limit" id="limit-alan"><span data-t>Limitler (isteğe bağlı, USD)</span>
+        <textarea id="limit-tablo" data-t-attr="aria-label" aria-label="Limitler (isteğe bağlı, USD)" rows="6" spellcheck="false" placeholder="NOP USD 25000000&#10;GECE 40000000&#10;GUNICI trader Trader 1 15000000&#10;STOP masa 50000&#10;VALOR USD ≤ 1 ay 10000000"></textarea>
+        <small class="dipnot" data-t>Limitler senin tanımın. Her satır bir limit: döviz pozisyonu, gece toplamı, gün içi tepe, günlük zarar ya da valör aralığı.</small>
+      </div>
     </div>
     <p class="dipnot" id="girdi-durum" role="status"></p>
   </section>
@@ -110,7 +110,7 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     <div class="kart-bas"><h2><span class="bolum-no">04</span><span data-t>Özet</span></h2><span class="dipnot" id="ozet-not"></span><button type="button" class="dugme" id="rapor-indir" data-t>Masa raporunu indir (Excel)</button></div>
     <div class="a-ana-karolar" id="ozet-ana"></div>
     <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
-    <p class="dipnot" id="ozet-eksik"></p>
+    <p class="dipnot"><span id="ozet-eksik"></span> <button type="button" class="kucuk" id="ozet-eksik-ekle" hidden data-t>Eksik kurları ekle</button></p>
     <p class="dipnot" id="ozet-kurlar" hidden><span data-t>USD karşılıkları ve MTM, dosyadaki her paritenin son işlem kurunu kullanır.</span> <button type="button" class="kucuk" id="ozet-kurlar-ac" data-t>Kurları değiştir</button></p>
   </section>
 

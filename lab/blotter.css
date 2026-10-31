@@ -32,3 +32,29 @@
   .blotter .b-kontrol li{grid-template-columns:22px 1fr}
   .blotter .b-kontrol li .dipnot{grid-column:2}
 }
+
+/* rates, carry and limits as row-by-row tables (src/blotter/girdi-tablo.js) */
+.blotter .b-girdi-izgara{grid-template-columns:repeat(2,minmax(0,1fr))}
+.blotter .b-girdi-izgara .b-limit{grid-column:1/-1}
+@media (max-width:760px){.blotter .b-girdi-izgara{grid-template-columns:1fr}}
+.blotter .b-tablo-duzen{display:flex;flex-direction:column;gap:8px}
+.blotter .b-tablo-not{margin:0;font-size:12px}
+.blotter .b-girdi-tablo{width:100%;border-collapse:collapse;font-size:13px}
+.blotter .b-girdi-tablo th{text-align:left;font:500 11px var(--sans);color:var(--muted);padding:0 6px 4px 0}
+.blotter .b-girdi-tablo td{padding:3px 6px 3px 0;vertical-align:middle}
+.blotter .b-girdi-tablo input,.blotter .b-girdi-tablo select{width:100%;box-sizing:border-box;min-width:0;padding:6px 8px;font-size:13px}
+.blotter .b-girdi-tablo input.b-kod{font-family:var(--mono);text-transform:uppercase}
+.blotter .b-girdi-tablo input.b-sayi,.blotter .b-girdi-tablo input.b-ham{font-family:var(--mono)}
+.blotter .b-girdi-tablo input.b-sayi{text-align:right}
+.blotter .b-girdi-tablo td.b-sil{width:30px;text-align:right}
+.blotter .b-girdi-tablo tr.hatali-satir input,.blotter .b-girdi-tablo tr.hatali-satir select{border-color:var(--red);background:rgba(239,68,68,.07)}
+.blotter .b-tablo-alt{display:flex;gap:8px}
+@media (max-width:620px){
+  .blotter .b-limit .b-girdi-tablo thead{display:none}
+  .blotter .b-limit .b-girdi-tablo tr{display:grid;grid-template-columns:1fr 1fr 30px;gap:4px;padding:6px 0;border-bottom:1px solid var(--border)}
+  .blotter .b-limit .b-girdi-tablo td{padding:0}
+  .blotter .b-limit .b-girdi-tablo td.b-sil{grid-column:3;grid-row:1}
+  .blotter .b-limit .b-girdi-tablo td:empty{display:none}
+}
+.blotter .b-limit .b-girdi-tablo th:first-child{width:24%}
+.blotter .b-limit .b-girdi-tablo th:nth-child(4){width:22%}
