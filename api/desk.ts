@@ -52,14 +52,12 @@ export async function kayitlar(depo: Depo, masa: string, after: number) {
 
 export async function yaz(depo: Depo, masa: string, govde: unknown, simdi = Date.now()) {
   const a = A(masa);
-  const n = await depo.say(a.sinir(Math.floor(simdi / 60000)), 120);
-  if (n > SINIR.yazmaDakika) return { durum: 429, govde: { hata: 'çok sık yazma' } };
   const d = zarfDenetle(govde);
   if (!d.zarf) return { durum: 400, govde: { hata: d.hata } };
-  const q = await depo.artir(a.sira, SINIR.ttlSn);
-  const kayit = JSON.stringify({ q, ts: simdi, e: d.zarf });
-  await depo.ekle(a.kayit, kayit, SINIR.kayit, SINIR.ttlSn);
-  await depo.yayinla(a.yayin, kayit);
+  // Sınır, sıra, kayıt ve yayın tek gidiş-dönüşte: gönderimden ekrana gecikmenin çoğu buradaydı.
+  const q = await depo.siraliEkle({ sira: a.sira, kayit: a.kayit, yayin: a.yayin, sinir: a.sinir(Math.floor(simdi / 60000)) },
+    JSON.stringify(d.zarf), simdi, { enFazla: SINIR.kayit, ttlSn: SINIR.ttlSn, dakikaSinir: SINIR.yazmaDakika });
+  if (q < 0) return { durum: 429, govde: { hata: 'çok sık yazma' } };
   return { durum: 200, govde: { q, ts: simdi } };
 }
 

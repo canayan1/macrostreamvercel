@@ -17,7 +17,25 @@ export interface Depo {
   hYaz(anahtar: string, alan: string, deger: string, ttlSn: number): Promise<void>;
   hHepsi(anahtar: string): Promise<Record<string, string>>;
   yayinla(kanal: string, mesaj: string): Promise<void>;
+  // Tek gidiş-dönüşte: sınırı say, sıra numarası al, kaydı ekle, yayınla. Sınır aşılırsa -1.
+  siraliEkle(a: SiraliAnahtar, zarfMetni: string, ts: number, s: { enFazla: number; ttlSn: number; dakikaSinir: number }): Promise<number>;
 }
+export type SiraliAnahtar = { sira: string; kayit: string; yayin: string; sinir: string };
+export const kayitMetni = (q: number, ts: number, zarfMetni: string) => `{"q":${q},"ts":${ts},"e":${zarfMetni}}`;
+
+// Upstash'te siraliEkle'nin tek komutluk karşılığı (EVAL). Kayıt metni kayitMetni ile aynı biçimde kurulur.
+const SIRALI_EKLE = `
+local n = redis.call('INCR', KEYS[4])
+if n == 1 then redis.call('EXPIRE', KEYS[4], 120) end
+if n > tonumber(ARGV[5]) then return -1 end
+local q = redis.call('INCR', KEYS[1])
+redis.call('EXPIRE', KEYS[1], ARGV[4])
+local rec = '{"q":' .. q .. ',"ts":' .. ARGV[2] .. ',"e":' .. ARGV[1] .. '}'
+redis.call('RPUSH', KEYS[2], rec)
+redis.call('LTRIM', KEYS[2], -tonumber(ARGV[3]), -1)
+redis.call('EXPIRE', KEYS[2], ARGV[4])
+redis.call('PUBLISH', KEYS[3], rec)
+return q`;
 
 // Bellek deposunun yayınları aynı süreçteki abonelere gider (yerel geliştirme).
 type Dinleyici = (mesaj: string) => void;
@@ -69,6 +87,13 @@ export function bellekDepo(): Depo {
     },
     async hHepsi(k) { return JSON.parse(canli(k)?.v ?? '{}'); },
     async yayinla(kanal, mesaj) { bellekYayin.get(kanal)?.forEach(fn => fn(mesaj)); },
+    async siraliEkle(a, zarfMetni, ts, s) {
+      if ((await this.say(a.sinir, 120)) > s.dakikaSinir) return -1;
+      const q = await this.artir(a.sira, s.ttlSn), kayit = kayitMetni(q, ts, zarfMetni);
+      await this.ekle(a.kayit, kayit, s.enFazla, s.ttlSn);
+      await this.yayinla(a.yayin, kayit);
+      return q;
+    },
   };
 }
 
@@ -101,6 +126,11 @@ function upstashDepo(url: string, token: string): Depo {
       return o;
     },
     async yayinla(kanal, mesaj) { await komut([['PUBLISH', kanal, mesaj]]); },
+    async siraliEkle(a, zarfMetni, ts, s) {
+      const [r] = await komut([['EVAL', SIRALI_EKLE, 4, a.sira, a.kayit, a.yayin, a.sinir, zarfMetni, ts, s.enFazla, s.ttlSn, s.dakikaSinir]]);
+      if ((r as { error?: string })?.error) throw new Error('upstash betik');
+      return Number(r?.result ?? -1);
+    },
   };
 }
 
