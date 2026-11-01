@@ -186,3 +186,16 @@ Hafta 7-12
 5. Web-tek-platform kararı; masaüstü yalnız top için ince kabuk.
 6. Şirket kurulumu takvimi.
 7. Talep özetinin alınması ve bu belgeye eklenmesi.
+
+## 8. Karar (Can, 1 Kasım 2026)
+
+Seçilen yapı bölüm 3'teki değil, Can'ın çatısı:
+- **Kalibre Markets** marka ve platform adı; ayrı ürün markası yok. Altında iki ürün:
+  - **Analytics**: bağlan (MT5 raporu, trade log, blotter, Bridge) → kur (hazır analizler: Trade Analytics, FX Blotter, backtest "ne olurdu"; görünüm kurucu) → sun (rapor sayfası, PDF, paylaşım bağlantısı). Trade Analytics, FX Blotter ve Lab artık ürün değil, hazır analiz.
+  - **Desk Signal**: takım içi iletişim ürünü, ayrı. Analytics'e bağlanması (limit yakınlığı → sinyal) ileride özellik.
+  - Rule Guard çatı dışında, "planned"; üç şart (talep, Stripe yazılı onayı, firmaların EA tutumu) sağlanmadan gelmez.
+- Sunum katmanı ilk adım: gün sonu masa raporu (PDF, salt-okuma paylaşım bağlantısı).
+- Fiyat: tek fiyat, Creator/Viewer yok; sitede fiyat gösterilmez, "contact us".
+- Platform: web, tek platform, yerel-öncelikli (bölüm 4 aynen).
+
+Sıra: (A) site yapısı iki ürüne iner (önizleme, canlı Can onayıyla); (B) masa raporu sayfası ve paylaşım bağlantısı; (C) tek kabuk, tek veri kümesi, tek görünüm kurucu.
