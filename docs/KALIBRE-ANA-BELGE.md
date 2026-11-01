@@ -56,6 +56,7 @@ Planlar ücretsiz kalır (Vercel Hobby, Supabase free, Resend free, Upstash free
 | Kalibre Bridge (MT5 EA) | MT5'ten fiyat geçmişi, Market Watch fiyatları, açık pozisyonlar, 90 günlük kapanmış işlemler ve bakiye hareketlerini şifreli röle üzerinden tarayıcıya taşır; salt okuma | Beta (testçilere açık) |
 | Kalibre Engine (MT5 EA) | Kullanıcının kendi kurallarını MT5'te çalıştırır; prop kalkanı (günlük/toplam kayıp tabanı); gerçek hesapta açık onay ve zorunlu kayıp sınırı | Yalnız kurucunun demo hesabında; testçilere YOK |
 | Alpaca / Tradier bağlantısı | ABD hisseleri için tarayıcıdan doğrudan, kullanıcının kendi anahtarıyla, salt okuma | Beta; ticari kullanım için yazılı onay gerekir |
+| Analytics (çatı, 1.11) | Bağla (MT5 raporu, trade log, blotter, Bridge) → kur (hazır analizler: Trade Analytics, FX Blotter, Backtest; görünüm kurucu) → sun (Excel çalışma kitabı, rapor sayfası, mühürlü paylaşım bağlantısı) | Beta; /analytics |
 | Desk Signal (masa sinyali) | Masa şefinden trader'lara tek tuşla renkli sinyal; acil sinyaller yanıtlanana kadar çalar; kimin gördüğü ve bitirdiği saniyesine kadar kayıtlı (CSV/Excel) | Tarayıcı demosu (/lab/desk) ve çalışan canlı masa (/lab/desk-live): şifreli röle, şef konsolu, trader ekranı; erken erişimde ücretsiz |
 | 2. ürün: davranışsal finans | İşlem geçmişinden önyargı analizi ve uyarılar; günlük (Edgewonk/TradeZella alanı) | Adı ve tasarımı sonra |
 
@@ -366,3 +367,10 @@ Claude'un yapacakları:
 ### 31.10 ek 17: Portföy incelemesi
 - Trade Analytics ilk kullanım düzeltmeleri Can'ın onayıyla canlıda (deploy macrostreamvercel-fwtityh2o).
 - Can'ın sorusu üzerine ürün portföyü incelemesi yazıldı: `docs/STRATEJI-INCELEMESI-2026-10-31.md`. Öneri: iki pazarlanan ürün (Kalibre Desk = FX Blotter + Desk Signal; Trade Analytics = analiz + ileride Guard sekmesi) + pazarlanmayan motor (Lab/Engine); web tek platform, masaüstü yalnız top için ince kabuk; şirket kurulumu kritik yolda. Kararlar Can'da (belgenin 7. bölümü). Talep testi rakamları bu incelemede yok (Claude gizli anahtar okumaz); Can `node yerel/talep-ozet.mjs` ile alacak.
+
+### 1.11 ek 18: İki ürün çatısı ve sunum katmanı (Can'ın kararı, bkz. STRATEJI-INCELEMESI bölüm 8)
+- Site: menü Analytics, Desk Signal, Demos, Security, Company. Yeni çatı sayfası `/analytics` (bağla, kur, sun; kimin için; fiyat yok, "contact us"). Ana sayfa "Your trading data, explained." ve iki ürün. Rule Guard "Planned" (fiyat bloğu kalktı, erken erişim formu duruyor). Kalibre Lab sayfası "Analytics · Backtest" olarak kalıyor (menüde değil, altbilgide). /pricing fiyatsız: iki ürün ücretsiz, plan için iletişim. Demolar iki ürün altında. Eski `/analytics` → `/lab/analytics` yönlendirmeleri kaldırıldı. Desk Signal görselleri static/urun/demo/desk-grid, desk-console (yerel/demo-screens.mjs ONLY=desk).
+- Sunum katmanı 1: masa raporu sayfası. FX Blotter'da "Open the report page" → `/lab/report#local` (model localStorage ile geçer). Model kalibre-lab `lab/src/report/blotter-model.js` (saf, testli): KPI'lar, parite/dealer/kalem türü K/Z, pozisyon, limitler, valör merdiveni, dışlanan satırlar, mutabakat, notlar. Sayfa `lab/report.html` + `report.css` (kağıt görünümü, yazdırma CSS'i) + `src/report/goster.js`. "Print or save as PDF" tarayıcının yazdırmasıdır.
+- Paylaşım: `src/report/muhur.js` rastgele anahtarla AES-GCM; zarf `api/rapor.ts`'ye (Upstash, 30 gün, saatte 60/IP özeti), anahtar bağlantının # kısmında. `/lab/report#<id>.<key>` salt okuma (paylaş ve geri düğmeleri yok). Yerelde uçtan uca doğrulandı: rapor açıldı, bağlantı üretildi, ikinci sekmede açıldı.
+- Testler: lab `lab/test/rapor.test.mjs` (3), site `test/rapor.test.mjs` (3); lab toplam 451, site 66.
+- Canlıya alınmadı; önizlemede, Can onayı bekliyor.
