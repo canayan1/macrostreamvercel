@@ -280,8 +280,8 @@ def home(lang):
     body = f'''
 <section class="hero home-hero">
   <div class="wrap">
-    <h1 class="display">{T(lang, "Your trading data, explained.", "İşlem verin, açıklanmış.")}</h1>
-    <p class="sub">{T(lang, "Connect the records you already keep. Build the view. Present it. In your browser, and the files stay there.", "Zaten tuttuğun kayıtları bağla. Görünümü kur. Sun. Tarayıcında; dosyalar orada kalır.")}</p>
+    <h1 class="display">{T(lang, "FX, solved.", "FX'i çözüyoruz.")}</h1>
+    <p class="sub">{T(lang, "Every trade explained, in seconds.", "Her işlem, saniyeler içinde açıklanmış.")}</p>
     <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/analytics"), T(lang, "What Analytics does", "Analytics ne yapar"), "")}</div>
   </div>
   <figure class="home-hero-media"><picture><source type="image/webp" srcset="/static/urun/hero/home-{lang}-1x.webp 1440w, /static/urun/hero/home-{lang}-2x.webp 2880w" sizes="(max-width: 1440px) 100vw, 1440px"><img src="/static/urun/hero/home-{lang}.png" width="2880" height="1720" alt="{T(lang, "FX Blotter Analytics on a laptop: total P&amp;L split into price, points, carry and MTM, and seven reconciliation checks passed", "Dizüstünde FX Blotter Analytics: fiyat, puan, taşıma ve MTM olarak ayrılmış toplam K/Z ve geçen yedi mutabakat kontrolü")}" fetchpriority="high" decoding="async"></picture></figure>
@@ -346,7 +346,7 @@ def home(lang):
   </div>
 </section>'''
     path = "tr/index.html" if tr else "index.html"
-    page(path, lang, T(lang, "Kalibre Markets: your trading data, explained", "Kalibre Markets: işlem verin, açıklanmış"),
+    page(path, lang, T(lang, "Kalibre Markets: FX, solved", "Kalibre Markets: FX'i çözüyoruz"),
          T(lang, "Analytics reads the MT5 reports and desk blotters you already keep and shows what every trade earned, in seconds. Desk Signal sends one-key signals across the desk. Files are processed in your browser.",
            "Analytics zaten tuttuğun MT5 raporlarını ve masa blotter'larını okur, her işlemin ne kazandırdığını saniyeler içinde gösterir. Desk Signal masaya tek tuşla sinyal gönderir. Dosyalar tarayıcında işlenir."),
          body, P(lang, "/"), "/" if tr else "/tr")
