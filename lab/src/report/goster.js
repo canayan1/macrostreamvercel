@@ -39,16 +39,20 @@ export function render(root, m) {
   for (const k of m.kpis) {
     const d = el('div');
     d.append(el('span', '', k.label));
-    const b = el('b', k.kind === 'pnl' ? sign(k.value) : '', k.kind === 'pnl' ? `${f.pnl(k.value)} USD` : String(k.value));
+    const text = k.kind === 'pnl' ? `${f.pnl(k.value)} ${m.currency ?? 'USD'}`.trim() : String(k.value);
+    const b = el('b', (k.kind === 'pnl' ? sign(k.value) : '') + (text.length > 14 ? ' kucuk' : ''), text);
     d.append(b);
     if (k.sub) d.append(el('small', '', k.sub));
     kpi.append(d);
   }
   root.append(kpi);
 
+  if (m.curve?.length > 2) root.append(curveSvg(m));
+
   if (m.notes?.length) { const n = el('div', 'r-notlar'); m.notes.forEach(x => n.append(el('p', '', x))); root.append(n); }
 
   const checks = el('section', 'r-bolum');
+  if (!m.checks.length) checks.hidden = true;
   checks.append(el('h2', '', m.lang === 'tr' ? 'Mutabakat' : 'Reconciliation'));
   const ul = el('ul', 'r-kontrol');
   for (const c of m.checks) {
@@ -85,6 +89,35 @@ export function render(root, m) {
   const foot = el('footer', 'r-alt-bilgi');
   foot.append(el('span', '', m.footer), el('span', '', `${m.lang === 'tr' ? 'Oluşturulma' : 'Created'} ${new Date(m.createdAt).toLocaleString(m.locale, { dateStyle: 'medium', timeStyle: 'short' })}`));
   root.append(foot);
+}
+
+// Balance curve as a small inline SVG; a dashed line marks the starting balance.
+function curveSvg(m) {
+  const W = 760, H = 150, L = 56, R = 8, T = 10, B = 22;
+  const pts = m.curve;
+  const t0 = pts[0][0], t1 = pts.at(-1)[0];
+  let lo = Math.min(...pts.map(p => p[1])), hi = Math.max(...pts.map(p => p[1]));
+  const pad = (hi - lo) * 0.08 || 1; lo -= pad; hi += pad;
+  const X = t => L + ((t - t0) / (t1 - t0 || 1)) * (W - L - R);
+  const Y = v => T + (1 - (v - lo) / (hi - lo || 1)) * (H - T - B);
+  const fmt = new Intl.NumberFormat(m.locale, { maximumFractionDigits: 0 });
+  const dayOf = t => new Date(t * 1000).toLocaleDateString(m.locale, { day: '2-digit', month: 'short' });
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('class', 'r-egri'); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', m.curveLabel ?? '');
+  const add = (tag, attrs, text) => { const e = document.createElementNS(ns, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (text != null) e.textContent = text; svg.append(e); return e; };
+  for (let k = 0; k <= 3; k++) {
+    const v = lo + ((hi - lo) * k) / 3, y = Y(v);
+    add('line', { x1: L, x2: W - R, y1: y, y2: y, class: 'r-izgara' });
+    add('text', { x: L - 6, y: y + 3.5, class: 'r-eksen', 'text-anchor': 'end' }, fmt.format(v));
+  }
+  add('line', { x1: L, x2: W - R, y1: Y(pts[0][1]), y2: Y(pts[0][1]), class: 'r-baslangic' });
+  add('path', { d: pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join(' '), class: 'r-cizgi' });
+  add('text', { x: L, y: H - 6, class: 'r-eksen' }, dayOf(t0));
+  add('text', { x: W - R, y: H - 6, class: 'r-eksen', 'text-anchor': 'end' }, dayOf(t1));
+  const box = el('section', 'r-bolum');
+  box.append(el('h2', '', m.curveLabel ?? ''), svg);
+  return box;
 }
 
 function status(text, bad = false) { const d = $('#durum'); d.hidden = !text; d.textContent = text ?? ''; d.style.color = bad ? '#b91c1c' : ''; }

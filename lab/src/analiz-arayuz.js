@@ -11,6 +11,8 @@ import { koprudenHesap } from './analiz/model.js';
 import { analizMotoru, BOYUTLAR, OLCULER } from './analiz/hesap.js';
 import { propDegerlendir, ON_AYARLAR } from './analiz/prop.js';
 import { ornekHesap } from './analiz/ornek.js';
+import { accountReportModel } from './report/account-model.js';
+import { LOCAL_KEY } from './report/blotter-model.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
@@ -156,6 +158,15 @@ function hesapla() {
   ozetCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); gorunumCiz();
 }
 
+// The report page: the model is handed over through localStorage and opened in a new tab (#local).
+let sonProp = null; // { ad, s } from the last propCiz
+function openReportPage() {
+  if (!motor) return;
+  const model = accountReportModel({ hesap, motor, lang: dil === 'tr' ? 'tr' : 'en', source: $('#kaynak-rozet').textContent, utcFark, prop: sonProp });
+  try { localStorage.setItem(LOCAL_KEY, JSON.stringify(model)); } catch { durum(ceviri('Rapor sayfası açılamadı: tarayıcı depolama alanı kapalı.'), true); return; }
+  window.open('/lab/report#local', '_blank');
+}
+
 // ---------------------------------------------------------------- özet
 function ozetCiz() {
   const o = motor.ozet();
@@ -273,7 +284,8 @@ function propCiz() {
   const kural = a ?? { ad: ceviri('Özel'), gunluk: Number($('#prop-gunluk').value), azami: Number($('#prop-azami').value), tur: 'sabit' };
   const baslangic = Number($('#prop-baslangic').value);
   const s = propDegerlendir(motor.islemler, { baslangic, gunluk: kural.gunluk, azami: kural.azami, tur: kural.tur, gunSaati: $('#prop-gun-saati').value, sunucuUtcFarki: utcFark });
-  if (!s) { $('#prop-karolar').innerHTML = ''; $('#prop-tablo').innerHTML = ''; return; }
+  if (!s) { sonProp = null; $('#prop-karolar').innerHTML = ''; $('#prop-tablo').innerHTML = ''; return; }
+  sonProp = { ad: kural.ad, s };
   const karo = (ad, deger, c = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b></div>`;
   $('#prop-karolar').innerHTML = [
     karo('Sınırı aşan gün', sayi(s.ihlalSayisi, 0), s.ihlalSayisi ? 'negatif' : 'pozitif'),
@@ -383,6 +395,7 @@ function baslat() {
   birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyaOku(e.dataTransfer.files[0]); });
 
   $('#ornek-yukle').onclick = () => yukle(ornekHesap());
+  $('#rapor-sayfa').onclick = openReportPage;
   $('#ornek-kapat').onclick = () => { $('#yukle-kart').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#dosya').click(); };
   if (ORNEK_DOSYALAR.includes(sampleFileParam())) ornekDosyaAc(sampleFileParam());
   else if (urlParam('sample') === '1') yukle(ornekHesap());

@@ -39,19 +39,21 @@ a{color:var(--accent)}
 .r-kpi div{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
 .r-kpi span{display:block;font-size:12px;color:var(--ink-dim)}
 .r-kpi b{display:block;font:600 20px/1.2 var(--mono);margin-top:4px;letter-spacing:-.01em}
+.r-kpi b.kucuk{font-size:15px}
 .r-kpi small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 
-.r-bolum{margin-bottom:24px;break-inside:avoid}
+.r-bolum{margin-bottom:24px;break-inside:avoid;overflow-x:auto}
 .r-bolum h2{margin:0 0 8px;font:600 15px var(--sans);letter-spacing:-.01em;color:var(--ink)}
 .r-bolum .r-not{margin:6px 0 0;font-size:12px;color:var(--ink-dim)}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 th{text-align:left;font-weight:500;color:var(--ink-dim);border-bottom:1px solid var(--line-2);padding:5px 8px 6px}
 td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child,td.r-nowrap{white-space:nowrap}
 th.sayi,td.sayi{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 tfoot td{font-weight:600;border-top:1px solid var(--line-2);border-bottom:0;background:var(--panel)}
 .pozitif{color:var(--good)}
 .negatif{color:var(--bad)}
-.r-durum-etiket{display:inline-block;padding:1px 8px;border-radius:10px;font:500 11px var(--mono);border:1px solid var(--line-2);color:var(--ink-dim)}
+.r-durum-etiket{display:inline-block;white-space:nowrap;padding:1px 8px;border-radius:10px;font:500 11px var(--mono);border:1px solid var(--line-2);color:var(--ink-dim)}
 .r-durum-etiket.good{color:var(--good);border-color:rgba(21,128,61,.4)}
 .r-durum-etiket.warn{color:var(--warn);border-color:rgba(180,83,9,.4)}
 .r-durum-etiket.bad{color:var(--bad);border-color:rgba(185,28,28,.45)}
@@ -85,3 +87,10 @@ tfoot td{font-weight:600;border-top:1px solid var(--line-2);border-bottom:0;back
   .r-bolum{break-inside:avoid}
   a{color:inherit;text-decoration:none}
 }
+
+/* balance curve */
+.r-egri{display:block;width:100%;height:auto;max-height:170px}
+.r-egri .r-izgara{stroke:var(--line);stroke-width:1}
+.r-egri .r-eksen{font:10.5px var(--mono);fill:var(--muted)}
+.r-egri .r-baslangic{stroke:var(--accent);stroke-width:1;stroke-dasharray:4 4;opacity:.7}
+.r-egri .r-cizgi{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
