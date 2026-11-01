@@ -375,3 +375,5 @@ Claude'un yapacakları:
 - Testler: lab `lab/test/rapor.test.mjs` (3), site `test/rapor.test.mjs` (3); lab toplam 451, site 66.
 - Canlıya alınmadı; önizlemede, Can onayı bekliyor.
 - Vercel Hobby sınırı: en çok 12 sunucusuz işlev. /api/rapor eklenince 13 oldu; eski BIST "Kalabalık" sayacı `api/pulse-ping.ts` (hiçbir sayfa çağırmıyordu, sitede piyasa verisi yok) silindi. Şimdi 12: asistan, desk, hesap, indir, kopru, lisans, rapor, talep, odeme/{baslat,oturum,portal,webhook}. Yeni uç gerekirse Pro plan ya da birleştirme.
+- Ana sayfa başlığı Can'ın isteğiyle "FX, solved." olarak kaldı.
+- Sunum katmanı 2 (1.11): Trade Analytics için "Account review" rapor sayfası (`lab/src/report/account-model.js`, kind account-review): KPI'lar, bakiye eğrisi (satır içi SVG, 160 nokta), kazandıran/kaybettiren dilimler, sembol/gün/seans/önceki işlem kırılımları, seçili prop kuralıyla tabana en yakın 10 gün. Aynı rapor sayfası ve aynı paylaşım bağlantısı. Test lab/test/rapor.test.mjs (4). Önizlemede, canlıya alınmadı.
