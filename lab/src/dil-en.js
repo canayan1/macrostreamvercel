@@ -20,10 +20,12 @@ export const EN = {
   "MetaTrader 5'i bağla": "Connect MetaTrader 5",
   "MetaTrader 5'i bağla · Kalibre Lab": "Connect MetaTrader 5 · Kalibre Lab",
   // ------------------------------------------------------------ sayfa
-  'Strateji Kurucu · Kalibre Lab': 'Strategy Builder · Kalibre Lab',
+  'Strateji Kurucu · Kalibre Lab': 'Backtest · Kalibre Markets',
   'Oynaklık Laboratuvarı · Kalibre Lab': 'Volatility Lab · Kalibre Lab',
   'Strateji Kurucu': 'Strategy Builder',
   'Demolar': 'Demos',
+  'Backtest': 'Backtest',
+  'Analytics hakkında': 'About Analytics',
   'İşlem Analizi': 'Trade Analytics',
   'Oynaklık Laboratuvarı': 'Volatility Lab',
   'Kalibre ana sayfa': 'Kalibre home',

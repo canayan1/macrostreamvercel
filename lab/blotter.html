@@ -17,12 +17,13 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
 </head>
 <body>
 <header class="ust">
-  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Lab <span data-t>FX Blotter Analizi</span></a>
+  <a class="logo" href="/" title="Kalibre ana sayfa" data-t-attr="title"><i></i>Kalibre Markets <span>Analytics · <span data-t>FX Blotter Analizi</span></span></a>
   <div class="ust-eylem">
-    <a class="dugme ikincil" href="/demo" data-t>Demolar</a>
     <span class="rozet ust-sentetik" id="ust-sentetik" hidden data-t>Örnek</span>
     <a class="dugme ikincil" href="analytics.html" data-t>İşlem Analizi</a>
-    <a class="dugme ikincil" href="./" data-t>Strateji Kurucu</a>
+    <a class="dugme ikincil" href="./" data-t>Backtest</a>
+    <a class="dugme ikincil" href="/demo" data-t>Demolar</a>
+    <a class="dugme ikincil" href="/analytics" data-t>Analytics hakkında</a>
   </div>
 </header>
 
@@ -159,6 +160,27 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
   <section class="kart" id="atlanan-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">11</span><span data-t>Dışlanan ve atlanan satırlar</span></h2><span class="dipnot" id="atlanan-ozet"></span></div>
     <div class="tablo-kutu"><table class="pozisyon a-tablo b-tablo" id="atlanan-tablo"></table></div>
+  </section>
+
+  <section class="kart" id="gorunum-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">12</span><span data-t>Kendi görünümün</span></h2></div>
+    <div class="satir-dugme a-gorunum-ayar">
+      <label class="secici"><span data-t>Grupla</span><select id="g-boyut"></select></label>
+      <label class="secici"><span data-t>Ölçü</span><select id="g-olcu"></select></label>
+      <label class="secici"><span data-t>Grafik</span><select id="g-tur">
+        <option value="cubuk" data-t>Çubuk</option>
+        <option value="cizgi" data-t>Çizgi</option>
+        <option value="tablo" data-t>Tablo</option>
+      </select></label>
+    </div>
+    <div id="g-cizim" class="g-cizim"></div>
+    <form class="satir-dugme" id="g-kaydet">
+      <input id="g-ad" maxlength="60" placeholder="Görünüm adı" data-t-attr="placeholder" autocomplete="off">
+      <button type="submit" class="kucuk" data-t>Görünümü kaydet</button>
+      <span class="dipnot" id="g-durum" role="status"></span>
+    </form>
+    <ul class="kayitli" id="g-kayitli"></ul>
+    <p class="dipnot" data-t>Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir.</p>
   </section>
 
   <p class="dipnot panom-dipnot" data-t>Bu sayfadaki hesaplar senin tarayıcında yapılır; dosyan Kalibre sunucusuna gönderilmez. Karşı taraf adları varsayılan olarak okunmaz, işlem numaraları özetlenir (hash), trader adları takma adla gösterilir. Sonuçlar blotter'ın betimlemesidir ve bankanın resmi K/Z'sinin yerine geçmez.</p>

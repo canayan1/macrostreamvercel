@@ -9,7 +9,7 @@ export const ANALIZ_EN = {
   'Rule Guard erken erişim': 'Get early access to Rule Guard',
   // sayfa
   'İşlem Analizi': 'Trade Analytics',
-  'İşlem Analizi · Kalibre Lab': 'Trade Analytics · Kalibre Lab',
+  'İşlem Analizi · Kalibre Lab': 'Trade Analytics · Kalibre Markets',
   'Panom': 'Dashboard',
   'Optimizasyon': 'Optimization',
   'İşlem geçmişini yükle': 'Load your trade history',
@@ -148,6 +148,9 @@ export const ANALIZ_EN = {
   '{t} işlemle dilimler henüz oluşmadı: bir dilim en az {n} işlemle listelenir. Daha uzun bir dönemin raporunu bırakınca burası dolar; aşağıdaki kırılımlar her grubu şimdiden gösteriyor.': 'With {t} trades there are no segments yet: a segment is listed once it has {n} trades. Drop a report for a longer period and this fills in; the breakdowns below already show every group.',
   'Rapor sayfasını aç': 'Open the report page',
   'Rapor sayfası açılamadı: tarayıcı depolama alanı kapalı.': 'The report page could not open: browser storage is blocked.',
+  'Backtest': 'Backtest',
+  'Analytics hakkında': 'About Analytics',
+  'Önce bir dosya yükle.': 'Load a file first.',
   'Bu ölçütü geçen dilim yok.': 'No segment meets the threshold.',
   'Yalnız en az {n} işlemli dilimler listelenir. Dilimler örtüşür: bir işlem birden çok satırda yer alabilir. Bu bir betimlemedir, öneri değildir.':
     'Only segments with at least {n} trades are listed. Segments overlap, so one trade can appear in several rows. This describes your history and is not a recommendation.',

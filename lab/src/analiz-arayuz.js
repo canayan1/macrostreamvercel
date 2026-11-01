@@ -13,6 +13,7 @@ import { propDegerlendir, ON_AYARLAR } from './analiz/prop.js';
 import { ornekHesap } from './analiz/ornek.js';
 import { accountReportModel } from './report/account-model.js';
 import { LOCAL_KEY } from './report/blotter-model.js';
+import { gorunumKur } from './gorunum.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
@@ -323,57 +324,9 @@ function ruleGuardNote(s) {
   box.hidden = false;
 }
 
-// ---------------------------------------------------------------- kendi görünümün
-const BOYUT_IDLERI = new Set(BOYUTLAR.map(b => b.id));
-const OLCU_IDLERI = new Set(OLCULER.map(o => o.id));
-const TUR_IDLERI = new Set(['cubuk', 'cizgi', 'tablo']);
-function gorunumler() {
-  try { const d = JSON.parse(depoOku(DEPO.gorunum) ?? '[]'); return Array.isArray(d) ? d.filter(g => g && typeof g.ad === 'string' && BOYUT_IDLERI.has(g.boyut) && OLCU_IDLERI.has(g.olcu) && TUR_IDLERI.has(g.tur)).slice(0, 30) : []; } catch { return []; }
-}
-function gorunumCiz() {
-  const boyut = $('#g-boyut').value, olcuId = $('#g-olcu').value, tur = $('#g-tur').value;
-  const olcu = OLCULER.find(o => o.id === olcuId);
-  const satirlar = motor.grupla(boyut).map(s => ({ etiket: etiket(s.etiket), deger: s[olcuId] === Infinity ? null : s[olcuId], adet: s.adet }));
-  const kutu = $('#g-cizim');
-  if (tur === 'tablo' || !satirlar.length) {
-    kutu.innerHTML = `<div class="tablo-kutu"><table class="pozisyon"><thead><tr><th>${kacis(ceviri(BOYUT_AD[boyut]))}</th><th>${kacis(ceviri(olcu.ad))}</th><th>${kacis(ceviri('İşlem'))}</th></tr></thead><tbody>${satirlar.map(s => `<tr><td>${kacis(s.etiket)}</td><td class="${kacis(olcu.tur === 'para' ? sinif(s.deger) : '')}">${kacis(olcuMetni(olcu.tur, s.deger))}</td><td>${sayi(s.adet, 0)}</td></tr>`).join('')}</tbody></table></div>`;
-    return;
-  }
-  const degerler = satirlar.map(s => s.deger ?? 0);
-  const enAz = Math.min(0, ...degerler), enCok = Math.max(0, ...degerler);
-  const W = Math.max(320, Math.round((kutu.clientWidth || 680) - 26));
-  const dar = W < 520;
-  const enUzun = Math.max(...satirlar.map(s => Math.min(26, s.etiket.length)));
-  const solEtiket = Math.min(dar ? 120 : 220, 16 + enUzun * 7), sag = dar ? 92 : 120;
-  if (tur === 'cubuk') {
-    const yuk = 22, H = satirlar.length * yuk + 8;
-    const X = v => solEtiket + ((v - enAz) / (enCok - enAz || 1)) * (W - solEtiket - sag);
-    const sifir = X(0);
-    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" width="${kacis(W)}" height="${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">${satirlar.map((s, i) => {
-      const v = s.deger ?? 0, y = 4 + i * yuk, x1 = Math.min(X(v), sifir), x2 = Math.max(X(v), sifir);
-      return `<text x="${kacis(solEtiket - 6)}" y="${kacis(y + 14)}" text-anchor="end" class="g-etiket">${kacis(s.etiket.length > (dar ? 16 : 26) ? s.etiket.slice(0, dar ? 15 : 25) + '…' : s.etiket)}</text>
-        <rect x="${kacis(x1)}" y="${kacis(y + 3)}" width="${kacis(Math.max(1, x2 - x1))}" height="${kacis(yuk - 8)}" class="${kacis(olcu.tur === 'para' ? (v < 0 ? 'g-neg' : 'g-poz') : 'g-not')}"></rect>
-        <text x="${kacis(x2 + 4)}" y="${kacis(y + 14)}" class="g-deger">${kacis(olcuMetni(olcu.tur, s.deger))}</text>`;
-    }).join('')}<line x1="${kacis(sifir)}" x2="${kacis(sifir)}" y1="0" y2="${kacis(H)}" class="g-eksen"></line></svg>`;
-  } else {
-    const H = 240, pad = 34;
-    const Xi = i => pad + (i / Math.max(1, satirlar.length - 1)) * (W - 2 * pad);
-    const Y = v => H - pad - ((v - enAz) / (enCok - enAz || 1)) * (H - 2 * pad);
-    const nokta = satirlar.map((s, i) => `${Xi(i)},${Y(s.deger ?? 0)}`).join(' ');
-    const etiketAdim = Math.max(1, Math.ceil(satirlar.length / (dar ? 4 : 8)));
-    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" width="${kacis(W)}" height="${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri(olcu.ad))}">
-      <line x1="${kacis(pad)}" x2="${kacis(W - pad)}" y1="${kacis(Y(0))}" y2="${kacis(Y(0))}" class="g-eksen"></line>
-      <polyline points="${kacis(nokta)}" class="g-cizgi"></polyline>
-      ${satirlar.map((s, i) => `<circle cx="${kacis(Xi(i))}" cy="${kacis(Y(s.deger ?? 0))}" r="3" class="${kacis(olcu.tur === 'para' && (s.deger ?? 0) < 0 ? 'g-neg' : 'g-poz')}"><title>${kacis(`${s.etiket}: ${olcuMetni(olcu.tur, s.deger)}`)}</title></circle>`).join('')}
-      ${satirlar.map((s, i) => (i % etiketAdim ? '' : `<text x="${kacis(Xi(i))}" y="${kacis(H - 8)}" text-anchor="middle" class="g-etiket">${kacis(s.etiket.slice(0, 12))}</text>`)).join('')}
-      <text x="${kacis(pad)}" y="14" class="g-deger">${kacis(olcuMetni(olcu.tur, enCok))}</text>
-    </svg>`;
-  }
-}
-function kayitliCiz() {
-  const d = gorunumler();
-  $('#g-kayitli').innerHTML = d.map((g, i) => `<li><button type="button" class="kucuk" data-ac="${kacis(i)}">${kacis(g.ad)}</button> <span class="dipnot">${kacis(ceviri(BOYUT_AD[g.boyut]))} · ${kacis(ceviri(OLCULER.find(o => o.id === g.olcu).ad))}</span> <button type="button" class="kucuk sil" data-sil="${kacis(i)}" aria-label="${kacis(ceviri('Sil'))}">×</button></li>`).join('');
-}
+// ---------------------------------------------------------------- kendi görünümün (ortak kurucu: src/gorunum.js)
+let gorunum = null;
+function gorunumCiz() { gorunum?.ciz(); }
 
 // ---------------------------------------------------------------- başlangıç
 function baslat() {
@@ -382,10 +335,9 @@ function baslat() {
   for (let h = -12; h <= 14; h++) fark.insertAdjacentHTML('beforeend', `<option value="${kacis(h)}"${h === utcFark ? ' selected' : ''}>UTC${h >= 0 ? '+' : '−'}${Math.abs(h)}</option>`);
   fark.onchange = () => { utcFark = Number(fark.value); depoYaz(DEPO.utc, String(utcFark)); hesapla(); };
   secenekler($('#kirilim-boyut'), BOYUTLAR, 'sembol');
-  secenekler($('#g-boyut'), BOYUTLAR, 'saat');
-  secenekler($('#g-olcu'), OLCULER, 'net');
   $('#kirilim-boyut').onchange = kirilimCiz;
-  for (const id of ['#g-boyut', '#g-olcu', '#g-tur']) $(id).onchange = gorunumCiz;
+  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: OLCULER, depoAnahtari: DEPO.gorunum, t: ceviri, bicim: olcuMetni, sinif, adetAd: 'İşlem', varsayilan: { boyut: 'saat', olcu: 'net' },
+    grupla: boyut => (motor ? motor.grupla(boyut).map(s => ({ etiket: etiket(s.etiket), degerler: s, adet: s.adet })) : []) });
 
   const girdi = $('#dosya');
   girdi.onchange = () => { dosyaOku(girdi.files[0]); girdi.value = ''; };
@@ -413,23 +365,6 @@ function baslat() {
     };
   }
 
-  $('#g-kaydet').onsubmit = e => {
-    e.preventDefault();
-    const ad = $('#g-ad').value.trim().slice(0, 60);
-    if (!ad) { $('#g-durum').textContent = ceviri('Bir ad yaz.'); return; }
-    const d = gorunumler().filter(g => g.ad !== ad);
-    d.unshift({ ad, boyut: $('#g-boyut').value, olcu: $('#g-olcu').value, tur: $('#g-tur').value });
-    depoYaz(DEPO.gorunum, JSON.stringify(d.slice(0, 30)));
-    $('#g-ad').value = ''; $('#g-durum').textContent = ceviri('Kaydedildi.');
-    kayitliCiz();
-  };
-  $('#g-kayitli').onclick = e => {
-    const b = e.target.closest('button'); if (!b) return;
-    const d = gorunumler();
-    if (b.dataset.ac !== undefined) { const g = d[Number(b.dataset.ac)]; if (!g) return; $('#g-boyut').value = g.boyut; $('#g-olcu').value = g.olcu; $('#g-tur').value = g.tur; if (motor) gorunumCiz(); }
-    if (b.dataset.sil !== undefined) { d.splice(Number(b.dataset.sil), 1); depoYaz(DEPO.gorunum, JSON.stringify(d)); kayitliCiz(); }
-  };
-  kayitliCiz();
   window.addEventListener('resize', () => { if (motor) { egriCiz($('#bakiye-egri'), motor.ozet().egri); gorunumCiz(); } });
 }
 

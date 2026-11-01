@@ -17,17 +17,19 @@ import { deskReport } from './desk-report.js';
 import { blotterReportModel, LOCAL_KEY } from '../report/blotter-model.js';
 import { startTour } from '../tour.js';
 import { duzenleyiciKur } from './girdi-tablo.js';
+import { gorunumKur } from '../gorunum.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
-const DEPO = { kur: 'kalibre-blotter-kur', tasima: 'kalibre-blotter-tasima', limit: 'kalibre-blotter-limit', yerel: 'kalibre-blotter-yerel', saat: 'kalibre-blotter-saat' };
+const DEPO = { gorunum: 'kalibre-blotter-gorunumler', kur: 'kalibre-blotter-kur', tasima: 'kalibre-blotter-tasima', limit: 'kalibre-blotter-limit', yerel: 'kalibre-blotter-yerel', saat: 'kalibre-blotter-saat' };
 const depoOku = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const depoYaz = (k, v) => { try { localStorage.setItem(k, v); } catch { /* depo yok */ } };
 const TUZ = rastgeleTuz();
 // First line of a rate table filled from the dropped file; a later file replaces such a table, never one the desk typed.
 const RATES_FROM_FILE = '# last traded rate per pair in the file';
 
-let duzenleyiciler = [];
+let duzenleyiciler = [], gorunum = null;
+const GORUNUM_OLCULERI = [{ id: 'toplam', ad: 'Toplam K/Z (USD)', tur: 'para' }, { id: 'fiyat', ad: 'Fiyat K/Z (USD)', tur: 'para' }, { id: 'puan', ad: 'Puan ve swap (USD)', tur: 'para' }, { id: 'tasima', ad: 'Taşıma (USD)', tur: 'para' }, { id: 'mtm', ad: 'MTM (USD)', tur: 'para' }, { id: 'adet', ad: 'Kalem', tur: 'sayi' }];
 const tablolariYenile = () => duzenleyiciler.forEach(d => d.yenile());
 let satirlar = null, aktarim = null, analiz = null, eslesmeElle = {}, sentetik = false, detayAnahtar = null, kaynakDosya = '', ratesFromFile = false;
 
@@ -203,11 +205,11 @@ function hesapla() {
   analiz = blotterAnaliz(aktarim.bacaklar, ayar);
   analiz.mutabakat = mutabakat(aktarim, analiz, aktarim.bacaklar, ayar);
   analiz.ayar = ayar;
-  for (const id of ['girdi-kart', 'ozet-kart', 'mutabakat-kart', 'kz-kart', 'pozisyon-kart', 'merdiven-kart', 'swap-kart', 'marj-kart', 'atlanan-kart']) $('#' + id).hidden = false;
+  for (const id of ['girdi-kart', 'ozet-kart', 'mutabakat-kart', 'kz-kart', 'pozisyon-kart', 'merdiven-kart', 'swap-kart', 'marj-kart', 'atlanan-kart', 'gorunum-kart']) $('#' + id).hidden = false;
   if (!$('#girdi-kart').dataset.elle) fold('#girdi-kart', true);
   const rateCount = Object.keys(ayar.kurTablosu ?? {}).length, limitCount = (ayar.limitler ?? []).length;
   $('#girdi-ozet').textContent = ceviri('{y} · {k} kur · {l} limit', { y: ceviri(ayar.yontem === 'fifo' ? 'FIFO' : 'Ortalama maliyet'), k: rateCount, l: limitCount });
-  ozetGoster(); mutabakatGoster(); kzGoster(); pozisyonGoster(); merdivenGoster(); swapGoster(); marjGoster(); atlananGoster();
+  ozetGoster(); mutabakatGoster(); kzGoster(); pozisyonGoster(); merdivenGoster(); swapGoster(); marjGoster(); atlananGoster(); gorunum?.ciz();
   if (detayAnahtar) detayKapat();
 }
 
@@ -254,6 +256,7 @@ const TOUR = [
   ['#swap-kart', "Swap'lar ayrı izlenir", 'Her roll yakın ve uzak bacağıyla; puan etkisi toplam K/Z içinde puan sütununda.'],
   ['#marj-kart', 'Müşteri marjı', 'Müşteri işlemlerinde maliyet kuruna göre kazanılan marj, işlem işlem.'],
   ['#atlanan-kart', 'Hiçbir satır sessizce kaybolmaz', 'Dışlanan ya da okunamayan her satır, dosyadaki satır numarası ve gerekçesiyle burada.'],
+  ['#gorunum-kart', 'Kendi görünümün', 'İstediğin boyuta göre grupla, bir ölçü seç, çubuk, çizgi ya da tablo olarak gör ve görünümü kaydet. Aynı kurucu Trade Analytics\'te de var.'],
   ['#rapor-indir', 'Yanında götür', 'Bütün analiz grafikli bir Excel masa raporu olarak iner. Rapor sayfası aynı sonucu basılabilir bir belge yapar ve salt okuma bağlantıyla paylaşır.'],
 ];
 async function tour() {
@@ -476,6 +479,10 @@ function baslat() {
   $('#kz-boyut').addEventListener('change', kzGoster);
   $('#rapor-indir').addEventListener('click', downloadReport);
   $('#rapor-sayfa').addEventListener('click', openReportPage);
+  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: GORUNUM_OLCULERI, depoAnahtari: DEPO.gorunum, t: ceviri, adetAd: 'Kalem', varsayilan: { boyut: 'parite', olcu: 'toplam' },
+    bicim: (tur, x) => (tur === 'para' ? usd(x) : sayi(x)), sinif,
+    grupla: boyut => (analiz ? grupla(analiz.katkilar, boyut).map(g => ({ etiket: degerAd(g.ad), degerler: g, adet: g.adet })) : []) });
+  window.addEventListener('resize', () => gorunum?.ciz());
   for (const b of document.querySelectorAll('.katla')) b.addEventListener('click', () => { const k = $(b.dataset.katla); k.dataset.elle = '1'; fold(b.dataset.katla, !k.classList.contains('katli')); });
   $('#tur-baslat').addEventListener('click', tour);
   $('#detay-kapat').addEventListener('click', detayKapat);

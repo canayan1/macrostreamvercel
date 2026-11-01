@@ -4,6 +4,30 @@
 import { EN } from './dil-en.js';
 
 export const BLOTTER_EN = {
+  // shared view builder and Analytics shell
+  'Kendi görünümün': 'Your own view',
+  'Grupla': 'Group by',
+  'Ölçü': 'Measure',
+  'Grafik': 'Chart',
+  'Çubuk': 'Bar',
+  'Çizgi': 'Line',
+  'Tablo': 'Table',
+  'Görünüm adı': 'View name',
+  'Görünümü kaydet': 'Save the view',
+  'Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir.': 'Views are stored only in this browser. What is saved is the view setting, not your deals.',
+  'Bir ad yaz.': 'Give it a name.',
+  'Kaydedildi.': 'Saved.',
+  'Sil': 'Remove',
+  'Önce bir dosya yükle.': 'Load a file first.',
+  'Toplam K/Z (USD)': 'Total P&L (USD)',
+  'Fiyat K/Z (USD)': 'Price P&L (USD)',
+  'Puan ve swap (USD)': 'Points and swap (USD)',
+  'Taşıma (USD)': 'Carry (USD)',
+  'MTM (USD)': 'MTM (USD)',
+  "İstediğin boyuta göre grupla, bir ölçü seç, çubuk, çizgi ya da tablo olarak gör ve görünümü kaydet. Aynı kurucu Trade Analytics'te de var.": 'Group by any dimension, pick a measure, see it as a bar, a line or a table, and save the view. The same builder lives in Trade Analytics.',
+  'Backtest': 'Backtest',
+  'Analytics hakkında': 'About Analytics',
+  'FX Blotter Analizi · Kalibre Lab': 'FX Blotter Analytics · Kalibre Markets',
   // report page
   'Rapor sayfasını aç': 'Open the report page',
   'Anlık kurlar: {k}. Gecelik faiz (yıllık %): {f}.': 'Rates: {k}. Overnight rates (annual %): {f}.',
@@ -46,7 +70,6 @@ export const BLOTTER_EN = {
   'Limitler senin tanımın. Her satır bir limit: döviz pozisyonu, gece toplamı, gün içi tepe, günlük zarar ya da valör aralığı.': 'Limits are your own. One limit per row: currency position, overnight total, intraday peak, daily loss or value date bucket.',
   // sayfa
   'FX Blotter Analizi': 'FX Blotter Analytics',
-  'FX Blotter Analizi · Kalibre Lab': 'FX Blotter Analytics · Kalibre Lab',
   'Kalibre ana sayfa': 'Kalibre home',
   'Sentetik örnek veri': 'Example data',
   "Swap'lar ayrı izlenir": 'Swaps tracked on their own',
