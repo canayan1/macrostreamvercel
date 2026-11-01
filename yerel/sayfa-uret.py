@@ -153,13 +153,15 @@ ALT_EN = _alt("en")
 # ------------------------------------------------------------------ site shell (current design)
 # Global nav, product local nav and footer for the current pages. ust()/ALT above stay for the
 # older Turkish content pages, whose header comes from static/kabuk.js.
+# Two products under the Kalibre Markets name (decision of 1 Nov 2026): Analytics (connect, build,
+# present; Trade Analytics, FX Blotter and the backtest are prebuilt analyses inside it) and Desk Signal.
 PRODUCTS = {
- "en": [("Trade Analytics", "/trade-analytics", "beta"), ("FX Blotter", "/fx-blotter", "beta"), ("Rule Guard", "/rule-guard", "test"), ("Kalibre Lab", "/kalibre-lab", "beta")],
- "tr": [("Trade Analytics", "/tr/trade-analytics", "beta"), ("FX Blotter", "/tr/fx-blotter", "beta"), ("Rule Guard", "/tr/rule-guard", "test"), ("Kalibre Lab", "/tr/kalibre-lab", "beta")],
+ "en": [("Analytics", "/analytics", "beta"), ("Desk Signal", "/desk-signal", "test")],
+ "tr": [("Analytics", "/tr/analytics", "beta"), ("Desk Signal", "/tr/desk-signal", "test")],
 }
 NAV_MORE = {
- "en": [("Demos", "/demo"), ("Security", "/security"), ("Pricing", "/pricing"), ("Company", "/company")],
- "tr": [("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Fiyat", "/tr/pricing"), ("Şirket", "/tr/company")],
+ "en": [("Demos", "/demo"), ("Security", "/security"), ("Company", "/company")],
+ "tr": [("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Şirket", "/tr/company")],
 }
 STATUS_TEXT = {"beta": ("Beta", "Beta"), "test": ("In testing", "Testte"), "plan": ("Planned", "Planlanıyor")}
 
@@ -192,11 +194,12 @@ def lnav(title, lang, links, action_label, action_href, action_attr="", status=N
 def gfoot(lang):
     tr = lang == "tr"
     p = "/tr" if tr else ""
-    products = [(n, h) for n, h, _ in PRODUCTS[lang]] + [("Kalibre Bridge", f"{p}/setup")]
-    solutions = ([("Prop trader'lar", "/tr/rule-guard"), ("Aktif MT5 trader'ları", "/tr/trade-analytics"), ("Hazine ve dealing masaları", "/tr/fx-blotter"), ("Aracı kurumlar ve prop firmaları", "/tr/company#partners")] if tr else
-                 [("Prop traders", "/rule-guard"), ("Active MT5 traders", "/trade-analytics"), ("Treasury and dealing desks", "/fx-blotter"), ("Brokers and prop firms", "/company#partners")])
-    resources = ([("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Metodoloji", "/tr/methodology"), ("Kurulum", "/tr/setup"), ("Fiyat", "/tr/pricing"), ("Eğitim yazıları", "/egitim")] if tr else
-                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Setup", "/setup"), ("Pricing", "/pricing")] + ([("Articles (Turkish)", "/egitim")] if TURKISH_PUBLIC else []))
+    products = ([("Analytics", "/tr/analytics"), ("Trade Analytics", "/tr/trade-analytics"), ("FX Blotter", "/tr/fx-blotter"), ("Backtest", "/tr/kalibre-lab"), ("Desk Signal", "/tr/desk-signal"), ("Rule Guard (planlanıyor)", "/tr/rule-guard")] if tr else
+                [("Analytics", "/analytics"), ("Trade Analytics", "/trade-analytics"), ("FX Blotter", "/fx-blotter"), ("Backtest", "/kalibre-lab"), ("Desk Signal", "/desk-signal"), ("Rule Guard (planned)", "/rule-guard")])
+    solutions = ([("MT5 trader'ları", "/tr/trade-analytics"), ("Hazine ve dealing masaları", "/tr/fx-blotter"), ("Prop trader'lar", "/tr/rule-guard"), ("Aracı kurumlar ve prop firmaları", "/tr/company#partners")] if tr else
+                 [("MT5 traders", "/trade-analytics"), ("Treasury and dealing desks", "/fx-blotter"), ("Prop traders", "/rule-guard"), ("Brokers and prop firms", "/company#partners")])
+    resources = ([("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Metodoloji", "/tr/methodology"), ("Kalibre Bridge kurulumu", "/tr/setup"), ("Fiyat", "/tr/pricing"), ("Eğitim yazıları", "/egitim")] if tr else
+                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Kalibre Bridge setup", "/setup"), ("Pricing", "/pricing")] + ([("Articles (Turkish)", "/egitim")] if TURKISH_PUBLIC else []))
     company = ([("Şirket", "/tr/company"), ("İletişim", "mailto:markets@kalibrefin.com"), ("Hizmet şartları", "/tr/terms"), ("Gizlilik", "/tr/privacy"), ("İade ve iptal", "/tr/refunds"), ("Çerezler", "/tr/cookies"), ("Risk bildirimi", "/tr/risk-disclosure")] if tr else
                [("Company", "/company"), ("Contact", "mailto:markets@kalibrefin.com"), ("Terms of service", "/terms"), ("Privacy", "/privacy"), ("Refunds", "/refunds"), ("Cookies", "/cookies"), ("Risk disclosure", "/risk-disclosure")])
     col = lambda head, items: f'<div><h4>{head}</h4><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for n, h in items) + '</ul></div>'

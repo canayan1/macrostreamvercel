@@ -1,6 +1,7 @@
 // Screenshots of each product's result screen for the demo page (headless Chrome over CDP).
 // Local server first: node yerel/site-sunucu.mjs 8793. Usage: node yerel/demo-screens.mjs <out dir>
 // Writes <name>.png and <name>-tr.png at 2x; yerel/gorsel-uret.py style WebP is made afterwards.
+// ONLY=desk limits the run to pages whose shot names start with that prefix.
 import { spawn } from 'node:child_process';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
@@ -37,7 +38,8 @@ const SHOTS = [
   { url: '/lab/analytics?file=templates/kalibre-trade-log-example.xlsx', shots: [['analytics-overview', ['#ozet-kart']], ['analytics-segments', ['#icgoru-kart']], ['analytics-prop', ['#prop-kart']], ['analytics-view', ['#gorunum-kart']]] },
   { url: '/lab/blotter?file=samples/fx-blotter-sample.xlsx', trUrl: '/lab/blotter?file=samples/fx-blotter-ornek.xlsx', shots: [['blotter-summary', ['#ozet-kart']], ['blotter-reconciliation', ['#mutabakat-kart']], ['blotter-pnl', ['#kz-kart']], ['blotter-ladder', ['#merdiven-kart']], ['blotter-columns', ['#eslesme-kart']], ['blotter-positions', ['#pozisyon-kart']]] },
   { url: '/lab/?demo=1', shots: [['lab-backtest', ['#calistirma', '#grafik', '#istatistik', '#egri']], ['lab-builder', ['#form']]] },
-];
+  { url: '/lab/desk?scene=1', shots: [['desk-grid', ['#yanit-kart']], ['desk-console', ['#konsol']]] },
+].filter(s => !process.env.ONLY || s.shots.some(([n]) => n.startsWith(process.env.ONLY)));
 try {
   ws = new WebSocket(await connect());
   await new Promise(r => ws.addEventListener('open', r));

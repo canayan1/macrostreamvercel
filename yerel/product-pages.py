@@ -280,41 +280,39 @@ def home(lang):
     body = f'''
 <section class="hero home-hero">
   <div class="wrap">
-    <h1 class="display">{T(lang, "FX, solved.", "FX'i çözüyoruz.")}</h1>
-    <p class="sub">{T(lang, "Every trade explained, in seconds.", "Her işlem, saniyeler içinde açıklanmış.")}</p>
-    <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/fx-blotter") + "#demo", T(lang, "Request a desk demo", "Masa demosu iste"), "")}</div>
+    <h1 class="display">{T(lang, "Your trading data, explained.", "İşlem verin, açıklanmış.")}</h1>
+    <p class="sub">{T(lang, "Connect the records you already keep. Build the view. Present it. In your browser, and the files stay there.", "Zaten tuttuğun kayıtları bağla. Görünümü kur. Sun. Tarayıcında; dosyalar orada kalır.")}</p>
+    <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/analytics"), T(lang, "What Analytics does", "Analytics ne yapar"), "")}</div>
   </div>
   <figure class="home-hero-media"><picture><source type="image/webp" srcset="/static/urun/hero/home-{lang}-1x.webp 1440w, /static/urun/hero/home-{lang}-2x.webp 2880w" sizes="(max-width: 1440px) 100vw, 1440px"><img src="/static/urun/hero/home-{lang}.png" width="2880" height="1720" alt="{T(lang, "FX Blotter Analytics on a laptop: total P&amp;L split into price, points, carry and MTM, and seven reconciliation checks passed", "Dizüstünde FX Blotter Analytics: fiyat, puan, taşıma ve MTM olarak ayrılmış toplam K/Z ve geçen yedi mutabakat kontrolü")}" fetchpriority="high" decoding="async"></picture></figure>
 </section>
 
 <section class="panel mist" style="margin-top:72px">
-  <h2 class="title">Trade Analytics</h2>
-  <p class="sub">{T(lang, "Find what works.", "Neyin işe yaradığını bul.")}</p>
-  <div class="actions">{more(P(lang, "/trade-analytics"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene"))}</div>
+  <h2 class="title">Analytics</h2>
+  <p class="sub">{T(lang, "Connect. Build. Present.", "Bağla. Kur. Sun.")}</p>
+  <div class="actions">{more(P(lang, "/analytics"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene"))}</div>
   <div class="panel-media">{shot("analytics-overview", T(lang, "Trade Analytics account overview with an example account", "Örnek bir hesapla Trade Analytics hesap özeti"), lang, eager=True, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
 </section>
 
-<section class="panel night" style="margin-top:12px">
-  <h2 class="title">FX Blotter</h2>
-  <p class="sub">{T(lang, "Your blotter, explained.", "Blotter'ın, açıklanmış.")}</p>
-  <div class="actions">{more(P(lang, "/fx-blotter"), T(lang, "Learn more", "Daha fazla"))}{more(FX_SAMPLE[lang], T(lang, "Open the sample blotter", "Örnek blotter'ı aç"))}</div>
-  <div class="panel-media">{shot("blotter-pnl", T(lang, "P&amp;L table of the sample blotter by pair, with price, points, carry and MTM", "Örnek blotter'ın parite bazında K/Z tablosu: fiyat, puan, taşıma ve MTM"), lang, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
-</section>
-
 <div class="panels-2">
-  <section class="panel mist">
-    <h2 class="title">Rule Guard{status_tag("test", lang)}</h2>
-    <p class="sub">{T(lang, "Stay inside the limits.", "Sınırların içinde kal.")}</p>
-    <div class="actions">{more(P(lang, "/rule-guard"), T(lang, "Learn more", "Daha fazla"))}</div>
-    <div class="panel-media">{prop_chart(lang, days=40)}</div>
+  <section class="panel night">
+    <h2 class="title-s">{T(lang, "Trade Analytics", "Trade Analytics")}</h2>
+    <p class="sub">{T(lang, "Drop in the MT5 report. See where you make and lose money.", "MT5 raporunu bırak. Nerede kazanıp nerede kaybettiğini gör.")}</p>
+    <div class="actions">{more(P(lang, "/trade-analytics"), T(lang, "Learn more", "Daha fazla"))}</div>
   </section>
   <section class="panel night">
-    <h2 class="title">Kalibre Lab</h2>
-    <p class="sub">{T(lang, "Test before you trade.", "İşlemden önce sına.")}</p>
-    <div class="actions">{more(P(lang, "/kalibre-lab"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, LAB_SAMPLE), T(lang, "Run the sample", "Örneği çalıştır"))}</div>
-    <div class="panel-media" style="max-width:520px">{shot("lab-backtest", T(lang, "Sample backtest result", "Örnek backtest sonucu"), lang, sizes="(max-width: 860px) 100vw, 520px")}</div>
+    <h2 class="title-s">FX Blotter</h2>
+    <p class="sub">{T(lang, "Drop in the desk blotter. P&amp;L, positions, limits and seven reconciliation checks.", "Masa blotter'ını bırak. K/Z, pozisyon, limitler ve yedi mutabakat kontrolü.")}</p>
+    <div class="actions">{more(P(lang, "/fx-blotter"), T(lang, "Learn more", "Daha fazla"))}{more(FX_SAMPLE[lang], T(lang, "Open the sample blotter", "Örnek blotter'ı aç"))}</div>
   </section>
 </div>
+
+<section class="panel mist" style="margin-top:12px">
+  <h2 class="title">Desk Signal{status_tag("test", lang)}</h2>
+  <p class="sub">{T(lang, "One key from the head of desk to every trader's screen. Rings until answered, logged to the second.", "Masa şefinden her trader'ın ekranına tek tuş. Yanıtlanana kadar çalar, saniyesine kadar kayıtlı.")}</p>
+  <div class="actions">{more(P(lang, "/desk-signal"), T(lang, "Learn more", "Daha fazla"))}{more(LAB(lang, DESK_DEMO), T(lang, "Open the demo", "Demoyu aç"))}</div>
+  <div class="panel-media">{shot("desk-grid", T(lang, "Desk Signal: the head of desk's answer grid with four traders in three cities", "Desk Signal: üç şehirde dört trader'lı yanıt tablosu"), lang, sizes="(max-width: 1040px) 100vw, 1040px")}</div>
+</section>
 
 <section class="sec center">
   <div class="wrap">
@@ -348,10 +346,88 @@ def home(lang):
   </div>
 </section>'''
     path = "tr/index.html" if tr else "index.html"
-    page(path, lang, T(lang, "Kalibre Markets: FX, solved", "Kalibre Markets: FX'i çözüyoruz"),
-         T(lang, "Trade Analytics, FX Blotter, Rule Guard and Kalibre Lab read the trading records you already keep and show what every trade earned, in seconds. Files are processed in your browser.",
-           "Trade Analytics, FX Blotter, Rule Guard ve Kalibre Lab zaten tuttuğun işlem kayıtlarını okur ve her işlemin ne kazandırdığını saniyeler içinde gösterir. Dosyalar tarayıcında işlenir."),
+    page(path, lang, T(lang, "Kalibre Markets: your trading data, explained", "Kalibre Markets: işlem verin, açıklanmış"),
+         T(lang, "Analytics reads the MT5 reports and desk blotters you already keep and shows what every trade earned, in seconds. Desk Signal sends one-key signals across the desk. Files are processed in your browser.",
+           "Analytics zaten tuttuğun MT5 raporlarını ve masa blotter'larını okur, her işlemin ne kazandırdığını saniyeler içinde gösterir. Desk Signal masaya tek tuşla sinyal gönderir. Dosyalar tarayıcında işlenir."),
          body, P(lang, "/"), "/" if tr else "/tr")
+
+# ================================================================== Analytics (umbrella)
+def analytics(lang):
+    tr = lang == "tr"
+    ta, fx, lab = SUMMARY[f"tradeAnalytics_{lang}"], SUMMARY[f"fxBlotter_{lang}"], SUMMARY["kalibreLab"]
+    local = lnav("Analytics", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Connect", "Bağla"), "#connect"), (T(lang, "Build", "Kur"), "#build"), (T(lang, "Present", "Sun"), "#present"), (T(lang, "Who it is for", "Kimin için"), "#for")],
+                 T(lang, "Try the sample", "Örneği dene"), LAB(lang, TA_SAMPLE))
+    def analysis(name, status, h, p, href, sample_href, sample_label, cls=""):
+        return (f'<div class="tile {cls}"><span class="kicker">{name}{status_tag(status, lang)}</span><h3>{h}</h3><p>{p}</p>'
+                f'<div class="actions left">{more(href, T(lang, "Learn more", "Daha fazla"))}{more(sample_href, sample_label)}</div></div>')
+    body = f'''
+{local}
+{page_hero(T(lang, "Connect. Build. Present.", "Bağla. Kur. Sun."),
+           T(lang, "One analytics product for the trading records you already keep: MT5 reports, trade logs and desk blotters. Prebuilt analyses in seconds, your own views when you want them, and a report to hand on. Files are read in your browser and stay there.", "Zaten tuttuğun işlem kayıtları için tek analiz ürünü: MT5 raporları, işlem kayıtları ve masa blotter'ları. Saniyeler içinde hazır analizler, istediğinde kendi görünümlerin ve elden verilecek bir rapor. Dosyalar tarayıcında okunur ve orada kalır."),
+           btn(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene")) + more(P(lang, "/demo"), T(lang, "All demos", "Bütün demolar")),
+           hero_image("suite", lang, T(lang, "Analytics on a laptop: Trade Analytics, FX Blotter and the backtest open on sample files", "Dizüstünde Analytics: örnek dosyalarla açık Trade Analytics, FX Blotter ve backtest")),
+           kicker="Analytics" + status_tag("beta", lang))}
+
+<section class="sec center" id="connect">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Connect what you already have.", "Zaten elinde olanı bağla.")}</h2>
+    <p class="lede">{T(lang, "No account, no upload, no typing. Drop the file as it was exported.", "Hesap yok, yükleme yok, yazma yok. Dosyayı dışa aktarıldığı gibi bırak.")}</p>
+    {facts([("file", T(lang, "MT5 history report", "MT5 geçmiş raporu"), T(lang, "HTML or XLSX, saved from the History tab. The account number and name are not read.", "Geçmiş sekmesinden kaydedilen HTML ya da XLSX. Hesap numarası ve ad okunmaz.")),
+            ("file", T(lang, "Your own trade log", "Kendi işlem kaydın"), T(lang, "Excel or CSV from our template, or your own column names matched on screen.", "Şablonumuzdan Excel ya da CSV, ya da ekranda eşleştirilen kendi sütun adların.")),
+            ("file", T(lang, "Desk blotter", "Masa blotter'ı"), T(lang, "Trading platform export, treasury system report, MT300 confirmations, FIX drop copy or a hand-kept sheet. Five layouts, one result.", "İşlem platformu dökümü, hazine sistemi raporu, MT300 teyitleri, FIX drop copy ya da elle tutulan tablo. Beş düzen, tek sonuç.")),
+            ("lock", T(lang, "Kalibre Bridge, live from MT5", "Kalibre Bridge, MT5'ten canlı"), T(lang, "Open positions and 90 days of closed trades, encrypted in the terminal and read in the browser. Read-only.", "Açık pozisyonlar ve 90 günlük kapanmış işlemler, terminalde şifrelenir ve tarayıcıda okunur. Salt okuma."))])}
+  </div>
+</section>
+
+<section class="sec mist" id="build">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Build on prebuilt analyses.", "Hazır analizlerin üstüne kur.")}</h2>
+    <p class="lede">{T(lang, "Three analyses come ready. Every one opens on a sample and shows its result in seconds.", "Üç analiz hazır gelir. Her biri bir örnekle açılır ve sonucunu saniyeler içinde gösterir.")}</p>
+    <div class="tiles">
+      {analysis("Trade Analytics", "beta", T(lang, "Where you make and lose money.", "Nerede kazanıp nerede kaybettiğin."), T(lang, "Account overview, segments by symbol, hour, weekday, session, size and the trade after a loss, prop limits day by day.", "Hesap özeti; sembol, saat, gün, seans, boyut ve kayıptan sonraki işleme göre dilimler; gün gün prop sınırları."), P(lang, "/trade-analytics"), LAB(lang, TA_SAMPLE), T(lang, "Open the sample", "Örneği aç"), "third")}
+      {analysis("FX Blotter", "beta", T(lang, "Your desk's P&amp;L, explained.", "Masanın K/Z'si, açıklanmış."), T(lang, "FIFO or average cost, price and points apart, carry, MTM, positions, limits, value date ladder and seven reconciliation checks.", "FIFO ya da ortalama maliyet, fiyat ve puan ayrı, taşıma, MTM, pozisyon, limitler, valör merdiveni ve yedi mutabakat kontrolü."), P(lang, "/fx-blotter"), FX_SAMPLE[lang], T(lang, "Open the sample blotter", "Örnek blotter'ı aç"), "third dark")}
+      {analysis(T(lang, "Backtest", "Backtest"), "beta", T(lang, "What a rule would have done.", "Bir kural ne yapardı."), T(lang, "Build a rule, run it with costs and fills, check it holds up. The engine is checked trade by trade against MT5.", "Kural kur, maliyet ve dolumla çalıştır, dayanıp dayanmadığını sına. Motor MT5'e karşı işlem işlem sınanmıştır."), P(lang, "/kalibre-lab"), LAB(lang, LAB_SAMPLE), T(lang, "Run the sample", "Örneği çalıştır"), "third")}
+    </div>
+    <div class="tiles" style="margin-top:12px">
+      {tile(T(lang, "Your own view.", "Kendi görünümün."), T(lang, "Group by any field, pick a measure, save it. Today in Trade Analytics; the same builder is coming to every analysis.", "Herhangi bir alana göre grupla, bir ölçü seç, kaydet. Bugün Trade Analytics'te; aynı kurucu her analize geliyor."), "", "")}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="present">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Present it.", "Sun.")}</h2>
+    <p class="lede">{T(lang, "The person who needs the result is rarely the person who opened the file.", "Sonuca ihtiyacı olan kişi, dosyayı açan kişi nadiren olur.")}</p>
+    <div class="tiles">
+      {tile(T(lang, "Workbooks, today.", "Çalışma kitapları, bugün."), T(lang, "Every analysis downloads as an Excel workbook with the summary, the tables and native charts: the desk report, the account workbook, the backtest result.", "Her analiz özet, tablolar ve yerleşik grafiklerle bir Excel çalışma kitabı olarak iner: masa raporu, hesap çalışma kitabı, backtest sonucu."), "", "third")}
+      {tile(T(lang, "End-of-day desk report.", "Gün sonu masa raporu.") + status_tag("plan", lang), T(lang, "A report page built from the analysis: P&amp;L, positions, limits and reconciliation on one page, printed to PDF.", "Analizden kurulan bir rapor sayfası: K/Z, pozisyon, limitler ve mutabakat tek sayfada, PDF'e basılır."), "", "third dark")}
+      {tile(T(lang, "Share a read-only link.", "Salt okuma bağlantı paylaş.") + status_tag("plan", lang), T(lang, "The report travels as a sealed link. The key stays in the link; the relay cannot open it.", "Rapor mühürlü bir bağlantı olarak gider. Anahtar bağlantıda kalır; röle açamaz."), "", "third")}
+    </div>
+  </div>
+</section>
+
+<section class="sec mist" id="for">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Who it is for.", "Kimin için.")}</h2>
+    <div class="tiles">
+      {tile(T(lang, "MT5 traders.", "MT5 trader'ları."), T(lang, "Drop in the history report after the session. See the segments that cost you and how close each day came to a prop limit.", "Seans sonrası geçmiş raporunu bırak. Sana kaybettiren dilimleri ve her günün prop sınırına ne kadar yaklaştığını gör."), more(P(lang, "/trade-analytics"), T(lang, "Trade Analytics", "Trade Analytics")), "")}
+      {tile(T(lang, "Treasury and dealing desks.", "Hazine ve dealing masaları."), T(lang, "Drop in the blotter from your system. P&amp;L the way the desk books it, with the checks a controller would run. Pilots on sample or anonymized data.", "Sisteminden gelen blotter'ı bırak. Masanın kaydettiği gibi K/Z, bir kontrolörün yapacağı kontrollerle. Örnek ya da anonim veriyle pilot."), more(P(lang, "/fx-blotter"), "FX Blotter"), "dark")}
+    </div>
+  </div>
+</section>
+
+<section class="sec center" id="pricing">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Free during early access.", "Erken erişimde ücretsiz.")}</h2>
+    <p class="lede">{T(lang, "No card. One plan follows early access; ask us and we will tell you what it covers for your desk or your account.", "Kart yok. Erken erişimden sonra tek plan; bize yaz, masan ya da hesabın için neyi kapsadığını söyleyelim.")}</p>
+    <div class="actions">{btn("mailto:markets@kalibrefin.com?subject=Analytics", T(lang, "Contact us", "Bize yaz"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample first", "Önce örneği dene"))}</div>
+    <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
+  </div>
+</section>'''
+    page("tr/analytics/index.html" if tr else "analytics/index.html", lang,
+         T(lang, "Analytics: connect your trading records, build the view, present it", "Analytics: işlem kayıtlarını bağla, görünümü kur, sun"),
+         T(lang, "Kalibre Markets Analytics reads MT5 reports, trade logs and desk blotters in your browser. Prebuilt analyses in seconds, your own views, and a report to hand on.", "Kalibre Markets Analytics MT5 raporlarını, işlem kayıtlarını ve masa blotter'larını tarayıcında okur. Saniyeler içinde hazır analizler, kendi görünümlerin ve elden verilecek rapor."),
+         body, P(lang, "/analytics"), "/analytics" if tr else "/tr/analytics")
 
 # ================================================================== Trade Analytics
 def trade_analytics(lang):
@@ -376,7 +452,7 @@ def trade_analytics(lang):
            T(lang, "Drop in an MT5 report. See what works, by symbol, hour and habit.", "Bir MT5 raporu bırak. Neyin işe yaradığını sembol, saat ve alışkanlığa göre gör."),
            btn(sample, T(lang, "Try it with a sample file", "Örnek dosyayla dene")) + more("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim"),
            hero_image("trade-analytics", lang, T(lang, "Trade Analytics on a laptop: account overview of an example account with net P&amp;L, balance curve and segments", "Dizüstünde Trade Analytics: örnek hesabın net K/Z, bakiye eğrisi ve dilimleriyle hesap özeti")),
-           kicker="Trade Analytics" + status_tag("beta", lang))}
+           kicker="Analytics · Trade Analytics" + status_tag("beta", lang))}
 
 <section class="sec center" id="how">
   <div class="wrap">
@@ -455,7 +531,7 @@ def fx_blotter(lang):
            T(lang, "Drop in your desk's export. Every total opens its deals.", "Masanın dökümünü bırak. Her toplam deal'lerini açar."),
            btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more("#demo", T(lang, "Request a demo", "Demo iste"), " data-erken-erisim"),
            hero_image("fx-blotter", lang, T(lang, "FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM", "Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu")),
-           kicker="FX Blotter Analytics" + status_tag("beta", lang))}
+           kicker="Analytics · FX Blotter" + status_tag("beta", lang))}
 
 <section class="sec center" id="how">
   <div class="wrap">
@@ -533,8 +609,8 @@ def fx_blotter(lang):
 # ================================================================== Rule Guard
 def rule_guard(lang):
     tr = lang == "tr"
-    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Replay", "Tekrar"), "#replay"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Pricing", "Fiyat"), "#pricing")],
-                 T(lang, "Get early access", "Erken erişim al"), "#pricing", " data-erken-erisim")
+    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Replay", "Tekrar"), "#replay"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Early access", "Erken erişim"), "#pricing")],
+                 T(lang, "Tell us about your challenge", "Sınavını anlat"), "#pricing", " data-erken-erisim")
     questions = (select("firma", T(lang, "Which firm are you taking a challenge with?", "Hangi firmada sınava giriyorsun?"), [("ftmo", "FTMO"), ("fundednext", "FundedNext"), ("fundingpips", "FundingPips"), ("the5ers", "The5ers"), ("topstep", "Topstep"), ("diger", T(lang, "Other", "Başka")), ("yok", T(lang, "Not yet", "Henüz girmedim"))], T(lang, "Choose", "Seç"))
                  + select("sinav", T(lang, "How many challenges in the last 12 months?", "Son 12 ayda kaç sınav aldın?"), [("0", "0"), ("1", "1"), ("2-3", "2-3"), ("4-10", "4-10"), ("10+", T(lang, "More than 10", "10'dan fazla"))], T(lang, "Choose", "Seç"))
                  + text_field("simdi", T(lang, "How do you track the daily loss limit today?", "Günlük kayıp sınırını şu an nasıl takip ediyorsun?")))
@@ -547,7 +623,7 @@ def rule_guard(lang):
            T(lang, "Your firm's daily and total limits, watched on every tick in MT5.", "Firmanın günlük ve toplam sınırları, MT5'te her tick'te izlenir."),
            btn("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim") + more(LAB(lang, TA_SAMPLE), T(lang, "Check past days on a sample", "Geçmiş günleri bir örnekte kontrol et")),
            chart,
-           kicker="Rule Guard" + status_tag("test", lang), media_cls="chart")}
+           kicker="Rule Guard" + status_tag("plan", lang), media_cls="chart")}
 
 <section class="sec center" id="how">
   <div class="wrap">
@@ -574,8 +650,9 @@ def rule_guard(lang):
 
 <section class="sec center" id="pricing">
   <div class="wrap">
-    <h2 class="title">{T(lang, "Free during early access.", "Erken erişimde ücretsiz.")}</h2>
-    {price_block(lang, "Rule Guard", [T(lang, "Four firm presets plus custom limits", "Dört firma ön ayarı ve özel sınırlar"), T(lang, "Daily and total floors, reset at the firm's time", "Günlük ve toplam taban, firmanın saatinde sıfırlama"), T(lang, "Two MT5 accounts per licence", "Lisans başına iki MT5 hesabı")], True)}
+    <h2 class="title">{T(lang, "Planned.", "Planlanıyor.")}</h2>
+    <p class="lede">{T(lang, "Rule Guard is on the plan, not in a release. Tell us which firm you trade with and how you track the daily limit today; the first builds go to the people on this list.", "Rule Guard planda, sürümde değil. Hangi firmayla işlem yaptığını ve günlük sınırı bugün nasıl izlediğini anlat; ilk sürümler bu listedekilere gider.")}</p>
+    <div class="actions">{btn("#pricing", T(lang, "Tell us about your challenge", "Sınavını anlat"), " data-erken-erisim")}{more(LAB(lang, TA_SAMPLE), T(lang, "Check past days in Trade Analytics", "Geçmiş günleri Trade Analytics'te kontrol et"))}</div>
     {faq([(T(lang, "Does my firm allow EAs?", "Firmam EA kullanımına izin veriyor mu?"), T(lang, "Check your firm's rules on EAs; some firms restrict them. Rule Guard runs as an Expert Advisor in MT5.", "Firmanın EA kurallarını kontrol et; bazı firmalar EA kullanımını kısıtlıyor. Rule Guard MT5'te Expert Advisor olarak çalışır.")),
           (T(lang, "Can it stop trades I open by hand?", "Elle açtığım işlemleri durdurabilir mi?"), T(lang, "No. It counts positions opened by hand or by another EA when it works out the remaining room, but it cannot block those orders.", "Hayır. Elle ya da başka bir EA ile açılan pozisyonları kalan payı hesaplarken sayar, ama o emirleri engelleyemez.")),
           (T(lang, "Does it guarantee that I pass?", "Sınavı geçmemi garanti eder mi?"), T(lang, "No. It watches the loss limits only. Slippage and price gaps can cause losses beyond a stop.", "Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları stopun ötesinde kayba yol açabilir.")),
@@ -586,8 +663,8 @@ def rule_guard(lang):
 {signup_dialog(lang, questions)}
 </div>'''
     page("tr/rule-guard/index.html" if tr else "rule-guard/index.html", lang,
-         T(lang, "Rule Guard: trade inside your prop firm's limits on MT5", "Rule Guard: MT5'te prop firmasının sınırları içinde işlem yap"),
-         T(lang, "An MT5 add-on that watches your firm's daily and total limits and pauses new trades near the floor. In early access.", "Firmanın günlük ve toplam sınırlarını MT5'te izleyen ve tabana yakın yeni işlemi bekleten eklenti. Erken erişimde."),
+         T(lang, "Rule Guard: trade inside your prop firm's limits on MT5 (planned)", "Rule Guard: MT5'te prop firmasının sınırları içinde işlem yap (planlanıyor)"),
+         T(lang, "A planned MT5 add-on that watches your firm's daily and total limits and pauses new trades near the floor. Join the list to hear first.", "Firmanın günlük ve toplam sınırlarını MT5'te izleyen ve tabana yakın yeni işlemi bekleten, planlanan eklenti. İlk duyan olmak için listeye katıl."),
          body, P(lang, "/rule-guard"), "/rule-guard" if tr else "/tr/rule-guard", '<script src="/static/talep.js" defer></script>')
 
 # ================================================================== Desk Signal
@@ -678,7 +755,7 @@ def kalibre_lab(lang):
            T(lang, "Build a rule, backtest it with costs, check it holds up.", "Kural kur, maliyetlerle backtest et, dayanıp dayanmadığını sına."),
            btn(LAB(lang, LAB_SAMPLE), T(lang, "Run the sample backtest", "Örnek backtest'i çalıştır")) + more(LAB(lang, "/lab"), T(lang, "Open the lab", "Laboratuvarı aç")),
            hero_image("kalibre-lab", lang, T(lang, "Kalibre Lab on a laptop: strategy builder next to a sample backtest with trades, equity curve and statistics", "Dizüstünde Kalibre Lab: kural kurucu ve yanında işlemler, özkaynak eğrisi ve istatistiklerle örnek backtest")),
-           kicker="Kalibre Lab" + status_tag("beta", lang))}
+           kicker="Analytics · Backtest" + status_tag("beta", lang))}
 
 <section class="sec">
   <div class="wrap">
@@ -738,21 +815,21 @@ def demos(lang):
     def shot_tile(name, alt, cls=""):
         return f'<div class="tile {cls}" style="min-height:0;padding:0;background:transparent">{shot(name, alt, lang, sizes="(max-width: 860px) 100vw, 600px", caption=alt)}</div>'
     body = f'''
-{page_hero(T(lang, "Try every product.", "Her ürünü dene."),
+{page_hero(T(lang, "Try both products.", "İki ürünü de dene."),
            T(lang, "Sample in, result out. Open it in your browser.", "Örnek girer, sonuç çıkar. Tarayıcında aç."),
-           btn("#trade-analytics", "Trade Analytics", "", True) + btn("#fx-blotter", "FX Blotter", "", True) + btn("#lab", "Kalibre Lab", "", True) + btn("#desk-signal", "Desk Signal", "", True),
+           btn("#trade-analytics", "Analytics · Trade Analytics", "", True) + btn("#fx-blotter", "Analytics · FX Blotter", "", True) + btn("#lab", T(lang, "Analytics · Backtest", "Analytics · Backtest"), "", True) + btn("#desk-signal", "Desk Signal", "", True),
            hero_image("suite", lang, T(lang, "Trade Analytics, FX Blotter Analytics and Kalibre Lab open on sample files", "Örnek dosyalarla açık Trade Analytics, FX Blotter Analytics ve Kalibre Lab")))}
-{section("trade-analytics", "Trade Analytics", "beta", T(lang, "A trade log of 343 closed trades.", "343 kapanmış işlemlik bir işlem kaydı.") if ta["trades"] == 343 else "Trade Analytics",
+{section("trade-analytics", "Analytics · Trade Analytics", "beta", T(lang, "A trade log of 343 closed trades.", "343 kapanmış işlemlik bir işlem kaydı.") if ta["trades"] == 343 else "Trade Analytics",
          [(fmt(ta["trades"], lang), T(lang, "closed trades", "kapanmış işlem")), (fmt(ta["netUsd"], lang, 0, True), T(lang, "net P&amp;L, USD", "net K/Z, USD")), (pct(ta["winRatePct"], lang), T(lang, "win rate", "kazanma oranı")), (fmt(ta["profitFactor"], lang, 2), T(lang, "profit factor", "kâr faktörü"))],
          files(more("/lab/templates/kalibre-trade-log-example.xlsx", "kalibre-trade-log-example.xlsx", " download") + more("/lab/templates/kalibre-trade-log-example.csv", T(lang, "CSV version", "CSV sürümü"), " download"),
                LAB(lang, TA_SAMPLE), more(f"/lab/samples/{ta_res}.xlsx", f"{ta_res}.xlsx", " download"), T(lang, "The same file opens in Trade Analytics.", "Aynı dosya Trade Analytics'te açılır.")),
          shot_tile("analytics-overview", T(lang, "Account overview of the example log", "Örnek kaydın hesap özeti")) + shot_tile("analytics-segments", T(lang, "Segments ranked by their effect on the result", "Sonuca etkisine göre sıralı dilimler")), "paper")}
-{section("fx-blotter", "FX Blotter Analytics", "beta", T(lang, "One week of a bank FX desk.", "Bir banka FX masasının bir haftası."),
+{section("fx-blotter", "Analytics · FX Blotter", "beta", T(lang, "One week of a bank FX desk.", "Bir banka FX masasının bir haftası."),
          [(fmt(fx["legs"], lang), T(lang, "legs imported", "bacak aktarıldı")), (fmt(fx["totalUsd"], lang, 0, True), T(lang, "total P&amp;L, USD", "toplam K/Z, USD")), (fmt(fx["priceUsd"], lang, 0, True), T(lang, "price P&amp;L, USD", "fiyat K/Z, USD")), (f'{fx["checksPassed"]}/{fx["checks"]}', T(lang, "reconciliation checks passed", "mutabakat kontrolü geçti"))],
          files(more(f"/lab/samples/{fx_in}.xlsx", f"{fx_in}.xlsx", " download") + more(f"/lab/samples/{fx_in}.csv", T(lang, "CSV version", "CSV sürümü"), " download"),
                FX_SAMPLE[lang], more(f"/lab/samples/{fx_res}.xlsx", f"{fx_res}.xlsx", " download"), T(lang, "Example rates, overnight rates and limits are filled in.", "Örnek kur, faiz ve limitler girilir.")) + formats_block(lang),
          shot_tile("blotter-summary", T(lang, "Summary of the sample blotter", "Örnek blotter özeti")) + shot_tile("blotter-reconciliation", T(lang, "Reconciliation panel", "Mutabakat paneli")), "mist")}
-{section("lab", "Kalibre Lab", "beta", T(lang, "A trend rule on 3,000 hourly bars.", "3.000 saatlik mumda bir trend kuralı.") if lab["bars"] == 3000 else "Kalibre Lab",
+{section("lab", "Analytics · Backtest", "beta", T(lang, "A trend rule on 3,000 hourly bars.", "3.000 saatlik mumda bir trend kuralı.") if lab["bars"] == 3000 else "Kalibre Lab",
          [(fmt(lab["trades"], lang), T(lang, "trades", "işlem")), (fmt(lab["profitFactor"], lang, 2), T(lang, "profit factor", "kâr faktörü")), (pct(lab["returnPct"], lang, 2), T(lang, "return, no costs", "getiri, maliyetsiz")), (pct(lab["maxDrawdownPct"], lang, 2), T(lang, "max drawdown", "azami düşüş"))],
          files(more("/lab/samples/kalibre-lab-sample-strategy.json", "kalibre-lab-sample-strategy.json", " download") + more("/lab/samples/kalibre-lab-sample-prices.csv", "kalibre-lab-sample-prices.csv", " download"),
                LAB(lang, LAB_SAMPLE), more("/lab/samples/kalibre-lab-sample-result.xlsx", "kalibre-lab-sample-result.xlsx", " download") + more("/lab/samples/kalibre-lab-sample-result.json", "kalibre-lab-sample-result.json", " download"), T(lang, f"The rule and prices load and the backtest runs. Result ID kr1-{lab['resultId'][:16]}.", f"Kural ve fiyatlar yüklenir, backtest çalışır. Sonuç kimliği kr1-{lab['resultId'][:16]}.")),
@@ -767,14 +844,14 @@ def demos(lang):
 </section>
 <section class="sec paper center">
   <div class="wrap">
-    <h2 class="title-s">Rule Guard{status_tag("test", lang)}</h2>
-    <p class="lede">{T(lang, "Rule Guard runs inside MT5, so there is no web demo. The same daily and total limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard MT5 içinde çalışır, bu yüzden web demosu yok. Aynı günlük ve toplam sınırlar Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
+    <h2 class="title-s">Rule Guard{status_tag("plan", lang)}</h2>
+    <p class="lede">{T(lang, "Rule Guard is planned and would run inside MT5, so there is no web demo. The same daily and total limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard planlanıyor ve MT5 içinde çalışacak, bu yüzden web demosu yok. Aynı günlük ve toplam sınırlar Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
     <div class="actions">{more(LAB(lang, TA_SAMPLE), T(lang, "Open the sample", "Örneği aç"))}{more(P(lang, "/rule-guard"), T(lang, "About Rule Guard", "Rule Guard hakkında"))}</div>
   </div>
 </section>'''
     page("tr/demo/index.html" if tr else "demo/index.html", lang,
-         T(lang, "Demos: every product with sample input and result files", "Demolar: her ürün örnek girdi ve sonuç dosyasıyla"),
-         T(lang, "Try Trade Analytics, FX Blotter Analytics and Kalibre Lab with sample files: download the input, open the result in your browser and compare it with the result workbook.", "Trade Analytics, FX Blotter Analytics ve Kalibre Lab'i örnek dosyalarla dene: girdiyi indir, sonucu tarayıcında aç, sonuç dosyasıyla karşılaştır."),
+         T(lang, "Demos: Analytics and Desk Signal with sample input and result files", "Demolar: Analytics ve Desk Signal, örnek girdi ve sonuç dosyalarıyla"),
+         T(lang, "Try the three Analytics analyses and Desk Signal with sample files: download the input, open the result in your browser and compare it with the result workbook.", "Üç Analytics analizini ve Desk Signal'ı örnek dosyalarla dene: girdiyi indir, sonucu tarayıcında aç, sonuç dosyasıyla karşılaştır."),
          body, P(lang, "/demo"), "/demo" if tr else "/tr/demo")
 
 # ================================================================== Company
@@ -796,23 +873,17 @@ def pricing(lang):
     def thumb(name):
         base = f"/static/urun/hero/{name}-{lang}"
         return f'<img src="{base}-1x.webp" width="1440" height="860" alt="" loading="eager" decoding="async">'
-    cards = (plan("Trade Analytics", "beta", P(lang, "/trade-analytics"), free,
-                  [T(lang, "MT5 reports, Excel and CSV", "MT5 raporu, Excel ve CSV"), T(lang, "Segments and prop limits", "Dilimler ve prop sınırları"), T(lang, "No card needed", "Kart gerekmez")],
-                  btn(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene")), thumb("trade-analytics"))
-             + plan("FX Blotter", "beta", P(lang, "/fx-blotter"), T(lang, "Desk pilot", "Masa pilotu"),
-                  [T(lang, "Your desk's own export", "Masanızın kendi dökümü"), T(lang, "Seven reconciliation checks", "Yedi mutabakat kontrolü"), T(lang, "Sample or anonymized data", "Örnek ya da anonim veri")],
-                  btn(P(lang, "/fx-blotter") + "#demo", T(lang, "Request a demo", "Demo iste")), thumb("fx-blotter"))
-             + plan("Rule Guard", "test", P(lang, "/rule-guard"), free,
-                  [T(lang, "FTMO and The5ers presets", "FTMO ve The5ers ön ayarları"), T(lang, "Daily and total floors", "Günlük ve toplam taban"), T(lang, "Two MT5 accounts", "İki MT5 hesabı")],
-                  btn(P(lang, "/rule-guard") + "#pricing", T(lang, "Get early access", "Erken erişim al")), prop_chart(lang, days=40, legend=False))
-             + plan("Kalibre Lab", "beta", P(lang, "/kalibre-lab"), T(lang, "Backtesting is free", "Backtest ücretsiz"),
-                  [T(lang, "Strategy builder and templates", "Kural kurucu ve şablonlar"), T(lang, "Costs, fills and validation", "Maliyet, dolum ve doğrulama"), T(lang, "Runs in your browser", "Tarayıcında çalışır")],
-                  btn(LAB(lang, LAB_SAMPLE), T(lang, "Run the sample", "Örneği çalıştır")), thumb("kalibre-lab")))
+    cards = (plan("Analytics", "beta", P(lang, "/analytics"), free,
+                  [T(lang, "Trade Analytics, FX Blotter and the backtest", "Trade Analytics, FX Blotter ve backtest"), T(lang, "MT5 reports, Excel, CSV and desk blotters", "MT5 raporu, Excel, CSV ve masa blotter'ı"), T(lang, "No card needed", "Kart gerekmez")],
+                  btn(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene")), thumb("suite"))
+             + plan("Desk Signal", "test", P(lang, "/desk-signal"), free,
+                  [T(lang, "Start a desk in your browser", "Masanı tarayıcında kur"), T(lang, "Invite link for your traders", "Trader'ların için davet bağlantısı"), T(lang, "Signal log as CSV or Excel", "Sinyal logu CSV ya da Excel")],
+                  btn("/lab/desk-live", T(lang, "Start a desk", "Masa kur")), thumb("desk-signal")))
     ok = "/tr/pricing?ok=1" if tr else "/pricing?ok=1"
     body = f'''
 {page_hero(T(lang, "Start free.", "Ücretsiz başla."),
-           T(lang, "Every product is free during early access. No card.", "Erken erişimde her ürün ücretsiz. Kart yok."),
-           "", f'<div class="plans">{cards}</div>', media_cls="plans-wrap")}
+           T(lang, "Both products are free during early access. No card. One plan follows; ask us what it covers for your desk or your account.", "Erken erişimde iki ürün de ücretsiz. Kart yok. Sonrasında tek plan; masan ya da hesabın için neyi kapsadığını bize sor."),
+           btn("mailto:markets@kalibrefin.com?subject=Plans", T(lang, "Contact us", "Bize yaz")), f'<div class="plans">{cards}</div>', media_cls="plans-wrap")}
 
 <section class="sec mist center" id="waitlist">
   <div class="wrap">
@@ -836,16 +907,17 @@ def pricing(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "Questions.", "Sorular.")}</h2>
     {faq([(T(lang, "Do I need a card?", "Kart gerekir mi?"), T(lang, "No. Early access is free and asks for no payment details.", "Hayır. Erken erişim ücretsizdir ve ödeme bilgisi istemez.")),
-          (T(lang, "What happens after early access?", "Erken erişimden sonra ne olur?"), T(lang, "We will email you with the plans and prices before anything is charged. Nothing renews by itself.", "Herhangi bir ücret alınmadan önce planları ve fiyatları e-postayla bildiririz. Hiçbir şey kendiliğinden yenilenmez.")),
+          (T(lang, "What happens after early access?", "Erken erişimden sonra ne olur?"), T(lang, "One plan, priced for a desk or for a single account. We email everyone on the list before anything is charged. Nothing renews by itself.", "Tek plan; bir masa ya da tek bir hesap için fiyatlanır. Herhangi bir ücret alınmadan önce listedeki herkese e-posta göndeririz. Hiçbir şey kendiliğinden yenilenmez.")),
+          (T(lang, "Why is there no price on this page?", "Bu sayfada neden fiyat yok?"), T(lang, "Desks and single accounts need different terms, so we agree them in a short conversation. Write to markets@kalibrefin.com.", "Masalar ve tek hesaplar farklı koşullar ister; kısa bir görüşmede anlaşıyoruz. markets@kalibrefin.com adresine yaz.")),
           (T(lang, "How do desk pilots work?", "Masa pilotları nasıl işler?"), T(lang, "Each pilot is set up with the desk on our sample blotter or an anonymized export. No client data leaves the building.", "Her pilot masayla birlikte örnek blotter'ımız ya da anonim bir döküm üzerinde kurulur. Binadan müşteri verisi çıkmaz.")),
-          (T(lang, "Is backtesting free?", "Backtest ücretsiz mi?"), T(lang, "Yes. Building and backtesting rules in Kalibre Lab is free.", "Evet. Kalibre Lab'de kural kurmak ve backtest etmek ücretsizdir."))])}
+          (T(lang, "Is backtesting free?", "Backtest ücretsiz mi?"), T(lang, "Yes. Building and backtesting rules stays free.", "Evet. Kural kurmak ve backtest etmek ücretsiz kalır."))])}
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>'''
     script = "<script>if (new URLSearchParams(location.search).get('ok') === '1') { document.getElementById('ok-msg').hidden = false; document.getElementById('wl-form').hidden = true; }</script>"
     page("tr/pricing/index.html" if tr else "pricing/index.html", lang,
          T(lang, "Pricing: free during early access", "Fiyat: erken erişimde ücretsiz"),
-         T(lang, "Trade Analytics, Rule Guard and Kalibre Lab are free during early access. FX Blotter Analytics runs as a desk pilot. No card needed.", "Trade Analytics, Rule Guard ve Kalibre Lab erken erişimde ücretsiz. FX Blotter Analytics masa pilotu olarak çalışır. Kart gerekmez."),
+         T(lang, "Analytics and Desk Signal are free during early access. One plan follows; contact us for your desk or account. No card needed.", "Analytics ve Desk Signal erken erişimde ücretsiz. Sonrasında tek plan; masan ya da hesabın için bize yaz. Kart gerekmez."),
          body, P(lang, "/pricing"), "/pricing" if tr else "/tr/pricing", script)
 
 def company(lang):
@@ -909,6 +981,7 @@ def company(lang):
 
 for lang in ("en", "tr"):
     home(lang)
+    analytics(lang)
     trade_analytics(lang)
     fx_blotter(lang)
     rule_guard(lang)
