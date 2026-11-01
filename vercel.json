@@ -273,16 +273,6 @@
       "permanent": false
     },
     {
-      "source": "/analytics",
-      "destination": "/lab/analytics",
-      "statusCode": 302
-    },
-    {
-      "source": "/tr/analytics",
-      "destination": "/lab/analytics?lang=tr",
-      "statusCode": 302
-    },
-    {
       "source": "/baglan",
       "destination": "/lab/connect?lang=tr",
       "statusCode": 308

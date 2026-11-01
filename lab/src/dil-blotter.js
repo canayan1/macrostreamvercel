@@ -4,6 +4,11 @@
 import { EN } from './dil-en.js';
 
 export const BLOTTER_EN = {
+  // report page
+  'Rapor sayfasını aç': 'Open the report page',
+  'Anlık kurlar: {k}. Gecelik faiz (yıllık %): {f}.': 'Rates: {k}. Overnight rates (annual %): {f}.',
+  'Rapor sayfası açılamadı: tarayıcı depolama alanı kapalı.': 'The report page could not open: browser storage is blocked.',
+  'Bütün analiz grafikli bir Excel masa raporu olarak iner. Rapor sayfası aynı sonucu basılabilir bir belge yapar ve salt okuma bağlantıyla paylaşır.': 'The whole analysis downloads as an Excel desk report with charts. The report page turns the same result into a printable document and shares it as a read-only link.',
   // rates, carry and limit tables (blotter/girdi-tablo.js)
   'İlk {n} satırı göster': 'Show the first {n} rows',
   '{n} satırın tamamını göster': 'Show all {n} rows',

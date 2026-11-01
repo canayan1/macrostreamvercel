@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/lab/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desk report · Kalibre Markets</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="report.css">
+</head>
+<body>
+<div class="r-arac" id="arac">
+  <a class="r-marka" href="/"><i></i>Kalibre Markets</a>
+  <div class="r-dugmeler">
+    <button type="button" class="r-dugme" id="yazdir">Print or save as PDF</button>
+    <button type="button" class="r-dugme birincil" id="paylas" hidden>Share a read-only link</button>
+    <a class="r-dugme" id="geri" href="/lab/blotter" hidden>Back to the analysis</a>
+  </div>
+</div>
+<div class="r-paylas" id="paylas-kutu" hidden>
+  <p><b>Read-only link.</b> Anyone with it can open this report for 30 days. The key is in the link itself; our relay stores only the sealed copy and cannot read it.</p>
+  <div class="r-kopya"><input id="paylas-baglanti" readonly aria-label="Report link"><button type="button" class="r-dugme birincil" id="paylas-kopyala">Copy link</button></div>
+  <p class="r-hata" id="paylas-hata" hidden></p>
+</div>
+
+<main class="r-sayfa" id="rapor" hidden></main>
+<p class="r-durum" id="durum">Opening the report…</p>
+
+<script type="module" src="src/report/goster.js"></script>
+</body>
+</html>

@@ -14,6 +14,7 @@ import { ornekBlotter, ORNEK_KURLAR, ORNEK_KURLAR_EN, ORNEK_FAIZ_METNI, ORNEK_LI
 import { rastgeleTuz, konvansiyon } from './model.js';
 import { TUR_AD, DEGER_AD, LIMIT_AD, LIMIT_DURUM, GEREKCE_AD, UYARI_AD } from './etiketler.js';
 import { deskReport } from './desk-report.js';
+import { blotterReportModel, LOCAL_KEY } from '../report/blotter-model.js';
 import { startTour } from '../tour.js';
 import { duzenleyiciKur } from './girdi-tablo.js';
 
@@ -227,6 +228,18 @@ function downloadReport() {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
+// The report page: the model is handed over through localStorage and opened in a new tab (#local).
+function openReportPage() {
+  if (!analiz) return;
+  const a = analiz.ayar;
+  const rates = Object.entries(a.kurTablosu ?? {}).map(([k, v]) => `${k} ${v}`).join(', ') || '–';
+  const overnight = Object.entries(a.faiz ?? {}).map(([k, v]) => `${k} ${v}`).join(', ') || '–';
+  const model = blotterReportModel({ aktarim, an: analiz, mut: analiz.mutabakat, lang: dil === 'tr' ? 'tr' : 'en', source: kaynakDosya, example: sentetik, localCcy: a.yerelDoviz, method: a.yontem,
+    inputs: ceviri('Anlık kurlar: {k}. Gecelik faiz (yıllık %): {f}.', { k: rates, f: overnight }) });
+  try { localStorage.setItem(LOCAL_KEY, JSON.stringify(model)); } catch { durum(ceviri('Rapor sayfası açılamadı: tarayıcı depolama alanı kapalı.'), true); return; }
+  window.open('/lab/report#local', '_blank');
+}
+
 // ---------------------------------------------------------------- guided tour (?tour=1 or the button on the example banner)
 const TOUR = [
   ['#yukle-kart', 'Masanın kendi dökümü', 'Dosya olduğu gibi bırakıldı: rapor başlığı, toplam satırı, yerel biçimler. Tarayıcıda okunur, hiçbir yere yüklenmez.'],
@@ -241,7 +254,7 @@ const TOUR = [
   ['#swap-kart', "Swap'lar ayrı izlenir", 'Her roll yakın ve uzak bacağıyla; puan etkisi toplam K/Z içinde puan sütununda.'],
   ['#marj-kart', 'Müşteri marjı', 'Müşteri işlemlerinde maliyet kuruna göre kazanılan marj, işlem işlem.'],
   ['#atlanan-kart', 'Hiçbir satır sessizce kaybolmaz', 'Dışlanan ya da okunamayan her satır, dosyadaki satır numarası ve gerekçesiyle burada.'],
-  ['#rapor-indir', 'Yanında götür', 'Bütün analiz grafikli bir Excel masa raporu olarak iner.'],
+  ['#rapor-indir', 'Yanında götür', 'Bütün analiz grafikli bir Excel masa raporu olarak iner. Rapor sayfası aynı sonucu basılabilir bir belge yapar ve salt okuma bağlantıyla paylaşır.'],
 ];
 async function tour() {
   if (!analiz) { if (!(await ornekDosyaAc(dil === 'tr' ? 'samples/fx-blotter-ornek.xlsx' : 'samples/fx-blotter-sample.xlsx'))) ornekYukle(); }
@@ -462,6 +475,7 @@ function baslat() {
   $('#ozet-eksik-ekle').addEventListener('click', eksikKurlariEkle);
   $('#kz-boyut').addEventListener('change', kzGoster);
   $('#rapor-indir').addEventListener('click', downloadReport);
+  $('#rapor-sayfa').addEventListener('click', openReportPage);
   for (const b of document.querySelectorAll('.katla')) b.addEventListener('click', () => { const k = $(b.dataset.katla); k.dataset.elle = '1'; fold(b.dataset.katla, !k.classList.contains('katli')); });
   $('#tur-baslat').addEventListener('click', tour);
   $('#detay-kapat').addEventListener('click', detayKapat);
