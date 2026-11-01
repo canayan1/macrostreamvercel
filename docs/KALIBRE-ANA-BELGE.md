@@ -374,3 +374,4 @@ Claude'un yapacakları:
 - Paylaşım: `src/report/muhur.js` rastgele anahtarla AES-GCM; zarf `api/rapor.ts`'ye (Upstash, 30 gün, saatte 60/IP özeti), anahtar bağlantının # kısmında. `/lab/report#<id>.<key>` salt okuma (paylaş ve geri düğmeleri yok). Yerelde uçtan uca doğrulandı: rapor açıldı, bağlantı üretildi, ikinci sekmede açıldı.
 - Testler: lab `lab/test/rapor.test.mjs` (3), site `test/rapor.test.mjs` (3); lab toplam 451, site 66.
 - Canlıya alınmadı; önizlemede, Can onayı bekliyor.
+- Vercel Hobby sınırı: en çok 12 sunucusuz işlev. /api/rapor eklenince 13 oldu; eski BIST "Kalabalık" sayacı `api/pulse-ping.ts` (hiçbir sayfa çağırmıyordu, sitede piyasa verisi yok) silindi. Şimdi 12: asistan, desk, hesap, indir, kopru, lisans, rapor, talep, odeme/{baslat,oturum,portal,webhook}. Yeni uç gerekirse Pro plan ya da birleştirme.
