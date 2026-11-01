@@ -18,6 +18,7 @@ import { blotterReportModel, LOCAL_KEY } from '../report/blotter-model.js';
 import { startTour } from '../tour.js';
 import { duzenleyiciKur } from './girdi-tablo.js';
 import { gorunumKur } from '../gorunum.js';
+import { biletlerdenTablo } from './bilet.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
@@ -45,6 +46,27 @@ const zamanMetni = (sn, tz) => { if (sn === null || sn === undefined) return '�
 // ---------------------------------------------------------------- yükleme
 function durum(metin, hata = false) { const e = $('#yukle-durum'); e.textContent = metin; e.classList.toggle('negatif', hata); }
 const saatDilimi = () => Number($('#saat-dilimi').value) || 0;
+
+// Several files at once: saved tickets (.eml/.txt) become one table; a single sheet is read as before.
+async function dosyalariOku(liste) {
+  const dosyalar = [...(liste ?? [])];
+  if (!dosyalar.length) return;
+  const bilet = dosyalar.length > 1 || /\.(eml|txt)$/i.test(dosyalar[0].name);
+  if (!bilet) return dosyaOku(dosyalar[0]);
+  for (const d of dosyalar) if (d.size > EN_BUYUK_DOSYA) { durum(ceviri('Dosya çok büyük (en çok 50 MB).'), true); return; }
+  const metinler = await Promise.all(dosyalar.map(d => d.text()));
+  biletleriYukle(metinler, dosyalar.length === 1 ? dosyalar[0].name : ceviri('{n} e-posta', { n: dosyalar.length }));
+}
+
+function biletleriYukle(metinler, kaynakAdi) {
+  const { satirlar: s, bilet } = biletlerdenTablo(metinler);
+  if (!bilet) { durum(ceviri('Bilet bulunamadı. Metinde "Etiket: değer" satırları olmalı (ör. Trade Date: 2026-10-21).'), true); return; }
+  sentetikAyarla(false);
+  $('#bilet-kutu').open = false;
+  yeniSatirlar(s, `${kaynakAdi} · ${ceviri('{n} bilet', { n: bilet })}`);
+  const target = analiz && !aktarim.eksik.length ? '#ozet-kart' : '#eslesme-kart';
+  setTimeout(() => $(target)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }));
+}
 
 async function dosyaOku(dosya) {
   if (!dosya) return;
@@ -461,11 +483,12 @@ function baslat() {
   duzenleyiciler = [['#kur-tablo', 'kur'], ['#tasima-tablo', 'tasima'], ['#limit-tablo', 'limit']].map(([id, tur]) => duzenleyiciKur($(id), tur, { t: ceviri, dil }));
   const kb = $('#kz-boyut');
   for (const b of BOYUTLAR) kb.insertAdjacentHTML('beforeend', `<option value="${kacis(b.id)}">${kacis(ceviri(b.ad))}</option>`);
-  $('#dosya').addEventListener('change', e => dosyaOku(e.target.files?.[0]));
+  $('#dosya').addEventListener('change', e => { dosyalariOku(e.target.files); e.target.value = ''; });
   const birak = $('#birak');
   birak.addEventListener('dragover', e => { e.preventDefault(); birak.classList.add('uzerinde'); });
   birak.addEventListener('dragleave', () => birak.classList.remove('uzerinde'));
-  birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyaOku(e.dataTransfer?.files?.[0]); });
+  birak.addEventListener('drop', e => { e.preventDefault(); birak.classList.remove('uzerinde'); dosyalariOku(e.dataTransfer?.files); });
+  $('#bilet-oku').addEventListener('click', () => biletleriYukle([$('#bilet-metin').value], ceviri('Yapıştırılan biletler')));
   $('#ornek-yukle').addEventListener('click', () => ornekYukle());
   if (dil === 'en') { $('#limit-tablo').placeholder = ORNEK_LIMITLER_EN; $('#marj-yuzde').placeholder = '0.00'; }
   $('#ornek-kapat').addEventListener('click', () => { sentetikAyarla(false); $('#dosya').click(); });

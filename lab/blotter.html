@@ -43,10 +43,10 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
   <section class="kart" id="yukle-kart">
     <div class="kart-bas"><h2><span class="bolum-no">01</span><span data-t>Blotter'ı yükle</span></h2><span class="rozet ikincil" id="kaynak-rozet" hidden></span></div>
     <label class="birak" id="birak" for="dosya">
-      <input type="file" id="dosya" accept=".csv,.txt,.tsv,.xlsx,text/csv" hidden>
+      <input type="file" id="dosya" accept=".csv,.txt,.tsv,.xlsx,.eml,text/csv,message/rfc822" multiple hidden>
       <svg class="birak-ikon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <b data-t>Blotter dosyasını buraya bırak ya da seç</b>
-      <span data-t>XLSX ya da CSV. Rapor başlığı, toplam satırları, Türkçe başlıklar ve Türkçe sayı biçimi olduğu gibi okunur. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
+      <span data-t>XLSX ya da CSV, ya da e-postadan kaydedilmiş işlem biletleri (.eml, .txt; birden çok dosya olabilir). Rapor başlığı, toplam satırları, Türkçe başlıklar ve Türkçe sayı biçimi olduğu gibi okunur. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.</span>
     </label>
     <div class="satir-dugme a-yukle-eylem">
       <button type="button" class="dugme" id="ornek-yukle" data-t>Örnek blotter ile dene</button>
@@ -56,6 +56,12 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       </select></label>
       <label class="secici"><span data-t>Kaynak saat dilimi (UTC farkı)</span><select id="saat-dilimi"></select></label>
     </div>
+    <details class="nasil" id="bilet-kutu">
+      <summary data-t>İşlem biletlerini yapıştır (e-postadan)</summary>
+      <p data-t>Platform teyitleri posta kutusuna bilet olarak düşer. Birkaç biletin metnini buraya yapıştır; "Etiket: değer" satırları okunur, her bilet bir satır olur ve sütunlar aşağıda eşleşir. Ya da e-postaları .eml olarak kaydedip yukarıdaki kutuya bırak.</p>
+      <textarea id="bilet-metin" rows="8" spellcheck="false" placeholder="Trade ID: 123456&#10;Trade Date: 2026-10-21&#10;Currency Pair: EUR/USD&#10;Side: Buy&#10;Amount: 1,000,000&#10;Rate: 1.0875&#10;Value Date: 2026-10-23&#10;Counterparty: Example Bank"></textarea>
+      <p class="satir-dugme"><button type="button" class="dugme ikincil kucuk" id="bilet-oku" data-t>Biletleri oku</button><span class="dipnot" id="bilet-durum" role="status"></span></p>
+    </details>
     <p class="dipnot" id="yukle-durum" role="status"></p>
     <ul class="a-onizleme" id="bos-durum">
       <li><b data-t>İçe aktarma özeti</b><span data-t>Okunan, aktarılan, dışlanan ve atlanan her satır gerekçesiyle.</span></li>

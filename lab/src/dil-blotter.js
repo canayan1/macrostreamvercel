@@ -28,6 +28,15 @@ export const BLOTTER_EN = {
   'Backtest': 'Backtest',
   'Analytics hakkında': 'About Analytics',
   'FX Blotter Analizi · Kalibre Lab': 'FX Blotter Analytics · Kalibre Markets',
+  // trade tickets from email (blotter/bilet.js)
+  'XLSX ya da CSV, ya da e-postadan kaydedilmiş işlem biletleri (.eml, .txt; birden çok dosya olabilir). Rapor başlığı, toplam satırları, Türkçe başlıklar ve Türkçe sayı biçimi olduğu gibi okunur. Dosya bu tarayıcıda okunur ve hiçbir sunucuya gönderilmez.': 'XLSX or CSV, or trade tickets saved from email (.eml, .txt; several files at once). Title rows, total rows, local-language headers and local number formats are read as they are. The file is read in this browser and is not sent to any server.',
+  'İşlem biletlerini yapıştır (e-postadan)': 'Paste trade tickets (from email)',
+  'Platform teyitleri posta kutusuna bilet olarak düşer. Birkaç biletin metnini buraya yapıştır; "Etiket: değer" satırları okunur, her bilet bir satır olur ve sütunlar aşağıda eşleşir. Ya da e-postaları .eml olarak kaydedip yukarıdaki kutuya bırak.': 'Platform confirmations land in the mailbox as tickets. Paste the text of a few tickets here; "Label: value" lines are read, each ticket becomes a row and the columns are matched below. Or save the emails as .eml and drop them in the box above.',
+  'Biletleri oku': 'Read the tickets',
+  '{n} e-posta': '{n} emails',
+  '{n} bilet': '{n} tickets',
+  'Yapıştırılan biletler': 'Pasted tickets',
+  'Bilet bulunamadı. Metinde "Etiket: değer" satırları olmalı (ör. Trade Date: 2026-10-21).': 'No tickets found. The text needs "Label: value" lines (for example Trade Date: 2026-10-21).',
   // report page
   'Rapor sayfasını aç': 'Open the report page',
   'Anlık kurlar: {k}. Gecelik faiz (yıllık %): {f}.': 'Rates: {k}. Overnight rates (annual %): {f}.',
