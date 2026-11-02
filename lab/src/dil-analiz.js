@@ -102,6 +102,15 @@ export const ANALIZ_EN = {
   "Bridge henüz işlem geçmişi göndermedi. Eklentinin MT5'te çalıştığını kontrol et.": 'The Bridge has not sent trade history yet. Check that the add-on is running in MT5.',
   'Bridge verisi alınamadı. Bağlantıyı Pano sayfasında kontrol et.': 'Could not load Bridge data. Check the connection on the Dashboard page.',
   'Bir ad yaz.': 'Enter a name.',
+  // ask box (sor.js)
+  'Sor': 'Ask',
+  'Sor: top 5 counterparties by total P&L': 'Ask: top 5 counterparties by total P&L',
+  'Soruya bakılıyor…': 'Reading the question…',
+  'Anlaşılmadı. Bir boyut ve bir ölçü adı yaz, örneğin "top 5 counterparties by total P&L".': 'Not understood. Name a grouping and a measure, for example "top 5 counterparties by total P&L".',
+  'Gösteriliyor:': 'Showing:',
+  'Temizle': 'Clear',
+  'by': 'by', 'top': 'top', 'bottom': 'bottom', 'ascending': 'ascending', 'descending': 'descending', 'only': 'only',
+  'Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir. Soru kutusu da öyle: soru ve sütun adları dışında hiçbir şey tarayıcıdan çıkmaz.': 'Views are kept only in this browser. What is saved is the view setting, not the trades. The ask box works the same way: nothing but the question and the column names leaves the browser.',
   'Kaydedildi.': 'Saved.',
   // kaynak
   'MT5 raporu (HTML)': 'MT5 report (HTML)',

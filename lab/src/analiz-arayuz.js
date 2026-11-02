@@ -40,6 +40,14 @@ const olcuMetni = (tur, x) => (tur === 'para' ? para(x) : tur === 'yuzde' ? yuzd
 const etiket = s => ceviri(s);
 
 // ---------------------------------------------------------------- yükleme
+// "Sor" kutusu: yerel çözümleyici anlamazsa sunucudaki modele yalnız şema ve soru gider (veri gitmez).
+async function sorUzak(soru, sema) {
+  const r = await fetch('/api/asistan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mod: 'gorunum', soru, sema: { boyutlar: sema.boyutlar.map(b => ({ id: b.id, ad: b.ad })), olculer: sema.olculer.map(o => ({ id: o.id, ad: o.ad, tur: o.tur })) } }) });
+  if (!r.ok) return null;
+  const j = await r.json().catch(() => null);
+  return j?.tarif ?? null;
+}
+
 function durum(metin, hata = false) { const e = $('#yukle-durum'); e.textContent = metin; e.classList.toggle('negatif', hata); }
 
 async function dosyaOku(dosya) {
@@ -336,7 +344,7 @@ function baslat() {
   fark.onchange = () => { utcFark = Number(fark.value); depoYaz(DEPO.utc, String(utcFark)); hesapla(); };
   secenekler($('#kirilim-boyut'), BOYUTLAR, 'sembol');
   $('#kirilim-boyut').onchange = kirilimCiz;
-  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: OLCULER, depoAnahtari: DEPO.gorunum, t: ceviri, bicim: olcuMetni, sinif, adetAd: 'İşlem', varsayilan: { boyut: 'saat', olcu: 'net' },
+  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: OLCULER, uzak: sorUzak, depoAnahtari: DEPO.gorunum, t: ceviri, bicim: olcuMetni, sinif, adetAd: 'İşlem', varsayilan: { boyut: 'saat', olcu: 'net' },
     grupla: boyut => (motor ? motor.grupla(boyut).map(s => ({ etiket: etiket(s.etiket), degerler: s, adet: s.adet })) : []) });
 
   const girdi = $('#dosya');

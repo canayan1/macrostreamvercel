@@ -2,21 +2,28 @@
 // sonuç çubuk, çizgi ya da tablo olarak çizilir ve görünüm ayarı (veri değil) bu tarayıcıda saklanır.
 // Trade Analytics ve FX Blotter aynı modülü kullanır; veri `grupla` ile gelir.
 //
-// gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bicim, sinif, adetAd, varsayilan }) → { ciz, hazir }
-//   kok          : #g-boyut, #g-olcu, #g-tur, #g-cizim, #g-kaydet, #g-ad, #g-durum, #g-kayitli içeren bölüm
+// gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bicim, sinif, adetAd, varsayilan, uzak }) → { ciz, uygula, sor }
+//   kok          : #g-boyut, #g-olcu, #g-tur, #g-cizim, #g-kaydet, #g-ad, #g-durum, #g-kayitli içeren bölüm;
+//                  isteğe bağlı #g-sor (form) + #g-soru + #g-sor-durum ve #g-filtre (soru kutusu, bkz. sor.js)
 //   boyutlar     : [{ id, ad }]           olculer: [{ id, ad, tur: 'para' | 'sayi' | 'yuzde' | 'oran' }]
 //   grupla(boyutId) → [{ etiket, degerler: { olcuId: sayı | null }, adet }]   (veri yoksa [] ya da null)
 //   bicim(tur, x) → metin               sinif(x) → 'pozitif' | 'negatif' | ''
 //   t(metin) çeviri; adetAd sayım sütununun adı ('İşlem' ya da 'Kalem')
 
 import { kacis } from './guvenlik.js';
+import { semaOlustur, yerelCoz, tarifDogrula, tarifUygula, tarifMetni } from './sor.js';
 
 const TURLER = new Set(['cubuk', 'cizgi', 'tablo']);
 
-export function gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bicim, sinif, adetAd = 'İşlem', varsayilan = {} }) {
+// uzak(soru, sema) → tarif nesnesi ya da null: yerel çözümleyici soruyu anlamazsa çağrılır (sunucudaki model;
+// yalnız şema ve soru gider, veri gitmez). Verilmezse yalnız yerel çözümleyici çalışır.
+export function gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bicim, sinif, adetAd = 'İşlem', varsayilan = {}, uzak = null }) {
   const $ = s => kok.querySelector(s);
   const BOYUT = new Set(boyutlar.map(b => b.id)), OLCU = new Set(olculer.map(o => o.id));
   const boyutAd = id => t(boyutlar.find(b => b.id === id)?.ad ?? id);
+  const sema = semaOlustur(boyutlar, olculer, t);
+  // Soru ile gelen süzme/sıralama/ilk N; seçiciler değişince ya da temizlenince sıfırlanır.
+  let ek = {};
   const oku = () => { try { const d = JSON.parse(localStorage.getItem(depoAnahtari) ?? '[]'); return Array.isArray(d) ? d.filter(g => g && typeof g.ad === 'string' && BOYUT.has(g.boyut) && OLCU.has(g.olcu) && TURLER.has(g.tur)).slice(0, 30) : []; } catch { return []; } };
   const yaz = d => { try { localStorage.setItem(depoAnahtari, JSON.stringify(d.slice(0, 30))); } catch { /* depo yok */ } };
   const secenek = (el, liste, sec) => { el.innerHTML = liste.map(x => `<option value="${kacis(x.id)}"${x.id === sec ? ' selected' : ''}>${kacis(t(x.ad))}</option>`).join(''); };
@@ -28,7 +35,8 @@ export function gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bi
     const olcu = olculer.find(o => o.id === olcuId);
     const kutu = $('#g-cizim');
     const ham = grupla(boyut) ?? [];
-    const satirlar = ham.map(s => ({ etiket: s.etiket, deger: s.degerler[olcuId] === Infinity ? null : s.degerler[olcuId] ?? null, adet: s.adet }));
+    const satirlar = tarifUygula(ham.map(s => ({ etiket: s.etiket, deger: s.degerler[olcuId] === Infinity ? null : s.degerler[olcuId] ?? null, adet: s.adet })), ek);
+    ekCiz();
     if (tur === 'tablo' || !satirlar.length) {
       kutu.innerHTML = satirlar.length
         ? `<div class="tablo-kutu"><table class="pozisyon"><thead><tr><th>${kacis(boyutAd(boyut))}</th><th>${kacis(t(olcu.ad))}</th><th>${kacis(t(adetAd))}</th></tr></thead><tbody>${satirlar.map(s => `<tr><td>${kacis(s.etiket)}</td><td class="${kacis(olcu.tur === 'para' ? sinif(s.deger) : '')}">${kacis(bicim(olcu.tur, s.deger))}</td><td>${kacis(bicim('sayi', s.adet))}</td></tr>`).join('')}</tbody></table></div>`
@@ -67,18 +75,56 @@ export function gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bi
     }
   }
 
+  // Aktif süzme/ilk N çipi.
+  function ekCiz() {
+    const cip = $('#g-filtre'); if (!cip) return;
+    const var_ = !!(ek.filtre || ek.ilkN || ek.sirala);
+    cip.hidden = !var_;
+    if (var_) cip.innerHTML = `<span>${kacis(tarifMetni({ boyut: $('#g-boyut').value, olcu: $('#g-olcu').value, tur: $('#g-tur').value, ...ek }, sema, t))}</span> <button type="button" class="kucuk" data-temizle>${kacis(t('Temizle'))}</button>`;
+  }
+
+  // Bir tarifi (yerel çözümleyici, model ya da kayıtlı görünüm) seçicilere ve ek ayarlara uygular.
+  function uygula(ham) {
+    const d = tarifDogrula(ham, sema);
+    if (d.hata) return d;
+    const { boyut, olcu, tur, ...rest } = d.tarif;
+    $('#g-boyut').value = boyut; $('#g-olcu').value = olcu; $('#g-tur').value = tur;
+    ek = rest;
+    ciz();
+    return d;
+  }
+
+  async function sor(soru) {
+    const durum = $('#g-sor-durum');
+    const de = m => { if (durum) durum.textContent = m; };
+    const q = soru.trim().slice(0, 200);
+    if (!q) return;
+    let tarif = yerelCoz(q, sema);
+    if (!tarif && uzak) {
+      de(t('Soruya bakılıyor…'));
+      try { tarif = await uzak(q, sema); } catch { tarif = null; }
+    }
+    if (!tarif) { de(t('Anlaşılmadı. Bir boyut ve bir ölçü adı yaz, örneğin "top 5 counterparties by total P&L".')); return; }
+    const d = uygula(tarif);
+    if (d.hata) { de(t('Anlaşılmadı. Bir boyut ve bir ölçü adı yaz, örneğin "top 5 counterparties by total P&L".')); return; }
+    de(`${t('Gösteriliyor:')} ${tarifMetni(d.tarif, sema, t)}`);
+  }
+
   function kayitliCiz() {
     const d = oku();
     $('#g-kayitli').innerHTML = d.map((g, i) => `<li><button type="button" class="kucuk" data-ac="${kacis(i)}">${kacis(g.ad)}</button> <span class="dipnot">${kacis(boyutAd(g.boyut))} · ${kacis(t(olculer.find(o => o.id === g.olcu).ad))}</span> <button type="button" class="kucuk sil" data-sil="${kacis(i)}" aria-label="${kacis(t('Sil'))}">×</button></li>`).join('');
   }
 
-  for (const id of ['#g-boyut', '#g-olcu', '#g-tur']) $(id).onchange = ciz;
+  for (const id of ['#g-boyut', '#g-olcu', '#g-tur']) $(id).onchange = () => { ek = {}; ciz(); };
+  const sorForm = $('#g-sor');
+  if (sorForm) sorForm.onsubmit = e => { e.preventDefault(); sor($('#g-soru').value); };
+  $('#g-filtre')?.addEventListener('click', e => { if (e.target.closest('[data-temizle]')) { ek = {}; const d = $('#g-sor-durum'); if (d) d.textContent = ''; ciz(); } });
   $('#g-kaydet').onsubmit = e => {
     e.preventDefault();
     const ad = $('#g-ad').value.trim().slice(0, 60);
     if (!ad) { $('#g-durum').textContent = t('Bir ad yaz.'); return; }
     const d = oku().filter(g => g.ad !== ad);
-    d.unshift({ ad, boyut: $('#g-boyut').value, olcu: $('#g-olcu').value, tur: $('#g-tur').value });
+    d.unshift({ ad, boyut: $('#g-boyut').value, olcu: $('#g-olcu').value, tur: $('#g-tur').value, ...ek });
     yaz(d);
     $('#g-ad').value = ''; $('#g-durum').textContent = t('Kaydedildi.');
     kayitliCiz();
@@ -86,9 +132,9 @@ export function gorunumKur({ kok, boyutlar, olculer, grupla, depoAnahtari, t, bi
   $('#g-kayitli').onclick = e => {
     const b = e.target.closest('button'); if (!b) return;
     const d = oku();
-    if (b.dataset.ac !== undefined) { const g = d[Number(b.dataset.ac)]; if (!g) return; $('#g-boyut').value = g.boyut; $('#g-olcu').value = g.olcu; $('#g-tur').value = g.tur; ciz(); }
+    if (b.dataset.ac !== undefined) { const g = d[Number(b.dataset.ac)]; if (!g) return; uygula(g); }
     if (b.dataset.sil !== undefined) { d.splice(Number(b.dataset.sil), 1); yaz(d); kayitliCiz(); }
   };
   kayitliCiz();
-  return { ciz };
+  return { ciz, uygula, sor };
 }

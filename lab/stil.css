@@ -415,3 +415,6 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 .kart.katli .kart-bas{margin-bottom:0}
 .kart-bas .katla{margin-left:auto}
 .kart{scroll-margin-top:96px}
+.g-sor{margin-bottom:8px}
+.g-sor input{flex:1;min-width:220px}
+.g-filtre{display:flex;gap:8px;align-items:center;margin:0 0 6px}

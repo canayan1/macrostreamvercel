@@ -170,6 +170,11 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
 
   <section class="kart" id="gorunum-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">12</span><span data-t>Kendi görünümün</span></h2></div>
+    <form class="satir-dugme g-sor" id="g-sor">
+      <input id="g-soru" maxlength="200" placeholder="Sor: top 5 counterparties by total P&L" data-t-attr="placeholder" autocomplete="off">
+      <button type="submit" class="kucuk" data-t>Sor</button>
+      <span class="dipnot" id="g-sor-durum" role="status"></span>
+    </form>
     <div class="satir-dugme a-gorunum-ayar">
       <label class="secici"><span data-t>Grupla</span><select id="g-boyut"></select></label>
       <label class="secici"><span data-t>Ölçü</span><select id="g-olcu"></select></label>
@@ -179,6 +184,7 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
         <option value="tablo" data-t>Tablo</option>
       </select></label>
     </div>
+    <p class="dipnot g-filtre" id="g-filtre" hidden></p>
     <div id="g-cizim" class="g-cizim"></div>
     <form class="satir-dugme" id="g-kaydet">
       <input id="g-ad" maxlength="60" placeholder="Görünüm adı" data-t-attr="placeholder" autocomplete="off">
@@ -186,7 +192,7 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       <span class="dipnot" id="g-durum" role="status"></span>
     </form>
     <ul class="kayitli" id="g-kayitli"></ul>
-    <p class="dipnot" data-t>Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir.</p>
+    <p class="dipnot" data-t>Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir. Soru kutusu da öyle: soru ve sütun adları dışında hiçbir şey tarayıcıdan çıkmaz.</p>
   </section>
 
   <p class="dipnot panom-dipnot" data-t>Bu sayfadaki hesaplar senin tarayıcında yapılır; dosyan Kalibre sunucusuna gönderilmez. Karşı taraf adları varsayılan olarak okunmaz, işlem numaraları özetlenir (hash), trader adları takma adla gösterilir. Sonuçlar blotter'ın betimlemesidir ve bankanın resmi K/Z'sinin yerine geçmez.</p>

@@ -3,6 +3,7 @@
 // Yatırım tavsiyesi VERMEZ. İleride (faz 2) işlem günlüğüne göre davranışsal koçluk eklenecek.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { semaTemizle, soruTemizle, gorunumIstemi, gorunumCevabi } from './_lib/gorunum.ts';
 
 export const config = { maxDuration: 30 };
 
@@ -130,6 +131,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
+    // "Ask your data" (lab view builder): schema names + question in, a validated view recipe out. No data.
+    if (body?.mod === 'gorunum') {
+      const sema = semaTemizle(body.sema), soru = soruTemizle(body.soru);
+      if (!sema || !soru) return res.status(400).json({ hata: 'girdi' });
+      const { system, user } = gorunumIstemi(sema, soru);
+      const { reply } = await chat(system, [{ role: 'user', content: user }]);
+      const r = gorunumCevabi(reply, sema);
+      if ('hata' in r) return res.status(422).json(r);
+      return res.status(200).json({ tarif: r.tarif });
+    }
     const { messages, context } = body;
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'messages required' });
@@ -149,6 +160,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (e: any) {
     const detail = e?.message || String(e);
     console.error('[asistan] error:', detail);
+    if ((typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? '')).includes('"gorunum"')) return res.status(503).json({ hata: 'model' });
     const dbg = req.query?.debug === '1';
     // UX: 200 + nazik fallback (widget hata ekranı göstermesin)
     return res.status(200).json({

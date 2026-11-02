@@ -44,6 +44,14 @@ const kurMetni = x => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleS
 const zamanMetni = (sn, tz) => { if (sn === null || sn === undefined) return '–'; const d = new Date((sn + tz * 3600) * 1000); return d.toISOString().slice(11, 19); };
 
 // ---------------------------------------------------------------- yükleme
+// "Sor" kutusu: yerel çözümleyici anlamazsa sunucudaki modele yalnız şema ve soru gider (veri gitmez).
+async function sorUzak(soru, sema) {
+  const r = await fetch('/api/asistan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mod: 'gorunum', soru, sema: { boyutlar: sema.boyutlar.map(b => ({ id: b.id, ad: b.ad })), olculer: sema.olculer.map(o => ({ id: o.id, ad: o.ad, tur: o.tur })) } }) });
+  if (!r.ok) return null;
+  const j = await r.json().catch(() => null);
+  return j?.tarif ?? null;
+}
+
 function durum(metin, hata = false) { const e = $('#yukle-durum'); e.textContent = metin; e.classList.toggle('negatif', hata); }
 const saatDilimi = () => Number($('#saat-dilimi').value) || 0;
 
@@ -502,7 +510,7 @@ function baslat() {
   $('#kz-boyut').addEventListener('change', kzGoster);
   $('#rapor-indir').addEventListener('click', downloadReport);
   $('#rapor-sayfa').addEventListener('click', openReportPage);
-  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: GORUNUM_OLCULERI, depoAnahtari: DEPO.gorunum, t: ceviri, adetAd: 'Kalem', varsayilan: { boyut: 'parite', olcu: 'toplam' },
+  gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: GORUNUM_OLCULERI, uzak: sorUzak, depoAnahtari: DEPO.gorunum, t: ceviri, adetAd: 'Kalem', varsayilan: { boyut: 'parite', olcu: 'toplam' },
     bicim: (tur, x) => (tur === 'para' ? usd(x) : sayi(x)), sinif,
     grupla: boyut => (analiz ? grupla(analiz.katkilar, boyut).map(g => ({ etiket: degerAd(g.ad), degerler: g, adet: g.adet })) : []) });
   window.addEventListener('resize', () => gorunum?.ciz());
