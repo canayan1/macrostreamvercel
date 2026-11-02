@@ -64,9 +64,12 @@ export function baslikPuani(baslik, alan) {
 
 // ---------------------------------------------------------------- başlık satırı ve toplam satırları
 const TOPLAM_RE = /^(toplam|genel toplam|ara toplam|total|totals|grand total|sub ?total|summe|gesamt|zwischensumme|somme|total general)\b/i;
+// Etiket ilk dolu hücrede ("Total ...") ya da herhangi bir hücrede tam olarak ("Summe", "Grand Total:") durabilir.
+const TOPLAM_TAM_RE = /^(toplam|genel toplam|ara toplam|total|totals|grand total|sub ?total|summe|gesamt|zwischensumme|somme|total general)\s*:?$/i;
 export const toplamSatiriMi = satir => {
   const ilk = satir.find(h => String(h ?? '').trim() !== '');
-  return ilk !== undefined && TOPLAM_RE.test(String(ilk).trim());
+  if (ilk !== undefined && TOPLAM_RE.test(String(ilk).trim())) return true;
+  return satir.some(h => typeof h === 'string' && TOPLAM_TAM_RE.test(h.trim()));
 };
 
 // İlk 30 satırda en çok sözlük isabeti olan satır başlıktır (en az 3 isabet).

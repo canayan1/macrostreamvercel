@@ -15,7 +15,7 @@ import { alanTespit, baslikSatiriBul, toplamSatiriMi, zorunluEksik, bicimleriTah
 // 'hata' okunamayan satır. Mutabakatta ayrı sayılır.
 export const GEREKCE_SINIF = {
   'opsiyon': 'dislanan', 'iptal': 'dislanan', 'reddedildi': 'dislanan', 'eski-surum': 'dislanan', 'onaysiz': 'dislanan',
-  'toplam-satiri': 'toplam', 'baslik-oncesi': 'baslik',
+  'toplam-satiri': 'toplam', 'baslik-oncesi': 'baslik', 'baslik-tekrari': 'baslik',
   'tutar-kur-tutarsiz': 'hata', 'valor-islem-tarihinden-once': 'hata', 'bilinmeyen-doviz': 'hata', 'tek-bacakli-swap': 'hata',
   'ndf-fixing-eksik': 'hata', 'bos-zorunlu-alan': 'hata', 'tarih-okunamadi': 'hata', 'tutar-okunamadi': 'hata', 'yon-okunamadi': 'hata',
 };
@@ -160,7 +160,8 @@ export function iceAktar(satirlar, ayar = {}) {
   const eksik = zorunluEksik(e);
   const bi = tespit.baslikIndex;
   if (bi < 0 || eksik.length) {
-    return { bacaklar: [], atlanan, uyarilar: [{ kod: bi < 0 ? 'baslik-yok' : 'zorunlu-alan-eksik', detay: eksik.join(',') }], sayac, tespit, eslesme: e, eksik };
+    const ozet = { okunanSatir: satirlar.length, baslikOncesi: bi < 0 ? satirlar.length : bi, baslikSatiri: bi < 0 ? 0 : 1, bosSatir: 0, toplamSatiri: 0, aktarilan: 0, dislanan: 0, hatali: bi < 0 ? 0 : Math.max(0, satirlar.length - bi - 1) };
+    return { bacaklar: [], atlanan, uyarilar: [{ kod: bi < 0 ? 'baslik-yok' : 'zorunlu-alan-eksik', detay: eksik.join(',') }], sayac, ozet, tespit, eslesme: e, eksik };
   }
   for (let i = 0; i < bi; i++) { sayac.baslikOncesi++; atlanan.push({ satirNo: satirlar[i].no ?? i + 1, gerekce: 'baslik-oncesi' }); }
 
@@ -192,12 +193,16 @@ export function iceAktar(satirlar, ayar = {}) {
     if (oy.size) puanOlcek = [...oy.entries()].sort((a, b) => b[1] - a[1])[0][0];
   }
 
+  // Sayfa sonlarında yinelenen başlık satırları (rapor dökümleri): veri değil, başlık sayılır.
+  const satirAnahtari = s => s.map(h => norm(h)).join('|').replace(/\|+$/, '');
+  const baslikAnahtari = satirAnahtari(satirlar[bi]);
   const ham = []; // satır → ara kayıt (sürüm ve swap işlemleri için)
   for (let i = bi + 1; i < satirlar.length; i++) {
     const s = satirlar[i];
     const satirNo = s.no ?? i + 1;
     sayac.okunan++;
     if (!s.some(h => String(h ?? '').trim() !== '')) { sayac.bos++; continue; }
+    if (satirAnahtari(s) === baslikAnahtari) { sayac.baslikOncesi++; atlanan.push({ satirNo, gerekce: 'baslik-tekrari' }); continue; }
     if (toplamSatiriMi(s)) { sayac.toplamSatiri++; atlanan.push({ satirNo, gerekce: 'toplam-satiri' }); continue; }
     const r = satirCevir(s, satirNo);
     if (r.gerekce) atlanan.push({ satirNo, gerekce: r.gerekce, alan: r.alan });
