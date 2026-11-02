@@ -4,6 +4,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { depoSec } from './_lib/depo.ts';
 import { talepIsle } from './_lib/talep.ts';
+import { demoBildir } from './_lib/bildirim.ts';
 
 export const config = { maxDuration: 10 };
 
@@ -24,7 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try { govde = JSON.parse(govde); } catch { return res.status(400).json({ hata: 'govde' }); }
   }
   try {
-    const r = await talepIsle(depo, govde, istemciIp(req.headers, (req.socket as any)?.remoteAddress ?? ''));
+    const r = await talepIsle(depo, govde, istemciIp(req.headers, (req.socket as any)?.remoteAddress ?? ''), Date.now(), k => demoBildir(k));
     if (r.durum === 204) return res.status(204).end();
     return res.status(r.durum).json(r.govde ?? {});
   } catch {

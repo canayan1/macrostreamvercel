@@ -42,6 +42,10 @@
 
   var pencere = document.getElementById('erken-erisim');
   var formEl = pencere && pencere.querySelector('form');
+  // /request-a-demo?product=analytics|desk-signal: the product field is filled in advance.
+  var urunSec = formEl && formEl.querySelector('select[name=urun]');
+  var urun = q.get('product');
+  if (urunSec && urun && urunSec.querySelector('option[value="' + urun.replace(/[^a-z-]/g, '') + '"]')) urunSec.value = urun;
   var mesaj = pencere && pencere.querySelector('[data-mesaj]');
   var METIN = dil === 'tr'
     ? { eposta: 'Geçerli bir e-posta adresi girin.', onay: 'Devam etmek için onay kutusunu işaretleyin.', hiz: 'Çok sık deneme. Biraz sonra yeniden deneyin.', genel: 'Gönderilemedi. Biraz sonra yeniden deneyin ya da markets@kalibrefin.com adresine yazın.', tamam: 'Listedesiniz. Erken erişim açıldığında e-posta göndereceğiz.' }

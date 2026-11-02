@@ -20,8 +20,8 @@ ESLER = {'/tr': '/', '/tr/beta': '/beta', '/tr/account': '/account', '/tr/sign-i
          '/tr/pricing': '/pricing', '/tr/risk-disclosure': '/risk-disclosure', '/tr/terms': '/terms', '/tr/privacy': '/privacy',
          '/tr/refunds': '/refunds', '/tr/cookies': '/cookies',
          '/tr/rule-guard': '/rule-guard', '/tr/trade-analytics': '/trade-analytics', '/tr/fx-blotter': '/fx-blotter',
-         '/tr/kalibre-lab': '/kalibre-lab', '/tr/demo': '/demo', '/tr/company': '/company', '/tr/desk-signal': '/desk-signal', '/tr/analytics': '/analytics'}
-ONCELIK = {'/': '1.0', '/tr': '0.9', '/analytics': '0.9', '/trade-analytics': '0.9', '/fx-blotter': '0.9', '/kalibre-lab': '0.8', '/demo': '0.8', '/rule-guard': '0.8', '/desk-signal': '0.8', '/company': '0.7', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8',
+         '/tr/kalibre-lab': '/kalibre-lab', '/tr/demo': '/demo', '/tr/company': '/company', '/tr/desk-signal': '/desk-signal', '/tr/analytics': '/analytics', '/tr/request-a-demo': '/request-a-demo'}
+ONCELIK = {'/': '1.0', '/tr': '0.9', '/analytics': '0.9', '/trade-analytics': '0.9', '/fx-blotter': '0.9', '/kalibre-lab': '0.8', '/demo': '0.8', '/rule-guard': '0.8', '/desk-signal': '0.8', '/company': '0.7', '/lab': '0.9', '/pricing': '0.9', '/tr/pricing': '0.8', '/request-a-demo': '0.9',
            '/prop': '0.8', '/tr/prop': '0.7', '/forex': '0.8', '/tr/forex': '0.7'}
 
 TURKISH_PUBLIC = False  # same switch as yerel/sayfa-uret.py

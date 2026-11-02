@@ -163,3 +163,23 @@ test('treasury: demo isteği kurum, masa ve sistem cevaplarını kabul eder, izi
     cevaplar: { kurum: 'uzayli' } }), '1.2.3.5', T);
   assert.equal(kotu.durum, 400);
 });
+
+test('demo: /request-a-demo kaydı ürün, kurum, masa ve sistem cevaplarını alır; bildirici kayıtla çağrılır, hatası sonucu bozmaz', async () => {
+  const d = izliDepo();
+  const gelen = [];
+  const iyi = await talepIsle(d, olay({ sayfa: 'demo', olay: 'form-gonder', eposta: 'head@desk.example', onay: true,
+    cevaplar: { urun: 'ikisi', kurum: 'banka', masa: '6-20', sistem: 'Kondor export, FXall tickets by email' } }), '9.9.9.9', T, async k => { gelen.push(k); });
+  assert.equal(iyi.durum, 200);
+  assert.equal(gelen.length, 1);
+  assert.equal(gelen[0].eposta, 'head@desk.example');
+  assert.deepEqual(gelen[0].cevaplar, { urun: 'ikisi', kurum: 'banka', masa: '6-20', sistem: 'Kondor export, FXall tickets by email' });
+  const k = [...d.anahtarlar].find(a => a.startsWith('talep:kayit:demo:'));
+  assert.ok(k);
+  const patlayan = await talepIsle(d, olay({ sayfa: 'demo', olay: 'form-gonder', eposta: 'two@desk.example', onay: true,
+    cevaplar: { urun: 'analytics' } }), '9.9.9.9', T, async () => { throw new Error('resend down'); });
+  assert.equal(patlayan.durum, 200);
+  const kotu = await talepIsle(d, olay({ sayfa: 'demo', olay: 'form-gonder', eposta: 'x@desk.example', onay: true,
+    cevaplar: { urun: 'hepsi' } }), '9.9.9.9', T);
+  assert.equal(kotu.durum, 400);
+  assert.equal(kotu.govde.alan, 'urun');
+});

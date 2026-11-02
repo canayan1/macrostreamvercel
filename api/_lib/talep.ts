@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import type { Depo } from './depo.ts';
 
-export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury', 'desk-signal'] as const;
+export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury', 'desk-signal', 'demo'] as const;
 export const OLAYLAR = ['goruntuleme', 'fiyat-tik', 'form-gonder'] as const;
 export const SINIR = { olayDakika: 60, formSaat: 5, metin: 300 };
 export const SURE = { sayac: 400 * 86400, kayit: 395 * 86400 };
@@ -42,7 +42,17 @@ const SORULAR: Record<Sayfa, Record<string, readonly string[] | 'metin'>> = {
     masa: ['2-5', '6-20', '21-50', '50+'],
     simdi: 'metin',
   },
+  // /request-a-demo: her iki ürün için tek demo isteği sayfası (mailing bağlantılarının hedefi).
+  demo: {
+    urun: ['analytics', 'desk-signal', 'ikisi'],
+    kurum: ['banka', 'kurumsal-hazine', 'araci-kurum', 'prop-firma', 'fon', 'diger'],
+    masa: ['1', '2-5', '6-20', '20+'],
+    sistem: 'metin',
+  },
 };
+
+// Form kaydından sonra çağrılır (ör. kurucuya e-posta); hata kaydı etkilemez.
+export type Bildirici = (kayit: { eposta: string; sayfa: string; kaynak: string; dil: string; cevaplar: Record<string, string>; zaman: string }) => Promise<unknown>;
 
 export function ipOzeti(ip: string, tuz = process.env.TALEP_TUZ ?? 'kalibre-talep'): string {
   return createHash('sha256').update(`${tuz}|${ip}`).digest('hex').slice(0, 16);
@@ -60,7 +70,7 @@ const EPOSTA_RE = /^[^\s@<>"']{1,64}@[^\s@<>"']{1,190}\.[a-z]{2,24}$/i;
 
 export type Sonuc = { durum: number; govde?: Record<string, unknown> };
 
-export async function talepIsle(depo: Depo, govde: unknown, ip: string, simdi = Date.now()): Promise<Sonuc> {
+export async function talepIsle(depo: Depo, govde: unknown, ip: string, simdi = Date.now(), bildir?: Bildirici): Promise<Sonuc> {
   if (!govde || typeof govde !== 'object' || Array.isArray(govde)) return { durum: 400, govde: { hata: 'govde' } };
   const g = govde as Record<string, unknown>;
   // Bot tuzağı: görünmez alan doluysa kayıt yapılmaz ama başarı döner.
@@ -114,6 +124,7 @@ export async function talepIsle(depo: Depo, govde: unknown, ip: string, simdi = 
   const yeni = await depo.yazYoksa(anahtar, JSON.stringify(kayit), SURE.kayit);
   if (yeni) await sayac();
   else await depo.yaz(anahtar, JSON.stringify(kayit), SURE.kayit);
+  if (bildir) { try { await bildir(kayit); } catch { /* bildirim isteğe bağlı */ } }
   return { durum: 200, govde: { tamam: true, yeni } };
 }
 

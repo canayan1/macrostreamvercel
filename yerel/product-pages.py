@@ -88,7 +88,7 @@ def text_field(name, label, placeholder=""):
     ph = f' placeholder="{placeholder}"' if placeholder else ""
     return f'<label for="ee-{name}">{label}<input type="text" id="ee-{name}" name="{name}" maxlength="300"{ph} data-soru></label>'
 
-def signup_dialog(lang, questions, demo=False):
+def signup_dialog(lang, questions, demo=False, inline=False):
     tr = lang == "tr"
     privacy = "/tr/privacy#collect-why" if tr else "/privacy#collect-why"
     if demo:
@@ -104,8 +104,10 @@ def signup_dialog(lang, questions, demo=False):
         stored = T(lang, "We store your email, your answers and the time you joined.", "E-postanızı, cevaplarınızı ve katılma zamanını saklarız.")
         done = ""
     close = T(lang, "Close", "Kapat")
+    kapat = "" if inline else f'<button type="button" class="dugme ikincil" data-kapat>{close}</button>'
+    ac, kapa = (f'<div id="erken-erisim" class="talep-kart"{done}>', '</div>') if inline else (f'<dialog id="erken-erisim" aria-labelledby="ee-baslik"{done}>', '</dialog>')
     return f'''
-<dialog id="erken-erisim" aria-labelledby="ee-baslik"{done}>
+{ac}
   <h2 id="ee-baslik">{heading}</h2>
   <p>{intro}</p>
   <form novalidate>
@@ -117,13 +119,13 @@ def signup_dialog(lang, questions, demo=False):
     <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>{consent}</span></label>
     <p class="not">{stored} {T(lang, "Details are in the", "Ayrıntılar")} <a href="{privacy}">{T(lang, "privacy policy", "gizlilik politikasında")}</a>.</p>
     <div class="kapat-satir">
-      <button type="button" class="dugme ikincil" data-kapat>{close}</button>
+      {kapat}
       <button type="submit" class="dugme">{submit}</button>
     </div>
   </form>
   <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
-  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>{close}</button></div>
-</dialog>'''
+  <div class="kapat-satir" data-sonra hidden>{kapat}</div>
+{kapa}'''
 
 def price_block(lang, product, bullets, yearly):
     tr = lang == "tr"
@@ -175,6 +177,7 @@ def LAB(lang, path):
         return path
     return path + ("&amp;" if "?" in path else "?") + "lang=tr"
 
+DEMO_REQUEST = "/request-a-demo"
 TA_SAMPLE = "/lab/analytics?file=templates/kalibre-trade-log-example.xlsx"
 FX_SAMPLE = {"en": "/lab/blotter?file=samples/fx-blotter-sample.xlsx", "tr": "/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx"}
 FX_TOUR = {k: v + "&amp;tour=1" for k, v in FX_SAMPLE.items()}
@@ -282,7 +285,7 @@ def home(lang):
   <div class="wrap">
     <h1 class="display">{T(lang, "FX, solved.", "FX'i çözüyoruz.")}</h1>
     <p class="sub">{T(lang, "Every trade explained, in seconds.", "Her işlem, saniyeler içinde açıklanmış.")}</p>
-    <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/analytics"), T(lang, "What Analytics does", "Analytics ne yapar"), "")}</div>
+    <div class="actions">{btn(P(lang, "/demo"), T(lang, "Try the demo", "Demoyu dene"))}{more(P(lang, "/analytics"), T(lang, "What Analytics does", "Analytics ne yapar"), "")}{more(P(lang, DEMO_REQUEST), T(lang, "Request a demo", "Demo iste"), "")}</div>
   </div>
   <figure class="home-hero-media"><picture><source type="image/webp" srcset="/static/urun/hero/home-{lang}-1x.webp 1440w, /static/urun/hero/home-{lang}-2x.webp 2880w" sizes="(max-width: 1440px) 100vw, 1440px"><img src="/static/urun/hero/home-{lang}.png" width="2880" height="1720" alt="{T(lang, "FX Blotter Analytics on a laptop: total P&amp;L split into price, points, carry and MTM, and seven reconciliation checks passed", "Dizüstünde FX Blotter Analytics: fiyat, puan, taşıma ve MTM olarak ayrılmış toplam K/Z ve geçen yedi mutabakat kontrolü")}" fetchpriority="high" decoding="async"></picture></figure>
 </section>
@@ -364,7 +367,7 @@ def analytics(lang):
 {local}
 {page_hero(T(lang, "Connect. Build. Present.", "Bağla. Kur. Sun."),
            T(lang, "One analytics product for the trading records you already keep: MT5 reports, trade logs and desk blotters. Prebuilt analyses in seconds, your own views when you want them, and a report to hand on. Files are read in your browser and stay there.", "Zaten tuttuğun işlem kayıtları için tek analiz ürünü: MT5 raporları, işlem kayıtları ve masa blotter'ları. Saniyeler içinde hazır analizler, istediğinde kendi görünümlerin ve elden verilecek bir rapor. Dosyalar tarayıcında okunur ve orada kalır."),
-           btn(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene")) + more(P(lang, "/demo"), T(lang, "All demos", "Bütün demolar")),
+           btn(LAB(lang, TA_SAMPLE), T(lang, "Try the sample", "Örneği dene")) + more(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste")),
            hero_image("suite", lang, T(lang, "Analytics on a laptop: Trade Analytics, FX Blotter and the backtest open on sample files", "Dizüstünde Analytics: örnek dosyalarla açık Trade Analytics, FX Blotter ve backtest")),
            kicker="Analytics" + status_tag("beta", lang))}
 
@@ -424,7 +427,8 @@ def analytics(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "Pricing.", "Fiyat.")}</h2>
     <p class="lede">{T(lang, "Priced per desk or per account. Write to us with what you trade and how many people read the result, and we reply with a quote.", "Masa ya da hesap başına fiyatlanır. Ne işlem yaptığını ve sonucu kaç kişinin okuduğunu yaz, teklifle dönelim.")}</p>
-    <div class="actions">{btn("mailto:markets@kalibrefin.com?subject=Analytics%20pricing", T(lang, "Contact us for pricing", "Fiyat için bize yaz"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample first", "Önce örneği dene"))}</div>
+    <div class="actions">{btn(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Try the sample first", "Önce örneği dene"))}</div>
+    <p class="fine">{T(lang, "Prefer email? Write to", "E-posta mı? Yaz:")} <a href="mailto:markets@kalibrefin.com?subject=Analytics%20pricing">markets@kalibrefin.com</a>.</p>
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>'''
@@ -522,7 +526,7 @@ def fx_blotter(lang):
     fx = SUMMARY[f"fxBlotter_{lang}"]
     sample = FX_SAMPLE[lang]
     local = lnav("FX Blotter", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Reconciliation", "Mutabakat"), "#reconciliation"), (T(lang, "Sample files", "Örnek dosyalar"), "#samples"), (T(lang, "Pilots", "Pilotlar"), "#pilots")],
-                 T(lang, "Request a demo", "Demo iste"), "#demo", " data-erken-erisim")
+                 T(lang, "Request a demo", "Demo iste"), P(lang, DEMO_REQUEST + "?product=analytics"))
     inp, res = ("fx-blotter-ornek", "fx-blotter-ornek-sonuc") if tr else ("fx-blotter-sample", "fx-blotter-sample-result")
     other_inp = "fx-blotter-sample" if tr else "fx-blotter-ornek"
     kind = [("banka", T(lang, "Bank", "Banka")), ("kurumsal-hazine", T(lang, "Corporate treasury", "Şirket hazinesi")), ("araci-kurum", T(lang, "Broker", "Aracı kurum")), ("prop-firma", T(lang, "Prop firm", "Prop firması")), ("fon", T(lang, "Fund or asset manager", "Fon ya da portföy yönetimi")), ("diger", T(lang, "Other", "Diğer"))]
@@ -534,7 +538,7 @@ def fx_blotter(lang):
 {local}
 {page_hero(T(lang, "Your blotter, explained.", "Blotter'ın, açıklanmış."),
            T(lang, "Drop in your desk's export. Every total opens its deals.", "Masanın dökümünü bırak. Her toplam deal'lerini açar."),
-           btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more("#demo", T(lang, "Request a demo", "Demo iste"), " data-erken-erisim"),
+           btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste")),
            hero_image("fx-blotter", lang, T(lang, "FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM", "Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu")),
            kicker="Analytics · FX Blotter" + status_tag("beta", lang))}
 
@@ -601,10 +605,9 @@ def fx_blotter(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "See it on your desk's export.", "Masanızın dökümünde görün.")}</h2>
     <p class="lede">{T(lang, "Tell us your organization type, desk size and the system your blotter comes from. We will reply by email to find a time.", "Kurum türünüzü, masa büyüklüğünü ve blotter'ın geldiği sistemi yazın. Uygun bir zaman için e-postayla döneriz.")}</p>
-    <div class="actions">{btn("#demo", T(lang, "Request a demo", "Demo iste"), " data-erken-erisim")}</div>
+    <div class="actions">{btn(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste"))}</div>
   </div>
 </section>
-{signup_dialog(lang, questions, demo=True)}
 </div>'''
     page("tr/fx-blotter/index.html" if tr else "fx-blotter/index.html", lang,
          T(lang, "FX Blotter Analytics for treasury and dealing desks", "FX Blotter Analytics: hazine ve dealing masaları için"),
@@ -678,7 +681,7 @@ DESK_LIVE = "/lab/desk-live"
 
 def desk_signal(lang):
     tr = lang == "tr"
-    local = lnav("Desk Signal", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "How it works", "Nasıl çalışır"), "#how"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Next", "Sırada"), "#next"), (T(lang, "Early access", "Erken erişim"), "#pricing")],
+    local = lnav("Desk Signal", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "How it works", "Nasıl çalışır"), "#how"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Next", "Sırada"), "#next"), (T(lang, "Pricing", "Fiyat"), "#pricing")],
                  T(lang, "Try the demo", "Demoyu dene"), LAB(lang, DESK_DEMO))
     questions = (select("kurum", T(lang, "Where do you work?", "Nerede çalışıyorsun?"), [("prop-firma", T(lang, "Prop firm", "Prop firması")), ("banka", T(lang, "Bank", "Banka")), ("kurumsal-hazine", T(lang, "Corporate treasury", "Kurumsal hazine")), ("araci-kurum", T(lang, "Broker", "Aracı kurum")), ("fon", T(lang, "Fund", "Fon")), ("diger", T(lang, "Other", "Başka"))], T(lang, "Choose", "Seç"))
                  + select("masa", T(lang, "How many traders on the desk?", "Masada kaç trader var?"), [("2-5", "2-5"), ("6-20", "6-20"), ("21-50", "21-50"), ("50+", T(lang, "More than 50", "50'den fazla"))], T(lang, "Choose", "Seç"))
@@ -731,7 +734,8 @@ def desk_signal(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "Start a desk.", "Masa kur.")}</h2>
     <p class="lede">{T(lang, "Start a desk in your browser now and send the invite link to your traders. Priced per seat; write to us for a quote.", "Masanı şimdi tarayıcında kur ve davet bağlantısını trader'larına gönder. Koltuk başına fiyatlanır; teklif için bize yaz.")}</p>
-    <div class="actions">{btn(DESK_LIVE, T(lang, "Start a desk", "Masa kur"))}{btn("mailto:markets@kalibrefin.com?subject=Desk%20Signal%20pricing", T(lang, "Contact us for pricing", "Fiyat için bize yaz"), "", ghost=True)}{more(LAB(lang, DESK_DEMO), T(lang, "Try the demo first", "Önce demoyu dene"))}</div>
+    <div class="actions">{btn(DESK_LIVE, T(lang, "Start a desk", "Masa kur"))}{btn(P(lang, DEMO_REQUEST + "?product=desk-signal"), T(lang, "Request a demo", "Demo iste"), "", ghost=True)}{more(LAB(lang, DESK_DEMO), T(lang, "Try the demo first", "Önce demoyu dene"))}</div>
+    <p class="fine">{T(lang, "Prefer email? Write to", "E-posta mı? Yaz:")} <a href="mailto:markets@kalibrefin.com?subject=Desk%20Signal%20pricing">markets@kalibrefin.com</a>.</p>
     {faq([(T(lang, "Does it replace our chat or recorded lines?", "Sohbeti ya da kayıtlı hatları değiştirir mi?"), T(lang, "No. It sits next to them for the quick signals. Your firm's own record-keeping rules still apply, and the signal log helps you keep them.", "Hayır. Hızlı sinyaller için onların yanında durur. Firmanın kendi kayıt tutma kuralları geçerliliğini korur; sinyal logu bunlara yardımcı olur.")),
           (T(lang, "Does the demo send anything?", "Demo bir şey gönderiyor mu?"), T(lang, "No. The demo runs in your browser and sends nothing to a server.", "Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.")),
           (T(lang, "Can we choose our own colours and meanings?", "Renkleri ve anlamları kendimiz seçebilir miyiz?"), T(lang, "Yes. Up to nine signals, each with its own meaning and key. You choose which ones ring until answered.", "Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.")),
@@ -741,7 +745,6 @@ def desk_signal(lang):
     <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
   </div>
 </section>
-{signup_dialog(lang, questions)}
 </div>'''
     page("tr/desk-signal/index.html" if tr else "desk-signal/index.html", lang,
          T(lang, "Desk Signal: colour signals from the head of desk to every trader", "Desk Signal: masa şefinden her trader'a renkli sinyal"),
@@ -888,7 +891,7 @@ def pricing(lang):
     body = f'''
 {page_hero(T(lang, "Pricing.", "Fiyat."),
            T(lang, "Analytics is priced per desk or per account, Desk Signal per seat. Write to us with what you trade and how many people read the result; we reply with a quote. The samples are open to try first.", "Analytics masa ya da hesap başına, Desk Signal koltuk başına fiyatlanır. Ne işlem yaptığını ve sonucu kaç kişinin okuduğunu yaz; teklifle dönelim. Örnekler denemeye açık."),
-           btn("mailto:markets@kalibrefin.com?subject=Pricing", T(lang, "Contact us for pricing", "Fiyat için bize yaz")), f'<div class="plans">{cards}</div>', media_cls="plans-wrap")}
+           btn(P(lang, DEMO_REQUEST), T(lang, "Request a demo", "Demo iste")) + more("mailto:markets@kalibrefin.com?subject=Pricing", T(lang, "Or write to us", "Ya da bize yaz")), f'<div class="plans">{cards}</div>', media_cls="plans-wrap")}
 
 <section class="sec mist center" id="waitlist">
   <div class="wrap">
@@ -922,6 +925,41 @@ def pricing(lang):
          T(lang, "Pricing: per desk, per account or per seat", "Fiyat: masa, hesap ya da koltuk başına"),
          T(lang, "Analytics is priced per desk or per account and Desk Signal per seat. Contact us for a quote; the samples are open to try.", "Analytics masa ya da hesap başına, Desk Signal koltuk başına fiyatlanır. Teklif için bize yaz; örnekler denemeye açık."),
          body, P(lang, "/pricing"), "/pricing" if tr else "/tr/pricing", script)
+
+# ================================================================== Request a demo
+def request_demo(lang):
+    tr = lang == "tr"
+    questions = (select("urun", T(lang, "Which product?", "Hangi ürün?"), [("analytics", "Analytics"), ("desk-signal", "Desk Signal"), ("ikisi", T(lang, "Both", "İkisi"))], T(lang, "Choose", "Seç"))
+                 + select("kurum", T(lang, "Where do you work?", "Nerede çalışıyorsun?"), [("banka", T(lang, "Bank", "Banka")), ("kurumsal-hazine", T(lang, "Corporate treasury", "Kurumsal hazine")), ("araci-kurum", T(lang, "Broker", "Aracı kurum")), ("prop-firma", T(lang, "Prop firm", "Prop firması")), ("fon", T(lang, "Fund", "Fon")), ("diger", T(lang, "Other", "Başka"))], T(lang, "Choose", "Seç"))
+                 + select("masa", T(lang, "How many people would use it?", "Kaç kişi kullanır?"), [("1", "1"), ("2-5", "2-5"), ("6-20", "6-20"), ("20+", T(lang, "More than 20", "20'den fazla"))], T(lang, "Choose", "Seç"))
+                 + text_field("sistem", T(lang, "Where do your trade records come from today?", "İşlem kayıtların bugün nereden geliyor?"), T(lang, "Trading platform, treasury system, MT5, email tickets, Excel", "İşlem platformu, hazine sistemi, MT5, e-posta biletleri, Excel")))
+    body = f'''
+<div data-talep-sayfa="demo">
+{page_hero(T(lang, "See it on your own files.", "Kendi dosyalarında gör."),
+           T(lang, "A 30-minute call on our sample files or an anonymized export of yours. We walk through the analyses and Desk Signal, then set up a pilot for your desk.", "Örnek dosyalarımız ya da sizin anonim bir dökümünüz üzerinde 30 dakikalık görüşme. Analizleri ve Desk Signal'ı birlikte geçeriz, sonra masanız için bir pilot kurarız."),
+           "", signup_dialog(lang, questions, demo=True, inline=True) + f'<p class="fine center">{T(lang, "Prefer email? Write to", "E-posta mı? Yaz:")} <a href="mailto:markets@kalibrefin.com?subject=Demo%20request">markets@kalibrefin.com</a>. {T(lang, "Or try first:", "Ya da önce dene:")} <a href="{P(lang, "/demo")}">{T(lang, "all demos", "bütün demolar")}</a>.</p>', kicker=T(lang, "Request a demo", "Demo iste"), media_cls="demo-wrap")}
+
+<section class="sec center" id="how">
+  <div class="wrap">
+    {steps([(T(lang, "Tell us about your desk", "Masanı anlat"), T(lang, "Four short questions below. We reply by email within one business day to find a time.", "Aşağıda dört kısa soru. Bir iş günü içinde e-postayla dönüp zaman buluruz.")),
+            (T(lang, "Walk through the product", "Ürünü birlikte geç"), T(lang, "On our sample blotter, our sample MT5 report or an anonymized export of yours. Do not send real client data.", "Örnek blotter'ımız, örnek MT5 raporumuz ya da sizin anonim bir dökümünüz üzerinde. Gerçek müşteri verisi göndermeyin.")),
+            (T(lang, "Start the pilot", "Pilotu başlat"), T(lang, "Your desk uses it on its own files, in its own browsers. Pricing is agreed per desk, per account or per seat.", "Masanız kendi dosyalarında, kendi tarayıcılarında kullanır. Fiyat masa, hesap ya da koltuk başına anlaşılır."))])}
+  </div>
+</section>
+
+<section class="sec center">
+  <div class="wrap">
+    {faq([(T(lang, "What do we need to prepare?", "Ne hazırlamamız gerekiyor?"), T(lang, "Nothing. If you want to see your own data, export one day or one month from your platform or treasury system and remove client names first.", "Hiçbir şey. Kendi verinizi görmek isterseniz platformunuzdan ya da hazine sisteminizden bir gün ya da bir ay dışa aktarın ve önce müşteri adlarını kaldırın.")),
+          (T(lang, "Does anything get installed?", "Bir şey kurulur mu?"), T(lang, "No. Analytics reads files in the browser and keeps them there. Desk Signal runs from an invite link in a browser tab.", "Hayır. Analytics dosyaları tarayıcıda okur ve orada tutar. Desk Signal bir tarayıcı sekmesindeki davet bağlantısından çalışır.")),
+          (T(lang, "Who is on the call?", "Görüşmede kim olur?"), T(lang, "The founder, a former bank treasurer. Bring whoever reads the result: the head of desk, risk, or the person who closes the day.", "Kurucu, eski bir banka hazinecisi. Sonucu okuyan kim ise getirin: masa şefi, risk ya da günü kapatan kişi."))])}
+    <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
+  </div>
+</section>
+</div>'''
+    page("tr/request-a-demo/index.html" if tr else "request-a-demo/index.html", lang,
+         T(lang, "Request a demo of Kalibre Markets", "Kalibre Markets demosu iste"),
+         T(lang, "A 30-minute walkthrough of Analytics and Desk Signal on sample files or your anonymized export, then a pilot for your desk.", "Örnek dosyalar ya da anonim dökümünüz üzerinde Analytics ve Desk Signal'ın 30 dakikalık tanıtımı, ardından masanız için pilot."),
+         body, P(lang, "/request-a-demo"), "/request-a-demo" if tr else "/tr/request-a-demo", '<script src="/static/talep.js" defer></script>')
 
 def company(lang):
     tr = lang == "tr"
@@ -991,6 +1029,7 @@ for lang in ("en", "tr"):
     desk_signal(lang)
     kalibre_lab(lang)
     demos(lang)
+    request_demo(lang)
     company(lang)
     if not ODEME_ACIK:
         pricing(lang)

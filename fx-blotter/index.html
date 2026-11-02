@@ -49,10 +49,10 @@
   <div class="wrap">
     <a class="lnav-title" href="#top">FX Blotter</a>
     <ul class="lnav-links"><li><a href="#top">Overview</a></li><li><a href="#reconciliation">Reconciliation</a></li><li><a href="#samples">Sample files</a></li><li><a href="#pilots">Pilots</a></li></ul>
-    <a class="btn" href="#demo" data-erken-erisim>Request a demo</a>
+    <a class="btn" href="/request-a-demo?product=analytics">Request a demo</a>
   </div>
 </nav>
-<section class="hero page-hero"><div class="wrap"><span class="kicker">Analytics · FX Blotter<span class="status status-beta">Beta</span></span><h1 class="display">Your blotter, explained.</h1><p class="sub">Drop in your desk's export. Every total opens its deals.</p><div class="actions"><a class="btn" href="/lab/blotter?file=samples/fx-blotter-sample.xlsx&amp;tour=1">Take the 2-minute tour</a><a class="more" href="#demo" data-erken-erisim>Request a demo</a></div></div><div class="page-hero-media "><picture><source type="image/webp" srcset="/static/urun/hero/fx-blotter-en-1x.webp 1440w, /static/urun/hero/fx-blotter-en-2x.webp 2880w" sizes="(max-width: 1240px) 100vw, 1240px"><img src="/static/urun/hero/fx-blotter-en.png" width="2880" height="1720" alt="FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM" fetchpriority="high" decoding="async"></picture></div></section>
+<section class="hero page-hero"><div class="wrap"><span class="kicker">Analytics · FX Blotter<span class="status status-beta">Beta</span></span><h1 class="display">Your blotter, explained.</h1><p class="sub">Drop in your desk's export. Every total opens its deals.</p><div class="actions"><a class="btn" href="/lab/blotter?file=samples/fx-blotter-sample.xlsx&amp;tour=1">Take the 2-minute tour</a><a class="more" href="/request-a-demo?product=analytics">Request a demo</a></div></div><div class="page-hero-media "><picture><source type="image/webp" srcset="/static/urun/hero/fx-blotter-en-1x.webp 1440w, /static/urun/hero/fx-blotter-en-2x.webp 2880w" sizes="(max-width: 1240px) 100vw, 1240px"><img src="/static/urun/hero/fx-blotter-en.png" width="2880" height="1720" alt="FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM" fetchpriority="high" decoding="async"></picture></div></section>
 
 <section class="sec center" id="how">
   <div class="wrap">
@@ -111,29 +111,9 @@
   <div class="wrap">
     <h2 class="title">See it on your desk's export.</h2>
     <p class="lede">Tell us your organization type, desk size and the system your blotter comes from. We will reply by email to find a time.</p>
-    <div class="actions"><a class="btn" href="#demo" data-erken-erisim>Request a demo</a></div>
+    <div class="actions"><a class="btn" href="/request-a-demo?product=analytics">Request a demo</a></div>
   </div>
 </section>
-
-<dialog id="erken-erisim" aria-labelledby="ee-baslik" data-tamam="Thanks. We will email you to arrange a demo.">
-  <h2 id="ee-baslik">Request a demo</h2>
-  <p>The demo is free and runs on our sample blotter or an anonymized export of yours. Do not send real client data.</p>
-  <form novalidate>
-    <div class="alanlar">
-      <label for="ee-eposta">Work email<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
-      <label for="ee-kurum">Organization type<select id="ee-kurum" name="kurum" data-soru><option value="">Choose</option><option value="banka">Bank</option><option value="kurumsal-hazine">Corporate treasury</option><option value="araci-kurum">Broker</option><option value="prop-firma">Prop firm</option><option value="fon">Fund or asset manager</option><option value="diger">Other</option></select></label><label for="ee-masa">People on the desk<select id="ee-masa" name="masa" data-soru><option value="">Choose</option><option value="1">1</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="20+">20+</option></select></label><label for="ee-sistem">Which system does your blotter come from?<input type="text" id="ee-sistem" name="sistem" maxlength="300" placeholder="e.g. 360T, Murex, Excel" data-soru></label>
-    </div>
-    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>I agree to receive emails from Kalibre Markets about the demo and product updates. I can unsubscribe at any time.</span></label>
-    <p class="not">We store your email, your answers and the time of your request. Details are in the <a href="/privacy#collect-why">privacy policy</a>.</p>
-    <div class="kapat-satir">
-      <button type="button" class="dugme ikincil" data-kapat>Close</button>
-      <button type="submit" class="dugme">Request a demo</button>
-    </div>
-  </form>
-  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
-  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Close</button></div>
-</dialog>
 </div>
 </main>
 <footer class="gfoot">

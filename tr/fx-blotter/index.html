@@ -51,10 +51,10 @@
   <div class="wrap">
     <a class="lnav-title" href="#top">FX Blotter</a>
     <ul class="lnav-links"><li><a href="#top">Genel bakış</a></li><li><a href="#reconciliation">Mutabakat</a></li><li><a href="#samples">Örnek dosyalar</a></li><li><a href="#pilots">Pilotlar</a></li></ul>
-    <a class="btn" href="#demo" data-erken-erisim>Demo iste</a>
+    <a class="btn" href="/tr/request-a-demo?product=analytics">Demo iste</a>
   </div>
 </nav>
-<section class="hero page-hero"><div class="wrap"><span class="kicker">Analytics · FX Blotter<span class="status status-beta">Beta</span></span><h1 class="display">Blotter'ın, açıklanmış.</h1><p class="sub">Masanın dökümünü bırak. Her toplam deal'lerini açar.</p><div class="actions"><a class="btn" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx&amp;tour=1">2 dakikalık turu başlat</a><a class="more" href="#demo" data-erken-erisim>Demo iste</a></div></div><div class="page-hero-media "><picture><source type="image/webp" srcset="/static/urun/hero/fx-blotter-tr-1x.webp 1440w, /static/urun/hero/fx-blotter-tr-2x.webp 2880w" sizes="(max-width: 1240px) 100vw, 1240px"><img src="/static/urun/hero/fx-blotter-tr.png" width="2880" height="1720" alt="Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu" fetchpriority="high" decoding="async"></picture></div></section>
+<section class="hero page-hero"><div class="wrap"><span class="kicker">Analytics · FX Blotter<span class="status status-beta">Beta</span></span><h1 class="display">Blotter'ın, açıklanmış.</h1><p class="sub">Masanın dökümünü bırak. Her toplam deal'lerini açar.</p><div class="actions"><a class="btn" href="/lab/blotter?lang=tr&amp;file=samples/fx-blotter-ornek.xlsx&amp;tour=1">2 dakikalık turu başlat</a><a class="more" href="/tr/request-a-demo?product=analytics">Demo iste</a></div></div><div class="page-hero-media "><picture><source type="image/webp" srcset="/static/urun/hero/fx-blotter-tr-1x.webp 1440w, /static/urun/hero/fx-blotter-tr-2x.webp 2880w" sizes="(max-width: 1240px) 100vw, 1240px"><img src="/static/urun/hero/fx-blotter-tr.png" width="2880" height="1720" alt="Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu" fetchpriority="high" decoding="async"></picture></div></section>
 
 <section class="sec center" id="how">
   <div class="wrap">
@@ -113,29 +113,9 @@
   <div class="wrap">
     <h2 class="title">Masanızın dökümünde görün.</h2>
     <p class="lede">Kurum türünüzü, masa büyüklüğünü ve blotter'ın geldiği sistemi yazın. Uygun bir zaman için e-postayla döneriz.</p>
-    <div class="actions"><a class="btn" href="#demo" data-erken-erisim>Demo iste</a></div>
+    <div class="actions"><a class="btn" href="/tr/request-a-demo?product=analytics">Demo iste</a></div>
   </div>
 </section>
-
-<dialog id="erken-erisim" aria-labelledby="ee-baslik" data-tamam="Talebiniz alındı. Demo için e-posta ile yazacağız.">
-  <h2 id="ee-baslik">Demo iste</h2>
-  <p>Demo ücretsizdir ve örnek blotter'ımız ya da sizin anonimleştirilmiş bir dökümünüz üzerinde yapılır. Gerçek müşteri verisi göndermeyin.</p>
-  <form novalidate>
-    <div class="alanlar">
-      <label for="ee-eposta">İş e-postası<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
-      <label for="ee-kurum">Kurum türü<select id="ee-kurum" name="kurum" data-soru><option value="">Seçin</option><option value="banka">Banka</option><option value="kurumsal-hazine">Şirket hazinesi</option><option value="araci-kurum">Aracı kurum</option><option value="prop-firma">Prop firması</option><option value="fon">Fon ya da portföy yönetimi</option><option value="diger">Diğer</option></select></label><label for="ee-masa">Masadaki kişi sayısı<select id="ee-masa" name="masa" data-soru><option value="">Seçin</option><option value="1">1</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="20+">20+</option></select></label><label for="ee-sistem">Blotter hangi sistemden geliyor?<input type="text" id="ee-sistem" name="sistem" maxlength="300" placeholder="ör. 360T, Murex, Excel" data-soru></label>
-    </div>
-    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>Kalibre Markets'in demo ve ürün güncellemeleri hakkında bana e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
-    <p class="not">E-postanızı, cevaplarınızı ve talep zamanını saklarız. Ayrıntılar <a href="/tr/privacy#collect-why">gizlilik politikasında</a>.</p>
-    <div class="kapat-satir">
-      <button type="button" class="dugme ikincil" data-kapat>Kapat</button>
-      <button type="submit" class="dugme">Demo iste</button>
-    </div>
-  </form>
-  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
-  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
-</dialog>
 </div>
 </main>
 <footer class="gfoot">

@@ -50,7 +50,7 @@
 <nav class="lnav" aria-label="Desk Signal">
   <div class="wrap">
     <a class="lnav-title" href="#top">Desk Signal</a>
-    <ul class="lnav-links"><li><a href="#top">Genel bakış</a></li><li><a href="#how">Nasıl çalışır</a></li><li><a href="#features">Ne yapar</a></li><li><a href="#next">Sırada</a></li><li><a href="#pricing">Erken erişim</a></li></ul>
+    <ul class="lnav-links"><li><a href="#top">Genel bakış</a></li><li><a href="#how">Nasıl çalışır</a></li><li><a href="#features">Ne yapar</a></li><li><a href="#next">Sırada</a></li><li><a href="#pricing">Fiyat</a></li></ul>
     <a class="btn" href="/lab/desk?lang=tr">Demoyu dene</a>
   </div>
 </nav>
@@ -91,31 +91,12 @@
   <div class="wrap">
     <h2 class="title">Masa kur.</h2>
     <p class="lede">Masanı şimdi tarayıcında kur ve davet bağlantısını trader'larına gönder. Koltuk başına fiyatlanır; teklif için bize yaz.</p>
-    <div class="actions"><a class="btn" href="/lab/desk-live">Masa kur</a><a class="btn btn-ghost" href="mailto:markets@kalibrefin.com?subject=Desk%20Signal%20pricing">Fiyat için bize yaz</a><a class="more" href="/lab/desk?lang=tr">Önce demoyu dene</a></div>
+    <div class="actions"><a class="btn" href="/lab/desk-live">Masa kur</a><a class="btn btn-ghost" href="/tr/request-a-demo?product=desk-signal">Demo iste</a><a class="more" href="/lab/desk?lang=tr">Önce demoyu dene</a></div>
+    <p class="fine">E-posta mı? Yaz: <a href="mailto:markets@kalibrefin.com?subject=Desk%20Signal%20pricing">markets@kalibrefin.com</a>.</p>
     <div class="faq"><details><summary>Sohbeti ya da kayıtlı hatları değiştirir mi?</summary><p>Hayır. Hızlı sinyaller için onların yanında durur. Firmanın kendi kayıt tutma kuralları geçerliliğini korur; sinyal logu bunlara yardımcı olur.</p></details><details><summary>Demo bir şey gönderiyor mu?</summary><p>Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.</p></details><details><summary>Renkleri ve anlamları kendimiz seçebilir miyiz?</summary><p>Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.</p></details><details><summary>Trader'ın ne kurması gerekiyor?</summary><p>Hiçbir şey. Davet bağlantısını bir tarayıcı sekmesinde açar ve bir ad seçer. Chrome ve Edge'de top diğer pencerelerin üstünde kalabilir. Masaüstü uygulaması ardından gelir.</p></details><details><summary>Kalibre sinyallerimizi okuyabilir mi?</summary><p>Hayır. Sinyaller tarayıcılarınızda, yalnız davet bağlantınızda duran bir anahtarla mühürlenir. Rölemiz onları açamadan iletir ve sinyali yalnız masa şefinin tarayıcısı gönderebilir.</p></details><details><summary>Log ne kadar tutulur?</summary><p>Masa şefinin konsolu tam logu istediği an CSV ya da Excel olarak indirir. Erken erişimde röle son 5.000 olayı 30 gün tutar.</p></details></div>
     <p class="legal-note">Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.</p>
   </div>
 </section>
-
-<dialog id="erken-erisim" aria-labelledby="ee-baslik">
-  <h2 id="ee-baslik">Erken erişim</h2>
-  <p>Erken erişim ücretsiz. Kart gerekmez. Ücretli bir plan açılmadan önce haber vereceğiz.</p>
-  <form novalidate>
-    <div class="alanlar">
-      <label for="ee-eposta">E-posta<input type="email" id="ee-eposta" name="eposta" required autocomplete="email" maxlength="254"></label>
-      <label for="ee-kurum">Nerede çalışıyorsun?<select id="ee-kurum" name="kurum" data-soru><option value="">Seç</option><option value="prop-firma">Prop firması</option><option value="banka">Banka</option><option value="kurumsal-hazine">Kurumsal hazine</option><option value="araci-kurum">Aracı kurum</option><option value="fon">Fon</option><option value="diger">Başka</option></select></label><label for="ee-masa">Masada kaç trader var?<select id="ee-masa" name="masa" data-soru><option value="">Seç</option><option value="2-5">2-5</option><option value="6-20">6-20</option><option value="21-50">21-50</option><option value="50+">50'den fazla</option></select></label><label for="ee-simdi">Masa şefi trader'lara bugün nasıl ulaşıyor?<input type="text" id="ee-simdi" name="simdi" maxlength="300" placeholder="Sohbet, ses hattı, odada seslenmek" data-soru></label>
-    </div>
-    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <label class="onay" for="ee-onay"><input type="checkbox" id="ee-onay" name="onay" value="evet" required> <span>Kalibre Markets'in erken erişim ve ürün güncellemeleri hakkında bana e-posta göndermesini kabul ediyorum. İstediğim zaman listeden çıkabilirim.</span></label>
-    <p class="not">E-postanızı, cevaplarınızı ve katılma zamanını saklarız. Ayrıntılar <a href="/tr/privacy#collect-why">gizlilik politikasında</a>.</p>
-    <div class="kapat-satir">
-      <button type="button" class="dugme ikincil" data-kapat>Kapat</button>
-      <button type="submit" class="dugme">Listeye katıl</button>
-    </div>
-  </form>
-  <p class="talep-mesaj" data-mesaj hidden aria-live="polite"></p>
-  <div class="kapat-satir" data-sonra hidden><button type="button" class="dugme ikincil" data-kapat>Kapat</button></div>
-</dialog>
 </div>
 </main>
 <footer class="gfoot">

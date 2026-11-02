@@ -260,6 +260,27 @@ dialog#erken-erisim label.onay { display: flex; gap: 10px; align-items: flex-sta
 dialog#erken-erisim .not { font-size: 12px; color: var(--ink-3); margin: 12px 0 18px; }
 dialog#erken-erisim .kapat-satir { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 dialog#erken-erisim .dugme { display: inline-flex; align-items: center; min-height: 44px; padding: 11px 22px; border-radius: 10px; background: var(--action); color: var(--on-action); font-weight: 600; font: 400 17px var(--font); border: 0; cursor: pointer; }
+/* /request-a-demo: the same form as a card on the page */
+.talep-kart { max-width: 640px; width: 100%; margin: 0 auto; border: 0; border-radius: var(--radius-m); padding: 32px; color: var(--ink); background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 30px 80px rgba(0,0,0,.6); }
+.talep-kart h2 { font: 600 28px/1.14 var(--display); }
+.talep-kart > p { color: var(--ink-2); margin-top: 8px; }
+.talep-kart .alanlar { display: grid; gap: 14px; margin: 20px 0; }
+.talep-kart label { display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.talep-kart input[type=email], .talep-kart input[type=text], .talep-kart select, .talep-kart textarea {
+  min-height: 44px; padding: 10px 14px; border-radius: var(--radius-s); border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font: 400 17px var(--font); width: 100%; }
+.talep-kart label.onay { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.talep-kart .not { font-size: 12px; color: var(--ink-3); margin: 12px 0 18px; }
+.talep-kart .kapat-satir { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+.talep-kart .dugme { display: inline-flex; align-items: center; min-height: 44px; padding: 11px 22px; border-radius: 10px; background: var(--action); color: var(--on-action); font-weight: 600; font: 400 17px var(--font); border: 0; cursor: pointer; }
+.talep-kart .kapat-satir { justify-content: flex-start; }
+.talep-kart .talep-mesaj.tamam { font-weight: 600; }
+.wrap.narrow { max-width: 720px; }
+.page-hero-media.demo-wrap { max-width: 720px; margin: 8px auto 0; padding: 0 var(--gutter); }
+.page-hero-media.demo-wrap .talep-kart { text-align: left; }
+.sec .fine { font-size: 14px; color: var(--ink-3); margin-top: 14px; }
+.sec .fine.center { text-align: center; }
+.sec .fine a { color: inherit; }
+
 dialog#erken-erisim .dugme.ikincil { background: transparent; color: var(--ink); border: 1px solid var(--line-2); }
 .talep-mesaj { margin: 12px 0; font-weight: 600; }
 .talep-mesaj.tamam { color: var(--gain); } .talep-mesaj.hata { color: var(--action-hover); }
