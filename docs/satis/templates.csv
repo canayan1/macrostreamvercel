@@ -1,0 +1,75 @@
+key,subject,body
+fx-desk,"{company} end-of-day blotter, explained in seconds","Hi {first},
+
+I ran a bank treasury desk for years, and the end of every day was the same: export the blotter, rebuild the P&L in Excel, chase the row that did not reconcile.
+
+I built Kalibre Markets Analytics to make that a one-step job. You drop the blotter as your platform or treasury system exports it. In your browser, without an upload, you get P&L by pair and dealer with price and points apart, carry, MTM, net position by value date, limit usage and seven reconciliation checks. One click turns it into the desk report your management and risk teams read, as a PDF or a sealed read-only link. You can also ask it a question in plain words (""top 5 counterparties by P&L"") and get the table.
+
+Nothing is installed and no file leaves the building. Trade tickets that arrive by email can be pasted straight in.
+
+Could I show it to you on our sample blotter, or on one anonymized day of yours? Thirty minutes, any day next week.
+
+Sample blotter, opens in the browser: {sample_link}
+Request a demo: {demo_link}
+
+Reply ""no"" and I will not write again.
+
+{sender}
+Founder, Kalibre Markets"
+prop,One key from the head of desk to every trader's screen,"Hi {first},
+
+When a head of desk needs ten traders to cut risk now, a chat message is the slow way: find the window, type, hope it is read.
+
+Desk Signal replaces that with one key. The head picks a colour with an agreed meaning, picks a trader, a city or everyone, and the signal lights up in the corner of each screen. Urgent signals ring until opened; the head sees who has seen it and who has done it, with time to respond. Every signal is logged to the second and downloads as CSV or Excel.
+
+Traders open an invite link in a browser tab. Nothing to install. Signals are sealed in your browsers; our relay cannot read them.
+
+The demo runs in your browser with no sign-up: {sample_link}
+If it looks useful, I can set up a live desk for your team in thirty minutes: {demo_link}
+
+Reply ""no"" and I will not write again.
+
+{sender}
+Founder, Kalibre Markets"
+broker,"Month-end check against the system, without the integration project","Hi {first},
+
+Most desks I talk to check the month against the official P&L in Excel, by hand, every time.
+
+Kalibre Markets Analytics reads the month's export as it is, runs it with the desk's own rates and lists every excluded row with its reason, so the comparison takes minutes instead of a day. It runs in the browser; no file is uploaded and nothing is installed. You can also ask it a question in plain words and get the table.
+
+Could I show it to you on our sample file, or on one anonymized day of yours? Thirty minutes, any day next week.
+
+Sample file, opens in the browser: {sample_link}
+Request a demo: {demo_link}
+
+Reply ""no"" and I will not write again.
+
+{sender}
+Founder, Kalibre Markets"
+sales-desk,One key from the head of the sales desk to every screen,"Hi {first},
+
+""Pull the price"", ""stop quoting that line"", ""call me"": a sales desk head says these out loud or types them into a chat, and then does not know who saw them.
+
+Desk Signal turns them into one key. The head picks a colour with an agreed meaning, picks a salesperson or the whole room, and it lights up in the corner of each screen. Urgent ones ring until opened; the head sees who has seen it and who has done it. Every signal is logged to the second and downloads as CSV or Excel, which helps with the record-keeping your compliance team asks for.
+
+Nothing to install: an invite link in a browser tab. Signals are sealed in your browsers; our relay cannot read them.
+
+Try the demo in your browser, no sign-up: {sample_link}
+Or let me set up a live desk for your room in thirty minutes: {demo_link}
+
+Reply ""no"" and I will not write again.
+
+{sender}
+Founder, Kalibre Markets"
+follow1,Re: (same thread),"Hi {first},
+
+Short follow-up in case the first note sank. The sample opens in the browser and takes two minutes: {sample_link}. If the timing is wrong, a one-line reply with a better month is enough.
+
+{sender}"
+follow2,Re: (same thread),"Hi {first},
+
+Last note from me. One question that helps me either way: at the end of the day, which number on your desk takes the longest to trust? If it is the P&L, the position or the reconciliation, Kalibre was built for exactly that. If it is something else, I would like to know what.
+
+Either way, thank you for reading.
+
+{sender}"

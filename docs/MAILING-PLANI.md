@@ -42,7 +42,7 @@ Kapı açılırsa referans ister, 3. segmente geçilir. 2. segment paralel ama a
 
 ## 3. Liste
 
-Şablon: `docs/mailing-liste-sablon.csv`. Sütunlar: ad, soyad, unvan, kurum, şehir, e-posta,
+Şablon: `docs/satis/contacts-sablon.csv` (Apps Script sütun sırası; kurulum `docs/satis/KURULUM.md`). Sütunlar: ad, soyad, unvan, kurum, şehir, e-posta,
 segment, kaynak, ilişki (tanıdık/soğuk), kampanya kodu, gönderim tarihi, yanıt, demo tarihi, not.
 Liste repoya girmez (kişisel veri); yalnız şablon girer. Can listeyi yerelde tutar.
 
