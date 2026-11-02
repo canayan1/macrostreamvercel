@@ -61,7 +61,25 @@ YANIT BİÇİMİ:
 - Yol gösterirken ilgili sayfa yolunu (örn. /egitim/ veya /trading/onyargi-testi/) düz metin olarak ver.
 - Soru net değilse tek bir kısa netleştirme sorusu sor.`;
 
-async function geminiChat(system: string, history: Msg[], maxTokens = 700): Promise<string> {
+// Model adları değişir (2.0 Flash ve llama-3.3 kaldırıldı). Ad ortamdan gelir; 404'te sağlayıcının model
+// listesinden uygun olan seçilir ve bu örnek ömrünce hatırlanır.
+let geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+let groqModel = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
+const surum = (ad: string) => Number((/(\d+(?:\.\d+)?)/.exec(ad) ?? [])[1] ?? 0);
+
+async function geminiModelBul(apiKey: string): Promise<string | null> {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}&pageSize=200`);
+  if (!r.ok) return null;
+  const d: any = await r.json();
+  const adlar: string[] = (d.models ?? [])
+    .filter((m: any) => (m.supportedGenerationMethods ?? []).includes('generateContent'))
+    .map((m: any) => String(m.name ?? '').replace(/^models\//, ''))
+    .filter((n: string) => /flash/.test(n) && !/lite|preview|exp|image|tts|audio|live|thinking/.test(n));
+  adlar.sort((a, b) => surum(b) - surum(a));
+  return adlar[0] ?? null;
+}
+
+async function geminiChat(system: string, history: Msg[], maxTokens = 700, yeniden = true): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error('GEMINI_API_KEY missing');
   const contents = history.map((m) => ({
@@ -74,12 +92,16 @@ async function geminiChat(system: string, history: Msg[], maxTokens = 700): Prom
     generationConfig: { maxOutputTokens: maxTokens, temperature: 0.6, topP: 0.9 },
   };
   const resp = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`,
     { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
   );
   if (!resp.ok) {
     const t = await resp.text();
-    throw new Error(`gemini ${resp.status}: ${t.slice(0, 200)}`);
+    if (resp.status === 404 && yeniden) {
+      const yeni = await geminiModelBul(apiKey);
+      if (yeni && yeni !== geminiModel) { console.warn(`[asistan] gemini model ${geminiModel} → ${yeni}`); geminiModel = yeni; return geminiChat(system, history, maxTokens, false); }
+    }
+    throw new Error(`gemini ${resp.status} (${geminiModel}): ${t.slice(0, 200)}`);
   }
   const data: any = await resp.json();
   const text = (data.candidates?.[0]?.content?.parts || [])
@@ -89,19 +111,33 @@ async function geminiChat(system: string, history: Msg[], maxTokens = 700): Prom
   return text;
 }
 
-// Yedek sağlayıcı: Groq Llama 3.3 70B (OpenAI uyumlu). Gemini kotası dolunca devreye girer.
-async function groqChat(system: string, history: Msg[], maxTokens = 700): Promise<string> {
+// Yedek sağlayıcı: Groq (OpenAI uyumlu). Gemini kotası dolunca devreye girer.
+async function groqModelBul(apiKey: string): Promise<string | null> {
+  const r = await fetch('https://api.groq.com/openai/v1/models', { headers: { Authorization: `Bearer ${apiKey}` } });
+  if (!r.ok) return null;
+  const d: any = await r.json();
+  const adlar: string[] = (d.data ?? []).map((m: any) => String(m.id ?? '')).filter((n: string) => n && !/whisper|tts|guard|vision|embed/.test(n));
+  const sira = [/llama.*(70b|versatile)/, /llama/, /gpt-oss/, /qwen|mixtral|gemma/];
+  for (const re of sira) { const h = adlar.filter((n: string) => re.test(n)).sort((a, b) => surum(b) - surum(a)); if (h.length) return h[0]; }
+  return adlar[0] ?? null;
+}
+
+async function groqChat(system: string, history: Msg[], maxTokens = 700, yeniden = true): Promise<string> {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) throw new Error('GROQ_API_KEY missing');
   const messages = [{ role: 'system', content: system }, ...history];
   const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages, max_tokens: maxTokens, temperature: 0.6 }),
+    body: JSON.stringify({ model: groqModel, messages, max_tokens: maxTokens, temperature: 0.6 }),
   });
   if (!resp.ok) {
     const t = await resp.text();
-    throw new Error(`groq ${resp.status}: ${t.slice(0, 200)}`);
+    if (resp.status === 404 && yeniden) {
+      const yeni = await groqModelBul(apiKey);
+      if (yeni && yeni !== groqModel) { console.warn(`[asistan] groq model ${groqModel} → ${yeni}`); groqModel = yeni; return groqChat(system, history, maxTokens, false); }
+    }
+    throw new Error(`groq ${resp.status} (${groqModel}): ${t.slice(0, 200)}`);
   }
   const data: any = await resp.json();
   return (data.choices?.[0]?.message?.content || '').trim();
@@ -115,8 +151,12 @@ async function chat(system: string, history: Msg[]): Promise<{ reply: string; pr
     throw new Error('gemini empty');
   } catch (e1: any) {
     console.warn('[asistan] gemini failed, groq fallback:', e1?.message || e1);
-    const reply = await groqChat(system, history);
-    return { reply, provider: 'groq' };
+    try {
+      const reply = await groqChat(system, history);
+      return { reply, provider: 'groq' };
+    } catch (e2: any) {
+      throw new Error(`${e1?.message || e1} | ${e2?.message || e2}`);
+    }
   }
 }
 
@@ -160,7 +200,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (e: any) {
     const detail = e?.message || String(e);
     console.error('[asistan] error:', detail);
-    if ((typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? '')).includes('"gorunum"')) return res.status(503).json({ hata: 'model' });
+    if ((typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? '')).includes('"gorunum"')) return res.status(503).json({ hata: 'model', ...(req.query?.debug === '1' ? { _debug: detail } : {}) });
     const dbg = req.query?.debug === '1';
     // UX: 200 + nazik fallback (widget hata ekranı göstermesin)
     return res.status(200).json({
