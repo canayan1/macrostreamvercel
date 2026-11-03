@@ -183,3 +183,16 @@ test('demo: /request-a-demo kaydı ürün, kurum, masa ve sistem cevaplarını a
   assert.equal(kotu.durum, 400);
   assert.equal(kotu.govde.alan, 'urun');
 });
+
+test('davet: erişim talebi kodla kaydedilir, geri bildirim aynı kaydı günceller ve dönüşüm iki kez sayılmaz', async () => {
+  const d = izliDepo();
+  const ilk = await talepIsle(d, olay({ sayfa: 'davet', olay: 'form-gonder', eposta: 'friend@example.com', onay: true, cevaplar: { kod: 'k7m2', platform: 'mt5', hesap: 'prop' } }), '8.8.8.8', T);
+  assert.equal(ilk.durum, 200); assert.equal(ilk.govde.yeni, true);
+  const ikinci = await talepIsle(d, olay({ sayfa: 'davet', olay: 'form-gonder', eposta: 'friend@example.com', onay: true, cevaplar: { kod: 'k7m2', platform: 'mt5', hesap: 'prop', takip: 'a spreadsheet', sasirtan: 'Friday losses', haftalik: 'evet' } }), '8.8.8.8', T);
+  assert.equal(ikinci.govde.yeni, false);
+  const k = [...d.anahtarlar].find(a => a.startsWith('talep:kayit:davet:'));
+  const kayit = JSON.parse(await d.oku(k));
+  assert.equal(kayit.cevaplar.sasirtan, 'Friday losses');
+  assert.equal(await d.oku('talep:sayac:2026-10-26|davet|a|form-gonder|ff|en'), '1');
+  assert.equal((await talepIsle(d, olay({ sayfa: 'davet', olay: 'form-gonder', eposta: 'x@example.com', onay: true, cevaplar: { haftalik: 'always' } }), '8.8.8.8', T)).durum, 400);
+});

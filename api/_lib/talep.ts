@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import type { Depo } from './depo.ts';
 
-export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury', 'desk-signal', 'demo'] as const;
+export const SAYFALAR = ['rule-guard', 'mt5-analytics', 'treasury', 'desk-signal', 'demo', 'davet'] as const;
 export const OLAYLAR = ['goruntuleme', 'fiyat-tik', 'form-gonder'] as const;
 export const SINIR = { olayDakika: 60, formSaat: 5, metin: 300 };
 export const SURE = { sayac: 400 * 86400, kayit: 395 * 86400 };
@@ -48,6 +48,16 @@ const SORULAR: Record<Sayfa, Record<string, readonly string[] | 'metin'>> = {
     kurum: ['banka', 'kurumsal-hazine', 'araci-kurum', 'prop-firma', 'fon', 'diger'],
     masa: ['1', '2-5', '6-20', '20+'],
     sistem: 'metin',
+  },
+  // /invite/<kod>: kişisel davet (erişim talebi + sonradan geri bildirim; aynı kayıt güncellenir).
+  davet: {
+    kod: 'metin',
+    platform: ['mt5', 'mt4', 'ctrader', 'diger'],
+    hesap: ['prop', 'kendi', 'ikisi'],
+    takip: 'metin',
+    sasirtan: 'metin',
+    haftalik: ['evet', 'belki', 'hayir'],
+    neden: 'metin',
   },
 };
 

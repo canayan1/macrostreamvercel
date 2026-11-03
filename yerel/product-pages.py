@@ -137,7 +137,7 @@ def price_block(lang, product, bullets, yearly):
             f'<p class="fine">{T(lang, "Early access is free and needs no card. We will tell you before any paid plan.", "Erken erişim ücretsizdir ve kart gerekmez. Ücretli bir plan açılmadan önce haber vereceğiz.")}</p></div>')
 
 # ------------------------------------------------------------------ page writer
-def page(path, lang, title, description, body, active, other=None, scripts=""):
+def page(path, lang, title, description, body, active, other=None, scripts="", noindex=False):
     url = yol_url(path)
     alternates = ""
     if other:
@@ -148,7 +148,7 @@ def page(path, lang, title, description, body, active, other=None, scripts=""):
     html = f'''<!doctype html>
 <html lang="{lang}">
 <head>
-{head(lang, title, description, url, alternates)}</head>
+{head(lang, title, description, url, alternates, '<meta name="robots" content="noindex, nofollow">' if noindex else "")}</head>
 <body>
 {gnav(active, lang, other)}
 <main id="top">
@@ -1150,6 +1150,147 @@ def guides():
     page("get-started/index.html", "en", "Get started with Kalibre Markets: guides for every product",
          "Step-by-step guides for Trade Analytics, FX Blotter, Desk Signal and Rule Guard, each also as a PDF.", body, "/get-started")
 
+# ================================================================== Personal invitations (/invite/<code>, noindex)
+# One page per entry in yerel/davetler.json. The visitor claims "Trader access" at 0 USD with an email,
+# then follows three steps and can send feedback. Both go to /api/talep (page 'davet', same record).
+DAVETLER = json.load(open(os.path.join(_d, "davetler.json")))
+
+def invite_page(kod, kimden):
+    li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
+    included = li(["<b>Trade Analytics</b> with your own MT5 history", "<b>Rule Guard</b> for MT5, with your firm's loss limits", "<b>Desk Signal</b> for you and the people you trade with", "Reports to keep as PDF or share as a link", "Step-by-step guides for each one"])
+    card = f'''
+<div class="inv-card" id="inv-card">
+  <div class="inv-head"><span class="inv-plan">Trader access</span><span class="inv-from">Invitation from {kimden}</span></div>
+  <ul class="inv-list">{included}</ul>
+  <div class="inv-price"><span>Total</span><b>0 USD</b></div>
+  <p class="inv-note">Your invitation covers it. No card, no subscription.</p>
+  <form id="inv-form" novalidate>
+    <label for="inv-email">Email<input type="email" id="inv-email" name="eposta" required autocomplete="email" maxlength="254" placeholder="you@example.com"></label>
+    <div class="inv-row">
+      <label for="inv-platform">You trade on<select id="inv-platform" name="platform"><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="diger">Something else</option></select></label>
+      <label for="inv-hesap">Your account<select id="inv-hesap" name="hesap"><option value="prop">Prop challenge</option><option value="kendi">My own money</option><option value="ikisi">Both</option></select></label>
+    </div>
+    <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="inv-consent" for="inv-onay"><input type="checkbox" id="inv-onay" name="onay"> <span>Kalibre Markets may email me about my access and product updates. I can unsubscribe at any time. <a href="/privacy#collect-why">Privacy policy</a></span></label>
+    <button type="submit" class="btn inv-claim">Claim my access</button>
+    <p class="inv-msg" id="inv-msg" role="status" hidden></p>
+  </form>
+  <div class="inv-done" id="inv-done" hidden>
+    <p class="inv-ok">You're in.</p>
+    <dl class="inv-sum"><dt>Access</dt><dd>Trader access</dd><dt>Invited by</dt><dd>{kimden}</dd><dt>Total</dt><dd>0 USD</dd><dt>Email</dt><dd id="inv-sum-email"></dd></dl>
+    <a class="btn" href="#start">Start with step 1</a>
+  </div>
+</div>'''
+    steps = [
+        ("ta", "See where your account makes and loses money", "Save your MT5 history as an HTML report and drop it in Trade Analytics. About 10 minutes.",
+         [btn("/guides/trade-analytics", "Open the step-by-step guide"), more(TA_SAMPLE, "Try the sample first"), more("/static/guides/kalibre-trade-analytics-guide.pdf", "Guide as PDF", " download")]),
+        ("rg", "Put Rule Guard on your MT5", "Download the add-on, copy it into MT5 and pick your firm. Start on a demo account. It never opens a trade.",
+         [btn(GUARD_FILE, "Download Rule Guard", " download"), more("/guides/rule-guard", "Install guide"), more("/static/guides/kalibre-rule-guard-guide.pdf", "Guide as PDF", " download")]),
+        ("ds", "Signal a friend in one key", "Optional. Start a desk, send the invite link to someone you trade with, and send them a signal.",
+         [btn("/guides/desk-signal", "Open the guide"), more("/lab/desk", "Watch the demo first")]),
+    ]
+    steps_html = "".join(
+        f'<li class="inv-step" data-step="{k}"><label class="inv-check"><input type="checkbox" data-done="{k}" aria-label="Mark step as done"></label>'
+        f'<div><h3>{h}</h3><p>{p}</p><div class="actions left">{"".join(a)}</div></div></li>' for k, h, p, a in steps)
+    body = f'''
+<div class="inv" data-davet="{kod}">
+{page_hero(f"{kimden} invited you to Kalibre Markets.",
+           "Tools for MetaTrader 5 traders: see where your account makes and loses money, and get a warning before you reach a prop firm's loss limit. Everything runs on your own account; you never give anyone your MT5 password.",
+           "", card, kicker="Invitation", media_cls="inv-wrap")}
+
+<section class="sec mist" id="start">
+  <div class="wrap narrow">
+    <h2 class="title">Start here.</h2>
+    <p class="lede">Three steps. Tick each one when it is done; this browser remembers.</p>
+    <ol class="inv-steps">{steps_html}</ol>
+  </div>
+</section>
+
+<section class="sec" id="feedback">
+  <div class="wrap narrow">
+    <h2 class="title">Tell {kimden} how it went.</h2>
+    <p class="lede">Three questions after you have tried it. Your answers go to {kimden} only.</p>
+    <form id="fb-form" class="inv-fb" novalidate>
+      <label for="fb-takip">How do you keep track of your trading today?<input type="text" id="fb-takip" name="takip" maxlength="300" placeholder="A spreadsheet, MT5 history, a journal app, nothing"></label>
+      <label for="fb-sasirtan">What surprised you in your own numbers?<input type="text" id="fb-sasirtan" name="sasirtan" maxlength="300"></label>
+      <label for="fb-haftalik">Would you open it every week?<select id="fb-haftalik" name="haftalik"><option value="">Choose</option><option value="evet">Yes</option><option value="belki">Maybe</option><option value="hayir">No</option></select></label>
+      <label for="fb-neden">Why, or what is missing?<input type="text" id="fb-neden" name="neden" maxlength="300"></label>
+      <button type="submit" class="btn">Send to {kimden}</button>
+      <p class="inv-msg" id="fb-msg" role="status" hidden></p>
+    </form>
+  </div>
+</section>
+
+<section class="sec center">
+  <div class="wrap">
+    <p class="legal-note">Kalibre is software and does not give investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit. <a href="/risk-disclosure">Risk disclosure</a></p>
+  </div>
+</section>
+</div>
+<script>
+(function () {{
+  var kod = {json.dumps(kod)}, K = 'kalibre:davet:' + kod;
+  function oku() {{ try {{ return JSON.parse(localStorage.getItem(K) || '{{}}'); }} catch (e) {{ return {{}}; }} }}
+  function yaz(v) {{ try {{ localStorage.setItem(K, JSON.stringify(v)); }} catch (e) {{}} }}
+  var st = oku(); st.steps = st.steps || {{}};
+  var q = new URLSearchParams(location.search), kaynak = (q.get('ref') || 'davet-' + kod).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32) || 'davet';
+  function gonder(cevaplar, eposta, web) {{
+    return fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }},
+      body: JSON.stringify({{ sayfa: 'davet', varyant: 'a', olay: 'form-gonder', kaynak: kaynak, dil: 'en', eposta: eposta, onay: true, cevaplar: cevaplar, web: web || '' }}) }});
+  }}
+  function mesaj(el, t, iyi) {{ el.textContent = t; el.className = 'inv-msg ' + (iyi ? 'iyi' : 'kotu'); el.hidden = false; }}
+  function bitti() {{
+    document.getElementById('inv-form').hidden = true;
+    document.getElementById('inv-done').hidden = false;
+    document.getElementById('inv-sum-email').textContent = st.email || '';
+  }}
+  if (st.email) bitti();
+  try {{ fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify({{ sayfa: 'davet', varyant: 'a', olay: 'goruntuleme', kaynak: kaynak, dil: 'en' }}), keepalive: true }}).catch(function () {{}}); }} catch (e) {{}}
+
+  var f = document.getElementById('inv-form'), m = document.getElementById('inv-msg');
+  f.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var email = document.getElementById('inv-email').value.trim();
+    if (!/^[^@\\s]+@[^@\\s]+\\.[a-z]{{2,}}$/i.test(email)) return mesaj(m, 'Enter a valid email address.');
+    if (!document.getElementById('inv-onay').checked) return mesaj(m, 'Tick the box to continue.');
+    var c = {{ kod: kod, platform: f.platform.value, hesap: f.hesap.value }};
+    var b = f.querySelector('button[type=submit]'); b.disabled = true;
+    gonder(c, email, f.web.value).then(function (r) {{
+      if (!r.ok) throw new Error(String(r.status));
+      st.email = email; st.cevaplar = c; yaz(st); bitti();
+    }}).catch(function (err) {{
+      mesaj(m, err.message === '429' ? 'Too many attempts. Try again in a minute.' : 'Could not claim right now. Try again, or write to markets@kalibrefin.com.');
+    }}).then(function () {{ b.disabled = false; }});
+  }});
+
+  document.querySelectorAll('[data-done]').forEach(function (cb) {{
+    var k = cb.getAttribute('data-done');
+    cb.checked = !!st.steps[k];
+    cb.closest('.inv-step').classList.toggle('tamam', cb.checked);
+    cb.addEventListener('change', function () {{ st.steps[k] = cb.checked; yaz(st); cb.closest('.inv-step').classList.toggle('tamam', cb.checked); }});
+  }});
+
+  var fb = document.getElementById('fb-form'), fm = document.getElementById('fb-msg');
+  fb.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    if (!st.email) {{ mesaj(fm, 'Claim your access at the top first, so {kimden} knows who it is from.'); document.getElementById('inv-email').focus(); return; }}
+    var c = Object.assign({{}}, st.cevaplar || {{ kod: kod }});
+    ['takip', 'sasirtan', 'haftalik', 'neden'].forEach(function (n) {{ var v = fb[n].value.trim(); if (v) c[n] = v; }});
+    var b = fb.querySelector('button[type=submit]'); b.disabled = true;
+    gonder(c, st.email).then(function (r) {{
+      if (!r.ok) throw new Error(String(r.status));
+      st.cevaplar = c; yaz(st); mesaj(fm, 'Sent. Thank you.', true);
+    }}).catch(function () {{ mesaj(fm, 'Could not send right now. Try again in a minute.'); }}).then(function () {{ b.disabled = false; }});
+  }});
+}})();
+</script>'''
+    page(f"invite/{kod}/index.html", "en", f"{kimden} invited you to Kalibre Markets",
+         "Trader access to Kalibre Markets: Trade Analytics, Rule Guard and Desk Signal, with step-by-step guides.", body, "", noindex=True)
+
+def invites():
+    for d in DAVETLER:
+        invite_page(d["kod"], d["kimden"])
+
 for lang in ("en", "tr"):
     home(lang)
     analytics(lang)
@@ -1163,5 +1304,6 @@ for lang in ("en", "tr"):
     company(lang)
     if lang == "en":
         guides()
+        invites()
     if not ODEME_ACIK:
         pricing(lang)
