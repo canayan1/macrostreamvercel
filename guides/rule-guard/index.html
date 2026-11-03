@@ -49,7 +49,7 @@
     <h1 class="display-s">Install Rule Guard in MetaTrader 5</h1>
     <p class="lede">An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.</p>
     <div class="actions left guide-actions"><a class="btn" href="/static/downloads/KalibreRuleGuard.ex5" download>Download Rule Guard for MT5</a><a class="more" href="/static/guides/kalibre-rule-guard-guide.pdf" download>Download this guide (PDF)</a></div>
-    <p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.20): <code>164c0652d62bf7cd181efe1e84bc7d496b6aa426770350515012ff9e5cb821b2</code></p>
+    <p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.21): <code>a08d2714a9b1a05e5751059593c6c5247bc5a6738cc85fee5dc97a640697e088</code></p>
     <h2 class="title-s">What you need</h2>
     <ul class="guide-list"><li>MetaTrader 5 on a computer (Windows or Mac), logged in to the account.</li><li>The account size the firm gave you, for example 100,000.</li><li>Optional: the MT5 app on your phone, for push alerts.</li></ul>
     <h2 class="title-s">Steps</h2>
@@ -60,7 +60,7 @@
     <ul class="guide-list"><li>Rule Guard works only while MT5 is open. For a 24-hour watch, run MT5 on a VPS.</li><li>It cannot stop an order you place by hand. In <b>Protect</b> mode it closes every open position and deletes pending orders at the lock; this needs Algo Trading on, and on a real-money account the input <b>Protect on a real account: I accept this</b>.</li><li>Closing happens at market price. Slippage and gaps can take the account past a limit.</li><li>Check that your firm allows a risk add-on on the account. Firm rules change; the preset shows the date it was taken.</li></ul>
     
     <h2 class="title-s" id="rules">Optional: your personal rules</h2>
-    <p class="lede">Rule Guard 0.20 also keeps the rules you set for yourself: stop after N losses a day, at most N trades a day, a pause after a loss, no bigger lot after a loss, a daily loss limit and a max lot. In Watch mode it warns when one is broken; in Protect mode it closes the new position that breaks it.</p>
+    <p class="lede">Rule Guard 0.20 also keeps the rules you set for yourself: stop after N losses a day, at most N trades a day, a pause after a loss, no bigger lot after a loss, a daily loss limit and a max lot. In Watch mode it warns when one is broken; in Protect mode it closes the new position that breaks it. Rule Guard 0.21 also warns when a trade opens while the spread is several times its usual level (<b>InpWideSpreadX</b>; 3 in the downloaded settings); it never closes a position for that.</p>
     <ol class="guide-steps">
       <li><h3>Find your rules</h3><p>In Trade Analytics, open <b>Your personal rules</b>. Each rule shows what it would have changed on your own trades. Tick the ones you want.</p></li>
       <li><h3>Download the settings</h3><p>Click <b>Download Rule Guard settings</b>. You get <b>KalibreRuleGuard-rules.set</b>.</p></li>

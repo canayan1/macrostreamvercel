@@ -19,6 +19,7 @@ import { parsePriceFile, ecbRequest, ecbPrices, holdAnalysis } from './analiz/ho
 import { RULES, suggestRules, adherence, ruleGuardSet, GUARD_PRESET } from './analiz/rules.js';
 import { edge, sizingReplay, POLICIES } from './analiz/risk.js';
 import { excursions, eRatio, exitSimulation } from './analiz/excursion.js';
+import { spreadCosts } from './analiz/spread.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
@@ -507,16 +508,13 @@ function maliyetCiz() {
   const t = motor.islemler;
   const brutKazanc = t.reduce((s, i) => s + Math.max(0, i.brut), 0), brutKayip = t.reduce((s, i) => s + Math.min(0, i.brut), 0);
   const komisyon = t.reduce((s, i) => s + (i.komisyon || 0), 0), swap = t.reduce((s, i) => s + (i.swap || 0), 0);
-  // Spread: today's spread from the MT5 price file, times each trade's lots (an estimate, not the spread paid).
-  let spread = null;
-  if (holdFiyat?.source === 'mt5') {
-    spread = 0;
-    for (const i of t) { const s = holdFiyat.symbols[i.sembol]; if (s?.ask > 0 && s?.bid > 0 && s.valuePerUnit > 0) spread -= (s.ask - s.bid) * s.valuePerUnit * i.lot; }
-  }
-  // The spread estimate is shown on its own and kept out of the totals: it is today's spread, not the one paid.
-  const toplam = komisyon + swap;
+  // Spread: from each trade's opening bar (MT5 stores a spread with every bar); older price files fall back to
+  // the spread when the file was written, flagged when that was at the daily rollover.
+  const sp = spreadCosts(t, holdFiyat, { wide: 2 });
+  const spread = sp.source ? sp.total : null;
+  const toplam = komisyon + swap + (sp.source === 'bars' ? sp.total : 0);
   const saat = Number(String(holdFiyat?.generated ?? '').slice(11, 13));
-  const devir = spread !== null && Number.isFinite(saat) && (saat >= 23 || saat <= 1);
+  const devir = sp.source === 'current' && Number.isFinite(saat) && (saat >= 23 || saat <= 1);
   const gunler = new Set(t.map(i => new Date(i.acilisZamani * 1000).toISOString().slice(0, 10))).size;
   const sure = t.length ? t.reduce((s, i) => s + (i.kapanisZamani - i.acilisZamani), 0) / t.length : 0;
   const sureMetni = s => (s >= 86400 ? ceviri('{n} gün', { n: sayi(s / 86400, 1) }) : s >= 3600 ? ceviri('{n} saat', { n: sayi(s / 3600, 1) }) : ceviri('{n} dk', { n: sayi(s / 60, 0) }));
@@ -524,11 +522,24 @@ function maliyetCiz() {
   $('#maliyet-karolar').innerHTML = [
     karo('Komisyon', para(komisyon), sinif(komisyon)),
     karo('Swap', para(swap), sinif(swap)),
-    karo('Spread (tahmin)', spread === null ? '–' : para(spread, 0), spread ? 'negatif' : '', spread === null ? ceviri('MT5 fiyat dosyasıyla') : devir ? ceviri('dosya devir saatinde yazıldı: spread geniş, tahmin şişkin') : ceviri('dosyanın yazıldığı andaki spread ile; toplama katılmadı')),
-    karo('Komisyon ve swapın brüt kazanca oranı', brutKazanc > 0 ? yuzde(-toplam / brutKazanc) : '–', '', ceviri('Brüt kazanç {a}, brüt kayıp {b}', { a: duzPara(brutKazanc, 0), b: para(brutKayip, 0) })),
-    karo('İşlem başı komisyon ve swap', t.length ? para(toplam / t.length) : '–', sinif(toplam)),
+    karo('Spread', spread === null ? '–' : para(spread, 0), spread ? 'negatif' : '', spread === null ? ceviri('MT5 fiyat dosyasıyla') : sp.source === 'bars' ? ceviri('her işlemin açıldığı mumdaki spread') : devir ? ceviri('eski dosya, devir saatinde yazıldı: tahmin şişkin, toplama katılmadı') : ceviri('eski dosya: yazıldığı andaki spread; toplama katılmadı')),
+    karo('Geniş spread\'de açılan', sp.source === 'bars' ? ceviri('{n} işlem', { n: sayi(sp.wideCount, 0) }) : '–', sp.wideCount ? 'negatif' : '', sp.source === 'bars' ? ceviri('tipik spread\'in 2 katı ve üstü; fazladan {x}', { x: para(sp.extraCost, 0) }) : ''),
+    karo(sp.source === 'bars' ? 'Maliyetin brüt kazanca oranı' : 'Komisyon ve swapın brüt kazanca oranı', brutKazanc > 0 ? yuzde(-toplam / brutKazanc) : '–', '', ceviri('Brüt kazanç {a}, brüt kayıp {b}', { a: duzPara(brutKazanc, 0), b: para(brutKayip, 0) })),
+    karo(sp.source === 'bars' ? 'İşlem başı maliyet' : 'İşlem başı komisyon ve swap', t.length ? para(toplam / t.length) : '–', sinif(toplam)),
     karo('İşlem sıklığı', ceviri('günde {n}', { n: sayi(gunler ? t.length / gunler : 0, 1) }), '', ceviri('{g} işlem gününde {n} işlem; ortalama süre {s}', { g: gunler, n: t.length, s: sureMetni(sure) })),
   ].join('');
+  // Wide-spread warning and the typical spread by server hour.
+  const uyari = $('#maliyet-uyari'), saatKutu = $('#maliyet-saat-kutu');
+  if (sp.source === 'bars' && sp.wideCount) {
+    const saatler = [...new Set(sp.perTrade.filter(r => r.wide).map(r => String(new Date(r.trade.acilisZamani * 1000).getUTCHours()).padStart(2, '0')))].sort();
+    uyari.hidden = false;
+    uyari.textContent = ceviri('{n} işlemi spread\'in normalin en az iki katı olduğu anda açtın (saat {h}, sunucu saati); bu sana fazladan {x} oldu. Rule Guard bu anlarda uyarabilir: InpWideSpreadX girdisi.', { n: sp.wideCount, h: saatler.join(', '), x: duzPara(-sp.extraCost, 0) });
+  } else uyari.hidden = true;
+  if (sp.source === 'bars' && sp.byHour.some(h => h.ratio !== null)) {
+    saatKutu.hidden = false;
+    const kutu = $('#maliyet-saat');
+    kutu.innerHTML = cizimHtml({ satirlar: sp.byHour.filter(h => h.ratio !== null).map(h => ({ etiket: `${String(h.hour).padStart(2, '0')}:00`, deger: h.ratio, adet: h.bars })), olcu: { id: 'oran', ad: 'Medyanın katı', tur: 'oran' }, tur: 'sutun', boyutAd: ceviri('Saat'), t: ceviri, bicim: olcuMetni, sinif, adetAd: 'Mum', W: kutu.clientWidth || 680 });
+  } else saatKutu.hidden = true;
   $('#maliyet-not').textContent = ceviri('Komisyon ve swap raporun kendisinden; spread, fiyat dosyasındaki bugünkü alış-satış farkıyla her işlemin lotu çarpılarak tahmin edilir (gerçekte ödenen spread farklı olabilir). Barber ve Odean\'ın bulgusu: sık işlemin bedeli çoğu zaman seçimden değil maliyetten gelir.');
 }
 

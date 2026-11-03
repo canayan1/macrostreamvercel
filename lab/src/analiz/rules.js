@@ -138,6 +138,8 @@ export function ruleGuardSet(chosen, { preset = 1, capital = 0, margin = 0.5, me
     `InpStopAfterLosses=${v.stopAfterLosses ?? 0}`, `InpMaxTradesDay=${v.maxTradesDay ?? 0}`, `InpCooldownMin=${v.cooldown ?? 0}`,
     `InpNoUpsizeAfterLoss=${v.noUpsizeAfterLoss ? 'true' : 'false'}`, `InpDailyLossPct=${v.dailyLossPct ?? 0}`,
     `InpMaxLot=${v.maxLotMedian && medianLot > 0 ? Math.round(medianLot * v.maxLotMedian * 100) / 100 : 0}`,
+    // Spread warning (Rule Guard 0.21): on by default at 3x the 7-day median; it only warns.
+    'InpWideSpreadX=3',
   ];
   return lines.join('\r\n') + '\r\n';
 }
