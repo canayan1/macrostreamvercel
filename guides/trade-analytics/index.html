@@ -58,6 +58,15 @@
     <ul class="guide-list"><li>Account overview with the balance curve.</li><li>Segments that cost money, sorted by size.</li><li>Prop limit days, if you pick a firm.</li><li>An account review page to keep.</li></ul>
     <h2 class="title-s">Good to know</h2>
     <ul class="guide-list"><li>The report's account number and name are not read.</li><li>Only closed positions are analysed. Open positions are not in an MT5 history report.</li><li>Results describe the past and say nothing about future trades.</li></ul>
+    
+    <h2 class="title-s" id="history-export">Optional: what if you had held</h2>
+    <p class="lede">Trade Analytics can follow every trade past your exit: what it would be worth now, whether a loser came back to breakeven, and when the account would have hit the prop floor with everything kept open. It needs the prices after your trades, which the Kalibre History Export script writes from your own MT5.</p>
+    <ol class="guide-steps">
+      <li><h3>Download the script</h3><p>Download <b>KalibreHistoryExport.ex5</b> from <a href="/static/downloads/KalibreHistoryExport.ex5" download>this link</a>.</p></li>
+      <li><h3>Copy it into MT5</h3><p>In MetaTrader 5 choose <b>File → Open Data Folder</b>, open <b>MQL5</b>, then <b>Scripts</b>, and copy the file there. In the Navigator (Ctrl+N) right-click <b>Scripts</b> and choose <b>Refresh</b>.</p></li>
+      <li><h3>Run it once</h3><p>Drag <b>KalibreHistoryExport</b> onto any chart. It writes two files to <b>MQL5 → Files → Kalibre</b> in the same data folder: <b>kalibre-history</b> (your trades) and <b>kalibre-prices</b> (prices, lot values, swaps and the stop-out level).</p></li>
+      <li><h3>Drop both files</h3><p>Drop the history file in Trade Analytics as usual, then choose the price file in <b>What if you had held</b>. Without the script, click <b>Use ECB daily rates</b>: currency pairs only, one price a day, no swaps.</p></li>
+    </ol>
     <p class="guide-fine">Questions: markets@kalibrefin.com. Kalibre is software and does not give investment advice. <a href="/risk-disclosure">Risk disclosure</a></p>
   </div>
 </article>

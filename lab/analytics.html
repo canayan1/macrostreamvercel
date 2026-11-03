@@ -158,6 +158,27 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     <p class="dipnot" data-t>Geçmiş raporunda gün içi varlık (equity) yoktur. Bu tablo yalnız kapanan işlemlerle oluşan bakiyeyi ölçer; açık pozisyonun gün içindeki zararı görünmez, gerçek sınır ihlali daha erken olmuş olabilir. Kural setlerini kendi hesabının koşullarıyla karşılaştır.</p>
   </section>
 
+  <section class="kart" id="hold-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">07</span><span data-t>Tutsaydın ne olurdu</span></h2></div>
+    <p class="dipnot" data-t>Kapattığın her işlem hiç kapatılmasaydı: bugünkü değeri, kapanıştan sonraki en iyi ve en kötü anı, kaybedenin başabaşa dönüp dönmediği. Hepsi birlikte açık kalsaydı hesabın prop tabanına ya da stop-out'a ne zaman çarpacağı.</p>
+    <div class="satir-dugme hold-kaynak">
+      <label class="dugme ikincil" for="hold-dosya" data-t>MT5 fiyat dosyasını seç</label><input type="file" id="hold-dosya" accept=".json,application/json" hidden>
+      <button type="button" class="dugme ikincil" id="hold-ecb" data-t>ECB günlük kurlarını kullan</button>
+      <span class="dipnot" id="hold-durum" role="status"></span>
+    </div>
+    <details class="hold-yardim"><summary data-t>Fiyat dosyası nereden gelir</summary>
+      <p data-t>Kalibre History Export betiği MT5'te işlem geçmişini ve işlem yaptığın sembollerin ilk işleminden bugüne fiyatlarını iki dosyaya yazar: kalibre-history ve kalibre-prices. Geçmiş dosyasını yukarıya, fiyat dosyasını buraya bırak. MT5 şifren gerekmez, hiçbir şey gönderilmez.</p>
+      <p><a class="kucuk" href="/static/downloads/KalibreHistoryExport.ex5" download data-t>Betiği indir</a> <a class="kucuk" href="/guides/trade-analytics#history-export" data-t>Kurulum adımları</a></p>
+      <p data-t>Betik yoksa ECB günlük referans kurlarını kullan: yalnız döviz çiftleri, günde tek fiyat, swap ve marj yok. Tarayıcın kurları doğrudan ECB'den alır.</p>
+    </details>
+    <div id="hold-sonuc" hidden>
+      <div class="hesap-karolar" id="hold-karolar"></div>
+      <ul class="hold-kovalar" id="hold-kovalar"></ul>
+      <div class="tablo-kutu"><table class="pozisyon a-tablo" id="hold-tablo"></table></div>
+      <p class="dipnot" id="hold-not"></p>
+    </div>
+  </section>
+
   <section class="kart" id="gorunum-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">06</span><span data-t>Kendi görünümün</span></h2></div>
     <form class="satir-dugme g-sor" id="g-sor">

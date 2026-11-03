@@ -435,3 +435,12 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 .analiz .sabit-kart{border-color:rgba(255,166,48,.45)}
 .analiz .pin-gorunum .pin-alt{margin:-4px 0 10px}
 @media (max-width:760px){.analiz .grafik-izgara{grid-template-columns:1fr}.analiz .donem-ayar .donem-sabit{margin-left:0}}
+.analiz .hold-kaynak{align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.analiz .hold-yardim{margin:0 0 12px;font-size:13px;color:var(--text-dim)}
+.analiz .hold-yardim p{margin:6px 0}
+.analiz .hold-kovalar{margin:12px 0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+.analiz .hold-kovalar .negatif{color:var(--red)}
+/* the reorderable results wrapper must not grow past the page: wide tables scroll inside their box */
+.analiz #sonuclar{min-width:0;max-width:100%;display:flex;flex-direction:column;gap:16px}
+.analiz #sonuclar>.kart{min-width:0;max-width:100%;overflow-x:hidden}
+.analiz #hold-tablo td,.analiz #hold-tablo th{white-space:nowrap}

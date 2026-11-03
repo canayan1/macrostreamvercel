@@ -15,6 +15,7 @@ import { accountReportModel } from './report/account-model.js';
 import { LOCAL_KEY } from './report/blotter-model.js';
 import { gorunumKur, cizimHtml, pastaSvg } from './gorunum.js';
 import { PERIODS, periodRange, customRange, applyPeriod } from './analiz/donem.js';
+import { parsePriceFile, ecbRequest, ecbPrices, holdAnalysis } from './analiz/hold.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
@@ -183,8 +184,8 @@ function hesapla() {
   motor = analizMotoru(gorunen, { sunucuUtcFarki: utcFark });
   const o = motor.ozet();
   $('#donem-ozet').textContent = ceviri('{n} işlem, {a} - {b}', { n: sayi(o.adet, 0), a: tarih(o.ilk), b: tarih(o.son) });
-  for (const id of ['#ozet-kart', '#grafik-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#gorunum-kart']) $(id).hidden = false;
-  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); gorunumCiz();
+  for (const id of ['#ozet-kart', '#grafik-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#hold-kart', '#gorunum-kart']) $(id).hidden = false;
+  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); holdCiz(); gorunumCiz();
   kartlariDuzenle();
 }
 
@@ -379,9 +380,54 @@ function grafikCiz() {
   kutu('#grafik-sembol-net').innerHTML = cizimHtml({ ...ortak, satirlar: satir('sembol', 'net').sort((a, b) => (b.deger ?? 0) - (a.deger ?? 0)), olcu: OLCU.net, tur: 'cubuk', boyutAd: ceviri('Sembol'), W: kutu('#grafik-sembol-net').clientWidth || 680 });
 }
 
+// ---------------------------------------------------------------- tutsaydın ne olurdu (analiz/hold.js)
+let holdFiyat = null;   // parsePriceFile ya da ecbPrices sonucu; yalnız bellekte
+function propKurali() {
+  const a = ON_AYARLAR.find(x => x.id === $('#prop-on-ayar').value);
+  return { ad: a?.ad ?? ceviri('Özel'), gunluk: a ? a.gunluk : Number($('#prop-gunluk').value), azami: a ? a.azami : Number($('#prop-azami').value), baslangic: Number($('#prop-baslangic').value) };
+}
+const anMetni = sn => { const d = new Date(sn * 1000); return `${tarih(sn)} ${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`; };
+function holdCiz() {
+  const kutu = $('#hold-sonuc');
+  if (!holdFiyat || !motor) { kutu.hidden = true; return; }
+  const k = propKurali();
+  const r = holdAnalysis(motor.islemler, holdFiyat, { balance: hesap.baslangicBakiye ?? k.baslangic, capital: k.baslangic, daily: k.gunluk, max: k.azami });
+  const s = r.summary, a = r.account;
+  if (!s.trades) { kutu.hidden = true; $('#hold-durum').textContent = ceviri('Bu işlemlerin sembolleri için fiyat yok.'); return; }
+  kutu.hidden = false;
+  const karo = (ad, deger, c = '', alt = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b>${alt ? `<small>${kacis(alt)}</small>` : ''}</div>`;
+  const ecb = r.source === 'ecb';
+  $('#hold-karolar').innerHTML = [
+    karo('Kapattığın gibi', para(s.actual), sinif(s.actual), ceviri('{n} işlem', { n: sayi(s.trades, 0) })),
+    karo('Bugüne kadar tutulsaydı', para(s.held), sinif(s.held), ceviri('Fark {x}', { x: para(s.held - s.actual) })),
+    karo(ceviri('{ad} tabanına çarpardı', { ad: k.ad }), a.ruleHit ? anMetni(a.ruleHit.at) : ceviri('Çarpmazdı'), a.ruleHit ? 'negatif' : 'pozitif', a.ruleHit ? ceviri('{n} pozisyon açıkken, varlık {v}', { n: a.ruleHit.open, v: duzPara(a.ruleHit.equity, 0) }) : ''),
+    karo('Stop-out', ecb ? ceviri('Bilinmiyor') : a.stopOut ? anMetni(a.stopOut.at) : ceviri('Olmazdı'), a.stopOut ? 'negatif' : '', ecb ? ceviri('ECB kurlarında marj bilgisi yok') : a.stopOut ? ceviri('Marj seviyesi {y}', { y: `${sayi(a.stopOut.level, 0)}%` }) : (holdFiyat.account?.stopOut ? ceviri('Seviye {y}', { y: `${sayi(holdFiyat.account.stopOut, 0)}%` }) : '')),
+  ].join('');
+  const madde = (metin, c = '') => `<li class="${kacis(c)}">${kacis(metin)}</li>`;
+  $('#hold-kovalar').innerHTML = [
+    s.losers ? madde(ceviri('Kaybeden {n} işlemin {b} tanesi kapattıktan sonra başabaşa döndü, {h} tanesi hiç dönmedi.', { n: s.losers, b: s.losersBack, h: s.losersNeverBack })) : '',
+    s.winners ? madde(ceviri('Kazanan {n} işlemin {m} tanesi bugün daha değerli olurdu, {l} tanesi daha az.', { n: s.winners, m: s.winnersMoreNow, l: s.winnersLessNow })) : '',
+    a.ruleHit ? madde(ceviri('Hepsi birlikte açık kalsaydı hesap {t} tarihinde {ad} tabanının altına inerdi ve kural hepsini kapatırdı.', { t: anMetni(a.ruleHit.at), ad: k.ad }), 'negatif') : '',
+    s.skipped ? madde(ceviri('{n} işlem fiyat olmadığı için dışarıda kaldı.', { n: s.skipped }), 'dipnot') : '',
+  ].join('');
+  const bas = ['Sembol', 'Yön', 'Lot', 'Açılış', 'Kapanış', 'Senin sonucun', 'Bugüne kadar tutulsaydı', 'Kapanıştan sonra en iyi', 'Kapanıştan sonra en kötü', 'Başabaşa döndü'];
+  const satirlar = r.trades.filter(x => x.status === 'ok').sort((x, y) => Math.abs(y.difference) - Math.abs(x.difference));
+  $('#hold-tablo').innerHTML = `<thead><tr>${bas.map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${satirlar.map(x => `<tr>
+    <td>${kacis(x.trade.sembol)}</td><td>${kacis(ceviri(x.trade.yon === 'al' ? 'Alış' : 'Satış'))}</td><td>${kacis(sayi(x.trade.lot, 2))}</td>
+    <td>${kacis(anMetni(x.trade.acilisZamani))}</td><td>${kacis(anMetni(x.trade.kapanisZamani))}</td>
+    <td class="${kacis(sinif(x.actual))}">${kacis(para(x.actual))}</td><td class="${kacis(sinif(x.held))}">${kacis(para(x.held))}</td>
+    <td class="${kacis(sinif(x.best))}">${kacis(para(x.best))}</td><td class="${kacis(sinif(x.worst))}">${kacis(para(x.worst))}</td>
+    <td>${kacis(x.actual >= 0 ? '–' : x.backAt ? anMetni(x.backAt) : ceviri('Hiç'))}</td></tr>`).join('')}</tbody>`;
+  $('#hold-not').textContent = (ecb
+    ? ceviri('Fiyatlar: ECB günlük referans kurları (günde tek fiyat, saat 16:00 civarı), yalnız döviz çiftleri; swap ve marj yok. Lot başına değer işlemlerin kendisinden hesaplandı.')
+    : ceviri('Fiyatlar: MT5 fiyat dosyası, {m} dakikalık mumlar, {g}. Swap MT5\'teki oranlarla gece gece eklendi; mum içinde önce aleyhine olan fiyat sayıldı.', { m: holdFiyat.timeframeMinutes ?? '?', g: holdFiyat.generated }))
+    + ' ' + ceviri('Bu geçmişin bir senaryosudur; bir öneri değildir.');
+  $('#hold-durum').textContent = '';
+}
+
 // ---------------------------------------------------------------- favoriler: üste sabitlenen bölümler ve görünümler
 // Sıra bu tarayıcıda saklanır: ['ozet', 'g:Benim görünümüm', ...]. Sabitlenmeyenler varsayılan sırayla altta kalır.
-const KARTLAR = ['ozet', 'grafik', 'icgoru', 'kirilim', 'prop', 'gorunum'];
+const KARTLAR = ['ozet', 'grafik', 'icgoru', 'kirilim', 'prop', 'hold', 'gorunum'];
 const sabitOku = () => { try { const d = JSON.parse(depoOku(DEPO.sabit) ?? '[]'); return Array.isArray(d) ? d.filter(x => typeof x === 'string').slice(0, 20) : []; } catch { return []; } };
 const sabitYaz = d => depoYaz(DEPO.sabit, JSON.stringify(d));
 function sabitDegis(id) {
@@ -474,6 +520,27 @@ function baslat() {
   const ozelYaz = () => { depoYaz(DEPO.donem + '-ozel', JSON.stringify({ bas: $('#donem-bas').value, bit: $('#donem-bit').value })); hesapla(); };
   $('#donem-bas').onchange = ozelYaz; $('#donem-bit').onchange = ozelYaz;
   $('#yalniz-sabit').onchange = kartlariDuzenle;
+
+  // Tutsaydın: MT5 fiyat dosyası ya da ECB günlük kurları. ECB isteğinde yalnız para birimleri ve tarihler gider.
+  $('#hold-dosya').onchange = async () => {
+    const f = $('#hold-dosya').files[0]; $('#hold-dosya').value = '';
+    if (!f) return;
+    try { holdFiyat = parsePriceFile(await f.text()); $('#hold-durum').textContent = ceviri('{n} sembol okundu.', { n: Object.keys(holdFiyat.symbols).length }); holdCiz(); }
+    catch { $('#hold-durum').textContent = ceviri('Bu bir Kalibre fiyat dosyası değil. Betiğin yazdığı kalibre-prices dosyasını seç.'); }
+  };
+  $('#hold-ecb').onclick = async () => {
+    if (!motor) return;
+    const req = ecbRequest(hesap.islemler);
+    if (!req) { $('#hold-durum').textContent = ceviri('Bu işlemlerde döviz çifti yok; ECB kurları kullanılamaz.'); return; }
+    $('#hold-durum').textContent = ceviri('ECB kurları alınıyor…');
+    try {
+      const yanit = await fetch(req.url, { headers: { Accept: 'text/csv' } });
+      if (!yanit.ok) throw new Error(String(yanit.status));
+      holdFiyat = ecbPrices(await yanit.text(), hesap.islemler);
+      holdCiz();
+    } catch { $('#hold-durum').textContent = ceviri('ECB kurları alınamadı. Biraz sonra yeniden dene.'); }
+  };
+  for (const id of ['#prop-on-ayar', '#prop-baslangic', '#prop-gunluk', '#prop-azami']) $(id).addEventListener('change', holdCiz);
 
   const girdi = $('#dosya');
   girdi.onchange = () => { dosyaOku(girdi.files[0]); girdi.value = ''; };
