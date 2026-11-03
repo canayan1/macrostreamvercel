@@ -1151,130 +1151,134 @@ def guides():
          "Step-by-step guides for Trade Analytics, FX Blotter, Desk Signal and Rule Guard, each also as a PDF.", body, "/get-started")
 
 # ================================================================== Access pages (/access/<code>, noindex)
-# One product page per entry in yerel/invites.json: what Trader access contains, then the access itself
-# (claim at 0 USD with an email), three guided steps and a feedback form. Claims and feedback go to
-# /api/talep as page 'invite' and update the same record.
+# One product page per entry in yerel/invites.json, built only from the site's own components: local nav,
+# page hero, product panels with real screens, the access form (same card as /request-a-demo), numbered
+# steps and a feedback form. Claims and feedback go to /api/talep as page 'invite' (same record).
 INVITES = json.load(open(os.path.join(_d, "invites.json")))
 
 def access_page(code):
-    included = "".join(f"<li>{x}</li>" for x in ["<b>Trade Analytics</b> with your own MT5 history", "<b>Rule Guard</b> for MT5, with your firm's loss limits", "<b>Desk Signal</b> for you and the people you trade with", "Reports to keep as PDF or share as a link", "Step-by-step guides for each one"])
-    card = f'''
-<div class="inv-card" id="access">
-  <div class="inv-head"><span class="inv-plan">Trader access</span><span class="inv-from">Access code {code}</span></div>
-  <ul class="inv-list">{included}</ul>
-  <div class="inv-price"><span>Total</span><b>0 USD</b></div>
-  <p class="inv-note">Your access code covers it. No card, no subscription.</p>
-  <form id="inv-form" novalidate>
-    <label for="inv-email">Email<input type="email" id="inv-email" name="email" required autocomplete="email" maxlength="254" placeholder="you@example.com"></label>
-    <div class="inv-row">
-      <label for="inv-platform">You trade on<select id="inv-platform" name="platform"><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="other">Something else</option></select></label>
-      <label for="inv-account">Your account<select id="inv-account" name="account"><option value="prop">Prop challenge</option><option value="own">My own money</option><option value="both">Both</option></select></label>
+    local = lnav("Trader access", "en", [("Overview", "#top"), ("What is inside", "#products"), ("Your access", "#get-access"), ("Start here", "#start"), ("Feedback", "#feedback")],
+                 "Get my access", "#get-access")
+    form = f'''
+<div class="talep-kart" id="access-card">
+  <h2>Trader access</h2>
+  <p>Access code {code}. Total 0 USD: your access code covers it. No card, no subscription.</p>
+  <form id="acc-form" novalidate>
+    <div class="alanlar">
+      <label for="acc-email">Email<input type="email" id="acc-email" name="email" required autocomplete="email" maxlength="254"></label>
+      <label for="acc-platform">You trade on<select id="acc-platform" name="platform"><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="other">Something else</option></select></label>
+      <label for="acc-account">Your account<select id="acc-account" name="account"><option value="prop">Prop challenge</option><option value="own">My own money</option><option value="both">Both</option></select></label>
     </div>
     <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <label class="inv-consent" for="inv-consent"><input type="checkbox" id="inv-consent" name="consent"> <span>Kalibre Markets may email me about my access and product updates. I can unsubscribe at any time. <a href="/privacy#collect-why">Privacy policy</a></span></label>
-    <button type="submit" class="btn inv-claim">Get my access</button>
-    <p class="inv-msg" id="inv-msg" role="status" hidden></p>
+    <label class="onay" for="acc-consent"><input type="checkbox" id="acc-consent" name="consent"> <span>Kalibre Markets may email me about my access and product updates. I can unsubscribe at any time.</span></label>
+    <p class="not">We store your email, your answers and the time. Details are in the <a href="/privacy#collect-why">privacy policy</a>.</p>
+    <div class="kapat-satir"><button type="submit" class="dugme">Get my access</button></div>
   </form>
-  <div class="inv-done" id="inv-done" hidden>
-    <p class="inv-ok">Your access is ready.</p>
-    <dl class="inv-sum"><dt>Access</dt><dd>Trader access</dd><dt>Code</dt><dd>{code}</dd><dt>Total</dt><dd>0 USD</dd><dt>Email</dt><dd id="inv-sum-email"></dd></dl>
-    <a class="btn" href="#start">Start with step 1</a>
-  </div>
+  <p class="talep-mesaj" id="acc-msg" role="status" hidden></p>
+  <div class="kapat-satir" id="acc-next" hidden><a class="dugme" href="#start">Start with step 1</a></div>
 </div>'''
-    steps = [
-        ("ta", "See where your account makes and loses money", "Save your MT5 history as an HTML report and drop it in Trade Analytics. About 10 minutes.",
-         [btn("/guides/trade-analytics", "Open the step-by-step guide"), more(TA_SAMPLE, "Try the sample first"), more("/static/guides/kalibre-trade-analytics-guide.pdf", "Guide as PDF", " download")]),
-        ("rg", "Put Rule Guard on your MT5", "Download the add-on, copy it into MT5 and pick your firm. Start on a demo account. It never opens a trade.",
-         [btn(GUARD_FILE, "Download Rule Guard", " download"), more("/guides/rule-guard", "Install guide"), more("/static/guides/kalibre-rule-guard-guide.pdf", "Guide as PDF", " download")]),
-        ("ds", "Signal a friend in one key", "Optional. Start a desk, send the invite link to someone you trade with, and send them a signal.",
-         [btn("/guides/desk-signal", "Open the guide"), more("/lab/desk", "Watch the demo first")]),
-    ]
-    steps_html = "".join(
-        f'<li class="inv-step" data-step="{k}"><label class="inv-check"><input type="checkbox" data-done="{k}" aria-label="Mark step as done"></label>'
-        f'<div><h3>{h}</h3><p>{p}</p><div class="actions left">{"".join(a)}</div></div></li>' for k, h, p, a in steps)
-    body = f'''
-<div class="inv" data-access="{code}">
-{page_hero("Your trading, explained.",
-           "Trader access to Kalibre Markets: see where your MT5 account makes and loses money, and get a warning before you reach a prop firm's loss limit. It runs on your own account; you never give anyone your MT5 password.",
-           btn("#access", "Get my access") + more("#products", "What is inside"),
-           hero_image("suite", "en", "Kalibre Markets Analytics on a laptop: Trade Analytics, FX Blotter and the backtest open on sample files"),
-           kicker="Trader access")}
-
-<section class="sec" id="products">
-  <div class="wrap">
-    <h2 class="title">What is inside.</h2>
-    <div class="tiles">
-      {tile("Trade Analytics.", "Drop the MT5 history report. Results by symbol, hour, weekday, session, size and the trade after a loss; your days closest to a prop limit; an account review to keep as PDF or share as a link. Ask it a question in plain words and get the table.", more("/trade-analytics", "About Trade Analytics"), "third")}
-      {tile("Rule Guard.", "An MT5 add-on that watches the firm's daily and total loss limits every second. A warning at twice the safety margin, a lock at one, alerts on screen and on your phone. It never opens a trade.", more("/rule-guard", "About Rule Guard"), "third dark")}
-      {tile("Desk Signal.", "Colour signals from one screen to another in one key. Urgent ones ring until answered, and every signal is logged with the time it was seen and done.", more("/desk-signal", "About Desk Signal"), "third")}
-    </div>
-  </div>
-</section>
-
-<section class="sec mist center" id="get-access">
-  <div class="wrap narrow">
-    <h2 class="title">Your access.</h2>
-    <p class="lede">One email and it is yours. Everything stays on your own computer and your own MT5.</p>
-    {card}
-  </div>
-</section>
-
-<section class="sec" id="start">
-  <div class="wrap narrow">
-    <h2 class="title">Start here.</h2>
-    <p class="lede">Three steps. Tick each one when it is done; this browser remembers.</p>
-    <ol class="inv-steps">{steps_html}</ol>
-  </div>
-</section>
-
-<section class="sec mist" id="feedback">
-  <div class="wrap narrow">
-    <h2 class="title">Tell us how it went.</h2>
-    <p class="lede">Four questions after you have tried it.</p>
-    <form id="fb-form" class="inv-fb" novalidate>
+    steps_html = "".join(f'<li><h3>{h}</h3><p>{p}</p><div class="actions left">{a}</div></li>' for h, p, a in [
+        ("See where your account makes and loses money", "Save your MT5 history as an HTML report and drop it in Trade Analytics. About 10 minutes.",
+         more("/guides/trade-analytics", "Step-by-step guide") + more(TA_SAMPLE, "Try the sample first")),
+        ("Put Rule Guard on your MT5", "Download the add-on, copy it into MT5 and pick your firm. Start on a demo account.",
+         more(GUARD_FILE, "Download Rule Guard", " download") + more("/guides/rule-guard", "Install guide")),
+        ("Signal a friend in one key", "Optional. Start a desk, send the invite link to someone you trade with and send a signal.",
+         more("/guides/desk-signal", "Guide") + more("/lab/desk", "Watch the demo")),
+    ])
+    feedback = '''
+<div class="talep-kart" id="feedback-card">
+  <h2>Tell us how it went.</h2>
+  <p>Four questions after you have tried it.</p>
+  <form id="fb-form" novalidate>
+    <div class="alanlar">
       <label for="fb-tracking">How do you keep track of your trading today?<input type="text" id="fb-tracking" name="tracking" maxlength="300" placeholder="A spreadsheet, MT5 history, a journal app, nothing"></label>
       <label for="fb-surprised">What surprised you in your own numbers?<input type="text" id="fb-surprised" name="surprised" maxlength="300"></label>
       <label for="fb-weekly">Would you open it every week?<select id="fb-weekly" name="weekly"><option value="">Choose</option><option value="yes">Yes</option><option value="maybe">Maybe</option><option value="no">No</option></select></label>
       <label for="fb-why">Why, or what is missing?<input type="text" id="fb-why" name="why" maxlength="300"></label>
-      <button type="submit" class="btn">Send</button>
-      <p class="inv-msg" id="fb-msg" role="status" hidden></p>
-    </form>
+    </div>
+    <div class="kapat-satir"><button type="submit" class="dugme">Send</button></div>
+  </form>
+  <p class="talep-mesaj" id="fb-msg" role="status" hidden></p>
+</div>'''
+    body = f'''
+{local}
+{page_hero("Your trading, explained.",
+           "Trader access to Kalibre Markets: see where your MT5 account makes and loses money, and get a warning before you reach a prop firm's loss limit.",
+           btn("#get-access", "Get my access") + more("#products", "What is inside"),
+           hero_image("suite", "en", "Kalibre Markets Analytics on a laptop: Trade Analytics, FX Blotter and the backtest open on sample files"),
+           kicker="Trader access" + status_tag("beta", "en"))}
+
+<div id="products">
+<section class="panel mist" style="margin-top:72px">
+  <h2 class="title">Trade Analytics</h2>
+  <p class="sub">Drop in the MT5 report. See where you make and lose money.</p>
+  <div class="actions">{more("/trade-analytics", "Learn more")}{more(TA_SAMPLE, "Try the sample")}</div>
+  <div class="panel-media">{shot("analytics-overview", "Trade Analytics account overview with an example account", "en", sizes="(max-width: 1040px) 100vw, 1040px")}</div>
+</section>
+
+<section class="panel mist" style="margin-top:12px">
+  <h2 class="title">Rule Guard{status_tag("beta", "en")}</h2>
+  <p class="sub">Your firm's daily and total loss limits, watched every second in MT5. It never opens a trade.</p>
+  <div class="actions">{more("/rule-guard", "Learn more")}{more("/guides/rule-guard", "Install guide")}</div>
+  <div class="panel-media">{prop_chart("en")}</div>
+</section>
+
+<section class="panel mist" style="margin-top:12px">
+  <h2 class="title">Desk Signal{status_tag("test", "en")}</h2>
+  <p class="sub">One key to every screen you trade with. Rings until answered, logged to the second.</p>
+  <div class="actions">{more("/desk-signal", "Learn more")}{more("/lab/desk", "Open the demo")}</div>
+  <div class="panel-media">{shot("desk-grid", "Desk Signal: the answer grid with four traders in three cities", "en", sizes="(max-width: 1040px) 100vw, 1040px")}</div>
+</section>
+</div>
+
+<section class="sec center" id="get-access">
+  <div class="wrap narrow">
+    <h2 class="title">Your access.</h2>
+    <p class="lede">One email and it is yours. It runs on your own computer and your own MT5; you never give anyone your MT5 password.</p>
+    {form}
   </div>
 </section>
 
-<section class="sec center">
+<section class="sec mist center" id="start">
   <div class="wrap">
+    <h2 class="title">Start here.</h2>
+    <ol class="steps">{steps_html}</ol>
+  </div>
+</section>
+
+<section class="sec center" id="feedback">
+  <div class="wrap narrow">
+    {feedback}
     <p class="legal-note">Kalibre is software and does not give investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit. <a href="/risk-disclosure">Risk disclosure</a></p>
   </div>
 </section>
-</div>
 <script>
 (function () {{
   var code = {json.dumps(code)}, KEY = 'kalibre:access:' + code;
   function load() {{ try {{ return JSON.parse(localStorage.getItem(KEY) || '{{}}'); }} catch (e) {{ return {{}}; }} }}
   function save(v) {{ try {{ localStorage.setItem(KEY, JSON.stringify(v)); }} catch (e) {{}} }}
-  var state = load(); state.steps = state.steps || {{}};
+  var state = load();
   var q = new URLSearchParams(location.search), source = (q.get('ref') || 'access-' + code).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32) || 'access';
   // /api/talep keeps its original field names, shared with every form on the site.
   function post(answers, email, honeypot) {{
     return fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }},
       body: JSON.stringify({{ sayfa: 'invite', varyant: 'a', olay: 'form-gonder', kaynak: source, dil: 'en', eposta: email, onay: true, cevaplar: answers, web: honeypot || '' }}) }});
   }}
-  function say(el, text, ok) {{ el.textContent = text; el.className = 'inv-msg ' + (ok ? 'ok' : 'bad'); el.hidden = false; }}
+  function say(el, text, ok) {{ el.textContent = text; el.className = 'talep-mesaj ' + (ok ? 'tamam' : 'hata'); el.hidden = false; }}
+  var form = document.getElementById('acc-form'), msg = document.getElementById('acc-msg');
   function claimed() {{
-    document.getElementById('inv-form').hidden = true;
-    document.getElementById('inv-done').hidden = false;
-    document.getElementById('inv-sum-email').textContent = state.email || '';
+    form.hidden = true;
+    say(msg, 'Your access is ready. Code ' + code + ', total 0 USD, for ' + state.email + '.', true);
+    document.getElementById('acc-next').hidden = false;
   }}
   if (state.email) claimed();
   try {{ fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify({{ sayfa: 'invite', varyant: 'a', olay: 'goruntuleme', kaynak: source, dil: 'en' }}), keepalive: true }}).catch(function () {{}}); }} catch (e) {{}}
 
-  var form = document.getElementById('inv-form'), msg = document.getElementById('inv-msg');
   form.addEventListener('submit', function (e) {{
     e.preventDefault();
-    var email = document.getElementById('inv-email').value.trim();
+    var email = document.getElementById('acc-email').value.trim();
     if (!/^[^@\\s]+@[^@\\s]+\\.[a-z]{{2,}}$/i.test(email)) return say(msg, 'Enter a valid email address.');
-    if (!document.getElementById('inv-consent').checked) return say(msg, 'Tick the box to continue.');
+    if (!document.getElementById('acc-consent').checked) return say(msg, 'Tick the box to continue.');
     var answers = {{ code: code, platform: form.platform.value, account: form.account.value }};
     var button = form.querySelector('button[type=submit]'); button.disabled = true;
     post(answers, email, form.web.value).then(function (r) {{
@@ -1285,17 +1289,10 @@ def access_page(code):
     }}).then(function () {{ button.disabled = false; }});
   }});
 
-  document.querySelectorAll('[data-done]').forEach(function (box) {{
-    var k = box.getAttribute('data-done');
-    box.checked = !!state.steps[k];
-    box.closest('.inv-step').classList.toggle('done', box.checked);
-    box.addEventListener('change', function () {{ state.steps[k] = box.checked; save(state); box.closest('.inv-step').classList.toggle('done', box.checked); }});
-  }});
-
   var fb = document.getElementById('fb-form'), fbMsg = document.getElementById('fb-msg');
   fb.addEventListener('submit', function (e) {{
     e.preventDefault();
-    if (!state.email) {{ say(fbMsg, 'Get your access above first, so we know who it is from.'); document.getElementById('inv-email').focus(); return; }}
+    if (!state.email) {{ say(fbMsg, 'Get your access above first, so we know who it is from.'); document.getElementById('acc-email').focus(); return; }}
     var answers = Object.assign({{}}, state.answers || {{ code: code }});
     ['tracking', 'surprised', 'weekly', 'why'].forEach(function (n) {{ var v = fb[n].value.trim(); if (v) answers[n] = v; }});
     var button = fb.querySelector('button[type=submit]'); button.disabled = true;
