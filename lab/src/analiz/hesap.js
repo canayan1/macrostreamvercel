@@ -40,6 +40,7 @@ export const BOYUTLAR = [
   { id: 'oncekiSonuc', ad: 'Önceki işlemin sonucu' },
   { id: 'seri', ad: 'Arka arkaya kayıp' },
   { id: 'ay', ad: 'Ay' },
+  { id: 'tarih', ad: 'Kapanış günü' },
 ];
 export const OLCULER = [
   { id: 'net', ad: 'Net kâr/zarar', tur: 'para' },
@@ -100,6 +101,7 @@ export function zenginlestir(islemler, { sunucuUtcFarki = 0 } = {}) {
       sure, sureKova: kova(SURE_KOVA, sure)[1], lotOrani: oran, lotKova: kova(LOT_KOVA, oran)[1],
       oncekiSonuc, seri: o < 0 || seri[k] === 0 ? 0 : Math.min(3, seri[k]),
       ay: `${kapanis.getUTCFullYear()}-${String(kapanis.getUTCMonth() + 1).padStart(2, '0')}`,
+      tarih: kapanis.toISOString().slice(0, 10),
       r,
     };
   });

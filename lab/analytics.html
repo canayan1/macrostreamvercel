@@ -89,6 +89,18 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     </ul>
   </section>
 
+  <section class="kart donem-kart" id="donem-kart" hidden>
+    <div class="satir-dugme donem-ayar">
+      <label class="secici"><span data-t>Dönem</span><select id="donem"></select></label>
+      <label class="secici" id="donem-ozel-bas" hidden><span data-t>Başlangıç</span><input type="date" id="donem-bas"></label>
+      <label class="secici" id="donem-ozel-bit" hidden><span data-t>Bitiş</span><input type="date" id="donem-bit"></label>
+      <span class="dipnot" id="donem-ozet" role="status"></span>
+      <label class="secici donem-sabit"><input type="checkbox" id="yalniz-sabit"> <span data-t>Yalnız sabitlenenleri göster</span></label>
+    </div>
+    <p class="dipnot" data-t>Göreli dönemler son kapanan işlemle biter. Bir bölümü üste almak için başlığındaki Üste sabitle düğmesine bas; sıra bu tarayıcıda saklanır.</p>
+  </section>
+
+  <div id="sonuclar">
   <section class="kart" id="ozet-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">02</span><span data-t>Hesap özeti</span></h2><span class="dipnot" id="ozet-not"></span><button type="button" class="dugme ikincil" id="rapor-sayfa" data-t>Rapor sayfasını aç</button></div>
     <div class="a-ana-karolar" id="ozet-ana"></div>
@@ -97,6 +109,16 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       <canvas id="bakiye-egri" height="190"></canvas>
     </div>
     <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
+  </section>
+
+  <section class="kart" id="grafik-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Grafikler</span></h2></div>
+    <div class="grafik-izgara">
+      <div class="grafik-kutu genis"><h3 class="a-h3" data-t>Günlük net</h3><div id="grafik-gunluk"></div></div>
+      <div class="grafik-kutu"><h3 class="a-h3" data-t>Sembole göre işlem</h3><div id="grafik-sembol-adet"></div></div>
+      <div class="grafik-kutu"><h3 class="a-h3" data-t>Kazanan ve kaybeden</h3><div id="grafik-kazanc"></div></div>
+      <div class="grafik-kutu genis"><h3 class="a-h3" data-t>Sembole göre net</h3><div id="grafik-sembol-net"></div></div>
+    </div>
   </section>
 
   <section class="kart" id="icgoru-kart" hidden>
@@ -132,6 +154,7 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     <div class="tablo-kutu"><table class="pozisyon a-tablo" id="prop-tablo"></table></div>
     <p class="a-lejant"><span class="a-durum asildi" data-t>Aşıldı</span> <span data-t>kapanan bakiye tabanın altına indi</span> <span class="a-durum yakin" data-t>Yakın</span> <span data-t>tabana mesafe başlangıç sermayesinin %1'inden az</span></p>
     <p class="dipnot" id="prop-kaynak"></p>
+    <p class="dipnot" id="prop-donem-not" hidden data-t>Prop sınırları her zaman hesabın bütün geçmişiyle hesaplanır; tabloda yalnız seçili dönemin günleri görünür.</p>
     <p class="dipnot" data-t>Geçmiş raporunda gün içi varlık (equity) yoktur. Bu tablo yalnız kapanan işlemlerle oluşan bakiyeyi ölçer; açık pozisyonun gün içindeki zararı görünmez, gerçek sınır ihlali daha erken olmuş olabilir. Kural setlerini kendi hesabının koşullarıyla karşılaştır.</p>
   </section>
 
@@ -147,7 +170,9 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       <label class="secici"><span data-t>Ölçü</span><select id="g-olcu"></select></label>
       <label class="secici"><span data-t>Grafik</span><select id="g-tur">
         <option value="cubuk" data-t>Çubuk</option>
+        <option value="sutun" data-t>Sütun</option>
         <option value="cizgi" data-t>Çizgi</option>
+        <option value="pasta" data-t>Pasta</option>
         <option value="tablo" data-t>Tablo</option>
       </select></label>
     </div>
@@ -161,6 +186,8 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     <ul class="kayitli" id="g-kayitli"></ul>
     <p class="dipnot" data-t>Görünümler yalnız bu tarayıcıda saklanır. Kaydedilen, işlemlerin değil görünüm ayarının kendisidir. Soru kutusu da öyle: soru ve sütun adları dışında hiçbir şey tarayıcıdan çıkmaz.</p>
   </section>
+
+  </div>
 
   <p class="dipnot panom-dipnot" data-t>Bu sayfadaki hesaplar senin tarayıcında yapılır; dosyan ve işlemlerin Kalibre sunucusuna gönderilmez. Sonuçlar geçmiş işlemlerin betimlemesidir; gelecekteki sonuçların göstergesi değildir ve yatırım tavsiyesi değildir.</p>
 </main>

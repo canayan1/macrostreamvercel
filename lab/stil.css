@@ -418,3 +418,20 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 .g-sor{margin-bottom:8px}
 .g-sor input{flex:1;min-width:220px}
 .g-filtre{display:flex;gap:8px;align-items:center;margin:0 0 6px}
+/* Trade Analytics: period bar, charts, pinned sections */
+.analiz .donem-kart{padding-top:14px;padding-bottom:12px}
+.analiz .donem-ayar{align-items:center;gap:10px 16px;flex-wrap:wrap}
+.analiz .donem-ayar .donem-sabit{margin-left:auto}
+.analiz .donem-kart>.dipnot{margin:8px 0 0}
+.analiz .grafik-izgara{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.analiz .grafik-kutu{min-width:0;border:1px solid var(--border);border-radius:9px;background:var(--bg-1);padding:12px 12px 6px}
+.analiz .grafik-kutu.genis{grid-column:1/-1}
+.analiz .grafik-kutu .a-h3{margin:0 0 8px}
+.analiz .g-pasta{min-width:0}
+.analiz .g-delik{fill:var(--bg-1)}
+.analiz .pin-kutu{display:inline-flex;gap:6px;margin-left:auto;align-items:center}
+.analiz .kart-bas{flex-wrap:wrap}
+.analiz .kucuk.pin.sabit,.analiz .kucuk.sabit{border-color:var(--accent);color:var(--accent)}
+.analiz .sabit-kart{border-color:rgba(255,166,48,.45)}
+.analiz .pin-gorunum .pin-alt{margin:-4px 0 10px}
+@media (max-width:760px){.analiz .grafik-izgara{grid-template-columns:1fr}.analiz .donem-ayar .donem-sabit{margin-left:0}}

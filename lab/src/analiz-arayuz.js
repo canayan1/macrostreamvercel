@@ -13,16 +13,18 @@ import { propDegerlendir, ON_AYARLAR } from './analiz/prop.js';
 import { ornekHesap } from './analiz/ornek.js';
 import { accountReportModel } from './report/account-model.js';
 import { LOCAL_KEY } from './report/blotter-model.js';
-import { gorunumKur } from './gorunum.js';
+import { gorunumKur, cizimHtml, pastaSvg } from './gorunum.js';
+import { PERIODS, periodRange, customRange, applyPeriod } from './analiz/donem.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
-const DEPO = { utc: 'kalibre-analiz-utc', gorunum: 'kalibre-analiz-gorunumler', kod: 'kalibre-kopru-kod', role: 'kalibre-kopru-role' };
+const DEPO = { utc: 'kalibre-analiz-utc', gorunum: 'kalibre-analiz-gorunumler', kod: 'kalibre-kopru-kod', role: 'kalibre-kopru-role', donem: 'kalibre-analiz-donem', sabit: 'kalibre-analiz-sabit' };
 const depoOku = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const depoYaz = (k, v) => { try { localStorage.setItem(k, v); } catch { /* depo yok */ } };
 
-let hesap = null, motor = null;
+// hesap: the whole file; gorunen: the selected period of it; motorTam: the whole history (prop limits).
+let hesap = null, gorunen = null, motor = null, motorTam = null;
 let utcFark = Number(depoOku(DEPO.utc) ?? 2);
 if (!Number.isFinite(utcFark) || utcFark < -12 || utcFark > 14) utcFark = 2;
 
@@ -79,7 +81,7 @@ async function ornekDosyaAc(yol) {
 
 // Yeni dosya okunamazsa önceki hesabın sonuçları ekranda kalmasın.
 function sonuclariGizle() {
-  for (const id of ['#ozet-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#gorunum-kart']) $(id).hidden = true;
+  for (const el of document.querySelectorAll('#sonuclar > section, #donem-kart')) el.hidden = true;
   $('#kaynak-rozet').hidden = true;
   $('#bos-durum').hidden = false;
 }
@@ -160,18 +162,37 @@ function yukle(h, rapor = null) {
   hesapla();
 }
 
+function aralik() {
+  const k = $('#donem').value || 'all';
+  return k === 'custom' ? customRange($('#donem-bas').value, $('#donem-bit').value) : periodRange(k, hesap.islemler);
+}
+
 function hesapla() {
   if (!hesap) return;
-  motor = analizMotoru(hesap, { sunucuUtcFarki: utcFark });
-  for (const id of ['#ozet-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#gorunum-kart']) $(id).hidden = false;
-  ozetCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); gorunumCiz();
+  const r = aralik();
+  gorunen = applyPeriod(hesap, r);
+  motorTam = analizMotoru(hesap, { sunucuUtcFarki: utcFark });
+  $('#donem-kart').hidden = false;
+  $('#prop-donem-not').hidden = !r;
+  if (!gorunen.islemler.length) {
+    motor = null;
+    for (const el of document.querySelectorAll('#sonuclar > section')) el.hidden = true;
+    $('#donem-ozet').textContent = ceviri('Bu dönemde kapanmış işlem yok. Başka bir dönem seç.');
+    return;
+  }
+  motor = analizMotoru(gorunen, { sunucuUtcFarki: utcFark });
+  const o = motor.ozet();
+  $('#donem-ozet').textContent = ceviri('{n} işlem, {a} - {b}', { n: sayi(o.adet, 0), a: tarih(o.ilk), b: tarih(o.son) });
+  for (const id of ['#ozet-kart', '#grafik-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#gorunum-kart']) $(id).hidden = false;
+  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); gorunumCiz();
+  kartlariDuzenle();
 }
 
 // The report page: the model is handed over through localStorage and opened in a new tab (#local).
 let sonProp = null; // { ad, s } from the last propCiz
 function openReportPage() {
   if (!motor) return;
-  const model = accountReportModel({ hesap, motor, lang: dil === 'tr' ? 'tr' : 'en', source: $('#kaynak-rozet').textContent, utcFark, prop: sonProp });
+  const model = accountReportModel({ hesap: gorunen, motor, lang: dil === 'tr' ? 'tr' : 'en', source: $('#kaynak-rozet').textContent, utcFark, prop: sonProp });
   try { localStorage.setItem(LOCAL_KEY, JSON.stringify(model)); } catch { durum(ceviri('Rapor sayfası açılamadı: tarayıcı depolama alanı kapalı.'), true); return; }
   window.open('/lab/report#local', '_blank');
 }
@@ -292,7 +313,8 @@ function propCiz() {
   $('#prop-ozel-g').hidden = !ozel; $('#prop-ozel-a').hidden = !ozel;
   const kural = a ?? { ad: ceviri('Özel'), gunluk: Number($('#prop-gunluk').value), azami: Number($('#prop-azami').value), tur: 'sabit' };
   const baslangic = Number($('#prop-baslangic').value);
-  const s = propDegerlendir(motor.islemler, { baslangic, gunluk: kural.gunluk, azami: kural.azami, tur: kural.tur, gunSaati: $('#prop-gun-saati').value, sunucuUtcFarki: utcFark });
+  const tam = propDegerlendir(motorTam.islemler, { baslangic, gunluk: kural.gunluk, azami: kural.azami, tur: kural.tur, gunSaati: $('#prop-gun-saati').value, sunucuUtcFarki: utcFark });
+  const s = tam && donemGunleri(tam);
   if (!s) { sonProp = null; $('#prop-karolar').innerHTML = ''; $('#prop-tablo').innerHTML = ''; return; }
   sonProp = { ad: kural.ad, s };
   const karo = (ad, deger, c = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b></div>`;
@@ -316,6 +338,17 @@ function propCiz() {
     : ceviri('Özel kural: günlük ve azami yüzdeler başlangıç sermayesine göre, sabit taban.');
 }
 
+// Prop days inside the selected period; counts recomputed from those days.
+function donemGunleri(s) {
+  const r = aralik();
+  if (!r) return s;
+  const iso = x => (Number.isFinite(x) ? new Date(x * 1000).toISOString().slice(0, 10) : null);
+  const a = iso(r.from), b = iso(r.to);
+  const gunler = s.gunler.filter(g => (!a || g.gun >= a) && (!b || g.gun < b));
+  const ihlaller = gunler.filter(g => g.ihlal);
+  return { ...s, gunler, ihlalSayisi: ihlaller.length, ilkIhlal: ihlaller[0] ?? null, enYakin: gunler.reduce((e, g) => (!e || g.mesafe < e.mesafe ? g : e), null) };
+}
+
 // Rule Guard on the visitor's own days: the add-on's default safety margin is 0.5% of the start
 // (mql5/Include/Kalibre/Kalkan.mqh): room <= 2 margins pauses new trades, room <= 1 margin closes its own
 // positions and locks the day. Measured here on closed balances, as in the table.
@@ -324,12 +357,90 @@ function ruleGuardNote(s) {
   const margin = s.baslangic * 0.005;
   const pause = s.gunler.filter(g => g.mesafe <= 2 * margin).length;
   const lock = s.gunler.filter(g => g.mesafe <= margin).length;
-  const href = dil === 'tr' ? '/tr/rule-guard#pricing' : '/rule-guard#pricing';
+  const href = dil === 'tr' ? '/tr/rule-guard' : '/rule-guard';
   const text = pause
-    ? ceviri('{p} gün tabana mesafe {m2} altına indi: Rule Guard burada yeni işlemi bekletir. {k} gün {m1} altına indi: Rule Guard açtığı pozisyonları kapatır ve günü kilitler.', { p: sayi(pause, 0), k: sayi(lock, 0), m2: duzPara(2 * margin, 0), m1: duzPara(margin, 0) })
-    : ceviri('En yakın günün bile tabandan {d} uzakta kaldı. Rule Guard aynı tabanları MT5\'te her tick\'te izler.', { d: s.enYakin ? duzPara(s.enYakin.mesafe, 0) : '–' });
-  box.innerHTML = `<p><b>Rule Guard</b> ${kacis(text)}</p><a class="dugme" href="${kacis(href)}">${kacis(ceviri('Rule Guard erken erişim'))}</a>`;
+    ? ceviri('{p} gün tabana mesafe {m2} altına indi: Rule Guard burada yeni işlem açmaman için uyarır. {k} gün {m1} altına indi: Rule Guard günü kilitler; Protect modunda açık pozisyonları da kapatır.', { p: sayi(pause, 0), k: sayi(lock, 0), m2: duzPara(2 * margin, 0), m1: duzPara(margin, 0) })
+    : ceviri('En yakın günün bile tabandan {d} uzakta kaldı. Rule Guard aynı tabanları MT5\'te her saniye izler.', { d: s.enYakin ? duzPara(s.enYakin.mesafe, 0) : '–' });
+  box.innerHTML = `<p><b>Rule Guard</b> ${kacis(text)}</p><a class="dugme" href="${kacis(href)}">${kacis(ceviri('Rule Guard\'ı MT5 için indir'))}</a>`;
   box.hidden = false;
+}
+
+// ---------------------------------------------------------------- grafikler
+const OLCU = Object.fromEntries(OLCULER.map(o => [o.id, o]));
+function grafikCiz() {
+  const satir = (boyut, olcuId) => motor.grupla(boyut).map(s => ({ etiket: etiket(s.etiket), deger: s[olcuId] === Infinity ? null : s[olcuId], adet: s.adet }));
+  const ortak = { t: ceviri, bicim: olcuMetni, sinif, adetAd: 'İşlem' };
+  const kutu = id => $(id);
+  kutu('#grafik-gunluk').innerHTML = cizimHtml({ ...ortak, satirlar: satir('tarih', 'net'), olcu: OLCU.net, tur: 'sutun', boyutAd: ceviri('Kapanış günü'), W: kutu('#grafik-gunluk').clientWidth || 680 });
+  kutu('#grafik-sembol-adet').innerHTML = pastaSvg(satir('sembol', 'adet').map(s => ({ etiket: s.etiket, deger: s.deger ?? 0 })), { bicim: olcuMetni, tur: 'sayi', t: ceviri, W: kutu('#grafik-sembol-adet').clientWidth || 420 });
+  const ad = { kazanan: 0, kaybeden: 0, basabas: 0 };
+  for (const i of motor.islemler) ad[i.net > 0 ? 'kazanan' : i.net < 0 ? 'kaybeden' : 'basabas']++;
+  kutu('#grafik-kazanc').innerHTML = pastaSvg([{ etiket: ceviri('Kazanan'), deger: ad.kazanan, renk: '#4ade80' }, { etiket: ceviri('Kaybeden'), deger: ad.kaybeden, renk: '#ef4444' }, { etiket: ceviri('Başabaş'), deger: ad.basabas, renk: '#94a3b8' }], { bicim: olcuMetni, tur: 'sayi', t: ceviri, W: kutu('#grafik-kazanc').clientWidth || 420 });
+  kutu('#grafik-sembol-net').innerHTML = cizimHtml({ ...ortak, satirlar: satir('sembol', 'net').sort((a, b) => (b.deger ?? 0) - (a.deger ?? 0)), olcu: OLCU.net, tur: 'cubuk', boyutAd: ceviri('Sembol'), W: kutu('#grafik-sembol-net').clientWidth || 680 });
+}
+
+// ---------------------------------------------------------------- favoriler: üste sabitlenen bölümler ve görünümler
+// Sıra bu tarayıcıda saklanır: ['ozet', 'g:Benim görünümüm', ...]. Sabitlenmeyenler varsayılan sırayla altta kalır.
+const KARTLAR = ['ozet', 'grafik', 'icgoru', 'kirilim', 'prop', 'gorunum'];
+const sabitOku = () => { try { const d = JSON.parse(depoOku(DEPO.sabit) ?? '[]'); return Array.isArray(d) ? d.filter(x => typeof x === 'string').slice(0, 20) : []; } catch { return []; } };
+const sabitYaz = d => depoYaz(DEPO.sabit, JSON.stringify(d));
+function sabitDegis(id) {
+  const d = sabitOku();
+  const i = d.indexOf(id);
+  if (i >= 0) d.splice(i, 1); else d.push(id);
+  sabitYaz(d); kartlariDuzenle(); gorunum?.yenile();
+}
+function sabitTasi(id, yon) {
+  const d = sabitOku(), i = d.indexOf(id), j = i + yon;
+  if (i < 0 || j < 0 || j >= d.length) return;
+  [d[i], d[j]] = [d[j], d[i]]; sabitYaz(d); kartlariDuzenle();
+}
+function pinDugmeleri(kart, id, sabit, ilk, son) {
+  let kutu = kart.querySelector('.pin-kutu');
+  if (!kutu) { kutu = document.createElement('span'); kutu.className = 'pin-kutu'; kart.querySelector('.kart-bas').append(kutu); }
+  kutu.innerHTML = (sabit
+    ? `<button type="button" class="kucuk" data-pin-yukari ${ilk ? 'disabled' : ''} aria-label="${kacis(ceviri('Yukarı'))}">↑</button><button type="button" class="kucuk" data-pin-asagi ${son ? 'disabled' : ''} aria-label="${kacis(ceviri('Aşağı'))}">↓</button>`
+    : '') + `<button type="button" class="${kacis(sabit ? 'kucuk pin sabit' : 'kucuk pin')}" data-pin aria-pressed="${kacis(String(sabit))}">${kacis(sabit ? ceviri('Sabitlendi') : ceviri('Üste sabitle'))}</button>`;
+  kutu.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-pin')) sabitDegis(id);
+    if (b.hasAttribute('data-pin-yukari')) sabitTasi(id, -1);
+    if (b.hasAttribute('data-pin-asagi')) sabitTasi(id, 1);
+  };
+}
+function kartlariDuzenle() {
+  if (!motor) return;
+  const kok = $('#sonuclar');
+  const kayitli = gorunum ? gorunum.kayitlilar() : [];
+  let sabit = sabitOku().filter(id => KARTLAR.includes(id) || (id.startsWith('g:') && kayitli.some(g => g.ad === id.slice(2))));
+  sabitYaz(sabit);
+  // Sabitlenen görünümler kendi kartlarıyla.
+  for (const el of [...kok.querySelectorAll('.pin-gorunum')]) if (!sabit.includes(el.dataset.pin)) el.remove();
+  for (const id of sabit.filter(x => x.startsWith('g:'))) {
+    let el = kok.querySelector(`.pin-gorunum[data-pin="${CSS.escape(id)}"]`);
+    const g = kayitli.find(x => x.ad === id.slice(2));
+    if (!el) {
+      el = document.createElement('section');
+      el.className = 'kart pin-gorunum'; el.dataset.pin = id;
+      el.innerHTML = `<div class="kart-bas"><h2><span class="bolum-no"></span><span></span></h2></div><p class="dipnot pin-alt"></p><div class="g-cizim"></div>`;
+      kok.prepend(el);
+    }
+    el.querySelector('h2 span:last-child').textContent = g.ad;
+    el.querySelector('.pin-alt').textContent = `${ceviri(BOYUTLAR.find(b => b.id === g.boyut)?.ad ?? g.boyut)} · ${ceviri(OLCU[g.olcu]?.ad ?? g.olcu)}`;
+    gorunum.cizTarif(el.querySelector('.g-cizim'), g);
+  }
+  const kartOf = id => (id.startsWith('g:') ? kok.querySelector(`.pin-gorunum[data-pin="${CSS.escape(id)}"]`) : $(`#${id}-kart`));
+  const sira = [...sabit, ...KARTLAR.filter(id => !sabit.includes(id))];
+  const yalniz = $('#yalniz-sabit').checked && sabit.length > 0;
+  sira.forEach((id, k) => {
+    const el = kartOf(id); if (!el) return;
+    kok.append(el);
+    const sabitMi = sabit.includes(id);
+    el.classList.toggle('sabit-kart', sabitMi);
+    el.hidden = yalniz && !sabitMi;
+    const no = el.querySelector('.bolum-no'); if (no) no.textContent = String(k + 2).padStart(2, '0');
+    pinDugmeleri(el, id, sabitMi, sabit.indexOf(id) === 0, sabit.indexOf(id) === sabit.length - 1);
+  });
 }
 
 // ---------------------------------------------------------------- kendi görünümün (ortak kurucu: src/gorunum.js)
@@ -345,7 +456,24 @@ function baslat() {
   secenekler($('#kirilim-boyut'), BOYUTLAR, 'sembol');
   $('#kirilim-boyut').onchange = kirilimCiz;
   gorunum = gorunumKur({ kok: $('#gorunum-kart'), boyutlar: BOYUTLAR, olculer: OLCULER, uzak: sorUzak, depoAnahtari: DEPO.gorunum, t: ceviri, bicim: olcuMetni, sinif, adetAd: 'İşlem', varsayilan: { boyut: 'saat', olcu: 'net' },
+    sabitle: g => sabitDegis('g:' + g.ad), sabitMi: ad => sabitOku().includes('g:' + ad),
     grupla: boyut => (motor ? motor.grupla(boyut).map(s => ({ etiket: etiket(s.etiket), degerler: s, adet: s.adet })) : []) });
+
+  // Dönem seçici: seçim bu tarayıcıda saklanır; özel aralıkta iki tarih alanı açılır.
+  const donem = $('#donem');
+  donem.innerHTML = PERIODS.map(p => `<option value="${kacis(p.id)}">${kacis(ceviri(p.ad))}</option>`).join('');
+  const kayitliDonem = depoOku(DEPO.donem);
+  donem.value = PERIODS.some(p => p.id === kayitliDonem) ? kayitliDonem : 'all';
+  const ozelGoster = () => { const o = donem.value === 'custom'; $('#donem-ozel-bas').hidden = !o; $('#donem-ozel-bit').hidden = !o; };
+  ozelGoster();
+  donem.onchange = () => { depoYaz(DEPO.donem, donem.value); ozelGoster(); if (donem.value === 'custom' && hesap && !$('#donem-bas').value) { const o = analizMotoru(hesap, { sunucuUtcFarki: utcFark }).ozet(); $('#donem-bas').value = new Date(o.ilk * 1000).toISOString().slice(0, 10); $('#donem-bit').value = new Date(o.son * 1000).toISOString().slice(0, 10); } hesapla(); };
+  // Özel aralığın tarihleri de saklanır.
+  const ozel = (() => { try { return JSON.parse(depoOku(DEPO.donem + '-ozel') ?? '{}'); } catch { return {}; } })();
+  if (ozel.bas) $('#donem-bas').value = ozel.bas;
+  if (ozel.bit) $('#donem-bit').value = ozel.bit;
+  const ozelYaz = () => { depoYaz(DEPO.donem + '-ozel', JSON.stringify({ bas: $('#donem-bas').value, bit: $('#donem-bit').value })); hesapla(); };
+  $('#donem-bas').onchange = ozelYaz; $('#donem-bit').onchange = ozelYaz;
+  $('#yalniz-sabit').onchange = kartlariDuzenle;
 
   const girdi = $('#dosya');
   girdi.onchange = () => { dosyaOku(girdi.files[0]); girdi.value = ''; };
@@ -373,7 +501,7 @@ function baslat() {
     };
   }
 
-  window.addEventListener('resize', () => { if (motor) { egriCiz($('#bakiye-egri'), motor.ozet().egri); gorunumCiz(); } });
+  window.addEventListener('resize', () => { if (motor) { egriCiz($('#bakiye-egri'), motor.ozet().egri); gorunumCiz(); grafikCiz(); kartlariDuzenle(); } });
 }
 
 baslat();
