@@ -471,6 +471,11 @@
       "source": "/static/weekly/:path*",
       "destination": "/tr",
       "statusCode": 301
+    },
+    {
+      "source": "/invite/:code",
+      "destination": "/access/:code",
+      "permanent": false
     }
   ]
 }

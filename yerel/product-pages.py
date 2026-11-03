@@ -1150,34 +1150,34 @@ def guides():
     page("get-started/index.html", "en", "Get started with Kalibre Markets: guides for every product",
          "Step-by-step guides for Trade Analytics, FX Blotter, Desk Signal and Rule Guard, each also as a PDF.", body, "/get-started")
 
-# ================================================================== Personal invitations (/invite/<code>, noindex)
-# One page per entry in yerel/davetler.json. The visitor claims "Trader access" at 0 USD with an email,
-# then follows three steps and can send feedback. Both go to /api/talep (page 'davet', same record).
-DAVETLER = json.load(open(os.path.join(_d, "davetler.json")))
+# ================================================================== Access pages (/access/<code>, noindex)
+# One product page per entry in yerel/invites.json: what Trader access contains, then the access itself
+# (claim at 0 USD with an email), three guided steps and a feedback form. Claims and feedback go to
+# /api/talep as page 'invite' and update the same record.
+INVITES = json.load(open(os.path.join(_d, "invites.json")))
 
-def invite_page(kod, kimden):
-    li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
-    included = li(["<b>Trade Analytics</b> with your own MT5 history", "<b>Rule Guard</b> for MT5, with your firm's loss limits", "<b>Desk Signal</b> for you and the people you trade with", "Reports to keep as PDF or share as a link", "Step-by-step guides for each one"])
+def access_page(code):
+    included = "".join(f"<li>{x}</li>" for x in ["<b>Trade Analytics</b> with your own MT5 history", "<b>Rule Guard</b> for MT5, with your firm's loss limits", "<b>Desk Signal</b> for you and the people you trade with", "Reports to keep as PDF or share as a link", "Step-by-step guides for each one"])
     card = f'''
-<div class="inv-card" id="inv-card">
-  <div class="inv-head"><span class="inv-plan">Trader access</span><span class="inv-from">Invitation from {kimden}</span></div>
+<div class="inv-card" id="access">
+  <div class="inv-head"><span class="inv-plan">Trader access</span><span class="inv-from">Access code {code}</span></div>
   <ul class="inv-list">{included}</ul>
   <div class="inv-price"><span>Total</span><b>0 USD</b></div>
-  <p class="inv-note">Your invitation covers it. No card, no subscription.</p>
+  <p class="inv-note">Your access code covers it. No card, no subscription.</p>
   <form id="inv-form" novalidate>
-    <label for="inv-email">Email<input type="email" id="inv-email" name="eposta" required autocomplete="email" maxlength="254" placeholder="you@example.com"></label>
+    <label for="inv-email">Email<input type="email" id="inv-email" name="email" required autocomplete="email" maxlength="254" placeholder="you@example.com"></label>
     <div class="inv-row">
-      <label for="inv-platform">You trade on<select id="inv-platform" name="platform"><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="diger">Something else</option></select></label>
-      <label for="inv-hesap">Your account<select id="inv-hesap" name="hesap"><option value="prop">Prop challenge</option><option value="kendi">My own money</option><option value="ikisi">Both</option></select></label>
+      <label for="inv-platform">You trade on<select id="inv-platform" name="platform"><option value="mt5">MetaTrader 5</option><option value="mt4">MetaTrader 4</option><option value="ctrader">cTrader</option><option value="other">Something else</option></select></label>
+      <label for="inv-account">Your account<select id="inv-account" name="account"><option value="prop">Prop challenge</option><option value="own">My own money</option><option value="both">Both</option></select></label>
     </div>
     <div class="gizli-alan" aria-hidden="true"><label>Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <label class="inv-consent" for="inv-onay"><input type="checkbox" id="inv-onay" name="onay"> <span>Kalibre Markets may email me about my access and product updates. I can unsubscribe at any time. <a href="/privacy#collect-why">Privacy policy</a></span></label>
-    <button type="submit" class="btn inv-claim">Claim my access</button>
+    <label class="inv-consent" for="inv-consent"><input type="checkbox" id="inv-consent" name="consent"> <span>Kalibre Markets may email me about my access and product updates. I can unsubscribe at any time. <a href="/privacy#collect-why">Privacy policy</a></span></label>
+    <button type="submit" class="btn inv-claim">Get my access</button>
     <p class="inv-msg" id="inv-msg" role="status" hidden></p>
   </form>
   <div class="inv-done" id="inv-done" hidden>
-    <p class="inv-ok">You're in.</p>
-    <dl class="inv-sum"><dt>Access</dt><dd>Trader access</dd><dt>Invited by</dt><dd>{kimden}</dd><dt>Total</dt><dd>0 USD</dd><dt>Email</dt><dd id="inv-sum-email"></dd></dl>
+    <p class="inv-ok">Your access is ready.</p>
+    <dl class="inv-sum"><dt>Access</dt><dd>Trader access</dd><dt>Code</dt><dd>{code}</dd><dt>Total</dt><dd>0 USD</dd><dt>Email</dt><dd id="inv-sum-email"></dd></dl>
     <a class="btn" href="#start">Start with step 1</a>
   </div>
 </div>'''
@@ -1193,12 +1193,33 @@ def invite_page(kod, kimden):
         f'<li class="inv-step" data-step="{k}"><label class="inv-check"><input type="checkbox" data-done="{k}" aria-label="Mark step as done"></label>'
         f'<div><h3>{h}</h3><p>{p}</p><div class="actions left">{"".join(a)}</div></div></li>' for k, h, p, a in steps)
     body = f'''
-<div class="inv" data-davet="{kod}">
-{page_hero(f"{kimden} invited you to Kalibre Markets.",
-           "Tools for MetaTrader 5 traders: see where your account makes and loses money, and get a warning before you reach a prop firm's loss limit. Everything runs on your own account; you never give anyone your MT5 password.",
-           "", card, kicker="Invitation", media_cls="inv-wrap")}
+<div class="inv" data-access="{code}">
+{page_hero("Your trading, explained.",
+           "Trader access to Kalibre Markets: see where your MT5 account makes and loses money, and get a warning before you reach a prop firm's loss limit. It runs on your own account; you never give anyone your MT5 password.",
+           btn("#access", "Get my access") + more("#products", "What is inside"),
+           hero_image("suite", "en", "Kalibre Markets Analytics on a laptop: Trade Analytics, FX Blotter and the backtest open on sample files"),
+           kicker="Trader access")}
 
-<section class="sec mist" id="start">
+<section class="sec" id="products">
+  <div class="wrap">
+    <h2 class="title">What is inside.</h2>
+    <div class="tiles">
+      {tile("Trade Analytics.", "Drop the MT5 history report. Results by symbol, hour, weekday, session, size and the trade after a loss; your days closest to a prop limit; an account review to keep as PDF or share as a link. Ask it a question in plain words and get the table.", more("/trade-analytics", "About Trade Analytics"), "third")}
+      {tile("Rule Guard.", "An MT5 add-on that watches the firm's daily and total loss limits every second. A warning at twice the safety margin, a lock at one, alerts on screen and on your phone. It never opens a trade.", more("/rule-guard", "About Rule Guard"), "third dark")}
+      {tile("Desk Signal.", "Colour signals from one screen to another in one key. Urgent ones ring until answered, and every signal is logged with the time it was seen and done.", more("/desk-signal", "About Desk Signal"), "third")}
+    </div>
+  </div>
+</section>
+
+<section class="sec mist center" id="get-access">
+  <div class="wrap narrow">
+    <h2 class="title">Your access.</h2>
+    <p class="lede">One email and it is yours. Everything stays on your own computer and your own MT5.</p>
+    {card}
+  </div>
+</section>
+
+<section class="sec" id="start">
   <div class="wrap narrow">
     <h2 class="title">Start here.</h2>
     <p class="lede">Three steps. Tick each one when it is done; this browser remembers.</p>
@@ -1206,16 +1227,16 @@ def invite_page(kod, kimden):
   </div>
 </section>
 
-<section class="sec" id="feedback">
+<section class="sec mist" id="feedback">
   <div class="wrap narrow">
-    <h2 class="title">Tell {kimden} how it went.</h2>
-    <p class="lede">Three questions after you have tried it. Your answers go to {kimden} only.</p>
+    <h2 class="title">Tell us how it went.</h2>
+    <p class="lede">Four questions after you have tried it.</p>
     <form id="fb-form" class="inv-fb" novalidate>
-      <label for="fb-takip">How do you keep track of your trading today?<input type="text" id="fb-takip" name="takip" maxlength="300" placeholder="A spreadsheet, MT5 history, a journal app, nothing"></label>
-      <label for="fb-sasirtan">What surprised you in your own numbers?<input type="text" id="fb-sasirtan" name="sasirtan" maxlength="300"></label>
-      <label for="fb-haftalik">Would you open it every week?<select id="fb-haftalik" name="haftalik"><option value="">Choose</option><option value="evet">Yes</option><option value="belki">Maybe</option><option value="hayir">No</option></select></label>
-      <label for="fb-neden">Why, or what is missing?<input type="text" id="fb-neden" name="neden" maxlength="300"></label>
-      <button type="submit" class="btn">Send to {kimden}</button>
+      <label for="fb-tracking">How do you keep track of your trading today?<input type="text" id="fb-tracking" name="tracking" maxlength="300" placeholder="A spreadsheet, MT5 history, a journal app, nothing"></label>
+      <label for="fb-surprised">What surprised you in your own numbers?<input type="text" id="fb-surprised" name="surprised" maxlength="300"></label>
+      <label for="fb-weekly">Would you open it every week?<select id="fb-weekly" name="weekly"><option value="">Choose</option><option value="yes">Yes</option><option value="maybe">Maybe</option><option value="no">No</option></select></label>
+      <label for="fb-why">Why, or what is missing?<input type="text" id="fb-why" name="why" maxlength="300"></label>
+      <button type="submit" class="btn">Send</button>
       <p class="inv-msg" id="fb-msg" role="status" hidden></p>
     </form>
   </div>
@@ -1229,67 +1250,68 @@ def invite_page(kod, kimden):
 </div>
 <script>
 (function () {{
-  var kod = {json.dumps(kod)}, K = 'kalibre:davet:' + kod;
-  function oku() {{ try {{ return JSON.parse(localStorage.getItem(K) || '{{}}'); }} catch (e) {{ return {{}}; }} }}
-  function yaz(v) {{ try {{ localStorage.setItem(K, JSON.stringify(v)); }} catch (e) {{}} }}
-  var st = oku(); st.steps = st.steps || {{}};
-  var q = new URLSearchParams(location.search), kaynak = (q.get('ref') || 'davet-' + kod).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32) || 'davet';
-  function gonder(cevaplar, eposta, web) {{
+  var code = {json.dumps(code)}, KEY = 'kalibre:access:' + code;
+  function load() {{ try {{ return JSON.parse(localStorage.getItem(KEY) || '{{}}'); }} catch (e) {{ return {{}}; }} }}
+  function save(v) {{ try {{ localStorage.setItem(KEY, JSON.stringify(v)); }} catch (e) {{}} }}
+  var state = load(); state.steps = state.steps || {{}};
+  var q = new URLSearchParams(location.search), source = (q.get('ref') || 'access-' + code).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32) || 'access';
+  // /api/talep keeps its original field names, shared with every form on the site.
+  function post(answers, email, honeypot) {{
     return fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }},
-      body: JSON.stringify({{ sayfa: 'davet', varyant: 'a', olay: 'form-gonder', kaynak: kaynak, dil: 'en', eposta: eposta, onay: true, cevaplar: cevaplar, web: web || '' }}) }});
+      body: JSON.stringify({{ sayfa: 'invite', varyant: 'a', olay: 'form-gonder', kaynak: source, dil: 'en', eposta: email, onay: true, cevaplar: answers, web: honeypot || '' }}) }});
   }}
-  function mesaj(el, t, iyi) {{ el.textContent = t; el.className = 'inv-msg ' + (iyi ? 'iyi' : 'kotu'); el.hidden = false; }}
-  function bitti() {{
+  function say(el, text, ok) {{ el.textContent = text; el.className = 'inv-msg ' + (ok ? 'ok' : 'bad'); el.hidden = false; }}
+  function claimed() {{
     document.getElementById('inv-form').hidden = true;
     document.getElementById('inv-done').hidden = false;
-    document.getElementById('inv-sum-email').textContent = st.email || '';
+    document.getElementById('inv-sum-email').textContent = state.email || '';
   }}
-  if (st.email) bitti();
-  try {{ fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify({{ sayfa: 'davet', varyant: 'a', olay: 'goruntuleme', kaynak: kaynak, dil: 'en' }}), keepalive: true }}).catch(function () {{}}); }} catch (e) {{}}
+  if (state.email) claimed();
+  try {{ fetch('/api/talep', {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify({{ sayfa: 'invite', varyant: 'a', olay: 'goruntuleme', kaynak: source, dil: 'en' }}), keepalive: true }}).catch(function () {{}}); }} catch (e) {{}}
 
-  var f = document.getElementById('inv-form'), m = document.getElementById('inv-msg');
-  f.addEventListener('submit', function (e) {{
+  var form = document.getElementById('inv-form'), msg = document.getElementById('inv-msg');
+  form.addEventListener('submit', function (e) {{
     e.preventDefault();
     var email = document.getElementById('inv-email').value.trim();
-    if (!/^[^@\\s]+@[^@\\s]+\\.[a-z]{{2,}}$/i.test(email)) return mesaj(m, 'Enter a valid email address.');
-    if (!document.getElementById('inv-onay').checked) return mesaj(m, 'Tick the box to continue.');
-    var c = {{ kod: kod, platform: f.platform.value, hesap: f.hesap.value }};
-    var b = f.querySelector('button[type=submit]'); b.disabled = true;
-    gonder(c, email, f.web.value).then(function (r) {{
+    if (!/^[^@\\s]+@[^@\\s]+\\.[a-z]{{2,}}$/i.test(email)) return say(msg, 'Enter a valid email address.');
+    if (!document.getElementById('inv-consent').checked) return say(msg, 'Tick the box to continue.');
+    var answers = {{ code: code, platform: form.platform.value, account: form.account.value }};
+    var button = form.querySelector('button[type=submit]'); button.disabled = true;
+    post(answers, email, form.web.value).then(function (r) {{
       if (!r.ok) throw new Error(String(r.status));
-      st.email = email; st.cevaplar = c; yaz(st); bitti();
+      state.email = email; state.answers = answers; save(state); claimed();
     }}).catch(function (err) {{
-      mesaj(m, err.message === '429' ? 'Too many attempts. Try again in a minute.' : 'Could not claim right now. Try again, or write to markets@kalibrefin.com.');
-    }}).then(function () {{ b.disabled = false; }});
+      say(msg, err.message === '429' ? 'Too many attempts. Try again in a minute.' : 'Could not complete right now. Try again, or write to markets@kalibrefin.com.');
+    }}).then(function () {{ button.disabled = false; }});
   }});
 
-  document.querySelectorAll('[data-done]').forEach(function (cb) {{
-    var k = cb.getAttribute('data-done');
-    cb.checked = !!st.steps[k];
-    cb.closest('.inv-step').classList.toggle('tamam', cb.checked);
-    cb.addEventListener('change', function () {{ st.steps[k] = cb.checked; yaz(st); cb.closest('.inv-step').classList.toggle('tamam', cb.checked); }});
+  document.querySelectorAll('[data-done]').forEach(function (box) {{
+    var k = box.getAttribute('data-done');
+    box.checked = !!state.steps[k];
+    box.closest('.inv-step').classList.toggle('done', box.checked);
+    box.addEventListener('change', function () {{ state.steps[k] = box.checked; save(state); box.closest('.inv-step').classList.toggle('done', box.checked); }});
   }});
 
-  var fb = document.getElementById('fb-form'), fm = document.getElementById('fb-msg');
+  var fb = document.getElementById('fb-form'), fbMsg = document.getElementById('fb-msg');
   fb.addEventListener('submit', function (e) {{
     e.preventDefault();
-    if (!st.email) {{ mesaj(fm, 'Claim your access at the top first, so {kimden} knows who it is from.'); document.getElementById('inv-email').focus(); return; }}
-    var c = Object.assign({{}}, st.cevaplar || {{ kod: kod }});
-    ['takip', 'sasirtan', 'haftalik', 'neden'].forEach(function (n) {{ var v = fb[n].value.trim(); if (v) c[n] = v; }});
-    var b = fb.querySelector('button[type=submit]'); b.disabled = true;
-    gonder(c, st.email).then(function (r) {{
+    if (!state.email) {{ say(fbMsg, 'Get your access above first, so we know who it is from.'); document.getElementById('inv-email').focus(); return; }}
+    var answers = Object.assign({{}}, state.answers || {{ code: code }});
+    ['tracking', 'surprised', 'weekly', 'why'].forEach(function (n) {{ var v = fb[n].value.trim(); if (v) answers[n] = v; }});
+    var button = fb.querySelector('button[type=submit]'); button.disabled = true;
+    post(answers, state.email).then(function (r) {{
       if (!r.ok) throw new Error(String(r.status));
-      st.cevaplar = c; yaz(st); mesaj(fm, 'Sent. Thank you.', true);
-    }}).catch(function () {{ mesaj(fm, 'Could not send right now. Try again in a minute.'); }}).then(function () {{ b.disabled = false; }});
+      state.answers = answers; save(state); say(fbMsg, 'Sent. Thank you.', true);
+    }}).catch(function () {{ say(fbMsg, 'Could not send right now. Try again in a minute.'); }}).then(function () {{ button.disabled = false; }});
   }});
 }})();
 </script>'''
-    page(f"invite/{kod}/index.html", "en", f"{kimden} invited you to Kalibre Markets",
+    page(f"access/{code}/index.html", "en", "Trader access: Kalibre Markets",
          "Trader access to Kalibre Markets: Trade Analytics, Rule Guard and Desk Signal, with step-by-step guides.", body, "", noindex=True)
 
-def invites():
-    for d in DAVETLER:
-        invite_page(d["kod"], d["kimden"])
+def access_pages():
+    for d in INVITES:
+        access_page(d["code"])
 
 for lang in ("en", "tr"):
     home(lang)
@@ -1304,6 +1326,6 @@ for lang in ("en", "tr"):
     company(lang)
     if lang == "en":
         guides()
-        invites()
+        access_pages()
     if not ODEME_ACIK:
         pricing(lang)
