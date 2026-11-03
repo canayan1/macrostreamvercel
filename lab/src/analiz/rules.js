@@ -95,9 +95,27 @@ export function suggestRules(trades, opts = {}) {
       if (e.affected < minAffected || e.diff <= 0) continue;
       if (!best || e.diff > best.diff + 1e-9) best = { rule: r.id, value: v, ...e };
     }
-    if (best) out.push({ ...best, tried: r.values.length });
+    if (best) out.push({ ...best, tried: r.values.length, holdout: holdoutCheck(trades, r, opts) });
   }
   return out.sort((a, b) => b.diff - a.diff);
+}
+
+// Out-of-sample check (the lesson of Bailey and López de Prado): pick the variant on the first two thirds
+// of the trades by open time, then run that same variant on the last third, which it has not seen.
+// null when the last third has fewer than `minTest` trades.
+export function holdoutCheck(trades, rule, opts = {}) {
+  const sorted = [...trades].sort((a, b) => a.acilisZamani - b.acilisZamani);
+  const cut = Math.floor(sorted.length * 2 / 3), train = sorted.slice(0, cut), testSet = sorted.slice(cut);
+  if (testSet.length < (opts.minTest ?? 5)) return null;
+  let pick = null;
+  for (const v of rule.values) {
+    const e = evaluateRule(train, rule.id, v, opts);
+    if (e.affected < 1 || e.diff <= 0) continue;
+    if (!pick || e.diff > pick.diff + 1e-9) pick = { value: v, diff: e.diff };
+  }
+  if (!pick) return { value: null, diff: 0, affected: 0, trades: testSet.length, held: false };
+  const e = evaluateRule(testSet, rule.id, pick.value, opts);
+  return { value: pick.value, diff: e.diff, affected: e.affected, trades: testSet.length, held: e.diff > 0 };
 }
 
 // Rules the trader chose on `since`: which later trades broke them and what those trades made.

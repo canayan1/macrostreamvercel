@@ -212,6 +212,28 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     </div>
   </section>
 
+  <section class="kart" id="cikis-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">08</span><span data-t>Çıkışlar: işlemin içinde</span></h2></div>
+    <p class="dipnot" data-t>Her işlemin girişle çıkış arasındaki en kötü (MAE) ve en iyi (MFE) anı, ve aynı işlemlere sabit bir stop ya da hedef konsaydı ne olacağı. MT5 fiyat dosyası gerekir: ECB'nin günlük tek fiyatı işlemin içini göstermez.</p>
+    <p class="uyari-not" id="cikis-bos"></p>
+    <div id="cikis-sonuc" hidden>
+      <div class="hesap-karolar" id="cikis-karolar"></div>
+      <div class="grafik-izgara">
+        <div class="grafik-kutu"><h3 class="a-h3" data-t>Sabit stop olsaydı</h3><div class="tablo-kutu"><table class="pozisyon a-tablo" id="cikis-stop"></table></div></div>
+        <div class="grafik-kutu"><h3 class="a-h3" data-t>Sabit hedef olsaydı</h3><div class="tablo-kutu"><table class="pozisyon a-tablo" id="cikis-hedef"></table></div></div>
+      </div>
+      <h3 class="a-h3 a-tablo-baslik" data-t>En çok aleyhine giden işlemler</h3>
+      <div class="tablo-kutu"><table class="pozisyon a-tablo" id="cikis-tablo"></table></div>
+      <p class="dipnot" id="cikis-not"></p>
+    </div>
+  </section>
+
+  <section class="kart" id="maliyet-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">09</span><span data-t>Maliyetler</span></h2></div>
+    <div class="hesap-karolar" id="maliyet-karolar"></div>
+    <p class="dipnot" id="maliyet-not"></p>
+  </section>
+
   <section class="kart" id="gorunum-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">06</span><span data-t>Kendi görünümün</span></h2></div>
     <form class="satir-dugme g-sor" id="g-sor">

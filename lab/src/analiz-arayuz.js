@@ -18,6 +18,7 @@ import { PERIODS, periodRange, customRange, applyPeriod } from './analiz/donem.j
 import { parsePriceFile, ecbRequest, ecbPrices, holdAnalysis } from './analiz/hold.js';
 import { RULES, suggestRules, adherence, ruleGuardSet, GUARD_PRESET } from './analiz/rules.js';
 import { edge, sizingReplay, POLICIES } from './analiz/risk.js';
+import { excursions, eRatio, exitSimulation } from './analiz/excursion.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
@@ -186,8 +187,8 @@ function hesapla() {
   motor = analizMotoru(gorunen, { sunucuUtcFarki: utcFark });
   const o = motor.ozet();
   $('#donem-ozet').textContent = ceviri('{n} işlem, {a} - {b}', { n: sayi(o.adet, 0), a: tarih(o.ilk), b: tarih(o.son) });
-  for (const id of ['#ozet-kart', '#risk-kart', '#grafik-kart', '#icgoru-kart', '#kural-kart', '#kirilim-kart', '#prop-kart', '#hold-kart', '#gorunum-kart']) $(id).hidden = false;
-  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); riskCiz(); kuralCiz(); holdCiz(); gorunumCiz();
+  for (const id of ['#ozet-kart', '#risk-kart', '#grafik-kart', '#icgoru-kart', '#kural-kart', '#kirilim-kart', '#prop-kart', '#hold-kart', '#cikis-kart', '#maliyet-kart', '#gorunum-kart']) $(id).hidden = false;
+  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); riskCiz(); kuralCiz(); fiyatliCiz(); gorunumCiz();
   kartlariDuzenle();
 }
 
@@ -440,13 +441,14 @@ function kuralCiz() {
     bos.textContent = ceviri('Denenen kuralların hiçbiri bu dönemde en az iki işlemi değiştirip sonucu iyileştirmedi. Daha uzun bir dönem seç ya da daha çok işlemle yeniden bak.');
   } else {
     bos.hidden = true;
-    const bas = ['', 'Kural', 'Engellenen', 'Küçültülen', 'Kuralla sonuç', 'Fark', 'Azami düşüş', 'En kötü gün'];
+    const bas = ['', 'Kural', 'Engellenen', 'Küçültülen', 'Kuralla sonuç', 'Fark', 'Son üçte birde', 'Azami düşüş', 'En kötü gün'];
+    const disari = h => (!h ? `<span class="dipnot">${kacis(ceviri('az işlem'))}</span>` : h.value === null ? `<span class="dipnot">${kacis(ceviri('ilk üçte ikide işe yaramadı'))}</span>` : `<span class="${kacis(h.held ? 'pozitif' : 'negatif')}">${kacis(para(h.diff, 0))}</span><br><small class="dipnot">${kacis(h.held ? ceviri('tuttu') : ceviri('tutmadı'))}${kacis(ceviri(', {n} işlem', { n: h.trades }))}</small>`);
     const ok = (a, b) => `${duzPara(a, 0)} → ${duzPara(b, 0)}`;
     tablo.innerHTML = `<thead><tr>${bas.map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${kuralOneri.map((r, i) => `<tr>
       <td><input type="checkbox" data-kural="${kacis(i)}" ${i < 3 ? 'checked' : ''} aria-label="${kacis(ceviri('Seç'))}"></td>
       <td>${kacis(kuralAdi(r.rule, r.value))}<br><small class="dipnot">${kacis(ceviri('{n} seçenek denendi', { n: r.tried }))}</small></td>
       <td>${kacis(sayi(r.blocked, 0))}</td><td>${kacis(sayi(r.scaled, 0))}</td>
-      <td class="${kacis(sinif(r.net))}">${kacis(para(r.net))}</td><td class="pozitif">${kacis(para(r.diff))}</td>
+      <td class="${kacis(sinif(r.net))}">${kacis(para(r.net))}</td><td class="pozitif">${kacis(para(r.diff))}</td><td>${disari(r.holdout)}</td>
       <td>${kacis(ok(r.maxDrawdownBefore, r.maxDrawdown))}</td><td>${kacis(`${para(r.worstDayBefore, 0)} → ${para(r.worstDay, 0)}`)}</td></tr>`).join('')}</tbody>`;
   }
   // Uyum: daha önce kaydedilen kurallar, kayıttan sonra açılan işlemlerde.
@@ -460,6 +462,75 @@ function kuralCiz() {
   $('#kural-uyum-not').textContent = ceviri('{t} tarihinde kaydedildi; sonra açılan {n} işleme bakıldı. Maliyet: kuralı çiğneyen işlemler olmasaydı sonucun ne kadar daha iyi olacağı.', { t: tarih(kay.tarih), n: sayi(sonra, 0) });
 }
 function seciliKurallar() { return [...document.querySelectorAll('#kural-tablo [data-kural]:checked')].map(c => kuralOneri[Number(c.dataset.kural)]).filter(Boolean).map(r => ({ rule: r.rule, value: r.value })); }
+
+// ---------------------------------------------------------------- fiyatlı bölümler: tutsaydın, çıkışlar, maliyetler
+function fiyatliCiz() { holdCiz(); cikisCiz(); maliyetCiz(); }
+
+function cikisCiz() {
+  const bos = $('#cikis-bos'), sonuc = $('#cikis-sonuc');
+  if (!holdFiyat || holdFiyat.source !== 'mt5') {
+    sonuc.hidden = true; bos.hidden = false;
+    bos.innerHTML = `${kacis(holdFiyat ? ceviri('ECB kurlarıyla işlemin içi görünmez: MT5 fiyat dosyasını seç.') : ceviri('MT5 fiyat dosyası yüklenmedi.'))} <button type="button" class="kucuk" data-fiyat-sec>${kacis(ceviri('MT5 fiyat dosyasını seç'))}</button>`;
+    bos.querySelector('[data-fiyat-sec]').onclick = () => $('#hold-dosya').click();
+    return;
+  }
+  const rows = excursions(motor.islemler, holdFiyat), ok = rows.filter(r => r.status === 'ok');
+  if (!ok.length) { sonuc.hidden = true; bos.hidden = false; bos.textContent = ceviri('Bu işlemlerin içi için fiyat yok.'); return; }
+  bos.hidden = true; sonuc.hidden = false;
+  const ort = f => ok.reduce((t, r) => t + f(r), 0) / ok.length;
+  const kazanan = ok.filter(r => r.giveBack !== null);
+  const er = eRatio(rows);
+  const karo = (ad, deger, c = '', alt = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b>${alt ? `<small>${kacis(alt)}</small>` : ''}</div>`;
+  $('#cikis-karolar').innerHTML = [
+    karo('Kenar oranı (e-ratio)', er === null ? '–' : sayi(er, 2), er !== null && er >= 1 ? 'pozitif' : 'negatif', ceviri('Ortalama MFE / ortalama MAE; 1 üstü girişin lehine')),
+    karo('Ortalama en kötü an', R(ort(r => r.maeR ?? 0)), 'negatif', ceviri('MAE, ortalama {x}', { x: para(ort(r => r.mae), 0) })),
+    karo('Ortalama en iyi an', R(ort(r => r.mfeR ?? 0)), 'pozitif', ceviri('MFE, ortalama {x}', { x: para(ort(r => r.mfe), 0) })),
+    karo('Kazananların geri verdiği', kazanan.length ? para(-kazanan.reduce((t, r) => t + r.giveBack, 0) / kazanan.length, 0) : '–', 'negatif', ceviri('En iyi andan çıkışa, işlem başı ortalama')),
+  ].join('');
+  const senin = motor.islemler.reduce((t, i) => t + i.net, 0);
+  const tablo = (el, kind, ks) => {
+    const sat = ks.map(k => ({ k, r: exitSimulation(motor.islemler, holdFiyat, { kind, k }) }));
+    $(el).innerHTML = `<thead><tr>${[kind === 'stop' ? 'Stop' : 'Hedef', 'Sonuç', 'Değişen işlem', 'Kazanma oranı'].map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>
+      <tr class="risk-sen"><td>${kacis(ceviri('Senin çıkışların'))}</td><td class="${kacis(sinif(senin))}">${kacis(para(senin, 0))}</td><td>–</td><td>${kacis(yuzde(motor.islemler.filter(i => i.net > 0).length / motor.islemler.length))}</td></tr>
+      ${sat.map(({ k, r }) => `<tr><td>${kacis(`${sayi(k, k % 1 ? 1 : 0)}R`)}</td><td class="${kacis(sinif(r.net))}">${kacis(para(r.net, 0))}</td><td>${kacis(sayi(r.changed, 0))}</td><td>${kacis(yuzde(r.winRate))}</td></tr>`).join('')}</tbody>`;
+  };
+  tablo('#cikis-stop', 'stop', [0.5, 1, 1.5, 2, 3]);
+  tablo('#cikis-hedef', 'target', [0.5, 1, 2, 3]);
+  const en = [...ok].sort((a, b) => a.mae - b.mae).slice(0, 10);
+  $('#cikis-tablo').innerHTML = `<thead><tr>${['Sembol', 'Yön', 'Lot', 'Açılış', 'Senin sonucun', 'En kötü an (MAE)', 'En iyi an (MFE)'].map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${en.map(r => `<tr>
+    <td>${kacis(r.trade.sembol)}</td><td>${kacis(ceviri(r.trade.yon === 'al' ? 'Alış' : 'Satış'))}</td><td>${kacis(sayi(r.trade.lot, 2))}</td><td>${kacis(anMetni(r.trade.acilisZamani))}</td>
+    <td class="${kacis(sinif(r.trade.net))}">${kacis(para(r.trade.net, 0))}</td><td class="negatif">${kacis(`${para(r.mae, 0)} (${R(r.maeR)})`)}</td><td class="pozitif">${kacis(`${para(r.mfe, 0)} (${R(r.mfeR)})`)}</td></tr>`).join('')}</tbody>`;
+  $('#cikis-not').textContent = ceviri('{m} dakikalık mumlarla; mum içinde önce aleyhine olan fiyat sayıldı, girişi içeren mum girişten önceki fiyatları da içerebilir. 1R, Risk ve pozisyon büyüklüğü bölümündekiyle aynı. Bu geçmişin bir senaryosudur; bir öneri değildir.', { m: holdFiyat.timeframeMinutes ?? '?' });
+}
+
+function maliyetCiz() {
+  const t = motor.islemler;
+  const brutKazanc = t.reduce((s, i) => s + Math.max(0, i.brut), 0), brutKayip = t.reduce((s, i) => s + Math.min(0, i.brut), 0);
+  const komisyon = t.reduce((s, i) => s + (i.komisyon || 0), 0), swap = t.reduce((s, i) => s + (i.swap || 0), 0);
+  // Spread: today's spread from the MT5 price file, times each trade's lots (an estimate, not the spread paid).
+  let spread = null;
+  if (holdFiyat?.source === 'mt5') {
+    spread = 0;
+    for (const i of t) { const s = holdFiyat.symbols[i.sembol]; if (s?.ask > 0 && s?.bid > 0 && s.valuePerUnit > 0) spread -= (s.ask - s.bid) * s.valuePerUnit * i.lot; }
+  }
+  // The spread estimate is shown on its own and kept out of the totals: it is today's spread, not the one paid.
+  const toplam = komisyon + swap;
+  const saat = Number(String(holdFiyat?.generated ?? '').slice(11, 13));
+  const devir = spread !== null && Number.isFinite(saat) && (saat >= 23 || saat <= 1);
+  const gunler = new Set(t.map(i => new Date(i.acilisZamani * 1000).toISOString().slice(0, 10))).size;
+  const sure = t.length ? t.reduce((s, i) => s + (i.kapanisZamani - i.acilisZamani), 0) / t.length : 0;
+  const sureMetni = s => (s >= 86400 ? ceviri('{n} gün', { n: sayi(s / 86400, 1) }) : s >= 3600 ? ceviri('{n} saat', { n: sayi(s / 3600, 1) }) : ceviri('{n} dk', { n: sayi(s / 60, 0) }));
+  const karo = (ad, deger, c = '', alt = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b>${alt ? `<small>${kacis(alt)}</small>` : ''}</div>`;
+  $('#maliyet-karolar').innerHTML = [
+    karo('Komisyon', para(komisyon), sinif(komisyon)),
+    karo('Swap', para(swap), sinif(swap)),
+    karo('Spread (tahmin)', spread === null ? '–' : para(spread, 0), spread ? 'negatif' : '', spread === null ? ceviri('MT5 fiyat dosyasıyla') : devir ? ceviri('dosya devir saatinde yazıldı: spread geniş, tahmin şişkin') : ceviri('dosyanın yazıldığı andaki spread ile; toplama katılmadı')),
+    karo('Komisyon ve swapın brüt kazanca oranı', brutKazanc > 0 ? yuzde(-toplam / brutKazanc) : '–', '', ceviri('Brüt kazanç {a}, brüt kayıp {b}', { a: duzPara(brutKazanc, 0), b: para(brutKayip, 0) })),
+    karo('İşlem başı komisyon ve swap', t.length ? para(toplam / t.length) : '–', sinif(toplam)),
+    karo('İşlem sıklığı', ceviri('günde {n}', { n: sayi(gunler ? t.length / gunler : 0, 1) }), '', ceviri('{g} işlem gününde {n} işlem; ortalama süre {s}', { g: gunler, n: t.length, s: sureMetni(sure) })),
+  ].join('');
+  $('#maliyet-not').textContent = ceviri('Komisyon ve swap raporun kendisinden; spread, fiyat dosyasındaki bugünkü alış-satış farkıyla her işlemin lotu çarpılarak tahmin edilir (gerçekte ödenen spread farklı olabilir). Barber ve Odean\'ın bulgusu: sık işlemin bedeli çoğu zaman seçimden değil maliyetten gelir.');
+}
 
 // ---------------------------------------------------------------- tutsaydın ne olurdu (analiz/hold.js)
 let holdFiyat = null;   // parsePriceFile ya da ecbPrices sonucu; yalnız bellekte
@@ -508,7 +579,7 @@ function holdCiz() {
 
 // ---------------------------------------------------------------- favoriler: üste sabitlenen bölümler ve görünümler
 // Sıra bu tarayıcıda saklanır: ['ozet', 'g:Benim görünümüm', ...]. Sabitlenmeyenler varsayılan sırayla altta kalır.
-const KARTLAR = ['ozet', 'risk', 'grafik', 'icgoru', 'kural', 'kirilim', 'prop', 'hold', 'gorunum'];
+const KARTLAR = ['ozet', 'risk', 'grafik', 'icgoru', 'kural', 'kirilim', 'prop', 'hold', 'cikis', 'maliyet', 'gorunum'];
 const sabitOku = () => { try { const d = JSON.parse(depoOku(DEPO.sabit) ?? '[]'); return Array.isArray(d) ? d.filter(x => typeof x === 'string').slice(0, 20) : []; } catch { return []; } };
 const sabitYaz = d => depoYaz(DEPO.sabit, JSON.stringify(d));
 function sabitDegis(id) {
@@ -606,7 +677,7 @@ function baslat() {
   $('#hold-dosya').onchange = async () => {
     const f = $('#hold-dosya').files[0]; $('#hold-dosya').value = '';
     if (!f) return;
-    try { holdFiyat = parsePriceFile(await f.text()); $('#hold-durum').textContent = ceviri('{n} sembol okundu.', { n: Object.keys(holdFiyat.symbols).length }); holdCiz(); }
+    try { holdFiyat = parsePriceFile(await f.text()); $('#hold-durum').textContent = ceviri('{n} sembol okundu.', { n: Object.keys(holdFiyat.symbols).length }); fiyatliCiz(); }
     catch { $('#hold-durum').textContent = ceviri('Bu bir Kalibre fiyat dosyası değil. Betiğin yazdığı kalibre-prices dosyasını seç.'); }
   };
   $('#hold-ecb').onclick = async () => {
@@ -618,7 +689,7 @@ function baslat() {
       const yanit = await fetch(req.url, { headers: { Accept: 'text/csv' } });
       if (!yanit.ok) throw new Error(String(yanit.status));
       holdFiyat = ecbPrices(await yanit.text(), hesap.islemler);
-      holdCiz();
+      fiyatliCiz();
     } catch { $('#hold-durum').textContent = ceviri('ECB kurları alınamadı. Biraz sonra yeniden dene.'); }
   };
   for (const id of ['#prop-on-ayar', '#prop-baslangic', '#prop-gunluk', '#prop-azami']) $(id).addEventListener('change', () => { holdCiz(); kuralCiz(); riskCiz(); });

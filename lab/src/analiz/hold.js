@@ -30,6 +30,7 @@ export function parsePriceFile(text) {
     symbols[sym] = {
       bars, point: Number(v.point) || 0, valuePerUnit: Number(v.value_per_unit) || 0, marginPerLot: Number(v.margin_per_lot) || 0,
       swapMode: Number(v.swap_mode) || 0, swapLong: Number(v.swap_long) || 0, swapShort: Number(v.swap_short) || 0, swap3day: Number.isFinite(Number(v.swap_3day)) ? Number(v.swap_3day) : 3,
+      bid: Number(v.bid) || 0, ask: Number(v.ask) || 0,
     };
   }
   const a = d.account ?? {};
