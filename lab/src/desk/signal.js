@@ -22,6 +22,9 @@ export const BOARD = [
   { id: 'square', key: '5', label: 'Square up before the close', colour: '#a78bfa', sticky: true },
 ];
 export const ESCALATION = { growMs: 10_000, notifyMs: 20_000 };
+// Limit changes from the head (limits.js) travel as items of this built-in signal: the trader sees them,
+// marks them seen and done, and they stay in the log like any signal. It ranks after the board.
+export const LIMITS_SIGNAL = { id: 'limits', key: 'L', label: 'New limits', colour: '#94a3b8', sticky: false };
 export const LIMITS = { signals: 9, label: 40 };
 const ORDER = ['sent', 'delivered', 'seen', 'done'];
 
@@ -50,8 +53,8 @@ export function createDesk({ board = BOARD, people = [], escalation = ESCALATION
   return { board: board.map(s => ({ ...s, label: s.label.trim() })), people: people.map(p => ({ ...p })), escalation: { ...escalation }, items: [], seq: 0 };
 }
 
-export const signalOf = (desk, id) => desk.board.find(s => s.id === id);
-const rank = (desk, id) => desk.board.findIndex(s => s.id === id);
+export const signalOf = (desk, id) => desk.board.find(s => s.id === id) ?? (id === 'limits' ? LIMITS_SIGNAL : undefined);
+const rank = (desk, id) => (id === 'limits' ? desk.board.length : desk.board.findIndex(s => s.id === id));
 
 export function recipients(desk, to) {
   const ids = new Set();
@@ -131,7 +134,7 @@ export const LOG_COLUMNS = ['Signal ID', 'Key', 'Meaning', 'From', 'To', 'Locati
 export function logRows(desk) {
   return [...desk.items].sort((a, b) => a.times.sent - b.times.sent || a.id.localeCompare(b.id, 'en', { numeric: true })).map(x => {
     const sig = signalOf(desk, x.signal), p = desk.people.find(q => q.id === x.person);
-    return [x.id, sig.key, sig.label, x.from, p?.name ?? x.person, p?.location ?? '', iso(x.times.sent), iso(x.times.delivered), iso(x.times.seen), iso(x.times.done), iso(x.times.cancelled), secs(after(x, 'seen')), secs(after(x, 'done')), status(x)];
+    return [x.id, sig.key, x.note ? `${sig.label}: ${x.note}` : sig.label, x.from, p?.name ?? x.person, p?.location ?? '', iso(x.times.sent), iso(x.times.delivered), iso(x.times.seen), iso(x.times.done), iso(x.times.cancelled), secs(after(x, 'seen')), secs(after(x, 'done')), status(x)];
   });
 }
 

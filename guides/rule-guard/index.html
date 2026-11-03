@@ -49,7 +49,7 @@
     <h1 class="display-s">Install Rule Guard in MetaTrader 5</h1>
     <p class="lede">An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.</p>
     <div class="actions left guide-actions"><a class="btn" href="/static/downloads/KalibreRuleGuard.ex5" download>Download Rule Guard for MT5</a><a class="more" href="/static/guides/kalibre-rule-guard-guide.pdf" download>Download this guide (PDF)</a></div>
-    <p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.21): <code>a08d2714a9b1a05e5751059593c6c5247bc5a6738cc85fee5dc97a640697e088</code></p>
+    <p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.31): <code>b810730a3ba4e1b55d727af07aec4ecc497fe30474a19ed99b07a985be0109cc</code></p>
     <h2 class="title-s">What you need</h2>
     <ul class="guide-list"><li>MetaTrader 5 on a computer (Windows or Mac), logged in to the account.</li><li>The account size the firm gave you, for example 100,000.</li><li>Optional: the MT5 app on your phone, for push alerts.</li></ul>
     <h2 class="title-s">Steps</h2>
@@ -66,6 +66,13 @@
       <li><h3>Download the settings</h3><p>Click <b>Download Rule Guard settings</b>. You get <b>KalibreRuleGuard-rules.set</b>.</p></li>
       <li><h3>Load them in MT5</h3><p>Drag Rule Guard onto a chart, open the <b>Inputs</b> tab, press <b>Load</b> and choose the file. Check the values and click OK.</p></li>
       <li><h3>See how you kept them</h3><p>Back in Trade Analytics, click <b>Save as my rules</b>. The next history you drop shows each rule, how often it was broken and what breaking it cost.</p></li>
+    </ol>
+    <h2 class="title-s" id="desk">Optional: your desk's limits</h2>
+    <p class="lede">On a Desk Signal desk, the head of desk sets limits for each trader. Rule Guard 0.31 applies them in MT5 on top of your own rules, and the stricter value wins. Your head of desk sees that Rule Guard is on and which trades broke a limit. It reads only your desk's sealed limits and sends only the rule hits.</p>
+    <ol class="guide-steps">
+      <li><h3>Copy your desk link</h3><p>On your Desk Signal screen, open <b>Keep these limits in MT5 with Rule Guard</b> and click <b>Copy link</b>.</p></li>
+      <li><h3>Allow the relay</h3><p>In MetaTrader 5 choose <b>Tools → Options → Expert Advisors</b>, tick <b>Allow WebRequest for listed URL</b> and add <code>https://kalibremarkets.com</code>.</p></li>
+      <li><h3>Paste the link</h3><p>Open Rule Guard's <b>Inputs</b> tab, paste the link into <b>Desk link</b> and click OK. The panel shows <b>Desk: Desk limits on</b> once your head of desk has set them.</p></li>
     </ol>
     <p class="guide-fine">Questions: markets@kalibrefin.com. Kalibre is software and does not give investment advice. <a href="/risk-disclosure">Risk disclosure</a></p>
   </div>

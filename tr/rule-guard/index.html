@@ -80,8 +80,9 @@
       <div class="tile "><h3>Tabanlar firmanın hesapladığı gibi.</h3><p>Günlük taban gün başı bakiyeden, toplam taban başlangıç sermayesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır.</p><p class="big">%5<span style="font-size:.4em;color:var(--ink-3)"> / %10</span></p></div>
       <div class="tile dark"><h3>Önce uyarı, sonra kilit.</h3><p>Güvenlik payının iki katında: yeni işlem açma. Bir güvenlik payında: gün sıfırlanana kadar kilit. Watch modu uyarır; Protect modu açık pozisyonları da kapatır ve bekleyen emirleri siler.</p></div>
       <div class="tile third"><h3>Firma ön ayarları.</h3><p>FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. Her ön ayar kuralların alındığı tarihi gösterir.</p></div>
-      <div class="tile third"><h3>Hiç işlem açmaz.</h3><p>Emir yok, sinyal yok, strateji yok. Lisans, internet bağlantısı ve şifre yok: yalnız terminalinin içinde çalışır.</p></div>
+      <div class="tile third"><h3>Hiç işlem açmaz.</h3><p>Emir yok, sinyal yok, strateji yok. Lisans ve şifre yok. Terminalinin içinde çalışır; yalnız bir Desk Signal masasına bağlarsan internete çıkar.</p></div>
       <div class="tile third dark"><h3>Kişisel kuralların.</h3><p>Günde N kayıptan sonra dur, günde en çok N işlem, kayıptan sonra bekle, kayıptan sonra lot büyütme, günlük kayıp sınırı ve azami lot. Trade Analytics kendi geçmişinin ödüllendireceklerini bulur ve Rule Guard ayarı olarak indirir.</p><a class="more" href="/guides/rule-guard#rules">Nasıl yüklenir</a></div>
+      <div class="tile third"><h3>Masanın sınırları.</h3><p>Rule Guard'ı Desk Signal masana bağla; masa şefinin sınırları MT5'te seninkilerin üstüne uygulanır, sıkı olan geçerlidir. Masa şefi Rule Guard'ın açık olduğunu ve hangi işlemin sınırı aştığını görür.</p><a class="more" href="/guides/rule-guard#desk">Nasıl bağlanır</a></div>
       <div class="tile third"><h3>Telefonunda.</h3><p>Uyarılar MetaQuotes bildirimleriyle telefonundaki MT5 uygulamasına gider.</p></div>
     </div>
   </div>
@@ -93,7 +94,7 @@
     <p class="lede">Önce bir demo hesapta, sonra sınavında çalıştır. Nasıl gittiğini ve neyin eksik olduğunu anlat.</p>
     <div class="actions"><a class="btn" href="/static/downloads/KalibreRuleGuard.ex5" download>MT5 için indir</a><a class="btn btn-ghost" href="#pricing" data-erken-erisim>Nasıl gittiğini anlat</a></div>
     <div class="faq"><details><summary>Firmam izin veriyor mu?</summary><p>Sınav hesabına eklemeden önce firmanın Expert Advisor ve risk aracı kurallarını kontrol et.</p></details><details><summary>Elle açtığım işlemleri durdurabilir mi?</summary><p>Hayır. MT5 bir eklentinin elle verilen emri engellemesine izin vermez. Rule Guard hesaptaki her pozisyonu sayar ve uyarır; Protect modunda kilitte onları kapatır.</p></details><details><summary>MT5 kapalıyken çalışır mı?</summary><p>Hayır. Yalnız terminal açıkken çalışır. 24 saat izleme için MT5'i bir VPS'te çalıştır.</p></details><details><summary>Sınavı geçmemi garanti eder mi?</summary><p>Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları hesabı sınırın ötesine götürebilir.</p></details><details><summary>Kalibre bir prop firması mı?</summary><p>Hayır. Hiçbir prop firmasıyla bağlantısı yok. Firma adları yalnız kurallarını anlatmak için kullanılır.</p></details></div>
-    <p class="fine">KalibreRuleGuard.ex5, version 0.21. SHA-256 <code>a08d2714a9b1a05e5751059593c6c5247bc5a6738cc85fee5dc97a640697e088</code></p>
+    <p class="fine">KalibreRuleGuard.ex5, version 0.31. SHA-256 <code>b810730a3ba4e1b55d727af07aec4ecc497fe30474a19ed99b07a985be0109cc</code></p>
     <p class="legal-note">Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır. Yatırdığın paranın tamamını kaybedebilirsin. <a href="/tr/risk-disclosure">Risk bildirimi</a></p>
   </div>
 </section>

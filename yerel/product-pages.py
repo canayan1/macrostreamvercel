@@ -651,8 +651,9 @@ def rule_guard(lang):
       {tile(T(lang, "Floors calculated the way your firm does.", "Tabanlar firmanın hesapladığı gibi."), T(lang, "The daily floor uses the start-of-day balance. The total floor uses the starting capital or the peak. The day resets at the firm's time.", "Günlük taban gün başı bakiyeden, toplam taban başlangıç sermayesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır."), f'<p class="big">5%<span style="font-size:.4em;color:var(--ink-3)"> / 10%</span></p>' if not tr else '<p class="big">%5<span style="font-size:.4em;color:var(--ink-3)"> / %10</span></p>')}
       {tile(T(lang, "A warning, then a lock.", "Önce uyarı, sonra kilit."), T(lang, "At twice the safety margin: do not open new trades. At one safety margin: locked until the day resets. Watch mode alerts; Protect mode also closes open positions and deletes pending orders.", "Güvenlik payının iki katında: yeni işlem açma. Bir güvenlik payında: gün sıfırlanana kadar kilit. Watch modu uyarır; Protect modu açık pozisyonları da kapatır ve bekleyen emirleri siler."), "", "dark")}
       {tile(T(lang, "Firm presets.", "Firma ön ayarları."), T(lang, "FTMO 2-Step, FTMO 1-Step, FTMO Instant and The5ers High Stakes, or your own limits. Each preset shows the date its rules were taken.", "FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. Her ön ayar kuralların alındığı tarihi gösterir."), "", "third")}
-      {tile(T(lang, "Never opens a trade.", "Hiç işlem açmaz."), T(lang, "No orders, no signals, no strategy. No licence, no internet connection and no password: it runs inside your terminal only.", "Emir yok, sinyal yok, strateji yok. Lisans, internet bağlantısı ve şifre yok: yalnız terminalinin içinde çalışır."), "", "third")}
+      {tile(T(lang, "Never opens a trade.", "Hiç işlem açmaz."), T(lang, "No orders, no signals, no strategy. No licence and no password. It runs inside your terminal and goes online only when you link it to a Desk Signal desk.", "Emir yok, sinyal yok, strateji yok. Lisans ve şifre yok. Terminalinin içinde çalışır; yalnız bir Desk Signal masasına bağlarsan internete çıkar."), "", "third")}
       {tile(T(lang, "Your personal rules.", "Kişisel kuralların."), T(lang, "Stop after N losses a day, at most N trades a day, a pause after a loss, no bigger lot after a loss, a daily loss limit and a max lot. Trade Analytics finds the ones your own history would have rewarded and downloads them as Rule Guard settings.", "Günde N kayıptan sonra dur, günde en çok N işlem, kayıptan sonra bekle, kayıptan sonra lot büyütme, günlük kayıp sınırı ve azami lot. Trade Analytics kendi geçmişinin ödüllendireceklerini bulur ve Rule Guard ayarı olarak indirir."), more("/guides/rule-guard#rules", T(lang, "How to load them", "Nasıl yüklenir")), "third dark")}
+      {tile(T(lang, "Your desk's limits.", "Masanın sınırları."), T(lang, "Link Rule Guard to your Desk Signal desk and your head of desk's limits apply in MT5 on top of your own; the stricter one wins. Your head of desk sees that Rule Guard is on and which trades broke a limit.", "Rule Guard'ı Desk Signal masana bağla; masa şefinin sınırları MT5'te seninkilerin üstüne uygulanır, sıkı olan geçerlidir. Masa şefi Rule Guard'ın açık olduğunu ve hangi işlemin sınırı aştığını görür."), more("/guides/rule-guard#desk", T(lang, "How to link it", "Nasıl bağlanır")), "third")}
       {tile(T(lang, "On your phone.", "Telefonunda."), T(lang, "Alerts go to the MT5 app on your phone through MetaQuotes push notifications.", "Uyarılar MetaQuotes bildirimleriyle telefonundaki MT5 uygulamasına gider."), "", "third")}
     </div>
   </div>
@@ -668,7 +669,7 @@ def rule_guard(lang):
           (T(lang, "Does it work when MT5 is closed?", "MT5 kapalıyken çalışır mı?"), T(lang, "No. It runs only while the terminal is open. For a 24-hour watch, run MT5 on a VPS.", "Hayır. Yalnız terminal açıkken çalışır. 24 saat izleme için MT5'i bir VPS'te çalıştır.")),
           (T(lang, "Does it guarantee that I pass?", "Sınavı geçmemi garanti eder mi?"), T(lang, "No. It watches the loss limits only. Slippage and price gaps can take the account past a limit.", "Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları hesabı sınırın ötesine götürebilir.")),
           (T(lang, "Is Kalibre a prop firm?", "Kalibre bir prop firması mı?"), T(lang, "No. Kalibre is not affiliated with any prop firm. Firm names are used only to describe their rules.", "Hayır. Hiçbir prop firmasıyla bağlantısı yok. Firma adları yalnız kurallarını anlatmak için kullanılır."))])}
-    <p class="fine">KalibreRuleGuard.ex5, version 0.21. SHA-256 <code>{GUARD_SHA}</code></p>
+    <p class="fine">KalibreRuleGuard.ex5, version 0.31. SHA-256 <code>{GUARD_SHA}</code></p>
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır. Yatırdığın paranın tamamını kaybedebilirsin.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>
@@ -719,6 +720,9 @@ def desk_signal(lang):
       {tile(T(lang, "Every location on one board.", "Her lokasyon tek panoda."), T(lang, "Send to a city with one key and see each trader's local time next to their answer.", "Tek tuşla bir şehre gönder; her trader'ın yerel saatini yanıtının yanında gör."), "", "third")}
       {tile(T(lang, "A log for your records.", "Kayıtların için bir log."), T(lang, "Sent, delivered, seen and done, to the second in UTC. Download it as CSV or Excel.", "Gönderildi, ulaştı, görüldü ve bitti; UTC'de saniyesine kadar. CSV ya da Excel olarak indir."), "", "third")}
       {tile(T(lang, "Fixed meanings, never orders.", "Sabit anlamlar, asla emir değil."), T(lang, "A signal carries only a meaning from your board. No free text, no orders and no market data.", "Sinyal yalnız panondaki bir anlamı taşır. Serbest metin, emir ya da piyasa verisi yok."), "", "third")}
+      {tile(T(lang, "Set the desk's risk like a mixer.", "Masanın riskini mikser gibi ayarla."), T(lang, "Set the limits once, then ride a fader per trader and a master fader for the whole desk. Each trader sees the new limits and confirms them, and every change is in the log.", "Sınırları bir kez koy, sonra her trader için bir fader ve tüm masa için bir ana fader kullan. Her trader yeni sınırlarını görür ve onaylar; her değişiklik logda."), "", "dark")}
+      {tile(T(lang, "Your own controller.", "Kendi kontrolcün."), T(lang, "Plug in any MIDI fader box, DJ controller or pad grid and map it in a minute. A fader takes over only once it passes the level on screen, so picking it up never jumps anyone's risk.", "Herhangi bir MIDI fader kutusu, DJ kontrolcüsü ya da pad takımı tak, bir dakikada eşle. Fader ekrandaki seviyeyi geçince devralır; eline aldığında kimsenin riski sıçramaz."), "", "third")}
+      {tile(T(lang, "Kept in MT5 by Rule Guard.", "MT5'te Rule Guard korur."), T(lang, "Traders link Rule Guard with one pasted link. It applies the desk's limits in MetaTrader 5, and you see who has it on and which trades broke a limit.", "Trader'lar Rule Guard'ı tek bir bağlantıyla bağlar. Masanın sınırlarını MetaTrader 5'te uygular; kimde açık olduğunu ve hangi işlemin sınırı aştığını görürsün."), more("/rule-guard", "Rule Guard"), "third")}
     </div>
   </div>
 </section>
@@ -744,6 +748,7 @@ def desk_signal(lang):
           (T(lang, "Does the demo send anything?", "Demo bir şey gönderiyor mu?"), T(lang, "No. The demo runs in your browser and sends nothing to a server.", "Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.")),
           (T(lang, "Can we choose our own colours and meanings?", "Renkleri ve anlamları kendimiz seçebilir miyiz?"), T(lang, "Yes. Up to nine signals, each with its own meaning and key. You choose which ones ring until answered.", "Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.")),
           (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "Nothing. They open the invite link in a browser tab and pick a name. In Chrome and Edge the orb can stay on top of their other windows. The desktop app follows.", "Hiçbir şey. Davet bağlantısını bir tarayıcı sekmesinde açar ve bir ad seçer. Chrome ve Edge'de top diğer pencerelerin üstünde kalabilir. Masaüstü uygulaması ardından gelir.")),
+          (T(lang, "Can the head of desk trade on my account?", "Masa şefi hesabımda işlem yapabilir mi?"), T(lang, "No. The head sets limits only. Rule Guard, in your own MT5, never opens a trade; in Protect mode it closes a new position that breaks a limit, in Watch mode it only warns.", "Hayır. Masa şefi yalnız sınır koyar. Kendi MT5'indeki Rule Guard hiç işlem açmaz; Protect modunda sınırı aşan yeni pozisyonu kapatır, Watch modunda yalnız uyarır.")),
           (T(lang, "Can Kalibre read our signals?", "Kalibre sinyallerimizi okuyabilir mi?"), T(lang, "No. Signals are sealed in your browsers with a key that lives only in your invite link. Our relay passes them on without being able to open them, and only the head's browser can send a signal.", "Hayır. Sinyaller tarayıcılarınızda, yalnız davet bağlantınızda duran bir anahtarla mühürlenir. Rölemiz onları açamadan iletir ve sinyali yalnız masa şefinin tarayıcısı gönderebilir.")),
           (T(lang, "How long is the log kept?", "Log ne kadar tutulur?"), T(lang, "The head's console downloads the full log as CSV or Excel at any time. During early access the relay keeps the last 5,000 events for 30 days.", "Masa şefinin konsolu tam logu istediği an CSV ya da Excel olarak indirir. Erken erişimde röle son 5.000 olayı 30 gün tutar."))])}
     <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
@@ -1091,7 +1096,17 @@ GUIDES = {
    ("Read the answers and the log", "Traders click <b>Seen</b>, then <b>Done</b>. <b>Who has answered</b> shows the average time to see and to finish. <b>Download Excel</b> saves the full log."),
   ],
   "see": ["A coloured orb on each trader's screen.", "Who has seen and who has done each signal, to the second.", "Average time to answer per trader.", "A signal log as CSV or Excel."],
-  "know": ["Signals carry a fixed meaning from your board, never free text and never orders.", "Change the meanings with <b>Edit signals</b> before you start.", "The relay keeps the last 5,000 events for 30 days. Download the log to keep it longer."],
+  "extra": """
+    <h2 class="title-s" id="risk">Optional: set the desk's risk</h2>
+    <p class="lede">The head of desk sets limits once and rides them with faders: one per trader, and a master fader for the whole desk. A trader's fader scales their max lot and daily loss limit; the master scales everyone's.</p>
+    <ol class="guide-steps">
+      <li><h3>Set the base limits</h3><p>In <b>Desk risk</b>, type the limits for a trader at full risk: max lot, daily loss limit, max trades a day, stop after losses, a pause after a loss. Leave a box empty to keep that limit off.</p></li>
+      <li><h3>Ride the faders</h3><p>Move a trader's fader or the master. Each strip shows the lot it gives. <b>Half risk</b> and <b>Defensive</b> set the master in one click.</p></li>
+      <li><h3>Send the limits</h3><p>Click <b>Send limits</b>. Each trader whose limits changed sees <b>New limits</b> with the change, clicks <b>Seen</b> and <b>Done</b>, and the log records it. <b>No new trades</b> goes out at once.</p></li>
+      <li><h3>Keep them in MT5</h3><p>Traders link Rule Guard from their screen (see the <a href="/guides/rule-guard#desk">Rule Guard guide</a>). The <b>Rule Guard</b> column shows who has it on and the rule hits of the day.</p></li>
+      <li><h3>Use a controller</h3><p>In Chrome or Edge, plug in any MIDI fader box, DJ controller or pad grid and click <b>Connect a controller</b>, then <b>Map controls</b>: click a strip or a pad and move the control that should drive it. A fader takes over once it passes the level on screen.</p></li>
+    </ol>""",
+  "know": ["Signals carry a fixed meaning from your board, never free text and never orders.", "Change the meanings with <b>Edit signals</b> before you start.", "The head of desk sets limits, never orders. Rule Guard enforces them only in MT5 terminals where the trader linked it.", "The relay keeps the last 5,000 events for 30 days. Download the log to keep it longer."],
  },
  "rule-guard": {
   "title": "Install Rule Guard in MetaTrader 5",
@@ -1116,6 +1131,13 @@ GUIDES = {
       <li><h3>Download the settings</h3><p>Click <b>Download Rule Guard settings</b>. You get <b>KalibreRuleGuard-rules.set</b>.</p></li>
       <li><h3>Load them in MT5</h3><p>Drag Rule Guard onto a chart, open the <b>Inputs</b> tab, press <b>Load</b> and choose the file. Check the values and click OK.</p></li>
       <li><h3>See how you kept them</h3><p>Back in Trade Analytics, click <b>Save as my rules</b>. The next history you drop shows each rule, how often it was broken and what breaking it cost.</p></li>
+    </ol>
+    <h2 class="title-s" id="desk">Optional: your desk's limits</h2>
+    <p class="lede">On a Desk Signal desk, the head of desk sets limits for each trader. Rule Guard 0.31 applies them in MT5 on top of your own rules, and the stricter value wins. Your head of desk sees that Rule Guard is on and which trades broke a limit. It reads only your desk's sealed limits and sends only the rule hits.</p>
+    <ol class="guide-steps">
+      <li><h3>Copy your desk link</h3><p>On your Desk Signal screen, open <b>Keep these limits in MT5 with Rule Guard</b> and click <b>Copy link</b>.</p></li>
+      <li><h3>Allow the relay</h3><p>In MetaTrader 5 choose <b>Tools → Options → Expert Advisors</b>, tick <b>Allow WebRequest for listed URL</b> and add <code>https://kalibremarkets.com</code>.</p></li>
+      <li><h3>Paste the link</h3><p>Open Rule Guard's <b>Inputs</b> tab, paste the link into <b>Desk link</b> and click OK. The panel shows <b>Desk: Desk limits on</b> once your head of desk has set them.</p></li>
     </ol>""",
   "know": ["Rule Guard works only while MT5 is open. For a 24-hour watch, run MT5 on a VPS.", "It cannot stop an order you place by hand. In <b>Protect</b> mode it closes every open position and deletes pending orders at the lock; this needs Algo Trading on, and on a real-money account the input <b>Protect on a real account: I accept this</b>.", "Closing happens at market price. Slippage and gaps can take the account past a limit.", "Check that your firm allows a risk add-on on the account. Firm rules change; the preset shows the date it was taken."],
  },
@@ -1127,7 +1149,7 @@ def guide_body(key):
     li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
     pdf = f"/static/guides/kalibre-{key}-guide.pdf"
     dl = ' download' if g["open"].endswith(".ex5") else ""
-    extra = (f'<p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.21): <code>{GUARD_SHA}</code></p>' if key == "rule-guard" else "")
+    extra = (f'<p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.31): <code>{GUARD_SHA}</code></p>' if key == "rule-guard" else "")
     return f'''
 <article class="guide" id="guide">
   <div class="wrap-text">

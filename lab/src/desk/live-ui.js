@@ -9,6 +9,8 @@ import { ESCALATION, checkBoard, recipients, signalOf, level, inbox, summary, is
 import { newCode, deskKeys, newHeadKey, sealEvent, openRecord, inviteOf, parseInvite } from './kasa.js';
 import { emptyLive, apply, nextItemId, targets, logDesk } from './live.js';
 import { post, fetchAfter, online, listen } from './relay.js';
+import { decode, controlId, toPercent, takeover, learn, padLights } from './midi.js';
+import { FIELDS, cleanPolicy, effective as limitsFor, changes, changeText, describe } from './limits.js';
 
 const $ = s => document.querySelector(s);
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
@@ -105,7 +107,7 @@ async function boot() {
   } catch (e) { showError(e.message); }
   S.booting = false;
   listen(S.channel, { after: () => S.live.last, onRecords: ingest, onStatus: st => { S.status = st; drawStatus(); } });
-  const ping = async () => { try { S.onlineMap = (await online(S.channel, S.member?.id ?? '')).online; } catch { /* next time */ } };
+  const ping = async () => { try { S.onlineMap = (await online(S.channel, S.member?.id ?? '')).online; if (S.role === 'trader') traderChanged(); } catch { /* next time */ } };
   ping(); setInterval(ping, S.role === 'head' ? 15_000 : 30_000);
   afterChange();
 }
@@ -193,6 +195,7 @@ function headView(channel) {
     if (p && confirm(`Take ${p.name} off the desk? Their open signals are cancelled and their invite stops working for them.`)) send({ t: 'remove', id }, true).catch(err => showError(err.message));
   });
   document.addEventListener('keydown', headKeys);
+  mixerView();
   if ('Notification' in window && Notification.permission === 'default') document.addEventListener('pointerdown', () => Notification.requestPermission().catch(() => {}), { once: true });
   boot().then(() => { if (!S.live.name) send({ t: 'board', name: h.name, board: S.live.desk.board, escalation: ESCALATION }, true).catch(() => {}); });
 }
@@ -201,6 +204,7 @@ function headChanged() {
   if (S.live.name) { $('#sef-masa').textContent = S.live.name; }
   if (!editing) drawBoard();
   drawTargets();
+  drawMixer();
 }
 
 function drawBoard() {
@@ -328,17 +332,23 @@ function onlineText(id, t) {
   return ago < 75_000 ? pill('Online', 'iyi') : pill(`${Math.round(ago / 60_000)} min ago`, 'notr');
 }
 
+function guardCell(id, t) {
+  const n = S.live.hits.filter(h => h.person === id && h.ts >= dayStart()).length;
+  if (!guardOn(id, t)) return n ? pill(`${n} ${n === 1 ? 'hit' : 'hits'} today`, 'uyari') : pill('Not linked', 'notr');
+  return pill(n ? `On, ${n} ${n === 1 ? 'hit' : 'hits'} today` : 'On', n ? 'uyari' : 'iyi');
+}
+
 function drawGrid(t) {
   const d = S.live.desk;
   const rows = summary(d, t).map(r => {
     const ringing = d.items.some(x => x.person === r.person && isOpen(x) && x.times.seen == null && signalOf(d, x.signal)?.sticky);
     const st = r.headTold ? pill('Not answering', 'kotu') : ringing ? pill('Ringing', 'uyari') : r.unseen ? pill('Not seen yet', 'notr') : r.open ? pill('Working on it', 'notr') : pill('Clear', 'iyi');
     const out = el('button', 'kucuk sil', 'Remove'); out.type = 'button'; out.dataset.cikar = r.person;
-    const row = [r.name, r.location, onlineText(r.person, t), String(r.open), String(r.unseen), dur(r.avgSeenMs) || '·', dur(r.avgDoneMs) || '·', st, out];
+    const row = [r.name, r.location, onlineText(r.person, t), S.live.policyAt ? lotText(limitsFor(S.live.policy, r.person)) : '·', guardCell(r.person, t), String(r.open), String(r.unseen), dur(r.avgSeenMs) || '·', dur(r.avgDoneMs) || '·', st, out];
     if (r.headTold) row.cls = 'kotu';
     return row;
   });
-  setRows($('#yanit'), ['Trader', 'Location', 'Connected', 'Waiting', 'Not seen', 'Avg time to see', 'Avg time to done', 'Status', ''], rows);
+  setRows($('#yanit'), ['Trader', 'Location', 'Connected', 'Limit', 'Rule Guard', 'Waiting', 'Not seen', 'Avg time to see', 'Avg time to done', 'Status', ''], rows);
 }
 
 const STATUS_TEXT = { sent: 'Sent', delivered: 'Delivered', seen: 'Seen', done: 'Done', cancelled: 'Cancelled' };
@@ -371,6 +381,250 @@ function headEscalation(t) {
     tone(330, true);
     notify(`${p?.name ?? 'A trader'} has not answered`, `${sig.label}, sent ${Math.round((t - x.times.sent) / 1000)} s ago.`, { tag: `told-${x.id}` });
   }
+}
+
+
+// ------------------------------------------------------------------ Rule Guard (presence id, hits)
+// Rule Guard shows up on the relay's presence list under SHA-256("kalibre-desk/guard:" + trader id), first 8 bytes.
+const guardIds = new Map();
+function guardIdOf(id) {
+  if (!guardIds.has(id)) {
+    guardIds.set(id, null);
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode('kalibre-desk/guard:' + id)).then(h => guardIds.set(id, Array.from(new Uint8Array(h).slice(0, 8), b => b.toString(16).padStart(2, '0')).join('')));
+  }
+  return guardIds.get(id);
+}
+const guardOn = (id, t) => { const g = guardIdOf(id), seen = g && S.onlineMap[g]; return seen != null && t - seen < 150_000; };
+const dayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime(); };
+const heardHits = new Set();
+
+function drawHits(t) {
+  const hits = S.live.hits, d = S.live.desk;
+  $('#vuruslar').hidden = !hits.length;
+  const rows = hits.slice(-10).reverse().map(h => {
+    const p = logDesk(S.live).people.find(x => x.id === h.person);
+    const li = el('li');
+    li.append(el('span', 'dipnot', `${clock(h.ts)} `), el('b', '', p?.name ?? 'Former trader'), document.createTextNode(`, ${h.symbol}${h.lot != null ? ` ${h.lot} lots` : ''}: ${h.rule}. `), el('span', h.action === 'closed' ? 'kapandi' : '', h.action === 'closed' ? 'Rule Guard closed it.' : 'Rule Guard warned.'));
+    return li;
+  });
+  const key = String(hits.at(-1)?.q ?? 0);
+  if ($('#vurus-liste').dataset.key !== key) { $('#vurus-liste').dataset.key = key; $('#vurus-liste').replaceChildren(...rows); }
+  for (const h of hits) {
+    if (heardHits.has(h.q)) continue;
+    heardHits.add(h.q);
+    if (S.booting || t - h.ts > 60_000) continue;
+    const p = d.people.find(x => x.id === h.person);
+    tone(330, true);
+    notify(`${p?.name ?? 'A trader'} broke a desk rule`, `${h.symbol}: ${h.rule}. ${h.action === 'closed' ? 'Rule Guard closed it.' : 'Rule Guard warned.'}`, { tag: `hit-${h.q}` });
+  }
+}
+
+// ------------------------------------------------------------------ desk risk mixer (head)
+// The draft is what the faders show; it goes to the desk only on Send limits (or at once for No new trades).
+let mix = null;           // draft policy
+let touched = false;      // the head has moved something since the last send
+const PADS = { normal: 100, half: 50, defensive: 25, freeze: 0 };
+const same = (a, b) => JSON.stringify(cleanPolicy(a)) === JSON.stringify(cleanPolicy(b));
+const dirty = () => !!mix && touched && !same(mix, S.live.policy);
+const lotText = l => (l.blocked ? 'No new trades' : l.maxLot != null ? `${l.maxLot} lots` : 'No lot cap');
+
+function mixerView() {
+  $('#risk-gonder').onclick = () => sendLimits();
+  $('#risk-geri').onclick = () => { touched = false; mix = null; drawMixer(true); };
+  $('#pedler').addEventListener('click', e => { const b = e.target.closest('[data-ped]'); if (b) pad(b.dataset.ped); });
+  $('#taban').addEventListener('input', e => {
+    const f = FIELDS.find(x => x.id === e.target.dataset.alan);
+    if (!f) return;
+    touched = true;
+    if (f.bool) mix.base[f.id] = e.target.checked;
+    else { const v = e.target.value === '' ? null : Number(e.target.value); mix.base[f.id] = v; }
+    drawMixer();
+  });
+  $('#kanallar').addEventListener('input', e => { const id = e.target.dataset.kanal; if (id) setFader(id, Number(e.target.value)); });
+  $('#midi-ac').onclick = midiOpen;
+  // In learn mode a click on a strip or pad picks what the next control you move will drive.
+  $('#risk-kart').addEventListener('click', e => {
+    if (!midi.learning) return;
+    const strip = e.target.closest('[data-strip]'), padBtn = e.target.closest('[data-ped]');
+    if (!strip && !padBtn) return;
+    e.preventDefault(); e.stopPropagation();
+    midi.pick = padBtn ? `pad:${padBtn.dataset.ped}` : stripTarget(strip.dataset.strip);
+    drawMidi();
+  }, true);
+}
+
+// Also called by the MIDI controller (midi.js) with a 0-100 value.
+function setFader(id, value) {
+  if (!mix) return;
+  touched = true;
+  const v = Math.max(0, Math.min(100, Math.round(value)));
+  if (id === 'master') mix.master = v; else mix.risk[id] = v;
+  const input = document.querySelector(`#kanallar [data-kanal="${CSS.escape(id)}"]`);
+  if (input && Number(input.value) !== v) input.value = String(v);
+  drawMixer();
+}
+
+function pad(name) {
+  if (!(name in PADS) || !mix) return;
+  touched = true;
+  mix.master = PADS[name];
+  drawMixer(true);
+  if (name === 'freeze') sendLimits();
+}
+
+function drawMixer(rebuild) {
+  if (!S.live || S.role !== 'head') return;
+  // Until the head moves something, the faders follow what the desk has (records arriving, another tab).
+  if (!touched && (!mix || !same(mix, S.live.policy))) { mix = structuredClone(S.live.policy); rebuild = true; }
+  const t = targets(S.live), draft = cleanPolicy(mix), sent = S.live.policy;
+  // Base limit inputs: built once, values kept in step with the draft.
+  if (!$('#taban').children.length || rebuild) {
+    $('#taban').replaceChildren(...FIELDS.map(f => {
+      const l = el('label', f.bool ? 'd-anahtar' : '');
+      const i = el('input'); i.dataset.alan = f.id;
+      if (f.bool) { i.type = 'checkbox'; i.checked = !!mix.base[f.id]; l.append(i, document.createTextNode(f.label)); }
+      else { i.type = 'number'; i.min = f.min; i.max = f.max; i.step = f.step; i.placeholder = 'Off'; i.value = mix.base[f.id] ?? ''; l.append(document.createTextNode(f.label + (f.unit ? ` (${f.unit})` : '')), i); }
+      return l;
+    }));
+  }
+  // Channel strips: one per trader plus the master.
+  const key = JSON.stringify([t.people.map(p => [p.id, p.name, p.location]), rebuild ? Math.random() : 0]);
+  if ($('#kanallar').dataset.key !== key) {
+    $('#kanallar').dataset.key = key;
+    const strip = (id, name, sub, value, master) => {
+      const c = el('div', 'dl-kanal' + (master ? ' dl-kanal-master' : '')); c.dataset.strip = id;
+      const f = el('input', 'dl-fader'); f.type = 'range'; f.min = '0'; f.max = '100'; f.step = '5'; f.value = String(value); f.dataset.kanal = id;
+      f.setAttribute('aria-label', `${name} risk`);
+      c.append(el('span', 'dl-kanal-ad', name), el('span', 'dl-kanal-yer', sub), f, el('span', 'dl-kanal-deger'), el('span', 'dl-kanal-lot'), el('span', 'dl-kanal-ogren'));
+      return c;
+    };
+    $('#kanallar').replaceChildren(...t.people.map(p => strip(p.id, p.name, p.location, mix.risk[p.id] ?? 100)), strip('master', 'Master', 'Whole desk', mix.master, true));
+  }
+  for (const c of document.querySelectorAll('#kanallar .dl-kanal')) {
+    const id = c.dataset.strip, input = c.querySelector('input');
+    const v = id === 'master' ? mix.master : (mix.risk[id] ?? 100);
+    if (document.activeElement !== input) input.value = String(v);
+    input.setAttribute('aria-valuetext', `${v} percent`);
+    c.querySelector('.dl-kanal-deger').textContent = `${v}%`;
+    if (id === 'master') {
+      c.querySelector('.dl-kanal-lot').textContent = v === 0 ? 'No new trades' : v < 50 ? 'Defensive' : v < 100 ? 'Reduced' : 'Normal';
+      c.classList.toggle('degisti', draft.master !== sent.master);
+      c.classList.toggle('durdu', v === 0);
+    } else {
+      const now = limitsFor(draft, id), before = limitsFor(sent, id);
+      c.querySelector('.dl-kanal-lot').textContent = lotText(now) + (now.dailyLossPct != null && !now.blocked ? `, ${now.dailyLossPct}% a day` : '');
+      c.classList.toggle('degisti', changes(before, now).length > 0);
+      c.classList.toggle('durdu', now.blocked);
+    }
+  }
+  document.querySelectorAll('#pedler [data-ped]').forEach(b => b.setAttribute('aria-pressed', String(PADS[b.dataset.ped] === mix.master)));
+  midiLights(Object.keys(PADS).find(k => PADS[k] === mix.master) ?? '');
+  drawMidiLabels();
+  const n = t.people.filter(p => changes(limitsFor(sent, p.id), limitsFor(draft, p.id)).length).length;
+  const d = dirty();
+  $('#risk-gonder').disabled = !d; $('#risk-geri').disabled = !d;
+  $('#risk-gonder').textContent = d && n ? `Send limits to ${n} ${n === 1 ? 'trader' : 'traders'}` : 'Send limits';
+  $('#risk-durum').textContent = d ? (n ? `${n} ${n === 1 ? 'trader' : 'traders'} will get new limits.` : 'Changes waiting to be sent.')
+    : S.live.policyAt ? `Limits sent at ${clock(S.live.policyAt)}.` : 'No limits sent yet.';
+}
+
+
+// ------------------------------------------------------------------ MIDI controller (head)
+const MIDI_KEY = 'deskSignal.midi';
+const midi = { access: null, learning: false, pick: null, maps: store.get(MIDI_KEY, {}), soft: new Map(), lit: null };
+const stripTarget = id => (id === 'master' ? 'master' : `trader:${targets(S.live).people.findIndex(p => p.id === id) + 1}`);
+const inputs = () => (midi.access ? [...midi.access.inputs.values()] : []);
+const controlName = id => { const [k, ch, n] = id.split(':'); return `${k === 'cc' ? 'CC' : 'Note'} ${n}${ch !== '0' ? ` ch ${Number(ch) + 1}` : ''}`; };
+
+async function midiOpen() {
+  $('#midi').hidden = false;
+  if (!navigator.requestMIDIAccess) { midiPanel('Controllers work in Chrome and Edge on a computer. The faders on screen do the same job.'); return; }
+  try {
+    midi.access ??= await navigator.requestMIDIAccess({ sysex: false });
+    midi.access.onstatechange = () => { hook(); drawMidi(); };
+    hook(); drawMidi();
+  } catch { midiPanel('The browser did not allow MIDI. Allow it in the site settings and try again.'); }
+}
+
+function hook() { for (const i of inputs()) i.onmidimessage = e => onMidi(i.name || 'Controller', e.data); }
+
+function onMidi(device, data) {
+  const m = decode(data);
+  if (!m || m.kind === 'off') return;
+  const id = controlId(m);
+  if (midi.learning && midi.pick) {
+    midi.maps[device] = learn(midi.maps[device], id, midi.pick);
+    store.set(MIDI_KEY, midi.maps);
+    midi.soft.delete(`${device}|${id}`);
+    midi.pick = null; drawMidi(); drawMidiLabels();
+    return;
+  }
+  const target = midi.maps[device]?.[id];
+  if (!target || !mix) return;
+  if (target.startsWith('pad:')) { if (m.kind === 'on' || m.value > 63) pad(target.slice(4)); return; }
+  const person = target === 'master' ? 'master' : targets(S.live).people[Number(target.split(':')[1]) - 1]?.id;
+  if (!person) return;
+  const v = toPercent(m.value), current = person === 'master' ? mix.master : (mix.risk[person] ?? 100);
+  const k = `${device}|${id}`, r = takeover(midi.soft.get(k), current, v);
+  midi.soft.set(k, r.state);
+  if (r.apply) setFader(person, v);
+}
+
+function midiLights(pressed) {
+  if (!midi.access || midi.lit === pressed) return;
+  midi.lit = pressed;
+  for (const o of midi.access.outputs.values()) for (const msg of padLights(midi.maps[o.name] ?? {}, pressed)) { try { o.send(msg); } catch { /* unplugged */ } }
+}
+
+function midiPanel(text, buttons = []) {
+  const p = el('p', '', text), row = el('div', 'satir-dugme');
+  row.append(...buttons);
+  $('#midi').replaceChildren(p, ...(buttons.length ? [row] : []));
+}
+
+function drawMidi() {
+  const list = inputs();
+  $('#midi-ac').setAttribute('aria-pressed', String(!!midi.access));
+  $('#midi-ac').textContent = midi.access ? (list.length ? `Controller: ${list[0].name}${list.length > 1 ? ` +${list.length - 1}` : ''}` : 'Controller: none plugged in') : 'Connect a controller';
+  const b = (text, fn, cls = 'kucuk') => { const x = el('button', cls, text); x.type = 'button'; x.onclick = fn; return x; };
+  const mapped = list.reduce((n, i) => n + Object.keys(midi.maps[i.name] ?? {}).length, 0);
+  const learnBtn = b(midi.learning ? 'Finish mapping' : 'Map controls', () => { midi.learning = !midi.learning; midi.pick = null; drawMidi(); });
+  const forget = b('Clear mapping', () => { for (const i of list) delete midi.maps[i.name]; store.set(MIDI_KEY, midi.maps); midi.soft.clear(); drawMidi(); drawMidiLabels(); });
+  forget.disabled = !mapped;
+  const hide = b('Close', () => { $('#midi').hidden = true; midi.learning = false; midi.pick = null; drawMidiLabels(); });
+  if (!list.length) midiPanel('Plug in a MIDI controller: any fader box, DJ controller or pad grid works. It appears here.', [hide]);
+  else if (midi.learning) midiPanel(midi.pick ? `Now move the fader, knob or pad for ${midi.pick === 'master' ? 'the master' : midi.pick.startsWith('pad:') ? `the ${[...document.querySelectorAll('#pedler [data-ped]')].find(b => b.dataset.ped === midi.pick.slice(4))?.textContent ?? ''} pad` : `trader ${midi.pick.split(':')[1]}`}.` : 'Click a fader strip or a pad, then move the control that should drive it.', [learnBtn]);
+  else midiPanel(mapped ? `${mapped} ${mapped === 1 ? 'control' : 'controls'} mapped. A fader takes over once it passes the level on screen, so picking it up never jumps anyone's risk. Limits still go out only when you send them; No new trades goes at once.` : 'Map your controls once: this browser remembers them for this controller.', [learnBtn, forget, hide]);
+  drawMidiLabels();
+}
+
+function drawMidiLabels() {
+  const names = {};
+  for (const i of inputs()) for (const [id, t] of Object.entries(midi.maps[i.name] ?? {})) names[t] = controlName(id);
+  document.querySelectorAll('#kanallar [data-strip]').forEach(c => {
+    const t = stripTarget(c.dataset.strip);
+    c.querySelector('.dl-kanal-ogren').textContent = names[t] ?? '';
+    c.classList.toggle('ogreniyor', midi.learning && midi.pick === t);
+  });
+  document.querySelectorAll('#pedler [data-ped]').forEach(x => {
+    const t = `pad:${x.dataset.ped}`;
+    x.title = names[t] ? `Mapped to ${names[t]}` : '';
+    x.classList.toggle('ogreniyor', midi.learning && midi.pick === t);
+  });
+}
+
+async function sendLimits() {
+  if (!mix) return;
+  const draft = cleanPolicy(mix), sent = S.live.policy;
+  const items = [];
+  for (const p of S.live.desk.people) {
+    const ch = changes(limitsFor(sent, p.id), limitsFor(draft, p.id));
+    if (ch.length) items.push({ id: nextItemId(S.live, items.length), person: p.id, note: changeText(ch) });
+  }
+  const box = $('#risk-hata');
+  try { await send({ t: 'policy', policy: draft, items }, true); box.hidden = true; touched = false; }
+  catch (e) { box.hidden = false; box.textContent = `Not sent: ${e.message}`; return; }
+  $('#duyuru').textContent = items.length ? `New limits sent to ${items.length} ${items.length === 1 ? 'trader' : 'traders'}.` : 'Limits sent.';
 }
 
 // ------------------------------------------------------------------ trader view
@@ -426,6 +680,12 @@ function startTrader() {
   $('#pip').hidden = !canPip;
   $('#pip-not').hidden = !canPip;
   $('#pip').onclick = openPip;
+  $('#guard-baglanti').value = `${S.code}.${S.publicKey}.${S.member.id}`;
+  $('#guard-kopyala').onclick = async () => {
+    try { await navigator.clipboard.writeText($('#guard-baglanti').value); } catch { $('#guard-baglanti').select(); document.execCommand?.('copy'); }
+    $('#guard-kopyala').textContent = 'Copied';
+    setTimeout(() => { $('#guard-kopyala').textContent = 'Copy link'; }, 1500);
+  };
   boot().then(() => {
     // Join again on every start: cheap, and it keeps the name on desks older than the relay's memory.
     if (S.live.removed.has(S.member.id)) showError('The head of desk has taken you off this desk.');
@@ -460,10 +720,17 @@ function traderChanged() {
       known.add(x.id);
       const sig = signalOf(d, x.signal);
       ring(sig, sig.sticky); rung.set(x.id, Date.now());
-      notify(sig.label, 'From the head of desk', { tag: x.id, sticky: sig.sticky, onclick: () => postMark(x.id, 'seen') });
+      notify(sig.label, x.note || 'From the head of desk', { tag: x.id, sticky: sig.sticky, onclick: () => postMark(x.id, 'seen') });
     }
   }
   $('#trader-masa').textContent = S.live.name || 'Desk';
+  const mine = limitsFor(S.live.policy, S.member.id), lines = S.live.policyAt ? describe(mine) : [];
+  $('#sinirlarim-liste').replaceChildren(...lines.map(x => el('li', '', x)));
+  $('#sinirlarim').classList.toggle('durdu', !!S.live.policyAt && mine.blocked);
+  const on = guardOn(S.member.id, Date.now());
+  $('#guard-bagla').dataset.on = String(on);
+  $('#guard-durum').textContent = on ? (S.live.policyAt ? 'Rule Guard is keeping these limits in MT5' : 'Rule Guard is linked to the desk') : 'Keep these limits in MT5 with Rule Guard';
+  $('#sinirlarim-not').textContent = !S.live.policyAt ? 'Your head of desk has not set limits yet.' : lines.length ? `Set at ${clock(S.live.policyAt)}.` : 'No limits on your trading right now.';
   document.title = `${S.live.name || 'Desk'} · Desk Signal`;
 }
 
@@ -485,7 +752,8 @@ function drawTrader(doc, t) {
   doc.getElementById('sinyal').style.setProperty('--c', sig?.colour ?? 'var(--border-2)');
   doc.getElementById('sinyal-ad').textContent = top ? sig.label : 'All clear';
   const sub = doc.getElementById('sinyal-alt');
-  if (top) sub.textContent = `From the head of desk, ${Math.max(0, Math.round((t - top.times.sent) / 1000))} s ago${list.length > 1 ? `. ${list.length - 1} more waiting` : ''}`;
+  if (top && top.signal === 'limits') sub.textContent = top.note || 'Your head of desk changed your limits.';
+  else if (top) sub.textContent = `From the head of desk, ${Math.max(0, Math.round((t - top.times.sent) / 1000))} s ago${list.length > 1 ? `. ${list.length - 1} more waiting` : ''}`;
   else sub.textContent = 'Signals from your head of desk appear here.';
   doc.getElementById('sinyal-eylem').hidden = !top;
   const b = doc.getElementById('tamam');
@@ -520,7 +788,7 @@ async function openPip() {
 let flash = false;
 function tick() {
   const t = Date.now();
-  if (S.role === 'head') { drawGrid(t); drawLog(t); headEscalation(t); }
+  if (S.role === 'head') { drawGrid(t); drawLog(t); drawHits(t); headEscalation(t); }
   if (S.role === 'trader' && S.member && !$('#trader').hidden) {
     const { top, sig } = drawTrader(document, t);
     if (pipWin) drawTrader(pipWin.document, t);
