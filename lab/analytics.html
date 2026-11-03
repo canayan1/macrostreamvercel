@@ -111,6 +111,17 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
     <div class="hesap-karolar a-ikincil" id="ozet-karolar"></div>
   </section>
 
+  <section class="kart" id="risk-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Risk ve pozisyon büyüklüğü</span></h2></div>
+    <div class="hesap-karolar" id="risk-karolar"></div>
+    <p class="uyari-not" id="risk-hukum"></p>
+    <h3 class="a-h3" data-t>Aynı işlemler, başka büyüklükle</h3>
+    <p class="dipnot" data-t>İşlemlerin aynı sırayla yeniden oynatıldı; yalnız lot değişti. Her işlemin büyüklüğü açıldığı anda, o ana kadar kapanmış işlemlerle oluşan bakiyeden hesaplandı.</p>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo" id="risk-tablo"></table></div>
+    <div id="risk-cizim" class="g-cizim"></div>
+    <p class="dipnot" id="risk-not"></p>
+  </section>
+
   <section class="kart" id="grafik-kart" hidden>
     <div class="kart-bas"><h2><span class="bolum-no">03</span><span data-t>Grafikler</span></h2></div>
     <div class="grafik-izgara">
@@ -128,6 +139,28 @@ if (!/[?&](lang|dil)=tr(&|$)/.test(location.search)) { document.documentElement.
       <div><h3 class="a-h3 pozitif-baslik" data-t>En çok kazandıran dilimler</h3><ul class="icgoru" id="icgoru-kazanc"></ul></div>
     </div>
     <p class="dipnot" id="icgoru-not"></p>
+  </section>
+
+  <section class="kart" id="kural-kart" hidden>
+    <div class="kart-bas"><h2><span class="bolum-no">05</span><span data-t>Kişisel kuralların</span></h2></div>
+    <p class="dipnot" data-t>Kendi işlemlerin sırayla yeniden oynatıldı: her kural, o an bildiğin şeylere göre hangi işlemi engelleyeceğini ya da küçülteceğini gösteriyor. Kurallar aynı geçmişten seçildi; gerçek sınav önümüzdeki haftalar. Seçtiklerini Rule Guard'a yükle, Rule Guard MT5'te uygular, bu bölüm uyumu ölçer.</p>
+    <p class="uyari-not" id="kural-az" hidden></p>
+    <div class="tablo-kutu"><table class="pozisyon a-tablo" id="kural-tablo"></table></div>
+    <p class="dipnot" id="kural-bos" hidden></p>
+    <div class="satir-dugme kural-eylem">
+      <button type="button" class="dugme" id="kural-indir" data-t>Rule Guard ayarlarını indir</button>
+      <button type="button" class="dugme ikincil" id="kural-kaydet" data-t>Kurallarım olarak kaydet</button>
+      <span class="dipnot" id="kural-durum" role="status"></span>
+    </div>
+    <details class="hold-yardim"><summary data-t>Ayar dosyası Rule Guard'a nasıl yüklenir</summary>
+      <p data-t>Rule Guard'ı grafiğe sürükle, açılan pencerede Inputs sekmesinde Load düğmesine bas ve indirdiğin KalibreRuleGuard-rules.set dosyasını seç. Mod Watch kalır: kural çiğnenince uyarır. Protect seçersen kuralı çiğneyen yeni pozisyonu hemen kapatır.</p>
+      <p><a class="kucuk" href="/rule-guard">Rule Guard</a> <a class="kucuk" href="/guides/rule-guard" data-t>Kurulum rehberi</a></p>
+    </details>
+    <div id="kural-uyum" hidden>
+      <h3 class="a-h3" data-t>Kurallarına uyum</h3>
+      <div class="tablo-kutu"><table class="pozisyon a-tablo" id="kural-uyum-tablo"></table></div>
+      <p class="dipnot" id="kural-uyum-not"></p>
+    </div>
   </section>
 
   <section class="kart" id="kirilim-kart" hidden>

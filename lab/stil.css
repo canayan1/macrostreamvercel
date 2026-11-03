@@ -444,3 +444,10 @@ main.analiz{max-width:1180px;margin:0 auto;padding:20px}
 .analiz #sonuclar{min-width:0;max-width:100%;display:flex;flex-direction:column;gap:16px}
 .analiz #sonuclar>.kart{min-width:0;max-width:100%;overflow-x:hidden}
 .analiz #hold-tablo td,.analiz #hold-tablo th{white-space:nowrap}
+.analiz .kural-eylem{align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 8px}
+.analiz #kural-tablo td:first-child{width:28px}
+.analiz #kural-uyum{margin-top:14px}
+.analiz .uyari-not{margin:8px 0;padding:8px 12px;border-left:3px solid var(--accent);background:var(--bg-1);font-size:13px;color:var(--text-dim)}
+.analiz .risk-sen td{font-weight:600}
+.analiz .risk-lejant{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:var(--text-dim);margin:6px 0 0}
+.analiz .risk-lejant i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}

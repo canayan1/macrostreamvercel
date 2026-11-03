@@ -652,6 +652,7 @@ def rule_guard(lang):
       {tile(T(lang, "A warning, then a lock.", "Önce uyarı, sonra kilit."), T(lang, "At twice the safety margin: do not open new trades. At one safety margin: locked until the day resets. Watch mode alerts; Protect mode also closes open positions and deletes pending orders.", "Güvenlik payının iki katında: yeni işlem açma. Bir güvenlik payında: gün sıfırlanana kadar kilit. Watch modu uyarır; Protect modu açık pozisyonları da kapatır ve bekleyen emirleri siler."), "", "dark")}
       {tile(T(lang, "Firm presets.", "Firma ön ayarları."), T(lang, "FTMO 2-Step, FTMO 1-Step, FTMO Instant and The5ers High Stakes, or your own limits. Each preset shows the date its rules were taken.", "FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. Her ön ayar kuralların alındığı tarihi gösterir."), "", "third")}
       {tile(T(lang, "Never opens a trade.", "Hiç işlem açmaz."), T(lang, "No orders, no signals, no strategy. No licence, no internet connection and no password: it runs inside your terminal only.", "Emir yok, sinyal yok, strateji yok. Lisans, internet bağlantısı ve şifre yok: yalnız terminalinin içinde çalışır."), "", "third")}
+      {tile(T(lang, "Your personal rules.", "Kişisel kuralların."), T(lang, "Stop after N losses a day, at most N trades a day, a pause after a loss, no bigger lot after a loss, a daily loss limit and a max lot. Trade Analytics finds the ones your own history would have rewarded and downloads them as Rule Guard settings.", "Günde N kayıptan sonra dur, günde en çok N işlem, kayıptan sonra bekle, kayıptan sonra lot büyütme, günlük kayıp sınırı ve azami lot. Trade Analytics kendi geçmişinin ödüllendireceklerini bulur ve Rule Guard ayarı olarak indirir."), more("/guides/rule-guard#rules", T(lang, "How to load them", "Nasıl yüklenir")), "third dark")}
       {tile(T(lang, "On your phone.", "Telefonunda."), T(lang, "Alerts go to the MT5 app on your phone through MetaQuotes push notifications.", "Uyarılar MetaQuotes bildirimleriyle telefonundaki MT5 uygulamasına gider."), "", "third")}
     </div>
   </div>
@@ -667,7 +668,7 @@ def rule_guard(lang):
           (T(lang, "Does it work when MT5 is closed?", "MT5 kapalıyken çalışır mı?"), T(lang, "No. It runs only while the terminal is open. For a 24-hour watch, run MT5 on a VPS.", "Hayır. Yalnız terminal açıkken çalışır. 24 saat izleme için MT5'i bir VPS'te çalıştır.")),
           (T(lang, "Does it guarantee that I pass?", "Sınavı geçmemi garanti eder mi?"), T(lang, "No. It watches the loss limits only. Slippage and price gaps can take the account past a limit.", "Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları hesabı sınırın ötesine götürebilir.")),
           (T(lang, "Is Kalibre a prop firm?", "Kalibre bir prop firması mı?"), T(lang, "No. Kalibre is not affiliated with any prop firm. Firm names are used only to describe their rules.", "Hayır. Hiçbir prop firmasıyla bağlantısı yok. Firma adları yalnız kurallarını anlatmak için kullanılır."))])}
-    <p class="fine">KalibreRuleGuard.ex5, version 0.10. SHA-256 <code>{GUARD_SHA}</code></p>
+    <p class="fine">KalibreRuleGuard.ex5, version 0.20. SHA-256 <code>{GUARD_SHA}</code></p>
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır. Yatırdığın paranın tamamını kaybedebilirsin.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>
@@ -1107,6 +1108,15 @@ GUIDES = {
    ("Turn on phone alerts", "In the MT5 phone app, find your <b>MetaQuotes ID</b> under Settings, then Messages. On the computer choose <b>Tools → Options → Notifications</b>, tick push notifications and type the ID."),
   ],
   "see": ["The daily and total floor, worked out the way the preset's firm does.", "A warning at twice the safety margin: do not open new trades.", "A lock at one safety margin, until the day resets.", "Alerts on screen, as sound and on your phone."],
+  "extra": """
+    <h2 class="title-s" id="rules">Optional: your personal rules</h2>
+    <p class="lede">Rule Guard 0.20 also keeps the rules you set for yourself: stop after N losses a day, at most N trades a day, a pause after a loss, no bigger lot after a loss, a daily loss limit and a max lot. In Watch mode it warns when one is broken; in Protect mode it closes the new position that breaks it.</p>
+    <ol class="guide-steps">
+      <li><h3>Find your rules</h3><p>In Trade Analytics, open <b>Your personal rules</b>. Each rule shows what it would have changed on your own trades. Tick the ones you want.</p></li>
+      <li><h3>Download the settings</h3><p>Click <b>Download Rule Guard settings</b>. You get <b>KalibreRuleGuard-rules.set</b>.</p></li>
+      <li><h3>Load them in MT5</h3><p>Drag Rule Guard onto a chart, open the <b>Inputs</b> tab, press <b>Load</b> and choose the file. Check the values and click OK.</p></li>
+      <li><h3>See how you kept them</h3><p>Back in Trade Analytics, click <b>Save as my rules</b>. The next history you drop shows each rule, how often it was broken and what breaking it cost.</p></li>
+    </ol>""",
   "know": ["Rule Guard works only while MT5 is open. For a 24-hour watch, run MT5 on a VPS.", "It cannot stop an order you place by hand. In <b>Protect</b> mode it closes every open position and deletes pending orders at the lock; this needs Algo Trading on, and on a real-money account the input <b>Protect on a real account: I accept this</b>.", "Closing happens at market price. Slippage and gaps can take the account past a limit.", "Check that your firm allows a risk add-on on the account. Firm rules change; the preset shows the date it was taken."],
  },
 }
@@ -1117,7 +1127,7 @@ def guide_body(key):
     li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
     pdf = f"/static/guides/kalibre-{key}-guide.pdf"
     dl = ' download' if g["open"].endswith(".ex5") else ""
-    extra = (f'<p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.10): <code>{GUARD_SHA}</code></p>' if key == "rule-guard" else "")
+    extra = (f'<p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.20): <code>{GUARD_SHA}</code></p>' if key == "rule-guard" else "")
     return f'''
 <article class="guide" id="guide">
   <div class="wrap-text">

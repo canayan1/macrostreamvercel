@@ -16,11 +16,13 @@ import { LOCAL_KEY } from './report/blotter-model.js';
 import { gorunumKur, cizimHtml, pastaSvg } from './gorunum.js';
 import { PERIODS, periodRange, customRange, applyPeriod } from './analiz/donem.js';
 import { parsePriceFile, ecbRequest, ecbPrices, holdAnalysis } from './analiz/hold.js';
+import { RULES, suggestRules, adherence, ruleGuardSet, GUARD_PRESET } from './analiz/rules.js';
+import { edge, sizingReplay, POLICIES } from './analiz/risk.js';
 import { istemci, roleAdresi } from './veri/baglanti.js';
 
 const $ = s => document.querySelector(s);
 const EN_BUYUK_DOSYA = 50 * 1024 * 1024;
-const DEPO = { utc: 'kalibre-analiz-utc', gorunum: 'kalibre-analiz-gorunumler', kod: 'kalibre-kopru-kod', role: 'kalibre-kopru-role', donem: 'kalibre-analiz-donem', sabit: 'kalibre-analiz-sabit' };
+const DEPO = { utc: 'kalibre-analiz-utc', gorunum: 'kalibre-analiz-gorunumler', kod: 'kalibre-kopru-kod', role: 'kalibre-kopru-role', donem: 'kalibre-analiz-donem', sabit: 'kalibre-analiz-sabit', kural: 'kalibre-analiz-kurallar' };
 const depoOku = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const depoYaz = (k, v) => { try { localStorage.setItem(k, v); } catch { /* depo yok */ } };
 
@@ -184,8 +186,8 @@ function hesapla() {
   motor = analizMotoru(gorunen, { sunucuUtcFarki: utcFark });
   const o = motor.ozet();
   $('#donem-ozet').textContent = ceviri('{n} işlem, {a} - {b}', { n: sayi(o.adet, 0), a: tarih(o.ilk), b: tarih(o.son) });
-  for (const id of ['#ozet-kart', '#grafik-kart', '#icgoru-kart', '#kirilim-kart', '#prop-kart', '#hold-kart', '#gorunum-kart']) $(id).hidden = false;
-  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); holdCiz(); gorunumCiz();
+  for (const id of ['#ozet-kart', '#risk-kart', '#grafik-kart', '#icgoru-kart', '#kural-kart', '#kirilim-kart', '#prop-kart', '#hold-kart', '#gorunum-kart']) $(id).hidden = false;
+  ozetCiz(); grafikCiz(); icgoruCiz(); kirilimCiz(); propHazirla(); propCiz(); riskCiz(); kuralCiz(); holdCiz(); gorunumCiz();
   kartlariDuzenle();
 }
 
@@ -380,6 +382,85 @@ function grafikCiz() {
   kutu('#grafik-sembol-net').innerHTML = cizimHtml({ ...ortak, satirlar: satir('sembol', 'net').sort((a, b) => (b.deger ?? 0) - (a.deger ?? 0)), olcu: OLCU.net, tur: 'cubuk', boyutAd: ceviri('Sembol'), W: kutu('#grafik-sembol-net').clientWidth || 680 });
 }
 
+// ---------------------------------------------------------------- risk ve pozisyon büyüklüğü (analiz/risk.js)
+const R = (x, b = 2) => (typeof x === 'number' && Number.isFinite(x) ? `${x > 0 ? '+' : x < 0 ? '−' : ''}${sayi(Math.abs(x), b)}R` : '–');
+function riskCiz() {
+  const k = propKurali();
+  const e = edge(motor.islemler);
+  const karo = (ad, deger, c = '', alt = '') => `<div><span>${kacis(ceviri(ad))}</span><b class="${kacis(c)}">${kacis(deger)}</b>${alt ? `<small>${kacis(alt)}</small>` : ''}</div>`;
+  if (!e.n) { $('#risk-karolar').innerHTML = ''; $('#risk-hukum').textContent = ceviri('R hesaplanamadı: kayıp işlem ya da stop yok.'); }
+  else {
+    $('#risk-karolar').innerHTML = [
+      karo('İşlem başı beklenti', R(e.meanR), sinif(e.meanR), ceviri('%95 aralık {a} ile {b}', { a: R(e.ciLow), b: R(e.ciHigh) })),
+      karo('SQN', e.sqn === null ? '–' : sayi(e.sqn, 2), sinif(e.sqn ?? 0), ceviri('{n} işlem; 100 üstü sayılmaz', { n: sayi(e.n, 0) })),
+      karo('Kazanma oranı', yuzde(e.winRate), '', ceviri('%95 aralık {a} ile {b}', { a: yuzde(e.winLow), b: yuzde(e.winHigh) })),
+      karo('1R neye göre', e.stopShare >= 0.999 ? ceviri('Stop') : e.stopShare > 0 ? ceviri('Karışık') : ceviri('Ortalama kayıp'), '', ceviri('İşlemlerin {y} kadarında stop var', { y: yuzde(e.stopShare, 0) })),
+    ].join('');
+    $('#risk-hukum').textContent = e.distinguishable
+      ? (e.meanR > 0 ? ceviri('{n} işlemde ortalama sonuç sıfırdan ayırt edilebilir biçimde artıda: kenarın var gibi görünüyor. Büyüklük onu korumalı.', { n: sayi(e.n, 0) }) : ceviri('{n} işlemde ortalama sonuç sıfırdan ayırt edilebilir biçimde ekside: bu işlem biçimi geçmişte para kaybettirmiş. Önce büyüklüğü küçültmek kaybı sınırlar.', { n: sayi(e.n, 0) }))
+      : ceviri('{n} işlemle ortalama sonuç sıfırdan ayırt edilemiyor (%95 aralık {a} ile {b}). Kenar olup olmadığını söylemek için daha çok işlem gerek; o zamana kadar riski küçük tutmak hesabı korur.', { n: sayi(e.n, 0), a: R(e.ciLow), b: R(e.ciHigh) });
+  }
+  const opts = { capital: k.baslangic, daily: k.gunluk, max: k.azami };
+  const sonuc = POLICIES.map(p => ({ p, r: sizingReplay(motor.islemler, p, opts) }));
+  const ad = p => ceviri(p.ad, { p: sayi(p.pct ?? 0, p.pct % 1 ? 1 : 0) });
+  $('#risk-tablo').innerHTML = `<thead><tr>${['Büyüklük', 'Sonuç', 'Azami düşüş', 'En kötü gün', ceviri('{ad} tabanı', { ad: k.ad })].map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${sonuc.map(({ p, r }) => `<tr class="${kacis(p.id === 'asTraded' ? 'risk-sen' : '')}">
+    <td>${kacis(ad(p))}</td><td class="${kacis(sinif(r.net))}">${kacis(para(r.net))}</td><td>${kacis(`${duzPara(r.maxDrawdown, 0)} (${yuzde(r.maxDrawdownPct)})`)}</td>
+    <td class="${kacis(sinif(r.worstDay))}">${kacis(para(r.worstDay, 0))}</td><td>${r.floorDay ? `<span class="a-durum asildi">${kacis(ceviri('Aşıldı {t}', { t: tarih(r.floorDay) }))}</span>` : `<span class="a-durum">${kacis(ceviri('Sınır içinde'))}</span>`}</td></tr>`).join('')}</tbody>`;
+  // Bakiye yolları: her büyüklük kuralı bir çizgi.
+  const kutu = $('#risk-cizim'), W = Math.max(320, (kutu.clientWidth || 680) - 6), H = 220, pad = 40;
+  const tum = sonuc.flatMap(x => x.r.path);
+  if (tum.length > 1) {
+    // x is the trade number, not the date: quiet days do not squeeze the busy ones.
+    const n = Math.max(...sonuc.map(x => x.r.path.length));
+    const lo = Math.min(k.baslangic, ...tum.map(p => p.balance)), hi = Math.max(k.baslangic, ...tum.map(p => p.balance));
+    const X = i => pad + (i / Math.max(1, n)) * (W - pad - 8), Y = v => 12 + (1 - (v - lo) / (hi - lo || 1)) * (H - 36);
+    const renk = ['#ffa630', '#94a3b8', '#4ade80', '#60a5fa', '#f472b6'];
+    const cizgi = sonuc.map(({ r }, i) => `<polyline fill="none" stroke="${kacis(renk[i])}" stroke-width="${kacis(i ? 1.6 : 2.4)}" points="${kacis([k.baslangic, ...r.path.map(p => p.balance)].map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' '))}"></polyline>`).join('');
+    const lejant = sonuc.map(({ p }, i) => `<span><i style="background:${kacis(renk[i])}"></i>${kacis(ad(p))}</span>`).join('');
+    kutu.innerHTML = `<svg viewBox="0 0 ${kacis(W)} ${kacis(H)}" width="${kacis(W)}" height="${kacis(H)}" class="g-svg" role="img" aria-label="${kacis(ceviri('Bakiye yolları'))}"><line x1="${kacis(pad)}" x2="${kacis(W - 8)}" y1="${kacis(Y(k.baslangic).toFixed(1))}" y2="${kacis(Y(k.baslangic).toFixed(1))}" class="g-eksen"></line>${cizgi}<text x="4" y="${kacis(Y(hi) - 2)}" class="g-deger">${kacis(sayi(hi, 0))}</text><text x="4" y="${kacis(Y(lo) + 12)}" class="g-deger">${kacis(sayi(lo, 0))}</text><text x="${kacis(W - 8)}" y="${kacis(H - 4)}" text-anchor="end" class="g-etiket">${kacis(ceviri('{n}. işlem', { n }))}</text></svg><div class="risk-lejant">${lejant}</div>`;
+  } else kutu.innerHTML = '';
+  $('#risk-not').textContent = ceviri('Stopu olmayan işlemlerde 1R ortalama kaybındır (Van Tharp\'ın yedek tanımı). Başlangıç sermayesi ve prop tabanı Prop firması sınırları bölümündeki ayarlardan gelir. Bu geçmişin bir senaryosudur; bir öneri değildir.');
+}
+
+// ---------------------------------------------------------------- kişisel kurallar (analiz/rules.js)
+let kuralOneri = [];
+const kuralAdi = (rule, value) => ceviri(RULES.find(r => r.id === rule).ad, { v: sayi(value, Number.isInteger(value) ? 0 : 1) });
+const kayitliKurallar = () => { try { const d = JSON.parse(depoOku(DEPO.kural) ?? 'null'); return d && Array.isArray(d.kurallar) ? d : null; } catch { return null; } };
+const medyanLot = () => { const l = motor.islemler.map(i => i.lot).sort((a, b) => a - b); return l.length ? l[l.length >> 1] : 0; };
+function kuralCiz() {
+  const k = propKurali();
+  kuralOneri = suggestRules(motor.islemler, { capital: k.baslangic, minAffected: 2 });
+  const tablo = $('#kural-tablo'), bos = $('#kural-bos');
+  const az = motor.islemler.length < 50;
+  $('#kural-az').hidden = !az;
+  if (az) $('#kural-az').textContent = ceviri('{n} işlemle bunlar kanıt değil, ipucu: bir kural birkaç işlemin sırasına denk gelmiş olabilir. 50 işlemin üstünde daha güvenilir olur.', { n: sayi(motor.islemler.length, 0) });
+  if (!kuralOneri.length) {
+    tablo.innerHTML = '';
+    bos.hidden = false;
+    bos.textContent = ceviri('Denenen kuralların hiçbiri bu dönemde en az iki işlemi değiştirip sonucu iyileştirmedi. Daha uzun bir dönem seç ya da daha çok işlemle yeniden bak.');
+  } else {
+    bos.hidden = true;
+    const bas = ['', 'Kural', 'Engellenen', 'Küçültülen', 'Kuralla sonuç', 'Fark', 'Azami düşüş', 'En kötü gün'];
+    const ok = (a, b) => `${duzPara(a, 0)} → ${duzPara(b, 0)}`;
+    tablo.innerHTML = `<thead><tr>${bas.map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${kuralOneri.map((r, i) => `<tr>
+      <td><input type="checkbox" data-kural="${kacis(i)}" ${i < 3 ? 'checked' : ''} aria-label="${kacis(ceviri('Seç'))}"></td>
+      <td>${kacis(kuralAdi(r.rule, r.value))}<br><small class="dipnot">${kacis(ceviri('{n} seçenek denendi', { n: r.tried }))}</small></td>
+      <td>${kacis(sayi(r.blocked, 0))}</td><td>${kacis(sayi(r.scaled, 0))}</td>
+      <td class="${kacis(sinif(r.net))}">${kacis(para(r.net))}</td><td class="pozitif">${kacis(para(r.diff))}</td>
+      <td>${kacis(ok(r.maxDrawdownBefore, r.maxDrawdown))}</td><td>${kacis(`${para(r.worstDayBefore, 0)} → ${para(r.worstDay, 0)}`)}</td></tr>`).join('')}</tbody>`;
+  }
+  // Uyum: daha önce kaydedilen kurallar, kayıttan sonra açılan işlemlerde.
+  const kay = kayitliKurallar(), uyum = $('#kural-uyum');
+  if (!kay || !kay.kurallar.length) { uyum.hidden = true; return; }
+  uyum.hidden = false;
+  const a = adherence(motor.islemler, kay.kurallar, kay.tarih, { capital: k.baslangic });
+  const sonra = a[0]?.trades ?? 0;
+  $('#kural-uyum-tablo').innerHTML = `<thead><tr>${['Kural', 'Çiğnenen işlem', 'Çiğnemenin maliyeti'].map(b => `<th>${kacis(ceviri(b))}</th>`).join('')}</tr></thead><tbody>${a.map(x => `<tr>
+    <td>${kacis(kuralAdi(x.rule, x.value))}</td><td>${kacis(sayi(x.broken, 0))}</td><td class="${kacis(x.cost > 0 ? 'negatif' : '')}">${kacis(x.broken ? duzPara(x.cost) : '–')}</td></tr>`).join('')}</tbody>`;
+  $('#kural-uyum-not').textContent = ceviri('{t} tarihinde kaydedildi; sonra açılan {n} işleme bakıldı. Maliyet: kuralı çiğneyen işlemler olmasaydı sonucun ne kadar daha iyi olacağı.', { t: tarih(kay.tarih), n: sayi(sonra, 0) });
+}
+function seciliKurallar() { return [...document.querySelectorAll('#kural-tablo [data-kural]:checked')].map(c => kuralOneri[Number(c.dataset.kural)]).filter(Boolean).map(r => ({ rule: r.rule, value: r.value })); }
+
 // ---------------------------------------------------------------- tutsaydın ne olurdu (analiz/hold.js)
 let holdFiyat = null;   // parsePriceFile ya da ecbPrices sonucu; yalnız bellekte
 function propKurali() {
@@ -427,7 +508,7 @@ function holdCiz() {
 
 // ---------------------------------------------------------------- favoriler: üste sabitlenen bölümler ve görünümler
 // Sıra bu tarayıcıda saklanır: ['ozet', 'g:Benim görünümüm', ...]. Sabitlenmeyenler varsayılan sırayla altta kalır.
-const KARTLAR = ['ozet', 'grafik', 'icgoru', 'kirilim', 'prop', 'hold', 'gorunum'];
+const KARTLAR = ['ozet', 'risk', 'grafik', 'icgoru', 'kural', 'kirilim', 'prop', 'hold', 'gorunum'];
 const sabitOku = () => { try { const d = JSON.parse(depoOku(DEPO.sabit) ?? '[]'); return Array.isArray(d) ? d.filter(x => typeof x === 'string').slice(0, 20) : []; } catch { return []; } };
 const sabitYaz = d => depoYaz(DEPO.sabit, JSON.stringify(d));
 function sabitDegis(id) {
@@ -540,7 +621,30 @@ function baslat() {
       holdCiz();
     } catch { $('#hold-durum').textContent = ceviri('ECB kurları alınamadı. Biraz sonra yeniden dene.'); }
   };
-  for (const id of ['#prop-on-ayar', '#prop-baslangic', '#prop-gunluk', '#prop-azami']) $(id).addEventListener('change', holdCiz);
+  for (const id of ['#prop-on-ayar', '#prop-baslangic', '#prop-gunluk', '#prop-azami']) $(id).addEventListener('change', () => { holdCiz(); kuralCiz(); riskCiz(); });
+
+  // Kişisel kurallar: Rule Guard .set dosyası (UTF-16LE, MT5'in yazdığı biçim) ve "kurallarım" kaydı.
+  $('#kural-indir').onclick = () => {
+    const secili = seciliKurallar();
+    if (!secili.length) { $('#kural-durum').textContent = ceviri('Önce en az bir kural seç.'); return; }
+    const k = propKurali(), on = $('#prop-on-ayar').value;
+    const metin = ruleGuardSet(secili, { preset: GUARD_PRESET[on] ?? 5, capital: k.baslangic, medianLot: medyanLot(), customDaily: k.gunluk, customMax: k.azami });
+    const bayt = new Uint8Array(2 + metin.length * 2); bayt[0] = 0xff; bayt[1] = 0xfe;
+    for (let i = 0; i < metin.length; i++) { const c = metin.charCodeAt(i); bayt[2 + 2 * i] = c & 0xff; bayt[3 + 2 * i] = c >> 8; }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([bayt], { type: 'application/octet-stream' })); a.download = 'KalibreRuleGuard-rules.set';
+    document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    $('#kural-durum').textContent = ceviri('İndirildi. Rule Guard ayar penceresinde Load ile yükle.');
+  };
+  $('#kural-kaydet').onclick = () => {
+    const secili = seciliKurallar();
+    if (!secili.length) { $('#kural-durum').textContent = ceviri('Önce en az bir kural seç.'); return; }
+    // Uyum, son kapanan işlemden sonraki işlemlerle ölçülür: bugünden ileriye.
+    const son = motor.islemler.reduce((m, i) => Math.max(m, i.kapanisZamani), 0);
+    depoYaz(DEPO.kural, JSON.stringify({ kurallar: secili, tarih: son + 1 }));
+    $('#kural-durum').textContent = ceviri('Kaydedildi. Bir sonraki dosyanda bu kurallara uyumu göreceksin.');
+    kuralCiz();
+  };
 
   const girdi = $('#dosya');
   girdi.onchange = () => { dosyaOku(girdi.files[0]); girdi.value = ''; };
