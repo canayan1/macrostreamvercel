@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>FX Blotter with your desk's export: step-by-step guide</title>
+<meta name="description" content="Realized and unrealized P&L by pair, dealer and book with price and points apart, carry, MTM, net position by value date, limit usage, seven reconciliation checks and an end-of-day desk report.">
+<link rel="canonical" href="https://kalibremarkets.com/guides/fx-blotter">
+<meta property="og:title" content="FX Blotter with your desk's export: step-by-step guide">
+<meta property="og:description" content="Realized and unrealized P&L by pair, dealer and book with price and points apart, carry, MTM, net position by value date, limit usage, seven reconciliation checks and an end-of-day desk report.">
+<meta property="og:url" content="https://kalibremarkets.com/guides/fx-blotter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>
+    <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/analytics">Analytics</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/get-started" aria-current="page">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/company">Company</a></li></ul></nav>
+    <span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+
+<article class="guide" id="guide">
+  <div class="wrap-text">
+    <p class="kicker">FX Blotter · Guide · 15 minutes</p>
+    <h1 class="display-s">FX Blotter with your desk's export</h1>
+    <p class="lede">Realized and unrealized P&amp;L by pair, dealer and book with price and points apart, carry, MTM, net position by value date, limit usage, seven reconciliation checks and an end-of-day desk report.</p>
+    <div class="actions left guide-actions"><a class="btn" href="/lab/blotter?file=samples/fx-blotter-sample.xlsx">Open FX Blotter on the sample</a><a class="more" href="/static/guides/kalibre-fx-blotter-guide.pdf" download>Download this guide (PDF)</a></div>
+    
+    <h2 class="title-s">What you need</h2>
+    <ul class="guide-list"><li>The desk's blotter as Excel (XLSX) or CSV, exported from the trading platform, the treasury system or a hand-kept sheet.</li><li>Closing rates for the pairs, in the file or pasted on the page.</li><li>A browser. Nothing to install.</li></ul>
+    <h2 class="title-s">Steps</h2>
+    <ol class="guide-steps"><li><h3>Try the sample first</h3><p>Open <b>kalibremarkets.com/lab/blotter</b> with the sample blotter, or click <b>Take the 2-minute tour</b> on the FX Blotter page.</p></li><li><h3>Drop your export</h3><p>Drop the blotter file on the box. Report title rows, total rows and repeated page headers are skipped. Headers in English, Turkish, German or French are matched.</p></li><li><h3>Check the column matches</h3><p>Each matched column shows its confidence. Change any match from the list. Fields that could not be found are named, so you can pick them by hand.</p></li><li><h3>Add the missing rates</h3><p>If the file has no closing rates, click <b>Add the missing rates</b> and paste them, one pair per line.</p></li><li><h3>Read the result</h3><p>P&amp;L split into price, points, carry and MTM; positions by value date; limits; and the reconciliation checks, each with the rows behind it.</p></li><li><h3>Trade tickets from email</h3><p>Confirmations that arrive as emails can be dropped as saved .eml files, or pasted in <b>Paste trade tickets</b>. Each ticket becomes a blotter row.</p></li><li><h3>Hand it on</h3><p>Click <b>Open the report page</b> for the desk report. Save it as PDF or share a read-only link that opens for 30 days.</p></li></ol>
+    <h2 class="title-s">What you will see</h2>
+    <ul class="guide-list"><li>Total P&amp;L split into its parts, by pair, dealer and book.</li><li>Net position and the value date ladder.</li><li>Seven reconciliation checks with the rows behind each.</li><li>The end-of-day desk report.</li></ul>
+    <h2 class="title-s">Good to know</h2>
+    <ul class="guide-list"><li>Old binary .xls files need to be saved as XLSX or CSV first.</li><li>Counterparty names are not used in the analysis unless you choose to show them.</li><li>Excluded rows are listed with their reason, so totals can be checked against the system.</li></ul>
+    <p class="guide-fine">Questions: markets@kalibrefin.com. Kalibre is software and does not give investment advice. <a href="/risk-disclosure">Risk disclosure</a></p>
+  </div>
+</article>
+</main>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+  </div>
+</footer>
+<script src="/static/nav.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
+
+</body>
+</html>

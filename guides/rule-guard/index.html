@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Install Rule Guard in MetaTrader 5: step-by-step guide</title>
+<meta name="description" content="An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.">
+<link rel="canonical" href="https://kalibremarkets.com/guides/rule-guard">
+<meta property="og:title" content="Install Rule Guard in MetaTrader 5: step-by-step guide">
+<meta property="og:description" content="An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.">
+<meta property="og:url" content="https://kalibremarkets.com/guides/rule-guard">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalibre Markets">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kalibremarkets.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#100e0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/site.css">
+<script src="/static/kalibre-cerez.js"></script>
+<script src="/static/beta.js" defer></script>
+<meta name="kalibre:yol:signIn" content="/sign-in">
+<meta name="kalibre:yol:account" content="/account">
+<meta name="kalibre:yol:pricing" content="/pricing">
+<meta name="kalibre:yol:connect" content="/connect">
+<meta name="kalibre:yol:lab" content="/lab">
+<meta name="kalibre:yol:home" content="/">
+<script src="/static/kalibre-auth.js" defer></script>
+</head>
+<body>
+<header class="gnav">
+  <div class="wrap">
+    <a class="gnav-brand" href="/" aria-label="Kalibre Markets"><span class="logo-k" aria-hidden="true">K</span>KALIBRE<span class="logo-sub" aria-hidden="true">// MARKETS</span></a>
+    <nav aria-label="Main menu"><ul class="gnav-links" id="gnav-links"><li><a href="/analytics">Analytics</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/get-started" aria-current="page">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/company">Company</a></li></ul></nav>
+    <span data-kalibre-auth></span>
+    <button class="gnav-toggle" type="button" aria-controls="gnav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+
+<article class="guide" id="guide">
+  <div class="wrap-text">
+    <p class="kicker">Rule Guard · Guide · 10 minutes</p>
+    <h1 class="display-s">Install Rule Guard in MetaTrader 5</h1>
+    <p class="lede">An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.</p>
+    <div class="actions left guide-actions"><a class="btn" href="/static/downloads/KalibreRuleGuard.ex5" download>Download Rule Guard for MT5</a><a class="more" href="/static/guides/kalibre-rule-guard-guide.pdf" download>Download this guide (PDF)</a></div>
+    <p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.10): <code>ad21943d4c69fb3dc989af466ee41eeeabdee5b01f06e802eddcd16ea18f1555</code></p>
+    <h2 class="title-s">What you need</h2>
+    <ul class="guide-list"><li>MetaTrader 5 on a computer (Windows or Mac), logged in to the account.</li><li>The account size the firm gave you, for example 100,000.</li><li>Optional: the MT5 app on your phone, for push alerts.</li></ul>
+    <h2 class="title-s">Steps</h2>
+    <ol class="guide-steps"><li><h3>Download the file</h3><p>Download <b>KalibreRuleGuard.ex5</b> from the Rule Guard page.</p></li><li><h3>Copy it into MT5</h3><p>In MetaTrader 5 choose <b>File → Open Data Folder</b>. Open <b>MQL5</b>, then <b>Experts</b>, and copy the file there.</p></li><li><h3>Refresh the Navigator</h3><p>Open the Navigator (Ctrl+N), right-click <b>Expert Advisors</b> and choose <b>Refresh</b>. <b>KalibreRuleGuard</b> appears in the list.</p></li><li><h3>Put it on a chart</h3><p>Open any chart, for example EURUSD, and drag Rule Guard onto it. One chart is enough: it watches the whole account.</p></li><li><h3>Set your rules</h3><p>In the <b>Inputs</b> tab pick your firm's preset, type the <b>Starting capital</b> (your account size; 0 takes the first deposit), keep the safety margin at 0.5 and the mode at <b>Watch</b>. Click OK.</p></li><li><h3>Check the panel</h3><p>The panel at the top left shows the floor, your equity, the distance to the floor and the state. Compare the preset with your own account's rules.</p></li><li><h3>Turn on phone alerts</h3><p>In the MT5 phone app, find your <b>MetaQuotes ID</b> under Settings, then Messages. On the computer choose <b>Tools → Options → Notifications</b>, tick push notifications and type the ID.</p></li></ol>
+    <h2 class="title-s">What you will see</h2>
+    <ul class="guide-list"><li>The daily and total floor, worked out the way the preset's firm does.</li><li>A warning at twice the safety margin: do not open new trades.</li><li>A lock at one safety margin, until the day resets.</li><li>Alerts on screen, as sound and on your phone.</li></ul>
+    <h2 class="title-s">Good to know</h2>
+    <ul class="guide-list"><li>Rule Guard works only while MT5 is open. For a 24-hour watch, run MT5 on a VPS.</li><li>It cannot stop an order you place by hand. In <b>Protect</b> mode it closes every open position and deletes pending orders at the lock; this needs Algo Trading on, and on a real-money account the input <b>Protect on a real account: I accept this</b>.</li><li>Closing happens at market price. Slippage and gaps can take the account past a limit.</li><li>Check that your firm allows a risk add-on on the account. Firm rules change; the preset shows the date it was taken.</li></ul>
+    <p class="guide-fine">Questions: markets@kalibrefin.com. Kalibre is software and does not give investment advice. <a href="/risk-disclosure">Risk disclosure</a></p>
+  </div>
+</article>
+</main>
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
+  </div>
+</footer>
+<script src="/static/nav.js" defer></script>
+<script src="/static/lightbox.js" defer></script>
+
+</body>
+</html>

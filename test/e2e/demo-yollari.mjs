@@ -71,6 +71,22 @@ await step('demo request form: product prefilled from the link, submit path answ
   await ctx.close();
 });
 
+await step('Rule Guard download and every guide PDF are served from the site', async () => {
+  const { ctx, page } = await fresh();
+  await page.goto(`${BASE}/get-started`);
+  const pdfs = await page.$$eval('a[href$="-guide.pdf"]', as => [...new Set(as.map(a => a.getAttribute('href')))]);
+  must(pdfs.length >= 4, `only ${pdfs.length} guide PDFs linked`);
+  for (const href of [...pdfs, '/static/downloads/KalibreRuleGuard.ex5']) {
+    const r = await page.request.get(`${BASE}${href}`);
+    const body = await r.body();
+    must(r.status() === 200 && body.length > 10000, `${href}: ${r.status()} ${body.length} bytes`);
+    if (href.endsWith('.pdf')) must(body.subarray(0, 4).toString() === '%PDF', `${href} is not a PDF`);
+  }
+  await page.goto(`${BASE}/rule-guard`);
+  must(await page.locator('a[href="/static/downloads/KalibreRuleGuard.ex5"]').count() >= 2, 'download button missing on /rule-guard');
+  await ctx.close();
+});
+
 await step('Trade Analytics sample → account review report', async () => {
   const { ctx, page } = await fresh();
   const errs = watch(page);

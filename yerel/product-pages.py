@@ -458,7 +458,7 @@ def trade_analytics(lang):
 {local}
 {page_hero(T(lang, "Find your edge.", "Avantajını bul."),
            T(lang, "Drop in an MT5 report. See what works, by symbol, hour and habit.", "Bir MT5 raporu bırak. Neyin işe yaradığını sembol, saat ve alışkanlığa göre gör."),
-           btn(sample, T(lang, "Try it with a sample file", "Örnek dosyayla dene")) + more("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim"),
+           btn(sample, T(lang, "Try it with a sample file", "Örnek dosyayla dene")) + more("/guides/trade-analytics", T(lang, "Use it with your MT5 account", "Kendi MT5 hesabınla kullan")),
            hero_image("trade-analytics", lang, T(lang, "Trade Analytics on a laptop: account overview of an example account with net P&amp;L, balance curve and segments", "Dizüstünde Trade Analytics: örnek hesabın net K/Z, bakiye eğrisi ve dilimleriyle hesap özeti")),
            kicker="Analytics · Trade Analytics" + status_tag("beta", lang))}
 
@@ -538,7 +538,7 @@ def fx_blotter(lang):
 {local}
 {page_hero(T(lang, "Your blotter, explained.", "Blotter'ın, açıklanmış."),
            T(lang, "Drop in your desk's export. Every total opens its deals.", "Masanın dökümünü bırak. Her toplam deal'lerini açar."),
-           btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste")),
+           btn(FX_TOUR[lang], T(lang, "Take the 2-minute tour", "2 dakikalık turu başlat")) + more("/guides/fx-blotter", T(lang, "Use it with your export", "Kendi dökümünle kullan")) + more(P(lang, DEMO_REQUEST + "?product=analytics"), T(lang, "Request a demo", "Demo iste")),
            hero_image("fx-blotter", lang, T(lang, "FX Blotter Analytics on a laptop: P&amp;L table of the sample blotter by pair, split into price, points, carry and MTM", "Dizüstünde FX Blotter Analytics: örnek blotter'ın parite bazında fiyat, puan, taşıma ve MTM olarak ayrılmış K/Z tablosu")),
            kicker="Analytics · FX Blotter" + status_tag("beta", lang))}
 
@@ -617,28 +617,29 @@ def fx_blotter(lang):
 # ================================================================== Rule Guard
 def rule_guard(lang):
     tr = lang == "tr"
-    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Replay", "Tekrar"), "#replay"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Early access", "Erken erişim"), "#pricing")],
-                 T(lang, "Tell us about your challenge", "Sınavını anlat"), "#pricing", " data-erken-erisim")
+    local = lnav("Rule Guard", lang, [(T(lang, "Overview", "Genel bakış"), "#top"), (T(lang, "Install", "Kurulum"), "#how"), (T(lang, "Replay", "Tekrar"), "#replay"), (T(lang, "What it does", "Ne yapar"), "#features"), (T(lang, "Questions", "Sorular"), "#pricing")],
+                 T(lang, "Download for MT5", "MT5 için indir"), GUARD_FILE, " download")
     questions = (select("firma", T(lang, "Which firm are you taking a challenge with?", "Hangi firmada sınava giriyorsun?"), [("ftmo", "FTMO"), ("fundednext", "FundedNext"), ("fundingpips", "FundingPips"), ("the5ers", "The5ers"), ("topstep", "Topstep"), ("diger", T(lang, "Other", "Başka")), ("yok", T(lang, "Not yet", "Henüz girmedim"))], T(lang, "Choose", "Seç"))
                  + select("sinav", T(lang, "How many challenges in the last 12 months?", "Son 12 ayda kaç sınav aldın?"), [("0", "0"), ("1", "1"), ("2-3", "2-3"), ("4-10", "4-10"), ("10+", T(lang, "More than 10", "10'dan fazla"))], T(lang, "Choose", "Seç"))
-                 + text_field("simdi", T(lang, "How do you track the daily loss limit today?", "Günlük kayıp sınırını şu an nasıl takip ediyorsun?")))
+                 + text_field("simdi", T(lang, "How did it go, and what is missing?", "Nasıl gitti, ne eksik?")))
     caption = T(lang, "Example account against FTMO 2-Step floors, first 60 trading days. Rule Guard watches the same floors live in MT5.", "Örnek hesap, FTMO 2-Step tabanlarına karşı ilk 60 işlem günü. Rule Guard aynı tabanları MT5'te canlı izler.")
     chart = prop_chart(lang) + f'<p class="caption">{caption}</p>'
     body = f'''
 <div data-talep-sayfa="rule-guard">
 {local}
 {page_hero(T(lang, "Stay inside the limits.", "Sınırların içinde kal."),
-           T(lang, "Your firm's daily and total limits, watched on every tick in MT5.", "Firmanın günlük ve toplam sınırları, MT5'te her tick'te izlenir."),
-           btn("#pricing", T(lang, "Get early access", "Erken erişim al"), " data-erken-erisim") + more(LAB(lang, TA_SAMPLE), T(lang, "Check past days on a sample", "Geçmiş günleri bir örnekte kontrol et")),
+           T(lang, "Your firm's daily and total loss limits, watched every second in MT5, with a warning before you reach them. It never opens a trade.", "Firmanın günlük ve toplam kayıp sınırları MT5'te her saniye izlenir, sınıra gelmeden uyarır. Hiç işlem açmaz."),
+           btn(GUARD_FILE, T(lang, "Download for MT5", "MT5 için indir"), " download") + more("/guides/rule-guard", T(lang, "Read the install guide", "Kurulum rehberini oku")) + more("/static/guides/kalibre-rule-guard-guide.pdf", T(lang, "Guide as PDF", "Rehber PDF"), " download"),
            chart,
-           kicker="Rule Guard" + status_tag("plan", lang), media_cls="chart")}
+           kicker="Rule Guard" + status_tag("beta", lang), media_cls="chart")}
 
 <section class="sec center" id="how">
   <div class="wrap">
-    <h2 class="title">{T(lang, "Set it once.", "Bir kez kur.")}</h2>
-    {steps([(T(lang, "Add it to MT5", "MT5'e ekle"), T(lang, "Rule Guard runs as an Expert Advisor in your terminal.", "Rule Guard terminalinde Expert Advisor olarak çalışır.")),
-            (T(lang, "Pick your firm", "Firmanı seç"), T(lang, "Choose a preset or type your own limits.", "Bir ön ayar seç ya da kendi sınırlarını yaz.")),
-            (T(lang, "Trade as usual", "Her zamanki gibi işlem yap"), T(lang, "Near the floor, new trades wait.", "Tabana yaklaşınca yeni işlemler bekler."))])}
+    <h2 class="title">{T(lang, "Set it up in ten minutes.", "On dakikada kur.")}</h2>
+    {steps([(T(lang, "Copy it into MT5", "MT5'e kopyala"), T(lang, "File, Open Data Folder, MQL5, Experts. Refresh the Navigator and drag Rule Guard onto any chart.", "Dosya, Veri Klasörünü Aç, MQL5, Experts. Gezgini yenile ve Rule Guard'ı herhangi bir grafiğe sürükle.")),
+            (T(lang, "Pick your firm", "Firmanı seç"), T(lang, "Choose a preset, type your account size and keep Watch mode.", "Bir ön ayar seç, hesap büyüklüğünü yaz ve Watch modunda bırak.")),
+            (T(lang, "Trade as usual", "Her zamanki gibi işlem yap"), T(lang, "The panel shows the distance to the floor. Near it, you get an alert on screen and on your phone.", "Panel tabana mesafeyi gösterir. Yaklaşınca ekranda ve telefonda uyarı gelir."))])}
+    <div class="actions">{more("/guides/rule-guard", T(lang, "Full install guide", "Tam kurulum rehberi"))}</div>
   </div>
 </section>
 
@@ -647,32 +648,34 @@ def rule_guard(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "What it does.", "Ne yapar.")}</h2>
     <div class="tiles">
-      {tile(T(lang, "Floors calculated the way your firm does.", "Tabanlar firmanın hesapladığı gibi."), T(lang, "The daily floor uses the start-of-day balance. The total floor uses the starting balance or the peak. The day resets at the firm's time.", "Günlük taban gün başı bakiyeden, toplam taban başlangıç bakiyesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır."), f'<p class="big">5%<span style="font-size:.4em;color:var(--ink-3)"> / 10%</span></p>' if not tr else '<p class="big">%5<span style="font-size:.4em;color:var(--ink-3)"> / %10</span></p>')}
-      {tile(T(lang, "No new trades near the floor.", "Tabana yakın yeni işlem yok."), T(lang, "At twice the safety margin, Kalibre Engine opens no new trades. At one safety margin, it closes its own positions.", "Güvenlik payının iki katında Kalibre Engine yeni işlem açmaz. Bir güvenlik payında kendi pozisyonlarını kapatır."), "", "dark")}
-      {tile(T(lang, "Firm presets.", "Firma ön ayarları."), T(lang, "FTMO 2-Step, FTMO 1-Step, FTMO Instant and The5ers High Stakes, or your own limits. FundedNext and FundingPips are planned.", "FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. FundedNext ve FundingPips planlanıyor."), "", "third")}
-      {tile(T(lang, "Your password stays yours.", "Şifren sende kalır."), T(lang, "Rule Guard runs as an Expert Advisor in your terminal. You never give us your MT5 password.", "Rule Guard terminalinde Expert Advisor olarak çalışır. MT5 şifreni bize hiçbir zaman vermezsin."), "", "third")}
-      {tile(T(lang, "Dashboard and weekly report.", "Panel ve haftalık rapor."), T(lang, "Planned: distance to each floor, progress to the target, and the trades that broke a rule or came close.", "Planlanıyor: her tabana mesafe, hedefe ilerleme ve bir kuralı çiğneyen ya da yaklaşan işlemler."), "", "third")}
+      {tile(T(lang, "Floors calculated the way your firm does.", "Tabanlar firmanın hesapladığı gibi."), T(lang, "The daily floor uses the start-of-day balance. The total floor uses the starting capital or the peak. The day resets at the firm's time.", "Günlük taban gün başı bakiyeden, toplam taban başlangıç sermayesinden ya da tepeden hesaplanır. Gün, firmanın saatinde sıfırlanır."), f'<p class="big">5%<span style="font-size:.4em;color:var(--ink-3)"> / 10%</span></p>' if not tr else '<p class="big">%5<span style="font-size:.4em;color:var(--ink-3)"> / %10</span></p>')}
+      {tile(T(lang, "A warning, then a lock.", "Önce uyarı, sonra kilit."), T(lang, "At twice the safety margin: do not open new trades. At one safety margin: locked until the day resets. Watch mode alerts; Protect mode also closes open positions and deletes pending orders.", "Güvenlik payının iki katında: yeni işlem açma. Bir güvenlik payında: gün sıfırlanana kadar kilit. Watch modu uyarır; Protect modu açık pozisyonları da kapatır ve bekleyen emirleri siler."), "", "dark")}
+      {tile(T(lang, "Firm presets.", "Firma ön ayarları."), T(lang, "FTMO 2-Step, FTMO 1-Step, FTMO Instant and The5ers High Stakes, or your own limits. Each preset shows the date its rules were taken.", "FTMO 2-Step, FTMO 1-Step, FTMO Instant ve The5ers High Stakes ya da kendi sınırların. Her ön ayar kuralların alındığı tarihi gösterir."), "", "third")}
+      {tile(T(lang, "Never opens a trade.", "Hiç işlem açmaz."), T(lang, "No orders, no signals, no strategy. No licence, no internet connection and no password: it runs inside your terminal only.", "Emir yok, sinyal yok, strateji yok. Lisans, internet bağlantısı ve şifre yok: yalnız terminalinin içinde çalışır."), "", "third")}
+      {tile(T(lang, "On your phone.", "Telefonunda."), T(lang, "Alerts go to the MT5 app on your phone through MetaQuotes push notifications.", "Uyarılar MetaQuotes bildirimleriyle telefonundaki MT5 uygulamasına gider."), "", "third")}
     </div>
   </div>
 </section>
 
 <section class="sec center" id="pricing">
   <div class="wrap">
-    <h2 class="title">{T(lang, "Planned.", "Planlanıyor.")}</h2>
-    <p class="lede">{T(lang, "Rule Guard is on the plan, not in a release. Tell us which firm you trade with and how you track the daily limit today; the first builds go to the people on this list.", "Rule Guard planda, sürümde değil. Hangi firmayla işlem yaptığını ve günlük sınırı bugün nasıl izlediğini anlat; ilk sürümler bu listedekilere gider.")}</p>
-    <div class="actions">{btn("#pricing", T(lang, "Tell us about your challenge", "Sınavını anlat"), " data-erken-erisim")}{more(LAB(lang, TA_SAMPLE), T(lang, "Check past days in Trade Analytics", "Geçmiş günleri Trade Analytics'te kontrol et"))}</div>
-    {faq([(T(lang, "Does my firm allow EAs?", "Firmam EA kullanımına izin veriyor mu?"), T(lang, "Check your firm's rules on EAs; some firms restrict them. Rule Guard runs as an Expert Advisor in MT5.", "Firmanın EA kurallarını kontrol et; bazı firmalar EA kullanımını kısıtlıyor. Rule Guard MT5'te Expert Advisor olarak çalışır.")),
-          (T(lang, "Can it stop trades I open by hand?", "Elle açtığım işlemleri durdurabilir mi?"), T(lang, "No. It counts positions opened by hand or by another EA when it works out the remaining room, but it cannot block those orders.", "Hayır. Elle ya da başka bir EA ile açılan pozisyonları kalan payı hesaplarken sayar, ama o emirleri engelleyemez.")),
-          (T(lang, "Does it guarantee that I pass?", "Sınavı geçmemi garanti eder mi?"), T(lang, "No. It watches the loss limits only. Slippage and price gaps can cause losses beyond a stop.", "Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları stopun ötesinde kayba yol açabilir.")),
+    <h2 class="title">{T(lang, "Questions.", "Sorular.")}</h2>
+    <p class="lede">{T(lang, "Run it on a demo account first, then on your challenge. Tell us how it went and what is missing.", "Önce bir demo hesapta, sonra sınavında çalıştır. Nasıl gittiğini ve neyin eksik olduğunu anlat.")}</p>
+    <div class="actions">{btn(GUARD_FILE, T(lang, "Download for MT5", "MT5 için indir"), " download")}{btn("#pricing", T(lang, "Tell us how it went", "Nasıl gittiğini anlat"), " data-erken-erisim", ghost=True)}</div>
+    {faq([(T(lang, "Does my firm allow it?", "Firmam izin veriyor mu?"), T(lang, "Check your firm's rules on Expert Advisors and risk tools before you add it to a challenge account.", "Sınav hesabına eklemeden önce firmanın Expert Advisor ve risk aracı kurallarını kontrol et.")),
+          (T(lang, "Can it stop trades I open by hand?", "Elle açtığım işlemleri durdurabilir mi?"), T(lang, "No. MT5 does not let an add-on block a manual order. Rule Guard counts every position on the account and warns you; in Protect mode it closes them at the lock.", "Hayır. MT5 bir eklentinin elle verilen emri engellemesine izin vermez. Rule Guard hesaptaki her pozisyonu sayar ve uyarır; Protect modunda kilitte onları kapatır.")),
+          (T(lang, "Does it work when MT5 is closed?", "MT5 kapalıyken çalışır mı?"), T(lang, "No. It runs only while the terminal is open. For a 24-hour watch, run MT5 on a VPS.", "Hayır. Yalnız terminal açıkken çalışır. 24 saat izleme için MT5'i bir VPS'te çalıştır.")),
+          (T(lang, "Does it guarantee that I pass?", "Sınavı geçmemi garanti eder mi?"), T(lang, "No. It watches the loss limits only. Slippage and price gaps can take the account past a limit.", "Hayır. Yalnız kayıp sınırlarını izler. Kayma ve fiyat boşlukları hesabı sınırın ötesine götürebilir.")),
           (T(lang, "Is Kalibre a prop firm?", "Kalibre bir prop firması mı?"), T(lang, "No. Kalibre is not affiliated with any prop firm. Firm names are used only to describe their rules.", "Hayır. Hiçbir prop firmasıyla bağlantısı yok. Firma adları yalnız kurallarını anlatmak için kullanılır."))])}
+    <p class="fine">KalibreRuleGuard.ex5, version 0.10. SHA-256 <code>{GUARD_SHA}</code></p>
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice. Trading forex and CFDs on margin carries a high level of risk. You can lose all of the money you deposit.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez. Kaldıraçlı forex ve CFD işlemleri yüksek risk taşır. Yatırdığın paranın tamamını kaybedebilirsin.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>
 {signup_dialog(lang, questions)}
 </div>'''
     page("tr/rule-guard/index.html" if tr else "rule-guard/index.html", lang,
-         T(lang, "Rule Guard: trade inside your prop firm's limits on MT5 (planned)", "Rule Guard: MT5'te prop firmasının sınırları içinde işlem yap (planlanıyor)"),
-         T(lang, "A planned MT5 add-on that watches your firm's daily and total limits and pauses new trades near the floor. Join the list to hear first.", "Firmanın günlük ve toplam sınırlarını MT5'te izleyen ve tabana yakın yeni işlemi bekleten, planlanan eklenti. İlk duyan olmak için listeye katıl."),
+         T(lang, "Rule Guard: stay inside your prop firm's loss limits on MT5", "Rule Guard: MT5'te prop firmasının kayıp sınırları içinde kal"),
+         T(lang, "An MT5 add-on that watches your firm's daily and total loss limits every second and warns you before you reach them. It never opens a trade.", "Firmanın günlük ve toplam kayıp sınırlarını MT5'te her saniye izleyen ve sınıra gelmeden uyaran eklenti. Hiç işlem açmaz."),
          body, P(lang, "/rule-guard"), "/rule-guard" if tr else "/tr/rule-guard", '<script src="/static/talep.js" defer></script>')
 
 # ================================================================== Desk Signal
@@ -693,7 +696,7 @@ def desk_signal(lang):
 {local}
 {page_hero(T(lang, "One key to the whole desk.", "Tek tuşla bütün masa."),
            T(lang, "Colour signals from the head of desk to every trader's screen, in every city, with a record of who answered.", "Masa şefinden her şehirdeki her trader'ın ekranına renkli sinyal; kimin yanıt verdiğinin kaydıyla."),
-           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(DESK_LIVE, T(lang, "Start a live desk", "Canlı masa kur")),
+           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(DESK_LIVE, T(lang, "Start a live desk", "Canlı masa kur")) + more("/guides/desk-signal", T(lang, "Setup guide", "Kurulum rehberi")),
            hero_image("desk-signal", lang, T(lang, "Desk Signal demo on a laptop: the head of desk's signal board next to four trader screens, one orb lit amber in London and one grown red in Tokyo", "Dizüstünde Desk Signal demosu: masa şefinin sinyal panosu ve dört trader ekranı; Londra'da amber, Tokyo'da büyümüş kırmızı bir top")),
            kicker="Desk Signal" + status_tag("test", lang))}
 
@@ -852,9 +855,9 @@ def demos(lang):
 </section>
 <section class="sec paper center">
   <div class="wrap">
-    <h2 class="title-s">Rule Guard{status_tag("plan", lang)}</h2>
-    <p class="lede">{T(lang, "Rule Guard is planned and would run inside MT5, so there is no web demo. The same daily and total limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard planlanıyor ve MT5 içinde çalışacak, bu yüzden web demosu yok. Aynı günlük ve toplam sınırlar Trade Analytics örneğinin Prop sınırları bölümünde görünür.")}</p>
-    <div class="actions">{more(LAB(lang, TA_SAMPLE), T(lang, "Open the sample", "Örneği aç"))}{more(P(lang, "/rule-guard"), T(lang, "About Rule Guard", "Rule Guard hakkında"))}</div>
+    <h2 class="title-s">Rule Guard{status_tag("beta", lang)}</h2>
+    <p class="lede">{T(lang, "Rule Guard runs inside MT5, so its demo is your own demo account. Download it, follow the ten-minute guide, and watch the panel. The same limits appear in the Prop limits section of the Trade Analytics sample.", "Rule Guard MT5 içinde çalışır, bu yüzden demosu senin demo hesabındır. İndir, on dakikalık rehberi izle ve paneli gör. Aynı sınırlar Trade Analytics örneğinin Prop sınırları bölümünde de görünür.")}</p>
+    <div class="actions">{btn(GUARD_FILE, T(lang, "Download for MT5", "MT5 için indir"), " download")}{more("/guides/rule-guard", T(lang, "Install guide", "Kurulum rehberi"))}{more(LAB(lang, TA_SAMPLE), T(lang, "Open the sample", "Örneği aç"))}</div>
   </div>
 </section>'''
     page("tr/demo/index.html" if tr else "demo/index.html", lang,
@@ -1020,6 +1023,133 @@ def company(lang):
 </section>'''
     page("tr/company/index.html" if tr else "company/index.html", lang, c["title"], c["desc"], body, P(lang, "/company"), "/company" if tr else "/tr/company")
 
+# ================================================================== Guides (self-serve, downloadable)
+# Each guide is one page at /guides/<key> and the same page printed to /static/guides/kalibre-<key>-guide.pdf
+# (yerel/guide-pdf.mjs). English only, like the public site.
+GUARD_SHA = open(os.path.join(KOK, "static", "downloads", "KalibreRuleGuard.ex5"), "rb").read()
+import hashlib
+GUARD_SHA = hashlib.sha256(GUARD_SHA).hexdigest()
+GUARD_FILE = "/static/downloads/KalibreRuleGuard.ex5"
+
+GUIDES = {
+ "trade-analytics": {
+  "title": "Trade Analytics with your MT5 account",
+  "product": "Trade Analytics", "time": "10 minutes", "open": TA_SAMPLE, "open_label": "Open Trade Analytics",
+  "result": "A breakdown of where your account makes and loses money, your days closest to a prop limit, and an account review you can save as PDF or share as a link.",
+  "need": ["MetaTrader 5 on a computer (Windows or Mac). The phone app cannot save reports.", "A browser: Chrome, Edge, Safari or Firefox.", "No sign-up and no password. Your MT5 password is never asked for."],
+  "steps": [
+   ("Save your history from MT5", "In MetaTrader 5 open the Toolbox window (Ctrl+T) and go to the <b>History</b> tab. Right-click the list, choose <b>Positions</b> and the period you want, for example <b>All History</b>. Right-click again, choose <b>Report</b>, then <b>HTML</b>, and save the file."),
+   ("Open Trade Analytics", 'Go to <b>kalibremarkets.com/lab/analytics</b>. Drop the saved file on the box, or click it to choose the file.'),
+   ("Set the server time", "Under the box, set <b>Server time (UTC offset)</b> to your broker's server time. MT5 shows it in the Market Watch window. The hour, weekday and session results use it."),
+   ("Read the overview", "Net P&amp;L, win rate, profit factor and drawdown at the top. Below: results by symbol, opening hour, weekday, session, direction, holding time, trade size, the trade after a loss and losing streaks."),
+   ("Check a prop limit", "If the account is a prop challenge, pick the firm's rules in <b>Prop limits</b>. You see each day's distance to the daily and total floor."),
+   ("Ask a question", 'In <b>Your own view</b>, type a question such as <i>worst 5 symbols</i> or <i>net by hour</i>. The table or chart appears below it, and you can save the view.'),
+   ("Keep or share the result", "Click <b>Open the report page</b>. Save it as PDF with the browser's print menu, or click <b>Share a read-only link</b> to get a link that opens for 30 days."),
+  ],
+  "see": ["Account overview with the balance curve.", "Segments that cost money, sorted by size.", "Prop limit days, if you pick a firm.", "An account review page to keep."],
+  "know": ["The report's account number and name are not read.", "Only closed positions are analysed. Open positions are not in an MT5 history report.", "Results describe the past and say nothing about future trades."],
+ },
+ "fx-blotter": {
+  "title": "FX Blotter with your desk's export",
+  "product": "FX Blotter", "time": "15 minutes", "open": "/lab/blotter?file=samples/fx-blotter-sample.xlsx", "open_label": "Open FX Blotter on the sample",
+  "result": "Realized and unrealized P&amp;L by pair, dealer and book with price and points apart, carry, MTM, net position by value date, limit usage, seven reconciliation checks and an end-of-day desk report.",
+  "need": ["The desk's blotter as Excel (XLSX) or CSV, exported from the trading platform, the treasury system or a hand-kept sheet.", "Closing rates for the pairs, in the file or pasted on the page.", "A browser. Nothing to install."],
+  "steps": [
+   ("Try the sample first", 'Open <b>kalibremarkets.com/lab/blotter</b> with the sample blotter, or click <b>Take the 2-minute tour</b> on the FX Blotter page.'),
+   ("Drop your export", "Drop the blotter file on the box. Report title rows, total rows and repeated page headers are skipped. Headers in English, Turkish, German or French are matched."),
+   ("Check the column matches", "Each matched column shows its confidence. Change any match from the list. Fields that could not be found are named, so you can pick them by hand."),
+   ("Add the missing rates", "If the file has no closing rates, click <b>Add the missing rates</b> and paste them, one pair per line."),
+   ("Read the result", "P&amp;L split into price, points, carry and MTM; positions by value date; limits; and the reconciliation checks, each with the rows behind it."),
+   ("Trade tickets from email", "Confirmations that arrive as emails can be dropped as saved .eml files, or pasted in <b>Paste trade tickets</b>. Each ticket becomes a blotter row."),
+   ("Hand it on", "Click <b>Open the report page</b> for the desk report. Save it as PDF or share a read-only link that opens for 30 days."),
+  ],
+  "see": ["Total P&amp;L split into its parts, by pair, dealer and book.", "Net position and the value date ladder.", "Seven reconciliation checks with the rows behind each.", "The end-of-day desk report."],
+  "know": ["Old binary .xls files need to be saved as XLSX or CSV first.", "Counterparty names are not used in the analysis unless you choose to show them.", "Excluded rows are listed with their reason, so totals can be checked against the system."],
+ },
+ "desk-signal": {
+  "title": "Run Desk Signal with your team",
+  "product": "Desk Signal", "time": "5 minutes", "open": "/lab/desk-live", "open_label": "Start a desk",
+  "result": "A live desk where the head sends colour signals to traders in one key, urgent signals ring until answered, and every signal is logged with the time it was seen and done.",
+  "need": ["One computer for the head of desk, with Chrome or Edge.", "One computer per trader. A phone works, but it must keep the tab open and the screen on.", "A way to send a link: chat, email or your desk's usual channel."],
+  "steps": [
+   ("Start the desk", 'The head opens <b>kalibremarkets.com/lab/desk-live</b>, types a desk name and clicks <b>Start the desk</b>. This browser becomes the head console. Keep using the same browser: the key that sends signals lives in it.'),
+   ("Back up the head key", "Click <b>Download a backup of the head key</b> and keep the file. It moves the desk to another browser if you need to."),
+   ("Invite the traders", "Click <b>Invite traders</b>, then <b>Copy link</b>, and send the link to each trader."),
+   ("Traders join", "Each trader opens the link, types a name and a location, and clicks <b>Join and turn on sound</b>. They appear on the head's screen as they join."),
+   ("Turn on sound and the orb", "Each trader clicks <b>Test sound</b> once. In Chrome or Edge, <b>Keep the orb on top</b> keeps a small orb above every other window."),
+   ("Send a signal", "Pick a signal (1 to 9), then a trader, or press <b>A</b> for everyone. Urgent signals ring until the trader opens them. After 10 seconds the orb grows; after 20 seconds the trader's row turns red on the head's screen."),
+   ("Read the answers and the log", "Traders click <b>Seen</b>, then <b>Done</b>. <b>Who has answered</b> shows the average time to see and to finish. <b>Download Excel</b> saves the full log."),
+  ],
+  "see": ["A coloured orb on each trader's screen.", "Who has seen and who has done each signal, to the second.", "Average time to answer per trader.", "A signal log as CSV or Excel."],
+  "know": ["Signals carry a fixed meaning from your board, never free text and never orders.", "Change the meanings with <b>Edit signals</b> before you start.", "The relay keeps the last 5,000 events for 30 days. Download the log to keep it longer."],
+ },
+ "rule-guard": {
+  "title": "Install Rule Guard in MetaTrader 5",
+  "product": "Rule Guard", "time": "10 minutes", "open": GUARD_FILE, "open_label": "Download Rule Guard for MT5",
+  "result": "An add-on on one chart that watches your account against the firm's daily and total loss limits, shows the distance to the floor, and warns you before a limit is reached. It never opens a trade.",
+  "need": ["MetaTrader 5 on a computer (Windows or Mac), logged in to the account.", "The account size the firm gave you, for example 100,000.", "Optional: the MT5 app on your phone, for push alerts."],
+  "steps": [
+   ("Download the file", 'Download <b>KalibreRuleGuard.ex5</b> from the Rule Guard page.'),
+   ("Copy it into MT5", "In MetaTrader 5 choose <b>File → Open Data Folder</b>. Open <b>MQL5</b>, then <b>Experts</b>, and copy the file there."),
+   ("Refresh the Navigator", "Open the Navigator (Ctrl+N), right-click <b>Expert Advisors</b> and choose <b>Refresh</b>. <b>KalibreRuleGuard</b> appears in the list."),
+   ("Put it on a chart", "Open any chart, for example EURUSD, and drag Rule Guard onto it. One chart is enough: it watches the whole account."),
+   ("Set your rules", "In the <b>Inputs</b> tab pick your firm's preset, type the <b>Starting capital</b> (your account size; 0 takes the first deposit), keep the safety margin at 0.5 and the mode at <b>Watch</b>. Click OK."),
+   ("Check the panel", "The panel at the top left shows the floor, your equity, the distance to the floor and the state. Compare the preset with your own account's rules."),
+   ("Turn on phone alerts", "In the MT5 phone app, find your <b>MetaQuotes ID</b> under Settings, then Messages. On the computer choose <b>Tools → Options → Notifications</b>, tick push notifications and type the ID."),
+  ],
+  "see": ["The daily and total floor, worked out the way the preset's firm does.", "A warning at twice the safety margin: do not open new trades.", "A lock at one safety margin, until the day resets.", "Alerts on screen, as sound and on your phone."],
+  "know": ["Rule Guard works only while MT5 is open. For a 24-hour watch, run MT5 on a VPS.", "It cannot stop an order you place by hand. In <b>Protect</b> mode it closes every open position and deletes pending orders at the lock; this needs Algo Trading on, and on a real-money account the input <b>Protect on a real account: I accept this</b>.", "Closing happens at market price. Slippage and gaps can take the account past a limit.", "Check that your firm allows a risk add-on on the account. Firm rules change; the preset shows the date it was taken."],
+ },
+}
+
+def guide_body(key):
+    g = GUIDES[key]
+    steps_html = "".join(f"<li><h3>{h}</h3><p>{p}</p></li>" for h, p in g["steps"])
+    li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
+    pdf = f"/static/guides/kalibre-{key}-guide.pdf"
+    dl = ' download' if g["open"].endswith(".ex5") else ""
+    extra = (f'<p class="guide-fine">SHA-256 of KalibreRuleGuard.ex5 (version 0.10): <code>{GUARD_SHA}</code></p>' if key == "rule-guard" else "")
+    return f'''
+<article class="guide" id="guide">
+  <div class="wrap-text">
+    <p class="kicker">{g["product"]} · Guide · {g["time"]}</p>
+    <h1 class="display-s">{g["title"]}</h1>
+    <p class="lede">{g["result"]}</p>
+    <div class="actions left guide-actions">{btn(g["open"], g["open_label"], dl)}{more(pdf, "Download this guide (PDF)", " download")}</div>
+    {extra}
+    <h2 class="title-s">What you need</h2>
+    <ul class="guide-list">{li(g["need"])}</ul>
+    <h2 class="title-s">Steps</h2>
+    <ol class="guide-steps">{steps_html}</ol>
+    <h2 class="title-s">What you will see</h2>
+    <ul class="guide-list">{li(g["see"])}</ul>
+    <h2 class="title-s">Good to know</h2>
+    <ul class="guide-list">{li(g["know"])}</ul>
+    <p class="guide-fine">Questions: markets@kalibrefin.com. Kalibre is software and does not give investment advice. <a href="/risk-disclosure">Risk disclosure</a></p>
+  </div>
+</article>'''
+
+def guides():
+    for key, g in GUIDES.items():
+        page(f"guides/{key}/index.html", "en", f'{g["title"]}: step-by-step guide', g["result"].replace("&amp;", "&"), guide_body(key), "/get-started")
+    cards = "".join(
+        f'<div class="tile third{" dark" if i % 2 else ""}"><span class="kicker">{g["product"]} · {g["time"]}</span><h3>{g["title"]}</h3><p>{g["result"]}</p>'
+        f'<div class="actions left">{more(f"/guides/{k}", "Read the guide")}{more(f"/static/guides/kalibre-{k}-guide.pdf", "PDF", " download")}</div></div>'
+        for i, (k, g) in enumerate(GUIDES.items()))
+    body = f'''
+{page_hero("Get started.", "Every product, step by step, on your own account and files. Each guide is also a PDF to keep or send.",
+           btn("/guides/trade-analytics", "Start with your MT5 account") + more("/demo", "Try the samples first"),
+           f'<div class="wrap"><div class="tiles">{cards}</div></div>', kicker="Guides", media_cls="guides-wrap")}
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="title">Want a walkthrough instead?</h2>
+    <p class="lede">A 30-minute call on our sample files or your own export.</p>
+    <div class="actions">{btn("/request-a-demo", "Request a demo")}</div>
+  </div>
+</section>'''
+    page("get-started/index.html", "en", "Get started with Kalibre Markets: guides for every product",
+         "Step-by-step guides for Trade Analytics, FX Blotter, Desk Signal and Rule Guard, each also as a PDF.", body, "/get-started")
+
 for lang in ("en", "tr"):
     home(lang)
     analytics(lang)
@@ -1031,5 +1161,7 @@ for lang in ("en", "tr"):
     demos(lang)
     request_demo(lang)
     company(lang)
+    if lang == "en":
+        guides()
     if not ODEME_ACIK:
         pricing(lang)

@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kalibremarkets.com/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/analytics</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/company</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -32,12 +32,12 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/demo</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/desk-signal</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -167,12 +167,37 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/fx-blotter</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/get-started</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://kalibremarkets.com/grafik-oku</loc>
     <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/guides/desk-signal</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/guides/fx-blotter</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/guides/rule-guard</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kalibremarkets.com/guides/trade-analytics</loc>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -187,7 +212,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/kalibre-lab</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -217,7 +242,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/pricing</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -237,7 +262,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/request-a-demo</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -247,7 +272,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/rule-guard</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -267,7 +292,7 @@
   </url>
   <url>
     <loc>https://kalibremarkets.com/trade-analytics</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
