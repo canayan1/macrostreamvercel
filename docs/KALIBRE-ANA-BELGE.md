@@ -439,3 +439,8 @@ Claude'un yapacakları:
 - Trade Analytics: yeni sabitlenebilir bölüm "What if you had held": MT5 fiyat dosyası seçici, "Use ECB daily rates", dört karo (kapattığın gibi, bugüne kadar tutulsaydı, taban aşımı, stop-out), kovalar, işlem tablosu, kaynak dipnotu ve "senaryo, öneri değil" notu.
 - Can'ın demo hesabında (16 işlem): kapattığı gibi −11.005,75 EUR; hepsi bugüne kadar tutulsaydı −33.334,89; hepsi birlikte açık kalsaydı FTMO 2-Step tabanı 28 Ekim 18:15'te (7 pozisyon açıkken) aşılırdı; stop-out olmazdı (seviye %30). Kaybeden 5 işlemin 3'ü başabaşa döndü (USDSEK −253 kapanıştan 15 dk sonra; bugün +6.600). ECB yoluyla aynı hesap: aşım 30 Ekim gün sonunda görünür (günlük çözünürlük). Elle kontrol: 22 lotluk EURUSD işleminde broker 6 gece swap kesti, motor bugüne kadar 7 gece sayıyor.
 - Düzeltme: favoriler için eklenen sarmalayıcı geniş tabloda sayfayı taşırıyordu; sınırlandı, bölümler arası boşluk geri geldi. Lab 542 test (performans testi tam takımda yük yüzünden dalgalı), site 74.
+
+### 3.11 ek 28: trading literatürü taraması
+- Can: ünlü trading kitapları ve makalelerine bakıp ürünlerde en büyük katma değerin nereden geldiğini çıkar. Belge `docs/ARASTIRMA-TRADING-LITERATURU-2026-11-03.md` (kaynaklı).
+- Sonuç: değer beş yerde (risk ve büyüklük, davranış sızıntıları, çıkışlar, dürüst test, maliyet); en büyüğü "ölç → kural → uygula → ölç" döngüsü: Analytics sızıntıyı para cinsinden ölçer ve kişisel kural önerir, Rule Guard MT5'te uygular, sonraki rapor uyumu ölçer. Rakip günlükler ölçüyor, uygulatmıyor.
+- Önerilen sıra (Can onayı bekler): kişisel kurallar + Rule Guard yeni girdileri; R/SQN/güven aralığı; MAE/MFE ve stop simülasyonu; büyüklük yeniden oynatma; Lab aşırı uyum rozeti (DSR/PBO); maliyet paneli.
