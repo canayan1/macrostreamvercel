@@ -23,7 +23,8 @@ Can tarafı:
 4. Gönderici adres: markets@kalibrefin.com'dan mı, kişisel adresten mi? Öneri: ilk 100 e-posta
    Can'ın kendi adından, kişisel, tek tek (toplu araç yok). Yanıt oranı toplu araçtan yüksek,
    spam riski düşük.
-5. İmza: ad, "Founder, Kalibre Markets", eski banka hazine deneyimi tek satır, site bağlantısı.
+5. İmza: ad, "Kalibre Markets", site bağlantısı. Karar (Can, 4.11.2026): kurucu göndermesi ve
+   geçmiş deneyim metinde geçmez. Gönderenin adı ve posta adresi yasal zorunluluk olduğu için kalır.
 
 Hukuki not (kaynak doğrulanmadan metne girmez): B2B iş adresine, ürünle ilgili tek seferlik
 e-posta; her e-postada "reply 'no' and I will not write again" satırı. KVKK/GDPR için meşru menfaat
@@ -65,10 +66,10 @@ Subject: [Desk name] end-of-day blotter, explained in seconds
 
 Hi [First name],
 
-I ran a bank treasury desk for [n] years, and the end of every day was the same: export the
-blotter, rebuild the P&L in Excel, chase the row that did not reconcile.
+On most treasury desks the end of the day is the same: export the blotter, rebuild the P&L in
+Excel, chase the row that did not reconcile.
 
-I built Kalibre Markets Analytics to make that a one-step job. You drop the blotter as your
+Kalibre Markets Analytics makes that a one-step job. You drop the blotter as your
 platform or treasury system exports it. In your browser, without an upload, you get P&L by pair
 and dealer with price and points apart, carry, MTM, net position by value date, limit usage and
 seven reconciliation checks. One click turns it into the desk report your management and risk
@@ -86,7 +87,7 @@ any day next week.
 Reply "no" and I will not write again.
 
 [Name]
-Founder, Kalibre Markets
+Kalibre Markets
 
 ### 5b. Segment 2, ilk e-posta (prop firması / küçük masa, Desk Signal)
 
@@ -112,7 +113,7 @@ https://kalibremarkets.com/request-a-demo?product=desk-signal&ref=[code]
 Reply "no" and I will not write again.
 
 [Name]
-Founder, Kalibre Markets
+Kalibre Markets
 
 ### 5c. Hatırlatma (her iki segment, 4 iş günü sonra)
 
