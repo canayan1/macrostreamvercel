@@ -21,7 +21,7 @@ Kararlar (Can, 4.11.2026):
 | 3 | Tek aileli, kendi masası olan family office'ler | Analytics (Trade Analytics + FX Blotter) | İçeride işlem yapan FO, kendi işlem kaydından kural ve hata raporunu dış denetim gibi ister | MT5 raporu ya da trade log → segments → prop/kendi limitleri |
 | 4 | Prop sınavı trader'ı (B2C) | Rule Guard | Ücretsiz Watch'u yükleyen, Protect ve rapor için ay­lık öder | MQL5 Market ve forum; e-posta yok |
 
-Segment 4 e-posta programının dışında; kanalı `KAYIT-KITI` (MQL5 Market, FPA, Reddit).
+Segment 4 e-posta programının dışında; kanalı `docs/satis/KAYIT-KITI.md` (MQL5 Market, FPA, Reddit).
 
 ## 2. Liste çıkarma (kamuya açık kaynaklar, kişisel adres yok)
 
@@ -80,4 +80,4 @@ Family office özel kuralı: bu segmentten 1 pilot taahhüdü gelirse şirket ku
 - `node yerel/talep-ozet.mjs --csv` haftalık; sayılar `KALIBRE-ANA-BELGE.md` §12'ye yazılır.
 - Satış tablosu (`docs/satis/kalibre-satis.gs`): haftalık özet sekmesi: gönderim, yanıt, demo, pilot,
   segment ve kaynak kırılımı.
-- Kayıt kanalları takip tablosu: `KAYIT-KITI` (scratchpad) → `docs/satis/` altına kopyalanır.
+- Kayıt kanalları takip tablosu: `docs/satis/KAYIT-KITI.md`; kanal araştırması `docs/satis/KANALLAR.md`.
