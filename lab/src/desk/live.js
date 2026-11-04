@@ -9,15 +9,10 @@
 //   send    head  { signal, items: [{ id, person }] }
 //   mark    any   { item, state }                  delivered | seen | done, only by the item's trader
 //   cancel  head  { item }
-//   guard   any   { by, rule, symbol, lot, action }   Rule Guard in the trader's MT5 reports a rule hit
-//                                                   (closed | warned); only for a trader on the desk
-//   policy  head  { policy, items: [{ id, person, note }] }   desk limits (limits.js); the items tell each
-//                                                             trader whose limits changed, and wait for seen/done
 //
 // Head events count only when the head's signature checks out (record.head, from kasa.js).
 
 import { BOARD, ESCALATION, checkBoard, createDesk, signalOf, mark, isOpen } from './signal.js';
-import { emptyPolicy, cleanPolicy } from './limits.js';
 
 export const LIMITS = { people: 50, name: 40, location: 30, items: 100 };
 const ID = /^[0-9a-f]{16}$/;
@@ -25,7 +20,7 @@ const ITEM = /^s[0-9]{1,9}$/;
 const clean = (s, n) => String(s ?? '').replace(/[\u0000-\u001f]/g, '').trim().slice(0, n);
 
 export function emptyLive() {
-  return { name: '', desk: createDesk({ board: BOARD, people: [], escalation: ESCALATION }), last: 0, removed: new Set(), former: [], policy: emptyPolicy(), policyAt: null, hits: [] };
+  return { name: '', desk: createDesk({ board: BOARD, people: [], escalation: ESCALATION }), last: 0, removed: new Set(), former: [] };
 }
 
 // Applies one opened record. Returns true when it changed something.
@@ -77,24 +72,6 @@ export function apply(live, { q, ts, ev, head }) {
     case 'cancel': {
       if (!head) return false;
       return mark(d, ev.item, 'cancelled', ts);
-    }
-    case 'guard': {
-      if (!d.people.some(p => p.id === ev.by)) return false;
-      live.hits.push({ q, ts, person: ev.by, rule: clean(ev.rule, 80), symbol: clean(ev.symbol, 20), lot: Number.isFinite(ev.lot) ? ev.lot : null, action: ev.action === 'closed' ? 'closed' : 'warned' });
-      if (live.hits.length > 500) live.hits.shift();
-      return true;
-    }
-    case 'policy': {
-      if (!head || !ev.policy || typeof ev.policy !== 'object') return false;
-      live.policy = cleanPolicy(ev.policy);
-      live.policyAt = ts;
-      for (const it of (Array.isArray(ev.items) ? ev.items : []).slice(0, LIMITS.items)) {
-        if (!ITEM.test(it?.id ?? '') || !ID.test(it.person ?? '') || d.items.some(x => x.id === it.id) || !d.people.some(p => p.id === it.person)) continue;
-        // An older limits notice that is still open is replaced by the new one.
-        d.items.filter(x => x.person === it.person && x.signal === 'limits' && isOpen(x)).forEach(x => mark(d, x.id, 'cancelled', ts));
-        d.items.push({ id: it.id, signal: 'limits', person: it.person, from: 'Head of desk', note: clean(it.note, 300), times: { sent: ts } });
-      }
-      return true;
     }
     default: return false;
   }
