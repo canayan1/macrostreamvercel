@@ -955,7 +955,7 @@ def request_demo(lang):
   <div class="wrap">
     {faq([(T(lang, "What do we need to prepare?", "Ne hazırlamamız gerekiyor?"), T(lang, "Nothing. If you want to see your own data, export one day or one month from your platform or treasury system and remove client names first.", "Hiçbir şey. Kendi verinizi görmek isterseniz platformunuzdan ya da hazine sisteminizden bir gün ya da bir ay dışa aktarın ve önce müşteri adlarını kaldırın.")),
           (T(lang, "Does anything get installed?", "Bir şey kurulur mu?"), T(lang, "No. Analytics reads files in the browser and keeps them there. Desk Signal runs from an invite link in a browser tab.", "Hayır. Analytics dosyaları tarayıcıda okur ve orada tutar. Desk Signal bir tarayıcı sekmesindeki davet bağlantısından çalışır.")),
-          (T(lang, "Who is on the call?", "Görüşmede kim olur?"), T(lang, "The founder, a former bank treasurer. Bring whoever reads the result: the head of desk, risk, or the person who closes the day.", "Kurucu, eski bir banka hazinecisi. Sonucu okuyan kim ise getirin: masa şefi, risk ya da günü kapatan kişi."))])}
+          (T(lang, "Who is on the call?", "Görüşmede kim olur?"), T(lang, "The person who builds the product. Bring whoever reads the result: the head of desk, risk, or the person who closes the day.", "Ürünü yapan kişi. Sonucu okuyan kim ise getirin: masa şefi, risk ya da günü kapatan kişi."))])}
     <p class="legal-note">{T(lang, "Kalibre is software and does not give investment advice.", "Kalibre bir yazılımdır ve yatırım tavsiyesi vermez.")} <a href="{P(lang, "/risk-disclosure")}">{T(lang, "Risk disclosure", "Risk bildirimi")}</a></p>
   </div>
 </section>
