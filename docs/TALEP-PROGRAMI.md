@@ -48,7 +48,7 @@ gönderim yok. Bu yorum doğrulanmış hukuki görüş değildir; avukat brifing
 
 | Hafta | İş | Çıktı |
 |---|---|---|
-| 0 (bu hafta) | PR #2 birleşir ve canlıya alınır; yasal yer tutucular dolar; demo formuna "nereden duydunuz" alanı; `/pricing`'e gösterge aralık ("from 200 USD per desk per month", "from 15 USD per seat") | Sayılabilir huni |
+| 0 (bu hafta) | PR #2 birleşir ve canlıya alınır; yasal yer tutucular dolar; demo formuna "nereden duydunuz" alanı. Fiyat sitede gösterilmez (karar 1.11); aralık demoda sözlü verilir: masa başı aylık 200 USD'den, koltuk başı 15 USD'den (öneri, Can onaylar) | Sayılabilir huni |
 | 1 | Segment 1 ve 2 listesi (50+50); kayıt kanalları (G2, Capterra, AFP, CTMdirectory, Trustpilot, FPA, LinkedIn sayfası); MQL5 Market seller başvurusu | 100 isim, 7 profil |
 | 1-2 | İlk e-postalar, günde 10-15; Segment 3 listesi (50) | 150 gönderim |
 | 2-3 | Hatırlatma ve son e-posta; demolar; her demoda 3 keşif sorusu | Görüşme notları |
@@ -65,7 +65,7 @@ Buna bütçesi olan kim? Cevaplar `note` sütununa.
 | Demo | ≥ 5 | ≤ 2 |
 | Pilot taahhüdü (bir hafta kendi verisiyle) | ≥ 2 | 0 |
 | Segment başına en az 1 demo | evet | bir segment sıfırsa o segment düşer |
-| Fiyat aralığına itiraz | demoların yarısından azı | çoğu "pahalı" derse aralık düşer, çoğu "ucuz" derse yükselir |
+| Demoda söylenen fiyat aralığına itiraz | demoların yarısından azı | çoğu "pahalı" derse aralık düşer, çoğu "ucuz" derse yükselir |
 
 Hiçbir eşik tutmazsa: ürün değil mesaj ya da segment yanlıştır; bir hafta içinde ikinci bir
 mesaj varyantıyla aynı listeye değil yeni 50 kişiye gidilir. İkinci tur da tutmazsa ürün kapsamı

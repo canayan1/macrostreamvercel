@@ -243,8 +243,8 @@ def replay(lang):
     day = f"{int(d[8:])} {months[int(d[5:7]) - 1]}"
     usd = lambda v: fmt(v, lang) + " USD"
     events = [(before["time"], T(lang, f"Room to the floor: {usd(before['room'])}. Trading as usual.", f"Tabana mesafe: {usd(before['room'])}. İşlemler olağan.")),
-              (lock["time"], T(lang, f"Room {usd(lock['room'])}, inside the {usd(m)} margin. Rule Guard closes the positions it opened and locks the day until the reset.",
-                               f"Mesafe {usd(lock['room'])}, {usd(m)} payın içinde. Rule Guard açtığı pozisyonları kapatır ve günü sıfırlanana kadar kilitler."))]
+              (lock["time"], T(lang, f"Room {usd(lock['room'])}, inside the {usd(m)} margin. In Protect mode Rule Guard closes every open position and locks the day until the reset.",
+                               f"Mesafe {usd(lock['room'])}, {usd(m)} payın içinde. Protect modunda Rule Guard açık bütün pozisyonları kapatır ve günü sıfırlanana kadar kilitler."))]
     items = "".join(f'<li><b>{t}</b><span>{e}</span></li>' for t, e in events)
     return f'''
 <section class="sec mist" id="replay">
@@ -979,7 +979,7 @@ def company(lang):
 
 <section class="sec">
   <div class="wrap">
-    <div class="numbers" style="grid-template-columns:repeat(3,minmax(0,1fr))">{"".join(f'<div><span style="margin:0 0 6px">{k}</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">{v}</b></div>' for k, v in c["kunye"])}</div>
+    <div class="numbers" style="grid-template-columns:repeat({len(c["kunye"])},minmax(0,1fr))">{"".join(f'<div><span style="margin:0 0 6px">{k}</span><b style="font-size:clamp(21px,2.2vw,28px);letter-spacing:0;line-height:1.2">{v}</b></div>' for k, v in c["kunye"])}</div>
   </div>
 </section>
 

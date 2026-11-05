@@ -41,7 +41,7 @@ Analytics reads MT5 history reports, Excel or CSV trade logs and FX blotters exp
 
 Desk Signal sends colour signals from the head of desk to every trader's screen with one key. Urgent signals ring until answered, and every signal is logged to the second.
 
-Rule Guard is a free MetaTrader 5 add-on that watches a prop firm's daily and total loss limits and warns before they are reached. It never opens a trade.
+Rule Guard is a free MetaTrader 5 add-on that watches a prop firm's daily and total loss limits and warns before they are reached. It never opens a trade. In the optional Protect mode it closes the account's open positions and deletes pending orders when the loss limit is about to be reached; the default is Watch mode, which only warns.
 
 Kalibre Markets is software only. It gives no advice, holds no client funds and places no orders.
 
@@ -55,7 +55,7 @@ Kalibre Markets is software only. It gives no advice, holds no client funds and 
 **Desk Signal, kısa:** Colour signals from the head of desk to one trader, a city or everyone, with a record of who saw it and when. Urgent signals ring until answered. Fixed meanings, never orders, no market data.
 
 **Rule Guard, tagline:** Stay inside your prop firm's loss limits on MT5.
-**Rule Guard, kısa:** A free MetaTrader 5 add-on that watches your firm's daily and total loss limits every second and warns you before you reach them. FTMO and The5ers presets or your own percentages. It never opens a trade.
+**Rule Guard, kısa:** A free MetaTrader 5 add-on that watches your firm's daily and total loss limits every second and warns you before you reach them. FTMO and The5ers presets or your own percentages. It never opens a trade. Watch mode (default) only warns; optional Protect mode closes all open positions on the account, including ones opened by hand or by other EAs, before the floor is reached.
 
 **Risk cümlesi (her profilin sonuna):**
 Kalibre Markets provides software only and does not give investment advice. Trading carries risk of loss.
@@ -79,6 +79,7 @@ Kalibre Markets provides software only and does not give investment advice. Trad
    - Ekran görüntüsü: Navigator'da script, çıkan CSV.
 4. İkinci ürün, **Rule Guard** (Utilities kategorisi), yalnız Market derlemesi:
    - `KALIBRE_MARKET` ile derlenir; lisans kontrolü ve masa bağlantısı (InpDeskLink, InpDeskRelay) derlemede dışarıda bırakılır. Market kuralı IV: WebRequest ile lisans/güncelleme yasak, DLL yasak.
+   - Açıklamada Protect modunun hesaptaki **bütün** pozisyonları (elle ya da başka EA ile açılanlar dahil) kapattığı ve bekleyen emirleri sildiği açıkça yazılmalı; varsayılan Watch.
    - Tester'da otomatik doğrulama: açıklamada "In the Strategy Tester the add-on opens one small test position (InpTesterLots) so that the protection can be seen. On a live or demo chart it never opens a trade." yazılmalı.
    - Fiyat: Watch modu ücretsiz; Protect ücretli sürüm ayrı ürün (asgari 30 USD, komisyon %20).
 5. Yayın sonrası: ürün sayfasından site bağlantısı; forum imzasında ürün bağlantısı.
@@ -121,7 +122,7 @@ Kaynak: https://mql5.com/en/market/rules · https://www.metatrader5.com/en/termi
 ## 7. Forex Peace Army
 
 1. https://www.forexpeacearmy.com → Reviews → arama "Kalibre" → yoksa "Submit a company" formu. Kategori: Forex Software / EA.
-2. Metin: Rule Guard kısa + "free, read-only, never opens a trade".
+2. Metin: Rule Guard kısa metni olduğu gibi. "Read-only" yazılmaz: Protect modu pozisyon kapatır.
 3. Ücretli listeleme ve banner tekliflerini reddedin.
 
 ## 8. LinkedIn

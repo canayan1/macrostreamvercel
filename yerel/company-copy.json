@@ -7,10 +7,6 @@
   "giris": "Kalibre Markets builds analytics software for trading data. We want every desk, firm and trader to see where a result came from, and to be able to show it.",
   "kunye": [
    [
-    "Origin",
-    "Built from the treasury desk's side of the trade record"
-   ],
-   [
     "Stage",
     "Early stage and independent. Products in beta."
    ],
@@ -159,10 +155,6 @@
   "h1": "Alım satım verisini açıklanabilir kılmak.",
   "giris": "Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. Her masanın, firmanın ve trader'ın bir sonucun nereden geldiğini görmesini ve bunu gösterebilmesini istiyoruz.",
   "kunye": [
-   [
-    "Köken",
-    "Hazine masasının işlem kaydına bakışıyla kuruldu"
-   ],
    [
     "Aşama",
     "Erken aşama ve bağımsız. Ürünler beta aşamasında."
