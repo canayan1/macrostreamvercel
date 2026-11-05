@@ -4,6 +4,8 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { semaTemizle, soruTemizle, gorunumIstemi, gorunumCevabi } from './_lib/gorunum.ts';
+import { depoSec } from './_lib/depo.ts';
+import { istemciIp, sinirAsildi } from './_lib/hiz.ts';
 
 export const config = { maxDuration: 30 };
 
@@ -169,6 +171,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'method not allowed' });
   }
+  // Herkese açık LLM vekili: IP başına 10 dakikada 30 istek (model kotası tükenmesin).
+  if (await sinirAsildi(depoSec(), 'asistan', istemciIp(req.headers), 30, 600)) {
+    return res.status(429).json({ error: 'too many requests', hata: 'çok sık' });
+  }
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
     // "Ask your data" (lab view builder): schema names + question in, a validated view recipe out. No data.
@@ -200,12 +206,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (e: any) {
     const detail = e?.message || String(e);
     console.error('[asistan] error:', detail);
-    if ((typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? '')).includes('"gorunum"')) return res.status(503).json({ hata: 'model', ...(req.query?.debug === '1' ? { _debug: detail } : {}) });
-    const dbg = req.query?.debug === '1';
+    // İç hata metni istemciye dönmez; ayrıntı yalnız sunucu günlüğünde.
+    if ((typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? '')).includes('"gorunum"')) return res.status(503).json({ hata: 'model' });
     // UX: 200 + nazik fallback (widget hata ekranı göstermesin)
     return res.status(200).json({
       reply: 'Şu an yanıt veremiyorum, birazdan tekrar dener misin? (Asistan geçici olarak meşgul.)',
-      ...(dbg ? { _debug: detail, _hasKey: !!process.env.GEMINI_API_KEY } : {}),
     });
   }
 }

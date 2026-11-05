@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 // Ödeme başlatma ucu: şartlar ve cayma onayı olmadan Stripe'a gidilmez; onay metadata'ya yazılır.
 process.env.STRIPE_SECRET_KEY = 'sk_test_sahte';
+process.env.ODEME_ACIK = '1';
 process.env.STRIPE_PRICE_ID = 'price_sahte';
 delete process.env.STRIPE_API_KOK;
 process.env.SUPABASE_URL = 'https://ornek.supabase.co';
@@ -103,4 +104,16 @@ test('şart sürümü her yerde aynı: baslat.ts, giris.js, /terms ve /tr/terms;
   assert.match(oku('refunds/index.html'), /id="withdrawal"/);
   assert.match(oku('yerel/sayfa-uret-en.py'), /once my licence key is first activated on a MetaTrader 5 account \(<a href="\/refunds#withdrawal">/);
   assert.match(oku('yerel/sayfa-uret.py'), /ilk kez etkinleştirildiğinde 14 günlük cayma hakkımı kaybedeceğimi anlıyorum \(<a href="\/tr\/refunds#withdrawal">/);
+});
+
+test('ODEME_ACIK=1 değilse Stripe anahtarları olsa da ödeme başlamaz (503, Stripe çağrılmaz)', async () => {
+  gonderilen.length = 0;
+  delete process.env.ODEME_ACIK;
+  try {
+    const r = await cagir({ sartlar: true, cayma: true });
+    assert.equal(r.statusCode, 503);
+    assert.equal(gonderilen.length, 0);
+  } finally {
+    process.env.ODEME_ACIK = '1';
+  }
 });
