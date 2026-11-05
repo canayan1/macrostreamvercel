@@ -14,6 +14,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { type Depo, bellekDepo, depoSec } from './_lib/depo.ts';
+import { istemciIp, sinirAsildi } from './_lib/hiz.ts';
 
 export { bellekDepo, depoSec };
 
@@ -23,6 +24,8 @@ export const SINIR = {
   zarfKarakter: 2_000_000, // ~1 MB açık metin (5000 mumluk seri ~250 KB)
   ttlSn: 2 * 3600,         // saatlik seri güncellemeleri arasında kalsın yeter
   yazmaDakika: 60,         // kanal başına; eklenti 5 sn aralıkla ~25/dk yazar
+  ipYazmaDakika: 300,      // IP başına (bir makinede birkaç terminal); rastgele kanallarla doldurmayı keser
+  ipOkumaDakika: 600,      // IP başına; Lab birkaç yuvayı birkaç saniyede bir okur
 };
 export const KANAL_RE = /^[0-9a-f]{32}$/;
 export const YUVA_RE = /^[0-9a-f]{16}$/;
@@ -75,6 +78,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   const depo = depoSec();
   if (!depo) return res.status(503).json({ hata: 'röle yapılandırılmamış' });
+  if (req.method === 'GET' || req.method === 'POST') {
+    const yaz = req.method === 'POST';
+    if (await sinirAsildi(depo, yaz ? 'kopru-y' : 'kopru-o', istemciIp(req.headers), yaz ? SINIR.ipYazmaDakika : SINIR.ipOkumaDakika, 60)) {
+      return res.status(429).json({ hata: 'çok sık istek' });
+    }
+  }
 
   // Gövde yalnız yazmada anlamlıdır; GET'te boş metin gelebilir ve yok sayılmalıdır.
   let govde: unknown = req.method === 'POST' ? req.body : undefined;

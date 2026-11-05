@@ -6,6 +6,7 @@ import { dilUygula } from '../_lib/dil.ts';
 import { depoSec } from '../_lib/depo.ts';
 import { stripeIstemci } from '../_lib/stripe.ts';
 import { kayitGorunumu, oturumCoz } from '../_lib/lisans.ts';
+import { istemciIp, sinirAsildi } from '../_lib/hiz.ts';
 
 export const config = { maxDuration: 10 };
 
@@ -18,6 +19,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const depo = depoSec();
   const stripe = stripeIstemci();
   if (!depo || !stripe) return res.status(503).json({ hata: 'Ödeme henüz açılmadı.' });
+  // Her yeni oturum kimliği bir Stripe çağrısıdır; toplu deneme Stripe hız sınırını doldurmasın.
+  if (await sinirAsildi(depo, 'oturum', istemciIp(req.headers), 30, 3600)) return res.status(429).json({ hata: 'Çok fazla deneme. Biraz sonra yeniden dene.' });
   try {
     const k = await oturumCoz(depo, oturum, stripe);
     if (!k) return res.status(404).json({ hata: 'Ödeme henüz tamamlanmamış görünüyor. Birkaç saniye sonra sayfayı yenile.' });
