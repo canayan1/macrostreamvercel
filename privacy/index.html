@@ -30,6 +30,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -64,6 +65,7 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Privacy Policy</h1>
+<p class="taslak-notu"><strong>Draft.</strong> This document is being finalised. Items in brackets are placeholders that have not been filled in yet; until they are, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> with any question about the provider or your rights.</p>
 
 <p class="belge-meta">Effective date: 25 October 2026<br>Version: 2026-10-25-en1</p>
 <details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#controller">1. Who is responsible for your data</a></li><li><a href="#collect-why">2. What we collect and why</a></li><li><a href="#sharing">3. Who we share data with</a></li><li><a href="#transfers">4. International transfers</a></li><li><a href="#retention">5. How long we keep data</a></li><li><a href="#security">6. Security</a></li><li><a href="#rights">7. Your rights</a></li><li><a href="#children">8. Children</a></li><li><a href="#changes">9. Changes to this policy</a></li><li><a href="#contact">10. Contact</a></li></ol></details>
@@ -75,8 +77,6 @@
 <h2 id="controller">1. Who is responsible for your data</h2>
 
 <p>The controller of your personal data is <span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading as Kalibre Markets, <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> ("we", "us"). Contact: <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
-
-<!-- FOR COUNSEL: (1) If the entity is outside the EU/UK and we target EU/UK users, GDPR Art. 27 and UK GDPR Art. 27 representatives are likely needed (Myfxbook and TradingView appoint them). Add [EU REPRESENTATIVE] and [UK REPRESENTATIVE]. (2) Decide whether a DPO is required. (3) If the entity is in Turkey, add the KVKK information-notice elements and VERBIS position. -->
 
 <h2 id="collect-why">2. What we collect and why</h2>
 
@@ -165,8 +165,6 @@
   <li><strong>Legal basis:</strong> contract for service emails; our legitimate interest in telling customers about similar products of our own, with the right to object at any time, for product update emails; consent for people without an account.</li>
 </ul>
 
-<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Implemented: profiles.marketing_consent defaults to true with marketing_consent_at recorded; the sign-in page offers opt-out at sign-up; the Account page toggle turns it off. -->
-
 <h3>2.10 Waitlists, contact and support</h3>
 
 <p>If you join a waitlist or beta sign-up, your email address and any details you enter are sent to us through FormSubmit and used only for that purpose. If you email us, we use your message and contact details to answer you.</p>
@@ -205,8 +203,6 @@
 
 <p>We may also disclose data to professional advisers, to a buyer or successor if our business is sold or reorganised (who must respect this policy), and to courts, regulators or authorities where the law requires it or to protect our rights.</p>
 
-<!-- FOR COUNSEL: confirm the Stripe contracting entity for [COUNTRY OF RESIDENCE], whether Supabase sends sign-in emails with its built-in service or a custom SMTP provider, the Upstash database region, and data processing agreements with each provider. -->
-
 <h2 id="transfers">4. International transfers</h2>
 
 <p>Some providers process data outside your country, including in the United States. Where data leaves the EU, EEA or UK, we rely on an adequacy decision (including the EU-US Data Privacy Framework and its UK extension, for providers certified under it) or on the European Commission's Standard Contractual Clauses and the UK International Data Transfer Addendum, together with additional safeguards where needed. You can ask us for a copy of the relevant safeguards.</p>
@@ -214,8 +210,6 @@
 <h2 id="retention">5. How long we keep data</h2>
 
 <div class="tablo-kap"><table><thead><tr><th>Data</th><th>How long</th></tr></thead><tbody><tr><td>Account profile</td><td>Until you delete your account. Deleting it removes your profile, saved items and licence display records immediately.</td></tr><tr><td>Saved strategies, watchlists, settings, notes</td><td>Until you delete them or your account.</td></tr><tr><td>Licence record and linked MT5 account numbers</td><td>While the subscription is active and for up to 12 months after it ends, then deleted or anonymised.</td></tr><tr><td>Payment, invoice and tax records</td><td>For the period required by tax and commercial law in <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> (typically <span class="yer-tutucu">[X]</span> years). Stripe keeps its own records under its policy.</td></tr><tr><td>Checkout consent records (terms version, withdrawal-consent tick and time)</td><td>For as long as the payment record is kept, so we can show the consent was given.</td></tr><tr><td>Encrypted Bridge packets</td><td>At most 2 hours.</td></tr><tr><td>Rate-limit counters</td><td>About 2 minutes.</td></tr><tr><td>Checkout session pointer (used to show your key after payment)</td><td>7 days.</td></tr><tr><td>Hosting and security logs</td><td>For the limited period set by Vercel.</td></tr><tr><td>Google Analytics data</td><td>Up to 14 months.</td></tr><tr><td>Marketing consent record</td><td>While you are subscribed to marketing and for 24 months after you unsubscribe, to show consent.</td></tr><tr><td>Support emails</td><td>Up to 3 years after the last message, or longer if needed for a dispute.</td></tr><tr><td>Waitlist sign-ups</td><td>Until we have contacted you about the launch or you ask to be removed.</td></tr><tr><td>Early access sign-ups and answers (Rule Guard, MT5 Analytics)</td><td>Until you ask us to delete them, and deleted automatically 13 months after you join (about 12 months after the 4-week test ends).</td></tr><tr><td>Early access page counts</td><td>Up to 400 days. They contain no personal data.</td></tr><tr><td>Hashed IP used for rate limiting</td><td>Up to 1 hour.</td></tr></tbody></table></div>
-
-<!-- FOR COUNSEL: fill [X] years for [COUNTRY OF RESIDENCE] tax law; confirm the 12-month licence retention (matches previous TR/EN draft) and whether a deletion job exists for expired licence records in Upstash (code keeps them until removed). -->
 
 <h2 id="security">6. Security</h2>
 
@@ -251,7 +245,7 @@
 <footer class="gfoot">
   <div class="wrap">
     <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
-    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/get-started">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
     <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>

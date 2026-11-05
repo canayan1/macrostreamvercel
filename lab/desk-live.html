@@ -106,38 +106,9 @@
       <section class="kart" id="yanit-kart">
         <div class="kart-bas"><h2>Who has answered</h2></div>
         <div class="tablo-kutu"><table class="a-tablo d-tablo" id="yanit"></table></div>
-        <div class="dl-vuruslar" id="vuruslar" hidden>
-          <h3>Rule Guard hits</h3>
-          <ul id="vurus-liste"></ul>
-        </div>
         <p class="dipnot">Urgent signals grow on the trader's screen after <span id="esik-1">10</span> seconds without an answer. After <span id="esik-2">20</span> seconds the row turns red here and you hear a tone, so you know who to call.</p>
       </section>
     </div>
-
-    <section class="kart dl-mikser" id="risk-kart" aria-labelledby="risk-bas">
-      <div class="kart-bas"><h2 id="risk-bas">Desk risk</h2>
-        <div class="satir-dugme">
-          <button type="button" class="kucuk" id="midi-ac" aria-pressed="false">Connect a controller</button>
-        </div></div>
-      <p class="dipnot">Set the limits once, then ride the faders. Each trader's fader scales their max lot and daily loss limit; the master fader scales the whole desk. Traders see their new limits and confirm them, and Rule Guard keeps them in MT5.</p>
-      <div class="dl-taban" id="taban" role="group" aria-label="Base limits"></div>
-      <div class="dl-kanallar" id="kanallar" role="group" aria-label="Risk faders"></div>
-      <div class="dl-pedler" id="pedler" role="group" aria-label="Quick settings">
-        <button type="button" class="dl-ped" data-ped="normal">Normal</button>
-        <button type="button" class="dl-ped" data-ped="half">Half risk</button>
-        <button type="button" class="dl-ped" data-ped="defensive">Defensive</button>
-        <button type="button" class="dl-ped dl-ped-dur" data-ped="freeze">No new trades</button>
-      </div>
-      <div class="dl-midi" id="midi" hidden></div>
-      <div class="dl-gonder">
-        <span class="dipnot" id="risk-durum" aria-live="polite">No limits sent yet.</span>
-        <div class="satir-dugme">
-          <button type="button" class="kucuk" id="risk-geri" disabled>Undo changes</button>
-          <button type="button" class="dugme" id="risk-gonder" disabled>Send limits</button>
-        </div>
-      </div>
-      <p class="dipnot uyari" id="risk-hata" role="alert" hidden></p>
-    </section>
 
     <section class="kart" id="kayit-kart">
       <div class="kart-bas"><h2>Signal log</h2>
@@ -161,21 +132,6 @@
         <div class="satir-dugme dl-sinyal-eylem" id="sinyal-eylem" hidden>
           <button type="button" class="dugme" id="tamam">Done</button>
         </div>
-      </div>
-      <div class="dl-sinirlar" id="sinirlarim">
-        <p class="dl-sinirlar-bas">Your limits</p>
-        <ul id="sinirlarim-liste"></ul>
-        <p class="dipnot" id="sinirlarim-not">Your head of desk has not set limits yet.</p>
-        <details class="dl-bagla" id="guard-bagla">
-          <summary><span id="guard-durum">Keep these limits in MT5 with Rule Guard</span></summary>
-          <p class="dipnot">Rule Guard applies your desk limits in MetaTrader 5 and tells your head of desk when a trade breaks one. It never opens a trade.</p>
-          <ol class="dipnot">
-            <li><a href="/rule-guard">Get Rule Guard</a> and attach it to any chart.</li>
-            <li>In MT5, open Tools, Options, Expert Advisors, tick Allow WebRequest and add <code>https://kalibremarkets.com</code>.</li>
-            <li>Paste this link into Rule Guard's Desk link input.</li>
-          </ol>
-          <div class="dl-kopya"><input id="guard-baglanti" readonly aria-label="Desk link for Rule Guard"><button type="button" class="dugme ikincil" id="guard-kopyala">Copy link</button></div>
-        </details>
       </div>
       <div class="dl-ayar">
         <button type="button" class="kucuk" id="pip">Keep the orb on top</button>

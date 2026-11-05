@@ -32,6 +32,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -66,6 +67,7 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Çerez Bildirimi</h1>
+<p class="taslak-notu"><strong>Taslak.</strong> Bu belge tamamlanıyor. Köşeli parantez içindeki alanlar henüz doldurulmamış yer tutuculardır; doldurulana kadar sağlayıcı ya da haklarınızla ilgili sorularınızı <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazın.</p>
 <p class="ceviri-notu">Bu metin İngilizce aslının çevirisidir; uyuşmazlıkta İngilizce metin esastır. <a href="/cookies" hreflang="en" lang="en">English original</a></p>
 
 <p class="belge-meta">Yürürlük tarihi: 25 Ekim 2026<br>Sürüm: 2026-10-25-en1</p>
@@ -86,8 +88,6 @@
 <p>Bunlar Sitenin çalışması için gereklidir ve onay gerektirmez.</p>
 
 <div class="tablo-kap"><table class="genis"><thead><tr><th>Ad veya tür</th><th>Yerleştiren</th><th>Amaç</th><th>Süre</th></tr></thead><tbody><tr><td>Güvenlik kontrolü çerezi</td><td>Vercel (barındırma sağlayıcımız)</td><td>Siteyi botlara ve saldırılara karşı korur</td><td>Kısa ömürlü, Vercel tarafından belirlenir</td></tr><tr><td>Oturum (tarayıcı yerel depolaması)</td><td>Supabase aracılığıyla Kalibre Markets</td><td>Hesabınızda oturumunuzun açık kalmasını sağlar</td><td>Çıkış yapana veya süresi dolana kadar</td></tr><tr><td><code>kalibre-cerez-rizasi</code> (yerel depolama)</td><td>Kalibre Markets</td><td>Çerez tercihinizi hatırlar</td><td>Site verilerini temizleyene kadar</td></tr></tbody></table></div>
-
-<!-- FOR COUNSEL: confirm the exact Vercel cookie name (for example the bot-protection challenge cookie) and its lifetime from the live site, and the Supabase storage key name (sb-[project]-auth-token). -->
 
 <h2 id="analytics">2. Analiz (yalnızca onayınızla)</h2>
 
