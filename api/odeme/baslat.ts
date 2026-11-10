@@ -22,6 +22,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const dil = dilUygula(req, res);
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return res.status(405).json({ hata: 'yalnız POST' });
+  // Ödeme, ortamda ODEME_ACIK=1 açıkça verilmedikçe kapalıdır; Stripe anahtarlarının tanımlı
+  // olması tek başına ödeme almaya yetmez (şirket kurulana kadar ödeme alınmaz).
+  if (process.env.ODEME_ACIK !== '1') return res.status(503).json({ hata: 'Ödeme henüz açılmadı.' });
   const stripe = stripeIstemci();
   const fiyat = process.env.STRIPE_PRICE_ID;
   if (!stripe || !fiyat) return res.status(503).json({ hata: 'Ödeme henüz açılmadı.' });

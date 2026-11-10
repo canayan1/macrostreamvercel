@@ -17,6 +17,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { type Depo, depoSec } from './_lib/depo.ts';
 import { abone } from './_lib/abone.ts';
+import { istemciIp, sinirAsildi } from './_lib/hiz.ts';
 
 export const config = { maxDuration: 300 };
 
@@ -104,6 +105,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!depo) return res.status(503).json({ hata: 'röle yapılandırılmamış' });
   const masa = String(req.query.d ?? '');
   if (!MASA_RE.test(masa)) return res.status(400).json({ hata: 'masa kimliği hatalı' });
+  // IP başına: akış açma 10 dakikada 60 (her akış ~4,5 dk sürer ve bir Redis aboneliği tutar),
+  // diğer istekler dakikada 600. Rastgele masa kimlikleriyle bağlantı sınırını doldurmayı keser.
+  const ip = istemciIp(req.headers);
+  if (req.method === 'GET' && req.query.stream ? await sinirAsildi(depo, 'desk-akis', ip, 60, 600) : await sinirAsildi(depo, 'desk', ip, 600, 60)) {
+    return res.status(429).json({ hata: 'çok sık istek' });
+  }
   try {
     if (req.method === 'POST') {
       let govde: unknown = req.body;

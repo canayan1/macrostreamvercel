@@ -5,6 +5,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const EN: Record<string, string> = {
   'Ödeme henüz açılmadı.': 'Payments are not open yet.',
+  'Çok fazla deneme. Biraz sonra yeniden dene.': 'Too many attempts. Please try again later.',
+  'Önce giriş yap.': 'Please sign in first.',
   'Devam etmek için hizmet şartlarını onaylamalısın.': 'To continue, please accept the Terms of Service.',
   'Devam etmek için cayma hakkına ilişkin onay kutusunu işaretlemelisin.': 'To continue, please tick the box about the right of withdrawal.',
   'Ödeme sayfası açılamadı. Biraz sonra yeniden dene.': 'Checkout could not be opened. Please try again shortly.',
