@@ -1,15 +1,11 @@
 {
  "en": {
   "title": "Company: Kalibre Markets",
-  "desc": "Kalibre Markets builds analytics software for trading data, for treasury and dealing desks, brokers, prop firms and traders. Founded by a former bank treasurer and economist.",
+  "desc": "Kalibre Markets builds analytics software for trading data, for treasury and dealing desks, brokers, prop firms and traders.",
   "ust": "Company",
   "h1": "Make trading data explainable.",
   "giris": "Kalibre Markets builds analytics software for trading data. We want every desk, firm and trader to see where a result came from, and to be able to show it.",
   "kunye": [
-   [
-    "Origin",
-    "Founded by a former bank treasurer and economist"
-   ],
    [
     "Stage",
     "Early stage and independent. Products in beta."
@@ -142,8 +138,8 @@
     "Valuation uses the rates you already have. We do not supply market data, so there is no new market data licence to sign."
    ],
    [
-    "Talk to the founder",
-    "Questions and requests go to the founder, not a sales team. What we learn in a pilot shapes what we build next."
+    "Talk to the people who build it",
+    "Questions and requests go to the team that builds the product, not a sales team. What we learn in a pilot shapes what we build next."
    ]
   ],
   "son_bas": "Talk to us about your desk or firm",
@@ -154,15 +150,11 @@
  },
  "tr": {
   "title": "Şirket: Kalibre Markets",
-  "desc": "Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor: hazine ve dealing masaları, aracı kurumlar, prop firmaları ve trader'lar için. Kurucusu eski bir banka hazinecisi ve ekonomist.",
+  "desc": "Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor: hazine ve dealing masaları, aracı kurumlar, prop firmaları ve trader'lar için.",
   "ust": "Şirket",
   "h1": "Alım satım verisini açıklanabilir kılmak.",
   "giris": "Kalibre Markets alım satım verisi için analiz yazılımı geliştiriyor. Her masanın, firmanın ve trader'ın bir sonucun nereden geldiğini görmesini ve bunu gösterebilmesini istiyoruz.",
   "kunye": [
-   [
-    "Köken",
-    "Kurucusu eski bir banka hazinecisi ve ekonomist"
-   ],
    [
     "Aşama",
     "Erken aşama ve bağımsız. Ürünler beta aşamasında."
@@ -295,8 +287,8 @@
     "Değerleme zaten elinizdeki kurlarla yapılır. Piyasa verisi sağlamadığımız için yeni bir piyasa verisi lisansı imzalamanız gerekmez."
    ],
    [
-    "Kurucuyla konuşun",
-    "Sorular ve talepler bir satış ekibine değil, kurucuya gider. Pilotta öğrendiğimiz şey sıradaki geliştirmeyi belirler."
+    "Ürünü yapanlarla konuşun",
+    "Sorular ve talepler bir satış ekibine değil, ürünü yapan ekibe gider. Pilotta öğrendiğimiz şey sıradaki geliştirmeyi belirler."
    ]
   ],
   "son_bas": "Masanız ya da firmanız için bizimle konuşun",

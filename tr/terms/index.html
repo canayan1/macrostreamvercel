@@ -32,6 +32,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -66,11 +67,11 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Hizmet Şartları</h1>
+<p class="taslak-notu"><strong>Taslak.</strong> Bu belge tamamlanıyor. Köşeli parantez içindeki alanlar henüz doldurulmamış yer tutuculardır; doldurulana kadar sağlayıcı ya da haklarınızla ilgili sorularınızı <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazın.</p>
 <p class="ceviri-notu">Bu metin İngilizce aslının çevirisidir; uyuşmazlıkta İngilizce metin esastır. <a href="/terms" hreflang="en" lang="en">English original</a></p>
 
 <p class="belge-meta">Yürürlük tarihi: 25 Ekim 2026<br>Şartlar sürümü: 2026-10-25-en1</p>
 <details class="icindekiler-mobil"><summary>İçindekiler</summary><ol><li><a href="#who-we-are">1. Biz kimiz ve bu Şartlar neyi kapsar</a></li><li><a href="#eligibility">2. Hizmetleri kimler kullanabilir</a></li><li><a href="#account">3. Kalibre Markets hesabınız</a></li><li><a href="#not-advice">4. Hizmetler nedir, ne değildir</a></li><li><a href="#kalibre-lab">5. Kalibre Lab</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge</a></li><li><a href="#kalibre-engine">7. Kalibre Engine</a></li><li><a href="#third-parties">8. Aracı kurum ve üçüncü taraf bağlantıları</a></li><li><a href="#beta-features">9. Beta özellikler</a></li><li><a href="#payment">10. Abonelik ve ödeme</a></li><li><a href="#withdrawal">11. Cayma hakkı (AB, AEA ve Birleşik Krallık tüketicileri)</a></li><li><a href="#licence">12. Yazılımımızı kullanma lisansı</a></li><li><a href="#your-content">13. Stratejileriniz ve içeriğiniz</a></li><li><a href="#acceptable-use">14. Kabul edilebilir kullanım</a></li><li><a href="#ai-assistant">15. Yapay zekâ asistanı</a></li><li><a href="#changes">16. Hizmetlerde ve bu Şartlarda değişiklikler</a></li><li><a href="#suspension-termination">17. Askıya alma ve sona erdirme</a></li><li><a href="#statutory-rights">18. Kanuni haklarınız</a></li><li><a href="#disclaimers">19. Sorumluluk reddi</a></li><li><a href="#liability">20. Sorumluluğun sınırlandırılması</a></li><li><a href="#indemnity">21. Tazminat</a></li><li><a href="#force-majeure">22. Kontrolümüz dışındaki olaylar</a></li><li><a href="#law">23. Uygulanacak hukuk ve uyuşmazlıklar</a></li><li><a href="#general">24. Genel hükümler</a></li><li><a href="#contact">25. İletişim</a></li></ol></details>
-<!-- FOR COUNSEL: must match SARTLAR_SURUMU in api/odeme/baslat.ts, which is written to the Stripe record at checkout. -->
 
 <div class="kutu"><b>Beta: ücretli planlar henüz sunulmamaktadır.</b> Beta süresince erişim ücretsizdir ve davetle verilir. Bu Şartların ücretli planlara ilişkin bölümleri (abonelik, ödeme, yenileme, cayma ve iade) ücretli planlar açıldığında uygulanır. Herhangi bir ücret alınmadan önce size bildirimde bulunuruz.</div>
 
@@ -79,8 +80,6 @@
 <h2 id="who-we-are">1. Biz kimiz ve bu Şartlar neyi kapsar</h2>
 
 <p>1.1 <strong>Biz kimiz.</strong> Hizmetler, Kalibre Markets ticari adı altında faaliyet gösteren gerçek kişi <span class="yer-tutucu">[FULL LEGAL NAME]</span> (<span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>) tarafından sunulmaktadır ("Kalibre Markets", "biz", "bize", "bizim"). Kalibre Markets bir ticari addır; ayrıca kurulmuş bir şirket değildir. Hizmetleri ileride bir şirkete devredersek, bu Şartlarda açıklandığı şekilde size önceden bildiririz. Bize <span class="yer-tutucu">[CONTACT EMAIL]</span> adresinden ulaşabilirsiniz.</p>
-
-<!-- FOR COUNSEL: the founder operates as a sole trader (no company, 25 Oct 2026). Confirm sole-trader registration/tax registration needs in the country of residence, whether consumer law requires the full name and geographic address to be shown (EU Consumer Rights Directive Art. 6(1)(b)-(d) does), and whether a 24.x assignment clause permitting transfer to a future company is adequate. Personal unlimited liability: consider incorporating before scale. -->
 
 <p>1.2 <strong>Hizmetler nelerdir.</strong> "Hizmetler", bu Şartlar kapsamında sunduğumuz her şeyi ifade eder; bunlar arasında şunlar yer alır:</p>
 
@@ -117,8 +116,6 @@
 
 <p>2.5 <strong>Bölge kısıtlaması.</strong> Hukuk, ödeme hizmeti sağlayıcımız veya yaptırım kuralları gerektirdiğinde belirli ülkelerden erişimi reddedebilir, sınırlayabilir veya sona erdirebiliriz. Bunu mevcut bir ücretli aboneye bu Şartların ihlali dışındaki bir nedenle uygularsak, dönemin kullanılmayan kısmı için peşin ödenmiş ücretleri iade ederiz.</p>
 
-<!-- FOR COUNSEL: (1) Confirm the list of sanctions regimes against the [COUNTRY OF RESIDENCE] regime and Stripe's restricted-business and restricted-country rules. (2) United States: no competitor reviewed excludes US users, but Kalibre Engine places orders on forex/CFD accounts. Confirm whether supplying Engine to US persons raises CFTC/NFA questions (for example commodity trading advisor status or the exemption for software that runs only the user's own rules without personalised advice), and decide whether to exclude US persons from Engine on live accounts. (3) Consider whether any other jurisdiction should be excluded at launch. -->
-
 <h2 id="account">3. Kalibre Markets hesabınız</h2>
 
 <p>3.1 <strong>Giriş.</strong> E-posta adresinize gönderilen tek kullanımlık bir bağlantı veya kodla ya da Google hesabınızla giriş yapabilirsiniz. Bizde bir şifre oluşturmanızı istemeyiz. Kalibre Lab'in büyük bölümü hesap olmadan çalışır; abonelik satın almak, lisansınızı yönetmek ve kayıtlı öğeleri cihazlar arasında eşitlemek için hesap gerekir.</p>
@@ -142,8 +139,6 @@
 <p>4.4 <strong>Sunucularımızdan emir gönderilmez.</strong> Sunucularımız hiçbir zaman emir vermez, değiştirmez veya iptal etmez. Emirler yalnızca kendi MetaTrader 5 terminalinizde çalışan Kalibre Engine tarafından, yüklediğiniz kural dosyasına ve seçtiğiniz ayarlara göre gönderilir.</p>
 
 <p>4.5 <strong>Kararlarınız.</strong> İşlem yapıp yapmayacağınıza, neyle, ne miktarda işlem yapacağınıza ve hangi kuralları çalıştıracağınıza yalnızca siz karar verirsiniz. Bu kararlardan ve zararlar dahil tüm sonuçlarından siz sorumlusunuz. İşlem yapmadan önce lütfen Risk Bildirimi'ni okuyun.</p>
-
-<!-- FOR COUNSEL: confirm that the "not authorised" statement is accurate for [COUNTRY OF RESIDENCE] and that no local licence is needed for selling Kalibre Engine (rule execution software without discretion). -->
 
 <h2 id="kalibre-lab">5. Kalibre Lab</h2>
 
@@ -218,8 +213,6 @@
 <p>10.10 <strong>Ters ibraz (chargeback).</strong> Bir ücretin hatalı olduğunu düşünüyorsanız lütfen önce bizimle iletişime geçin; sorunu genellikle bir banka itirazından daha hızlı çözebiliriz. Bir ödemeye itiraz edilirse, itiraz sonuçlanana kadar o ödemeyle bağlantılı lisansı askıya alabiliriz. Bu, bankanız veya kart çıkaran kuruluş karşısındaki haklarınızı etkilemez.</p>
 
 <p>10.11 <strong>İşlemlerinize ilişkin vergiler.</strong> Alım satım işlemlerinizden doğan kazanç veya zararlar üzerindeki vergilerden siz sorumlusunuz.</p>
-
-<!-- FOR COUNSEL: (1) UK Digital Markets, Competition and Consumers Act 2024 subscription-contract rules (reminder notices, easy exit, cooling-off on renewal) and US state automatic-renewal laws (for example California) may require renewal reminders, an online cancellation path and specific pre-purchase disclosures; check commencement dates and whether a monthly-renewal reminder is needed. (2) Decide whether to say "prices include VAT/sales tax" per region once Stripe Tax is configured. -->
 
 <h2 id="withdrawal">11. Cayma hakkı (AB, AEA ve Birleşik Krallık tüketicileri)</h2>
 
@@ -301,13 +294,9 @@
 
 <p>20.5 <strong>AB, AEA ve Birleşik Krallık'taki tüketiciler.</strong> Bu bölgelerde tüketiciyseniz, bu Şartları ihlal etmemizden veya makul özen ve beceriyi göstermememizden kaynaklanan öngörülebilir zararlardan sorumluyuz; 20.2 ila 20.4. maddeler yalnızca ülkenizin hukukunun izin verdiği ölçüde uygulanır.</p>
 
-<!-- FOR COUNSEL: (1) Cap formula follows QuantConnect (greater of 12 months' fees or USD 100) and FX Blue (fees paid). The previous TR draft set the cap at zero for free users; replaced by the USD 100 floor as more defensible for consumers. (2) Under German-style law (Edgewonk), limitation for ordinary negligence is restricted to typical foreseeable damage for breach of essential obligations; check if [COUNTRY OF RESIDENCE] law needs a similar formula. (3) Check that 20.2 is enforceable against consumers in key markets (EU Unfair Terms Directive, UK CRA 2015 s.31 and s.65). -->
-
 <h2 id="indemnity">21. Tazminat</h2>
 
 <p>Hukukun izin verdiği ölçüde; bu Şartları ihlal etmenizden, aracı kurumunuzun veya bir veri sağlayıcının şartlarını ihlal etmenizden, Hizmetleri hukuka aykırı kullanmanızdan veya İçeriğinizin başkasının haklarını ihlal etmesinden kaynaklanan ve üçüncü kişilerce bize karşı ileri sürülen taleplerden doğan makul zarar ve masraflarımızı (makul avukatlık ücretleri dahil) karşılarsınız. Talebin bizim kendi ihlalimizden veya ihmalimizden kaynaklandığı ölçüde bu hüküm uygulanmaz. Böyle bir talebi size derhal bildiririz ve savunmaya katılmanıza olanak tanırız. Tüketiciyseniz bu bölüm yalnızca ülkenizin hukukunun izin verdiği durumlarda uygulanır.</p>
-
-<!-- FOR COUNSEL: indemnity kept because every competitor read has one; narrowed along the lines of Edgewonk and 3Commas. Consider dropping it for consumers entirely. -->
 
 <h2 id="force-majeure">22. Kontrolümüz dışındaki olaylar</h2>
 
@@ -322,8 +311,6 @@
 <p>23.3 <strong>Mahkemeler.</strong> <span class="yer-tutucu">[CITY, COUNTRY]</span> mahkemeleri yetkilidir.</p>
 
 <p>23.4 <strong>Tüketiciler.</strong> Tüketiciyseniz, yaşadığınız ülkenin emredici hukukunun sağladığı korumadan da yararlanmaya devam edersiniz ve o ülkenin mahkemelerinde dava açabilirsiniz. AB'deki tüketiciler ayrıca kendi ülkelerindeki mahkeme dışı uyuşmazlık çözüm kuruluşlarına başvurabilir.</p>
-
-<!-- FOR COUNSEL: (1) [COUNTRY OF RESIDENCE] not yet chosen; the majority of competitors use the provider's home law and courts. (2) No arbitration clause: TradingView and QuantConnect (US) use US arbitration with a class-action waiver; FX Blue, Myfxbook, Edgewonk, 3Commas, TradeZella and TraderSync do not. Decide whether to add a US-only arbitration and class-waiver clause with an opt-out window. (3) If the entity is in Turkey, Turkish consumer law (TKHK 6502) may also apply to Turkish users and the Turkish-language terms should be aligned. -->
 
 <h2 id="general">24. Genel hükümler</h2>
 

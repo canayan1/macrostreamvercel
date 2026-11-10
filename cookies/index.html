@@ -30,6 +30,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -64,6 +65,7 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Cookie Notice</h1>
+<p class="taslak-notu"><strong>Draft.</strong> This document is being finalised. Items in brackets are placeholders that have not been filled in yet; until they are, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> with any question about the provider or your rights.</p>
 
 <p class="belge-meta">Effective date: 25 October 2026<br>Version: 2026-10-25-en1</p>
 <details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#short">In short</a></li><li><a href="#necessary">1. Strictly necessary</a></li><li><a href="#analytics">2. Analytics (only with your consent)</a></li><li><a href="#local-storage">3. Local storage used by Kalibre Lab</a></li><li><a href="#third-party">4. Third-party pages</a></li><li><a href="#manage">5. Managing cookies</a></li><li><a href="#contact">6. Contact</a></li></ol></details>
@@ -83,8 +85,6 @@
 <p>These are needed for the Site to work and do not require consent.</p>
 
 <div class="tablo-kap"><table class="genis"><thead><tr><th>Name or type</th><th>Set by</th><th>Purpose</th><th>Duration</th></tr></thead><tbody><tr><td>Security check cookie</td><td>Vercel (our host)</td><td>Protects the Site against bots and attacks</td><td>Short-lived, set by Vercel</td></tr><tr><td>Sign-in session (browser local storage)</td><td>Kalibre Markets via Supabase</td><td>Keeps you signed in to your account</td><td>Until you sign out or it expires</td></tr><tr><td><code>kalibre-cerez-rizasi</code> (local storage)</td><td>Kalibre Markets</td><td>Remembers your cookie choice</td><td>Until you clear site data</td></tr></tbody></table></div>
-
-<!-- FOR COUNSEL: confirm the exact Vercel cookie name (for example the bot-protection challenge cookie) and its lifetime from the live site, and the Supabase storage key name (sb-[project]-auth-token). -->
 
 <h2 id="analytics">2. Analytics (only with your consent)</h2>
 
@@ -119,7 +119,7 @@
 <footer class="gfoot">
   <div class="wrap">
     <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
-    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/get-started">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
     <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>

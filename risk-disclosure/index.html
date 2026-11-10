@@ -30,6 +30,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -64,6 +65,7 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Risk Disclosure</h1>
+<p class="taslak-notu"><strong>Draft.</strong> This document is being finalised. Items in brackets are placeholders that have not been filled in yet; until they are, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> with any question about the provider or your rights.</p>
 
 <p class="belge-meta">Effective date: 25 October 2026<br>Version: 2026-10-25-en1</p>
 <details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#loss">1. Trading can lose you money</a></li><li><a href="#no-advice">2. We do not give advice</a></li><li><a href="#no-custody">3. We never hold your money</a></li><li><a href="#hypothetical">4. Hypothetical and simulated results</a></li><li><a href="#kalibre-engine">5. Automated trading with Kalibre Engine</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge and data</a></li><li><a href="#beta-software">7. Beta software</a></li><li><a href="#responsibility">8. Your responsibility</a></li><li><a href="#contact">9. Questions</a></li></ol></details>
@@ -73,8 +75,6 @@
 <h2 id="loss">1. Trading can lose you money</h2>
 
 <p>Trading forex, CFDs, futures, stocks, crypto assets and other instruments carries a high risk of loss. Leveraged products magnify both gains and losses, and you can lose all the money you deposit; with some brokers and products you can lose more. When the European Securities and Markets Authority introduced its 2018 restrictions on CFDs sold to retail clients, it reported that between 74% and 89% of retail CFD accounts typically lose money. Your broker publishes its own figure. Only trade with money you can afford to lose, and make sure you understand the products you trade.</p>
-
-<!-- FOR COUNSEL / DATA CHECK: the 74-89% range is from ESMA's 2018 CFD product intervention measures (ESMA Decision (EU) 2018/796 and accompanying statement). Verified 25 Oct 2026 against ESMA's press release of 27 March 2018 ("ESMA agrees to prohibit binary options and restrict CFDs to protect retail investors", esma.europa.eu/node/84933): national regulators' analyses showed 74-89% of retail accounts typically lose money. -->
 
 <h2 id="no-advice">2. We do not give advice</h2>
 
@@ -91,8 +91,6 @@
 <p>The following statement is required by the U.S. Commodity Futures Trading Commission for hypothetical performance presentations and applies to all such results we show:</p>
 
 <blockquote class="buyuk-harf"><p>THESE RESULTS ARE BASED ON SIMULATED OR HYPOTHETICAL PERFORMANCE RESULTS THAT HAVE CERTAIN INHERENT LIMITATIONS. UNLIKE THE RESULTS SHOWN IN AN ACTUAL PERFORMANCE RECORD, THESE RESULTS DO NOT REPRESENT ACTUAL TRADING. ALSO, BECAUSE THESE TRADES HAVE NOT ACTUALLY BEEN EXECUTED, THESE RESULTS MAY HAVE UNDER-OR OVER-COMPENSATED FOR THE IMPACT, IF ANY, OF CERTAIN MARKET FACTORS, SUCH AS LACK OF LIQUIDITY. SIMULATED OR HYPOTHETICAL TRADING PROGRAMS IN GENERAL ARE ALSO SUBJECT TO THE FACT THAT THEY ARE DESIGNED WITH THE BENEFIT OF HINDSIGHT. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THESE BEING SHOWN.</p></blockquote>
-
-<!-- FOR COUNSEL: text of CFTC Rule 4.41(b)(1)(i) (17 CFR 4.41), verified verbatim against the LII copy of the e-CFR on 25 Oct 2026. Myfxbook uses the longer NFA-style statement; TraderSync paraphrases it. Rule 4.41 strictly applies to CPOs/CTAs and their principals; we use it as the market-standard disclosure, not as an admission that Kalibre Markets is a CTA. -->
 
 <p>In addition, in our products specifically:</p>
 
@@ -146,7 +144,7 @@
 <footer class="gfoot">
   <div class="wrap">
     <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
-    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/get-started">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
     <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>

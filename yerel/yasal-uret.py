@@ -5,7 +5,7 @@
 #
 # Markdown alt kümesi: # / ## / ### başlık ("{#kimlik}" ile bağlantı kimliği), paragraf, "- " ve "1. " listeleri,
 # | tablo |, "> " alıntı, **kalın**, `kod`, [metin](/yol). "<" ile başlayan bloklar HTML olarak aynen geçer;
-# <!-- FOR COUNSEL --> yorumları görünmez HTML yorumu olarak kalır. [BÜYÜK HARF] yer tutucuları
+# <!-- FOR COUNSEL --> yorumları yayına çıkmaz (kaynakta kalır). [BÜYÜK HARF] yer tutucuları
 # <span class="yer-tutucu"> ile işaretlenir. {{SURUM}} şartların sürümüyle (api/odeme/baslat.ts SARTLAR_SURUMU) değişir.
 import html as _html, os, re
 _d = os.path.dirname(os.path.abspath(__file__))
@@ -44,6 +44,7 @@ CEVIRI_NOTU = ('<p class="ceviri-notu">Bu metin İngilizce aslının çevirisidi
 YASAL_STIL = """
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -67,6 +68,7 @@ def satir_ici(s):
     yorumlar = []
     def sakla(m):
         yorumlar.append(m.group(0)); return f"\x00{len(yorumlar) - 1}\x00"
+    s = re.sub(r"<!--\s*FOR COUNSEL.*?-->", "", s, flags=re.S)
     s = re.sub(r"<!--.*?-->", sakla, s)
     s = _html.escape(s, quote=False)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
@@ -83,6 +85,7 @@ def md_html(md):
         satirlar = b.split("\n")
         ilk = satirlar[0]
         if ilk.startswith("<"):
+            if re.match(r"<!--\s*FOR COUNSEL", ilk): continue  # avukat notları yayına çıkmaz
             cikti.append(b)  # HTML ya da yorum, aynen
         elif re.match(r"#{1,3} ", ilk):
             assert len(satirlar) == 1, b
@@ -115,11 +118,20 @@ def md_html(md):
             cikti.append("<p>" + satir_ici(" ".join(l.strip() for l in satirlar)) + "</p>")
     return "\n\n".join(cikti)
 
+TASLAK_NOTU = {
+    "en": '<p class="taslak-notu"><strong>Draft.</strong> This document is being finalised. Items in brackets are placeholders that have not been filled in yet; until they are, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> with any question about the provider or your rights.</p>',
+    "tr": '<p class="taslak-notu"><strong>Taslak.</strong> Bu belge tamamlanıyor. Köşeli parantez içindeki alanlar henüz doldurulmamış yer tutuculardır; doldurulana kadar sağlayıcı ya da haklarınızla ilgili sorularınızı <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazın.</p>',
+}
+
 def uret(ad, dil, baslik, aciklama):
     md = open(os.path.join(_d, "yasal", dil, ad + ".md"), encoding="utf-8").read().replace("{{SURUM}}", SURUM)
+    md = re.sub(r"[ \t]*<!--\s*FOR COUNSEL.*?-->[ \t]*\n?", "", md, flags=re.S)  # avukat notları yayına çıkmaz
     govde = md_html(md)
     if dil == "tr":
         govde = govde.replace("</h1>", "</h1>\n" + CEVIRI_NOTU.format(ad=ad), 1)
+    if 'class="yer-tutucu"' in govde:
+        # Yer tutucular dolana kadar belge taslaktır; bunu okuyucuya söyle.
+        govde = govde.replace("</h1>", "</h1>\n" + TASLAK_NOTU[dil], 1)
     basliklar = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', govde)
     kenar = "".join(f'<a href="#{i}">{t}</a>' for i, t in basliklar)
     mobil = (f'<details class="icindekiler-mobil"><summary>{"Contents" if dil == "en" else "İçindekiler"}</summary><ol>'

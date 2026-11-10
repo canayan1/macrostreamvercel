@@ -32,6 +32,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -66,6 +67,7 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Gizlilik Politikası</h1>
+<p class="taslak-notu"><strong>Taslak.</strong> Bu belge tamamlanıyor. Köşeli parantez içindeki alanlar henüz doldurulmamış yer tutuculardır; doldurulana kadar sağlayıcı ya da haklarınızla ilgili sorularınızı <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> adresine yazın.</p>
 <p class="ceviri-notu">Bu metin İngilizce aslının çevirisidir; uyuşmazlıkta İngilizce metin esastır. <a href="/privacy" hreflang="en" lang="en">English original</a></p>
 
 <p class="belge-meta">Yürürlük tarihi: 25 Ekim 2026<br>Sürüm: 2026-10-25-en1</p>
@@ -78,8 +80,6 @@
 <h2 id="controller">1. Verilerinizden kim sorumludur</h2>
 
 <p>Kişisel verilerinizin veri sorumlusu, Kalibre Markets ticari adıyla faaliyet gösteren gerçek kişi <span class="yer-tutucu">[FULL LEGAL NAME]</span>, <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span>'dir ("biz", "bize"). İletişim: <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
-
-<!-- FOR COUNSEL: (1) If the entity is outside the EU/UK and we target EU/UK users, GDPR Art. 27 and UK GDPR Art. 27 representatives are likely needed (Myfxbook and TradingView appoint them). Add [EU REPRESENTATIVE] and [UK REPRESENTATIVE]. (2) Decide whether a DPO is required. (3) If the entity is in Turkey, add the KVKK information-notice elements and VERBIS position. -->
 
 <h2 id="collect-why">2. Neleri ve neden topluyoruz</h2>
 
@@ -168,8 +168,6 @@
   <li><strong>Hukuki dayanak:</strong> hizmet e-postaları için sözleşme; ürün güncellemesi e-postaları için, müşterilerimizi kendi benzer ürünlerimiz hakkında bilgilendirme konusundaki ve her zaman itiraz hakkınız saklı olan meşru menfaatimiz; hesabı olmayan kişiler için onay.</li>
 </ul>
 
-<!-- FOR COUNSEL: competitors mostly use opt-out or "soft opt-in" for existing customers (FX Blue, TradingView, QuantConnect, Myfxbook). Founder decision 25 Oct 2026: follow the competitor majority (soft opt-in for account holders, opt-out at sign-up and in every email). Check national ePrivacy rules (e.g. Germany is strict; UK PECR soft opt-in needs a sale or negotiation of a sale, so free accounts may need consent) and Turkish IYS rules if Turkish users are targeted. Implemented: profiles.marketing_consent defaults to true with marketing_consent_at recorded; the sign-in page offers opt-out at sign-up; the Account page toggle turns it off. -->
-
 <h3>2.10 Bekleme listeleri, iletişim ve destek</h3>
 
 <p>Bir bekleme listesine veya beta kaydına katılırsanız, e-posta adresiniz ve girdiğiniz diğer bilgiler FormSubmit aracılığıyla bize iletilir ve yalnızca bu amaçla kullanılır. Bize e-posta gönderirseniz, size yanıt vermek için mesajınızı ve iletişim bilgilerinizi kullanırız.</p>
@@ -208,8 +206,6 @@
 
 <p>Verileri ayrıca profesyonel danışmanlara, işimizin satılması veya yeniden yapılandırılması halinde bu politikaya uymak zorunda olan alıcıya veya halefe ve hukukun gerektirdiği ya da haklarımızı korumak için gerekli olduğu durumlarda mahkemelere, düzenleyicilere veya resmi makamlara açıklayabiliriz.</p>
 
-<!-- FOR COUNSEL: confirm the Stripe contracting entity for [COUNTRY OF RESIDENCE], whether Supabase sends sign-in emails with its built-in service or a custom SMTP provider, the Upstash database region, and data processing agreements with each provider. -->
-
 <h2 id="transfers">4. Uluslararası aktarımlar</h2>
 
 <p>Bazı sağlayıcılar verileri, Amerika Birleşik Devletleri dahil, ülkeniz dışında işler. Veriler AB, AEA veya Birleşik Krallık dışına çıktığında bir yeterlilik kararına (AB-ABD Veri Gizliliği Çerçevesi ve onun Birleşik Krallık uzantısı dahil, bu çerçeve kapsamında sertifikalı sağlayıcılar için) veya Avrupa Komisyonu'nun Standart Sözleşme Hükümleri ile Birleşik Krallık Uluslararası Veri Aktarımı Ekine, gerektiğinde ek güvencelerle birlikte dayanırız. İlgili güvencelerin bir kopyasını bizden talep edebilirsiniz.</p>
@@ -217,8 +213,6 @@
 <h2 id="retention">5. Verileri ne kadar süre saklıyoruz</h2>
 
 <div class="tablo-kap"><table><thead><tr><th>Veri</th><th>Süre</th></tr></thead><tbody><tr><td>Hesap profili</td><td>Hesabınızı silene kadar. Silme işlemi profilinizi, kayıtlı öğelerinizi ve lisans görüntüleme kayıtlarınızı derhal kaldırır.</td></tr><tr><td>Kayıtlı stratejiler, izleme listeleri, ayarlar, notlar</td><td>Siz bunları veya hesabınızı silene kadar.</td></tr><tr><td>Lisans kaydı ve bağlı MT5 hesap numaraları</td><td>Abonelik etkin olduğu sürece ve sona ermesinden sonra en fazla 12 ay; ardından silinir veya anonim hale getirilir.</td></tr><tr><td>Ödeme, fatura ve vergi kayıtları</td><td><span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> vergi ve ticaret mevzuatının gerektirdiği süre boyunca (genellikle <span class="yer-tutucu">[X]</span> yıl). Stripe kendi kayıtlarını kendi politikası kapsamında saklar.</td></tr><tr><td>Ödeme onay kayıtları (şartlar sürümü, cayma onayı işareti ve zamanı)</td><td>Onayın verildiğini gösterebilmek için ödeme kaydı saklandığı sürece.</td></tr><tr><td>Şifreli Bridge paketleri</td><td>En fazla 2 saat.</td></tr><tr><td>İstek sınırlama sayaçları</td><td>Yaklaşık 2 dakika.</td></tr><tr><td>Ödeme oturumu işaretçisi (ödemeden sonra anahtarınızı göstermek için kullanılır)</td><td>7 gün.</td></tr><tr><td>Barındırma ve güvenlik kayıtları</td><td>Vercel tarafından belirlenen sınırlı süre boyunca.</td></tr><tr><td>Google Analytics verileri</td><td>En fazla 14 ay.</td></tr><tr><td>Pazarlama onayı kaydı</td><td>Pazarlama e-postalarına kayıtlı olduğunuz sürece ve pazarlama e-postalarından çıktıktan sonra onayı gösterebilmek için 24 ay daha.</td></tr><tr><td>Destek e-postaları</td><td>Son mesajdan sonra en fazla 3 yıl veya bir uyuşmazlık için gerekirse daha uzun.</td></tr><tr><td>Bekleme listesi kayıtları</td><td>Lansman hakkında sizinle iletişime geçene veya listeden çıkarılmanızı isteyene kadar.</td></tr><tr><td>Erken erişim kayıtları ve cevaplar (Rule Guard, MT5 Analytics)</td><td>Silinmesini isteyene kadar; katılmanızdan 13 ay sonra (4 haftalık testin bitişinden yaklaşık 12 ay sonra) otomatik silinir.</td></tr><tr><td>Erken erişim sayfa sayımları</td><td>En çok 400 gün. Kişisel veri içermez.</td></tr><tr><td>Hız sınırı için kullanılan IP özeti</td><td>En çok 1 saat.</td></tr></tbody></table></div>
-
-<!-- FOR COUNSEL: fill [X] years for [COUNTRY OF RESIDENCE] tax law; confirm the 12-month licence retention (matches previous TR/EN draft) and whether a deletion job exists for expired licence records in Upstash (code keeps them until removed). -->
 
 <h2 id="security">6. Güvenlik</h2>
 

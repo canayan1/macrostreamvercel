@@ -30,6 +30,7 @@
 <style>
 .belge-meta { font-size: 14px; color: var(--silik); margin: -8px 0 20px; }
 .ceviri-notu { font-size: 14px; color: #d6dee8; border: 1px solid var(--cizgi-2); border-radius: 4px; padding: 10px 14px; margin: 0 0 20px; }
+.taslak-notu { border: 1px dashed rgba(217,164,65,.6); border-radius: 6px; padding: 10px 14px; background: rgba(217,164,65,.08); }
 .yer-tutucu { font-family: var(--mono); font-size: .86em; background: rgba(217,164,65,.14); color: #f0c46c; border: 1px dashed rgba(217,164,65,.6); border-radius: 3px; padding: 0 4px; white-space: normal; overflow-wrap: anywhere; }
 .belge-govde h3 { font-size: 19px; }
 .belge-govde blockquote { margin: 20px 0; padding: 12px 18px; border-left: 3px solid var(--cizgi-2); background: var(--zemin-2); color: #cdd6e1; }
@@ -64,10 +65,10 @@
   <div class="doc-grid">
     <article class="doc-body">
 <h1>Terms of Service</h1>
+<p class="taslak-notu"><strong>Draft.</strong> This document is being finalised. Items in brackets are placeholders that have not been filled in yet; until they are, write to <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a> with any question about the provider or your rights.</p>
 
 <p class="belge-meta">Effective date: 25 October 2026<br>Terms version: 2026-10-25-en1</p>
 <details class="icindekiler-mobil"><summary>Contents</summary><ol><li><a href="#who-we-are">1. Who we are and what these Terms cover</a></li><li><a href="#eligibility">2. Who can use the Services</a></li><li><a href="#account">3. Your Kalibre Markets account</a></li><li><a href="#not-advice">4. What the Services are, and what they are not</a></li><li><a href="#kalibre-lab">5. Kalibre Lab</a></li><li><a href="#kalibre-bridge">6. Kalibre Bridge</a></li><li><a href="#kalibre-engine">7. Kalibre Engine</a></li><li><a href="#third-parties">8. Broker and third-party connections</a></li><li><a href="#beta-features">9. Beta features</a></li><li><a href="#payment">10. Subscriptions and payment</a></li><li><a href="#withdrawal">11. Right of withdrawal (EU, EEA and UK consumers)</a></li><li><a href="#licence">12. Licence to use our software</a></li><li><a href="#your-content">13. Your strategies and content</a></li><li><a href="#acceptable-use">14. Acceptable use</a></li><li><a href="#ai-assistant">15. AI assistant</a></li><li><a href="#changes">16. Changes to the Services and to these Terms</a></li><li><a href="#suspension-termination">17. Suspension and termination</a></li><li><a href="#statutory-rights">18. Your statutory rights</a></li><li><a href="#disclaimers">19. Disclaimers</a></li><li><a href="#liability">20. Limitation of liability</a></li><li><a href="#indemnity">21. Indemnity</a></li><li><a href="#force-majeure">22. Events outside our control</a></li><li><a href="#law">23. Governing law and disputes</a></li><li><a href="#general">24. General</a></li><li><a href="#contact">25. Contact</a></li></ol></details>
-<!-- FOR COUNSEL: must match SARTLAR_SURUMU in api/odeme/baslat.ts, which is written to the Stripe record at checkout. -->
 
 <div class="kutu"><b>Beta: paid plans are not yet available.</b> During the beta, access is free and by invitation. The sections of these Terms about paid plans (subscriptions, payment, renewal, withdrawal and refunds) apply once paid plans open. We will tell you before any charge is made.</div>
 
@@ -76,8 +77,6 @@
 <h2 id="who-we-are">1. Who we are and what these Terms cover</h2>
 
 <p>1.1 <strong>Who we are.</strong> The Services are provided by <span class="yer-tutucu">[FULL LEGAL NAME]</span>, an individual trading under the name Kalibre Markets, of <span class="yer-tutucu">[POSTAL ADDRESS]</span>, <span class="yer-tutucu">[COUNTRY OF RESIDENCE]</span> ("Kalibre Markets", "we", "us", "our"). Kalibre Markets is a trading name, not a separately incorporated company. If we later transfer the Services to a company, we will tell you in advance as described in these Terms. You can contact us at <span class="yer-tutucu">[CONTACT EMAIL]</span>.</p>
-
-<!-- FOR COUNSEL: the founder operates as a sole trader (no company, 25 Oct 2026). Confirm sole-trader registration/tax registration needs in the country of residence, whether consumer law requires the full name and geographic address to be shown (EU Consumer Rights Directive Art. 6(1)(b)-(d) does), and whether a 24.x assignment clause permitting transfer to a future company is adequate. Personal unlimited liability: consider incorporating before scale. -->
 
 <p>1.2 <strong>What the Services are.</strong> "Services" means everything we offer under these Terms, including:</p>
 
@@ -114,8 +113,6 @@
 
 <p>2.5 <strong>Restricting regions.</strong> We may refuse, limit or end access from particular countries where the law, our payment provider or sanctions rules require it. If we do this to an existing paid subscriber for a reason other than a breach of these Terms, we will refund any prepaid fees for the unused part of the period.</p>
 
-<!-- FOR COUNSEL: (1) Confirm the list of sanctions regimes against the [COUNTRY OF RESIDENCE] regime and Stripe's restricted-business and restricted-country rules. (2) United States: no competitor reviewed excludes US users, but Kalibre Engine places orders on forex/CFD accounts. Confirm whether supplying Engine to US persons raises CFTC/NFA questions (for example commodity trading advisor status or the exemption for software that runs only the user's own rules without personalised advice), and decide whether to exclude US persons from Engine on live accounts. (3) Consider whether any other jurisdiction should be excluded at launch. -->
-
 <h2 id="account">3. Your Kalibre Markets account</h2>
 
 <p>3.1 <strong>Signing in.</strong> You can sign in with a one-time link or code sent to your email address, or with your Google account. We do not ask you to create a password with us. Large parts of Kalibre Lab work without an account; you need an account to buy a subscription, to manage your licence and to sync saved items between devices.</p>
@@ -139,8 +136,6 @@
 <p>4.4 <strong>No orders from our servers.</strong> Our servers never place, change or cancel orders. Orders are only ever sent by Kalibre Engine, running in your own MetaTrader 5 terminal, according to the rule file you load and the settings you choose.</p>
 
 <p>4.5 <strong>Your decisions.</strong> You alone decide whether to trade, what to trade, how much to trade and which rules to run. You are responsible for those decisions and for all results, including losses. Please read the Risk Disclosure before you trade.</p>
-
-<!-- FOR COUNSEL: confirm that the "not authorised" statement is accurate for [COUNTRY OF RESIDENCE] and that no local licence is needed for selling Kalibre Engine (rule execution software without discretion). -->
 
 <h2 id="kalibre-lab">5. Kalibre Lab</h2>
 
@@ -215,8 +210,6 @@
 <p>10.10 <strong>Chargebacks.</strong> If you think a charge is wrong, please contact us first; we can usually fix it faster than a bank dispute. If a payment is disputed, we may suspend the licence linked to that payment until the dispute is resolved. This does not affect your rights with your bank or card issuer.</p>
 
 <p>10.11 <strong>Taxes on your trading.</strong> You are responsible for any taxes on gains or losses from your trading.</p>
-
-<!-- FOR COUNSEL: (1) UK Digital Markets, Competition and Consumers Act 2024 subscription-contract rules (reminder notices, easy exit, cooling-off on renewal) and US state automatic-renewal laws (for example California) may require renewal reminders, an online cancellation path and specific pre-purchase disclosures; check commencement dates and whether a monthly-renewal reminder is needed. (2) Decide whether to say "prices include VAT/sales tax" per region once Stripe Tax is configured. -->
 
 <h2 id="withdrawal">11. Right of withdrawal (EU, EEA and UK consumers)</h2>
 
@@ -298,13 +291,9 @@
 
 <p>20.5 <strong>Consumers in the EU, EEA and UK.</strong> If you are a consumer in these regions, we are liable for foreseeable loss caused by our breach of these Terms or our failure to use reasonable care and skill, and sections 20.2 to 20.4 apply only as far as the law of your country allows.</p>
 
-<!-- FOR COUNSEL: (1) Cap formula follows QuantConnect (greater of 12 months' fees or USD 100) and FX Blue (fees paid). The previous TR draft set the cap at zero for free users; replaced by the USD 100 floor as more defensible for consumers. (2) Under German-style law (Edgewonk), limitation for ordinary negligence is restricted to typical foreseeable damage for breach of essential obligations; check if [COUNTRY OF RESIDENCE] law needs a similar formula. (3) Check that 20.2 is enforceable against consumers in key markets (EU Unfair Terms Directive, UK CRA 2015 s.31 and s.65). -->
-
 <h2 id="indemnity">21. Indemnity</h2>
 
 <p>To the extent the law allows, you will cover our reasonable losses and costs (including reasonable legal fees) from claims brought against us by third parties that arise from your breach of these Terms, your breach of your broker's or a data provider's terms, your unlawful use of the Services, or Your Content infringing someone's rights. This does not apply to the extent the claim was caused by our own breach or negligence. We will tell you about such a claim promptly and let you take part in the defence. If you are a consumer, this section applies only where the law of your country allows it.</p>
-
-<!-- FOR COUNSEL: indemnity kept because every competitor read has one; narrowed along the lines of Edgewonk and 3Commas. Consider dropping it for consumers entirely. -->
 
 <h2 id="force-majeure">22. Events outside our control</h2>
 
@@ -319,8 +308,6 @@
 <p>23.3 <strong>Courts.</strong> The courts of <span class="yer-tutucu">[CITY, COUNTRY]</span> have jurisdiction.</p>
 
 <p>23.4 <strong>Consumers.</strong> If you are a consumer, you also keep the protection of the mandatory laws of the country where you live, and you may bring proceedings in the courts of that country. EU consumers may also use the out-of-court dispute bodies available in their country.</p>
-
-<!-- FOR COUNSEL: (1) [COUNTRY OF RESIDENCE] not yet chosen; the majority of competitors use the provider's home law and courts. (2) No arbitration clause: TradingView and QuantConnect (US) use US arbitration with a class-action waiver; FX Blue, Myfxbook, Edgewonk, 3Commas, TradeZella and TraderSync do not. Decide whether to add a US-only arbitration and class-waiver clause with an opt-out window. (3) If the entity is in Turkey, Turkish consumer law (TKHK 6502) may also apply to Turkish users and the Turkish-language terms should be aligned. -->
 
 <h2 id="general">24. General</h2>
 
@@ -351,7 +338,7 @@
 <footer class="gfoot">
   <div class="wrap">
     <div class="gfoot-legal"><p>Kalibre Markets products are software in beta. Kalibre Markets is not a broker, investment adviser or portfolio manager, does not hold client funds and does not provide investment advice or trading signals.</p><p>Trading forex and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose all of the money you deposit. Past performance, whether actual or simulated, is not indicative of future results. Backtests and simulations are hypothetical and do not reflect actual trading.</p><p>MetaTrader is a trademark of MetaQuotes Ltd. Kalibre Markets is not affiliated with MetaQuotes.</p></div>
-    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/get-started">Get started</a></li><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
+    <div class="gfoot-cols"><div><h4>Products</h4><ul><li><a href="/analytics">Analytics</a></li><li><a href="/trade-analytics">Trade Analytics</a></li><li><a href="/fx-blotter">FX Blotter</a></li><li><a href="/kalibre-lab">Backtest</a></li><li><a href="/desk-signal">Desk Signal</a></li><li><a href="/rule-guard">Rule Guard</a></li><li><a href="/get-started">Guides</a></li></ul></div><div><h4>Solutions</h4><ul><li><a href="/trade-analytics">MT5 traders</a></li><li><a href="/fx-blotter">Treasury and dealing desks</a></li><li><a href="/rule-guard">Prop traders</a></li><li><a href="/company#partners">Brokers and prop firms</a></li></ul></div><div><h4>Resources</h4><ul><li><a href="/demo">Demos</a></li><li><a href="/security">Security</a></li><li><a href="/methodology">Methodology</a></li><li><a href="/setup">Kalibre Bridge setup</a></li><li><a href="/pricing">Pricing</a></li></ul></div><div><h4>Kalibre Markets</h4><ul><li><a href="/company">Company</a></li><li><a href="mailto:markets@kalibrefin.com">Contact</a></li><li><a href="/terms">Terms of service</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refunds">Refunds</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/risk-disclosure">Risk disclosure</a></li></ul></div></div>
     <div class="gfoot-base"><span>&copy; 2026 Kalibre Markets. <a href="mailto:markets@kalibrefin.com">markets@kalibrefin.com</a></span><a href="/cookies#manage" data-cerez-ayar>Cookie settings</a></div>
   </div>
 </footer>
