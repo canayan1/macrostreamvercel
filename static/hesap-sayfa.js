@@ -10,6 +10,8 @@
   var LISANS_ANAHTARI = 'kalibre-lisans-anahtari'; // laboratuvarın kurulum ekranı bu anahtarı okur
   var URUN_ADI = { lab: 'Kalibre Lab' }; // yeni ürünler buraya eklenir
   var LAB = A.paths.lab, PRO = A.paths.pricing, BAGLAN = A.paths.connect;
+  // Beta koşullarının sürümü: api/_lib/hesap.ts BETA_KOSUL_SURUM ile aynı (test/hesap.test.mjs).
+  var BETA_KOSUL_SURUM = '2026-11-11';
   var M = EN ? {
     durum: { active: 'Active', trialing: 'Trial', past_due: 'Payment due', canceled: 'Cancelled', unpaid: 'Unpaid', incomplete: 'Incomplete', incomplete_expired: 'Expired' },
     tarih: 'en-GB', validUntil: 'Valid until', endedOn: 'Ended on', mt5: 'MT5 accounts', products: 'Includes',
@@ -21,6 +23,7 @@
     loadErr: 'We could not load your licenses. Reload the page to try again.',
     linkBad: 'License keys start with KLM and have four groups of five characters.',
     linked: 'The key is now linked to your account.',
+    termsNeeded: 'To link a key, tick the box to accept the beta terms.',
     saved: 'Saved.', saveErr: 'Could not save. Try again.',
     paired: 'Pairing code saved', notPaired: 'Not set up', lastSeen: 'last data', connected: 'Connected', notConnected: 'Not connected',
     paper: 'paper', live: 'live',
@@ -44,6 +47,7 @@
     loadErr: 'Lisansların yüklenemedi. Sayfayı yenileyip yeniden dene.',
     linkBad: 'Lisans anahtarı KLM ile başlar ve beşer karakterlik dört gruptan oluşur.',
     linked: 'Anahtar hesabına bağlandı.',
+    termsNeeded: 'Anahtarı bağlamak için beta koşullarını kabul ettiğini gösteren kutuyu işaretle.',
     saved: 'Kaydedildi.', saveErr: 'Kaydedilemedi. Yeniden dene.',
     paired: 'Eşleştirme kodu kayıtlı', notPaired: 'Kurulmadı', lastSeen: 'son veri', connected: 'Bağlı', notConnected: 'Bağlı değil',
     paper: 'paper', live: 'canlı',
@@ -149,9 +153,10 @@
     e.preventDefault();
     var v = $('bagla-anahtar').value.trim().toUpperCase();
     if (!/^KLM(-[0-9A-HJKMNP-TV-Z]{5}){4}$/.test(v)) { yaz('bagla-durum', M.linkBad, 'kotu'); return; }
-    A.api('/api/hesap?islem=lisans-bagla', { body: { anahtar: v } }).then(function (r) {
+    if (!$('bagla-kabul').checked) { yaz('bagla-durum', M.termsNeeded, 'kotu'); return; }
+    A.api('/api/hesap?islem=lisans-bagla', { body: { anahtar: v, kabul: BETA_KOSUL_SURUM } }).then(function (r) {
       if (!r.ok) { yaz('bagla-durum', (r.data && r.data.hata) || M.netErr, 'kotu'); return; }
-      $('bagla-anahtar').value = ''; yaz('bagla-durum', M.linked, 'iyi'); lisanslariYukle();
+      $('bagla-anahtar').value = ''; $('bagla-kabul').checked = false; yaz('bagla-durum', M.linked, 'iyi'); lisanslariYukle();
     });
   });
 

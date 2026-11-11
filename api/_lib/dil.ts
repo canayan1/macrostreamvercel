@@ -25,6 +25,8 @@ export const EN: Record<string, string> = {
   'Aboneliğin sona ermiş. Eklentileri indirmek için aboneliğini yenile.': 'Your subscription has ended. Renew it to download the add-ons.',
   'Eklenti dosyası henüz yüklenmedi. Biraz sonra yeniden dene ya da bize yaz.': 'The add-on file has not been uploaded yet. Try again shortly or write to us.',
   'Bilinmeyen ürün.': 'Unknown product.',
+  'Beta koşulları kabul edilmemiş. Anahtarı kalibremarkets.com/account sayfasında beta koşullarını kabul ederek hesabına bağla.': 'The beta terms have not been accepted. Link the key on kalibremarkets.com/account and accept the beta terms.',
+  'Beta lisansını bağlamak için beta koşullarını okuyup kabul etmelisin.': 'To link a beta license, read and accept the beta terms.',
   'Bu lisans bu eklentiyi kapsamıyor. Davetli beta lisansı yalnız Kalibre Köprü\'yü kapsar; Kalibre Motor için tam abonelik gerekir.': 'This license does not cover this add-on. An invited beta license covers Kalibre Bridge only. Kalibre Engine needs a full subscription.',
   'Hesap numarası okunamadı.': 'The account number could not be read.',
   'Lisans anahtarı hatalı. kalibremarkets.com/tr/account sayfasından kopyalayın.': 'The license key is invalid. Copy it from kalibremarkets.com/account.',

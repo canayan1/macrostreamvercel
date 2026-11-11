@@ -12,7 +12,7 @@
 import { createHmac, randomBytes } from 'node:crypto';
 import type { Depo } from './depo.ts';
 import type { StripeIstek } from './stripe.ts';
-import { kullaniciyaEkle, lisansAyna } from './hesap.ts';
+import { betaKabulEksik, kullaniciyaEkle, lisansAyna } from './hesap.ts';
 import { uuidMi } from './supabase.ts';
 
 export const URUNLER = ['motor', 'kopru']; // tek abonelik ikisini de kapsar
@@ -32,6 +32,8 @@ export interface Kayit {
   urunler?: string[]; // yoksa tüm ürünler; kupon metadata'sı urunler=kopru ise yalnız ['kopru']
   urun?: string;      // hangi Kalibre Markets ürünü; yoksa 'lab' (Kalibre Lab). urunler bu ürünün eklentileridir.
   kullanici?: string; // Supabase kullanıcı kimliği (Checkout client_reference_id ya da elle bağlama)
+  beta?: boolean;     // elle verilen davetli beta lisansı (yerel/beta-lisans.mjs)
+  betaKabul?: { surum: string; zaman: number; kullanici: string }; // beta koşullarının kabulü (hesap.ts)
 }
 
 // Lisansın kapsadığı ürünler. Alan yoksa abonelik bütün ürünleri kapsar.
@@ -74,6 +76,7 @@ const acilmamis = (sub: any) => typeof sub?.discount === 'string' || (Array.isAr
 // Abonelik, indirimler açılmış (expand) olarak çekilir; kupon kapsamı buradan okunur.
 const aboneYolu = (id: any) => `subscriptions/${encodeURIComponent(typeof id === 'string' ? id : id.id)}?expand[]=discounts`;
 
+const KABUL_YOK = 'Beta koşulları kabul edilmemiş. Anahtarı kalibremarkets.com/account sayfasında beta koşullarını kabul ederek hesabına bağla.';
 const KAPSAM_DISI = 'Bu lisans bu eklentiyi kapsamıyor. Davetli beta lisansı yalnız Kalibre Köprü\'yü kapsar; Kalibre Motor için tam abonelik gerekir.';
 
 // ------------------------------------------------------------------ belirteç
@@ -237,6 +240,7 @@ export async function lisansIsle(d: Depo, sir: string, anahtar: string, hesapMet
   const k = await oku(d, a);
   if (!k) return { durum: 404, govde: 'Lisans anahtarı bulunamadı.' };
   if (!urunKapsar(k, urun)) return { durum: 403, govde: KAPSAM_DISI };
+  if (betaKabulEksik(k)) return { durum: 403, govde: KABUL_YOK };
   const hesap = Number(hesapMetni);
   if (!k.hesaplar.includes(hesap)) {
     if (k.hesaplar.length >= HESAP_SINIRI) {
@@ -264,6 +268,7 @@ export async function eklentiIndir(d: Depo, anahtarMetni: string, ad: string, si
   const k = await oku(d, a);
   if (!k) return { durum: 404, hata: 'Lisans anahtarı bulunamadı.' };
   if (!urunKapsar(k, ad)) return { durum: 403, hata: KAPSAM_DISI };
+  if (betaKabulEksik(k)) return { durum: 403, hata: KABUL_YOK };
   if (k.bitis * 1000 <= simdi) return { durum: 403, hata: 'Aboneliğin sona ermiş. Eklentileri indirmek için aboneliğini yenile.' };
   const v = await d.oku(`eklenti:${ad}`);
   if (!v) return { durum: 503, hata: 'Eklenti dosyası henüz yüklenmedi. Biraz sonra yeniden dene ya da bize yaz.' };

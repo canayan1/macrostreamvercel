@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { bellekDepo } from '../api/_lib/depo.ts';
 import { supabaseAyar, belirtecAl, kullaniciDogrula, servisIstemci } from '../api/_lib/supabase.ts';
-import { lisansBagla, kullaniciLisanslari, aynaSatiri, lisansKimligi } from '../api/_lib/hesap.ts';
+import { lisansBagla, kullaniciLisanslari, aynaSatiri, lisansKimligi, BETA_KOSUL_SURUM } from '../api/_lib/hesap.ts';
 import { olayIsle, oturumCoz, oturumKullanicisi } from '../api/_lib/lisans.ts';
 import { hesapIsle, HESAP_EN } from '../api/hesap.ts';
 import { cevir } from '../api/_lib/dil.ts';
@@ -93,10 +93,11 @@ test('anahtarı hesaba bağlama: biçim, yok, başka hesapta, başarı', async (
   assert.equal((await lisansBagla(d, 'yanlis', UID)).durum, 400);
   assert.equal((await lisansBagla(d, 'KLM-00000-00000-00000-00000', UID)).durum, 404);
   assert.equal((await lisansBagla(d, anahtar, 'uuid-degil')).durum, 401);
-  const r = await lisansBagla(d, anahtar.toLowerCase(), UID);
+  assert.equal((await lisansBagla(d, anahtar, UID)).durum, 400, 'beta lisansı koşul kabulü ister');
+  const r = await lisansBagla(d, anahtar.toLowerCase(), UID, Date.now(), null, BETA_KOSUL_SURUM);
   assert.equal(r.durum, 200);
-  assert.equal((await lisansBagla(d, anahtar, UID)).durum, 200, 'aynı hesaba tekrar bağlamak sorun değil');
-  const baska = await lisansBagla(d, anahtar, UID2);
+  assert.equal((await lisansBagla(d, anahtar, UID)).durum, 200, 'aynı hesaba tekrar bağlamak sorun değil (kabul kayıtlı)');
+  const baska = await lisansBagla(d, anahtar, UID2, Date.now(), null, BETA_KOSUL_SURUM);
   assert.equal(baska.durum, 409);
   assert.equal(cevir(baska.hata, 'en'), 'This key is linked to another account. If you think this is a mistake, contact us.');
 });
@@ -113,7 +114,7 @@ test('lisans görüntüsü Supabase\'e tam anahtarı yazmaz; hizmet anahtarıyla
   const servis = servisIstemci(AYAR, getir);
   const d = bellekDepo();
   await d.yaz(`lisans:${k.anahtar}`, JSON.stringify({ ...k, kullanici: undefined }));
-  assert.equal((await lisansBagla(d, k.anahtar, UID, Date.now(), servis)).durum, 200);
+  assert.equal((await lisansBagla(d, k.anahtar, UID, Date.now(), servis, BETA_KOSUL_SURUM)).durum, 200);
   const i = getir.istekler.find(x => x.url.includes('/rest/v1/licenses'));
   assert.equal(i.o.headers.Authorization, 'Bearer servis-gizli');
   assert.match(i.o.headers.Prefer, /merge-duplicates/);
@@ -183,4 +184,19 @@ test('hesap uçlarının her Türkçe mesajının İngilizcesi var', () => {
   assert.ok(mesajlar.length > 8);
   assert.deepEqual(mesajlar.filter(m => cevir(m, 'en') === m), []);
   assert.ok(Object.keys(HESAP_EN).length > 5);
+});
+
+test('hesap sayfası beta koşullarının sunucudaki sürümünü gönderir ve kutu işaretlenmeden göndermez', () => {
+  const js = readFileSync(new URL('../static/hesap-sayfa.js', import.meta.url), 'utf8');
+  assert.match(js, new RegExp(`var BETA_KOSUL_SURUM = '${BETA_KOSUL_SURUM}'`));
+  assert.match(js, /if \(!\$\('bagla-kabul'\)\.checked\)/);
+  for (const [sayfa, kosul] of [['account', '/beta#terms'], ['tr/account', '/tr/beta#kosullar']]) {
+    const h = readFileSync(new URL(`../${sayfa}/index.html`, import.meta.url), 'utf8');
+    assert.match(h, /id="bagla-kabul"/, sayfa);
+    assert.ok(h.includes(`href="${kosul}"`), sayfa);
+  }
+  for (const [sayfa, id] of [['beta', 'terms'], ['tr/beta', 'kosullar']]) {
+    const h = readFileSync(new URL(`../${sayfa}/index.html`, import.meta.url), 'utf8');
+    assert.ok(h.includes(`id="${id}"`) && h.includes(BETA_KOSUL_SURUM), sayfa);
+  }
 });

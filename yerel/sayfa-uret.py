@@ -199,7 +199,7 @@ def gfoot(lang):
     solutions = ([("MT5 trader'ları", "/tr/trade-analytics"), ("Hazine ve dealing masaları", "/tr/fx-blotter"), ("Prop trader'lar", "/tr/rule-guard"), ("Aracı kurumlar ve prop firmaları", "/tr/company#partners")] if tr else
                  [("MT5 traders", "/trade-analytics"), ("Treasury and dealing desks", "/fx-blotter"), ("Prop traders", "/rule-guard"), ("Brokers and prop firms", "/company#partners")])
     resources = ([("Demolar", "/tr/demo"), ("Güvenlik", "/tr/security"), ("Metodoloji", "/tr/methodology"), ("Kalibre Bridge kurulumu", "/tr/setup"), ("Fiyat", "/tr/pricing"), ("Eğitim yazıları", "/egitim")] if tr else
-                 [("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Kalibre Bridge setup", "/setup"), ("Pricing", "/pricing")] + ([("Articles (Turkish)", "/egitim")] if TURKISH_PUBLIC else []))
+                 [("Get started", "/get-started"), ("Demos", "/demo"), ("Security", "/security"), ("Methodology", "/methodology"), ("Kalibre Bridge setup", "/setup"), ("Pricing", "/pricing")] + ([("Articles (Turkish)", "/egitim")] if TURKISH_PUBLIC else []))
     company = ([("Şirket", "/tr/company"), ("İletişim", "mailto:markets@kalibrefin.com"), ("Hizmet şartları", "/tr/terms"), ("Gizlilik", "/tr/privacy"), ("İade ve iptal", "/tr/refunds"), ("Çerezler", "/tr/cookies"), ("Risk bildirimi", "/tr/risk-disclosure")] if tr else
                [("Company", "/company"), ("Contact", "mailto:markets@kalibrefin.com"), ("Terms of service", "/terms"), ("Privacy", "/privacy"), ("Refunds", "/refunds"), ("Cookies", "/cookies"), ("Risk disclosure", "/risk-disclosure")])
     col = lambda head, items: f'<div><h4>{head}</h4><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for n, h in items) + '</ul></div>'
@@ -948,15 +948,26 @@ if (new URLSearchParams(location.search).get('ok') === '1') {
 BETA = f"""
 <h1>Beta programı rehberi</h1>
 <p class="giris">Kalibre Lab'i denediğin için teşekkürler. Bu sayfa betada ne olduğunu, ilk oturumda ne yapacağını, nelerden kaçınacağını ve geri bildirimi nasıl göndereceğini anlatır.</p>
-<div class="kutu"><b>Beta programında demo hesap kullan.</b> Davetle verilen beta lisansıyla gerçek parayla çalışan bir hesap bağlama. Tüm sonuçlar simülasyondur ve maliyetleri içermeyebilir; gerçek parayla karar verme. Ayrıntılar <a href="/tr/risk-disclosure">risk bildiriminde</a>.</div>
+<div class="kutu"><b>Betaya katılmak tümüyle senin sorumluluğundadır.</b> Gerçek bir MT5 hesabı bağlayabilirsin; Kalibre Bridge hesabı yalnız okur ve emir açmaz. Beta lisansını ancak aşağıdaki <a href="#kosullar">beta koşullarını</a> kabul ederek bağlarsın. Backtest ve simülasyonlar varsayımsaldır; ayrıntılar <a href="/tr/risk-disclosure">risk bildiriminde</a>.</div>
+
+<h2 id="kosullar">Beta koşulları: senin sorumluluğun</h2>
+<p>Betaya katılmak senin kararındır ve tümüyle kendi riskin ve sorumluluğundadır. Beta lisansını hesabına bağladığında şunları kabul edersin:</p>
+<ol>
+  <li><b>Hesabı sen seçersin.</b> Kalibre Bridge MT5'ten yalnız veri okur ve emir açmaz. Demo ya da gerçek hesap bağlayabilirsin; hangi hesabı bağlayacağın senin kararındır.</li>
+  <li><b>Beta yazılımı yanılabilir.</b> Hata içerebilir, yanlış ya da gecikmeli rakam gösterebilir, haber vermeden çalışmayı bırakabilir. Bir rakama güvenmeden önce MT5'teki ya da aracı kurumundaki değerle karşılaştır.</li>
+  <li><b>İşlem kararların yalnız senindir.</b> Betadaki hiçbir şey yatırım tavsiyesi ya da işlem sinyali değildir. Verdiğin her karar ve sonucu senin sorumluluğundadır.</li>
+  <li><b>Anahtarlarını sen korursun.</b> Eşleştirme kodun kimdeyse Bridge verini o okuyabilir. Eşleştirme kodunu, lisans anahtarını ve MT5 giriş bilgilerini kimseyle paylaşma.</li>
+  <li><b>Sorumluluk yok.</b> Yasanın izin verdiği en geniş ölçüde Kalibre Markets, betayı kullanmandan doğan işlem zararları ve veri kaybı dahil hiçbir zarardan sorumlu değildir.</li>
+</ol>
+<p>Koşul sürümü 2026-11-11. <a href="/tr/terms">Hizmet Şartları</a>, <a href="/tr/privacy">Gizlilik Politikası</a> ve <a href="/tr/risk-disclosure">Risk Bildirimi</a> de geçerlidir. Bu koşullar kabul edilerek bağlanmamış beta lisansı indirilemez ve çalışmaz.</p>
 
 <h2 id="lisans">Beta lisansını nasıl alırım?</h2>
-<p>Davetinle birlikte bir <b>beta lisans anahtarı</b> gelir. Kalibre Markets hesabına giriş yap (hesabın ilk girişte oluşturulur) ve <a href="/tr/account">Hesabım</a> sayfasında "Hesabıma bağla"yı kullan. Anahtar Ürünler ve lisanslar bölümünde görünür. Ödeme bilgisi gerekmez.</p>
+<p>Davetinle birlikte bir <b>beta lisans anahtarı</b> gelir. Kalibre Markets hesabına giriş yap (hesabın ilk girişte oluşturulur), <a href="#kosullar">beta koşullarını</a> kabul eden kutuyu işaretle ve <a href="/tr/account">Hesabım</a> sayfasında "Hesabıma bağla"yı kullan. Anahtar Ürünler ve lisanslar bölümünde görünür. Ödeme bilgisi gerekmez.</p>
 <div class="kutu"><b>Beta lisansı ne kadar geçerli?</b> Beta lisansı ücretsiz ve kişiseldir. Sadece Kalibre Bridge'i kapsar ve Hesabım sayfasında gösterilen tarihte sona erer. Beta süresince abonelikler açık değildir.</div>
 
 <h2 id="neler-var">Betada neler var?</h2>
 <ul>
-  <li><b>MetaTrader 5 köprüsü ve Pano:</b> demo MT5 hesabının bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
+  <li><b>MetaTrader 5 köprüsü ve Pano:</b> MT5 hesabının (demo ya da gerçek) bakiyesi, açık pozisyonları, izlediğin kurlar ve son 90 günün kapanmış işlemleri, uçtan uca şifreli.</li>
   <li><b>Strateji kurucu:</b> Basit mod (bloklar) ve İleri mod (form); ikisi aynı stratejiyi düzenler.</li>
   <li><b>Hızlı Backtest:</b> kuralı mumlarında saniyeler içinde çalıştırır. Maliyetler isteğe bağlıdır, varsayılanı sıfırdır.</li>
   <li><b>Optimizasyon:</b> parametre taraması, eğitim ve sınama dönemi, ısı haritası, şans eseri olup olmadığı ölçüsü.</li>
@@ -966,7 +977,7 @@ BETA = f"""
 
 <h2 id="ilk-oturum">İlk oturum (yaklaşık 30 dakika)</h2>
 <ol>
-  <li><a href="/tr/connect">Bağlanma sayfasından</a> demo MT5 hesabını bağla: eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
+  <li><a href="/tr/connect">Bağlanma sayfasından</a> MT5 hesabını bağla (demo ya da gerçek, seçim senin): eklentiyi indir, kodu yapıştır, izin adresini ekle, <b>OK</b>'e bas. Takıldığın adımı not al.</li>
   <li><a href="/tr/dashboard">Pano'yu</a> aç: bakiye, kurlar ve pozisyonlar doğru mu? MT5'te gördüklerinle karşılaştır.</li>
   <li>Strateji kurucuda Basit modda bir strateji kur (ör. iki ortalamanın kesişmesi) ya da bir eğitim örneği yükle; risk bölümünü kendin doldur; Hızlı Backtest'i çalıştır.</li>
   <li><a href="/lab/optimization?lang=tr">Optimizasyon</a> sayfasında iki parametreyi tara; ısı haritasına ve sınama dönemi sonucuna bak.</li>
@@ -975,7 +986,6 @@ BETA = f"""
 
 <h2 id="yapma">Bunları yapma</h2>
 <ul>
-  <li>Gerçek hesap bağlama.</li>
   <li>Kural dosyalarını herhangi bir hesapta otomatik işlem için çalıştırma; betada otomatik işlem yok.</li>
   <li>Eşleştirme kodunu, lisans anahtarını ya da Alpaca/Tradier anahtarlarını kimseyle paylaşma; bize de gönderme.</li>
   <li>Simülasyon sonuçlarını yatırım kararı için kullanma.</li>

@@ -3,11 +3,15 @@ import assert from 'node:assert/strict';
 import { bellekDepo } from '../api/_lib/depo.ts';
 import { lisansIsle, eklentiIndir, ANAHTAR_RE } from '../api/_lib/lisans.ts';
 import { betaOlustur, betaListele, betaUzat, betaIptal } from '../yerel/beta-lisans-cekirdek.mjs';
+import { lisansBagla, BETA_KOSUL_SURUM } from '../api/_lib/hesap.ts';
+import { cevir } from '../api/_lib/dil.ts';
 
 const T0 = 1_792_000_000_000;
 const SIR = 'degistir-beni';
 
-test('beta lisansı: lisans ucu ve indirme onu abonelik gibi kabul eder', async () => {
+const UID = '11111111-2222-4333-8444-555555555555';
+
+test('beta lisansı: koşullar kabul edilerek bağlanınca lisans ucu ve indirme onu abonelik gibi kabul eder', async () => {
   const d = bellekDepo();
   const k = await betaOlustur(d, { eposta: 'test@ornek.com', gun: 60, not: 'demo MT5' }, T0);
   assert.match(k.anahtar, ANAHTAR_RE);
@@ -16,12 +20,38 @@ test('beta lisansı: lisans ucu ve indirme onu abonelik gibi kabul eder', async 
   assert.ok(k.abonelik.startsWith('beta-'));
   assert.equal(k.bitis, Math.floor(T0 / 1000) + 60 * 86400);
   assert.deepEqual(k.urunler, ['kopru']);
+  assert.equal((await lisansBagla(d, k.anahtar, UID, T0, null, BETA_KOSUL_SURUM)).durum, 200);
   const r = await lisansIsle(d, SIR, k.anahtar, '12345', 'kopru', T0);
   assert.equal(r.durum, 200);
   assert.equal(r.govde.split('|')[3], String(k.bitis));
   await d.yaz('eklenti:kopru', JSON.stringify({ dosya: 'KalibreKopru.ex5', surum: 'b', sha256: '', b64: 'AA==' }));
   await d.yaz('eklenti:motor', JSON.stringify({ dosya: 'KalibreMotor.ex5', surum: 'b', sha256: '', b64: 'AA==' }));
   assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', T0)).durum, 200);
+});
+
+test('beta koşulları kabul edilmeden: bağlanmaz, MT5\'te çalışmaz, indirilmez; kabul sürümü ve zamanı kaydedilir', async () => {
+  const d = bellekDepo();
+  const k = await betaOlustur(d, { eposta: 'test@ornek.com', gun: 60 }, T0);
+  await d.yaz('eklenti:kopru', JSON.stringify({ dosya: 'KalibreKopru.ex5', surum: 'b', sha256: '', b64: 'AA==' }));
+  const l = await lisansIsle(d, SIR, k.anahtar, '12345', 'kopru', T0);
+  assert.equal(l.durum, 403);
+  assert.match(cevir(l.govde, 'en'), /beta terms have not been accepted/);
+  assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', T0)).durum, 403);
+  for (const kabul of [null, true, 'evet', '2020-01-01']) {
+    const b = await lisansBagla(d, k.anahtar, UID, T0, null, kabul);
+    assert.equal(b.durum, 400, String(kabul));
+    assert.match(cevir(b.hata, 'en'), /accept the beta terms/);
+  }
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '12345', 'kopru', T0)).durum, 403, 'reddedilen bağlama kabul yazmaz');
+  const ok = await lisansBagla(d, k.anahtar, UID, T0, null, BETA_KOSUL_SURUM);
+  assert.equal(ok.durum, 200);
+  assert.deepEqual(ok.kayit.betaKabul, { surum: BETA_KOSUL_SURUM, zaman: Math.floor(T0 / 1000), kullanici: UID });
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '12345', 'kopru', T0)).durum, 200);
+  assert.equal((await eklentiIndir(d, k.anahtar, 'kopru', T0)).durum, 200);
+  // Koşullar değişirse (eski sürümün kabulü) lisans yeniden kabul ister.
+  const kayit = JSON.parse(await d.oku(`lisans:${k.anahtar}`));
+  await d.yaz(`lisans:${k.anahtar}`, JSON.stringify({ ...kayit, betaKabul: { ...kayit.betaKabul, surum: '2026-01-01' } }));
+  assert.equal((await lisansIsle(d, SIR, k.anahtar, '12345', 'kopru', T0)).durum, 403);
 });
 
 test('beta lisansı Motor\'u kapsamaz: lisans ve indirme 403, açık mesajla; ücretli abonelik hepsini kapsar', async () => {

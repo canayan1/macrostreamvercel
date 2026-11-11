@@ -13,6 +13,8 @@ STIL = """
 .ayrac { display: flex; align-items: center; gap: 12px; color: var(--silik); font-size: 13px; margin: 18px 0; }
 .ayrac::before, .ayrac::after { content: ""; flex: 1; height: 1px; background: var(--cizgi); }
 .alan-etiket { display: block; font-size: 14px; color: var(--soluk); margin: 0 0 6px; }
+.onay-satir { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--soluk); margin: 12px 0 0; line-height: 1.45; }
+.onay-satir input { margin-top: 3px; flex: none; width: 18px; height: 18px; }
 .metin-alan { width: 100%; min-height: 46px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--cizgi-2); background: var(--zemin); color: var(--metin); font: 400 16px var(--sans); }
 .metin-alan:focus { outline: none; border-color: var(--yesil); }
 .genis { width: 100%; margin-top: 12px; }
@@ -69,6 +71,7 @@ T = {
     ad="Ad (isteğe bağlı)", dil="Arayüz dili", izin="Ürün güncellemesi e-postaları", pazarlama="Sana ürün güncellemeleri hakkında e-posta göndeririz. İstediğin zaman vazgeçebilirsin.", pazarlama_ret="Ürün güncellemesi e-postası istemiyorum", kaydet="Kaydet",
     lisanslar="Ürünler ve lisanslar", lisans_not='Lisans anahtarını Kalibre Bridge ve Kalibre Engine ayarlarına bir kez girersin. Bir anahtar en çok 2 MT5 hesabında kullanılır. Kurulum adımları <a href="/tr/setup">kurulum sayfasında</a>.',
     bagla="Anahtarın mı var?", bagla_not="Davetle ya da hesap açılmadan önce aldığın bir anahtarı hesabına bağla.", bagla_dugme="Hesabıma bağla",
+    bagla_kabul='<a href="/tr/beta#kosullar">Beta koşullarını</a> okudum. Betaya tümüyle kendi riskim ve sorumluluğumla katılıyorum; betayı kullanmamdan doğan zararlardan Kalibre Markets\'in sorumlu olmadığını kabul ediyorum.',
     cihaz="Bu cihazdaki bağlantılar", cihaz_not="MT5 eşleştirme kodu ve aracı kurum anahtarları yalnız bu tarayıcıda saklanır; hesabına yazılmaz ve başka cihaza taşınmaz. Yeni bir cihazda bağlantıyı yeniden kurman gerekir.", cihaz_dugme="Bağlantıları yönet",
     stratejiler="Kayıtlı stratejiler", strateji_not="Giriş yapmışken laboratuvardaki taslağın hesabına kaydedilir ve diğer cihazlarında açılabilir.",
     sil="Hesabı sil", sil_not="Hesabın, profilin ve kayıtlı stratejilerin kalıcı olarak silinir. Etkin bir aboneliğin varsa dönem sonunda biter ve yeniden ücret alınmaz; lisans anahtarın o tarihe kadar MT5'te çalışır. Anahtarı saklamak istiyorsan önce kopyala. Ödeme ve fatura kayıtları yasal saklama süresi boyunca tutulur; ayrıntılar <a href='/tr/privacy#retention'>Gizlilik Politikası</a>'nda.",
@@ -87,6 +90,7 @@ T = {
     ad="Name (optional)", dil="Language", izin="Product update emails", pazarlama="We'll email you product updates. You can opt out anytime.", pazarlama_ret="Don't send me product update emails", kaydet="Save",
     lisanslar="Products and licenses", lisans_not='Enter your license key once in the Kalibre Bridge and Kalibre Engine settings. Each key works on up to 2 MT5 accounts. Setup steps are on the <a href="/setup">setup page</a>.',
     bagla="Have a key?", bagla_not="Link a key you received by invitation or before accounts existed.", bagla_dugme="Link to my account",
+    bagla_kabul='I have read the <a href="/beta#terms">beta terms</a>. I join the beta entirely at my own risk and responsibility, and I accept that Kalibre Markets is not liable for losses arising from my use of it.',
     cihaz="Connections on this device", cihaz_not="Your MT5 pairing code and broker keys are stored only in this browser. They are not saved to your account and do not move to other devices. On a new device, set the connection up again.", cihaz_dugme="Manage connections",
     stratejiler="Saved strategies", strateji_not="While you are signed in, your lab draft is saved to your account so you can open it on your other devices.",
     sil="Delete account", sil_not="This permanently deletes your account, profile and saved strategies. If you have an active subscription, it ends at the close of the current period and you will not be charged again; your license key keeps working in MT5 until then. Copy the key first if you want to keep it. Payment and invoice records are kept for the legally required period; details are in the <a href='/privacy#retention'>Privacy Policy</a>.",
@@ -141,6 +145,7 @@ for dil, t in T.items():
         <input id="bagla-anahtar" placeholder="KLM-XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off">
         <button type="submit" class="dugme ikincil">{t['bagla_dugme']}</button>
       </div>
+      <label class="onay-satir" for="bagla-kabul"><input type="checkbox" id="bagla-kabul"> <span>{t['bagla_kabul']}</span></label>
       <p class="not durum" id="bagla-durum" role="status"></p>
     </form>
   </section>
