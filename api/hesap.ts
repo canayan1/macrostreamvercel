@@ -2,7 +2,7 @@
 // Tek işlev dosyası, işlem sorgu parametresiyle seçilir (Vercel işlev sayısını artırmamak için):
 //
 //   GET  /api/hesap?islem=lisanslar            → { lisanslar: [{ anahtar, durum, bitis, ... }] }
-//   POST /api/hesap?islem=lisans-bagla  { anahtar }   → { lisans }
+//   POST /api/hesap?islem=lisans-bagla  { anahtar, kabul? } → { lisans }   (beta lisansı: kabul = BETA_KOSUL_SURUM)
 //   POST /api/hesap?islem=sil           { onay: true } → { silindi, iptalEdilen }
 //
 // Tam lisans anahtarı yalnız bu uçtan ve yalnız anahtarın bağlı olduğu kullanıcıya verilir.
@@ -60,7 +60,7 @@ export async function hesapIsle(islem: string, yontem: string, g: any, b: HesapB
     return { durum: 200, govde: { lisanslar: l.map(k => lisansGorunumu(k, simdi)) } };
   }
   if (islem === 'lisans-bagla' && yontem === 'POST') {
-    const r = await lisansBagla(depo, String(g?.anahtar ?? ''), kullanici.id, simdi, b.servis);
+    const r = await lisansBagla(depo, String(g?.anahtar ?? ''), kullanici.id, simdi, b.servis, g?.kabul ?? null);
     return r.durum === 200 ? { durum: 200, govde: { lisans: lisansGorunumu(r.kayit, simdi) } } : { durum: r.durum, govde: { hata: r.hata } };
   }
   if (islem === 'sil' && yontem === 'POST') {

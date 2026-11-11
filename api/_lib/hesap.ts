@@ -15,6 +15,13 @@ import type { Depo } from './depo.ts';
 import { servisIstemci, supabaseAyar, uuidMi, type ServisIstemci } from './supabase.ts';
 
 const ANAHTAR_RE = /^KLM(-[0-9A-HJKMNP-TV-Z]{5}){4}$/;
+
+// Beta koşulları (/beta#terms, /tr/beta#kosullar): betaya katılmak tümüyle kullanıcının sorumluluğundadır.
+// Beta lisansı ancak bu sürümün kabulüyle hesaba bağlanır; kabul edilmemiş beta lisansı MT5'te çalışmaz ve
+// indirilemez (lisans.ts). Metin değişirse sürüm artırılır ve herkes yeniden kabul eder.
+// static/hesap-sayfa.js aynı değeri gönderir (test/hesap.test.mjs denetler).
+export const BETA_KOSUL_SURUM = '2026-11-11';
+export const betaKabulEksik = (k: { beta?: boolean; betaKabul?: { surum?: string } }) => !!k.beta && k.betaKabul?.surum !== BETA_KOSUL_SURUM;
 const dizin = (uid: string) => `lisans-kullanici:${uid}`;
 
 async function listeOku(d: Depo, uid: string): Promise<string[]> {
@@ -72,7 +79,7 @@ export async function lisansAyna(k: any, servis: ServisIstemci | null = servisIs
 export type BagSonuc = { durum: number; hata?: string; kayit?: any };
 
 // "Anahtarın var mı? Hesabına bağla": eski ya da davetli beta anahtarını hesaba bağlar.
-export async function lisansBagla(d: Depo, anahtarMetni: string, uid: string, simdi = Date.now(), servis: ServisIstemci | null = null): Promise<BagSonuc> {
+export async function lisansBagla(d: Depo, anahtarMetni: string, uid: string, simdi = Date.now(), servis: ServisIstemci | null = null, kabul: unknown = null): Promise<BagSonuc> {
   if (!uuidMi(uid)) return { durum: 401, hata: 'Önce giriş yap.' };
   const a = String(anahtarMetni ?? '').trim().toUpperCase();
   if (!ANAHTAR_RE.test(a)) return { durum: 400, hata: 'Lisans anahtarı hatalı.' };
@@ -81,10 +88,13 @@ export async function lisansBagla(d: Depo, anahtarMetni: string, uid: string, si
   if (!v) return { durum: 404, hata: 'Lisans anahtarı bulunamadı.' };
   const k = JSON.parse(v);
   if (k.kullanici && k.kullanici !== uid) return { durum: 409, hata: 'Bu anahtar başka bir hesaba bağlı. Yanlışlık olduğunu düşünüyorsan bize yaz.' };
-  if (k.kullanici !== uid) {
-    k.kullanici = uid;
-    await d.yaz(`lisans:${a}`, JSON.stringify(k));
-  }
+  const kabulEdiyor = kabul === BETA_KOSUL_SURUM;
+  if (k.beta && !kabulEdiyor && betaKabulEksik(k)) return { durum: 400, hata: 'Beta lisansını bağlamak için beta koşullarını okuyup kabul etmelisin.' };
+  let degisti = false;
+  if (k.kullanici !== uid) { k.kullanici = uid; degisti = true; }
+  // Kabul kaydı: hangi sürüm, ne zaman, hangi hesap. Yalnız beta lisansında tutulur.
+  if (k.beta && kabulEdiyor && betaKabulEksik(k)) { k.betaKabul = { surum: BETA_KOSUL_SURUM, zaman: Math.floor(simdi / 1000), kullanici: uid }; degisti = true; }
+  if (degisti) await d.yaz(`lisans:${a}`, JSON.stringify(k));
   await kullaniciyaEkle(d, uid, a);
   await lisansAyna(k, servis ?? servisIstemci(supabaseAyar()));
   return { durum: 200, kayit: k };
