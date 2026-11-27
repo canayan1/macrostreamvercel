@@ -71,3 +71,19 @@ test('akış: kaçırılanları sırayla verir, sonra yeni kayıtları anında i
   ac.abort();
   sunucu.close();
 });
+
+test('desktop app origins get CORS headers; other sites do not', async () => {
+  const { desktopCors } = await import('../api/desk.ts');
+  for (const origin of ['tauri://localhost', 'http://tauri.localhost', 'https://tauri.localhost']) {
+    const h = {};
+    assert.equal(desktopCors(origin, (n, v) => { h[n] = v; }), true);
+    assert.equal(h['Access-Control-Allow-Origin'], origin);
+    assert.match(h['Access-Control-Allow-Headers'], /Content-Type/);
+    assert.equal(h['Access-Control-Expose-Headers'], 'Retry-After');
+  }
+  for (const origin of [undefined, '', 'null', 'https://evil.example', 'tauri://localhost.evil.example', 'http://tauri.localhost:8080', ['tauri://localhost']]) {
+    const h = {};
+    assert.equal(desktopCors(origin, (n, v) => { h[n] = v; }), false, String(origin));
+    assert.deepEqual(h, {});
+  }
+});

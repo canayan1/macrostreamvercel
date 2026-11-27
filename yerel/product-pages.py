@@ -697,7 +697,7 @@ def desk_signal(lang):
 {local}
 {page_hero(T(lang, "One key to the whole desk.", "Tek tuşla bütün masa."),
            T(lang, "Colour signals from the head of desk to every trader's screen, in every city, with a record of who answered.", "Masa şefinden her şehirdeki her trader'ın ekranına renkli sinyal; kimin yanıt verdiğinin kaydıyla."),
-           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(DESK_LIVE, T(lang, "Start a live desk", "Canlı masa kur")) + more("/guides/desk-signal", T(lang, "Setup guide", "Kurulum rehberi")),
+           btn(LAB(lang, DESK_DEMO), T(lang, "Try the demo", "Demoyu dene")) + more(DESK_LIVE, T(lang, "Start a live desk", "Canlı masa kur")) + more(P(lang, "/desk-signal/download"), T(lang, "Mac and Windows app", "Mac ve Windows uygulaması")),
            hero_image("desk-signal", lang, T(lang, "Desk Signal demo on a laptop: the head of desk's signal board next to four trader screens, one orb lit amber in London and one grown red in Tokyo", "Dizüstünde Desk Signal demosu: masa şefinin sinyal panosu ve dört trader ekranı; Londra'da amber, Tokyo'da büyümüş kırmızı bir top")),
            kicker="Desk Signal" + status_tag("test", lang))}
 
@@ -727,7 +727,7 @@ def desk_signal(lang):
   <div class="wrap">
     <h2 class="title">{T(lang, "What comes next.", "Sırada ne var.")}</h2>
     <div class="tiles">
-      {plan_tile(T(lang, "Desktop app.", "Masaüstü uygulaması."), T(lang, "For Mac and Windows. The orb sits in a corner above every window, and the same keys work from any app with ⌃⌥.", "Mac ve Windows için. Top her pencerenin üstünde bir köşede durur; aynı tuşlar ⌃⌥ ile her uygulamadan çalışır."), "third")}
+      {tile(T(lang, "Desktop app.", "Masaüstü uygulaması.") + status_tag("test", lang), T(lang, "For Mac and Windows. The orb sits in a corner above every window, on the same desk as the browser.", "Mac ve Windows için. Top her pencerenin üstünde bir köşede durur; tarayıcıdakiyle aynı masada."), more(P(lang, "/desk-signal/download"), T(lang, "Download", "İndir")), "third")}
       {plan_tile(T(lang, "Phone alarm.", "Telefon alarmı."), T(lang, "Urgent signals that wait too long on the desktop ring on the trader's phone, even when it is on silent.", "Masaüstünde fazla bekleyen acil sinyaller trader'ın telefonunda, sessizdeyken bile çalar."), "dark third")}
       {plan_tile(T(lang, "Key pad.", "Tuş takımı."), T(lang, "A programmable key pad on the head's desk, one key per signal.", "Masa şefinin masasında programlanabilir bir tuş takımı; her sinyale bir tuş."), "third")}
     </div>
@@ -743,7 +743,7 @@ def desk_signal(lang):
     {faq([(T(lang, "Does it replace our chat or recorded lines?", "Sohbeti ya da kayıtlı hatları değiştirir mi?"), T(lang, "No. It sits next to them for the quick signals. Your firm's own record-keeping rules still apply, and the signal log helps you keep them.", "Hayır. Hızlı sinyaller için onların yanında durur. Firmanın kendi kayıt tutma kuralları geçerliliğini korur; sinyal logu bunlara yardımcı olur.")),
           (T(lang, "Does the demo send anything?", "Demo bir şey gönderiyor mu?"), T(lang, "No. The demo runs in your browser and sends nothing to a server.", "Hayır. Demo tarayıcında çalışır ve hiçbir sunucuya bir şey göndermez.")),
           (T(lang, "Can we choose our own colours and meanings?", "Renkleri ve anlamları kendimiz seçebilir miyiz?"), T(lang, "Yes. Up to nine signals, each with its own meaning and key. You choose which ones ring until answered.", "Evet. Dokuz sinyale kadar; her birinin kendi anlamı ve tuşu olur. Hangilerinin yanıtlanana kadar çalacağını sen seçersin.")),
-          (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "Nothing. They open the invite link in a browser tab and pick a name. In Chrome and Edge the orb can stay on top of their other windows. The desktop app follows.", "Hiçbir şey. Davet bağlantısını bir tarayıcı sekmesinde açar ve bir ad seçer. Chrome ve Edge'de top diğer pencerelerin üstünde kalabilir. Masaüstü uygulaması ardından gelir.")),
+          (T(lang, "What does a trader need to install?", "Trader'ın ne kurması gerekiyor?"), T(lang, "Nothing. They open the invite link in a browser tab and pick a name. For the orb above every app, they install the Mac or Windows app and paste the same link.", "Hiçbir şey. Davet bağlantısını bir tarayıcı sekmesinde açar ve bir ad seçer. Topun her uygulamanın üstünde durması için Mac ya da Windows uygulamasını kurar ve aynı bağlantıyı yapıştırır.")),
           (T(lang, "Can Kalibre read our signals?", "Kalibre sinyallerimizi okuyabilir mi?"), T(lang, "No. Signals are sealed in your browsers with a key that lives only in your invite link. Our relay passes them on without being able to open them, and only the head's browser can send a signal.", "Hayır. Sinyaller tarayıcılarınızda, yalnız davet bağlantınızda duran bir anahtarla mühürlenir. Rölemiz onları açamadan iletir ve sinyali yalnız masa şefinin tarayıcısı gönderebilir.")),
           (T(lang, "How long is the log kept?", "Log ne kadar tutulur?"), T(lang, "The head's console downloads the full log as CSV or Excel at any time. During early access the relay keeps the last 5,000 events for 30 days.", "Masa şefinin konsolu tam logu istediği an CSV ya da Excel olarak indirir. Erken erişimde röle son 5.000 olayı 30 gün tutar."))])}
     <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
@@ -754,6 +754,76 @@ def desk_signal(lang):
          T(lang, "Desk Signal: colour signals from the head of desk to every trader", "Desk Signal: masa şefinden her trader'a renkli sinyal"),
          T(lang, "Send a colour signal to one trader, a city or the whole desk with one key. Urgent signals ring until answered, and every signal is logged.", "Tek tuşla bir trader'a, bir şehre ya da bütün masaya renkli sinyal gönder. Acil sinyaller yanıtlanana kadar çalar, her sinyal kaydedilir."),
          body, P(lang, "/desk-signal"), "/desk-signal" if tr else "/tr/desk-signal", '<script src="/static/talep.js" defer></script>')
+
+# ================================================================== Desk Signal downloads
+# The release manifest is written when a release build is copied into the site
+# (static/downloads/desk-signal/latest.json). Without it the page says downloads open soon.
+DESK_DOWNLOADS = os.path.join(KOK, "static", "downloads", "desk-signal", "latest.json")
+
+def desk_download_manifest():
+    try:
+        with open(DESK_DOWNLOADS, encoding="utf-8") as f:
+            m = json.load(f)
+        files = {x["os"]: x for x in m.get("files", []) if x.get("os") in ("mac", "windows") and str(x.get("url", "")).startswith("/static/downloads/")}
+        return m, files
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return None, {}
+
+def desk_signal_download(lang):
+    from html import escape
+    tr = lang == "tr"
+    m, files = desk_download_manifest()
+    mb = lambda n: f"{n / 1_000_000:.1f} MB"
+    def card(os_key, title, needs, first_run):
+        f = files.get(os_key)
+        if not f:
+            return tile(title, needs + " " + T(lang, "The download opens here soon.", "İndirme bağlantısı yakında burada."))
+        link = btn(f["url"], T(lang, f"Download for {title}", f"{title} için indir"), " download")
+        meta = (f'<p class="fine">{T(lang, "Version", "Sürüm")} {escape(str(m["version"]))}, {mb(int(f["bytes"]))}<br>'
+                f'SHA-256 <code class="hash">{escape(str(f["sha256"]))}</code></p>')
+        return tile(title, needs + " " + first_run, link + meta)
+    mac = card("mac", "Mac",
+               T(lang, "macOS 11 or later, Apple silicon and Intel.", "macOS 11 ya da sonrası; Apple silicon ve Intel."),
+               T(lang, "Open the file and drag Desk Signal to Applications. In this beta, macOS asks once: open System Settings, Privacy & Security, and choose Open Anyway.",
+                 "Dosyayı aç ve Desk Signal'ı Uygulamalar'a sürükle. Bu betada macOS bir kez sorar: Sistem Ayarları, Gizlilik ve Güvenlik'i aç ve Yine de Aç'ı seç."))
+    win = card("windows", "Windows",
+               T(lang, "Windows 10 or 11, 64-bit.", "Windows 10 ya da 11, 64 bit."),
+               T(lang, "Run the installer. In this beta, Windows shows its protection screen once: choose More info, then Run anyway.",
+                 "Kurulumu çalıştır. Bu betada Windows koruma ekranını bir kez gösterir: Ek bilgi'yi, sonra Yine de çalıştır'ı seç."))
+    body = f'''
+{page_hero(T(lang, "Desk Signal for Mac and Windows.", "Mac ve Windows için Desk Signal."),
+           T(lang, "The orb stays in a corner of the screen, above every app. Same desk as the browser: one invite link works in both.", "Top ekranın bir köşesinde, her uygulamanın üstünde durur. Tarayıcıdakiyle aynı masa: tek davet bağlantısı ikisinde de çalışır."),
+           more(P(lang, "/desk-signal"), T(lang, "About Desk Signal", "Desk Signal hakkında")) + more("/guides/desk-signal", T(lang, "Setup guide", "Kurulum rehberi")),
+           hero_image("desk-signal", lang, T(lang, "Desk Signal on a laptop: the head of desk's signal board next to four trader screens, one orb lit amber in London and one grown red in Tokyo", "Dizüstünde Desk Signal: masa şefinin sinyal panosu ve dört trader ekranı; Londra'da amber, Tokyo'da büyümüş kırmızı bir top")),
+           kicker="Desk Signal" + status_tag("test", lang))}
+
+<section class="sec" id="download">
+  <div class="wrap">
+    <div class="tiles">
+      {mac}
+      {win}
+    </div>
+  </div>
+</section>
+
+<section class="sec mist" id="safety">
+  <div class="wrap">
+    <h2 class="title">{T(lang, "Built to carry signals, and only signals.", "Yalnız sinyal taşımak için yapıldı.")}</h2>
+    <div class="tiles">
+      {tile(T(lang, "Sealed on your computer.", "Bilgisayarında mühürlenir."), T(lang, "Signals are encrypted before they leave the app, with a key that lives only in your invite link. Our relay passes them on without being able to open them.", "Sinyaller uygulamadan çıkmadan şifrelenir; anahtar yalnız davet bağlantında durur. Rölemiz onları açamadan iletir."), "", "third")}
+      {tile(T(lang, "Only the head sends.", "Yalnız masa şefi gönderir."), T(lang, "Every signal carries the head of desk's digital signature. An invite link lets a trader answer, never send.", "Her sinyal masa şefinin dijital imzasını taşır. Davet bağlantısı trader'a yanıt verme hakkı verir, gönderme hakkı vermez."), "", "dark third")}
+      {tile(T(lang, "Nothing to run.", "Çalıştırılacak bir şey yok."), T(lang, "Apps exchange fixed signals from your board. No files, links or code travel between them.", "Uygulamalar yalnız panondaki sabit sinyalleri paylaşır. Aralarında dosya, bağlantı ya da kod dolaşmaz."), "", "third")}
+      {tile(T(lang, "One address on the internet.", "İnternette tek adres."), T(lang, "The app talks only to kalibremarkets.com. It cannot open your files or start other programs, and it saves a log only where you choose.", "Uygulama yalnız kalibremarkets.com ile konuşur. Dosyalarını açamaz, başka program başlatamaz; logu yalnız senin seçtiğin yere kaydeder."), "", "third")}
+      {tile(T(lang, "Check what you downloaded.", "İndirdiğini doğrula."), T(lang, "Each file's SHA-256 is listed above. On a Mac run shasum -a 256 on the file; on Windows run Get-FileHash in PowerShell. The two values match.", "Her dosyanın SHA-256 özeti yukarıda. Mac'te dosyada shasum -a 256 çalıştır; Windows'ta PowerShell'de Get-FileHash çalıştır. İki değer aynı çıkar."), "", "dark third")}
+      {tile(T(lang, "Signed releases next.", "Sırada imzalı sürümler."), T(lang, "Apple-notarized and code-signed builds replace this beta, and the system opens the app without asking first.", "Apple onaylı ve kod imzalı sürümler bu betanın yerini alır; sistem uygulamayı sormadan açar."), "", "third")}
+    </div>
+    <p class="legal-note">{T(lang, "Desk Signal is a communication tool. It does not send orders or give investment advice.", "Desk Signal bir iletişim aracıdır. Emir göndermez ve yatırım tavsiyesi vermez.")}</p>
+  </div>
+</section>'''
+    page("tr/desk-signal/download/index.html" if tr else "desk-signal/download/index.html", lang,
+         T(lang, "Download Desk Signal for Mac and Windows", "Desk Signal'ı Mac ve Windows için indir"),
+         T(lang, "Desk Signal for macOS and Windows: the orb stays in a corner of your screen above every app, and signals are sealed on your computer.", "macOS ve Windows için Desk Signal: top ekranının köşesinde her uygulamanın üstünde durur, sinyaller bilgisayarında mühürlenir."),
+         body, P(lang, "/desk-signal"), "/desk-signal/download" if tr else "/tr/desk-signal/download")
 
 # ================================================================== Kalibre Lab
 def kalibre_lab(lang):
@@ -1337,6 +1407,7 @@ for lang in ("en", "tr"):
     fx_blotter(lang)
     rule_guard(lang)
     desk_signal(lang)
+    desk_signal_download(lang)
     kalibre_lab(lang)
     demos(lang)
     request_demo(lang)

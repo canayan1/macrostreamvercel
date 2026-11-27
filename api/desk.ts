@@ -98,9 +98,27 @@ async function akis(req: VercelRequest, res: VercelResponse, depo: Depo, masa: s
   }
 }
 
+// The Desk Signal desktop app (kalibre-lab desktop/desk-signal) loads its pages from its own origin
+// and calls this relay across origins. Only those origins are answered with CORS headers; every
+// other site's browser page still cannot read the relay. Envelopes stay sealed either way.
+export const DESKTOP_ORIGINS = new Set(['tauri://localhost', 'http://tauri.localhost', 'https://tauri.localhost']);
+
+export function desktopCors(origin: unknown, setHeader: (name: string, value: string) => void): boolean {
+  if (typeof origin !== 'string' || !DESKTOP_ORIGINS.has(origin)) return false;
+  setHeader('Access-Control-Allow-Origin', origin);
+  setHeader('Vary', 'Origin');
+  setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  setHeader('Access-Control-Allow-Headers', 'Content-Type, Last-Event-ID');
+  setHeader('Access-Control-Expose-Headers', 'Retry-After');
+  setHeader('Access-Control-Max-Age', '600');
+  return true;
+}
+
 // ------------------------------------------------------------------ uç
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'no-store');
+  const cors = desktopCors(req.headers.origin, (n, v) => res.setHeader(n, v));
+  if (req.method === 'OPTIONS') return res.status(cors ? 204 : 403).end();
   const depo = depoSec();
   if (!depo) return res.status(503).json({ hata: 'röle yapılandırılmamış' });
   const masa = String(req.query.d ?? '');
